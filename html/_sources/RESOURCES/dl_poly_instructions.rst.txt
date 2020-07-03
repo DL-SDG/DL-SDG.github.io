@@ -1,0 +1,33 @@
+.. This document contains DL_Poly specific instructions and information
+
+
+*******************************************
+DL_POLY Specific Instructions and Tutorials
+*******************************************
+
+
+* PRACE training video tutorial by Prof Ilian Todorov, prepared by NCSA (Bulgaria): `Introduction to DL_POLY <https://www.youtube.com/watch?v=BQKBwG3XamA>`_
+
+|
+  
+* `Building DL_POLY_4.08 with cmake gfortran (7.2.1) and openmpi (3.0.0) <https://www.youtube.com/watch?v=6SqjOzQ-mno>`_   (no sound)
+
+|
+  
+* DL_POLY_4 build process gnu compilers and openmpi on opensuse `Building DL_POLY_4 with gnu compilers and openmpi on opensuse <https://www.youtube.com/watch?v=3Xfh-P681P8>`_  (no sound)
+
+|  
+  
+* `DL_POLY_4 GUI build and start <https://www.youtube.com/watch?v=vHcF6FWBJk4>`_ (no sound)
+
+|
+
+* `Starting DL_POLY from RMC configs <https://www.youtube.com/watch?v=5iCR4FM8EkQ>`_ (pop music soundtrack)
+
+|
+  
+* Carlos Bernardes describing how to build input files for DL_POLY and GROMACS `DLPGEN TUTORIAL – Introduction and install <https://www.youtube.com/watch?v=ucHnQbflGsE>`_
+
+|
+  
+* `Prepare, submit and monitor a run of the DL_POLY Classic molecular dynamics application through the Fujitsu Gateway web desktop. <https://www.youtube.com/watch?v=UK3yDAlfO0I>`_

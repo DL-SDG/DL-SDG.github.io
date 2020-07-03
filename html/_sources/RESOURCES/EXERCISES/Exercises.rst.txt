@@ -1,0 +1,20 @@
+.. This  lists a range of tutorial exercises copied directly from ftp://ftp.dl.ac.uk/ccp5/DL_POLY/DL_POLY_4.0/TUTORIAL/
+
+   
+
+*********
+Exercises
+*********
+
+Below is a list of tutorial exercises that have been written for a range of users of DL_Software. They are categorized into 3 levels of 'Difficulty': Low, Medium and High.
+They are written as exercises rather than walkthroughs and require input from you.
+
+
+
+.. toctree::
+   :maxdepth: 2
+
+	      
+   ./Low
+   ./Medium
+   ./High

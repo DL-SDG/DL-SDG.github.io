@@ -1,0 +1,15 @@
+DL_POLY: Silver Iodide Test Case
+UNITS
+MOLECULES 1
+Silver Iodide
+NUMMOLS 64
+ATOMS 4
+Ag+          107.868       0.600    2
+I_-          126.905      -0.600    2
+FINISH
+VDWTABLE 3
+Ag+     I_-     tab 
+I_-     I_-     tab
+Ag+     Ag+     tab
+CLOSE
+
