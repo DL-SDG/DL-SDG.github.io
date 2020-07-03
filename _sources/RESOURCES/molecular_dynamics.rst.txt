@@ -1,0 +1,17 @@
+.. This document contains general information about molecular dynamicsn
+
+
+*****************************
+Molecular Dynamics in General
+*****************************
+
+* `A brief introduction to molecular dynamics <https://www.youtube.com/watch?v=lLFEqKl3sm4&list=PLns_odfSyy_UIbMvS1Mg_N4KfXUDhERD6>`_
+
+|  
+
+* `Introduction to Molecular Dynamics Simulations <https://www.youtube.com/watch?v=yaLPLRO1FLE>`_ (WestGrid -  Ali Kerrache speaking)
+
+|
+
+* PRACE training video tutorial:  `An introduction to Molecular Dynamics <https://www.youtube.com/watch?v=1y4qDhzmWPw>`_ (Prepared by NCSA -Bulgaria, with Prof. Ilian Todorov speaking
+

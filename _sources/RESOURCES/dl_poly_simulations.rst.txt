@@ -1,0 +1,26 @@
+.. This document contains links to videos of DL_POLY simulations
+
+
+*******************************
+Examples of DL_POLY Simulations
+*******************************
+
+* DL_POLY simulation of `formic acid on calcite surface <https://www.youtube.com/watch?v=Ojw_LJNR9f8>`_ (film made with `ATEN <http://www.projectaten.com/>`_ and `ffmpeg <https://www.ffmpeg.org/>`_ all on `opensuse <https://opensuse.org>`_ )
+
+ |
+ 
+* Using DL_POLY Classic and visualized with VMD - `Rhyolitic Magma Simulations <https://www.youtube.com/watch?v=jmGjGCgygMQ>`_
+* `Classical music soundtrack <https://www.youtube.com/watch?v=06h_dhQsbx4>`_ (The simulations are based on the work of N. Sator and B. Guillot)
+
+|
+  
+* `Absorption of formic acid onto a calcite surface <https://www.youtube.com/watch?v=9IvJgTbzml0>`_ (no sound, DL_POLY exercise)
+
+|
+  
+* `Potassium capture by valinomycin <https://www.youtube.com/watch?v=mUqRLxU6Zaw>`_ (No sound, material from a DL_POLY tutorial)
+
+|
+  
+* `DL_POLY two nanotubes switch <https://www.youtube.com/watch?v=S6q2dr-p5DU>`_ (no sound) 
+

@@ -1,0 +1,19 @@
+.. This  lists a range of tutorial exercises listed as ' low difficulty' copied directly from ftp://ftp.dl.ac.uk/ccp5/DL_POLY/DL_POLY_4.0/TUTORIAL/
+
+   
+
+************************
+Low Difficulty Exercises
+************************
+
+
+
+
+
+.. toctree::
+   :maxdepth: 1
+
+	      
+   ./FAST_ION/fast_ion_conduction
+   ./potassium_capture
+   ./md_algorithms_water_props

@@ -1,0 +1,90 @@
+.. This document describes how to analyse the results of a simulation
+
+Analysing Results
+#################
+
+This example shows how to use DL_ANALYSER to carry out post-analysis on the HISTORY file (or collection of the files). 
+We intend to identify the type of hydrogen bond in the system by using the DANAI notation.
+
+**Step 1**: *DL_ANALYSER input file*
+
+ * Edit or create a **DL_ANALYSER** input file (e.g. *dl_analyser.input*), and insert all the pathnames for the *HISTORY* files for analysis. Make sure the pathnames to the *HISTORY* files are in the correct sequence. 
+
+.. figure:: ./IMAGES/dl_analyser_input.png
+
+   In the above example, the file *dl_analyser.input*  (found in the **DL_ANALYSER** directory **workspace**) was modified, and the *HISTORY* output files (from the DL_POLY MD runs) were already copied to the **workspace/ETHANOIC_ACID_ANALYSIS/** directory.
+	    
+
+.. Warning::
+
+   Do not mix **HISTORY** files from different simulation models!
+  
+    
+
+
+:TIP:
+     **DL_ANALYSER** can read the trajectory files in several formats: DL_POLY trajectory format (i.e. *HISTORY*), PDB, xyz and a mixture of all three, both in their respective native or compressed (gzip) formats, provided they were generated from the same simulation model.
+	   
+
+**Step 2**: *Edit the **DL_ANALYSER** control file (e.g. dl_analyser.control)*:
+   
+       * First of all, define a system to be analysed. This is located in the *Atom Range Definition* section. The number 5392 is the total number of atoms in the system.
+       * The word ‘auto’ means **DL_ANALYSER** will determine the periodic boundary conditions based on the cell vectors from the trajectory files.
+       * The Interaction Analysis Section is where the H-bond analysis is specified.
+       * The test1.out is the formattable results output file.
+
+.. literalinclude:: dl_analyser.control
+   :emphasize-lines: 6, 8, 15, 25, 26, 30, 39
+
+
+**Step 3**: *Edit dl_a_path file*
+
+ * Create the file *dl_a_path* in the **workspace** directory. Make sure the paths for the control and input files are correct.
+
+.. image:: ./IMAGES/dl_a_path.png
+	   
+**Step 4**: *Run DL_ANALYSER*
+
+ * Within the **workspace** directory run *dl_analyser* ::
+
+     $ ./dl_analyser
+ 
+ * Upon successful execution, the *dl_analyser.output* file will be produced, highlighting the general analysis status and reading process.
+   In addition, results output files will also be produced, depending on the *dl_analyser.control* file, in this example the results data file is *test1.out*.
+   Below you can see the output to screen while the program is running:
+   
+.. image:: ./IMAGES/dl_analyser_output.png
+
+
+.. Note::
+
+   In the above output of **DL_ANALYSER** the time taken to set up neighbour lists is 0.684 s. It will take much longer if your system is large, although this is only a one-off process.
+   
+  
+**Step 5**: *Analysis results output*
+
+ * These results are given in a raw data format that needs to be extracted for further processing such as plotting a graph.
+
+
+.. figure:: ./IMAGES/dl_a_test1_out.png
+
+   The figure above shows the beginning (**LHS**) and end (**RHS**) of the data results file (in this example it's *test1.out*). 
+   
+* The output file shows three different parts to the results:
+
+     * Detection of various hydrogen-bond (HB) interactions modes between carboxylic groups with respect to MD time.
+
+     * Average number of interactions for each mode.
+
+     * Correlation coefficients among the interaction modes.
+
+       
+
+	   
+	   
+
+	   
+
+
+
+  
