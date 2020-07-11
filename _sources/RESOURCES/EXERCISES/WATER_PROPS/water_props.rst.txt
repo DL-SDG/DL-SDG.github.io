@@ -1,0 +1,67 @@
+.. This is one of the exercises copied from a range of tutorial exercises listed as ' low difficulty' copied directly from ftp://ftp.dl.ac.uk/ccp5/DL_POLY/DL_POLY_4.0/TUTORIAL/
+
+   
+
+*****************************************
+MD Algorithms and the Properties of Water
+*****************************************
+
+**Summary**
+In this exercise you will explore the behaviour of several molecular dynamics algorithms by examining their effects on the properties of a simple model for water: the SPC, or Simple Point Charge, model.
+
+**Background**
+
+The SPC model for water, despite its simplicity, finds use in many simulations, particularly of biological systems. It is a rigid model, with three charged sites and Lennard-Jones interactions. Its properties (and limitations) are well known. The purpose of this exercise is to determine what effects, if any, the choice of molecular dynamics algorithm has on the statistical properties of this system.
+DL_POLY offers a wide selection of MD algorithms including:
+
+|
+
+• Fixed volume, fixed energy (NVE);
+• Fixed volume, constant temperature (NVT-Berendsen);
+• Fixed volume, constant temperature (NVT-Andersen);
+• Fixed volume, constant temperature (NVT-Langevin);
+• Fixed volume, constant temperature (NVT-Evans);
+• Fixed volume, constant temperature (NVT-Nosé-Hoover);
+• Fixed volume, constant temperature (NVT-Gentle-Stochastic);
+• Constant pressure, constant temperature (NPT-Berendsen);
+• Constant pressure, constant temperature (NPT-Nosé-Hoover);
+• Constant pressure, constant temperature (NPT-Martyna-Tuckerman-Klein);
+• Constant pressure, constant temperature (NPT-Langevin);
+• The DL_POLY_4 manual contains the complete list.
+  
+
+:Note:
+      Notice that we have omitted the constant stress algorithms from the list - can you think why? DL_POLY_4 also offers two possible ways of handling the rigid body dynamics of the water molecules: Rigid-body quaternion dynamics and Constraint bond dynamics.
+  
+All of these algorithms are described in the DL_POLY_4 manual and in the references cited therein. Our objective in this exercise is to perform a single state point simulation of water, using as many different algorithms as possible (up to 12 in all) and see what differences are manifest in the results.
+
+
+**Task**
+
+1. Download the files: :download:`FIELD <./FIELD>`, :download:`CONTROL <./CONTROL>`, :download:`CONFIG <./CONFIG>`.
+
+2. Using the *FIELD* file without modification, simulate the water system using the NVE ensemble. Run for at least 1000 timesteps. Examine the final results in terms of the mean thermodynamic properties (system energy and so on), structure (as revealed by the RDF) and mean-square displacement.This will be the reference system.
+
+3. Repeat the study under fixed volume, constant temperature conditions, using one of the thermostated algorithms mentioned above. Set the system temperature to equal the mean temperature obtained from **step 1**.
+
+4. Repeat the study under constant pressure, constant temperature conditions using one (or more) of the above mentioned algorithms. Set the system temperature and pressure to correspond to the mean values obtained in **step 1**.
+   
+5. Compare closely the results you obtain. Note any differences you think are significant and try to work out what may have caused them. Broadly speaking, the results should be similar, but we are attempting to gain a feel for systematic differences between the methods.
+   
+6. If you have the stamina, you may edit the *FIELD* file and switch the quaternion and constraint algorithms and repeat the study!
+
+ :Note:
+    In performing this exercise, you will need to find adequate values for the ‘relaxation parameters’ of the thermostat and barostat. Clearly the choice of these represents additional degrees of freedom in the model, which may or may not also have an impact on the results. What do you think?
+
+    If all this is too boring for you, you may consider picking one particular algorithm and making a study of Hydrogen bonding in this system. First of all, decide for yourself how H-bonding may be identified and how you may quantify the degree of H-bonding as a function of temperature (say).
+
+
+
+
+
+
+
+	   
+
+	   
+

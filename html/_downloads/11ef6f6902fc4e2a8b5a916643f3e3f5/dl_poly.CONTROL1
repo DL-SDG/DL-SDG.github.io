@@ -1,0 +1,20 @@
+Title: 0.2M ethanoic acid solution 
+ensemble nve
+temperature 300.0
+
+steps 200000
+equilibration steps 10000000
+scale every 1
+variable timestep 0.00001
+
+cutoff 12.0
+ewald precision 1e-6
+
+# traj 1 200 0
+print every 1000
+stats every 1000
+job time 100000
+close time 200
+finish
+
+

@@ -1,0 +1,175 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MD Algorithms and the Properties of Water &#8212; DL_Software OneStop 0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Medium Difficulty Exercises" href="../Medium.html" />
+    <link rel="prev" title="Potassium Capture by Valinomycin" href="../K_VALIN/potassium_capture.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../Medium.html" title="Medium Difficulty Exercises"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../K_VALIN/potassium_capture.html" title="Potassium Capture by Valinomycin"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software OneStop 0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Exercises.html" >Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Low.html" accesskey="U">Low Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="md-algorithms-and-the-properties-of-water">
+<h1>MD Algorithms and the Properties of Water<a class="headerlink" href="#md-algorithms-and-the-properties-of-water" title="Permalink to this headline">¶</a></h1>
+<p><strong>Summary</strong>
+In this exercise you will explore the behaviour of several molecular dynamics algorithms by examining their effects on the properties of a simple model for water: the SPC, or Simple Point Charge, model.</p>
+<p><strong>Background</strong></p>
+<p>The SPC model for water, despite its simplicity, finds use in many simulations, particularly of biological systems. It is a rigid model, with three charged sites and Lennard-Jones interactions. Its properties (and limitations) are well known. The purpose of this exercise is to determine what effects, if any, the choice of molecular dynamics algorithm has on the statistical properties of this system.
+DL_POLY offers a wide selection of MD algorithms including:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Fixed volume, fixed energy (NVE);</li>
+<li>Fixed volume, constant temperature (NVT-Berendsen);</li>
+<li>Fixed volume, constant temperature (NVT-Andersen);</li>
+<li>Fixed volume, constant temperature (NVT-Langevin);</li>
+<li>Fixed volume, constant temperature (NVT-Evans);</li>
+<li>Fixed volume, constant temperature (NVT-Nosé-Hoover);</li>
+<li>Fixed volume, constant temperature (NVT-Gentle-Stochastic);</li>
+<li>Constant pressure, constant temperature (NPT-Berendsen);</li>
+<li>Constant pressure, constant temperature (NPT-Nosé-Hoover);</li>
+<li>Constant pressure, constant temperature (NPT-Martyna-Tuckerman-Klein);</li>
+<li>Constant pressure, constant temperature (NPT-Langevin);</li>
+<li>The DL_POLY_4 manual contains the complete list.</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">Notice that we have omitted the constant stress algorithms from the list - can you think why? DL_POLY_4 also offers two possible ways of handling the rigid body dynamics of the water molecules: Rigid-body quaternion dynamics and Constraint bond dynamics.</td>
+</tr>
+</tbody>
+</table>
+<p>All of these algorithms are described in the DL_POLY_4 manual and in the references cited therein. Our objective in this exercise is to perform a single state point simulation of water, using as many different algorithms as possible (up to 12 in all) and see what differences are manifest in the results.</p>
+<p><strong>Task</strong></p>
+<ol class="arabic simple">
+<li>Download the files: <a class="reference download internal" download="" href="../../../_downloads/ba200e891862074059a6ca5b7a30ba18/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/bb8017d96874e432bec89f9715847921/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/abc83cd4d5572b8720a219f5ba3ea221/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a>.</li>
+<li>Using the <em>FIELD</em> file without modification, simulate the water system using the NVE ensemble. Run for at least 1000 timesteps. Examine the final results in terms of the mean thermodynamic properties (system energy and so on), structure (as revealed by the RDF) and mean-square displacement.This will be the reference system.</li>
+<li>Repeat the study under fixed volume, constant temperature conditions, using one of the thermostated algorithms mentioned above. Set the system temperature to equal the mean temperature obtained from <strong>step 1</strong>.</li>
+<li>Repeat the study under constant pressure, constant temperature conditions using one (or more) of the above mentioned algorithms. Set the system temperature and pressure to correspond to the mean values obtained in <strong>step 1</strong>.</li>
+<li>Compare closely the results you obtain. Note any differences you think are significant and try to work out what may have caused them. Broadly speaking, the results should be similar, but we are attempting to gain a feel for systematic differences between the methods.</li>
+<li>If you have the stamina, you may edit the <em>FIELD</em> file and switch the quaternion and constraint algorithms and repeat the study!</li>
+</ol>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"><p class="first">In performing this exercise, you will need to find adequate values for the ‘relaxation parameters’ of the thermostat and barostat. Clearly the choice of these represents additional degrees of freedom in the model, which may or may not also have an impact on the results. What do you think?</p>
+<p class="last">If all this is too boring for you, you may consider picking one particular algorithm and making a study of Hydrogen bonding in this system. First of all, decide for yourself how H-bonding may be identified and how you may quantify the degree of H-bonding as a function of temperature (say).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Exercises.html">Exercises</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../Low.html">Low Difficulty Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../FAST_ION/fast_ion_conduction.html">Fast Ion Conduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../K_VALIN/potassium_capture.html">Potassium Capture by Valinomycin</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MD Algorithms and the Properties of Water</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Medium.html">Medium Difficulty Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../High.html">High Difficulty Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../K_VALIN/potassium_capture.html"
+                        title="previous chapter">Potassium Capture by Valinomycin</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Medium.html"
+                        title="next chapter">Medium Difficulty Exercises</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../Medium.html" title="Medium Difficulty Exercises"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../K_VALIN/potassium_capture.html" title="Potassium Capture by Valinomycin"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software OneStop 0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Exercises.html" >Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Low.html" >Low Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

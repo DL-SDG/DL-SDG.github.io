@@ -1,0 +1,6 @@
+1
+/pathname/HISTORY_solution.gz
+
+The value 1 indicates to DL_ANALYSER to read only first line where it 
+expects the path contains the input trajectory file.
+

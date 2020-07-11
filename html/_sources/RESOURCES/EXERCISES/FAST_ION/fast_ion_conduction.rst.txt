@@ -1,0 +1,41 @@
+.. This is one of the exercises copied from a range of tutorial exercises listed as ' low difficulty' copied directly from ftp://ftp.dl.ac.uk/ccp5/DL_POLY/DL_POLY_4.0/TUTORIAL/
+
+   
+
+*******************
+Fast Ion Conduction
+*******************
+
+**Summary**
+This exercise provides an introduction to a class of materials known as fast ion or superionic conductors. The objective is to explore the properties of such materials and characterise their behaviour.
+
+**Background**
+Many inorganic materials exhibit the phenomenon of fast ion conduction - they conduct an electric current in
+the solid sate. This happens because one or more of the ions is capable of diffusing rapidly through the system
+while it is still in the solid sate. `An example of such a material is silver iodide (AgI) <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.40.1337>`_ in the so-called  |alpha| -phase, which exists between 400 K and 800 K approximately. In this phase the iodine anions form a body
+centred cubic lattice and the silver cations formally occupy pseudo-tetrahedral sites between the iodide ions.
+With increasing temperature however, the structure shows increasing disorder. The nature of this disorder is the object of this exercise -investigate and characterise it.
+
+
+
+**Step 1**
+Copy or download the following files:  :download:`CONFIG <./CONFIG>`
+:download:`FIELD <./FIELD>`
+:download:`CONTROL <./CONTROL>`
+
+**Step 2**
+Run DLPOLY.Z, in a *constant volume* simulation at *high temperature* for about 2000 time steps and examine the *OUTPUT* file. Try to determine from the information provided what is going on. Display the *REVCON* file and examine the structure.
+
+**Step 3**
+ If you are satisfied that you are seeing the essential phenomenon, run the program again and this time generate a *HISTORY* file, sampling the data at convenient intervals (see the :doc:`DL_POLY-4 User Manual </RESOURCES/DL_POLY_manual>` to find out how to do this). Now you may try a number of things such as:
+ 
+  (i) Calculate the mean square displacements of the ions as accurately as possible. Repeat the procedure at some other temperature (preferably more than one) and obtain the diffusion coefficients over a range of temperatures. Determine the activation energy with an Arrhenius plot.
+  (ii) Calculate the van Hove function (G\ :sub:`s`\(r,t)) - nicely described in           `"Correlations in the motion of atoms in liquid argon" <https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.A405>`_. Examine the results of this and decide if the ion diffusion is *solid-like* or *liquid-like*.
+
+
+
+
+
+.. |alpha| unicode:: U+03B1
+
+

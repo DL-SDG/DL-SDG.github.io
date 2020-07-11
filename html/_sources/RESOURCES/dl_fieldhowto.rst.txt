@@ -1,0 +1,44 @@
+.. This provides detailed information on how to get dl_field, install and what you need to know for running it
+
+********
+DL_FIELD
+********
+**How to obtain DL_FIELD**
+
+* `DL_FIELD <https://www.scd.stfc.ac.uk/Pages/DL_FIELD.aspx>`_ – force field model set up (version 4.5 and above).
+
+To be able to use DL_FIELD you first need to register `here <https://www.scd.stfc.ac.uk/Pages/DL_FIELD.aspx>`_. Successful registration will lead to you receiving a .tar.gz file (e.g. dl_f_4.5.tar.gz). Unpack or untar this for example in Linux::
+
+  $: tar -xzvf dl_f_4.5.tar.gz
+
+This will produce the directory **dl_f_4.5** which contains a *dl_field.control*, *dl_f_path* and a **README.md** file (amongst other files). You then need to compile to produce the executable *dl_field*. To do this follow the simple instructions in the **README.md** file. The file that will need to be edited to run the executable *dl_field* specific to your simulation is *dl_field.control*. 
+
+:TIP:
+
+   If you work from within the **dl_f_4.5** directory the only file that will need to be edited to run the executable *dl_field* is *dl_field.control*. Working from a directory other than **dl_f_4.5** is not recommended until you feel confident about changing file paths (e.g. in *dl_f_path*).
+
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+
+
+**General guidance for running DL_FIELD**
+
+
+**Version 1.0, April 2020**
+
+Before running DL_FIELD, make sure paths to the library files and DL_FIELD control files are correct in the *dl_f_path*, which **must always** be in the same DL_FIELD home directory where *dl_field.exe* is located.
+
+.. figure:: ./PICTURES/dl_field_filepaths_resized.png
+
+
+
+By default, you don’t have to keep changing the above-mentioned path. It is the **control** path that you would need to change from time to time.
+
+.. Warning::
+  You would  need to change all the paths should you move the *dl_field.exe* away from its original location.
+
+.. Note::
+   All DL_FIELD runs will always produce a file called *dl_field.output* in the DL_FIELD home directory. This file reports the analysis status. In addition, an optional *dlf_notation.output* may also be produced in the **output/** directory, which indicates the chemical nature of every atom in the system in the `DL_F Notation <https://pubs.acs.org/doi/10.1021/acs.jcim.6b00323>`_
+
+   

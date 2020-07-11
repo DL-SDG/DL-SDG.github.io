@@ -1,0 +1,11 @@
+.. This enables download/scrutiny of the DL_POLY manual
+
+**************
+DL_POLY Manual
+**************
+
+
+:download:`The DL_POLY-4 User Manual <./USRMAN4.pdf>`
+	  
+
+  

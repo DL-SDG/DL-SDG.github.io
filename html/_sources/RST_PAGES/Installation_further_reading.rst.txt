@@ -1,0 +1,36 @@
+.. This is an introduction to the DL SOftware OneStopSuite of codes
+
+
+*********************
+Advanced Installation
+*********************
+
+For a comprehensive guide to installation of DL_POLY4.0 see
+- `DL_POLY set-up <https://ccp5.gitlab.io/dlpoly-setup/>`_ 
+
+* For quick links to the following:
+
+  * `Introduction <https://ccp5.gitlab.io/dlpoly-setup/setup.html#introduction>`_
+  * `Requirements <https://ccp5.gitlab.io/dlpoly-setup/setup.html#requirements>`_
+  * `Windows <https://ccp5.gitlab.io/dlpoly-setup/setup.html#windows>`_
+
+  * `MacOS <https://ccp5.gitlab.io/dlpoly-setup/setup.html#windows>`_
+
+  * `[Linux] Compiling and Installing DL_POLY_4 <https://ccp5.gitlab.io/dlpoly-setup/setup.html#linux-compiling-and-installing-dl-poly-4>`_
+
+  * `Old MPI Library <https://ccp5.gitlab.io/dlpoly-setup/setup.html#old-mpi-library>`_
+
+  * `Optional Java GUI <https://ccp5.gitlab.io/dlpoly-setup/setup.html#optional-java-gui>`_   
+  
+  * `Best practice using git and CI <https://ccp5.gitlab.io/dlpoly-setup/contributing.html>`_
+
+  * `Coding style <https://ccp5.gitlab.io/dlpoly-setup/coding.html>`_
+
+  * `Units <https://ccp5.gitlab.io/dlpoly-setup/coding.html#units>`_
+
+  * `General style <https://ccp5.gitlab.io/dlpoly-setup/coding.html#general-style>`_
+
+  * `Building notes extra <https://ccp5.gitlab.io/dlpoly-setup/building.html>`_
+
+  * `FAQ  <https://ccp5.gitlab.io/dlpoly-setup/building.html#faq>`_ 
+  

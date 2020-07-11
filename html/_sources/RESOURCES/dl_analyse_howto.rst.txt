@@ -1,0 +1,75 @@
+.. This provides detailed information on how to get dl_analyse, install and what you need to know for running it
+
+***********
+DL_ANALYSER
+***********
+
+**How to obtain DL_ANALYSER**
+
+* `DL_ANALYSER <http://www.ccp5.ac.uk/DL_ANALYSER>`_ – results analysis (version 2.1 and above).
+
+
+To be able to use the latest version of DL_ANALYSER you first need `to register here <http://www.ccp5.ac.uk/DL_ANALYSER/dl_analyser>`_. Succesful registration will lead to the receipt of an email with the latest version of DL_ANALYSER attached e.g. *dl_analyser_2.1.tar.gz*. Untar this file (see above for example) and follow the instructions in the **readme.txt**. The compiled version *dl_analyser* will be found in the folder **workspace** together with other files including *dl_analyser.control*.
+
+:TIP:
+   If you are not familiar with changing the names of filepaths, then create a directory within **workspace** and move or copy DL_POLY output *HISTORY* files into it for analysis, e.g.::
+     
+     $ cd workspace
+     $ mkdir ETHANOIC_ACID_ANALYSIS
+     $ cp ../../../../ETHANOIC_ACID/DL_POLY_output/HISTORY* .
+
+  (Where the directory names above are examples)
+
+  
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+  
+  
+**How to run DL_ANALYSER**
+
+Before running DL_ANALYSER, make sure the paths for DL_ANALYSER control and input files are correct as shown below:
+
+.. image:: ./PICTURES/dl_analyse_control.png
+	   
+The example file *dl_a_path* above indicates both files are in the DL_ANALYSER home directory
+
+:TIP:
+   DL_ANALYSER **always** looks for the files *dl_a_path*, which **must** be located with *dl_analyser.exe* in the DL_ANALYSER home directory 
+
+DL_ANALYSER can read the trajectory files in several formats: DL_POLY trajectory format (**HISTORY**), **PDB**, **xyz**, DL_POLY **CONFIG** file and any mixture of these, both in their respective native or compressed (gzip) formats. In practice, it is more common to read a serial collection of HISTORY files generated from the same simulation models.
+If your DL_ANALYSER cannot read the .gz file, try to use the uncompressed version of the file.
+A typical DL_ANALYSER input file (*dl_analyser.input*) is shown below:
+
+.. image:: ./PICTURES/dl_analyser_input.png
+
+.. Note:: The number (*n*) at the start of the *dl_analyser.input* file (in the above example this is 3) instructs DL_ANALYSER to read only the first *n* lines, where it expects the path contains the input trajectory files. The program will ignore anything beyond that.
+
+Below is an example *dl_analyser.control* file:
+       
+.. literalinclude:: ./SIMULATIONS/dl_analyser.control
+   :emphasize-lines: 6, 8, 15, 25, 26, 30, 39
+
+
+The highlighted lines are examples of what you might want to change in the file, e.g.
+
+* The number 5392 is the total atoms in the system.
+* The word ‘auto’ means DL_ANALYSER will determine the periodic boundary conditions based on the cell vectors from the trajectory files.
+* The Interaction Analysis Section is where the H-bond analysis is specified.
+* The test1.out is the results output file.
+  
+.. Note:: All DL_ANALYSER runs will **always** produce a file called *dl_analyser.output* in the DL_ANALYSER home directory, which reports the analysis status, and  output files of the results according to what you specified in the DL_ANALYSER control file.
+
+  
+The DL_ANALYSER suite version 2.2 onward also comes with a simple run script called *run_dla*. If your program is compiled with the OpenMP library (by default), then type::
+
+  $ ./run_dla
+
+This will run the DL_ANALYSER program using the specified number of OpenMP threads as shown in the *run_dla* script. You can change the value according to your preference.
+If you run the program by typing::
+  
+  $ ./dl_analyser.exe
+  
+then the number of threads used for the OpenMP parallelisation will depend on the OS of your computer.
+
+
+
+   

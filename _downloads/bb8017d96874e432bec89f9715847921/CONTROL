@@ -1,0 +1,26 @@
+SPC model water in cubic cell
+temperature             2.9500E+02
+pressure                0.0000E+00
+ensemble npt berendsen  5.0000E-01  5.0000E-01
+steps                   5000
+equilibration           1000
+multiple                1
+scale                   10
+print                   100
+stack                   100
+stats                   100
+rdf                     10
+timestep                5.0000E-04
+primary                 7.6000E+00
+cutoff                  8.0000E+00
+delr                    1.2000E+00
+rvdw                    8.0000E+00
+reaction field
+eps constant            7.8000E+01
+cap                     1.0000E+04
+shake tolerance         1.0000E-05
+quaternion tolerance    1.0000E-05
+print rdf
+job time                9.0000E+02
+close time              2.0000E+01
+finish

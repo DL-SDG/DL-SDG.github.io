@@ -1,0 +1,146 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Potassium Capture by Valinomycin &#8212; DL_Software OneStop 0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="MD Algorithms and the Properties of Water" href="../WATER_PROPS/water_props.html" />
+    <link rel="prev" title="Fast Ion Conduction" href="../FAST_ION/fast_ion_conduction.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../WATER_PROPS/water_props.html" title="MD Algorithms and the Properties of Water"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../FAST_ION/fast_ion_conduction.html" title="Fast Ion Conduction"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software OneStop 0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Exercises.html" >Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Low.html" accesskey="U">Low Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="potassium-capture-by-valinomycin">
+<h1>Potassium Capture by Valinomycin<a class="headerlink" href="#potassium-capture-by-valinomycin" title="Permalink to this headline">¶</a></h1>
+<p><strong>Summary</strong>
+This exercise explores the ability of a naturally occuring molecule to chelate the potassium ion and is an example of the application of molecular simulation to the study of biological activity. The study demonstrates the use of simulation to reveal the relationship between the structural properties of a molecule and its biological function.</p>
+<p><strong>Background</strong></p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../../../_images/K_Valinomycin.png"><img alt="../../../_images/K_Valinomycin.png" src="../../../_images/K_Valinomycin.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Valinomycin and a potassium ion (purple)</span></p>
+</div>
+<p>Valinomycin is a relatively small, naturally occuring, cyclic molecule comprised of 168 atoms. It strongly
+resembles a peptide with 12 α −amino acids, except that half of the amide bonds, NH − CO, are replaced by ester linkages, O − CO, and there are changes in optical sterochemistry at some of the α -carbons (technically it is a cyclic dodecapsipeptide), see the above figure. The molecule demonstrates a remarkable flexibility, but its most significant property is its abilty to wrap around a potassium ion, thus giving the ion a hydrophobic coat which permits its transfer through the hydrophobic membranes of living cells. Valinomycin is thus a molecule essential to life.</p>
+<p>This study cannot hope to address all the properties of this remarkable molecule, and the student is warned
+against reading too much into the results of the experiments, which neglect many of the contributing factors to the full biological processes, but it will hopefully give some clues as to how the molecule functions in the way it does. The simulations will attempt the capture of a potassium ion by a valinomycin molecule in vacuo, ref. <a class="reference external" href="https://pubs.acs.org/doi/abs/10.1021/j100039a033">Capture of potassium ions by valinomycin: a molecular dynamics simulation study</a></p>
+<p>If successful, the simulations should reveal some of the molecular features that facilitate the capture of potassium in real life.</p>
+<p><strong>Task</strong></p>
+<ol class="arabic simple">
+<li>Download the files:  <a class="reference download internal" download="" href="../../../_downloads/65f3642f63cb1afcc81d8d880897cc29/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/82334289075b22146562586d54bf5fa5/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/962def1753923fa5339cb067c81f5ada/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> and display the system using <em>CONFIG</em>. Note the structural features: the CO groups of the ester and amide links, which have a rôle in the chelation of the potassium; the methyl and isopropyl groups, which form the hydrophobic coat; and features that may give rise to hydrogen bonding within the molecule itself and help stabilise its various conformational forms.</li>
+<li>Take a look at the <em>FIELD</em> file and see how the intramolecular terms of the Valinomycin are specified: bonds, valence angle and dihedral angle potentials are descibed. These are based on the AMBER forcefield. It should give you some idea about how to specify more complex molecules.</li>
+<li>At the bottom of the <em>CONFIG</em> file the position of the potassium ion is defined. It is some distance away from the valinomycin, the centre of mass of which is close to the origin. Run a simulation starting with this <em>CONFIG</em> file. What you are looking for is an indication that the valinomycin recognises the presence of the potassium ion and draws it closer.</li>
+<li>Consider why a neutral molecule like valinomycin should have an affinity for a charged species like potassium. What structural features are responsible? Is the molecule responding in the way you expect (for example conformationally)?</li>
+<li>If things are happening too slowly, you may consider changing the formal charge on the potassium, just to see how the system responds.</li>
+<li>Repeat the simulation with the potassium starting in different positions. Is there a directional preference?</li>
+<li>Run a simulation and create a <em>HISTORY</em> file. Write a simple routine to calculate the dipole moment of the valinomycin at intervals and see if this correlates with the potassium position.</li>
+</ol>
+<p>A sample video of the simulation can be seen on youtube at: <a class="reference external" href="https://youtu.be/Ec0wpSPfBlk">Potassium Capture by Valinomycin</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Exercises.html">Exercises</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../Low.html">Low Difficulty Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../FAST_ION/fast_ion_conduction.html">Fast Ion Conduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Potassium Capture by Valinomycin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../WATER_PROPS/water_props.html">MD Algorithms and the Properties of Water</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Medium.html">Medium Difficulty Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../High.html">High Difficulty Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../FAST_ION/fast_ion_conduction.html"
+                        title="previous chapter">Fast Ion Conduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../WATER_PROPS/water_props.html"
+                        title="next chapter">MD Algorithms and the Properties of Water</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../WATER_PROPS/water_props.html" title="MD Algorithms and the Properties of Water"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../FAST_ION/fast_ion_conduction.html" title="Fast Ion Conduction"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software OneStop 0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Exercises.html" >Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Low.html" >Low Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

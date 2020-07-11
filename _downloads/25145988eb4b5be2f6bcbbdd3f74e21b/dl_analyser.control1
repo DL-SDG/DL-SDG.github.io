@@ -1,0 +1,249 @@
+Title line. Put what you want. DL_ANALYSER 2020 
+Energy unit kcal 
+
+--- Trajectory Production Section
+0              * Produce trajectory? (1=yes 0=no)
+t.xyz      * Filename for trajectory output. (.xyz or .pdb, .mdcrd)
+none  * PDB template (needed for .pdb trajectory output)
+none            * Atom label to be excluded for trajectory output. Put 'none' if not require.
+0              * Number of every configuration to skip
+3          * 1 = Static window size, 2= dynamic window size, 3= off
+none        * Window size (x,y,z). Put 'none' if not require.
+1 5392  * Master atom index range (or put 'none')
+none * Atom range: start end, cut off distance, cluster shape: 1=sphere 2=cube (none to deactivate) 
+none       * Kinetic energy filter atom index range (or put 'none')
+none       * Kinetic energy filter range, put 'none' if not require
+0.0 0.0 0.0  * Translation matrix on output configuration: x, y, z (assume orthorhombic cell)
+
+
+--- Atom Range Definition and overall conditions for analysis as below.
+1 21397   * Range of atom index (Group A). This must always define.
+none    * Range of atom index (Group B), if applicable. Or put 'none'.
+2      * Analysis type: 1=atom-based  2 = molecule-base
+acid 8    * Molecule-base analysis: name and no of atoms per molecule in Group A (MOLECULE A1)
+water 3  * Molecule-base analysis: name and no of atoms per molecule in Group A (MOLECULE A2, or 'none')
+none      * Molecule-base analysis: name and no of atoms per molecule in Group B (MOLECULE B1, or 'none')
+none      * For molecule-base analysis: name and no of atoms per molecule in Group B (MOLECULE B2, or 'none')
+all     * Range of MD time (ps) samples: t1  t2 (put 'all' if all samples to be included).
+0    * Assign all atoms with unit mass = 1.0 (1=yes, 0=no)
+0.0  0.0  0.0  * Translation marix on coordinates:x y z (assume orthorhombic cell)
+auto   * Periodic boundary? 0=no, other number = type of box (DLPOLY), auto = obtain from HISTORY
+28.320   0.000    0.0000  * Cell vector a (x, y, z)
+0.000    21.95200 0.00000  * Cell vector b (x, y, z)
+-2.0765488206    0.000 36.4008179166  * Cell vector c (x, y, z)
+0        * Exclude any atoms for analysis? 0=no, any number = Number of EXCLUDE statements shown below. 
+EXCLUDE 2000 to 5000 
+
+CG     CGI
+1      alkane
+6      benzene
+15     alcohol
+19     ester
+20     carboxylic
+46     aniline
+151    phosphate
+800    water
+
+--- Interaction analysis (DANAI)
+0              * Activate analysis (1=yes, 0=no)
+test.out       * Output file
+0              * Number of every configuration to skip
+1              * Consider intra-interaction (A-A, B-B)
+0              * Consider inter-interaction (A-B)
+2.5  120.0     * H-bond definition: distance, angle (donor-H---acceptor) 
+4.5            * Hydrophobic contact distance (between alkyl carbons)
+4.5  15.0      * pi-pi aromatic stacking: distance between ring, Acute angle (max.) between ring planes
+0              * Cross-correlation between TWO different interactions (only works if 2 interactions are selected)
+0              * alkyl-alkyl interactions (HP_1_1)
+0              * aromatic-aromatic (benzene rings) interactions (HP_6_6)
+0              * alcohol-alcohol (OH-OH) interactions (HB_15_15)
+0              * alcohol-carboxylic interactions (HB_15_20)
+0              * alcohol-aniline interactions (HB_15_46)
+1              * carboxylic-carboxylic interactions (HB_20_20)
+0              * carboxylic-aniline interactions (HB_20_46)
+0              * water-water (HB_800_800)
+0              * water-ester (HB_19_800)
+0              * water-phosphate (HB_151_800)
+
+
+--- Structural analysis 
+1              * Activate analysis (1=yes 0=no)
+test1.out       * Output file
+0              * Number of every configuration to skip
+0	       * Block analysis (1= yes, 0=no)
+0   0          * Molecular matching (1=yes, 0=no) and output option (1=yes and 0=no).
+none           * Template file for matching (if 'none', first config in input file will be used).
+0              * Center of gravity of Group, or every molecule (1=yes, 0=no)
+0              * Radius of gyration (1=yes, 0=no)   
+0              * Asphericity (1=yes, 0=no)
+0              * System density (1=yes, 0=no)
+0  CTL2  CTL2  z * Chain segment orientation order parameter (1=yes, 0=no), atom_i, atom_j, director (x,y or z) 
+1  0.05  15.0   * Radial distribution function (RDF) (1=yes, 0 = no), bin width and cut off radius
+A1    A2       * Atom labels (or molecule labels) for RDF (case sensitive). Immediate bonded pair will NOT consider.
+0  0.2  4.0    * Non-bonded Dihedral distribution atoms h i j k (define below), bin width, cut off between i and j 
+OM CM CT3 OH1   * Atom labels h-i j-k for nonbonded dihedral distribution above.
+0  z 0.2 60.0 all * Planar density profile (1=yes, 0=no), direction(x,y,or z), bin width, distance (+/-), label(or 'all')
+0              * distance between Group A and Group B, or average distance between molecules (1=yes, 0=no)
+0              * Locate maximum and minimum coordinates (1=yes, 0=no)
+0              * Identify closest distance pair (1=yes, 0=no)
+
+
+--- Dynamical analysis
+0              * Activate analysis (1=yes, 0=no)
+test3.out       * Output file
+0              * Number of every configuration to skip
+bulk           * Surface or bulk? 
+-1.425y 62.1y  * Surface definition (top and bottom threshold)
+0              * kinetic energy
+1  C20         * Mean square displacement (MSD) (1=yes, 0=no). Atom label 
+0  100.0       * Specific heat at constant volume, temperature
+0              * Center of mass velocity (1=yes, 0 = no)
+0  967         * temperature (1=yes, 0=no) and constrain number, Nc.   
+0  13.0        * temperature profile (1=yes, 0=no) and sphere concentric radius increment 
+0  13.0        * velocity profile (1=yes, 0=no) and sphere concentric radius increment
+0.0 -1.425  0.0  * Center point of the concentric spheres (for temperature and velocity profiles).
+0              * Cross correlation displacement coefficient, C(ij) (1= yes, 2=0), <r(i) - r(i, mean)>
+some_file     * File that lists atom index for cross correlation displacement coefficient
+
+
+--- Biological analysis (requires PDB)
+0             * Activate analysis (1=yes, 0=no)
+bio.out       * Output file
+0             * Number of every configuration to skip
+1             * Phi and psi dihedral, for Ramachandran plot. (1=yes, 0=no)
+
+
+--- Defect analysis
+0              * Activate analysis (1=yes, 0=no)
+r.out          * Output file
+10             * Number of every configuration to skip
+surface        * surface or bulk?
+-1.425y 62.1y  * surface definition (top and bottom).
+1.425          * cutoff radius around an original site.
+1              * Defect distribution profile scan.(1=yes, 0=no)
+y              * Profile direction. Scan along x, y or z direction.
+0.2            * Bin width for defect distribution profiles.
+1              * Defect profiles according to (1)template, or (2)current sites 
+
+--- Sputter analysis
+0              * Sputter analysis (1=yes, 0=no) 
+s.out          * Output file
+0              * Number of every configuration to skip
+0              * Detailed output (1=yes, 0=no)
+-47.0z 1.5z  * surface definition (top and bottom surface threshold).
+5.0           * surface region (thickness, centred around surface threshold)
+10.0            * sputtering threshold.
+4.50           * Nearest neighbour cutoff distance.
+
+--- Extract STATIS data
+0            * Activate STATIS extraction? (1=yes, 0=no)
+statis.out   * Output file
+1            * system volume (stpval(19))
+0            * MD cell angle (alpha, beta, gamma)
+0            * Total extended system energy
+0            * Enthalpy (total energy + PV)
+0            * Configurational energy
+0            * Pressure (stpval(27))
+0            * System temperature
+0            * Rotational temperature (stpval(11))
+0            * Core-shell temperature (stpval(20))
+0            * Core-shell potential energy (stpval(21))
+1            * Short range potential energy
+0            * Electrostatic energy
+0            * Chemical bond energy
+0            * Valence angle and 3-body energy
+0            * 4-body, dihedral and inversion energy
+0            * Tethering energy
+0            * Total virial
+0            * short range virial
+0            * Electrostatic virial
+0            * Bond virial
+0            * Valence and 3-body virial
+0            * Constraint bond virial
+0            * Tethering virial
+0            * Core-shell virial
+0            * PMF constrian virial (stpval(26))
+
+
+
+==========================================================================
+Note: 
+This is DL_ANALYSER control file.
+
+DO NOT remove nor alter the headings start with '---'. 
+
+Reads the following input file format (define in dl_analyser.input file):
+HISTORY, PDB, CONFIG, xyz, STATIS
+Some analysis options may not be applicable depending on the input file format and the amount 
+of data it contains.
+
+
+(1) Units for length = Angstrom, temperature = Kelvin.
+
+(2) Must define at least one set of atom range (Group A) for analysis.
+    Depending on analysis options selected, Group B atoms may be needed. 
+
+(3) Analysis type:
+    1 = atom-base. This means analysis is carried out base on individual atoms, whenever possible.
+    2 = molecule-base. This means analysis is carried out base on individual molecules, whenever possible.
+    For example, in radial distribution function, G(r), the atom-base analysis would need to define 
+    two atom labels. If molecule-base analysis is chosen, then atom labels will be ignored. Instead, the
+    center of mass  of individual molecules are determined and G(r) is calculated based on the CG values. 
+    Use Molecules A1, A2 (Group A), or B1, B2 (Group B) as labels.
+
+(3) Defect analysis can be applied for both surface and bulk models
+    vacant - no atom around the original site.
+    original - original atom index around the original site.
+    new occupancy - original site is occupied by other atom index.
+    interstitial - two or more atoms occupy a sphere around an original site.
+                   Also all other atoms that locate outside of all spheres
+                   around sites.
+    above surface - Atoms that locate beyond the surface defintion (top and
+                    bottom). This is meaningful only for surface model.
+    Suggested value for the cutoff RADIUS for defect analysis: NN*0.5
+    (NN = nearest neighbour)
+
+(4) Sputter analysis is for surface model only.
+    adatoms - Atoms or groups of atoms that locate BEYOND the surface 
+              region that stick to the surface, determine by the NN
+              cutoff distance measures from the surface threshold.
+    sputtered - Atoms or groups of atoms which center of gravity pass the
+                sputtering threshold AND, if force is available, with resultant
+                force direct away from surface.
+                Once it (atoms or clusters) is sputtered, it will always
+                considered sputtered. No further analysis will be carried out.
+    interface - particles that are located between the surface region and the sputter threshold.
+
+(5) Surface region is defined by the thickness specify, which spans along surface normal,
+    and centred around the surface threshold (top and bottom of the threshold). 
+
+    --------------------------------------------     (upper limit of surface region)
+    ^
+    | thickness      SURFACE REGION
+    | ---------------------------------------------  (surface threshold)
+    |                SURFACE REGION
+    V
+    --------------------------------------------     (lower limit of surface region)
+
+(6) Sputtering threshold is the distance from the Surface definition. 
+    E.g.: If Surface definition is 1.0x and -20.0x and the Sputtering threshold
+    is 5.0 then the real distance beyond which atoms are considered sputter is
+    1.0 + 5.0 and -20.0 - 5.0 in x direction.
+
+(7) Once atoms are sputtered will always considered sputter. The sputtering
+    threshold therefore must be chosen with care as some ejected atoms may
+    eventually fall back to the surface as adatoms or reenter surface bulk.
+
+(8) Extra information may be needed for certain calculations:
+    Molecular matching - template file (in xyz, DL_ANALYSER format)
+    Correlation displacement - atom index file. Just list a row of atom numbers
+                             - it indicates which atoms will be used for the calculations.
+ 
+(9) For C(ij) calculation - cross correlation displacement.
+    Atom range specified above must start from 1 onwards. 
+    This is to make sure atom index match with those in input trajectory files.
+    Only Group A atoms will be analysed. Group B, even if defined will be ignored.
+
+Any queries, requests email me: chin.yong@stfc.ac.uk
+
+--------------- DL_ANALYSER version 2.2, C W Yong, Daresbury Laboratory 2020 -----------
