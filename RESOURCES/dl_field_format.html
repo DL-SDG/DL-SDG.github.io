@@ -1,0 +1,251 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>User input file format &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to do something" href="dl_field_howto2.html" />
+    <link rel="prev" title="Force field conversion" href="dl_field_conversion.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dl_field_howto2.html" title="How to do something"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_conversion.html" title="Force field conversion"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="user-input-file-format">
+<span id="header-dlf-format"></span><h1>User input file format<a class="headerlink" href="#user-input-file-format" title="Permalink to this headline">¶</a></h1>
+<p>DL_FIELD supports the following file formats: PDB, .mol2 and <em>xyz</em>. Unfortunately, not all file formats are applicable to all FF schemes. For more details about file format, please consult Chapter 6 of the User Manual. Here are the general rules how to use them:</p>
+<p><strong>The PDB format</strong></p>
+<p>This is a popular format used mainly for biomolecular systems like proteins and DNA. In DL_FIELD, it is applicable for all FF schemes for all types of system models The correct MOLECULE_KEYs must be explicitly specified and the correspoding MOLECULE template must be available in the <em>.sf</em> file or the udff file.</p>
+<p>The PDB format can provide a number of information pertaining to the state of atoms in the system. DL_FIELD
+adheres to strict PDB standard and different information must be located within the designated range of columns.
+Not all information will be read by DL_FIELD and only those that are needed for FF conversions will be
+discussed here. For more details, please see Chapter 6.1 of the user manuals.</p>
+<p>The file shows an example of PDB format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">REMARK</span> <span class="n">Acetic</span> <span class="n">acid</span> <span class="n">example</span> <span class="n">structure</span>
+<span class="n">CRYST1</span>   <span class="mf">30.000</span>   <span class="mf">40.000</span>   <span class="mf">30.000</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>
+<span class="n">HETATM</span>    <span class="mi">1</span>  <span class="n">C</span>   <span class="n">ACEH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">1.175</span>   <span class="mf">1.554</span>  <span class="o">-</span><span class="mf">0.000</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">C</span>  
+<span class="n">HETATM</span>    <span class="mi">2</span>  <span class="n">O</span>   <span class="n">ACEH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">1.171</span>   <span class="mf">2.697</span>  <span class="o">-</span><span class="mf">0.443</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">O</span>  
+<span class="n">HETATM</span>    <span class="mi">3</span>  <span class="n">CT</span>  <span class="n">ACEH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">2.448</span>   <span class="mf">0.747</span>   <span class="mf">0.204</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">C</span>  
+<span class="n">HETATM</span>    <span class="mi">4</span>  <span class="n">OH</span>  <span class="n">ACEH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">0.068</span>   <span class="mf">0.852</span>   <span class="mf">0.366</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">O</span>  
+<span class="n">HETATM</span>    <span class="mi">5</span>  <span class="n">HC</span>  <span class="n">ACEH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">2.431</span>  <span class="o">-</span><span class="mf">0.161</span>  <span class="o">-</span><span class="mf">0.399</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">H</span>  
+<span class="n">HETATM</span>    <span class="mi">6</span>  <span class="n">HC</span>  <span class="n">ACEH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">2.573</span>   <span class="mf">0.480</span>   <span class="mf">1.253</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">H</span>  
+<span class="n">HETATM</span>    <span class="mi">7</span>  <span class="n">HC</span>  <span class="n">ACEH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">3.314</span>   <span class="mf">1.337</span>  <span class="o">-</span><span class="mf">0.099</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">H</span>  
+<span class="n">HETATM</span>    <span class="mi">8</span>  <span class="n">HO</span>  <span class="n">ACEH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">0.276</span>  <span class="o">-</span><span class="mf">0.010</span>   <span class="mf">0.682</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">H</span>  
+<span class="n">HETATM</span>    <span class="mi">1</span>  <span class="n">C</span>   <span class="n">ACEH</span>    <span class="mi">2</span>      <span class="o">-</span><span class="mf">1.175</span>   <span class="mf">9.554</span>  <span class="o">-</span><span class="mf">0.000</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">C</span>
+<span class="n">HETATM</span>    <span class="mi">2</span>  <span class="n">O</span>   <span class="n">ACEH</span>    <span class="mi">2</span>      <span class="o">-</span><span class="mf">1.171</span>  <span class="mf">10.697</span>  <span class="o">-</span><span class="mf">0.443</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">O</span>
+<span class="n">HETATM</span>    <span class="mi">3</span>  <span class="n">CT</span>  <span class="n">ACEH</span>    <span class="mi">2</span>      <span class="o">-</span><span class="mf">2.448</span>   <span class="mf">8.747</span>   <span class="mf">0.204</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">C</span>
+<span class="n">HETATM</span>    <span class="mi">4</span>  <span class="n">OH</span>  <span class="n">ACEH</span>    <span class="mi">2</span>      <span class="o">-</span><span class="mf">0.068</span>   <span class="mf">8.852</span>   <span class="mf">0.366</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">O</span>
+<span class="n">HETATM</span>    <span class="mi">5</span>  <span class="n">HC</span>  <span class="n">ACEH</span>    <span class="mi">2</span>      <span class="o">-</span><span class="mf">2.431</span>   <span class="mf">7.839</span>  <span class="o">-</span><span class="mf">0.399</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">H</span>
+<span class="n">HETATM</span>    <span class="mi">6</span>  <span class="n">HC</span>  <span class="n">ACEH</span>    <span class="mi">2</span>      <span class="o">-</span><span class="mf">2.573</span>   <span class="mf">8.480</span>   <span class="mf">1.253</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">H</span>
+<span class="n">HETATM</span>    <span class="mi">7</span>  <span class="n">HC</span>  <span class="n">ACEH</span>    <span class="mi">2</span>      <span class="o">-</span><span class="mf">3.314</span>   <span class="mf">9.337</span>  <span class="o">-</span><span class="mf">0.099</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">H</span>
+<span class="n">HETATM</span>    <span class="mi">8</span>  <span class="n">HO</span>  <span class="n">ACEH</span>    <span class="mi">2</span>      <span class="o">-</span><span class="mf">0.276</span>   <span class="mf">7.990</span>   <span class="mf">0.682</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>     <span class="n">ACID</span>  <span class="n">H</span>
+<span class="n">END</span>
+</pre></div>
+</div>
+<p>It contains two ethanoic acid molecules, numbered from 1 to 16. DL_FIELD is insensitive to the sequence of these numbers. In other words, the numbers do not have to be in order. DL_FIELD will only treat it as an atom if the line starts with the word ‘ATOM’ or ‘HTEATM’.</p>
+<p>Following after the sequence numbers, at columns 13 to 16 are the atom labels. If the element symbols columns (77-79) are absent, then DL_FIELD will attempt to extract elemental symbols from atom labels.</p>
+<p>The label ‘ACEH’ are the residue label, or the MOLECULE_KEY. It appears between 18 to 21 columns inclusive. By refering to a <em>.sf</em> file, say, <em>DLPOLY_OPLS2005.sf</em>, ACEH is the key for MOLECULE acetic_acid template.</p>
+<p>At column 23-26 inclusive is the residue sequence. In this example, the first ethanoic acid molecule is assigned with the number 1 for each atom and the second molecule is assigned with the number 2 to each atom. DL_FIELD will use these numbers to distinguish the molecules.</p>
+<p>The location of each atom is specified by the three coordinates x,y and z, located in the region between column 29-56 inclusive.</p>
+<p>At column 70-76 inclusive is where the Molecular Group is defined. In this example, it is defined as ACID. This means it will be shown in the DL_POLY <em>FIELD</em> file as <em>molecules ACID</em>. If this information is absent, DL_FIELD will assume a name called <em>not_define</em> and shows as <em>molecules not_define</em> in the <em>FIELD</em> file.</p>
+<p>Column 77-79 inclusive is the region where the element symbols of the atoms are specified. If this information is missing, DL_FIELD will look at the atom labels (13-16) for the element symbols.</p>
+<p>Any other details that appear in the columns not mentioned above will be ignored.</p>
+<p>The CRYST1 statement in PDB contains the cell parameters of the molecular system. When DL_FIELD encounters this statement, it will process and automatically convert the information to the equivalent cell vectors. This would be the system size and the cell vectors are printed in the DL_POLY <em>CONFIG</em> file. Without this statement, DL_FIELD will assume an open periodic boundary, unless the cell vectors are defined in the DL_FIELD <em>control</em> file.</p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>The xyz format</strong></p>
+<p>This is the simplest format and contains least amount of atomic information. The xyz is suitable for the following FF schemes: OPLS2005, PCFF and CVFF. It is also applicable to template-based FF schemes such as CHARMM and AMBER, provided the MOLECULE templates are available. For these types of FF schemes, DL_FIELD will trace out the molecular connectivities and search through the library and udff files to look for matching templates.</p>
+<p>Below shows the two-ethanoic acid system, which is equivalent to the PDB format.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">16</span>
+<span class="n">CRYST1</span>   <span class="mf">30.000</span>   <span class="mf">40.000</span>   <span class="mf">30.000</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>
+<span class="c1"># MOLECULAR_GROUP ACID</span>
+<span class="n">C</span>  <span class="o">-</span><span class="mf">1.175000</span>  <span class="mf">1.554000</span>  <span class="mf">0.000000</span>
+<span class="n">O</span>  <span class="o">-</span><span class="mf">1.171000</span>  <span class="mf">2.697000</span>  <span class="o">-</span><span class="mf">0.443000</span>
+<span class="n">C</span>  <span class="o">-</span><span class="mf">2.448000</span>  <span class="mf">0.747000</span>  <span class="mf">0.204000</span>
+<span class="n">O</span>  <span class="o">-</span><span class="mf">0.068000</span>  <span class="mf">0.852000</span>  <span class="mf">0.366000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">2.431000</span>  <span class="o">-</span><span class="mf">0.161000</span>  <span class="o">-</span><span class="mf">0.399000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">2.573000</span>  <span class="mf">0.480000</span>  <span class="mf">1.253000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">3.314000</span>  <span class="mf">1.337000</span>  <span class="o">-</span><span class="mf">0.099000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">0.276000</span>  <span class="o">-</span><span class="mf">0.010000</span>  <span class="mf">0.682000</span>
+<span class="n">C</span>  <span class="o">-</span><span class="mf">1.175000</span>  <span class="mf">9.554000</span>  <span class="mf">0.000000</span>
+<span class="n">O</span>  <span class="o">-</span><span class="mf">1.171000</span>  <span class="mf">10.697000</span>  <span class="o">-</span><span class="mf">0.443000</span>
+<span class="n">C</span>  <span class="o">-</span><span class="mf">2.448000</span>  <span class="mf">8.747000</span>  <span class="mf">0.204000</span>
+<span class="n">O</span>  <span class="o">-</span><span class="mf">0.068000</span>  <span class="mf">8.852000</span>  <span class="mf">0.366000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">2.431000</span>  <span class="mf">7.839000</span>  <span class="o">-</span><span class="mf">0.399000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">2.573000</span>  <span class="mf">8.480000</span>  <span class="mf">1.253000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">3.314000</span>  <span class="mf">9.337000</span>  <span class="o">-</span><span class="mf">0.099000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">0.276000</span>  <span class="mf">7.990000</span>  <span class="mf">0.682000</span>
+</pre></div>
+</div>
+<p>Notice that all atoms must be expressed in the elemental symbols, follow by the three coordinates.
+The number 16 shows the total number of atoms in the system. This is immediately followed by the title. If there is
+no title given, a line must still appear and leave blank. In this case, the example contains the CRYST1 statement, which is similar to that of PDB format that defines the cell parameters of the system.</p>
+<p>After the title is the symbol ‘#’, which appears right at the first column and represents the beginning of the remark statement. Normally, DL_FIELD will ignore the remark statement. In this case, this statement is called the <em>special remark statement</em>, because it contains the DL_FIELD directive <em>MOLECULAR_GROUP</em>, that labels the whole system as ‘ACID’. It instructs DL_FIELD to write out the directive <em>molecules ACID</em> in the DL_POLY <em>FIELD</em> file. If there is no <em>MOLECULAR_GROUP</em> directive, then DL_FIELD will assume the default group called <em>not_define</em>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The above xyz example structure may cause an error if it is read in by a graphical display program. This is due to the presence of DL_FIELD-specific statements that begins with the #. To properly display the structure, remove all the remark statements.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Using the xyz format in DL_FIELD will also produce a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory. It contains the ATOM_TYPEs expressed in DL_F Notation for every atom in the system. As at the latest DL_FIELD version, the file is created for user’s reference only.</p>
+</div>
+<p>For organic molecules, DL_FIELD only recognises elemental symbols for all atoms that involve in covalent bonds. Elemental symbols with charges will be treated as either isolated cations or anions that do not form part of a molecule. For example, for sodium cation in solution, this would be Na+. For chloride anion in solution, this would be Cl-. For the nitrogen atom in ammonium ion, this would be the symbol N, instead of N+, since it is connected with other atoms such as the hydrogen atoms.</p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>The mol2 format</strong></p>
+<p>The mol2 format is a complete, portable representation of a <a class="reference external" href="http://cheminf.cmbi.ru.nl/cheminf/sybyl/">SYBYL</a> (SLN) molecule. Unlike the PDB format, mol2 files are free format and contain detailed information of molecular structures. It is applicable to the following FF schemes: OPLS2005, CVFF, PCFF and AMBER16_GAFF.</p>
+<p>Below shows a mol2 example file, consists of a single ethanoic acid molecule.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">@&lt;</span><span class="n">TRIPOS</span><span class="o">&gt;</span><span class="n">MOLECULE</span>
+<span class="n">ACE</span>
+    <span class="mi">8</span>     <span class="mi">7</span>     <span class="mi">1</span>     <span class="mi">0</span>     <span class="mi">0</span>
+<span class="n">SMALL</span>
+<span class="n">bcc</span>
+
+
+<span class="o">@&lt;</span><span class="n">TRIPOS</span><span class="o">&gt;</span><span class="n">ATOM</span>
+      <span class="mi">1</span> <span class="n">C</span>           <span class="o">-</span><span class="mf">1.1750</span>     <span class="mf">1.5540</span>    <span class="o">-</span><span class="mf">0.0000</span> <span class="n">c</span>          <span class="mi">1</span> <span class="n">ACE</span>       <span class="mf">0.623100</span>
+      <span class="mi">2</span> <span class="n">O</span>           <span class="o">-</span><span class="mf">1.1710</span>     <span class="mf">2.6970</span>    <span class="o">-</span><span class="mf">0.4430</span> <span class="n">o</span>          <span class="mi">1</span> <span class="n">ACE</span>      <span class="o">-</span><span class="mf">0.485000</span>
+      <span class="mi">3</span> <span class="n">CT</span>          <span class="o">-</span><span class="mf">2.4480</span>     <span class="mf">0.7470</span>     <span class="mf">0.2040</span> <span class="n">c3</span>         <span class="mi">1</span> <span class="n">ACE</span>      <span class="o">-</span><span class="mf">0.200100</span>
+      <span class="mi">4</span> <span class="n">OH</span>          <span class="o">-</span><span class="mf">0.0680</span>     <span class="mf">0.8520</span>     <span class="mf">0.3660</span> <span class="n">oh</span>         <span class="mi">1</span> <span class="n">ACE</span>      <span class="o">-</span><span class="mf">0.584100</span>
+      <span class="mi">5</span> <span class="n">HC</span>          <span class="o">-</span><span class="mf">2.4310</span>    <span class="o">-</span><span class="mf">0.1610</span>    <span class="o">-</span><span class="mf">0.3990</span> <span class="n">hc</span>         <span class="mi">1</span> <span class="n">ACE</span>       <span class="mf">0.074700</span>
+      <span class="mi">6</span> <span class="n">H1</span>          <span class="o">-</span><span class="mf">2.5730</span>     <span class="mf">0.4800</span>     <span class="mf">1.2530</span> <span class="n">hc</span>         <span class="mi">1</span> <span class="n">ACE</span>       <span class="mf">0.074700</span>
+      <span class="mi">7</span> <span class="n">H2</span>          <span class="o">-</span><span class="mf">3.3140</span>     <span class="mf">1.3370</span>    <span class="o">-</span><span class="mf">0.0990</span> <span class="n">hc</span>         <span class="mi">1</span> <span class="n">ACE</span>       <span class="mf">0.074700</span>
+      <span class="mi">8</span> <span class="n">HO</span>          <span class="o">-</span><span class="mf">0.2760</span>    <span class="o">-</span><span class="mf">0.0100</span>     <span class="mf">0.6820</span> <span class="n">ho</span>         <span class="mi">1</span> <span class="n">ACE</span>       <span class="mf">0.422000</span>
+<span class="o">@&lt;</span><span class="n">TRIPOS</span><span class="o">&gt;</span><span class="n">BOND</span>
+     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">2</span> <span class="mi">2</span>   
+     <span class="mi">2</span>     <span class="mi">1</span>     <span class="mi">3</span> <span class="mi">1</span>   
+     <span class="mi">3</span>     <span class="mi">1</span>     <span class="mi">4</span> <span class="mi">1</span>   
+     <span class="mi">4</span>     <span class="mi">3</span>     <span class="mi">5</span> <span class="mi">1</span>   
+     <span class="mi">5</span>     <span class="mi">3</span>     <span class="mi">6</span> <span class="mi">1</span>   
+     <span class="mi">6</span>     <span class="mi">3</span>     <span class="mi">7</span> <span class="mi">1</span>   
+     <span class="mi">7</span>     <span class="mi">4</span>     <span class="mi">8</span> <span class="mi">1</span>   
+<span class="o">@&lt;</span><span class="n">TRIPOS</span><span class="o">&gt;</span><span class="n">SUBSTRUCTURE</span>
+     <span class="mi">1</span> <span class="n">ACE</span>         <span class="mi">1</span> <span class="n">TEMP</span>              <span class="mi">0</span> <span class="o">****</span>  <span class="o">****</span>    <span class="mi">0</span> <span class="n">ROOT</span>
+<span class="o">@&lt;</span><span class="n">TRIPOS</span><span class="o">&gt;</span><span class="n">CRYSIN</span>  
+<span class="mf">40.0</span>  <span class="mf">40.0</span>  <span class="mf">40.0</span>   <span class="mf">90.0</span>  <span class="mf">90.0</span>  <span class="mf">90.0</span>
+</pre></div>
+</div>
+<p>A typical mol2 file consists of a series of data records classified according to the <em>Record Type Indicator</em>, or <em>RTI</em>. All <em>RTI</em> must always begins with the ‘&#64;’ at column 1. DL_FIELD only recognises a small set of <em>RTIs</em>. For more details, please consult Chapter 6.3 of the User Manual.</p>
+<p>The most relevant <em>RTI</em> to the user is the &#64;&lt;TRIPOS&gt;ATOM, which records the atomic information. This is described in more details as follows:</p>
+<p>The first column is the atom index number, from atom 1 to 8, which is the total number of atoms in an ethanoic acid molecule. The following column is the atom label, follow by the three coordinates. After that is the ATOM_KEY, or some symbol that implicates the chemical behaviour of the atom. The following columns are similar to the PDB format, which are the residue number and residue label (MOLECULE_KEY), respectively.</p>
+<p>The last column is the charge value of an atom. This is usually expressed in formal charge value. However, some software can generate partial charges for the molecule and export the structure in the mol2 format. The example mol2 file was generated using the Amber’s <em>antechamber</em> software, using <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/12395429/">AM1-BCC model</a> to derive the partial charges. For this reason the ATOM_KEYs (c, o, c3, etc) are those of AMBER GAFF, which is AMBER16_GAFF FF scheme in DL_FIELD.</p>
+<p>DL_FIELD will always examine the ATOM_KEYs in the mol2 file. If these keys match with the library files of the FF scheme specified, then DL_FIELD will use those ATOM_KEYs in the mol2 file as the basis to extract the corresponding potential parameters. The charges will also be extracted directly from the mol2 file. If, however, the keys do not match with the FF scheme specified, then normal atom typing procedure and charge determination will be carried out. The charge values in the mol2 file will be ignored.</p>
+<p>So, in this example, if AMBER16_GAFF scheme is specified, then the charge values and ATOM_KEYs in the mol2 file will be used. Otherwise, other FF schemes, such as OPLS2005, normal atom typing procedures will be carried out to determine the ATOM_KEYs and charge values.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Using the mol2 format in DL_FIELD will also produce a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory. It contains the ATOM_TYPEs expressed in DL_F Notation for all atoms in the system. As at the latest DL_FIELD version, the file is created for user’s reference only.</p>
+</div>
+<p><a class="reference internal" href="#header-dlf-format"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_howto.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyse_howto.html">DL_ANALYSER</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dl_field_conversion.html"
+                        title="previous chapter">Force field conversion</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dl_field_howto2.html"
+                        title="next chapter">How to do something</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dl_field_howto2.html" title="How to do something"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_conversion.html" title="Force field conversion"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

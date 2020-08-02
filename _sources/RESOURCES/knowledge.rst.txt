@@ -1,0 +1,28 @@
+.. List of articles contributed by members about simulations
+.. _Header-knowledge:
+
+**************************
+Advanced Knowledge Center
+**************************
+
+Below contains a collection of interesting topics relate to molecular modelling, simulation and analysis, contributed by members of simulation communities over many years. Some of whom were the pioneers and originators of simulation techniques that lay the foundations for standardised implementations in many modern software packages. 
+
+This Section is mainly aimed for advanced or curious users who wish to know more about the techniques and methodology of molecular simulations. You never know, you may find some of the hidden knowledge that you would normally not find in the Internet or journals!
+
+You are welcome to make your contributions by sending your article (preferably in PDF) to `Chin Yong <https://www.scd.stfc.ac.uk/Pages/Chin-Yong.aspx>`_.
+
+* J.L. Stinson, et. al. (December 2013) - Dynamical consequences of the application of a thermal noise constraint to the Langevin thermostat. (:download:`PDF<./Stinson_langevin_2013.pdf>`)
+
+|
+
+* M. Mezei (March 2003) - Another 'clever' idea down the drain ... #2. (:download:`PDF<./Mezei_mc_2003.pdf>`)
+  Discuss about Monte Carlo moves in molecular systems.
+
+|
+
+* CCP5 Newsletter (1981-2000) - Scanned `PDF <https://www.ccp5.ac.uk/infoweb/newsletters>`_ copies of Newsletter, describe a variety of interesting simulation methodologies.
+
+|
+
+:ref:`^ GO TO TOP ^<Header-knowledge>`
+

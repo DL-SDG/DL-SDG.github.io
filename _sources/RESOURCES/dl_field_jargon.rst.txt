@@ -1,0 +1,49 @@
+.. DL_FIELD jargon. 
+
+*******
+Jargons
+*******
+
+Below shows definitions that are specific to DL_FIELD. Take some time to read them. This will make it easier for you to understand how DL_FIELD works. 
+
+* MOLECULE - also refers as the MOLECULE template, it is a pre-defined entity consists of a collection of particles which can be normal atoms, pseudo-points, atoms with core-shell components, or even united atoms and coarse-grain particles. It is usually defined in the library files using the *MOLECULE* and *END MOLECULE* directive.
+
+|
+
+* MOLECULE_TYPE - The name of a MOLECULE, often in a human-readable form.
+
+|
+
+* MOLECULE_KEY - The corresponding unique code (up to four characters) for a MOLECULE_TYPE. This is equivalent to the amino acid residue code. For example, ALA refers to alanine residue and this is alanine MOLECULE_KEY within the DL_FIELD context.
+
+|
+
+* ATOM_TYPE - The name of an atom, often in a human-readable form. An element can have different ATOM_TYPEs, which depend on its chemical environment within a molecule.
+
+|
+
+* ATOM_KEY - The corresponding code or symbol for an ATOM_TYPE. It is used within DL_FIELD to choose the appropirate potential parameters. ATOM_KEYs are also the labels used in the DL_POLY's *CONFIG* and *FIELD* files.
+
+|
+
+* ATOM_LABEL - The unique label of a particle, use only to define a MOLECULE template. In other words, ATOM_LABELs are only visible within the *MOLECULE* and *END MOLECULE* directive.
+
+|
+
+* Potential scheme - also called the force field (FF) scheme. It refers to a force field data set in the *lib/* directory. The data sets are given names to identify them. For example CHARMM, AMBER, etc. 
+
+|
+
+* DL_F Notation - The DL_FIELD standard ATOM_TYPE notation for a number of FF schemes implemented within DL_FIELD. It is the universal ATOM_TYPEs of which the FF schemes share the common ATOM_TYPEs and ATOM_KEYs and the Notation directly indicates the chemical nature of the atoms in a molecular system.
+
+|
+
+* The *.sf* and *.par* files - These are called the structure file and parameter file, respectively. They are FF library files located in the *lib/* directory. Each potential scheme consists of a *.sf* and a *.par* file and possibly some other supplementary files. MOLECULE template and ATOM_TYPEs definitions with the corresponding ATOM_KEYs are located in the *.sf* file. The *.par* file stores all the parameters of various interaction components such as bond interactions, angle interactions, etc. 
+
+|
+
+* User-defined force field (udff) file - a user-created file that contain user-define force field information such as MOLECULE templates and FF parameters. If any of such information is also contained in the corresponding *.sf* or the *.par* files, it will be overrided and DL_FIELD will choose the information in the udff file, rather than in the library files. 
+
+|
+
+* Molecular Group - also called the Molecule Group, it is a name or label given to a group of atoms or molecules in a molecular system. This is a convenient way to differentiate different class of molecules. For instance, solute molecules can be grouped in a different Molecular Group from that of solvent molecules. The Molecular Group names will appear as the *molecules* directive in DL_POLY's FIELD file.

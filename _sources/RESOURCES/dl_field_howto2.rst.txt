@@ -1,0 +1,90 @@
+.. This provides detailed information on how to carry out certain task
+.. _Header_dlf_howto2:
+
+*******************
+How to do something 
+*******************
+
+This page shows you how to use DL_FIELD to acheive a specific task.
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+**How to set up a liquid model**
+
+(1) Create a single-molecule configuration file. This would be the liquid molecule, or the solute molecule if you were to setup a solution. Let's call this file *molecule.xyz*
+
+(2) Edit your DL_FIELD *control* file as follows:
+
+.. literalinclude:: dl_field_control1.dat
+   :emphasize-lines: 4, 11, 13, 28
+
+The example shows OPLS2005 FF scheme is used. The Solution Maker feature is also turn on:
+
+1  1.05 g/cm^3  1.6
+
+This means: 'Switch on (1) the feature, duplicate structure in the *molecule.xyz* file, to create a density of 1.05 g/cm^3, with each molecule at least 1.6 angstrom apart.
+
+The number of molecules duplicated will depend on the cell vectors defined, which is 40 angstrom in x,y and z directions.
+
+(3) Run DL_FIELD
+
+.. TIP::
+   Once the system is setup, it is recommended to view your *dl_poly.CONFIG* structure in a graphical display software to make sure the structure is evenly distributed. You can adjust the distance accordingly and rerun DL_FIELD. A smaller distance means molecules will be tightly packed against each other. Whereas, large distance means the molecules are more widely apart.
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+**How to setup a solution model**
+
+Use the same procedures for setting up liquid as described above. However, use the Solvation feature in the DL_FIELD *control* file as shown below:
+
+.. literalinclude:: dl_field_control2.dat
+   :emphasize-lines: 7, 21
+
+In this example, the Solution Maker feature will, firstly, duplicate your solute molecules in the simulation box to give a concentration of 1.5 mol/dm^3 and each molecule is at least 4 angstrom apart. Secondly, the simulation box is solvated with the TIP4P water model. The solvent molecules must not be located less than 2.0 angstrom from the solute molecules.
+
+.. Note::
+   You can only solvate your system if it is a cubic or orthorhombic. 
+
+Of course, you can also solvate your system with other types of solvent. There is a (growing) list of solvent you can choose, which is found in the file call *solvent_list* in the *solvent/* directory.
+
+.. Warning::
+   Depending on the FF schemes, you may get an error in DL_FIELD if there is no MOLECULE template or potential parameters available for some solvent molecules. In addition, you cannot solvate your system if an inorganic FF scheme is used.
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+ 
+**How to setup a constraint bond model**
+
+Constraining bonds are one of the effective way to remove fastest mode of motion in your system, that is, the bond vibration, especially bonds that contain the hydrogen atoms. 
+
+(1) Provide a Molecular Group name to your molecules, if you are using xyz of PDB file. If you don't know how to do that, consult this :ref:`page<Header_dlf_format>`. If you don't do that, DL_FIELD will assign a default name called *not_define*.
+
+(2) Edit your DL_FIELD *control* file.
+
+.. literalinclude:: dl_field_control3.dat 
+   :emphasize-lines: 15, 34-35
+
+Switch on (1) the Constrain bonds. It instructs DL_FIELD to look for which group of molecules to apply the constrain according to the CONSTRAIN directive statements shown below. If this is turn off (0), no constrain bond will be setup.
+
+At the Atom state specification section, define how the bonds would be constrained. In this example, it shows two statements:
+
+| CONSTRAIN  ORG1  h-bond 
+| CONSTRAIN  ORG2  all
+
+These directive statements instruct DL_FIELD to constrain only bonds that contain hydrogen atoms on molecules belong to the Molecular Group ORG1. Whereas, all bonds will be constrained for molecules belong to Molecular Group ORG2.
+
+(3) Run DL_FIELD
+
+.. Note::
+   Only one type of bond constrain can be applied in each Molecular Group.
+
+.. Warning:: 
+   If the Molecular Group names in the configuration file do not match with any of the CONSTRAIN directive statements, no bond constrain will be applied. DL_FIELD does not consider this as an error. 
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+:ref:`^ GO TO TOP ^<Header_dlf_howto2>`
+
+
+
+
+

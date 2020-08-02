@@ -1,0 +1,38 @@
+.. How to use the Guide 
+
+
+************
+Using DL_SDG
+************
+
+.. image:: ../image/DL_Software_logo.png
+    :align: center
+    :width: 297px
+    :height: 69px
+    :alt: DL_Software Logo
+
+As you work your way through the material available in the resource centre you will find variously coloured boxes like those shown below:
+
+.. Note::
+   These are grey boxes describing important pieces of information of which the user should be aware
+
+.. Warning::
+   These are pale red boxes describing information that should be not ignored!
+
+:TIP:
+   These are (hopefully!) helpful hints to enable ease-of-use or understanding. They are marked by the presence of a pale purple box that extends down the left hand side of the page aligned with the text.
+
+
+.. image:: ../RESOURCES/SIMULATIONS/IMAGES/iddy-reading.jpg
+   :scale: 15 %
+   :align: left
+ 	   
+This is the 'Further Reading' icon indicating extra material that you might find useful, but that is not essential for the new user.
+
+
+All of the above will appear in various places throughout the resource centre; here's a tip for you to try out:    
+
+:TIP:
+   Clicking on hyperlinks: If you want to open a hyperlink in a new tab,  click the middle button of the mouse - this opens a new tab - and then click on the new tab!
+
+

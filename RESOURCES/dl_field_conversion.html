@@ -1,0 +1,168 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Force field conversion &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="User input file format" href="dl_field_format.html" />
+    <link rel="prev" title="Jargons" href="dl_field_jargon.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dl_field_format.html" title="User input file format"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_jargon.html" title="Jargons"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="force-field-conversion">
+<h1>Force field conversion<a class="headerlink" href="#force-field-conversion" title="Permalink to this headline">¶</a></h1>
+<p>This page provides a summary the concept and how DL_FIELD converts your system and setup the FF models. Please read <a class="reference internal" href="dl_field_jargon.html"><span class="doc">Jargons</span></a> if you have not done.</p>
+<p><strong>Atom typing</strong></p>
+<p>Procedures to determine the ATOM_TYPE of an atom that is referenced to an ATOM_KEY. From such, force field parameters for the atom that involves in a given set of interaction will be selected.</p>
+<a class="reference internal image-reference" href="../_images/atom_types.jpg"><img alt="atom types" class="align-left" src="../_images/atom_types.jpg" style="width: 274.92px; height: 369.36px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The diagram shows the ATOM_KEYs for four different FF schemes for ethanoic acid: OPLS, PCFF, CHARMM CGenFF and AMBER. These symbols are expressed in the standard FF notations specific to the FF schemes. These ATOM_KEYs are determined based on the user’s input configuration file by using one of the conversion mechanisms (see below) within DL_FIELD. To search for the appropriate FF parameters, DL_FIELD will look through the <em>.par</em> library file in the <em>lib/</em> directory. For example, to assign the angle potential for PCFF about the hydroxyl oxygen (ho2 - o_2 - c_1), DL_FIELD will look into the <em>DLPOLY_PCFF.par</em> file and look for the matching ATOM_KEYs. But if a <em>udff</em> file is available, DL_FIELD will search for the parameters in the file before proceeds to the library file.</p>
+<p>Note that these ATOM_KEYs appear very different among the different FF schemes. However, DL_FIELD also allows user to express the ATOM_KEYS in DL_F Notation. In this case, irrespective of which FF scheme, the ATOM_KEYs appear the same and yet the potential parameters will be different depend on the FF schemes.</p>
+<p>In DL_F Notation, each ATOM_KEY is also uniquely referenced to the ATOM_TYPE. Note that the chemical identity of each atom is also encoded in the Notation. For example, the ATOM_TYPE Cp_alkane refers to the ATOM_KEY C1p, where the numerical value <strong>1</strong> is the unique identity that refers to the <em>alkane</em> group. It turns out the C1p is actually a <em>primary</em> alkyl carbon atom.</p>
+<p>You can choose to express the ATOM_KEYs in either the standard FF or the DL_F notations from the DL_FIELD <em>control</em> file. For more information about DL_F Notation, please click <a class="reference external" href="https://doi.org/10.1021/acs.jcim.6b00323">here</a>.</p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>Conversion mechanisms</strong></p>
+<p>To convert a system model into DL_POLY files, DL_FIELD contains two atom typing methods: (1) template-based and (2) molecular topology analysis. The characteristics for both methods are shown below:</p>
+<ol class="arabic simple">
+<li>Template-based<ul>
+<li>Matching of molecular input structures against some pre-defined MOLECULE templates. ATOM_TYPEs are directly obtained from the template.</li>
+<li>If the template is not available, users are required to contruct it manually in a udff file.</li>
+<li>Flexible, allows users to adjust the model behaviour - introduce constrains, rigid body, core-shell, pseudo points, etc.</li>
+<li>Possible use of the auto-CONNECT feature to simplify the MOLECULE template construction. Useful for complex molecules.</li>
+<li>Suitable for structures in PDB format.</li>
+<li>May be able to use ATOM_TYPEs in DL_F Notation in MOLECULE template. In this way, ATOM_KEYs in DL_F Notation can be produced.</li>
+</ul>
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Molecular topology analysis<ul>
+<li>Do not need the MOLECULE template.</li>
+<li>ATOM_TYPEs are automatically determined by carrying out detailed analysis of atomic structures.</li>
+<li>Can make use of the DL_F Notation and determine the chemical nature of every atom in the system.</li>
+<li>Suitable for <em>xyz</em> and mol2 file formats.</li>
+</ul>
+</li>
+</ol>
+<p>DL_FIELD will use one or both mechanisms to carry out FF conversions, depending on the type of FF schemes and type of input file format. DL_FIELD can use template-based conversion for all FF schemes. However, molecular topology analysis is only applicable to OPLS2005, PCFF and CVFF.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_howto.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyse_howto.html">DL_ANALYSER</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dl_field_jargon.html"
+                        title="previous chapter">Jargons</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dl_field_format.html"
+                        title="next chapter">User input file format</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dl_field_format.html" title="User input file format"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_jargon.html" title="Jargons"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

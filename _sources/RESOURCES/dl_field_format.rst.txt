@@ -1,0 +1,90 @@
+.. How to use DL_FIELD, which input format to use.
+.. _Header_dlf_format:
+
+**********************
+User input file format
+**********************
+
+DL_FIELD supports the following file formats: PDB, .mol2 and *xyz*. Unfortunately, not all file formats are applicable to all FF schemes. For more details about file format, please consult Chapter 6 of the User Manual. Here are the general rules how to use them: 
+
+**The PDB format**
+
+This is a popular format used mainly for biomolecular systems like proteins and DNA. In DL_FIELD, it is applicable for all FF schemes for all types of system models The correct MOLECULE_KEYs must be explicitly specified and the correspoding MOLECULE template must be available in the *.sf* file or the udff file. 
+
+The PDB format can provide a number of information pertaining to the state of atoms in the system. DL_FIELD
+adheres to strict PDB standard and different information must be located within the designated range of columns.
+Not all information will be read by DL_FIELD and only those that are needed for FF conversions will be 
+discussed here. For more details, please see Chapter 6.1 of the user manuals.
+
+The file shows an example of PDB format: 
+
+.. literalinclude:: ./STRUCTURES/ethanoic_acid.pdb
+
+It contains two ethanoic acid molecules, numbered from 1 to 16. DL_FIELD is insensitive to the sequence of these numbers. In other words, the numbers do not have to be in order. DL_FIELD will only treat it as an atom if the line starts with the word 'ATOM' or 'HTEATM'.
+
+Following after the sequence numbers, at columns 13 to 16 are the atom labels. If the element symbols columns (77-79) are absent, then DL_FIELD will attempt to extract elemental symbols from atom labels.
+
+The label 'ACEH' are the residue label, or the MOLECULE_KEY. It appears between 18 to 21 columns inclusive. By refering to a *.sf* file, say, *DLPOLY_OPLS2005.sf*, ACEH is the key for MOLECULE acetic_acid template. 
+
+At column 23-26 inclusive is the residue sequence. In this example, the first ethanoic acid molecule is assigned with the number 1 for each atom and the second molecule is assigned with the number 2 to each atom. DL_FIELD will use these numbers to distinguish the molecules.
+
+The location of each atom is specified by the three coordinates x,y and z, located in the region between column 29-56 inclusive.
+
+At column 70-76 inclusive is where the Molecular Group is defined. In this example, it is defined as ACID. This means it will be shown in the DL_POLY *FIELD* file as *molecules ACID*. If this information is absent, DL_FIELD will assume a name called *not_define* and shows as *molecules not_define* in the *FIELD* file.
+
+Column 77-79 inclusive is the region where the element symbols of the atoms are specified. If this information is missing, DL_FIELD will look at the atom labels (13-16) for the element symbols.
+
+Any other details that appear in the columns not mentioned above will be ignored.
+
+The CRYST1 statement in PDB contains the cell parameters of the molecular system. When DL_FIELD encounters this statement, it will process and automatically convert the information to the equivalent cell vectors. This would be the system size and the cell vectors are printed in the DL_POLY *CONFIG* file. Without this statement, DL_FIELD will assume an open periodic boundary, unless the cell vectors are defined in the DL_FIELD *control* file.
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+**The xyz format**
+
+This is the simplest format and contains least amount of atomic information. The xyz is suitable for the following FF schemes: OPLS2005, PCFF and CVFF. It is also applicable to template-based FF schemes such as CHARMM and AMBER, provided the MOLECULE templates are available. For these types of FF schemes, DL_FIELD will trace out the molecular connectivities and search through the library and udff files to look for matching templates.
+ 
+Below shows the two-ethanoic acid system, which is equivalent to the PDB format.
+
+.. literalinclude:: ./STRUCTURES/ethanoic_acid.xyz
+
+Notice that all atoms must be expressed in the elemental symbols, follow by the three coordinates.
+The number 16 shows the total number of atoms in the system. This is immediately followed by the title. If there is 
+no title given, a line must still appear and leave blank. In this case, the example contains the CRYST1 statement, which is similar to that of PDB format that defines the cell parameters of the system.
+
+After the title is the symbol '#', which appears right at the first column and represents the beginning of the remark statement. Normally, DL_FIELD will ignore the remark statement. In this case, this statement is called the *special remark statement*, because it contains the DL_FIELD directive *MOLECULAR_GROUP*, that labels the whole system as 'ACID'. It instructs DL_FIELD to write out the directive *molecules ACID* in the DL_POLY *FIELD* file. If there is no *MOLECULAR_GROUP* directive, then DL_FIELD will assume the default group called *not_define*.
+
+.. Warning::
+   The above xyz example structure may cause an error if it is read in by a graphical display program. This is due to the presence of DL_FIELD-specific statements that begins with the #. To properly display the structure, remove all the remark statements.
+
+.. Note::
+   Using the xyz format in DL_FIELD will also produce a file called the *dlf_notation.output* in the *output/* directory. It contains the ATOM_TYPEs expressed in DL_F Notation for every atom in the system. As at the latest DL_FIELD version, the file is created for user's reference only.
+
+For organic molecules, DL_FIELD only recognises elemental symbols for all atoms that involve in covalent bonds. Elemental symbols with charges will be treated as either isolated cations or anions that do not form part of a molecule. For example, for sodium cation in solution, this would be Na+. For chloride anion in solution, this would be Cl-. For the nitrogen atom in ammonium ion, this would be the symbol N, instead of N+, since it is connected with other atoms such as the hydrogen atoms. 
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+**The mol2 format**
+
+The mol2 format is a complete, portable representation of a `SYBYL <http://cheminf.cmbi.ru.nl/cheminf/sybyl/>`_ (SLN) molecule. Unlike the PDB format, mol2 files are free format and contain detailed information of molecular structures. It is applicable to the following FF schemes: OPLS2005, CVFF, PCFF and AMBER16_GAFF.
+
+Below shows a mol2 example file, consists of a single ethanoic acid molecule.
+
+.. literalinclude:: ./STRUCTURES/ethanoic_acid.mol2
+
+A typical mol2 file consists of a series of data records classified according to the *Record Type Indicator*, or *RTI*. All *RTI* must always begins with the '@' at column 1. DL_FIELD only recognises a small set of *RTIs*. For more details, please consult Chapter 6.3 of the User Manual. 
+
+The most relevant *RTI* to the user is the @<TRIPOS>ATOM, which records the atomic information. This is described in more details as follows:
+
+The first column is the atom index number, from atom 1 to 8, which is the total number of atoms in an ethanoic acid molecule. The following column is the atom label, follow by the three coordinates. After that is the ATOM_KEY, or some symbol that implicates the chemical behaviour of the atom. The following columns are similar to the PDB format, which are the residue number and residue label (MOLECULE_KEY), respectively. 
+
+The last column is the charge value of an atom. This is usually expressed in formal charge value. However, some software can generate partial charges for the molecule and export the structure in the mol2 format. The example mol2 file was generated using the Amber's *antechamber* software, using `AM1-BCC model <https://pubmed.ncbi.nlm.nih.gov/12395429/>`_ to derive the partial charges. For this reason the ATOM_KEYs (c, o, c3, etc) are those of AMBER GAFF, which is AMBER16_GAFF FF scheme in DL_FIELD.
+
+DL_FIELD will always examine the ATOM_KEYs in the mol2 file. If these keys match with the library files of the FF scheme specified, then DL_FIELD will use those ATOM_KEYs in the mol2 file as the basis to extract the corresponding potential parameters. The charges will also be extracted directly from the mol2 file. If, however, the keys do not match with the FF scheme specified, then normal atom typing procedure and charge determination will be carried out. The charge values in the mol2 file will be ignored. 
+
+So, in this example, if AMBER16_GAFF scheme is specified, then the charge values and ATOM_KEYs in the mol2 file will be used. Otherwise, other FF schemes, such as OPLS2005, normal atom typing procedures will be carried out to determine the ATOM_KEYs and charge values. 
+
+.. Note::
+   Using the mol2 format in DL_FIELD will also produce a file called the *dlf_notation.output* in the *output/* directory. It contains the ATOM_TYPEs expressed in DL_F Notation for all atoms in the system. As at the latest DL_FIELD version, the file is created for user's reference only.
+
+:ref:`^ GO TO TOP ^<Header_dlf_format>`

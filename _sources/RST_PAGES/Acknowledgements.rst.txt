@@ -7,15 +7,38 @@ Acknowledgements
 
 We would like to thank all contributors to the DL_Software Resource Centre, and hope that should you not find yourself individually listed below, you will assume our appreciation of your contribution - thank you!
 
-* `Dawn Geatches <https://www.scd.stfc.ac.uk/Pages/Dawn-Geatches.aspx>`_ Main author and compositor
+If you have any comments, suggestions, or anything to contribution, please email me (Chin Yong).
+
+* `Dawn Geatches <https://www.scd.stfc.ac.uk/Pages/Dawn-Geatches.aspx>`_ Main author and compositor, who had designed the basis framework for DL_SDG.
   
 
-* `Chin Yong <https://www.scd.stfc.ac.uk/Pages/Chin-Yong.aspx>`_ Main contributor of Simulations examples and design consultant
+* `Chin Yong <https://www.scd.stfc.ac.uk/Pages/Chin-Yong.aspx>`_ Originator of DL_SDG concept, author and compositor of Simulations examples and design consultant.
   
+* `Ilian Todorov <https://www.scd.stfc.ac.uk/Pages/Ilian-Todorov.aspx>`_ Originator of DL_SDG concept.
 
 * `Alin Elena <https://www.scd.stfc.ac.uk/Pages/Alin-Elena.aspx>`_ Main contributor of Advanced Installation details
-  
 
 * `Andrey Brukhno <https://www.scd.stfc.ac.uk/Pages/Andrey-Brukhno.aspx>`_ Main contributor of advice on how to get a parallel version of DL_POLY up-and-running on HPC    
 
 * `Linux Cheat Sheet <https://www.linuxtrainingacademy.com/linux-commands-cheat-sheet/#1_8211_SYSTEM_INFORMATION>`_ provided most of the Linux commands listed on the cheat sheet  
+
+Provision of fundings to make DL_SDG possible are greatly appreciated, in particular the Ada Lovelace Centre, a digital asset development centre in support of `UK national large-scale facilities <https://stfc.ukri.org/research/our-science-facilities/>`_.
+
+
+
+.. |stfc| image:: ../image/stfc_logo.png
+    :scale: 15%
+    :alt: STFC Logo
+
+
+.. |alc| image:: ../image/alc.png
+    :scale: 90%
+    :alt: ALC logo
+
+.. |cosec| image:: ../image/cosec.jpg
+    :scale: 30%
+    :alt: COSEC logo
+
++------------+---------+----------+
+| |stfc|     |   |alc| | |cosec|  |
++------------+---------+----------+
