@@ -40,6 +40,7 @@ This essentially replicates the ethanol molecule (*ethanol.mol2*), then randomly
 The file below shows the relevant parameters highlighted in pale yellow (which is quite difficult to detect against the pale green background!)
 
 .. literalinclude:: dl_field.control
+   :lines: 1-40
    :emphasize-lines: 1, 11, 13, 15, 29-31
 
 :TIPS:

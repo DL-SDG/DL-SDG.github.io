@@ -8,11 +8,11 @@ Resources
 .. toctree::
    :maxdepth: 2
 
-   ./DL_POLY_manual	      
-   ./text_editors
-   ./visualisation   
+   ./manual	      
    ./tools
    ./tutorials
+   ./text_editors
+   ./visualisation   
    ./video_links   
 
   

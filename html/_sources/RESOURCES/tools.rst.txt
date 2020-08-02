@@ -1,31 +1,20 @@
 .. This provides detailed information on how to set-up a obtain and run the DL_SOftware
 
-*******************************
-Molecular Simulations - Tools
-*******************************
+*****************
+DL_Software Tools
+*****************
+
+This is the main portal to assess all things about DL_Software: how to obtain, compilation, running programs, tips, dos and don'ts, etc.
 
 .. toctree::
    :maxdepth: 2
 
-   ./dl_fieldhowto	      
+   ./dl_field_intro   
    ./dl_poly_howto
    ./dl_analyse_howto  
   
 
 The following is a list of the molecular simulation software tools you need to complete the Simulation Tutorials. The descriptions include details on how to obtain the software - **if you are a new user of DL_Software it is strongly recommended you read the following before attempting any of the Simulation Tutorials**  
-
-* `DL_FIELD <https://www.scd.stfc.ac.uk/Pages/DL_FIELD.aspx>`_ – force field model set up (version 4.5 and above).
-
-To be able to use DL_FIELD you first need to register `here <https://www.scd.stfc.ac.uk/Pages/DL_FIELD.aspx>`_. Successful registration will lead to you receiving a .tar.gz file (e.g. dl_f_4.5.tar.gz). Unpack or untar this for example in Linux::
-
-  $: tar -xzvf dl_f_4.5.tar.gz
-
-This will produce the directory **dl_f_4.5** which contains a *dl_field.control*, *dl_f_path* and a **README.md** file (amongst other files). You then need to compile to produce the executable *dl_field*. To do this follow the simple instructions in the **README.md** file. The file that will need to be edited to run the executable *dl_field* specific to your simulation is *dl_field.control*. 
-
-:TIP:
-
-   If you work from within the **dl_f_4.5** directory the only file that will need to be edited to run the executable *dl_field* is *dl_field.control*. Working from a directory other than **dl_f_4.5** is not recommended until you feel confident about changing file paths (e.g. in *dl_f_path*).
-
 
 .. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
 
@@ -69,7 +58,9 @@ and to run it::
   
     $: ./copy.sh
 
+You would need to do this after a simulation run is completed and before you continue to carry out further runs. To do the latter part, you would need to edit the **CONTROL** file and increase the MD steps.
 
+|
 	   
 .. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
 

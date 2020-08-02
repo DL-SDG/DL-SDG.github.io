@@ -1,0 +1,55 @@
+.. main portal to DL_FIELD 
+
+*************
+Main features
+*************
+
+**Last update: July 2020 (DL_FIELD version 4.6)**
+
+Below shows the some of the main DL_FIELD capabilities.
+
+* Accept input configuration files in the following formats: *PDB*, *xyz* and *mol2*
+
+* Model customisation: define rigid bodies, assign freeze, tether and bond constrain atoms.
+
+* Force field customisation in a user-define force field (*udff*) file: define or override potential parameters and FF models
+
+* Solvation with auto-insertion of counter ions.
+
+* Auto setup solution and liquid systems (Solution Maker feature).
+
+* Fully automatic universal atom typing scheme for a number of FF schemes (applicable to *xyz* and *mol2* only).
+
+* Definition of more than one FF scheme within a molecular model (multiple potential capability).
+
+|
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+
+**Available force field (FF) schemes**
+
+* CHARMM - CHARMM22, CHARMM36 for proteins, CHARMM36 for lipids and carbohydrates, CGenFF general FF.
+
+* AMBER - proteins, Glycam for glycans and GAFF general FF.
+
+* OPLS2005 - for proteins and organic molecules including drug molecules.
+
+* OPLS-DES - OPLS FF for deep eutectic solvents
+
+* OPLS-AA/M - New OPLS protein FF.
+
+* PCFF - Small organic molecules including organic polymers.
+
+* CVFF - Small organic molecules, proteins.
+
+* DREIDING - General FF for covalent molecules.
+
+* INORGANIC - a collective FF term for inorganic oxides, glass, clay, zeolites, etc.
+
+* MISC_FF - miscellaneous general FF scheme - for FF models that do not fit with any standard schemes.
+
+* G54A7 - united atom Gromos FF. 
+
+All FF schemes expressed in the same DL_FIELD format and the library files are located in the *lib* directory.
+

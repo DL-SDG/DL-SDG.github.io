@@ -6,6 +6,13 @@
 Welcome to the DL_Software Resource Centre!
 ====================================================
 
+.. image:: image/DL_Software_logo.png
+    :width: 258px
+    :height: 58px
+    :align: center
+    :alt: DL_software Logo
+  
+
 .. toctree::
    :maxdepth: 3
 
@@ -13,6 +20,7 @@ Welcome to the DL_Software Resource Centre!
    ./RESOURCES/Resources
    ./RESOURCES/STRUCTURES/Structures
    ./RESOURCES/SIMULATIONS/Simulations
+   ./RESOURCES/knowledge
    ./RESOURCES/linux_cheat_sheet
    ./RESOURCES/EXERCISES/Exercises
    ./RST_PAGES/Installation_further_reading

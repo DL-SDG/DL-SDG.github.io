@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ready, get set, go &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Main features" href="dl_field_features.html" />
+    <link rel="prev" title="DL_FIELD" href="dl_field_intro.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dl_field_features.html" title="Main features"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_intro.html" title="DL_FIELD"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ready-get-set-go">
+<span id="header-dlf-howto"></span><h1>Ready, get set, go<a class="headerlink" href="#ready-get-set-go" title="Permalink to this headline">¶</a></h1>
+<p>This page tells you how to set DL_FIELD up and running.</p>
+<p><strong>How to obtain DL_FIELD</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.ccp5.ac.uk/DL_FIELD">DL_FIELD web site</a> – force field (FF) model set up (version 4.6 and above).</li>
+<li>DL_FIELD User Manual (<a class="reference download internal" download="" href="../_downloads/b7b9ec18c95d4bf28cfb25a9c31fd0dd/MAN_DL_FIELD_4.6.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 4.6, January 2020.</li>
+</ul>
+<p>To be able to use DL_FIELD you first need to register <a class="reference external" href="https://www.ccp5.ac.uk/DL_FIELD/registration.shtml">here</a>. Successful registration will lead to you receiving a .tar.gz file (e.g. dl_f_4.6.tar.gz). Unpack or untar this for example in Linux:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: tar -xzvf dl_f_4.6.tar.gz
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The number 4.6 refers to the software version, which can be different if a newer version is released.</p>
+</div>
+<p>This will produce the directory <strong>dl_f_4.6</strong> which contains a <em>dl_field.control</em> (DL_FIELD control file), <em>dl_f_path</em> and a <strong>README.md</strong> file (amongst other files). You then need to compile to produce the executable <em>dl_field</em>. To do this follow the simple instructions in the <strong>README.md</strong> file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">If you work from within the <strong>dl_f_4.6</strong> directory the only file that will need to be edited to run the executable <em>dl_field</em> is <em>dl_field.control</em>. Working from a directory other than <strong>dl_f_4.6</strong> is not recommended until you feel confident about changing file paths (e.g. in <em>dl_f_path</em>).</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>General guidance for running DL_FIELD</strong></p>
+<p><strong>Version 1.0, April 2020</strong></p>
+<p>Before running DL_FIELD, make sure paths to the library files and the DL_FIELD control file are correct in the <em>dl_f_path</em> file. The latter <strong>must always</strong> be in the same DL_FIELD home directory where <em>dl_field.exe</em> is located.</p>
+<div class="figure">
+<img alt="../_images/dl_field_filepaths_resized.png" src="../_images/dl_field_filepaths_resized.png" />
+</div>
+<p>All directory paths must always be specified relative to the DL_FIELD home directory where the <em>dl_field.exe</em> is located.
+By default, you don’t have to keep changing the above-mentioned path. It is the <strong>control</strong> path that you would need to change from time to time.</p>
+<p>The <em>dl_field.control</em> is the default control file. You can change the name or create different control files, so long you don’t change the basic structures of the files. The control file is where you specify the system configuration input file and the choice of force field scheme, amongst other options. To choose which files to use, just change the <strong>control</strong> path in <em>dl_f_path</em> accordingly.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You would need to change all the paths should you move the <em>dl_field.exe</em> away from its original location.</p>
+</div>
+<p>To run DL_FIELD program, just type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: ./dl_field
+</pre></div>
+</div>
+<p>When you run DL_FIELD and see the following statements on your screen, it is almost always certain the conversion is successful:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Structures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">converted</span> <span class="n">successfully</span><span class="o">.</span>
+
+<span class="n">Program</span> <span class="n">executed</span> <span class="n">successfully</span><span class="o">.</span> <span class="n">Thank</span> <span class="n">you</span> <span class="k">for</span> <span class="n">using</span> <span class="n">DL_FIELD</span><span class="o">.</span>
+
+<span class="n">Time</span> <span class="n">taken</span> <span class="k">for</span> <span class="n">conversion</span><span class="p">:</span> <span class="mf">0.64</span> <span class="n">s</span>
+</pre></div>
+</div>
+<p>Obviously, time can be different depends on your computer.
+Every successful conversion will always produce files such as <em>dl_poly.CONFIG</em>, <em>dl_poly.FIELD</em> and a generic <em>dl_poly.CONTROL</em> files in the <strong>output/</strong> directory. You need to rename them as <em>CONFIG</em>, <em>FIELD</em> and <em>CONTROL</em> files, respectively, for DL_POLY runs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All DL_FIELD runs will always produce a file called <em>dl_field.output</em> in the DL_FIELD home directory. This file reports the conversion status. In addition, an optional <em>dlf_notation.output</em> may also be produced in the <strong>output/</strong> directory, which indicates the chemical nature of every atom in the system in the <a class="reference external" href="https://pubs.acs.org/doi/10.1021/acs.jcim.6b00323">DL_F Notation</a></p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>Example structures</strong></p>
+<p>By default, the <em>dl_f_path</em> is pointed to the <em>dl_field.control</em> file that will instruct DL_FIELD to read the <em>sod1.pdb</em> structure located in the <em>Examples/</em> directory. The sod1 is an example protein structure called superoxide dismutase.</p>
+<p>The <em>Examples/</em> directory contains several sample structures. You can setup FF models for these structures by specifying the filename and the choice of FF scheme in the control file. All example structures are described in details in Chapter 13 of the DL_FIELD manual.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Not all FF can work with every structure. An error will occur if certain information about a structure is not available for a chosen FF scheme.</p>
+</div>
+<p>Alternately (or rather more conveniently), you can run a set of predefined control files located in the <em>control_files/</em> directory. These control files were named according to the example numbers as mentioned in Chapter 13 of the Manual. To use these control files edit the dl_f_path, comment out the default <strong>control</strong> path and uncomment the other <strong>control</strong> path as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">library</span> <span class="o">=</span> <span class="n">lib</span><span class="o">/</span>
+<span class="n">solvent</span> <span class="o">=</span> <span class="n">solvent</span><span class="o">/</span> 
+<span class="n">output</span>  <span class="o">=</span> <span class="n">output</span><span class="o">/</span>
+
+<span class="c1"># Control file </span>
+<span class="c1"># To run example structures mentioned in Chaprter 13,</span>
+<span class="c1"># comment out the default control file, dl_field.control, and then</span>
+<span class="c1"># remove the comment for running the example structures.</span>
+
+<span class="hll"><span class="n">control</span> <span class="o">=</span> <span class="n">control_files</span><span class="o">/</span><span class="n">example1</span><span class="o">.</span><span class="n">control</span>
+</span><span class="hll"><span class="c1"># control = dl_field.control</span>
+</span></pre></div>
+</div>
+<p>And this will cause DL_FIELD to convert example (1) structure.</p>
+<p><a class="reference internal" href="#header-dlf-howto"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_howto.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyse_howto.html">DL_ANALYSER</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dl_field_intro.html"
+                        title="previous chapter">DL_FIELD</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dl_field_features.html"
+                        title="next chapter">Main features</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dl_field_features.html" title="Main features"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_intro.html" title="DL_FIELD"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

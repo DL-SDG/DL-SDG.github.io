@@ -1,0 +1,194 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Jargons &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Force field conversion" href="dl_field_conversion.html" />
+    <link rel="prev" title="Main features" href="dl_field_features.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dl_field_conversion.html" title="Force field conversion"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_features.html" title="Main features"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="jargons">
+<h1>Jargons<a class="headerlink" href="#jargons" title="Permalink to this headline">¶</a></h1>
+<p>Below shows definitions that are specific to DL_FIELD. Take some time to read them. This will make it easier for you to understand how DL_FIELD works.</p>
+<ul class="simple">
+<li>MOLECULE - also refers as the MOLECULE template, it is a pre-defined entity consists of a collection of particles which can be normal atoms, pseudo-points, atoms with core-shell components, or even united atoms and coarse-grain particles. It is usually defined in the library files using the <em>MOLECULE</em> and <em>END MOLECULE</em> directive.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>MOLECULE_TYPE - The name of a MOLECULE, often in a human-readable form.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>MOLECULE_KEY - The corresponding unique code (up to four characters) for a MOLECULE_TYPE. This is equivalent to the amino acid residue code. For example, ALA refers to alanine residue and this is alanine MOLECULE_KEY within the DL_FIELD context.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>ATOM_TYPE - The name of an atom, often in a human-readable form. An element can have different ATOM_TYPEs, which depend on its chemical environment within a molecule.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>ATOM_KEY - The corresponding code or symbol for an ATOM_TYPE. It is used within DL_FIELD to choose the appropirate potential parameters. ATOM_KEYs are also the labels used in the DL_POLY’s <em>CONFIG</em> and <em>FIELD</em> files.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>ATOM_LABEL - The unique label of a particle, use only to define a MOLECULE template. In other words, ATOM_LABELs are only visible within the <em>MOLECULE</em> and <em>END MOLECULE</em> directive.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Potential scheme - also called the force field (FF) scheme. It refers to a force field data set in the <em>lib/</em> directory. The data sets are given names to identify them. For example CHARMM, AMBER, etc.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>DL_F Notation - The DL_FIELD standard ATOM_TYPE notation for a number of FF schemes implemented within DL_FIELD. It is the universal ATOM_TYPEs of which the FF schemes share the common ATOM_TYPEs and ATOM_KEYs and the Notation directly indicates the chemical nature of the atoms in a molecular system.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>The <em>.sf</em> and <em>.par</em> files - These are called the structure file and parameter file, respectively. They are FF library files located in the <em>lib/</em> directory. Each potential scheme consists of a <em>.sf</em> and a <em>.par</em> file and possibly some other supplementary files. MOLECULE template and ATOM_TYPEs definitions with the corresponding ATOM_KEYs are located in the <em>.sf</em> file. The <em>.par</em> file stores all the parameters of various interaction components such as bond interactions, angle interactions, etc.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>User-defined force field (udff) file - a user-created file that contain user-define force field information such as MOLECULE templates and FF parameters. If any of such information is also contained in the corresponding <em>.sf</em> or the <em>.par</em> files, it will be overrided and DL_FIELD will choose the information in the udff file, rather than in the library files.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li>Molecular Group - also called the Molecule Group, it is a name or label given to a group of atoms or molecules in a molecular system. This is a convenient way to differentiate different class of molecules. For instance, solute molecules can be grouped in a different Molecular Group from that of solvent molecules. The Molecular Group names will appear as the <em>molecules</em> directive in DL_POLY’s FIELD file.</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_howto.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyse_howto.html">DL_ANALYSER</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dl_field_features.html"
+                        title="previous chapter">Main features</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dl_field_conversion.html"
+                        title="next chapter">Force field conversion</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dl_field_conversion.html" title="Force field conversion"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_features.html" title="Main features"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+.. This provides detailed information on how to get dl_field, install and what you need to know for running it
+.. _Header_dlf_howto:
+
+******************
+Ready, get set, go
+******************
+
+This page tells you how to set DL_FIELD up and running.
+
+**How to obtain DL_FIELD**
+
+* `DL_FIELD web site <https://www.ccp5.ac.uk/DL_FIELD>`_ – force field (FF) model set up (version 4.6 and above).
+
+* DL_FIELD User Manual (:download:`PDF<./MAN_DL_FIELD_4.6.pdf>`) - Version 4.6, January 2020.
+
+To be able to use DL_FIELD you first need to register `here <https://www.ccp5.ac.uk/DL_FIELD/registration.shtml>`_. Successful registration will lead to you receiving a .tar.gz file (e.g. dl_f_4.6.tar.gz). Unpack or untar this for example in Linux::
+
+  $: tar -xzvf dl_f_4.6.tar.gz
+
+.. Note::
+   The number 4.6 refers to the software version, which can be different if a newer version is released.
+
+This will produce the directory **dl_f_4.6** which contains a *dl_field.control* (DL_FIELD control file), *dl_f_path* and a **README.md** file (amongst other files). You then need to compile to produce the executable *dl_field*. To do this follow the simple instructions in the **README.md** file. 
+
+:TIP:
+
+   If you work from within the **dl_f_4.6** directory the only file that will need to be edited to run the executable *dl_field* is *dl_field.control*. Working from a directory other than **dl_f_4.6** is not recommended until you feel confident about changing file paths (e.g. in *dl_f_path*).
+
+|
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+
+
+**General guidance for running DL_FIELD**
+
+
+**Version 1.0, April 2020**
+
+Before running DL_FIELD, make sure paths to the library files and the DL_FIELD control file are correct in the *dl_f_path* file. The latter **must always** be in the same DL_FIELD home directory where *dl_field.exe* is located.
+
+.. figure:: ./PICTURES/dl_field_filepaths_resized.png
+
+
+
+All directory paths must always be specified relative to the DL_FIELD home directory where the *dl_field.exe* is located.
+By default, you don’t have to keep changing the above-mentioned path. It is the **control** path that you would need to change from time to time.
+
+The *dl_field.control* is the default control file. You can change the name or create different control files, so long you don't change the basic structures of the files. The control file is where you specify the system configuration input file and the choice of force field scheme, amongst other options. To choose which files to use, just change the **control** path in *dl_f_path* accordingly. 
+
+.. Warning::
+  You would need to change all the paths should you move the *dl_field.exe* away from its original location.
+
+To run DL_FIELD program, just type::
+   
+   $: ./dl_field
+
+When you run DL_FIELD and see the following statements on your screen, it is almost always certain the conversion is successful:
+
+.. literalinclude:: ./MISC/dl_field_success.txt
+
+Obviously, time can be different depends on your computer.
+Every successful conversion will always produce files such as *dl_poly.CONFIG*, *dl_poly.FIELD* and a generic *dl_poly.CONTROL* files in the **output/** directory. You need to rename them as *CONFIG*, *FIELD* and *CONTROL* files, respectively, for DL_POLY runs. 
+
+.. Note::
+   All DL_FIELD runs will always produce a file called *dl_field.output* in the DL_FIELD home directory. This file reports the conversion status. In addition, an optional *dlf_notation.output* may also be produced in the **output/** directory, which indicates the chemical nature of every atom in the system in the `DL_F Notation <https://pubs.acs.org/doi/10.1021/acs.jcim.6b00323>`_
+
+|
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+
+**Example structures**
+
+By default, the *dl_f_path* is pointed to the *dl_field.control* file that will instruct DL_FIELD to read the *sod1.pdb* structure located in the *Examples/* directory. The sod1 is an example protein structure called superoxide dismutase.
+
+The *Examples/* directory contains several sample structures. You can setup FF models for these structures by specifying the filename and the choice of FF scheme in the control file. All example structures are described in details in Chapter 13 of the DL_FIELD manual.
+
+.. Warning::
+   Not all FF can work with every structure. An error will occur if certain information about a structure is not available for a chosen FF scheme.
+
+Alternately (or rather more conveniently), you can run a set of predefined control files located in the *control_files/* directory. These control files were named according to the example numbers as mentioned in Chapter 13 of the Manual. To use these control files edit the dl_f_path, comment out the default **control** path and uncomment the other **control** path as follows:
+
+.. literalinclude:: ./MISC/dl_field_path.txt
+   :emphasize-lines: 10-11
+
+And this will cause DL_FIELD to convert example (1) structure. 
+
+
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_howto>`
+
+
+
+
+

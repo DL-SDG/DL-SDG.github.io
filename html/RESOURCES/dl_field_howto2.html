@@ -1,0 +1,297 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>How to do something &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DL_POLY" href="dl_poly_howto.html" />
+    <link rel="prev" title="User input file format" href="dl_field_format.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dl_poly_howto.html" title="DL_POLY"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_format.html" title="User input file format"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-do-something">
+<span id="header-dlf-howto2"></span><h1>How to do something<a class="headerlink" href="#how-to-do-something" title="Permalink to this headline">¶</a></h1>
+<p>This page shows you how to use DL_FIELD to acheive a specific task.</p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>How to set up a liquid model</strong></p>
+<ol class="arabic simple">
+<li>Create a single-molecule configuration file. This would be the liquid molecule, or the solute molecule if you were to setup a solution. Let’s call this file <em>molecule.xyz</em></li>
+<li>Edit your DL_FIELD <em>control</em> file as follows:</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Example file of setting up liquid
+1        * Construct DL_POLY output files
+0        * Unuse slot.
+<span class="hll">opls2005 * Type of force field require (see list below for choices).
+</span>kcal/mol  * Energy unit: kcal/mol, kJ/mol, eV, or K.
+normal  * Conversion criteria (strict, normal, loose)
+1        * Bond type (0=default, 1=harmonic , 2=Morse)
+1        * Angle type (0=default, 1=harmonic, 2=harmonic cos)
+none  * Include user-defined information. Put &#39;none&#39; or a .udff filename
+1       * Verbosity mode: 1 = on, 0 = off
+<span class="hll">molecule.xyz  * Configuration file.
+</span>none    * Output file in PDB. Put &#39;none&#39; if not needed.
+<span class="hll">1 1.05 g/cm^3 1.6  * Solution Maker: on/off, density, unit, cutoff)
+</span>1        * Optimise FIELD output size, if possible? 1=yes  0=no
+2         * Atom display: 1 = DL_FIELD format. 2 = Standard format
+2         * Vdw display format: 1 = 12-6 format   2 = LJ format
+default * Epsilon mixing rule (organic FF only) : default, or 1 = geometric, 2 = arithmatic
+default   * Sigma mixing rule (organic FF only) : default, or 1 = geometric, 2 = arithmatic
+1        * Epsilon mixing rule (inorganic FF only) : 1 = geometric   2 = arithmatic
+2       * Sigma mixing rule (inorganic FF only) : 1 = geometric   2 = arithmatic
+1    * Epsilon mixing rule (BETWEEN different FF) : 1 = geometric   2 = arithmatic
+1     * Sigma mixing rule (BETWEEN different FF): 1 = geometric 2 = arithmatic
+0         * Display additional info. for protein 1=Yes  0=No
+0         * Freeze atoms? 1 = Yes (see below)  0 = No
+0         * Tether atoms? 1 = Yes (see below)  0 = No
+0         * Constrain bonds? 1 = Yes (see below) 0 = No
+0         * Apply rigid body? 1 = Yes (see below) 0 = No
+<span class="hll">1       * Periodic condition ? 0=no, other number = type of box (see below)
+</span>40.0  0.0 0.0 * Cell vector a (x, y, z)
+0.0  40.0   0.0  * Cell vector b (x, y, z)
+0.0   0.0  40.0 * Cell vector c (x, y, z)
+default   * 1-4 scaling for coulombic (put default or x for scaling=x)
+default   * 1-4 scaling for vdw (put default or x for scaling=x)
+0  300.0  * Include velocity? 1=yes, 0=no and scaling temperature.
+1         * Position solute at origin? 1 = yes, 0=no
+none 2.0 * Solvate model? none or specify solvent (see below) and distance criteria.
+0  10.0   * Add counter ions? 1=yes, 0=no,  minimum distance from solute
+..
+..
+</pre></div>
+</div>
+<p>The example shows OPLS2005 FF scheme is used. The Solution Maker feature is also turn on:</p>
+<p>1  1.05 g/cm^3  1.6</p>
+<p>This means: ‘Switch on (1) the feature, duplicate structure in the <em>molecule.xyz</em> file, to create a density of 1.05 g/cm^3, with each molecule at least 1.6 angstrom apart.</p>
+<p>The number of molecules duplicated will depend on the cell vectors defined, which is 40 angstrom in x,y and z directions.</p>
+<ol class="arabic simple" start="3">
+<li>Run DL_FIELD</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Once the system is setup, it is recommended to view your <em>dl_poly.CONFIG</em> structure in a graphical display software to make sure the structure is evenly distributed. You can adjust the distance accordingly and rerun DL_FIELD. A smaller distance means molecules will be tightly packed against each other. Whereas, large distance means the molecules are more widely apart.</p>
+</div>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>How to setup a solution model</strong></p>
+<p>Use the same procedures for setting up liquid as described above. However, use the Solvation feature in the DL_FIELD <em>control</em> file as shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>..
+..
+none  * Include user-defined information. Put &#39;none&#39; or a .udff filename
+1       * Verbosity mode: 1 = on, 0 = off
+molecule.xyz  * Configuration file.
+none    * Output file in PDB. Put &#39;none&#39; if not needed.
+<span class="hll">1 1.5 mol/dm^3  4.0  * Solution Maker: on/off, density, unit, cutoff)
+</span>1        * Optimise FIELD output size, if possible? 1=yes  0=no
+2         * Atom display: 1 = DL_FIELD format. 2 = Standard format
+..
+..         
+0         * Apply rigid body? 1 = Yes (see below) 0 = No
+1       * Periodic condition ? 0=no, other number = type of box (see below)
+40.0  0.0 0.0 * Cell vector a (x, y, z)
+0.0  40.0   0.0  * Cell vector b (x, y, z)
+0.0   0.0  40.0 * Cell vector c (x, y, z)
+default   * 1-4 scaling for coulombic (put default or x for scaling=x)
+default   * 1-4 scaling for vdw (put default or x for scaling=x)
+0  300.0  * Include velocity? 1=yes, 0=no and scaling temperature.
+1         * Position solute at origin? 1 = yes, 0=no
+<span class="hll">tip4p  2.0 * Solvate model? none or specify solvent (see below) and distance criteria.
+</span>0  10.0   * Add counter ions? 1=yes, 0=no,  minimum distance from solute
+0        * MM energy calculation. 1=Yes, 0=No
+..
+..
+</pre></div>
+</div>
+<p>In this example, the Solution Maker feature will, firstly, duplicate your solute molecules in the simulation box to give a concentration of 1.5 mol/dm^3 and each molecule is at least 4 angstrom apart. Secondly, the simulation box is solvated with the TIP4P water model. The solvent molecules must not be located less than 2.0 angstrom from the solute molecules.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can only solvate your system if it is a cubic or orthorhombic.</p>
+</div>
+<p>Of course, you can also solvate your system with other types of solvent. There is a (growing) list of solvent you can choose, which is found in the file call <em>solvent_list</em> in the <em>solvent/</em> directory.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Depending on the FF schemes, you may get an error in DL_FIELD if there is no MOLECULE template or potential parameters available for some solvent molecules. In addition, you cannot solvate your system if an inorganic FF scheme is used.</p>
+</div>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>How to setup a constraint bond model</strong></p>
+<p>Constraining bonds are one of the effective way to remove fastest mode of motion in your system, that is, the bond vibration, especially bonds that contain the hydrogen atoms.</p>
+<ol class="arabic simple">
+<li>Provide a Molecular Group name to your molecules, if you are using xyz of PDB file. If you don’t know how to do that, consult this <a class="reference internal" href="dl_field_format.html#header-dlf-format"><span class="std std-ref">page</span></a>. If you don’t do that, DL_FIELD will assign a default name called <em>not_define</em>.</li>
+<li>Edit your DL_FIELD <em>control</em> file.</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>..
+..
+1        * Optimise FIELD output size, if possible? 1=yes  0=no
+2         * Atom display: 1 = DL_FIELD format. 2 = Standard format
+2         * Vdw display format: 1 = 12-6 format   2 = LJ format
+default * Epsilon mixing rule (organic FF only) : default, or 1 = geometric, 2 = arithmatic
+default   * Sigma mixing rule (organic FF only) : default, or 1 = geometric, 2 = arithmatic
+1        * Epsilon mixing rule (inorganic FF only) : 1 = geometric   2 = arithmatic
+2       * Sigma mixing rule (inorganic FF only) : 1 = geometric   2 = arithmatic
+1    * Epsilon mixing rule (BETWEEN different FF) : 1 = geometric   2 = arithmatic
+1     * Sigma mixing rule (BETWEEN different FF): 1 = geometric 2 = arithmatic
+0         * Display additional info. for protein 1=Yes  0=No
+0         * Freeze atoms? 1 = Yes (see below)  0 = No
+0         * Tether atoms? 1 = Yes (see below)  0 = No
+<span class="hll">1         * Constrain bonds? 1 = Yes (see below) 0 = No
+</span>0         * Apply rigid body? 1 = Yes (see below) 0 = No
+1        * Periodic condition ? 0=no, other number = type of box (see below)
+40.0  0.0 0.0 * Cell vector a (x, y, z)
+0.0  40.0   0.0  * Cell vector b (x, y, z)
+0.0   0.0  40.0 * Cell vector c (x, y, z)
+default   * 1-4 scaling for coulombic (put default or x for scaling=x)
+default   * 1-4 scaling for vdw (put default or x for scaling=x)
+0  300.0  * Include velocity? 1=yes, 0=no and scaling temperature.
+1         * Position solute at origin? 1 = yes, 0=no
+..
+..
+########################################################
+Atom state specification:  type  Molecular_Group   filter   [value]
+
+FREEZE A
+
+RIGID  A
+
+<span class="hll">CONSTRAIN  ORG1    h-bond
+</span><span class="hll">CONSTRAIN  ORG2    all 
+</span>
+#########################################################
+..
+..
+</pre></div>
+</div>
+<p>Switch on (1) the Constrain bonds. It instructs DL_FIELD to look for which group of molecules to apply the constrain according to the CONSTRAIN directive statements shown below. If this is turn off (0), no constrain bond will be setup.</p>
+<p>At the Atom state specification section, define how the bonds would be constrained. In this example, it shows two statements:</p>
+<div class="line-block">
+<div class="line">CONSTRAIN  ORG1  h-bond</div>
+<div class="line">CONSTRAIN  ORG2  all</div>
+</div>
+<p>These directive statements instruct DL_FIELD to constrain only bonds that contain hydrogen atoms on molecules belong to the Molecular Group ORG1. Whereas, all bonds will be constrained for molecules belong to Molecular Group ORG2.</p>
+<ol class="arabic simple" start="3">
+<li>Run DL_FIELD</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only one type of bond constrain can be applied in each Molecular Group.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If the Molecular Group names in the configuration file do not match with any of the CONSTRAIN directive statements, no bond constrain will be applied. DL_FIELD does not consider this as an error.</p>
+</div>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_howto.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyse_howto.html">DL_ANALYSER</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dl_field_format.html"
+                        title="previous chapter">User input file format</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dl_poly_howto.html"
+                        title="next chapter">DL_POLY</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dl_poly_howto.html" title="DL_POLY"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dl_field_format.html" title="User input file format"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
