@@ -1,0 +1,138 @@
+.. This provides detailed information on how to carry out certain task
+.. _Header_dlp_howto2:
+
+.. |br| raw:: html
+
+   <br />
+
+*******************
+How to do something 
+*******************
+
+This page shows you how to use DL_POLY to acheive a specific task. Please note that there may be many other alternative ways to achieve certain tasks, depending on the syatem states and types of systems. Below only shows a general guide.
+
+**Content** |br|
+:ref:`How to equilibrate a system<Header_howto_equilibrate>` |br|
+:ref:`Choice of MD timestep<Header_howto_step>` |br|
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_equilibrate:
+
+**How to equilibrate a system**
+
+The initial system that you setup, either by DL_FIELD, or some other means, is likely to be far from equilibrium state. Almost all systems need to be equilibrated before a sampling run can be carried out.
+
+(1) Tame down a 'drastic' intial configuration.
+
+.. figure:: ../image/clashed_ethanoic_acid.png
+   :align: right
+   :scale: 80%
+   :alt: Clashed ethanoic acid
+  
+   Two clashed ethanoic acid molecules
+
+ 
+The example CONTROL file below can be used to relax high-energy molecular systems. For example, atoms that are too close to each other.
+
+.. literalinclude:: ./dl_poly_control1.dat 
+
+The following lists the relevant directives that are crucial to control the system:
+
+*ensemble nve* - you do not want to change the box size at this stage. The disentanglement of high-energy conformations are crucial at this stage.
+
+*cap* - Cap the force to or less than the value specified, in unit kT/angstrom. This is to prevent atoms from 'flying off' uncontrollably.
+
+*zero* - perform zero temperature run. In practice, DL_POLY actually rescale the whole system to exactly 10 K (otherwise, there won't be any dynamics!)
+
+*steps* - total number of steps to be carried out. More steps would be needed depends on how serious the conformation state is.
+
+*equilibration steps* - Total number of MD steps to be carried out to rescale the temperature (to 10K in this case). Make sure this value is always larger than that of *steps*.
+
+*scale every 1* - temperature will be rescaled at every MD steps: you do not want uncontrollable temperature spike.
+
+*variable timestep* - DL_POLY will choose the optimum timestep, while ensuring system stability. The value 0.000001 ps is the minmum permissible timestep. Reduce this number if needed.
+
+.. Note:: 
+   A good indication that the CONTROL file is doing the job properly is to note the system energy. For systems containing polar molecules, the energy can drastically reduced from large positive value to negative values with a few MD steps. But if the energy is reduced continously, you are in good hands.
+
+(2) A less drastic, controlled equilibration
+
+The above *CONTROL* file only permits a very small movement of atoms. To speed up the dynamics, the parameters can be changed that allows faster dynamics, yet still in a controlled condition. This is shown below:
+
+* Gradual increase the value of *cap* force, say, to 3000.0 and to 5000.0, or even remove it entirely.
+
+* Remove the *zero* directive. When this is done, DL_POLY will continue to rescale the temperature of the system to the value specified by the directive *temperature* in the *CONTROL* file. It is best to start with something close to 10K, like *temperature* 50.0. Then, gradually increase the temeprature to the desired temperature, say, 300.0 K.
+
+.. Note::
+   There is no rule to say what is ideal rate of heating the system. Typically, you can increase 50.0 K every 50,000 MD steps, or in that order.
+
+.. Note:: 
+   Remember do a *copy* of the *CONFIG* file after each run to ensure the latest *CONFIG* file is used for the next run. To conitnue the simulation after changing the above mentioned values, remember to use the *restart* directive in the *CONTROL* file and increase the *step* value. 
+
+(3) Carry out a normal equilibration 
+
+Once the configuration energy is settling down, or if your intial configuration is in a low energy state, you can carry out a normal equilibration procedure in the NVE ensemble, using the example *CONTROL* file shown below:
+ 
+.. literalinclude:: ./dl_poly_control2.dat
+
+The simulation can run, without any additional simulation constrain, for as long as is needed. The system is said to be equilibrated if the energy of the system fluctuates at some mean value.
+
+Once the system is sufficiently equilibrated, you can remove the temperature scaling in the NVE ensemble by resetting the *equilibration steps*:
+
+| *equilibration steps* 0
+
+Since the MD *steps* is now larger than the *equilibration steps*, DL_POLY will no longer force a rescale of temperature on the system. A stable system should be able to maintain more or less the same temperature as before, even without the temperature rescale. 
+
+.. Warning::
+   Whenever you change the *timestep* value, do not use *restart* directive. Use *restart noscale* instead. In other words, you can only change your *timestep* once for each simulation. Whenever you change the timestep value, you would need to start the simulation afresh. The *restart noscale* directive ensures the simulation starts from the begining, with the initial velocities of the system derived from the *CONFIG* file. Once the simulation is completed, it can continue on as usual by reverting to just *restart*. 
+
+(4) Running NVT equilibration.
+
+In the *CONTROL* file, you can change the ensemble as follows:
+
+| *ensemble nvt berendsen 0.4*
+
+Remember to use *restart noscale* to restart simulation and set the MD time back to zero. You can contrinue the simuation until the energy of the system fluctuates at some contant value over a period of time. 
+
+(5) Running NPT equilibration (equilibrate system box)
+
+At this stage, the molecular configuration is properly equilibrated but not the system box. In the *CONTROL* file, you can change the ensemble and include the *pressure* directive as follows:
+
+| *ensemble npt hoover 0.4 1.0*   
+
+| *pressure 0.00101325*
+
+Where the pressure is set to the atomspheric pressure. Remember to use *restart noscale* to restart simulation and set the MD time back to zero.
+
+:TIP:
+  If you get an error Messages like 128-132 that exceeds rcut, this may be due to large change in system box size. You can use *cap* or *variable timestep* directives to control the change. 
+
+
+:ref:`^ GO TO TOP ^<Header_dlp_howto2>`
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_step:
+
+**Choice of MD timestep**
+
+Small timeteps result in slower dynamics but if the timesteps are too large can lead to system instability. Ideally, the timestep must be small enough to be able to track the fastest motion in the system. Classically, this would be the bonds that contain the lightest atoms such as those bonds that contain the hydrogen atoms.
+
+:TIP:
+   Using the directive *variable timestep* can provide a clue what is the suitable value for your system. For example, by looking at the reported timestep in the *CONFIG* file (the fifth value after the title).
+
+If those fastest mode of motions can be removed, then larger timesteps can be used. For molecular systems, typical *timestep* values are shown below:
+
+| All-harmonic bond systems: ~0.5 fs.
+
+| Harmonic bonds but hydrogen-containing bonds are constrained: ~2.0 fs
+
+| Systems that contain core-shell models: ~0.2 fs.
+
+For more details about timestep, please see:
+J-I Choe and Byungchul Kim, 'Proper Time Step for Molecular Dynamics', *Bull. Korean Chem. Soc.*, **21**, p419 (2000)
+
+:ref:`^ GO TO TOP ^<Header_dlp_howto2>` 
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png

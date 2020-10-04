@@ -2,19 +2,16 @@
 
    
 
-*********
-Exercises
-*********
+******************
+Tutorial Exercises
+******************
 
-Below is a list of tutorial exercises that have been written for a range of users of DL_Software. They are categorized into 3 levels of 'Difficulty': Low, Medium and High.
-They are written as exercises rather than walkthroughs and require input from you.
-
+This is the main portal for the DL_Software tutorial exercises.
 
 
 .. toctree::
    :maxdepth: 2
 
 	      
-   ./Low
-   ./Medium
-   ./High
+   ./exercises_dlpoly
+   ./exercises_dlfield

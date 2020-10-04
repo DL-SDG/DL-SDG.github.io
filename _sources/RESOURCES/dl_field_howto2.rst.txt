@@ -1,13 +1,26 @@
 .. This provides detailed information on how to carry out certain task
 .. _Header_dlf_howto2:
 
+.. |br| raw:: html
+
+   <br />
+
 *******************
 How to do something 
 *******************
 
 This page shows you how to use DL_FIELD to acheive a specific task.
 
+**Content** |br|
+:ref:`How to setup a liquid model<Header_howto_liquid>` |br|
+:ref:`How to setup a solution model<Header_howto_solution>` |br|
+:ref:`Setup constrained bond model<Header_howto_bond_constrain>` |br|
+:ref:`Using xyz input files<Header_howto_xyz>` |br|
+:ref:`How to setup a multiple potential model<Header_howto_multiple>` |br|
+
 .. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_liquid:
 
 **How to set up a liquid model**
 
@@ -31,7 +44,11 @@ The number of molecules duplicated will depend on the cell vectors defined, whic
 .. TIP::
    Once the system is setup, it is recommended to view your *dl_poly.CONFIG* structure in a graphical display software to make sure the structure is evenly distributed. You can adjust the distance accordingly and rerun DL_FIELD. A smaller distance means molecules will be tightly packed against each other. Whereas, large distance means the molecules are more widely apart.
 
+:ref:`^ GO TO TOP ^<Header_dlf_howto2>`
+
 .. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_solution:
 
 **How to setup a solution model**
 
@@ -50,7 +67,11 @@ Of course, you can also solvate your system with other types of solvent. There i
 .. Warning::
    Depending on the FF schemes, you may get an error in DL_FIELD if there is no MOLECULE template or potential parameters available for some solvent molecules. In addition, you cannot solvate your system if an inorganic FF scheme is used.
 
+:ref:`^ GO TO TOP ^<Header_dlf_howto2>`
+
 .. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_bond_constrain:
  
 **How to setup a constraint bond model**
 
@@ -67,8 +88,8 @@ Switch on (1) the Constrain bonds. It instructs DL_FIELD to look for which group
 
 At the Atom state specification section, define how the bonds would be constrained. In this example, it shows two statements:
 
-| CONSTRAIN  ORG1  h-bond 
-| CONSTRAIN  ORG2  all
+CONSTRAIN  ORG1  h-bond |br|
+CONSTRAIN  ORG2  all |br|
 
 These directive statements instruct DL_FIELD to constrain only bonds that contain hydrogen atoms on molecules belong to the Molecular Group ORG1. Whereas, all bonds will be constrained for molecules belong to Molecular Group ORG2.
 
@@ -79,6 +100,60 @@ These directive statements instruct DL_FIELD to constrain only bonds that contai
 
 .. Warning:: 
    If the Molecular Group names in the configuration file do not match with any of the CONSTRAIN directive statements, no bond constrain will be applied. DL_FIELD does not consider this as an error. 
+
+:ref:`^ GO TO TOP ^<Header_dlf_howto2>`
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_xyz:
+
+**How to use xyz file structure**
+
+The xyz file format is the simplest format one could use in DL_FIELD to setup force field models. In general, atoms must be expressed in standard element symbols together with the corresponding xyz coordinates. 
+
+For organic systems, this is a must. DL_FIELD will attempt to determine the ATOM_KEYs depending on the FF scheme chosen. For inorganic systems, you can use either the element symbols or ATOM_KEYs. Below show a few examples for different types of systems.
+
+(1) A typical organic system, with optional directives *CRYST1*, which defines the simulation box size, and *MOLECULAR_GROUP* directive, which gives a name to a group of atoms and molecules.
+
+.. literalinclude:: ./STRUCTURES/xyz1.xyz
+
+(2) For inorganic systems, the additional directive *MOLECULE_KEY* must always be specified. Example below shows a small sample of illite clay, expressed in element symbols. The *MOLECULE_KEY CLYF* indicate the structure can be matched with the MOLECULE general_CLAYFF template. To set up the force field, the inorganic_clay FF scheme must be used in the DL_FIELD *control* file. 
+
+.. literalinclude:: ./STRUCTURES/xyz2.xyz
+
+Alternatively, the atoms can be expressed in ATOM_KEYs. Example below shows the same illite clay sample. DL_FIELD has better chances to setup the FF model successfully, but this requires the user to pre-assign the correct ATOM_KEYs to the file.
+
+.. literalinclude:: ./STRUCTURES/xyz3.xyz
+
+:ref:`^ GO TO TOP ^<Header_dlf_howto2>`
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_multiple:
+
+**How to setup a multiple potential model**
+
+The multiple potential feature is only applied to PDB and *xyz* input files.
+
+DL_FIELD provides simple procedures to setup models that use more than one potential scheme. First of all, the keyword *multiple* must be used instead of any specific FF scheme in the DL_FIELD *control* file. Then specify the potential schemes in the input configuration file.
+
+Example below shows how you can set up a multiple potential model using an input file in the PDB format. The system contains two different molecular structures. One is an ethanol molecule and the other is sulphur hexafluoride.
+
+.. literalinclude:: ./STRUCTURES/pdb1.pdb
+
+The system contains two different potential schemes: CHARMM36_prot and OPLS2005. The positions of the POTENTIAL directives define the extent of the FF applications. CHARMM36 applies to the ethanol molecule, whereas, OPLS2005 applies to sulphur hexafluoride molecules. The residue labels ETOH and SHEX are the residue labels, of which the MOLECULE templates were predefined in the respective FF library files. 
+
+The labels ALC and SF6 are called the Molecular Group names and DL_FIELD will show this as the *molecule* directives in the *dl_poly.FIELD* file during the FF conversion.
+
+.. Warning:: It is not common to setup simulation models that contain different FF schemes, unless the different FF schemes are of the same type. For instance, CHARMM36_prot can be mixed with CHARMM36_lipid. Otherwise, user's discretion is needed. However, multiple potential models are more commonly used for systems containing organic or biological and inorganic elements. 
+
+Example below shows how to use the multiple potential scheme in the *xyz* format for a system contains the organic and inorganic components. It is a system consists of a montemorillonite clay mineral with a benzene molecule. The organic molecule is assigned to the CHARMM22 force field, whereas, the CLAYFF force field is used for the mineral. 
+
+.. literalinclude:: ./STRUCTURES/xyz4.xyz
+
+Note that by using inorganic force field scheme would need an additional directive, which in this case, is *MOLECULE_KEY CLYF*. This provides additional information for DL_FIELD to look for the specific MOLECULE template as defined in the corresponding library file for inorganic_clay FF, or the *DLPOLY_INORGANIC_CLAY.sf* file.
+
+:ref:`^ GO TO TOP ^<Header_dlf_howto2>`
 
 .. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
 

@@ -1,0 +1,31 @@
+.. Main Portal to DL_POLY 
+
+*******
+DL_POLY
+*******
+
+**Table of Content**
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dl_poly_howto
+   ../RST_PAGES/Installation_further_reading 
+   ./dl_poly_jargon
+   ./dl_poly_howto2
+
+
+DL_POLY is a general-purpose, classical molecular dynamics (MD) simulation software.
+
+**Functions**
+
+1. Molecular dynamics of polyatomic systems - almost any kinds of molecular systems, from biological to solid states, including mixed component bio-inorganics.
+
+2. Optimisation by conjugate gradient of zero K annealing.
+
+3. On-the-fly calculation of common thermodynamic properties.
+
+4. Domain decomposition parallisation strategy allowing simulation of model sizes that are limited to computer memories.
+
+5. Self-contained, free-formatted Fortran90+MPI2 code, can run in most computer platforms - single-processor PC to multi-processor supercomputers.
+

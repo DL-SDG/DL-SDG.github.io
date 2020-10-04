@@ -7,4 +7,3 @@ Linux Cheat Sheet
 
 .. literalinclude:: linux_cheat_sheet.dat
 
-has this changed?

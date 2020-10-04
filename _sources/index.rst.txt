@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the DL_Software Resource Centre!
+Welcome to the DL_Software Digital Guide (DL_SDG) 
 ====================================================
 
 .. image:: image/DL_Software_logo.png
@@ -18,12 +18,9 @@ Welcome to the DL_Software Resource Centre!
 
    ./RST_PAGES/Introduction
    ./RESOURCES/Resources
-   ./RESOURCES/STRUCTURES/Structures
+   ./RESOURCES/EXERCISES/Exercises
    ./RESOURCES/SIMULATIONS/Simulations
    ./RESOURCES/knowledge
-   ./RESOURCES/linux_cheat_sheet
-   ./RESOURCES/EXERCISES/Exercises
-   ./RST_PAGES/Installation_further_reading
    ./RST_PAGES/Acknowledgements
 
    
@@ -33,8 +30,6 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-  
 
    
    

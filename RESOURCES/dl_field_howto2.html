@@ -19,7 +19,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="DL_POLY" href="dl_poly_howto.html" />
+    <link rel="next" title="DL_POLY" href="dl_poly_intro.html" />
     <link rel="prev" title="User input file format" href="dl_field_format.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -29,7 +29,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="dl_poly_howto.html" title="DL_POLY"
+          <a href="dl_poly_intro.html" title="DL_POLY"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="dl_field_format.html" title="User input file format"
@@ -49,8 +49,14 @@
   <div class="section" id="how-to-do-something">
 <span id="header-dlf-howto2"></span><h1>How to do something<a class="headerlink" href="#how-to-do-something" title="Permalink to this headline">¶</a></h1>
 <p>This page shows you how to use DL_FIELD to acheive a specific task.</p>
+<p><strong>Content</strong> <br />
+<a class="reference internal" href="#header-howto-liquid"><span class="std std-ref">How to setup a liquid model</span></a> <br />
+<a class="reference internal" href="#header-howto-solution"><span class="std std-ref">How to setup a solution model</span></a> <br />
+<a class="reference internal" href="#header-howto-bond-constrain"><span class="std std-ref">Setup constrained bond model</span></a> <br />
+<a class="reference internal" href="#header-howto-xyz"><span class="std std-ref">Using xyz input files</span></a> <br />
+<a class="reference internal" href="#header-howto-multiple"><span class="std std-ref">How to setup a multiple potential model</span></a> <br /></p>
 <img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
-<p><strong>How to set up a liquid model</strong></p>
+<p id="header-howto-liquid"><strong>How to set up a liquid model</strong></p>
 <ol class="arabic simple">
 <li>Create a single-molecule configuration file. This would be the liquid molecule, or the solute molecule if you were to setup a solution. Let’s call this file <em>molecule.xyz</em></li>
 <li>Edit your DL_FIELD <em>control</em> file as follows:</li>
@@ -107,8 +113,9 @@ none 2.0 * Solvate model? none or specify solvent (see below) and distance crite
 <p class="first admonition-title">Tip</p>
 <p class="last">Once the system is setup, it is recommended to view your <em>dl_poly.CONFIG</em> structure in a graphical display software to make sure the structure is evenly distributed. You can adjust the distance accordingly and rerun DL_FIELD. A smaller distance means molecules will be tightly packed against each other. Whereas, large distance means the molecules are more widely apart.</p>
 </div>
+<p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 <img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
-<p><strong>How to setup a solution model</strong></p>
+<p id="header-howto-solution"><strong>How to setup a solution model</strong></p>
 <p>Use the same procedures for setting up liquid as described above. However, use the Solvation feature in the DL_FIELD <em>control</em> file as shown below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>..
 ..
@@ -147,8 +154,9 @@ default   * 1-4 scaling for vdw (put default or x for scaling=x)
 <p class="first admonition-title">Warning</p>
 <p class="last">Depending on the FF schemes, you may get an error in DL_FIELD if there is no MOLECULE template or potential parameters available for some solvent molecules. In addition, you cannot solvate your system if an inorganic FF scheme is used.</p>
 </div>
+<p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 <img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
-<p><strong>How to setup a constraint bond model</strong></p>
+<p id="header-howto-bond-constrain"><strong>How to setup a constraint bond model</strong></p>
 <p>Constraining bonds are one of the effective way to remove fastest mode of motion in your system, that is, the bond vibration, especially bonds that contain the hydrogen atoms.</p>
 <ol class="arabic simple">
 <li>Provide a Molecular Group name to your molecules, if you are using xyz of PDB file. If you don’t know how to do that, consult this <a class="reference internal" href="dl_field_format.html#header-dlf-format"><span class="std std-ref">page</span></a>. If you don’t do that, DL_FIELD will assign a default name called <em>not_define</em>.</li>
@@ -197,10 +205,8 @@ RIGID  A
 </div>
 <p>Switch on (1) the Constrain bonds. It instructs DL_FIELD to look for which group of molecules to apply the constrain according to the CONSTRAIN directive statements shown below. If this is turn off (0), no constrain bond will be setup.</p>
 <p>At the Atom state specification section, define how the bonds would be constrained. In this example, it shows two statements:</p>
-<div class="line-block">
-<div class="line">CONSTRAIN  ORG1  h-bond</div>
-<div class="line">CONSTRAIN  ORG2  all</div>
-</div>
+<p>CONSTRAIN  ORG1  h-bond <br />
+CONSTRAIN  ORG2  all <br /></p>
 <p>These directive statements instruct DL_FIELD to constrain only bonds that contain hydrogen atoms on molecules belong to the Molecular Group ORG1. Whereas, all bonds will be constrained for molecules belong to Molecular Group ORG2.</p>
 <ol class="arabic simple" start="3">
 <li>Run DL_FIELD</li>
@@ -213,6 +219,161 @@ RIGID  A
 <p class="first admonition-title">Warning</p>
 <p class="last">If the Molecular Group names in the configuration file do not match with any of the CONSTRAIN directive statements, no bond constrain will be applied. DL_FIELD does not consider this as an error.</p>
 </div>
+<p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p id="header-howto-xyz"><strong>How to use xyz file structure</strong></p>
+<p>The xyz file format is the simplest format one could use in DL_FIELD to setup force field models. In general, atoms must be expressed in standard element symbols together with the corresponding xyz coordinates.</p>
+<p>For organic systems, this is a must. DL_FIELD will attempt to determine the ATOM_KEYs depending on the FF scheme chosen. For inorganic systems, you can use either the element symbols or ATOM_KEYs. Below show a few examples for different types of systems.</p>
+<ol class="arabic simple">
+<li>A typical organic system, with optional directives <em>CRYST1</em>, which defines the simulation box size, and <em>MOLECULAR_GROUP</em> directive, which gives a name to a group of atoms and molecules.</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">5303</span> 
+<span class="n">CRYST1</span>   <span class="mf">30.000</span>   <span class="mf">40.000</span>   <span class="mf">30.000</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>
+<span class="c1"># MOLECULAR_GROUP solute </span>
+<span class="n">C</span>  <span class="o">-</span><span class="mf">1.175000</span>  <span class="mf">1.554000</span>  <span class="mf">0.000000</span>
+<span class="n">O</span>  <span class="o">-</span><span class="mf">1.171000</span>  <span class="mf">2.697000</span>  <span class="o">-</span><span class="mf">0.443000</span>
+<span class="n">C</span>  <span class="o">-</span><span class="mf">2.448000</span>  <span class="mf">0.747000</span>  <span class="mf">0.204000</span>
+<span class="n">O</span>  <span class="o">-</span><span class="mf">0.068000</span>  <span class="mf">0.852000</span>  <span class="mf">0.366000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">2.431000</span>  <span class="o">-</span><span class="mf">0.161000</span>  <span class="o">-</span><span class="mf">0.399000</span>
+<span class="n">H</span>  <span class="o">-</span><span class="mf">2.573000</span>  <span class="mf">0.480000</span>  <span class="mf">1.253000</span>
+<span class="o">..</span>
+<span class="o">..</span>
+<span class="c1"># MOLECULAR_GROUP solvent</span>
+<span class="n">O</span> <span class="o">-</span><span class="mf">3.337848</span> <span class="o">-</span><span class="mf">2.911992</span> <span class="mf">8.337031</span>
+<span class="n">H</span> <span class="o">-</span><span class="mf">3.219666</span> <span class="o">-</span><span class="mf">2.418653</span> <span class="mf">7.475260</span>
+<span class="n">H</span> <span class="o">-</span><span class="mf">3.864043</span> <span class="o">-</span><span class="mf">2.348754</span> <span class="mf">8.974120</span>
+<span class="n">O</span> <span class="o">-</span><span class="mf">0.864896</span> <span class="o">-</span><span class="mf">1.797776</span> <span class="mf">3.460864</span>
+<span class="n">H</span> <span class="o">-</span><span class="mf">0.308157</span> <span class="o">-</span><span class="mf">2.150110</span> <span class="mf">2.708599</span>
+<span class="o">..</span>
+<span class="o">..</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>For inorganic systems, the additional directive <em>MOLECULE_KEY</em> must always be specified. Example below shows a small sample of illite clay, expressed in element symbols. The <em>MOLECULE_KEY CLYF</em> indicate the structure can be matched with the MOLECULE general_CLAYFF template. To set up the force field, the inorganic_clay FF scheme must be used in the DL_FIELD <em>control</em> file.</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">984</span>
+<span class="n">CRYST1</span>  <span class="mf">20.9320</span>   <span class="mf">27.1146</span>   <span class="mf">37.9124</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>
+<span class="c1"># MOLECULAR_GROUP clay   MOLECULE_KEY CLYF </span>
+<span class="n">Al</span>  <span class="mf">2.502740</span>  <span class="mf">2.481160</span>  <span class="mf">3.429950</span>
+<span class="n">Al</span>  <span class="mf">2.449260</span>  <span class="mf">8.524460</span>  <span class="mf">3.476860</span>
+<span class="n">Al</span>  <span class="mf">3.428830</span>  <span class="mf">3.929990</span>  <span class="mf">0.755898</span>
+<span class="n">Al</span>  <span class="o">-</span><span class="mf">0.143951</span>  <span class="mf">3.969300</span>  <span class="mf">3.422410</span>
+<span class="n">Al</span>  <span class="o">-</span><span class="mf">0.173622</span>  <span class="mf">6.953530</span>  <span class="mf">3.466610</span>
+<span class="n">Si</span>  <span class="mf">1.473570</span>  <span class="mf">3.925650</span>  <span class="mf">6.223150</span>
+<span class="n">Si</span>  <span class="mf">1.450440</span>  <span class="mf">7.013190</span>  <span class="mf">6.226930</span>
+<span class="n">Si</span>  <span class="mf">4.066990</span>  <span class="mf">8.448000</span>  <span class="mf">6.234750</span>
+<span class="n">Si</span>  <span class="mf">4.095880</span>  <span class="mf">2.490110</span>  <span class="mf">6.237170</span>
+<span class="n">Si</span>  <span class="mf">3.324740</span>  <span class="mf">7.046450</span>  <span class="mf">0.839732</span>
+<span class="n">Si</span>  <span class="mf">0.717297</span>  <span class="mf">8.490300</span>  <span class="mf">0.870192</span>
+<span class="n">Si</span>  <span class="mf">0.830225</span>  <span class="mf">2.515690</span>  <span class="mf">0.793637</span>
+<span class="n">O</span>  <span class="mf">1.463210</span>  <span class="mf">3.781760</span>  <span class="mf">4.625190</span>
+<span class="n">O</span>  <span class="mf">2.764240</span>  <span class="mf">3.176920</span>  <span class="mf">6.929140</span>
+<span class="o">..</span>
+<span class="o">..</span>
+</pre></div>
+</div>
+<p>Alternatively, the atoms can be expressed in ATOM_KEYs. Example below shows the same illite clay sample. DL_FIELD has better chances to setup the FF model successfully, but this requires the user to pre-assign the correct ATOM_KEYs to the file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">984</span>
+<span class="n">CRYST1</span>  <span class="mf">20.9320</span>   <span class="mf">27.1146</span>   <span class="mf">37.9124</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>
+<span class="c1"># MOLECULAR_GROUP clay   MOLECULE_KEY CLYF </span>
+<span class="n">ao</span>  <span class="mf">2.502740</span>  <span class="mf">2.481160</span>  <span class="mf">3.429950</span>
+<span class="n">ao</span>  <span class="mf">2.449260</span>  <span class="mf">8.524460</span>  <span class="mf">3.476860</span>
+<span class="n">ao</span>  <span class="mf">3.428830</span>  <span class="mf">3.929990</span>  <span class="mf">0.755898</span>
+<span class="n">ao</span>  <span class="o">-</span><span class="mf">0.143951</span>  <span class="mf">3.969300</span>  <span class="mf">3.422410</span>
+<span class="n">ao</span>  <span class="o">-</span><span class="mf">0.173622</span>  <span class="mf">6.953530</span>  <span class="mf">3.466610</span>
+<span class="n">st</span>  <span class="mf">1.473570</span>  <span class="mf">3.925650</span>  <span class="mf">6.223150</span>
+<span class="n">st</span>  <span class="mf">1.450440</span>  <span class="mf">7.013190</span>  <span class="mf">6.226930</span>
+<span class="n">st</span>  <span class="mf">4.066990</span>  <span class="mf">8.448000</span>  <span class="mf">6.234750</span>
+<span class="n">st</span>  <span class="mf">4.095880</span>  <span class="mf">2.490110</span>  <span class="mf">6.237170</span>
+<span class="n">st</span>  <span class="mf">3.324740</span>  <span class="mf">7.046450</span>  <span class="mf">0.839732</span>
+<span class="n">st</span>  <span class="mf">0.717297</span>  <span class="mf">8.490300</span>  <span class="mf">0.870192</span>
+<span class="n">st</span>  <span class="mf">0.830225</span>  <span class="mf">2.515690</span>  <span class="mf">0.793637</span>
+<span class="n">ob</span>  <span class="mf">1.463210</span>  <span class="mf">3.781760</span>  <span class="mf">4.625190</span>
+<span class="n">ob</span>  <span class="mf">2.764240</span>  <span class="mf">3.176920</span>  <span class="mf">6.929140</span>
+<span class="o">..</span>
+<span class="o">..</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p id="header-howto-multiple"><strong>How to setup a multiple potential model</strong></p>
+<p>The multiple potential feature is only applied to PDB and <em>xyz</em> input files.</p>
+<p>DL_FIELD provides simple procedures to setup models that use more than one potential scheme. First of all, the keyword <em>multiple</em> must be used instead of any specific FF scheme in the DL_FIELD <em>control</em> file. Then specify the potential schemes in the input configuration file.</p>
+<p>Example below shows how you can set up a multiple potential model using an input file in the PDB format. The system contains two different molecular structures. One is an ethanol molecule and the other is sulphur hexafluoride.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">REMARK</span>   <span class="n">An</span> <span class="n">example</span> <span class="n">file</span> <span class="n">using</span> <span class="n">multiple</span> <span class="n">potential</span><span class="o">.</span> 
+<span class="n">CRYST1</span>   <span class="mf">37.540</span>   <span class="mf">37.540</span>   <span class="mf">21.842</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span> <span class="mf">120.00</span> <span class="n">P1</span>
+<span class="c1"># POTENTIAL charmm36_cgenff</span>
+<span class="n">ATOM</span>      <span class="mi">1</span>  <span class="n">C2</span>  <span class="n">ETOH</span>    <span class="mi">1</span>       <span class="mf">0.995</span>   <span class="mf">0.329</span>  <span class="o">-</span><span class="mf">0.000</span>                  <span class="n">ALC</span>
+<span class="n">ATOM</span>      <span class="mi">2</span>  <span class="n">H21</span> <span class="n">ETOH</span>    <span class="mi">1</span>       <span class="mf">1.844</span>  <span class="o">-</span><span class="mf">0.392</span>   <span class="mf">0.000</span>                  <span class="n">ALC</span>
+<span class="n">ATOM</span>      <span class="mi">3</span>  <span class="n">H22</span> <span class="n">ETOH</span>    <span class="mi">1</span>       <span class="mf">1.096</span>   <span class="mf">0.975</span>  <span class="o">-</span><span class="mf">0.902</span>                  <span class="n">ALC</span>
+<span class="n">ATOM</span>      <span class="mi">4</span>  <span class="n">H23</span> <span class="n">ETOH</span>    <span class="mi">1</span>       <span class="mf">1.096</span>   <span class="mf">0.976</span>   <span class="mf">0.901</span>                  <span class="n">ALC</span>
+<span class="n">ATOM</span>      <span class="mi">5</span>  <span class="n">C1</span>  <span class="n">ETOH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">0.340</span>  <span class="o">-</span><span class="mf">0.404</span>   <span class="mf">0.000</span>                  <span class="n">ALC</span>
+<span class="n">ATOM</span>      <span class="mi">6</span>  <span class="n">H11</span> <span class="n">ETOH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">0.456</span>  <span class="o">-</span><span class="mf">1.038</span>   <span class="mf">0.907</span>                  <span class="n">ALC</span>
+<span class="n">ATOM</span>      <span class="mi">7</span>  <span class="n">H12</span> <span class="n">ETOH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">0.457</span>  <span class="o">-</span><span class="mf">1.039</span>  <span class="o">-</span><span class="mf">0.907</span>                  <span class="n">ALC</span>
+<span class="n">ATOM</span>      <span class="mi">8</span>  <span class="n">HO1</span> <span class="n">ETOH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">2.235</span>   <span class="mf">0.073</span>   <span class="mf">0.000</span>                  <span class="n">ALC</span>
+<span class="n">ATOM</span>      <span class="mi">9</span>  <span class="n">O1</span>  <span class="n">ETOH</span>    <span class="mi">1</span>      <span class="o">-</span><span class="mf">1.394</span>   <span class="mf">0.538</span>  <span class="o">-</span><span class="mf">0.000</span>                  <span class="n">ALC</span>
+<span class="c1"># POTENTIAL opls2005</span>
+<span class="n">ATOM</span>   <span class="mi">2017</span>  <span class="n">S</span>   <span class="n">SHEX</span>    <span class="mi">1</span>      <span class="mf">16.570</span>   <span class="mf">1.991</span>  <span class="mf">20.140</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">S</span>    
+<span class="n">ATOM</span>   <span class="mi">2018</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">1</span>      <span class="mf">15.606</span>   <span class="mf">3.062</span>  <span class="mf">19.528</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="n">ATOM</span>   <span class="mi">2019</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">1</span>      <span class="mf">17.389</span>   <span class="mf">3.127</span>  <span class="mf">20.838</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="n">ATOM</span>   <span class="mi">2020</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">1</span>      <span class="mf">17.532</span>   <span class="mf">0.920</span>  <span class="mf">20.752</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="n">ATOM</span>   <span class="mi">2021</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">1</span>      <span class="mf">17.491</span>   <span class="mf">2.100</span>  <span class="mf">18.880</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="n">ATOM</span>   <span class="mi">2022</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">1</span>      <span class="mf">15.750</span>   <span class="mf">0.855</span>  <span class="mf">19.442</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="n">ATOM</span>   <span class="mi">2023</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">1</span>      <span class="mf">15.648</span>   <span class="mf">1.882</span>  <span class="mf">21.400</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="n">ATOM</span>   <span class="mi">2024</span>  <span class="n">S</span>   <span class="n">SHEX</span>    <span class="mi">2</span>       <span class="mf">1.205</span>   <span class="mf">2.521</span>   <span class="mf">0.264</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">S</span>    
+<span class="n">ATOM</span>   <span class="mi">2025</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">2</span>       <span class="mf">1.943</span>   <span class="mf">3.523</span>   <span class="mf">1.213</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="n">ATOM</span>   <span class="mi">2026</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">2</span>       <span class="mf">0.697</span>   <span class="mf">1.717</span>   <span class="mf">1.506</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="n">ATOM</span>   <span class="mi">2027</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">2</span>       <span class="mf">0.468</span>   <span class="mf">1.519</span>  <span class="o">-</span><span class="mf">0.686</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="n">ATOM</span>   <span class="mi">2028</span>  <span class="n">F</span>   <span class="n">SHEX</span>    <span class="mi">2</span>       <span class="mf">2.488</span>   <span class="mf">1.627</span>   <span class="mf">0.210</span>  <span class="mf">1.00</span>  <span class="mf">0.00</span>      <span class="n">SF6</span>  <span class="n">F</span>    
+<span class="o">..</span>
+<span class="o">..</span>
+</pre></div>
+</div>
+<p>The system contains two different potential schemes: CHARMM36_prot and OPLS2005. The positions of the POTENTIAL directives define the extent of the FF applications. CHARMM36 applies to the ethanol molecule, whereas, OPLS2005 applies to sulphur hexafluoride molecules. The residue labels ETOH and SHEX are the residue labels, of which the MOLECULE templates were predefined in the respective FF library files.</p>
+<p>The labels ALC and SF6 are called the Molecular Group names and DL_FIELD will show this as the <em>molecule</em> directives in the <em>dl_poly.FIELD</em> file during the FF conversion.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">It is not common to setup simulation models that contain different FF schemes, unless the different FF schemes are of the same type. For instance, CHARMM36_prot can be mixed with CHARMM36_lipid. Otherwise, user’s discretion is needed. However, multiple potential models are more commonly used for systems containing organic or biological and inorganic elements.</p>
+</div>
+<p>Example below shows how to use the multiple potential scheme in the <em>xyz</em> format for a system contains the organic and inorganic components. It is a system consists of a montemorillonite clay mineral with a benzene molecule. The organic molecule is assigned to the CHARMM22 force field, whereas, the CLAYFF force field is used for the mineral.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">338</span>
+<span class="n">CRYST1</span>   <span class="mf">83.908</span>   <span class="mf">20.7302253</span>   <span class="mf">17.9859383759</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span> <span class="p">(</span><span class="n">P</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># POTENTIAL CHARMM22_prot  MOLECULAR_GROUP ORG</span>
+<span class="n">C</span>  <span class="mf">10.000000</span>  <span class="mf">1.390000</span>  <span class="mf">0.000000</span>
+<span class="n">C</span>  <span class="mf">10.000000</span>  <span class="mf">0.695000</span>  <span class="mf">1.204000</span>
+<span class="n">C</span>  <span class="mf">10.000000</span>  <span class="o">-</span><span class="mf">0.695000</span>  <span class="mf">1.204000</span>
+<span class="n">C</span>  <span class="mf">10.000000</span>  <span class="o">-</span><span class="mf">1.391000</span>  <span class="mf">0.000000</span>
+<span class="n">C</span>  <span class="mf">10.000000</span>  <span class="o">-</span><span class="mf">0.695000</span>  <span class="o">-</span><span class="mf">1.204000</span>
+<span class="n">C</span>  <span class="mf">10.000000</span>  <span class="mf">0.695000</span>  <span class="o">-</span><span class="mf">1.204000</span>
+<span class="n">H</span>  <span class="mf">10.000000</span>  <span class="mf">2.450000</span>  <span class="mf">0.000000</span>
+<span class="n">H</span>  <span class="mf">10.000000</span>  <span class="mf">1.225000</span>  <span class="mf">2.123000</span>
+<span class="n">H</span>  <span class="mf">10.000000</span>  <span class="o">-</span><span class="mf">1.226000</span>  <span class="mf">2.122000</span>
+<span class="n">H</span>  <span class="mf">10.000000</span>  <span class="o">-</span><span class="mf">2.451000</span>  <span class="mf">0.000000</span>
+<span class="n">H</span>  <span class="mf">10.010000</span>  <span class="o">-</span><span class="mf">1.226000</span>  <span class="o">-</span><span class="mf">2.122000</span>
+<span class="n">H</span>  <span class="mf">10.000000</span>  <span class="mf">1.225000</span>  <span class="o">-</span><span class="mf">2.122000</span>
+<span class="c1"># POTENTIAL inorganic_clay  MOLECULE_KEY CLYF  MOLECULAR_GROUP clay</span>
+<span class="n">Si</span>  <span class="o">-</span><span class="mf">2.675000</span>  <span class="o">-</span><span class="mf">6.024000</span>  <span class="mf">4.703000</span>
+<span class="n">Si</span>  <span class="o">-</span><span class="mf">2.700000</span>  <span class="o">-</span><span class="mf">6.039000</span>  <span class="o">-</span><span class="mf">4.313000</span>
+<span class="n">Si</span>  <span class="o">-</span><span class="mf">2.776000</span>  <span class="o">-</span><span class="mf">3.444000</span>  <span class="o">-</span><span class="mf">8.761000</span>
+<span class="n">Si</span>  <span class="o">-</span><span class="mf">2.686000</span>  <span class="o">-</span><span class="mf">0.853000</span>  <span class="mf">4.722000</span>
+<span class="n">Si</span>  <span class="o">-</span><span class="mf">2.697000</span>  <span class="o">-</span><span class="mf">0.830000</span>  <span class="o">-</span><span class="mf">4.318000</span>
+<span class="n">Si</span>  <span class="o">-</span><span class="mf">2.786000</span>  <span class="o">-</span><span class="mf">8.616000</span>  <span class="o">-</span><span class="mf">8.741000</span>
+<span class="n">Si</span>  <span class="o">-</span><span class="mf">2.690000</span>  <span class="o">-</span><span class="mf">3.463000</span>  <span class="mf">6.268000</span>
+<span class="n">Si</span>  <span class="o">-</span><span class="mf">2.730000</span>  <span class="o">-</span><span class="mf">8.634000</span>  <span class="mf">6.283000</span>
+<span class="n">Si</span>  <span class="o">-</span><span class="mf">2.722000</span>  <span class="o">-</span><span class="mf">8.677000</span>  <span class="mf">0.254000</span>
+<span class="n">O</span>   <span class="o">-</span><span class="mf">3.091000</span>  <span class="o">-</span><span class="mf">4.823000</span>  <span class="mf">0.879000</span>
+<span class="n">O</span>   <span class="o">-</span><span class="mf">3.276000</span>  <span class="o">-</span><span class="mf">2.187000</span>  <span class="o">-</span><span class="mf">7.966000</span>
+<span class="n">O</span>   <span class="o">-</span><span class="mf">3.282000</span>  <span class="o">-</span><span class="mf">7.370000</span>  <span class="o">-</span><span class="mf">7.946000</span>
+<span class="n">O</span>   <span class="mf">1.050000</span>  <span class="mf">3.459000</span>  <span class="o">-</span><span class="mf">2.711000</span>
+<span class="n">Al</span>  <span class="mf">0.010000</span>  <span class="mf">5.114000</span>  <span class="mf">3.217000</span>
+<span class="n">Al</span>  <span class="o">-</span><span class="mf">0.035000</span>  <span class="o">-</span><span class="mf">0.043000</span>  <span class="o">-</span><span class="mf">5.796000</span>
+<span class="n">Al</span>  <span class="mf">0.053000</span>  <span class="o">-</span><span class="mf">0.112000</span>  <span class="mf">3.283000</span>
+<span class="o">..</span>
+<span class="o">..</span>
+</pre></div>
+</div>
+<p>Note that by using inorganic force field scheme would need an additional directive, which in this case, is <em>MOLECULE_KEY CLYF</em>. This provides additional information for DL_FIELD to look for the specific MOLECULE template as defined in the corresponding library file for inorganic_clay FF, or the <em>DLPOLY_INORGANIC_CLAY.sf</em> file.</p>
+<p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 <img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
@@ -230,22 +391,20 @@ RIGID  A
 <li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dl_poly_howto.html">DL_POLY</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dl_analyse_howto.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
@@ -253,7 +412,7 @@ RIGID  A
   <p class="topless"><a href="dl_field_format.html"
                         title="previous chapter">User input file format</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="dl_poly_howto.html"
+  <p class="topless"><a href="dl_poly_intro.html"
                         title="next chapter">DL_POLY</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
@@ -278,7 +437,7 @@ RIGID  A
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="dl_poly_howto.html" title="DL_POLY"
+          <a href="dl_poly_intro.html" title="DL_POLY"
              >next</a> |</li>
         <li class="right" >
           <a href="dl_field_format.html" title="User input file format"

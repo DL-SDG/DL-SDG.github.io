@@ -7,19 +7,19 @@ DL_Software Manuals
 As the saying goes 'A thousand-mile journey begins with a first step' - Lao Tzu (604-531 BC). 
 You do the right thing to reach here.
 
-* :download:`The DL_POLY-4 User Manual <./MAN_DL_POLY_4.09.pdf>` (Version 4.09 - September 2018)
+* :download:`The DL_POLY-4 User Manual <./DOCUMENTS/MAN_DL_POLY_4.09.pdf>` (Version 4.09 - September 2018)
 	  
 |
 
-* :download:`The DL_FIELD User Manual <./MAN_DL_FIELD_4.6.pdf>` (Version 4.6 - January 2020)
+* :download:`The DL_FIELD User Manual <./DOCUMENTS/MAN_DL_FIELD_4.6.pdf>` (Version 4.6 - January 2020)
   
 |
 
-* :download:`The DL_ANALYSER User Manual <./MAN_DL_ANALYSER_2.2.pdf>` (Version 2.2 - March 2020)
+* :download:`The DL_ANALYSER User Manual <./DOCUMENTS/MAN_DL_ANALYSER_2.2.pdf>` (Version 2.2 - March 2020)
 
 |
 
-* :download:`The DL_MESO User Manual <./MAN_DL_MESO_2.7.pdf>` (Version 2.7 rev 08 - March 2020)
+* :download:`The DL_MESO User Manual <./DOCUMENTS/MAN_DL_MESO_2.7.pdf>` (Version 2.7 rev 08 - March 2020)
 
 |
 

@@ -5,8 +5,7 @@
 Simulations
 ***********
 
-Below is a list of simulation tutorials that have been written for new users of DL_Software.
-Make sure you have read the section 'Molecular Simulations -Tools' because this is where you will find simple instructions of how to obtain the DL_Software tools needed to complete the exercises.
+Below is a list of simulation tutorials that have been written for new users of DL_Software. Some of these tutorials show you how to setup, run and analyse the system models.
 
 
 .. toctree::
@@ -17,3 +16,4 @@ Make sure you have read the section 'Molecular Simulations -Tools' because this 
 
    ./solution_sim
    
+   ../STRUCTURES/Structures

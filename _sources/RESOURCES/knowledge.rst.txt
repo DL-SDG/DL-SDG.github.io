@@ -1,6 +1,10 @@
 .. List of articles contributed by members about simulations
 .. _Header-knowledge:
 
+.. |br| raw:: html
+
+   <br />
+
 **************************
 Advanced Knowledge Center
 **************************
@@ -11,15 +15,25 @@ This Section is mainly aimed for advanced or curious users who wish to know more
 
 You are welcome to make your contributions by sending your article (preferably in PDF) to `Chin Yong <https://www.scd.stfc.ac.uk/Pages/Chin-Yong.aspx>`_.
 
-* J.L. Stinson, et. al. (December 2013) - Dynamical consequences of the application of a thermal noise constraint to the Langevin thermostat. (:download:`PDF<./Stinson_langevin_2013.pdf>`)
-
-|
-
-* M. Mezei (March 2003) - Another 'clever' idea down the drain ... #2. (:download:`PDF<./Mezei_mc_2003.pdf>`)
-  Discuss about Monte Carlo moves in molecular systems.
-
-|
-
+* M. Mezei (July 2020) - Enhanced dial representation of angle evolution during molecular dynamics.
+  (:download:`PDF<./DOCUMENTS/mezei_dials.pdf>`) |br| |br|
+* J.L. Stinson, et. al. (December 2013) - Dynamical consequences of the application of a thermal noise constraint to the Langevin thermostat. (:download:`PDF<./DOCUMENTS/Stinson_langevin_2013.pdf>`) |br| |br|
+* W. Smith (22 March 2013) - The Euler Revolutions: Rotational Motion in the Laboratory Frame II. 
+  (:download:`PDF<./DOCUMENTS/smith_euler4.pdf>`) |br| |br|
+* W. Smith (22 March 2013, an update from 24 February 2005) - Hail Euler and Farewell: Rotational Motion in the Laboratory Frame. 
+  (:download:`PDF<./DOCUMENTS/smith_euler3.pdf>`) |br| |br|
+* M. Mezei (26 March 2003) - Another 'clever' idea down the drain ... #2. (:download:`PDF<./DOCUMENTS/Mezei_mc_2003.pdf>`)
+  Discuss about Monte Carlo moves in molecular systems. |br| |br|
+* W. Smith (13 November 2002) - Euler among the Pedestrians. 
+  (:download:`PDF<./DOCUMENTS/smith_euler2.pdf>`) |br| |br|
+* W. Smith (13 November 2002) - The Pressure in Systems with Frozen Atoms.
+  (:download:`PDF<./DOCUMENTS/smith_pressure.pdf>`) |br| |br|
+* M. Mezei (January 2000 - CCP5 Newsletter 47) - Finding of the smallest enclosing cube to improve molecular modeling.
+  (:download:`PDF<./DOCUMENTS/mezei_cube.pdf>`) |br| |br| 
+* M. Mezei (January 2000 - CCP5 Newsletter 47) - Periodic boundary conditions: when is E\ :sub:`ij`\  not equal E\ :sub:`ji`\ ?
+  (:download:`PDF<./DOCUMENTS/mezei_image.pdf>`) |br| |br|
+* R. Kutteh (October 1998 - CCP5 Newsletter 46) - RATTLE Recipe For General Holonomic Constraints: Angle And Torsion Constraints.
+  (:download:`PDF<./DOCUMENTS/kutteh_rattle.pdf>`) |br| |br|
 * CCP5 Newsletter (1981-2000) - Scanned `PDF <https://www.ccp5.ac.uk/infoweb/newsletters>`_ copies of Newsletter, describe a variety of interesting simulation methodologies.
 
 |

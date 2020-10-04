@@ -1,0 +1,243 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ready, get set, go &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Jargons" href="dl_analyser_jargon.html" />
+    <link rel="prev" title="DL_ANALYSER" href="dl_analyser_intro.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dl_analyser_jargon.html" title="Jargons"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dl_analyser_intro.html" title="DL_ANALYSER"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_analyser_intro.html" accesskey="U">DL_ANALYSER</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ready-get-set-go">
+<span id="header-dla-howto"></span><h1>Ready, get set, go<a class="headerlink" href="#ready-get-set-go" title="Permalink to this headline">¶</a></h1>
+<p>This page tells you how to set DL_ANALYSER up and running.</p>
+<p><strong>How to obtain DL_ANALYSER</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.ccp5.ac.uk/DL_ANALYSER">DL_ANALYSER</a> – results analysis program.</li>
+<li>DL_ANALYSER User Manual (<a class="reference download internal" download="" href="../_downloads/141a339acb33705bf0f513e8a68cbbb5/MAN_DL_ANALYSER_2.2.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_ANALYSER</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>) - Version 2.2, March 2020.</li>
+</ul>
+<p>To be able to use the latest version of DL_ANALYSER you first need <a class="reference external" href="http://www.ccp5.ac.uk/DL_ANALYSER/dl_analyser">to register here</a>. Successful registration will lead to the receipt of an email with the latest version of DL_ANALYSER attached e.g. <em>dl_a_2.2.tar.gz</em>. Untar this file for example in Linux:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: tar -xzvf dl_a_2.2.tar.gz
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The number 2.2 refers to the software version, which can be different if a newer version is released.</p>
+</div>
+<p>This will produce the DL_ANALYSER home directory <em>dl_a_2.2</em>. To compile the program, go to the <em>source/</em> directory and type the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: make
+</pre></div>
+</div>
+<p>This will create the <em>dl_analyser</em> executable file in the directory called <em>workspace</em>.</p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>General guidance for running DL_ANALYSER</strong></p>
+<p>The <em>workspace/</em> directory is where all the neccessary support files are located. This is shown as follows:</p>
+<p><em>dl_analyser.control</em> - This is the default DL_ANALYSER control file. It can be renamed or copied.</p>
+<p><em>dl_analyser.input</em> - This is the default DL_ANALYSER input file where you insert the configuration or trajectory files. It can be renamed or copied.</p>
+<p><em>atom_list_A</em> and <em>atom_list_B</em> - Two special files that list the individual atom indices to be selected for analysis, They are referred to atoms from Group A and Group B, respectively.</p>
+<p><em>dl_a_path</em> - A file that indicates the directory paths and names of the DL_ANALYSER <em>control</em> and <em>input</em> files.</p>
+<p><em>run_dla</em> - A file script to run DL_ANALYSER program.</p>
+<p>Before running DL_ANALYSER, make sure the paths for DL_ANALYSER control and input files are correct as shown in the <em>dl_a_path</em> below:</p>
+<img alt="../_images/dl_analyse_control.png" src="../_images/dl_analyse_control.png" />
+<p>The example file <em>dl_a_path</em> above indicates both files are in the DL_ANALYSER home directory</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">DL_ANALYSER <strong>always</strong> look for the file <em>dl_a_path</em>, which <strong>must</strong> be located in the same directory as the  <em>dl_analyser</em> executable file (the DL_ANALYSER home directory).</p>
+</div>
+<p>DL_ANALYSER can read the trajectory files in several formats: DL_POLY trajectory format (<em>HISTORY</em>), PDB, xyz, DL_POLY <em>CONFIG</em> file and any mixture of these, both in their respective native or compressed (gzip) formats. In practice, it is more common to read a serial collection of <em>HISTORY</em> files generated from the same simulation models.</p>
+<p>If your DL_ANALYSER cannot read the .gz file, you can use the uncompressed version of the file.
+A typical DL_ANALYSER input file (<em>dl_analyser.input</em>) is shown below:</p>
+<img alt="../_images/dl_analyser_input1.png" src="../_images/dl_analyser_input1.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The number (<em>n</em>) at the start of the <em>dl_analyser.input</em> file (in the above example this is 3) instructs DL_ANALYSER to read only the first <em>n</em> lines, where it expects the path contains the input trajectory files. The program will ignore anything beyond that.</p>
+</div>
+<p>The DL_ANALYSER suite version 2.2 onward also comes with a simple run script called <em>run_dla</em>. If your program is compiled with the OpenMP library (by default), then type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./run_dla
+</pre></div>
+</div>
+<p>This will run the DL_ANALYSER program using the specified number of OpenMP threads as shown in the <em>run_dla</em> script. You can change the value according to your preference.
+If you run the program by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./dl_analyser.exe
+</pre></div>
+</div>
+<p>then the number of threads used for the OpenMP parallelisation will depend on the OS of your computer. The actual number will be reported by DL_ANALYSER when the program is run.</p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><strong>Example structures</strong></p>
+<p>The DL_ANALYSER software packages comes with a DL_POLY <em>HISTORY</em> example file called <em>HISTORY_acetic.gz</em>. All the supporting files, including the <em>dl_a_path</em> file are pre-set to analyse the trajectory file. It is a small ethanoic acid liquid MD trajectory file generated using DL_POLY.</p>
+<p>Below shows the content of the <em>dl_analyser.control</em> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>+…
+…
+…
+
+--- Atom Range Definition and overall conditions for analysis as below.
+<span class="hll">1 5392  * Range of atom index (Group A). This must always define.
+</span>none    * Range of atom index (Group B), if applicable. Or put &#39;none&#39;.
+<span class="hll">1      * Analysis type: 1=atom-based  2 = molecule-base
+</span>acid  8    * Molecule-base analysis: name and no of atoms per molecule in Group A (MOLECULE A1)
+none  * Molecule-base analysis: name and no of atoms per molecule in Group A (MOLECULE A2, or &#39;none&#39;)
+none      * Molecule-base analysis: name and no of atoms per molecule in Group B (MOLECULE B1, or &#39;none&#39;)
+none      * For molecule-base analysis: name and no of atoms per molecule in Group B (MOLECULE B2, or &#39;none&#39;)
+all     * Range of MD time (ps) samples: t1  t2 (put &#39;all&#39; if all samples to be included).
+0    * Assign all atoms with unit mass = 1.0 (1=yes, 0=no)
+<span class="hll">auto   * Periodic boundary? 0=no, other number = type of box (DLPOLY), auto = obtain from HISTORY
+</span>28.320   0.000    0.0000  * Cell vector a (x, y, z)
+0.000    21.95200 0.00000  * Cell vector b (x, y, z)
+-2.0765488206    0.000 36.4008179166  * Cell vector c (x, y, z)
+0        * Exclude any atoms for analysis? 0=no, any number = Number of EXCLUDE statements shown below.
+…
+…
+…
+
+--- Interaction analysis (DANAI)
+<span class="hll">1              * Activate analysis (1=yes, 0=no)
+</span><span class="hll">test1.out       * Output file
+</span>0              * Number of every configuration to skip
+1              * Consider intra-interaction (A-A, B-B)
+0              * Consider inter-interaction (A-B)
+<span class="hll">2.5  120.0     * H-bond definition: distance, angle (donor-H---acceptor)
+</span>4.5            * Hydrophobic contact distance (between alkyl carbons)
+4.5  15.0      * pi-pi aromatic stacking: distance between ring, Acute angle (max.) between ring planes
+0              * Cross-correlation between TWO different interactions (only works if 2 interactions are selected)
+0              * alkyl-alkyl interactions (HP_1_1)
+0              * aromatic-aromatic (benzene rings) interactions (HP_6_6)
+0              * alcohol-alcohol (OH-OH) interactions (HB_15_15)
+0              * alcohol-carboxylic interactions (HB_15_20)
+0              * alcohol-aniline interactions (HB_15_46)
+<span class="hll">1              * carboxylic-carboxylic interactions (HB_20_20)
+</span>0              * carboxylic-aniline interactions (HB_20_46)
+0              * water-water (HB_800_800)
+…
+…
+…
+</pre></div>
+</div>
+<p>The highlighted lines are examples of what you might want to change in the file, e.g.</p>
+<ul class="simple">
+<li>The number 5392 is the total atoms in the system.</li>
+<li>The word ‘auto’ means DL_ANALYSER will determine the periodic boundary conditions based on the cell vectors from the trajectory files.</li>
+<li>The Interaction Analysis Section is where the H-bond analysis is specified.</li>
+<li>The <em>test1.out</em> is the results output file.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All DL_ANALYSER runs will always produce a file called <em>dl_analyser.output</em> in the <em>workspace/</em> directory, which reports the analysis status, and  output files of the results according to what you specified in the DL_ANALYSER <em>control</em> file.</p>
+</div>
+<p>Now, type <em>./run_dla</em> or <em>./dl_analyser</em> and see what happens.</p>
+<p><a class="reference internal" href="#header-dla-howto"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dl_analyser_intro.html"
+                        title="previous chapter">DL_ANALYSER</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dl_analyser_jargon.html"
+                        title="next chapter">Jargons</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dl_analyser_jargon.html" title="Jargons"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dl_analyser_intro.html" title="DL_ANALYSER"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_analyser_intro.html" >DL_ANALYSER</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

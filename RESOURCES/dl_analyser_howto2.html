@@ -1,0 +1,204 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>How to do something &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Online Tutorials" href="tutorials.html" />
+    <link rel="prev" title="Jargons" href="dl_analyser_jargon.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tutorials.html" title="Online Tutorials"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dl_analyser_jargon.html" title="Jargons"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_analyser_intro.html" accesskey="U">DL_ANALYSER</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-to-do-something">
+<span id="header-dla-howto2"></span><h1>How to do something<a class="headerlink" href="#how-to-do-something" title="Permalink to this headline">¶</a></h1>
+<p>This page shows you how to use DL_ANALYSER to acheive a specific task. It can depend on your system models and how they are laid out. The basic steps are as follows: (1) Choose range of atoms within the system for analysis (2) Choose analysis options. (3) Run DL_ANALYSER.</p>
+<p>Think about how you would setup your simulation models in order to facilitate the results analysis. For instance, separate your system components (such as the solute and solvent) into groups in the CONFIG file.</p>
+<p><strong>Content</strong> <br />
+<a class="reference internal" href="#header-howto-range"><span class="std std-ref">Choose atom range</span></a> <br />
+<a class="reference internal" href="#header-howto-molecule"><span class="std std-ref">Carry out molecule-base analysis</span></a> <br />
+<a class="reference internal" href="#header-howto-rdf"><span class="std std-ref">Calculate radial distribution functions</span></a> <br />
+<a class="reference internal" href="#header-howto-interaction"><span class="std std-ref">Using Interaction Analysis</span></a> <br />
+<a class="reference internal" href="#header-howto-his-to-pdb"><span class="std std-ref">Convert HISTORY file to PDB format</span></a> <br />
+<a class="reference internal" href="#header-howto-phi-psi"><span class="std std-ref">Calculate phi and psi dihedrals for proteins</span></a></p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p id="header-howto-range"><strong>How to choose atom range</strong></p>
+<ol class="arabic simple">
+<li>Open DL_ANALYSER <em>control</em> file and go to Atom Range Section.</li>
+<li>If you wish to carry out analysis collectively as a whole system, then define the range of atom indices for Group A only. To analyse the whole system, just insert <em>1  total_atom_value</em> for Group A. Put <em>none</em> for Group B.</li>
+<li>Some analysis would need to define Group B atom range as well. For example, distance between two groups of atoms.</li>
+<li>All atom indices that are beyond the specified range will be ignored and will consider in any analysis.</li>
+</ol>
+<p><a class="reference internal" href="#header-dla-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p id="header-howto-molecule"><strong>How to carry out molecule-base analysis</strong></p>
+<ol class="arabic simple">
+<li>Go to Atom Range Section, put <em>2</em> at the Analysis type option.</li>
+<li>Define the molecule identify. DL_ANALYSER can identify up to two different molecules in Group A and Group B atoms. They will be internally identified as Molecule A1, A2 and Molecule B1 and B2, respectively. The molecules are differentiated from one another by their number of atoms and atomic consituents. Molecule A1 must always be defined, and optional for the rest of the Molecules.</li>
+<li>To define a Molecule, provide a name and the number of atoms that made up the Molecule. There is, however, a caveat: DL_ANALYSER cannot distinguish between different isomers: same number of atomic consituents but different connectivities. The program will automatically search and identify all the molecules within the atom ranges for Group A, and Group B if this is also defined.</li>
+<li>Once all the molecules are identified, the center of mass of each molecule will be calculated, which will form the basis for analysis.</li>
+<li>Choose analysis options. Note that not all analysis options are applicable for molecule-base analysis.</li>
+</ol>
+<p><a class="reference internal" href="#header-dla-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p id="header-howto-rdf"><strong>Calculate radial distribution function (RDF)</strong></p>
+<p>This is a useful quantity to an overall view how atoms and molecules pack around one another.</p>
+<ol class="arabic simple">
+<li>Switch on (<em>1</em>) the analysis option located in the Structural Analysis Section. Define the bin width, or the increment distance steps and the cut off distance, beyond which no atoms or molecules will be considered. Note that the cut off distance has to be less then the distance of the half of the simulation box length.</li>
+<li>Define species labels to obtain the corresponding RDF. For atomic analysis (packing between atoms), insert the atom labels as they are shown in the CONFIG or the HISTORY files. For molecule-based analysis, insert the Molecule labels. For instance <em>A1 A1</em> means packing arrangement among the Molecule A1. In this case, the distance between center of masses of molecules will be used to determine the RDF.</li>
+<li>Edit DL_ANALYSER <em>input</em> file and insert molecular configurations (<em>HISTORY</em>, <em>CONFIG</em>, etc).</li>
+<li>Run DL_ANALYSER.</li>
+</ol>
+<p><a class="reference internal" href="#header-dla-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p id="header-howto-interaction"><strong>General guidance in using Interaction Analysis Section</strong></p>
+<p>This analysis Section is unique to DL_ANALYSER, to identify, quantify and annotate specific interactions within a molecular system. To use this feature, you would need to use DL_FIELD to setup force field models that express atoms in the DL_F Notation, which encode the chemical characteristics of every atom in the system.</p>
+<ol class="arabic simple">
+<li>Pre-requisite: Generate FIELD and CONFIG from DL_FIELD by specifying the atom display format as the DL_FIELD format in the <em>control</em> file.</li>
+<li>Decide which type of interaction you intend to track. Be specific in terms of which chemical groups you intend to monitor. For instance, if you system contains carboxylic group and alcohol group and you intend to determine the interactions between these group, then select alcohol-carboxylic interaction interactions (collectively, the interactions is called HB_15_20) in the DL_ANALYSER <em>control</em> file.</li>
+<li>Edit DL_ANALYSER <em>input</em> file and insert molecular configurations such as the HISTORY files.</li>
+<li>Run DL_ANALYSER. The program will identify various modes of interactions between the chemical groups and annotate the interactions using <a class="reference external" href="https://www.mdpi.com/1420-3049/23/1/36">DANAI</a> notation. The various modes of interactions will be determined from the trajectory files with respect to MD time together with the overall averages. In addition, cross-correlation of the modes of interactions will also be determined and tabulated. A positive value means both modes of interaction of interest are correlated. A negative value means the formation of a mode of interaction is at the expense of the other. A zero value means the interactions are not related.</li>
+</ol>
+<p><a class="reference internal" href="#header-dla-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p id="header-howto-his-to-pdb"><strong>How to convert HISTORY file to PDB format</strong></p>
+<p>DL_ANALYSER allows you do conversion from HISTORY to PDB file format. To use this feature:</p>
+<ol class="arabic simple">
+<li>Open DL_ANALYSER <em>control</em> file and go to Trajectory Production Section.</li>
+<li>Insert filename for trajectory output file, ends with <em>.pdb</em>. This tells the program to produce PDB output file.</li>
+<li>Insert PDB template file. This file must contain information like residue sequences, for instance, for protein systems. In addition, the atom sequence in the template file must match with the HISTORY file. One way to guarantee template file compatibility is to use DL_FIELD to produce the PDB output file along with the <em>dl_poly.CONFIG</em> and <em>dl_poly.FIELD</em> files.</li>
+<li>Insert Master atom index range.</li>
+<li>If needed, define the translation matrix. This basically moves the whole system according to the given translation matrix. This is sometimes needed in order to correctly display the PDB structures in a graphical software such as the VMD program.</li>
+</ol>
+<ol class="arabic simple" start="4">
+<li>Insert the HISTORY files in DL_ANALYSER <em>input</em> file.</li>
+<li>Run DL_ANALYSER.</li>
+</ol>
+<p><a class="reference internal" href="#header-dla-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p id="header-howto-phi-psi"><strong>How to calculate the the phi and psi dihedral angles for protein systems</strong></p>
+<ol class="arabic simple">
+<li>Edit the DL_ANALYSER <em>control</em> file and go to the Biological Analysis Section. Switch on (<em>1</em>) the phi and psi dihedral analysis option.</li>
+<li>Edit DL_ANALYSER <em>input</em> file and insert trajectory file in the PDB format. This means your HISTORY file must be converted into PDB format before you can calculate the phi-psi dihedral angles.</li>
+<li>Run DL_ANALYSER.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The dihedral angle sets will be calculated only if the alpha-C, together with the presence of neighbouring nitrogen and carbonyl carbon atoms. If the PBD file is not of the standard protein format, that is, the file does not contain the protein residues, DL_ANALYSER can still automatically identify the presence of the relevant atoms in the system.</p>
+</div>
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<p><a class="reference internal" href="#header-dla-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dl_analyser_jargon.html"
+                        title="previous chapter">Jargons</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tutorials.html"
+                        title="next chapter">Online Tutorials</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tutorials.html" title="Online Tutorials"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dl_analyser_jargon.html" title="Jargons"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_analyser_intro.html" >DL_ANALYSER</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

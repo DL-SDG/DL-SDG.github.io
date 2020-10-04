@@ -1,0 +1,29 @@
+.. DL_ANALYSER jargon. 
+
+*******
+Jargons
+*******
+
+Below shows definitions that are specific to DL_ANALYSER. Take some time to read them. This will make it easier for you to understand how DL_ANALYSER works. 
+
+* DL_ANALYSER Sections - Blocks of features of which each contain a set of relevant options in a DL_ANALYSER *control* file. Each Section begins with three dash line (- - -) and follow by a number relevant options. 
+
+* Trajectory Production Section - This Section specifies how to produce a series of configuration from one format (say the DL_POLY *HISTORY*) file to the other (say, PDB format).
+
+* Atom Range Section - This Section is the master filtering system in the program. It defines the range of atoms to be considered for carrying out the analysis and also the analysis state. The atom filtering system is generally achieved by spliting the simulation system into atom groups as follows:
+
+  * Group A - Must be defined by default, the atom index range.  
+  * Group B - Definition of this group is optional, also specifies by the atom index range. However, some analysis may require Group B to be defined.  
+  * atom_list_A - a specially named file that contain a list of atom indices that does not have to be listed serially. Rather than specifying the atom index range, group A atoms can also be defined according to the atom indices contained in atom_list_A.
+  * atom_list_B - similar to atom_list_A but applies to Group B.  
+
+* Analysis Sections - Blocks of analysis options. Results analysis are split into several relevant Sections. For instance, the Structural Analysis Section carries out analysis related to the structural aspects of Group A and Group B. 
+
+* Atom-based analysis - Results analysis will be carried out based on center of masses of the atom itself. This usually means the coordinates of the atoms extracted from the input files.
+
+* Molecule-based analysis - Results analysis will be carried out based on the center of masses of groups of atoms that made up the molecules in Group A and Group B. Up to four types of molecules can be distinguish, two from each Group.
+
+   * Molecule A1, A2 - standard labels of two different molecules for Group A atoms.
+   * Molecule B1, B2 - standard labels of two different molecules for Group B atoms. 
+
+

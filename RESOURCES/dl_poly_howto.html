@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>DL_POLY &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <title>Ready, get set, go &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
@@ -19,8 +19,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="DL_ANALYSER" href="dl_analyse_howto.html" />
-    <link rel="prev" title="How to do something" href="dl_field_howto2.html" /> 
+    <link rel="next" title="Advanced Installation" href="../RST_PAGES/Installation_further_reading.html" />
+    <link rel="prev" title="DL_POLY" href="dl_poly_intro.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -29,14 +29,15 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="dl_analyse_howto.html" title="DL_ANALYSER"
+          <a href="../RST_PAGES/Installation_further_reading.html" title="Advanced Installation"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="dl_field_howto2.html" title="How to do something"
+          <a href="dl_poly_intro.html" title="DL_POLY"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="tools.html" accesskey="U">DL_Software Tools</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" accesskey="U">DL_POLY</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -45,10 +46,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="dl-poly">
-<h1>DL_POLY<a class="headerlink" href="#dl-poly" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="ready-get-set-go">
+<h1>Ready, get set, go<a class="headerlink" href="#ready-get-set-go" title="Permalink to this headline">¶</a></h1>
+<p>This page tells you how to set DL_POLY up and running.</p>
+<p><strong>How to obtain DL_POLY</strong></p>
 <ul class="simple">
 <li><a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_POLY.aspx">DL_POLY</a> – molecular dynamics simulations (version 4.09 and above).</li>
+<li>DL_POLY User Manual (<a class="reference download internal" download="" href="../_downloads/8559c6b473001b6c4dbe5067cb222631/MAN_DL_POLY_4.09.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 4.09, September 2018.</li>
 </ul>
 <p>To be able to use the latest version of DL_POLY you first need to <a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_POLY-Registration.aspx">register here</a>. Successful registration will lead to you receiving an email containing instructions on how to download the latest version of DL_POLY. Following the instructions in the email from CCP5-ADMIN should give you an unzipped directory (e.g. <strong>dl_poly_4.09</strong>).
 The next step is to compile a dl_poly executable. If you want to compile an executable that runs on more than one core i.e. an mpi version to run on a high performance computing (HPC) system, first transfer the dl_poly directory to the HPC and type the commands below (example given for a bash terminal) adapting if necessary for specific HPC:</p>
@@ -121,31 +125,29 @@ $ cp dl_poly_4.09/build-mpi/bin/DLPOLY.Z .
 <li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">DL_POLY</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dl_analyse_howto.html">DL_ANALYSER</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="dl_field_howto2.html"
-                        title="previous chapter">How to do something</a></p>
+  <p class="topless"><a href="dl_poly_intro.html"
+                        title="previous chapter">DL_POLY</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="dl_analyse_howto.html"
-                        title="next chapter">DL_ANALYSER</a></p>
+  <p class="topless"><a href="../RST_PAGES/Installation_further_reading.html"
+                        title="next chapter">Advanced Installation</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -169,14 +171,15 @@ $ cp dl_poly_4.09/build-mpi/bin/DLPOLY.Z .
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="dl_analyse_howto.html" title="DL_ANALYSER"
+          <a href="../RST_PAGES/Installation_further_reading.html" title="Advanced Installation"
              >next</a> |</li>
         <li class="right" >
-          <a href="dl_field_howto2.html" title="How to do something"
+          <a href="dl_poly_intro.html" title="DL_POLY"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" >DL_POLY</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

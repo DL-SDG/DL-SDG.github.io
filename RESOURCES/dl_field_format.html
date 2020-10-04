@@ -121,7 +121,7 @@ no title given, a line must still appear and leave blank. In this case, the exam
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Using the xyz format in DL_FIELD will also produce a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory. It contains the ATOM_TYPEs expressed in DL_F Notation for every atom in the system. As at the latest DL_FIELD version, the file is created for user’s reference only.</p>
+<p class="last">Using the xyz format in DL_FIELD will also produce a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory. It contains the ATOM_TYPEs expressed in DL_F Notation for every atom in the system. At the moment, the file is created for user’s reference only.</p>
 </div>
 <p>For organic molecules, DL_FIELD only recognises elemental symbols for all atoms that involve in covalent bonds. Elemental symbols with charges will be treated as either isolated cations or anions that do not form part of a molecule. For example, for sodium cation in solution, this would be Na+. For chloride anion in solution, this would be Cl-. For the nitrogen atom in ammonium ion, this would be the symbol N, instead of N+, since it is connected with other atoms such as the hydrogen atoms.</p>
 <img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
@@ -162,11 +162,11 @@ no title given, a line must still appear and leave blank. In this case, the exam
 <p>The most relevant <em>RTI</em> to the user is the &#64;&lt;TRIPOS&gt;ATOM, which records the atomic information. This is described in more details as follows:</p>
 <p>The first column is the atom index number, from atom 1 to 8, which is the total number of atoms in an ethanoic acid molecule. The following column is the atom label, follow by the three coordinates. After that is the ATOM_KEY, or some symbol that implicates the chemical behaviour of the atom. The following columns are similar to the PDB format, which are the residue number and residue label (MOLECULE_KEY), respectively.</p>
 <p>The last column is the charge value of an atom. This is usually expressed in formal charge value. However, some software can generate partial charges for the molecule and export the structure in the mol2 format. The example mol2 file was generated using the Amber’s <em>antechamber</em> software, using <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/12395429/">AM1-BCC model</a> to derive the partial charges. For this reason the ATOM_KEYs (c, o, c3, etc) are those of AMBER GAFF, which is AMBER16_GAFF FF scheme in DL_FIELD.</p>
-<p>DL_FIELD will always examine the ATOM_KEYs in the mol2 file. If these keys match with the library files of the FF scheme specified, then DL_FIELD will use those ATOM_KEYs in the mol2 file as the basis to extract the corresponding potential parameters. The charges will also be extracted directly from the mol2 file. If, however, the keys do not match with the FF scheme specified, then normal atom typing procedure and charge determination will be carried out. The charge values in the mol2 file will be ignored.</p>
+<p>DL_FIELD will always examine the ATOM_KEYs in the mol2 file. If these keys match with the library files of the chosen FF scheme, then DL_FIELD will use those ATOM_KEYs in the mol2 file as the basis to extract the corresponding potential parameters. The charges will also be extracted directly from the mol2 file. If, however, the keys do not match with the FF scheme specified, then normal atom typing procedure and charge determination will be carried out. The charge values in the mol2 file will be ignored.</p>
 <p>So, in this example, if AMBER16_GAFF scheme is specified, then the charge values and ATOM_KEYs in the mol2 file will be used. Otherwise, other FF schemes, such as OPLS2005, normal atom typing procedures will be carried out to determine the ATOM_KEYs and charge values.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Using the mol2 format in DL_FIELD will also produce a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory. It contains the ATOM_TYPEs expressed in DL_F Notation for all atoms in the system. As at the latest DL_FIELD version, the file is created for user’s reference only.</p>
+<p class="last">Using the mol2 format in DL_FIELD will also produce a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory. It contains the ATOM_TYPEs expressed in DL_F Notation for all atoms in the system. At the moment, the file is created for user’s reference only.</p>
 </div>
 <p><a class="reference internal" href="#header-dlf-format"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
@@ -184,22 +184,20 @@ no title given, a line must still appear and leave blank. In this case, the exam
 <li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dl_poly_howto.html">DL_POLY</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dl_analyse_howto.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 

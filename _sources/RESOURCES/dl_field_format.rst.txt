@@ -58,7 +58,7 @@ After the title is the symbol '#', which appears right at the first column and r
    The above xyz example structure may cause an error if it is read in by a graphical display program. This is due to the presence of DL_FIELD-specific statements that begins with the #. To properly display the structure, remove all the remark statements.
 
 .. Note::
-   Using the xyz format in DL_FIELD will also produce a file called the *dlf_notation.output* in the *output/* directory. It contains the ATOM_TYPEs expressed in DL_F Notation for every atom in the system. As at the latest DL_FIELD version, the file is created for user's reference only.
+   Using the xyz format in DL_FIELD will also produce a file called the *dlf_notation.output* in the *output/* directory. It contains the ATOM_TYPEs expressed in DL_F Notation for every atom in the system. At the moment, the file is created for user's reference only.
 
 For organic molecules, DL_FIELD only recognises elemental symbols for all atoms that involve in covalent bonds. Elemental symbols with charges will be treated as either isolated cations or anions that do not form part of a molecule. For example, for sodium cation in solution, this would be Na+. For chloride anion in solution, this would be Cl-. For the nitrogen atom in ammonium ion, this would be the symbol N, instead of N+, since it is connected with other atoms such as the hydrogen atoms. 
 
@@ -80,11 +80,11 @@ The first column is the atom index number, from atom 1 to 8, which is the total 
 
 The last column is the charge value of an atom. This is usually expressed in formal charge value. However, some software can generate partial charges for the molecule and export the structure in the mol2 format. The example mol2 file was generated using the Amber's *antechamber* software, using `AM1-BCC model <https://pubmed.ncbi.nlm.nih.gov/12395429/>`_ to derive the partial charges. For this reason the ATOM_KEYs (c, o, c3, etc) are those of AMBER GAFF, which is AMBER16_GAFF FF scheme in DL_FIELD.
 
-DL_FIELD will always examine the ATOM_KEYs in the mol2 file. If these keys match with the library files of the FF scheme specified, then DL_FIELD will use those ATOM_KEYs in the mol2 file as the basis to extract the corresponding potential parameters. The charges will also be extracted directly from the mol2 file. If, however, the keys do not match with the FF scheme specified, then normal atom typing procedure and charge determination will be carried out. The charge values in the mol2 file will be ignored. 
+DL_FIELD will always examine the ATOM_KEYs in the mol2 file. If these keys match with the library files of the chosen FF scheme, then DL_FIELD will use those ATOM_KEYs in the mol2 file as the basis to extract the corresponding potential parameters. The charges will also be extracted directly from the mol2 file. If, however, the keys do not match with the FF scheme specified, then normal atom typing procedure and charge determination will be carried out. The charge values in the mol2 file will be ignored. 
 
 So, in this example, if AMBER16_GAFF scheme is specified, then the charge values and ATOM_KEYs in the mol2 file will be used. Otherwise, other FF schemes, such as OPLS2005, normal atom typing procedures will be carried out to determine the ATOM_KEYs and charge values. 
 
 .. Note::
-   Using the mol2 format in DL_FIELD will also produce a file called the *dlf_notation.output* in the *output/* directory. It contains the ATOM_TYPEs expressed in DL_F Notation for all atoms in the system. As at the latest DL_FIELD version, the file is created for user's reference only.
+   Using the mol2 format in DL_FIELD will also produce a file called the *dlf_notation.output* in the *output/* directory. It contains the ATOM_TYPEs expressed in DL_F Notation for all atoms in the system. At the moment, the file is created for user's reference only.
 
 :ref:`^ GO TO TOP ^<Header_dlf_format>`

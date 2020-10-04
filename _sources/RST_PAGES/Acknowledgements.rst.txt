@@ -7,12 +7,12 @@ Acknowledgements
 
 We would like to thank all contributors to the DL_Software Resource Centre, and hope that should you not find yourself individually listed below, you will assume our appreciation of your contribution - thank you!
 
-If you have any comments, suggestions, or anything to contribution, please email me (Chin Yong).
+If you have any comments, suggestions, or anything to contribute, please email me (Chin Yong).
 
-* `Dawn Geatches <https://www.scd.stfc.ac.uk/Pages/Dawn-Geatches.aspx>`_ Main author and compositor, who had designed the basis framework for DL_SDG.
+* `Dawn Geatches <https://www.scd.stfc.ac.uk/Pages/Dawn-Geatches.aspx>`_ Author and compositor, who had designed the basis framework for DL_SDG.
   
 
-* `Chin Yong <https://www.scd.stfc.ac.uk/Pages/Chin-Yong.aspx>`_ Originator of DL_SDG concept, author and compositor of Simulations examples and design consultant.
+* `Chin Yong <https://www.scd.stfc.ac.uk/Pages/Chin-Yong.aspx>`_ Originator of DL_SDG concept, author and compositor of the Digital Guide and design consultant.
   
 * `Ilian Todorov <https://www.scd.stfc.ac.uk/Pages/Ilian-Todorov.aspx>`_ Originator of DL_SDG concept.
 

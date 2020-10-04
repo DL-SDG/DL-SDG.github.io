@@ -1,0 +1,33 @@
+.. DL_POLY jargon. 
+
+*******
+Jargons
+*******
+
+Below shows definitions that are related to DL_POLY, or indeed, to general molecular simulations, especially in areas of force fields (FF). FF is a set of mathematical equations that dictate the chemical structure and behaviour of a molecular system. 
+
+|
+
+* CONFIG - A DL_POLY file that stores the location state of particles in a system model, including positions, forces and velocities.
+
+|
+ 
+* FIELD - A DL_POLY file that describe the FF model of a system.
+
+|
+
+* CONTROL - A DL_POLY file that contain a set of directives that drive the molecular simulation process.
+
+|
+ 
+* particle - Any entity occupy a unique entry in the *CONFIG* and *FIELD* files. It is a countable object and has a global ID index. It can be atom, a core or a shell of a polarisable atom, or even a coarse grain particle.
+
+|
+
+* intra-molecular interactions - Interaction components that involve connectivity of atoms within a molecule. For example, chemical bonds, angles involving three atoms, dihedral and improper involving four atoms.
+
+|
+
+* inter-molecular interactions - Interaction components that do not directly involve covalent bonds, and between molecules. For examples van-der-Waals (vdw), metal EAM potentials, Tersoff, three-body, four-body and electrostatic interactions.
+
+

@@ -1,0 +1,134 @@
+.. This provides detailed information on how to do certain analysis 
+.. _Header_dla_howto2:
+
+.. |br| raw:: html
+   
+   <br />
+
+*******************
+How to do something
+*******************
+
+This page shows you how to use DL_ANALYSER to acheive a specific task. It can depend on your system models and how they are laid out. The basic steps are as follows: (1) Choose range of atoms within the system for analysis (2) Choose analysis options. (3) Run DL_ANALYSER.
+
+Think about how you would setup your simulation models in order to facilitate the results analysis. For instance, separate your system components (such as the solute and solvent) into groups in the CONFIG file.
+
+**Content** |br|
+:ref:`Choose atom range<Header_howto_range>` |br|
+:ref:`Carry out molecule-base analysis<Header_howto_molecule>` |br|
+:ref:`Calculate radial distribution functions<Header_howto_rdf>` |br|
+:ref:`Using Interaction Analysis<Header_howto_interaction>` |br|
+:ref:`Convert HISTORY file to PDB format<Header_howto_his_to_pdb>` |br|
+:ref:`Calculate phi and psi dihedrals for proteins<Header_howto_phi_psi>`
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_range:
+
+**How to choose atom range**
+
+(1) Open DL_ANALYSER *control* file and go to Atom Range Section. 
+
+(2) If you wish to carry out analysis collectively as a whole system, then define the range of atom indices for Group A only. To analyse the whole system, just insert *1  total_atom_value* for Group A. Put *none* for Group B. 
+
+(3) Some analysis would need to define Group B atom range as well. For example, distance between two groups of atoms.
+
+(4) All atom indices that are beyond the specified range will be ignored and will consider in any analysis. 
+
+:ref:`^ GO TO TOP ^<Header_dla_howto2>`
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_molecule:
+
+**How to carry out molecule-base analysis**
+
+(1) Go to Atom Range Section, put *2* at the Analysis type option.
+
+(2) Define the molecule identify. DL_ANALYSER can identify up to two different molecules in Group A and Group B atoms. They will be internally identified as Molecule A1, A2 and Molecule B1 and B2, respectively. The molecules are differentiated from one another by their number of atoms and atomic consituents. Molecule A1 must always be defined, and optional for the rest of the Molecules. 
+
+(3) To define a Molecule, provide a name and the number of atoms that made up the Molecule. There is, however, a caveat: DL_ANALYSER cannot distinguish between different isomers: same number of atomic consituents but different connectivities. The program will automatically search and identify all the molecules within the atom ranges for Group A, and Group B if this is also defined.
+
+(4) Once all the molecules are identified, the center of mass of each molecule will be calculated, which will form the basis for analysis.
+
+(5) Choose analysis options. Note that not all analysis options are applicable for molecule-base analysis.  
+
+:ref:`^ GO TO TOP ^<Header_dla_howto2>`
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_rdf:
+
+**Calculate radial distribution function (RDF)** 
+
+This is a useful quantity to an overall view how atoms and molecules pack around one another.
+
+(1) Switch on (*1*) the analysis option located in the Structural Analysis Section. Define the bin width, or the increment distance steps and the cut off distance, beyond which no atoms or molecules will be considered. Note that the cut off distance has to be less then the distance of the half of the simulation box length.
+
+(2) Define species labels to obtain the corresponding RDF. For atomic analysis (packing between atoms), insert the atom labels as they are shown in the CONFIG or the HISTORY files. For molecule-based analysis, insert the Molecule labels. For instance *A1 A1* means packing arrangement among the Molecule A1. In this case, the distance between center of masses of molecules will be used to determine the RDF.
+
+(3) Edit DL_ANALYSER *input* file and insert molecular configurations (*HISTORY*, *CONFIG*, etc).
+
+(4) Run DL_ANALYSER.
+
+:ref:`^ GO TO TOP ^<Header_dla_howto2>`
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_interaction:
+
+**General guidance in using Interaction Analysis Section**
+
+This analysis Section is unique to DL_ANALYSER, to identify, quantify and annotate specific interactions within a molecular system. To use this feature, you would need to use DL_FIELD to setup force field models that express atoms in the DL_F Notation, which encode the chemical characteristics of every atom in the system.
+
+(1) Pre-requisite: Generate FIELD and CONFIG from DL_FIELD by specifying the atom display format as the DL_FIELD format in the *control* file. 
+
+(2) Decide which type of interaction you intend to track. Be specific in terms of which chemical groups you intend to monitor. For instance, if you system contains carboxylic group and alcohol group and you intend to determine the interactions between these group, then select alcohol-carboxylic interaction interactions (collectively, the interactions is called HB_15_20) in the DL_ANALYSER *control* file.
+
+(3) Edit DL_ANALYSER *input* file and insert molecular configurations such as the HISTORY files.
+
+(4) Run DL_ANALYSER. The program will identify various modes of interactions between the chemical groups and annotate the interactions using `DANAI <https://www.mdpi.com/1420-3049/23/1/36>`_ notation. The various modes of interactions will be determined from the trajectory files with respect to MD time together with the overall averages. In addition, cross-correlation of the modes of interactions will also be determined and tabulated. A positive value means both modes of interaction of interest are correlated. A negative value means the formation of a mode of interaction is at the expense of the other. A zero value means the interactions are not related. 
+
+:ref:`^ GO TO TOP ^<Header_dla_howto2>`
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_his_to_pdb:
+
+**How to convert HISTORY file to PDB format**
+
+DL_ANALYSER allows you do conversion from HISTORY to PDB file format. To use this feature:
+
+(1) Open DL_ANALYSER *control* file and go to Trajectory Production Section.
+
+(2) Insert filename for trajectory output file, ends with *.pdb*. This tells the program to produce PDB output file.
+
+(3) Insert PDB template file. This file must contain information like residue sequences, for instance, for protein systems. In addition, the atom sequence in the template file must match with the HISTORY file. One way to guarantee template file compatibility is to use DL_FIELD to produce the PDB output file along with the *dl_poly.CONFIG* and *dl_poly.FIELD* files. 
+
+(4) Insert Master atom index range. 
+
+(5) If needed, define the translation matrix. This basically moves the whole system according to the given translation matrix. This is sometimes needed in order to correctly display the PDB structures in a graphical software such as the VMD program.
+
+(4) Insert the HISTORY files in DL_ANALYSER *input* file.
+
+(5) Run DL_ANALYSER.
+
+:ref:`^ GO TO TOP ^<Header_dla_howto2>`
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+.. _Header_howto_phi_psi:
+
+**How to calculate the the phi and psi dihedral angles for protein systems**
+
+(1) Edit the DL_ANALYSER *control* file and go to the Biological Analysis Section. Switch on (*1*) the phi and psi dihedral analysis option.
+
+(2) Edit DL_ANALYSER *input* file and insert trajectory file in the PDB format. This means your HISTORY file must be converted into PDB format before you can calculate the phi-psi dihedral angles.
+
+(3) Run DL_ANALYSER.
+
+.. Note:: The dihedral angle sets will be calculated only if the alpha-C, together with the presence of neighbouring nitrogen and carbonyl carbon atoms. If the PBD file is not of the standard protein format, that is, the file does not contain the protein residues, DL_ANALYSER can still automatically identify the presence of the relevant atoms in the system. 
+
+.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
+
+:ref:`^ GO TO TOP ^<Header_dla_howto2>`

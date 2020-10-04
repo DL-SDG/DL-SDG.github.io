@@ -47,7 +47,7 @@
           <div class="body" role="main">
             
   <div class="section" id="force-field-conversion">
-<h1>Force field conversion<a class="headerlink" href="#force-field-conversion" title="Permalink to this headline">¶</a></h1>
+<span id="header-dlf-conversion"></span><h1>Force field conversion<a class="headerlink" href="#force-field-conversion" title="Permalink to this headline">¶</a></h1>
 <p>This page provides a summary the concept and how DL_FIELD converts your system and setup the FF models. Please read <a class="reference internal" href="dl_field_jargon.html"><span class="doc">Jargons</span></a> if you have not done.</p>
 <p><strong>Atom typing</strong></p>
 <p>Procedures to determine the ATOM_TYPE of an atom that is referenced to an ATOM_KEY. From such, force field parameters for the atom that involves in a given set of interaction will be selected.</p>
@@ -55,8 +55,8 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>The diagram shows the ATOM_KEYs for four different FF schemes for ethanoic acid: OPLS, PCFF, CHARMM CGenFF and AMBER. These symbols are expressed in the standard FF notations specific to the FF schemes. These ATOM_KEYs are determined based on the user’s input configuration file by using one of the conversion mechanisms (see below) within DL_FIELD. To search for the appropriate FF parameters, DL_FIELD will look through the <em>.par</em> library file in the <em>lib/</em> directory. For example, to assign the angle potential for PCFF about the hydroxyl oxygen (ho2 - o_2 - c_1), DL_FIELD will look into the <em>DLPOLY_PCFF.par</em> file and look for the matching ATOM_KEYs. But if a <em>udff</em> file is available, DL_FIELD will search for the parameters in the file before proceeds to the library file.</p>
-<p>Note that these ATOM_KEYs appear very different among the different FF schemes. However, DL_FIELD also allows user to express the ATOM_KEYS in DL_F Notation. In this case, irrespective of which FF scheme, the ATOM_KEYs appear the same and yet the potential parameters will be different depend on the FF schemes.</p>
+<p>The diagram shows the ATOM_KEYs for four different FF schemes for ethanoic acid: OPLS, PCFF, CHARMM CGenFF and AMBER. These ATOM_KEY symbols are expressed in the standard FF notations specific to the FF schemes. They are determined based on the user’s input configuration file by using one of the conversion mechanisms (see below) contained within DL_FIELD. To search for appropriate FF parameters, DL_FIELD will look through the <em>.par</em> library file in the <em>lib/</em> directory. For example, to assign the angle potential for PCFF about the hydroxyl oxygen (ho2 - o_2 - c_1), DL_FIELD will look into the <em>DLPOLY_PCFF.par</em> file for the matching ATOM_KEYs. However, if a <em>udff</em> file is also available, then DL_FIELD will search for the matching parameters in the <em>udff</em> file before proceeds to the library file.</p>
+<p>Note that these ATOM_KEYs appear to be very different among the different FF schemes. For example, for the hydroxyl oxygen atom, CHARMM assign the ATOM_KEY label as OG311, whereas, AMBER shows the atom as oh. However, DL_FIELD allows user to express the ATOM_KEYS in DL_F Notation. In this case, irrespective of which FF scheme, the ATOM_KEYs appear the same and yet the potential parameters will be different depend on the chosen FF schemes.</p>
 <p>In DL_F Notation, each ATOM_KEY is also uniquely referenced to the ATOM_TYPE. Note that the chemical identity of each atom is also encoded in the Notation. For example, the ATOM_TYPE Cp_alkane refers to the ATOM_KEY C1p, where the numerical value <strong>1</strong> is the unique identity that refers to the <em>alkane</em> group. It turns out the C1p is actually a <em>primary</em> alkyl carbon atom.</p>
 <p>You can choose to express the ATOM_KEYs in either the standard FF or the DL_F notations from the DL_FIELD <em>control</em> file. For more information about DL_F Notation, please click <a class="reference external" href="https://doi.org/10.1021/acs.jcim.6b00323">here</a>.</p>
 <img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
@@ -85,7 +85,7 @@
 </ul>
 </li>
 </ol>
-<p>DL_FIELD will use one or both mechanisms to carry out FF conversions, depending on the type of FF schemes and type of input file format. DL_FIELD can use template-based conversion for all FF schemes. However, molecular topology analysis is only applicable to OPLS2005, PCFF and CVFF.</p>
+<p>DL_FIELD will use one or both mechanisms to carry out FF conversions, depending on the type of FF schemes and type of input file format. DL_FIELD can use template-based conversion for all FF schemes. However, molecular topology analysis is only applicable to OPLS2005, PCFF and CVFF schemes.</p>
 </div>
 
 
@@ -101,22 +101,20 @@
 <li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dl_poly_howto.html">DL_POLY</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dl_analyse_howto.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="STRUCTURES/Structures.html">Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
-<li class="toctree-l1"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Exercises</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Installation_further_reading.html">Advanced Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 

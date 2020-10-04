@@ -1,4 +1,5 @@
 .. How to use DL_FIELD,
+.. _Header_dlf_conversion:
 
 **********************
 Force field conversion
@@ -18,9 +19,9 @@ Procedures to determine the ATOM_TYPE of an atom that is referenced to an ATOM_K
 
 |
 
-The diagram shows the ATOM_KEYs for four different FF schemes for ethanoic acid: OPLS, PCFF, CHARMM CGenFF and AMBER. These symbols are expressed in the standard FF notations specific to the FF schemes. These ATOM_KEYs are determined based on the user's input configuration file by using one of the conversion mechanisms (see below) within DL_FIELD. To search for the appropriate FF parameters, DL_FIELD will look through the *.par* library file in the *lib/* directory. For example, to assign the angle potential for PCFF about the hydroxyl oxygen (ho2 - o_2 - c_1), DL_FIELD will look into the *DLPOLY_PCFF.par* file and look for the matching ATOM_KEYs. But if a *udff* file is available, DL_FIELD will search for the parameters in the file before proceeds to the library file.  
+The diagram shows the ATOM_KEYs for four different FF schemes for ethanoic acid: OPLS, PCFF, CHARMM CGenFF and AMBER. These ATOM_KEY symbols are expressed in the standard FF notations specific to the FF schemes. They are determined based on the user's input configuration file by using one of the conversion mechanisms (see below) contained within DL_FIELD. To search for appropriate FF parameters, DL_FIELD will look through the *.par* library file in the *lib/* directory. For example, to assign the angle potential for PCFF about the hydroxyl oxygen (ho2 - o_2 - c_1), DL_FIELD will look into the *DLPOLY_PCFF.par* file for the matching ATOM_KEYs. However, if a *udff* file is also available, then DL_FIELD will search for the matching parameters in the *udff* file before proceeds to the library file.  
 
-Note that these ATOM_KEYs appear very different among the different FF schemes. However, DL_FIELD also allows user to express the ATOM_KEYS in DL_F Notation. In this case, irrespective of which FF scheme, the ATOM_KEYs appear the same and yet the potential parameters will be different depend on the FF schemes.  
+Note that these ATOM_KEYs appear to be very different among the different FF schemes. For example, for the hydroxyl oxygen atom, CHARMM assign the ATOM_KEY label as OG311, whereas, AMBER shows the atom as oh. However, DL_FIELD allows user to express the ATOM_KEYS in DL_F Notation. In this case, irrespective of which FF scheme, the ATOM_KEYs appear the same and yet the potential parameters will be different depend on the chosen FF schemes.  
 
 In DL_F Notation, each ATOM_KEY is also uniquely referenced to the ATOM_TYPE. Note that the chemical identity of each atom is also encoded in the Notation. For example, the ATOM_TYPE Cp_alkane refers to the ATOM_KEY C1p, where the numerical value **1** is the unique identity that refers to the *alkane* group. It turns out the C1p is actually a *primary* alkyl carbon atom.  
 
@@ -59,5 +60,5 @@ To convert a system model into DL_POLY files, DL_FIELD contains two atom typing 
 
     * Suitable for *xyz* and mol2 file formats. 
 
-DL_FIELD will use one or both mechanisms to carry out FF conversions, depending on the type of FF schemes and type of input file format. DL_FIELD can use template-based conversion for all FF schemes. However, molecular topology analysis is only applicable to OPLS2005, PCFF and CVFF.
+DL_FIELD will use one or both mechanisms to carry out FF conversions, depending on the type of FF schemes and type of input file format. DL_FIELD can use template-based conversion for all FF schemes. However, molecular topology analysis is only applicable to OPLS2005, PCFF and CVFF schemes.
 
