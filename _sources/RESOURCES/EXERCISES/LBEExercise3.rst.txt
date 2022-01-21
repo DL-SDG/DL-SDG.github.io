@@ -1,0 +1,107 @@
+.. _LBE_Exercise3:
+
+LBE Exercise 3: Pressure-driven flows and Kármán vortex streets
+===============================================================
+
+Introduction
+------------
+
+Another major feature of LBE is its ability to model simulations with geometrically complex boundaries, including porous media and obstacle-laden flows, using very simple and computationally inexpensive boundary conditions. No-slip boundary conditions can be implemented by simple bounce-back boundary conditions, which can applied at *any* lattice point in a simulation.
+
+A simple example of a system that exploits this feature is pressure-driven flow between two plates. Applying bounce-back conditions at the top and bottom of a simulation box and also a constant horizontal force on the fluid will generate a flow not unlike one that results from pumping a fluid through a pipe, which creates a drop in pressure along its length. Varying the force in our simulations will modify the flow field.
+
+If we place an object in the path of a flowing fluid to disrupt its flow, at certain conditions we can observe eddies being shed from each side of the object in turn, forming rows of vortices in its wake. This is referred to as a *(von) Kármán vortex street* and produces a distinctive, regular but unsteady flow pattern. 
+
+A Kármán vortex street also changes the pressure distribution in the fluid and can create periodic forces that act sideways on the object. If these forces correspond to the object's natural resonating frequency, this can enhance the vibration and can even cause structural damage. (One example of this happening was the collapse of three cooling towers at Ferrybridge Power Station in 1965 during high winds.)
+
+Aim
+---
+
+We are going to see how LBE models pressure-driven flows, both unobstructed and with obstacles. In the case of flows with obstacles, we want to see what conditions will produce Kármán vortex streets.
+
+To do this, we will start with a simple two-dimensional system with two walls representing a channel and apply a constant force on the fluid. This will simulate a pressure drop across the length of the channel and generate a flow field. We can vary the force acting on the fluid and the fluid viscosity (via the relaxation time) to see what effect these properties have on the resulting velocity profile. 
+
+After this, we can add solid objects in the path of the flow and see what effect they have, including finding flow conditions which cause Kármán vortex streets. We can also try ways to suppress the vortex streets by changing the shape of the obstacle.
+
+Instructions
+------------
+
+For this exercise, you will need the main DL_MESO_LBE executable ``lbe.exe`` - ideally the serial version with OpenMP multithreading - and the DL_MESO GUI (see :ref:`DL_MESO_GUI`) to create and modify input files. You will also need to have Paraview installed.
+
+Copy the :ref:`lbin.sys <lbin_sys>` file from the directory ``dl_meso/DEMO/LBE/2D_KarmanVortex`` in your copy of DL_MESO to your working directory (``dl_meso/WORK``). 
+
+This simulation input file will model one fluid in a lattice grid of :math:`250 \times 50` lattice units with a relaxation time :math:`\tau = 0.5072` and apply a body force to the right of :math:`F_x = 1.0 \times 10^{-6}`. 
+
+Before we can run the simulation, we will need to create an :ref:`lbin.spa <lbin_spa>` file. To do this, open the GUI, click the *LBE* button at the top and then *Define LBE System* on the left hand side. Click the *OPEN* button and then select *Set LBE Space*. In this window, select *top mid-grid bounce back* and *bottom mid-grid bounce back* in the pulldown boxes, and then click *Create*. This will create an :ref:`lbin.spa <lbin_spa>` file with bounce-back boundaries at the top and bottom of the box.
+
+To run the simulation, type in:
+
+.. code-block:: bash
+
+  ./lbe.exe
+
+and after it has finished, open the :ref:`lbout\*.vts <lboutsnapshot>` files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed.
+
+To plot the properties along a straight line, you can apply the Plot Over Line filter and either move the line in the display window or select either X Axis or Y Axis, before clicking Apply to display the graphs. The Stream Tracer filter will find and plot flow streamlines for each simulation snapshot.
+
+To change the applied force or the relaxation time for the fluid, you can either open the :ref:`lbin.sys <lbin_sys>` file in the GUI - using the *set fluid parameters* and *set fluid forces* buttons respectively in the *Define LBE System* window - or open the same file in a text editor and modify the lines starting with the following:
+
+.. code-block:: bash
+
+  body_force_0
+  relaxation_0
+
+The :ref:`lbin.spa <lbin_spa>` file cannot be modified with the GUI but can only be replaced. The *ADD OBSTACLES* section can be used to add additional shapes - points, cylinders (circles) and rectangular blocks - before clicking *Create* to write a new :ref:`lbin.spa <lbin_spa>` file, although the :ref:`lbin.sys <lbin_sys>` file needs to be loaded into the *Define LBE System* window beforehand.
+
+Additional theory
+-----------------
+
+We can describe the behaviour of a flow-based system using :ref:`dimensionless numbers <Dimensionless_Numbers>`. A common dimensionless number for flow behaviour is the :ref:`Reynolds`:
+
+.. math:: Re = \frac{u L}{\nu}
+
+where :math:`u` is an (average) representative fluid speed, :math:`L` is a characteristic length scale and :math:`\nu` is the kinematic viscosity of the fluid, which in our case is related to the relaxation time :math:`\tau` of our LBE simulations:
+
+.. math:: \nu = \frac{1}{3} \left(\tau - \frac{1}{2}\right) \frac{\Delta x^2}{\Delta t}.
+
+While we have not actually set physical length or time scales :math:`\Delta x` or :math:`\Delta t`, we can still use lattice-based units and the above definition of kinematic viscosity to find the Reynolds number and characterise our simulations.
+
+Pressure-driven flow between two parallel plates :math:`2H` apart gives a quadratic velocity profile along vertical position from the centre :math:`y` if the flow is laminar (not turbulent), as we can derive from the Navier-Stokes equations or a balance of viscous to inertial forces:
+
+.. math :: u_x (y) = \frac{1}{2 \mu} \left(-\frac{\partial p}{\partial x} \right) \left(H^2 - y^2\right)
+
+where :math:`-\frac{\partial p}{\partial x} = \Delta p / L` is the pressure drop along the length of plates :math:`L`. The maximum velocity exists at :math:`y=0` and equals:
+
+.. math :: u_{max} = \frac{H^2 \Delta p}{2 \mu L},
+
+while the mean velocity (found by integrating the profile over :math:`y` and :math:`z` and then dividing by the cross-sectional area) is equal to half of the maximum value.
+
+In a two-dimensional lattice Boltzmann simulation, the pressure drop can be applied either by using constant density boundary conditions at each end of the simulation domain or by applying a constant body force to the fluid:
+
+.. math :: \Delta p = c_s^2 \left(\rho_{in} - \rho_{out}\right) = \frac{F_x}{2H}.
+
+Tasks
+-----
+
+#.   Run DL_MESO_LBE in your working directory with the :ref:`lbin.sys <lbin_sys>` file copied over from the ``dl_meso/DEMO/LBE/2D_KarmanVortex`` folder and the :ref:`lbin.spa <lbin_spa>` file you created. Open the output files in Paraview and take a look at the velocity profile: use the Plot Over Line filter, specifying the Y Axis, to get a graph plot of the x-component of velocity.
+
+     - Take a look at the velocity profile: what shape does it take? Where is its maximum velocity and what is it? What is the average (mean) velocity of the flow?
+ 
+#.   Change the body force in the :ref:`lbin.sys <lbin_sys>` file. Does the basic shape of the velocity profile change? How about the maximum velocity?
+
+#.   Now try modifying the fluid's kinematic viscosity by changing the relaxation time [#]_. How does the maximum velocity depend on relaxation time/viscosity?
+
+     - If you have changed both the body force and the relaxation time but the Reynolds number remains the same, do you obtain identical velocity profiles?
+
+#.   Add an obstacle in your channel flow simulation by reloading the :ref:`lbin.sys <lbin_sys>` file in the GUI (under *Define LBE System*) and then select *Set LBE Space*. You will need to re-specify the boundary conditions at the top and bottom of the box, but you can also now add a rectangle or a circle with mid-grid bounceback.
+
+     - Try a circle of radius 8 along the flow centreline not too far from the flow 'entrance', say at :math:`(49, 24)`. (The lbin.spa file in ``dl_meso/DENO/LBE/2D_KarmanVortex`` does just this.)
+     - See how the obstacle affects the flow field, then try varying the force and relaxation time until you can achieve vortex shedding.
+
+#.   Try the same again but add a vertical baffle instead of a circle (a e.g rectangle of width 1 and height 16). Can you still get a Kármán vortex street?
+
+#.   To reduce vortex shedding and its destructive effects, we can reduce the area in which eddies can interact. Try adding an additional rectangle of height 1 and width 16 to the right of a circular object as a baffle. Does it suppress the vortex street?
+
+.. rubric:: Footnote
+
+.. [#] Note that the kinematic viscosity is :math:`\nu = \frac{1}{3} \left(\tau - \frac{1}{2} \right)` in lattice units. 

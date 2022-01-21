@@ -1,0 +1,29 @@
+.. Force field Introduction - atomic interactions 
+.. _Header_ff1:
+
+.. |pop1| raw:: html
+
+   <a href="dlf_1_force_field.html" onclick="window.open('dlf_1_force_field.html',
+         'newwindow', 'width=500,height=200'); return false;">force field</a>
+
+*******************
+Atomic Interactions
+*******************
+
+The molecular dynamics (MD) is a powerful molecular modelling technique that yields dynamical and structural data in atomistic details based in the motions of atoms and molecules.
+
+The atomic interactions are the fundemental aspect in making molecular simulations meaningful. In classical MD simulations, we are interested in probing evolution of molecular systems over time, while neglecting the electronic effects. 
+
+For this reason, classical molecular dynamics can be used to investigate a variety of molecular phenomena provided there is no chemical reaction involved.  
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+In molecular simulations, atomic interactions can be separated into two parts:
+
+* Inter-molecular (non-bonded) interactions
+
+* Intra-molecular (bonded) interactions
+
+Atomic interactions are also known as the potential, collectively formed a force field (FF) of the system.
+
+:ref:`^ GO TO TOP ^<Header_ff1>`

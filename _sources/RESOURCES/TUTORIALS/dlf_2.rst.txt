@@ -1,0 +1,91 @@
+.. DL_FIELD tutorial.
+.. _Header_dlf_2:
+
+.. |pop1| raw:: html
+
+   <a href="dlf_2_ATOM_TYPE.html" onclick="window.open('dlf_2_ATOM_TYPE.html',
+   'newwindow', 'width=500,height=300'); return false;">ATOM_TYPEs</a>
+
+.. |pop2| raw:: html
+
+   <a href="dlf_2_atom_typing.html" onclick="window.open('dlf_2_atom_typing.html',
+      'newwindow', 'width=500,height=200'); return false;">atom_typing</a>
+
+.. |br| raw:: html
+
+   <br />
+
+*************************
+Structures and operations
+*************************
+
+This page illustrates the software structural aspects and provide brief summary how it works.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**File structures**
+
+DL_FIELD package comes with the following file components:
+
+* DL_FIELD program source in the *source/* directory. |br| |br|
+
+* Data library files in the *lib/* directory. This is the master library that contains force field data for all available FF schemes. |br| |br| Each FF scheme consists of the following components: |br| - Molecular structure file, with filename ends with the extension *.sf*. |br| - Potential parameter file, with filename ends with the extention *.par*. |br| - Other supplementary files depending on the FF schemes. |br| |br| The *lib/* directory also contains the following files: |br| - The DL_F Notation data file, *DLF_Notation*. |br| - Atom type conversion data file, *dl_field.atom*. |br| |br|
+
+* DL_FIELD control file. |br| |br|
+
+* Solvent templates, in the *solvent/* directory. |br| |br|
+
+* A collection of utility program scripts, in the *utility/* directory. |br| |br|
+
+* The *output/* directory. This is where the DLPOLY's *FIELD* and *CONFIG* files will be produced. |br| |br|
+
+* Some example structures, in the *Examples/* directory. |br| |br|
+
+* The *control_files/* directory, which contains a collection of DL_FIELD's *control* files that read the molecular strucutres in the *Examples/* directory. |br| |br|
+
+* The *dl_f_path* file, that specifies the directory paths of various file components, relative to the DL_FIELD home directory. The location and filename of the DL_FIELD *control* file is also specified here. The home directory is the directory path where the DL_FIELD executable file, *dl_field.exe*, is located. The *dl_f_path* and *dl_field.exe* must always locate in the same directory path.
+
+   
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png      
+
+**Operations**
+
+Diagram below shows schematically how to run DL_FIELD.
+
+.. image:: ../../image/dl_f_2_1.png
+   :scale: 70%
+   :align: center
+
+Firstly, you would need to supply an input configuration file, in PDB, mol2 or *xyz* format. Then, choose a suitable FF scheme and select other options to produce a desire FF model. These are all operated within a DL_FIELD *control* file. 
+After that, run DL_FIELD and it will produce the corresponding *dl_field.CONFIG* and *dl_field.FIELD* files in the *output/* directory, which can be renamed as *CONFIG* and *FIELD* files, respectively for DL_POLY runs.
+
+DL_FIELD operates by using a set of simple directives, instead of using some kind of scripting language. These directives will be indicated in *CAPITAL ITALICS*. Optional directives will be enclosed in *[SQUARE BRACKETS]*.
+
+DL_FIELD jargons will be indicated in Capital Letters. Some DL_FIELD-specific notations will also be described in ALL CAPITAL LETTERS. A list of expressions can be found in the document :doc:`../dl_field_jargon`. 
+
+If you wish to have a quick taste how DL_FIELD operates, go to this page - :doc:`../dl_field_howto`. 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Program execution**
+
+The steps below show what happens when DL_FIELD is run:
+
+(1) Read *dl_f_path*.
+
+(2) Read DL_FIELD *control* file.
+
+(3) Carry out |pop2| procedures to obtain |pop1|. DL_FIELD will use the following typing approaches, depending on the FF schemes and input file format:
+
+   * Template matching - Looking for suitable MOLECULE templates in *sf* data files (for PDB input files).
+
+   * Molecular topology analysis (for *xyz* and mol2 input files).
+
+   * Combination of both (for *xyz* input files). 
+
+(4) Assign force field parameters, usually obtained from the *par* data files.
+
+(5) Produce *dl_poly.CONFIG*, *dl_poly.FIELD* and *dl_poly.CONTROL* files.
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_2>`

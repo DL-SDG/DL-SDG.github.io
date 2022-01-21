@@ -1,0 +1,256 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DPD Exercise 3: Transport properties of DPD fluids &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Video Material" href="../video_links.html" />
+    <link rel="prev" title="DPD Exercise 2: Lipid bilayers, micelles and vesicles" href="DPDExercise2.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../video_links.html" title="Video Material"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="DPDExercise2.html" title="DPD Exercise 2: Lipid bilayers, micelles and vesicles"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="DPD.html" accesskey="U">Dissipative Particle Dynamics</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dpd-exercise-3-transport-properties-of-dpd-fluids">
+<span id="dpd-exercise3"></span><h1>DPD Exercise 3: Transport properties of DPD fluids<a class="headerlink" href="#dpd-exercise-3-transport-properties-of-dpd-fluids" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>One significant advantage DPD has over molecular dynamics is its thermostat’s ability to both control system temperature <em>and</em> automatically ensure hydrodynamics are applied correctly <a class="footnote-reference" href="#id7" id="id1">[1]</a>. If a flow field, e.g. linear shear or pressure-driven flow, is applied to a DPD simulation, the use of <em>relative velocities</em> between particle pairs in dissipative forces means the hydrodynamics are not affected.</p>
+<p>The dissipative force parameter <span class="math notranslate nohighlight">\(\gamma\)</span> in the DPD thermostat is one way we can control the dynamic viscosity <span class="math notranslate nohighlight">\(\mu\)</span>, an important macroscopic property of a fluid. It is limited, however, as the relationship between <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> is complicated - even when conservative forces are omitted - and might not be completely suitable for flows of liquids.</p>
+<p><a class="reference internal" href="../DOCUMENTS/DPDTheory.html#alternativedpd"><span class="std std-ref">Alternative pairwise thermostats to DPD</span></a> can help us get around this problem, particularly the Lowe-Andersen <a class="reference internal" href="#lowe1999" id="id2">[Lowe1999]</a> and Stoyanov-Groot <a class="reference internal" href="#stoyanov2005" id="id3">[Stoyanov2005]</a> thermostats. The dissipative and random forces for DPD are replaced with changes to relative velocities <span class="math notranslate nohighlight">\(\mathbf{v}_{ij}\)</span> between pairs of particles to randomly-chosen values from a Maxwell-Boltzmann distribution for the required system temperature. The parameter for these thermostats, the collision frequency <span class="math notranslate nohighlight">\(\Gamma\)</span>, replaces the dissipative force parameter <span class="math notranslate nohighlight">\(\gamma\)</span> for DPD and represents both the probability of a particle pair having its relative velocity changed and an analogue for fluid viscosity.</p>
+<p>There are number of techniques to measure the viscosity of a fluid from DPD simulations based on non-equilibrium molecular dynamics (NEMD) techniques. <a class="reference internal" href="../DOCUMENTS/DPDTheory.html#viscositylinearshear"><span class="std std-ref">Measuring viscosity using linear shear</span></a> is one such approach: we can calculate resulting shear stresses from setting constant velocity gradients in a simulation box, with the relationship between the two providing the viscosity.</p>
+<p>A boundary condition available in DL_MESO_DPD - the Lees-Edwards periodic boundary condition <a class="reference internal" href="#lees1972" id="id4">[Lees1972]</a> - can apply a constant velocity gradient  (a linear shear flow) throughout a simulation box. The products of pairwise forces and vectors between particle pairs provides our shear stress tensor <span class="math notranslate nohighlight">\(\sigma_{\alpha \beta}\)</span>, and values of this property averaged over a reasonably large number of timesteps gives a representative value for the flow. Only one of the off-diagonal terms is needed: for instance, if we are varying the <span class="math notranslate nohighlight">\(x\)</span>-component of velocity varies along <span class="math notranslate nohighlight">\(y\)</span>, we will need to look at <span class="math notranslate nohighlight">\(\sigma_{yx}\)</span> <a class="footnote-reference" href="#id8" id="id5">[2]</a>.</p>
+<p>The viscosity of a fluid is equal to the derivative of shear stress <span class="math notranslate nohighlight">\(\tau = |\sigma_{yx}|\)</span> with respect to shear rate <span class="math notranslate nohighlight">\(\dot{\gamma} = \left|\frac{\partial v_x}{\partial y}\right|\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-viscosity">
+<span class="eqno">(1)<a class="headerlink" href="#equation-viscosity" title="Permalink to this equation">¶</a></span>\[\mu = \frac{d \tau}{d \dot{\gamma}},\]</div>
+<p>which is generally a function of the shear rate. For simple fluids, often described as <em>Newtonian</em>, this value will be a constant value regardless of shear rate.</p>
+</div>
+<div class="section" id="aim">
+<h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
+<p>We are going to use the Lees-Edwards boundary conditions to produce linear shear in a simple DPD fluid. By trying out different shear rates (velocity gradients) and measuring the resulting shear stresses, we will be able to work out the fluid’s viscosity and see how it changes when we change the thermostat parameter.</p>
+<p>We are mainly going to use the Stoyanov-Groot thermostat, but we can optionally switch to the DPD thermostat later on.</p>
+</div>
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<p>For this exercise, you will need the main DL_MESO_DPD executable <em>dpd.exe</em> - either serial or parallel versions will do - and the <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a> utility to analyse and visualise some of the results. You will also need either graph plotting software (e.g. Gnuplot, Excel) or the <a class="reference download internal" download="" href="../../_downloads/8cce48f7d97d0e6a3544cccb812a9b2a/correl.py"><code class="xref download docutils literal notranslate"><span class="pre">correl.py</span></code></a> Python script to look at <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> files: the former might also be useful to plot some graphs of your own. You will also need to have Paraview installed.</p>
+<p>Copy the <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> input files from the directory <em>dl_meso/DEMO/DPD/ShearFlow</em> in your copy of DL_MESO to your working directory (<em>dl_meso/WORK</em>) and take a look at them in a text editor.</p>
+<p>The <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> file is fairly similar to ones you have seen before in previous exercises, although there are three directives to pay attention to.</p>
+<p>The first is the line used to specify writing trajectories to the <a class="reference internal" href="../TUTORIALS/dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>trajectory <span class="m">40000</span> <span class="m">10</span> <span class="m">1</span>
+</pre></div>
+</div>
+<p>which means DL_MESO_DPD will start writing to <a class="reference internal" href="../TUTORIALS/dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> from timestep 40,000 every 10 timesteps and include both particle positions and velocities.</p>
+<p>The second directive is that for the ensemble:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ensemble nvt stoyanov <span class="m">0</span>.3
+</pre></div>
+</div>
+<p>where we are telling DL_MESO_DPD we want to use the Stoyanov-Groot thermostat for a constant volume (NVT) system. We are also setting the Nosé-Hoover thermostat coupling parameter to 0.3, although we do not need to change this value in this exercise.</p>
+<p>The last notable directive specifies that we wish to apply shear at the boundaries orthogonal to the <span class="math notranslate nohighlight">\(y\)</span>-axis:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>surface shear y
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> file species a single particle species (<code class="docutils literal notranslate"><span class="pre">FLUID</span></code>) that uses a conservative force parameter of <span class="math notranslate nohighlight">\(A_{ij}=25\)</span> - the frequently used value for one-molecule water beads - an interaction cutoff <span class="math notranslate nohighlight">\(r_c = 1\)</span> and a collision frequency <span class="math notranslate nohighlight">\(\Gamma = 1\)</span> <a class="footnote-reference" href="#id9" id="id6">[3]</a>. The notable addition to this file is the following block:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>EXTERNAL
+shear <span class="m">1</span>.0 <span class="m">0</span>.0 <span class="m">0</span>.0
+</pre></div>
+</div>
+<p>which specifies the wall velocity for the top wall (<span class="math notranslate nohighlight">\(v_{w, x} = 1.0\)</span>) that is undergoing shear. (The bottom wall will move with a velocity <span class="math notranslate nohighlight">\(v_{w, x} = -1.0\)</span>.) Since the simulation box is 10 length units in the <span class="math notranslate nohighlight">\(y\)</span>-direction, as specified in the <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> file, the expected velocity gradient is <span class="math notranslate nohighlight">\(\frac{\partial v_x}{\partial y} = \frac{\Delta v_x}{L_y} = \frac{1.0 - (-1.0)}{10} = 0.2\)</span>.</p>
+<p>When you run DL_MESO_DPD, you may notice that the resulting system temperature (as reported in the <a class="reference internal" href="../TUTORIALS/dlm_4.html#outputdlmeso"><span class="std std-ref">OUTPUT</span></a> file) will be higher than the value specified in the <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> file. This is not generally a problem for this kind of simulation: we are applying a flow field in the <span class="math notranslate nohighlight">\(x\)</span>-direction and DL_MESO_DPD does not directly account for this when calculating system temperature from kinetic energies. To help us check that the thermostat is working property, DL_MESO_DPD will also display partial temperatures for each direction. Since the other two directions will not include a flow field, the partial temperatures for these directions should each average out at the specified value.</p>
+<p>Once DL_MESO_DPD has finished running, you will need to run <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a> to work out time-averaged local velocities and how those vary in the <span class="math notranslate nohighlight">\(y\)</span>-direction. We can do this using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./local.exe -nx <span class="m">1</span> -ny <span class="m">100</span> -nz <span class="m">1</span> -av
+</pre></div>
+</div>
+<p>which will divide the box in the <span class="math notranslate nohighlight">\(y\)</span>-direction into 100 slices - sufficient for our purposes - and write to a file called <em>averages.vtk</em>, which can be opened up in Paraview. After loading the file and clicking Apply in the Properties subwindow, apply the Plot Over Line filter, select the Y Axis and click Apply to display graphs of the properties that have been calculated by <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a>.</p>
+<p>Both the <a class="reference internal" href="../TUTORIALS/dlm_4.html#outputdlmeso"><span class="std std-ref">OUTPUT</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> files will display pressure tensors calculated for the simulation - the former as time-averaged values separated into conservative (interaction), dissipative, random and kinetic contributions, the latter as instantaneous values. These are related to the stress tensors by:</p>
+<div class="math notranslate nohighlight">
+\[p_{\alpha \beta} = \frac{\sigma_{\alpha \beta}}{V}\]</div>
+<p>where <span class="math notranslate nohighlight">\(V\)</span> is the simulation volume. To obtain the stress tensors, you therefore need to multiply the pressure tensors by the box volume (in this case, <span class="math notranslate nohighlight">\(V = 1000 r_c^3\)</span>).</p>
+</div>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Run DL_MESO_DPD in your working directory with the supplied input files, then run the <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a> utility to obtain time-averaged properties in slices along the <span class="math notranslate nohighlight">\(y\)</span>-direction. Open Paraview, load in the <em>averages.vtk</em> file and apply the Plot Over Line filter along the <span class="math notranslate nohighlight">\(y\)</span>-axis to get a graph of the <span class="math notranslate nohighlight">\(x\)</span>-component of velocity.<ul>
+<li>Confirm that the time-averaged velocity profile is linear and work out the actual velocity gradient (shear rate) <span class="math notranslate nohighlight">\(\frac{\partial v_x}{\partial y}\)</span>.</li>
+</ul>
+</li>
+<li>Now take a look at the various pressure tensor components using either plotting software or the Python script <em>correl.py</em> on the <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> file, or the averaged values at the end of the <a class="reference internal" href="../TUTORIALS/dlm_4.html#outputdlmeso"><span class="std std-ref">OUTPUT</span></a> file.<ul>
+<li>Find the average value of <span class="math notranslate nohighlight">\(\sigma_{yx}\)</span> and plot the <em>absolute</em> value of this (i.e. without positive or negative signs) against the averaged velocity gradient. <strong>Remember to multiple the pressure tensor values by the system volume to get the stress tensor!</strong></li>
+</ul>
+</li>
+<li>Change the velocity of the shearing boundary in the <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> file to modify the velocity gradient and repeat the calculation (steps 1 and 2). Find the averaged stress tensor and velocity gradient for this calculation and add this to your stress vs. stress plot.</li>
+<li>Once you have calculated shear stresses for at least five different shear rates, take a look at your plot.<ul>
+<li>What kind of relationship exists between the shear rate and shear stress?</li>
+<li>Try fitting a straight line to the plot using regression analysis and find the viscosity of the fluid using <a class="reference internal" href="#equation-viscosity">(1)</a> (i.e. the gradient of this plot).</li>
+</ul>
+</li>
+<li>Change the collision frequency <span class="math notranslate nohighlight">\(\Gamma\)</span> in the <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> file and repeat the above calculations of shear stress against shear rate (steps 1 to 4) to find the new fluid viscosity.</li>
+<li>Try a few different collision frequencies (at least three) and plot the viscosities you find against the collision frequencies.<ul>
+<li>What kind of relationship do you get? Try to find a suitable function for the plot using regression analysis.</li>
+<li>Given that water’s viscosity at room temperature (298 K) is <span class="math notranslate nohighlight">\(\mu = 8.90 \times 10^{-4}\)</span> Pa s or approximately <span class="math notranslate nohighlight">\(53.1\)</span> in DPD-based units (based on one molecule of water per particle), can you work out an appropriate value of <span class="math notranslate nohighlight">\(\Gamma\)</span>?</li>
+</ul>
+</li>
+</ol>
+<p>The following tasks are <em>optional</em> but could offer more insight in how to obtain a required viscosity for a more complicated DPD system.</p>
+<ol class="arabic simple">
+<li>Try switching off conservative forces by setting <span class="math notranslate nohighlight">\(A_{ij}\)</span> to zero and recalculate the fluid viscosity. Does this make any noticeable difference to the viscosity you measured with the original <span class="math notranslate nohighlight">\(A_{ij}\)</span> value for a given value of collision frequency <span class="math notranslate nohighlight">\(\Gamma\)</span>?</li>
+<li>Replace the line <code class="docutils literal notranslate"><span class="pre">ensemble</span> <span class="pre">nvt</span> <span class="pre">stoyanov</span> <span class="pre">0.3</span></code> with <code class="docutils literal notranslate"><span class="pre">ensemble</span> <span class="pre">nvt</span> <span class="pre">dpdvv</span></code> in the <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> file. This implements a scheme (known as ‘DPD Velocity Verlet’) that applies the DPD thermostat more accurately by recalculating the dissipative forces at the end of the timestep after force integration.<ul>
+<li>Repeat the calculations for viscosity at several shear rates for <span class="math notranslate nohighlight">\(\gamma = 4.5\)</span> (a frequently used value for the dissipative force parameter) and <span class="math notranslate nohighlight">\(A_{ij} = 25\)</span>. How does the magnitude of the viscosity compare with that obtained with the Stoyanov-Groot thermostat?</li>
+<li>Try varying the value of <span class="math notranslate nohighlight">\(\gamma\)</span> for the fluid with conservative force parameters <span class="math notranslate nohighlight">\(A_{ij}\)</span> of 0 and 25. How does the viscosity change with <span class="math notranslate nohighlight">\(\gamma\)</span> in each case? Does the higher value of <span class="math notranslate nohighlight">\(A_{ij}\)</span> lead to a higher viscosity? Given the required value of viscosity to represent water (shown above in DPD units), do you think the DPD thermostat can achieve it?</li>
+</ul>
+</li>
+</ol>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Non-equilibrium molecular dynamics (NEMD) can model systems with correct hydrodynamics and constant temperatures using a standard thermostat, but in this instance the thermostat can only be applied to <em>peculiar velocities</em>, i.e. particle velocities without contributions from the flow field. Finding the flow field requires localised sampling of the flow field - averaging velocities in volume slices over a short period of time - which adds a significant computational cost to the simulation.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[2]</a></td><td>Since off-diagonal stress tensor components are symmetrical, we could also look at <span class="math notranslate nohighlight">\(\sigma_{xy}\)</span>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[3]</a></td><td>With the timestep <span class="math notranslate nohighlight">\(\Delta t = 0.01\)</span> given in the CONTROL file, this means the probability of a particle pair having its relative velocity changed is <span class="math notranslate nohighlight">\(\Gamma \Delta t = 0.01\)</span>.</td></tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="lowe1999" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[Lowe1999]</a></td><td>CP Lowe, An alternative approach to dissipative particle dynamics, <em>EPL</em>, <strong>47</strong>, p. 145-151, 1999, doi: 10.1209/epl/i1999-00365-x.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="stoyanov2005" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[Stoyanov2005]</a></td><td>SD Stoyanov and RD Groot, From molecular dynamics to hydrodynamics: A novel Galilean invariant thermostat, <em>Journal of Chemical Physics</em>, <strong>122</strong>, 114112, 2005, doi: 10.1063/1.1870892.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="lees1972" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[Lees1972]</a></td><td>AW Lees and SF Edwards, The computer study of transport processes under extreme conditions, <em>Journal of Physics C</em>, <strong>5</strong>, p. 1921-1928, 1972, doi: 10.1088/0022-3719/5/15/006.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="DPDExercise2.html"
+                        title="previous chapter">DPD Exercise 2: Lipid bilayers, micelles and vesicles</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../video_links.html"
+                        title="next chapter">Video Material</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../video_links.html" title="Video Material"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="DPDExercise2.html" title="DPD Exercise 2: Lipid bilayers, micelles and vesicles"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="DPD.html" >Dissipative Particle Dynamics</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>What is mesoscale modelling &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Structures and operations" href="dlm_2.html" />
+    <link rel="prev" title="What is DL_MESO" href="dlm_1.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlm_2.html" title="Structures and operations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlm_1.html" title="What is DL_MESO"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO Tutorial</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-is-mesoscale-modelling">
+<span id="header-dlm-5"></span><h1>What is mesoscale modelling<a class="headerlink" href="#what-is-mesoscale-modelling" title="Permalink to this headline">¶</a></h1>
+<p>The mesoscale is a middle or intermediate scale between the microscale (nanoscale) describing individual atoms and the macroscale describing materials as a continuum or bulk. The length scales for the mesoscale typically start at the sizes of individual atoms (nanometres, <span class="math notranslate nohighlight">\(10^{-9}\)</span> m) and extend into millimetres (<span class="math notranslate nohighlight">\(10^{-3}\)</span> m), while time scales start in nanoseconds (<span class="math notranslate nohighlight">\(10^{-9}\)</span> s) and can extend into seconds. Many complex systems act at this mesoscale, including but not limited to surfaces and interfaces, microfluidics (capillary flows dominated by surface tension) and biological membranes.</p>
+<a class="reference internal image-reference" href="../../_images/dlm_5_1.png"><img alt="../../_images/dlm_5_1.png" class="align-center" src="../../_images/dlm_5_1.png" style="width: 553.6px; height: 334.40000000000003px;" /></a>
+<p>Mesoscale modelling methods fill a gap between atomistic methods and those that operate in the continuum, e.g. between classical molecular dynamics and computational fluid dynamics. Due to the scales at which they operate, these methods need to address both microscopic thermodynamics and macroscopic hydrodynamics.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">While atomistic methods <em>can</em> technically be used to model systems at the mesoscale or even the macroscale, on their own they are neither the most effective nor the most efficient approaches to model large-scale continuum behaviour such as hydrodynamics.</p>
+</div>
+<p>The modelling entities used at these scales are particles (or ‘beads’) that can represent a number of atoms or molecules. These particles can either:</p>
+<ol class="lowerroman simple">
+<li>represent an explicit (integer) number of atoms/molecules as coarse-grains, or</li>
+<li>be regarded as a mesoscopic representation of a continuum fluid and act as ‘carriers of (bulk) momentum’ .</li>
+</ol>
+<p>In the case of the second approach, while the size of a particle might be fixed relative to the size of an atom or molecule, it might be a non-integer multiple and thus the particle cannot be considered as a coarse-grain.</p>
+<p>Each approach in selecting particle representations may have an effect on how the mesoscale model is setup and parameterised. For instance, interactions between particles could either be derived from coarse-graining smaller scale models or be chosen to give correct macroscopic behaviour. A hybrid of the two parameterisation approaches is also possible, such as parameterising explicitly coarse-grained particles to give larger-scale thermodynamic behaviours (e.g. energies of mixing).</p>
+<p>The selection may also influence the choice of how the particles’ motion is evolved over time and thus the specific mesoscale modelling method. The motion of explicitly coarse-grained particles often needs to be explicitly tracked to give correct (phenomenological) behaviour towards the microscale, while particles representing a larger-scale fluid can often be evolved using a probabilistic approach.</p>
+<p><a class="reference internal" href="#header-dlm-5"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlm_1.html"
+                        title="previous chapter">What is DL_MESO</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlm_2.html"
+                        title="next chapter">Structures and operations</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlm_2.html" title="Structures and operations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlm_1.html" title="What is DL_MESO"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

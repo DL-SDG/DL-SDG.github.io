@@ -1,0 +1,25 @@
+Dissipative Particle Dynamics
+=============================
+
+Dissipative Particle Dynamics (DPD) is a mesoscale modelling method based on calculating forces on particles and integrating them over a discrete time step to evolve particle positions and velocities. The main feature of DPD is a special pairwise thermostat that controls the system temperature while maintaining momentum conservation to ensure correct hydrodynamics. The interactions between DPD particles ('beads') are generally soft and repulsive - representing large collections of atoms/molecules or a fluid continuum - which allows longer times to be achieved with fewer time steps than ordinarily available with atomistic molecular dynamics.
+
+To give you an overview of DPD's capabilities, we have put together three exercises making use of DL_MESO. These exercises can all be run on standalone desktops or laptops, ideally with multiple cores and/or threads: while these involve fairly small simulation sizes, they cover several features available with DPD.
+
+If you wish to try out DPD during this workshop, we recommend that:
+
+1. if you have not yet done so, you follow the instructions in :ref:`dlmeso_setup` to download and compile DL_MESO's DPD code and utilities; and
+
+2. you take a look at some details on using DL_MESO's DPD code in :ref:`DL_MESO_DPD`.
+
+The first exercise covers a method of parameterising DPD simulations, the second uses DPD to model lipid systems and the third demonstrates how rheological properties can be calculated using DPD.
+
+:ref:`DPD_Theory` provided here are not absolutely essential to complete the exercises, but they might be useful in providing more context on how and why DPD works, both in general and for the applications given in the exercises.
+
+.. toctree::
+   :maxdepth: 2
+
+   DL_MESO_DPD
+   DPDExercise1
+   DPDExercise2
+   DPDExercise3
+

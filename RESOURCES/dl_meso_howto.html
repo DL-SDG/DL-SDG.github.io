@@ -1,0 +1,191 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ready, get set, go &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DL_MESO_LBE Jargon" href="dl_meso_lbe_jargon.html" />
+    <link rel="prev" title="DL_MESO" href="dl_meso_intro.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dl_meso_lbe_jargon.html" title="DL_MESO_LBE Jargon"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dl_meso_intro.html" title="DL_MESO"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" accesskey="U">DL_MESO</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ready-get-set-go">
+<h1>Ready, get set, go<a class="headerlink" href="#ready-get-set-go" title="Permalink to this headline">¶</a></h1>
+<p>This page tells you how to set DL_MESO up and running.</p>
+<p><strong>How to obtain DL_MESO</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_MESO.aspx">DL_MESO</a> – mesoscale simulations (version 2.7 and above).</li>
+<li>DL_MESO User Manual (<a class="reference download internal" download="" href="../_downloads/6d3f65bc081acccbc7d6de80bde1c24a/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 2.7, September 2021.</li>
+</ul>
+<p>To be able to use the latest version of DL_MESO you first need to <a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_MESO-register.aspx">register here</a>. Successful registration will lead to you receiving an email containing instructions on how to download the latest version of DL_MESO. Following the instructions in the email from CCP5-ADMIN should give you an unzipped directory (e.g. <strong>dl_meso</strong>).</p>
+<p>The next step is to compile dl_meso executables. There are two main codes - one for Lattice Boltzmann Equation (LBE) simulations (DL_MESO_LBE), one for Dissipative Particle Dynamics (DPD) simulations (DL_MESO_DPD) - and a set of utilities for preparing simulations and processing their results.</p>
+<p><strong>Compiling DL_MESO_LBE</strong></p>
+<p>The LBE code in DL_MESO requires a C++ compiler. If you want to compile an executable to run on more than one core, e.g. on a high performance computing (HPC) system, you will also need an implementation of MPI. The code can also be compiled to run on multiple available threads using OpenMP by including a compiler flag.</p>
+<p>For the single-core (serial) version of DL_MESO_LBE with OpenMP threading, starting from the folder with the <strong>dl_meso</strong> directory in a e.g. bash terminal, type the following commands (adapting if necessary for available modules/compilers):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: cd dl_meso/WORK
+$: module load gcc7
+$: g++ -O3 -fopenmp -o lbe.exe ../LBE/slbe.cpp
+</pre></div>
+</div>
+<p>For the multiple-core (parallel) version of DL_MESO_LBE with OpenMP threading, type the following commands, adapting if necessary for specific HPC and available modules/compilers/MPI implementations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: cd dl_meso/WORK
+$: module load gcc7 openmpi-gcc7
+$: mpicxx -O3 -fopenmp -o lbe.exe ../LBE/plbe.cpp
+</pre></div>
+</div>
+<p>Successful compilation leads to the creation of the dl_meso_lbe executable (<strong>lbe.exe</strong>) in <strong>dl_meso/WORK/</strong>.</p>
+<p><strong>Compiling DL_MESO_DPD</strong></p>
+<p>The DPD code in DL_MESO requires a Fortran compiler and GNU Make (normally pre-installed on Unix/Linux systems). If you want to compile an executable to run on more than one core, e.g. on a high performance computing (HPC) system, you will also need an implementation of MPI. The code can also be compiled to run on multiple available threads using OpenMP.</p>
+<p>Whichever version is required, a Makefile is available in the <strong>dl_meso/DPD/makefiles</strong> directory: this needs to be copied into the working directory and invoked. For instance, if you want to compile the parallel version of DL_MESO_DPD using MPI, starting from the folder with the <strong>dl_meso</strong> directory in a e.g. bash terminal, type the following commands, adapting if necessary for specific HPC and available modules/compilers/MPI implementations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: cd dl_meso/WORK
+$: module load gcc7 openmpi-gcc7
+$: cp ../DPD/makefiles/Makefile-MPI ./Makefile
+$: make
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">You may wish to check the Makefile is specifying the correct Fortran compiler (with MPI wrapper if applicable) in the line starting with <code class="docutils literal notranslate"><span class="pre">FC=</span></code> before invoking it.</td>
+</tr>
+</tbody>
+</table>
+<p>Successful compilation leads to the creation of the dl_meso_dpd executable (<strong>dpd.exe</strong>) in <strong>dl_meso/WORK/</strong>.</p>
+<p><strong>Compiling utilities</strong></p>
+<p>The utilities included with DL_MESO require Fortran and C++ compilers. Some of the utilities for DPD simulations can be made to run faster by applying OpenMP multithreading using a compiler flag.</p>
+<p>A Makefile for the utilities (<strong>Makefile-utils</strong>) is available in the <strong>dl_meso/WORK</strong> folder. To compile them, type the following commands in a terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: cd dl_meso/WORK
+$: module load gcc7
+$: make -f Makefile-utils
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body"><p class="first">The object (<strong>.o</strong>) and module (<strong>.mod</strong>) files resulting from compiling DL_MESO_DPD and the utilities are not required to run the code and can be safely deleted:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$: rm *.o *.mod
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dl_meso_intro.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dl_meso_intro.html"
+                        title="previous chapter">DL_MESO</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dl_meso_lbe_jargon.html"
+                        title="next chapter">DL_MESO_LBE Jargon</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dl_meso_lbe_jargon.html" title="DL_MESO_LBE Jargon"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dl_meso_intro.html" title="DL_MESO"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" >DL_MESO</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

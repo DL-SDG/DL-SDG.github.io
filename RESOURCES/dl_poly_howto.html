@@ -9,13 +9,14 @@
     <title>Ready, get set, go &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -52,7 +53,7 @@
 <p><strong>How to obtain DL_POLY</strong></p>
 <ul class="simple">
 <li><a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_POLY.aspx">DL_POLY</a> – molecular dynamics simulations (version 4.09 and above).</li>
-<li>DL_POLY User Manual (<a class="reference download internal" download="" href="../_downloads/8559c6b473001b6c4dbe5067cb222631/MAN_DL_POLY_4.09.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 4.09, September 2018.</li>
+<li>DL_POLY User Manual (<a class="reference download internal" download="" href="../_downloads/83e502ce53f7391787c2ba5c15a2b3db/MAN_DL_POLY_5.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 5.0.0, February 2021.</li>
 </ul>
 <p>To be able to use the latest version of DL_POLY you first need to <a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_POLY-Registration.aspx">register here</a>. Successful registration will lead to you receiving an email containing instructions on how to download the latest version of DL_POLY. Following the instructions in the email from CCP5-ADMIN should give you an unzipped directory (e.g. <strong>dl_poly_4.09</strong>).
 The next step is to compile a dl_poly executable. If you want to compile an executable that runs on more than one core i.e. an mpi version to run on a high performance computing (HPC) system, first transfer the dl_poly directory to the HPC and type the commands below (example given for a bash terminal) adapting if necessary for specific HPC:</p>
@@ -127,18 +128,19 @@ $ cp dl_poly_4.09/build-mpi/bin/DLPOLY.Z .
 <li class="toctree-l3"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_meso_intro.html">DL_MESO</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXERCISES/Exercises.html">DL_Software Exercises</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Knowledge Center</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
@@ -183,7 +185,7 @@ $ cp dl_poly_4.09/build-mpi/bin/DLPOLY.Z .
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

@@ -9,13 +9,14 @@
     <title>Ready, get set, go &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -52,7 +53,8 @@
 <p><strong>How to obtain DL_FIELD</strong></p>
 <ul class="simple">
 <li><a class="reference external" href="https://www.ccp5.ac.uk/DL_FIELD">DL_FIELD web site</a> – force field (FF) model set up (version 4.6 and above).</li>
-<li>DL_FIELD User Manual (<a class="reference download internal" download="" href="../_downloads/f405c4e1f2689f2b868b15da1d572248/MAN_DL_FIELD_4.6.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 4.6, January 2020.</li>
+<li>DL_FIELD User Manual (<a class="reference download internal" download="" href="../_downloads/c7ec9cef2404cf8a65b5fd27c79c373c/MAN_DL_FIELD_4.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 4.7, December 2020.</li>
+<li><a class="reference internal" href="TUTORIALS/dlf_0.html"><span class="doc">DL_FIELD Tutorial</span></a> - Online learning site, useful for new users.</li>
 </ul>
 <p>To be able to use DL_FIELD you first need to register <a class="reference external" href="https://www.ccp5.ac.uk/DL_FIELD/registration.shtml">here</a>. Successful registration will lead to you receiving a .tar.gz file (e.g. dl_f_4.6.tar.gz). Unpack or untar this for example in Linux:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: tar -xzvf dl_f_4.6.tar.gz
@@ -74,7 +76,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
 <p><strong>General guidance for running DL_FIELD</strong></p>
 <p><strong>Version 1.0, April 2020</strong></p>
 <p>Before running DL_FIELD, make sure paths to the library files and the DL_FIELD control file are correct in the <em>dl_f_path</em> file. The latter <strong>must always</strong> be in the same DL_FIELD home directory where <em>dl_field.exe</em> is located.</p>
@@ -109,7 +111,7 @@ Every successful conversion will always produce files such as <em>dl_poly.CONFIG
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
 <p><strong>Example structures</strong></p>
 <p>By default, the <em>dl_f_path</em> is pointed to the <em>dl_field.control</em> file that will instruct DL_FIELD to read the <em>sod1.pdb</em> structure located in the <em>Examples/</em> directory. The sod1 is an example protein structure called superoxide dismutase.</p>
 <p>The <em>Examples/</em> directory contains several sample structures. You can setup FF models for these structures by specifying the filename and the choice of FF scheme in the control file. All example structures are described in details in Chapter 13 of the DL_FIELD manual.</p>
@@ -150,18 +152,19 @@ Every successful conversion will always produce files such as <em>dl_poly.CONFIG
 <li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_meso_intro.html">DL_MESO</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXERCISES/Exercises.html">DL_Software Exercises</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Knowledge Center</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
@@ -206,7 +209,7 @@ Every successful conversion will always produce files such as <em>dl_poly.CONFIG
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

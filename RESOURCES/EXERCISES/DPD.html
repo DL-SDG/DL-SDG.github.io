@@ -1,0 +1,173 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Dissipative Particle Dynamics &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using DL_MESO_DPD" href="DL_MESO_DPD.html" />
+    <link rel="prev" title="LBE Exercise 3: Pressure-driven flows and Kármán vortex streets" href="LBEExercise3.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="DL_MESO_DPD.html" title="Using DL_MESO_DPD"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="LBEExercise3.html" title="LBE Exercise 3: Pressure-driven flows and Kármán vortex streets"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" accesskey="U">DL_MESO Exercises</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dissipative-particle-dynamics">
+<h1>Dissipative Particle Dynamics<a class="headerlink" href="#dissipative-particle-dynamics" title="Permalink to this headline">¶</a></h1>
+<p>Dissipative Particle Dynamics (DPD) is a mesoscale modelling method based on calculating forces on particles and integrating them over a discrete time step to evolve particle positions and velocities. The main feature of DPD is a special pairwise thermostat that controls the system temperature while maintaining momentum conservation to ensure correct hydrodynamics. The interactions between DPD particles (‘beads’) are generally soft and repulsive - representing large collections of atoms/molecules or a fluid continuum - which allows longer times to be achieved with fewer time steps than ordinarily available with atomistic molecular dynamics.</p>
+<p>To give you an overview of DPD’s capabilities, we have put together three exercises making use of DL_MESO. These exercises can all be run on standalone desktops or laptops, ideally with multiple cores and/or threads: while these involve fairly small simulation sizes, they cover several features available with DPD.</p>
+<p>If you wish to try out DPD during this workshop, we recommend that:</p>
+<ol class="arabic simple">
+<li>if you have not yet done so, you follow the instructions in <a class="reference internal" href="dlmeso_setup.html#dlmeso-setup"><span class="std std-ref">Setting up DL_MESO</span></a> to download and compile DL_MESO’s DPD code and utilities; and</li>
+<li>you take a look at some details on using DL_MESO’s DPD code in <a class="reference internal" href="DL_MESO_DPD.html#dl-meso-dpd"><span class="std std-ref">Using DL_MESO_DPD</span></a>.</li>
+</ol>
+<p>The first exercise covers a method of parameterising DPD simulations, the second uses DPD to model lipid systems and the third demonstrates how rheological properties can be calculated using DPD.</p>
+<p><a class="reference internal" href="../DOCUMENTS/DPDTheory.html#dpd-theory"><span class="std std-ref">Additional details on DPD</span></a> provided here are not absolutely essential to complete the exercises, but they might be useful in providing more context on how and why DPD works, both in general and for the applications given in the exercises.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DL_MESO_DPD.html">Using DL_MESO_DPD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DL_MESO_DPD.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DL_MESO_DPD.html#input-files">Input files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DL_MESO_DPD.html#output-files">Output files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DL_MESO_DPD.html#running-dl-meso-dpd">Running DL_MESO_DPD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DL_MESO_DPD.html#running-gui">Running GUI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DL_MESO_DPD.html#dl-meso-dpd-utilities">DL_MESO_DPD utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DL_MESO_DPD.html#python-scripts">Python scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DPDExercise1.html">DPD Exercise 1: DPD, hydrophobicity and parameterisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise1.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise1.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise1.html#instructions">Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise1.html#tasks">Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DPDExercise2.html">DPD Exercise 2: Lipid bilayers, micelles and vesicles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise2.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise2.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise2.html#instructions">Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise2.html#analysis">Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DPDExercise3.html">DPD Exercise 3: Transport properties of DPD fluids</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise3.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise3.html#aim">Aim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise3.html#instructions">Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DPDExercise3.html#tasks">Tasks</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="LBEExercise3.html"
+                        title="previous chapter">LBE Exercise 3: Pressure-driven flows and Kármán vortex streets</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="DL_MESO_DPD.html"
+                        title="next chapter">Using DL_MESO_DPD</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="DL_MESO_DPD.html" title="Using DL_MESO_DPD"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="LBEExercise3.html" title="LBE Exercise 3: Pressure-driven flows and Kármán vortex streets"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

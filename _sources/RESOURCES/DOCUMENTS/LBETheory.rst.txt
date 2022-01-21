@@ -1,0 +1,288 @@
+.. _LBE_Theory:
+
+Additional details on LBE
+=========================
+
+.. _LBE_scale:
+
+Scaling LBE calculations
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+From a Chapman-Enskog expansion of the Lattice Boltzmann equation, we can define the speed of sound for an LBE fluid:
+
+.. math :: c_s = \frac{1}{\sqrt{3}} \frac{\Delta x}{\Delta t},
+
+and a relationship between kinematic viscosity (ratio of dynamic viscosity and density) and the relaxation time used in collisions:
+
+.. math :: \nu = \frac{\mu}{\rho} = \frac{1}{3}\left(\tau - \frac{1}{2}\right) \frac{\Delta x^2}{\Delta t}.
+
+We can select a value of :math:`\tau` to avoid numerical instabilities in LBE simulations (i.e. not too close to :math:`\frac{1}{2}`). Along with the kinematic viscosity and speed of sound for a given fluid, this sets the length scale (lattice spacing :math:`\Delta x`) and time scale (timestep :math:`\Delta t`). 
+
+For example, if we want to model water at room temperature (298 K), its speed of sound is 1498 m s\ :math:`^{-1}` and kinematic viscosity is :math:`10^{-6}` m s\ :math:`^{-2}`. If we select a relaxation time of :math:`\tau = 1`, this sets the lattice spacing as :math:`\Delta x = \frac{\sqrt{3} \nu}{c_s \left(\tau - \frac{1}{2}\right)} \approx 2.3125 \times 10^{-9}` m and the timestep as :math:`\Delta t = \frac{\nu}{c_s^2 \left(\tau - \frac{1}{2}\right)} \approx 8.9126 \times 10^{-13}` s.
+
+Alternatively, we can use :ref:`dimensionless numbers <Dimensionless_Numbers>` to characterise various properties of our simulation and represent a larger (real) system than would otherwise be available. 
+
+Collision operators
+~~~~~~~~~~~~~~~~~~~
+
+The collision operator :math:`C_i` used in the main Lattice Boltzmann Equation (LBE) can take various different forms. 
+
+The simplest collision operator is based on the Bhatnagar-Gross-Krook (BGK), which uses a single relaxation time :math:`\tau` as the parameter defining the timescale of collisions and thus the kinematic viscosity of the fluid:
+
+.. math :: C_i = -\frac{f_i \left(\mathbf{x}, t\right) - f_i^{eq} \left(\mathbf{x}, t\right)}{\tau}.
+
+Its limitations include lack of numerical stability when using extreme values of :math:`\tau` (e.g. close to 0.5 for zero viscosity) and a fixed value for bulk viscosity relative to kinematic viscosity.
+
+A simple extension to BGK is the Two-Relaxation-Time (TRT) collision operator [Ginzburg2008]_, which splits distribution functions into symmetric and antisymmetric values and collides each with its own relaxation time. The symmetric relaxation time :math:`\tau^{+}` is equivalent to :math:`\tau` for BGK, while the antisymmetric relaxation time :math:`\tau^{-}` is set to improve the numerical stability of the LBE calculation.
+
+Multiple-Relaxation-Time (MRT) schemes calculate and collide moments of the distribution function [Lallemand2000]_, each with its own relaxation time or frequency. These moments can be calculated from a vector of distribution functions :math:`\vec{f}_i` by defining a transformation matrix :math:`\mathbf{T}` for the required lattice scheme:
+
+.. math :: \vec{M} \left(\mathbf{x}, t\right) = \mathbf{T} \vec{f}_i \left(\mathbf{x}, t\right),
+
+whose inverse can be used to later transform collided moments back into distribution functions. The moments include conserved bulk properties (e.g. fluid density and momentum), 'hydrodynamic modes' with relaxation times or frequencies corresponding to kinematic or bulk viscosities, and non-hydrodynamic modes that can be damped out to improve numerical stability. 
+
+A variant MRT scheme includes cascaded lattice Boltzmann (CLBE) [Geier2006]_, which uses central moments incorporating the fluid velocity and the general Maxwell-Boltzmann local equilibrium distribution function (rather than the standard approximation to quadratic velocity terms) for even greater numerical stability.
+
+Rheological models
+~~~~~~~~~~~~~~~~~~
+
+Most LBE simulations assume the kinematic viscosity of a fluid is constant. To relax this assumption, it is possible to calculate kinematic viscosities and relaxation times :math:`\tau` for individual grid points based on the local shear rate:
+
+.. math:: \dot{\gamma} = \sqrt{2 \sum_{\alpha,\beta} S_{\alpha \beta} S_{\alpha \beta}}
+
+where :math:`S_{\alpha \beta}` is the rate-of-strain tensor for dimensions :math:`\alpha` and :math:`\beta`, defined as sums of velocity gradients:
+
+.. math:: S_{\alpha \beta} = \frac{1}{2} \left( \frac{\partial u_{\beta}}{\partial x_{\alpha}} + \frac{\partial u_{\alpha}}{\partial x_{\beta}}\right).
+
+To avoid needing to calculate velocity gradients non-locally using grid stencils, the rate-of-strain tensors can alternatively be calculated from momentum flux tensors [Boyd2006]_:
+
+.. math:: S_{\alpha \beta} = -\frac{3}{2 \tau \rho \Delta t} \left(\Pi_{\alpha \beta} - \Pi^{eq}_{\alpha \beta} \right) = -\frac{3}{2 \tau \rho \Delta t} \sum_i \left(f_i - f_i^{eq}\right) e_{i,\alpha} e_{I,\beta}
+
+which can be calculated locally at each grid point from its distribution functions. (Similar expressions are available for collisions other than BGK.) This expression is implicit with :math:`\tau` - the property being determined - and therefore the previously calculated value of :math:`\tau` for the given grid point can be used to calculate the rate-of-strain tensor. The resulting shear rate :math:`\dot{\gamma}` is then used in the selected rheological model (relationship between viscosity and shear rate) to calculate new values of :math:`\tau`: convergence is normally obtained for steady flow systems within a small number of timesteps.
+
+Forcing terms
+~~~~~~~~~~~~~
+
+Forces acting on a fluid can be applied during collisions by modifying the velocity used to calculate local equilibrium distribution functions :math:`f_i^{eq}` and/or adding a forcing term :math:`F_i \Delta t` to the collision operator.
+
+A simple scheme to apply forces to a fluid was devised for Shan-Chen pseudopotential interactions [Martys1996]_, which modifies the velocity used in local equilibrium distribution functions for collisions to the following value:
+
+.. math :: \mathbf{v} = \mathbf{u} + \frac{\tau \mathbf{F}}{\rho}
+
+The Equal Difference Method (EDM) [Kupershtokh2006]_ defines a forcing term as a difference in local equilibrium distribution functions
+
+.. math :: F_i = f_i^{eq} \left(\rho, \mathbf{u} + \frac{\mathbf{F} \Delta t}{\rho} \right) - f_i^{eq} \left(\rho, \mathbf{u}\right),
+
+which does not require adjusting the velocity used in local equilibrium distribution functions for collisions.
+
+The Guo forcing term [Guo2002]_ is derived to give correct application of forces when Chapman-Enskog multi-scaling is applied (shown here for BGK collisions):
+
+.. math :: F_i = \left(1 - \frac{1}{2 \tau} \right) w_i \left[\frac{\mathbf{e}_i - \mathbf{v}}{c_s^2} + \frac{\left(\mathbf{e}_i \cdot \mathbf{v}\right)}{c_s^4} \mathbf{e}_i \right] \cdot \mathbf{F},
+
+while a similar forcing term was derived by He *et al.* [He1998]_:
+
+.. math :: F_i = \left(1 - \frac{1}{2 \tau} \right) \frac{f_i^{eq} \left(\rho, \mathbf{v} \right)}{\rho c_s^2} \left(\mathbf{e}_i - \mathbf{v}\right) \cdot \mathbf{F}.
+
+Both of these forcing terms require an adjusted velocity for the local equilibrium distribution functions in collisions and the terms themselves: 
+
+.. math :: \mathbf{v} = \mathbf{u} + \frac{\mathbf{F}}{2 \rho}.
+
+Alternatives exist for other collision operators, including moment-transformed terms for MRT and CLBE schemes.
+
+Multiple fluids and phases
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Multiple fluids and phases can be modelled in LBE by either calculating interaction forces applied to the fluids or modifying the local equilibrium distribution function used in collisions to incorporate interactions. Different algorithms for calculating interactions can be applied to obtain particular phenomena: no single correct method exists to do this.
+
+.. _ShanChen:
+
+Shan-Chen pseudopotential method
+--------------------------------
+
+The Shan-Chen pseudopotential method [Shan1993]_ of applying mesoscale fluid interactions is based on calculating forces that depend on gradients of a pseudopotential :math:`\psi`, generally expressed as a function of density and temperature. This method can be applied either to a single fluid or to multiple fluids, each fluid existing in its own lattice and colliding/propagating on it.
+
+For a one-fluid system, the interaction force acting on the fluid can be expressed by:
+
+.. math :: \mathbf{F} \left(\mathbf{x}\right) = -\psi \left(\mathbf{x}\right) g \sum_i w_i \psi \left(\mathbf{x} + \mathbf{e}_i \Delta t \right) \mathbf{e}_i
+
+with the gradient of the pseudopotential approximated here (rather well, as it happens) by a stencil using pseudopotentials at all neighbouring grid points. Any of the above methods for applying forces can be used, although the standard approach is the simple Martys-Chen method of adjusting the velocity for the local equilibrium distribution function :math:`f_i^{eq}` used in the collision operator [Martys1996]_.
+
+The above interaction force results in the following equation of state:
+
+.. math :: p = \rho c_s^2 + \frac{1}{2} g c_s^2 \psi^2
+   :label: ShanChenEOS
+
+where the pseudopotential and the interaction strength :math:`g` control the  pressure contributions that deviate from standard lattice fluid behaviour. A rearrangement of :eq:`ShanChenEOS` to give :math:`\psi` as a function of pressure :math:`p` can be used to impose a particular equation of state [Yuan2006]_. 
+
+The interaction force can be extended to multiple fluids (shown here acting on fluid :math:`a`) with individual pseudopotentials :math:`\psi^a` and interaction parameters between pairs of fluids :math:`g_{ab}`:
+
+.. math :: \mathbf{F}^{a} \left(\mathbf{x}\right) = -\psi^a \left(\mathbf{x}\right) \sum_b g_{ab} \sum_i w_i \psi^b \left(\mathbf{x} + \mathbf{e}_i \Delta t \right) \mathbf{e}_i,
+
+while similar interaction forces can be used for surface wetting, substituting :math:`\psi^b` with a switching function to indicate existence or absence of solid sites. For greater accuracy around the critical point for vapour-liquid systems, the interaction force can also be made dependent on gradients of the square of the pseudopotential [Kupershtokh2009]_ without affecting the overall equation of state.
+
+This method is generally useful, particularly if a particular equation of state is required and/or separation kinetics are important for a given simulation, although it can suffer from overly large microcurrents (spurious velocities originating at phase or fluid interfaces) and the interfacial tension is an *emergent* property (i.e. it cannot be set directly from the available parameters).
+
+.. _Lishchuk:
+
+Lishchuk continuum-based chromodynamic method
+---------------------------------------------
+
+If the separation kinetics between multiple fluids are not required and the hydrodynamic behaviour is more important, *chromodynamic* models can be applied instead. One such example is the Lishchuk algorithm [Lishchuk2003]_, which applies interfacial stress between pairs of fluids at a continuum level. We start with the definition of a phase index between fluids :math:`a` and :math:`b`:
+
+.. math :: \rho_{ab}^{N} = \frac{\rho^a - \rho^b}{\rho^a + \rho^b}
+
+which will equal +1 for pure fluid :math:`a` and -1 for pure fluid :math:`b`. Spatial gradients of this phase index can be calculated using stencils based on surrounding lattice points, e.g.
+
+.. math :: c_s^2 \nabla \rho_{ab}^{N} \left(\mathbf{x}\right) \approx \sum_i w_i \rho_{ab}^{N} \left(\mathbf{x} + \mathbf{e}_i \Delta t \right) \mathbf{e}_i.
+
+Normalising the phase index spatial gradient to a unit vector gives the interfacial normal between the two fluids :math:`\widehat{n}_{ab}`. The local curvature at that interface :math:`K_{ab}` is obtained from a surface differential of :math:`\widehat{n}_{ab}`. The interfacial force acting between the two fluids can then be calculated using the curvature and phase index gradient [#]_:
+
+.. math :: \mathbf{F}^{ab} = \frac{1}{2} g_{ab} K_{ab} \nabla \rho_{ab}^{N}.
+
+where the parameter :math:`g_{ab}` is directly related to the interfacial tension between the fluids :math:`\sigma_{ab}`. To apply this interfacial force, the individual fluid distribution functions are combined into an 'achromatic' distribution function: 
+
+.. math :: f_i = f_i^a + f_i^b
+
+and collided along with the sum of all pairwise interfacial forces, normally applied using the Guo forcing term [Guo2002]_ for greatest accuracy. The fluids are then segregated by distributing them in appropriate directions along the interfacial normals to produce separate distribution functions for each fluid, normally using the following segregation formula:
+
+.. math :: f_i^{a} \left(\mathbf{x}, t^{+}\right) = \frac{\rho^{a} \left(\mathbf{x}\right)}{\rho \left(\mathbf{x}\right)} f_i \left(\mathbf{x}, t^{+}\right) + \beta w_i \frac{\rho^a \left(\mathbf{x}\right) \rho^b \left(\mathbf{x}\right)}{\rho^2 \left(\mathbf{x}\right)} \mathbf{e}_i \cdot \widehat{n}_{ab} \left(\mathbf{x}\right),
+
+where :math:`\beta` is a segregation parameter which results in a diffuse interface between the two fluids but reduces non-physical effects such as pinning of drops to the lattice, spatial anisotropy in interfacial tension and spurious microcurrents. 
+
+The above method can be extended to more than two fluids, calculating phase indices and forces and extending the segregation formula to include terms for all possible pairs of fluids. Lattice points with three or more fluids present can make it difficult to accurately calculate the interfacial curvatures, but there are alternate methods to calculate forces acting on fluids or apply forcing directly to fluids without calculating curvatures. A variant also exists that uses distribution functions at a lattice point directly to calculate approximate phase index gradients, which are accurate enough to find interfacial normals.
+
+Free-energy LBE methods
+-----------------------
+
+To provide better thermodynamic consistency at the continuum and give direct control of interfacial tension between phases or fluids, *free energy lattice Boltzmann* methods can be used [Swift1995]_. This approach defines a Landau free energy density function to describe the energy penalty in building density gradients (dependent on interfacial tension) and the bulk free energy density. Its derivative with respect to density gives the chemical potential, while the equation of state is related to the bulk free energy density.
+
+The resulting pressure tensor requires modification of the local equilibrium distribution function :eq:`LocalEquil` to the following form:
+
+.. math :: f_i^{eq} \left(\rho, \mathbf{u}\right) &=& \rho w_i^{00} + w_i \left[ \rho \left(\mathbf{e}_i \cdot \mathbf{u} \right) + \frac{3}{2} \rho \left(\mathbf{e}_i \cdot \mathbf{u} \right)^2 - \frac{1}{2} \rho u^2 + f \left(\lambda, \mathbf{e}_i, \nabla \rho \right) \right] \\ &+& w_i^{p} P_0 - w_i^{t} \kappa \nabla^2 \rho + \kappa \sum_{\alpha,\beta} w_i^{\alpha \beta} \partial_{\alpha} \rho \partial_{\beta} \rho,
+
+where :math:`P_0` is the bulk pressure of the fluid and :math:`\lambda` is a viscosity-dependent Galilean invariance coefficient, both of which depend on the fluid equation of state, :math:`\kappa` is the interfacial tension, :math:`f` is a function to restore Galilean invariance, and :math:`w_i`, :math:`w_i^{00}`, :math:`w_i^p`, :math:`w_i^t` and :math:`w_i^{\alpha \beta}` are lattice-dependent parameters. Many of the terms in this modified local equilibrium distribution function require first and second order gradients of density, which can be calculated using stencils designed to minimise spurious microcurrents [Pooley2008]_. 
+
+To extend this approach to two fluids, a second distribution function :math:`g_i` is defined to represent the fluid concentration between fluids:
+
+.. math :: \phi = \frac{\rho^a - \rho^b}{\rho^a + \rho^b} = \sum_i g_i
+
+while the original distribution function is used for the total density of both fluids, :math:`\rho = \rho^a + \rho^b`. The local equilibrium for the fluid density is adjusted to include additional gradients in concentration for interfacial tension terms, while a similar function is defined for the concentration distribution function:
+
+.. math :: g_i^{eq} \left(\phi, \mathbf{u}\right) = \phi w_i^{00} + w_i \left[ \phi \left(\mathbf{e}_i \cdot \mathbf{u} \right) + \frac{3}{2} \phi \left(\mathbf{e}_i \cdot \mathbf{u} \right)^2 - \frac{1}{2} \phi u^2 \right] + w_i^{p} \Gamma \mu
+
+where :math:`\Gamma` is a mobility parameter and :math:`\mu` is the chemical potential between the two fluids, defined as a function of concentration. The mobility between the two fluid species is dependent on both :math:`\Gamma` and the relaxation time for collisions of the concentration distribution function :math:`\tau_{\phi}`, while the surface tension and interfacial width are related to both :math:`\kappa` and the selected chemical potential function.
+
+Surface wetting can be added by including an additional free energy density, defined as a function of fluid density (and concentration) that can control contact angles, and imposing particular density (concentration) gradients at lattice sites next to solid boundaries [Briant2002]_.
+
+Solutes and heat fields
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Diffusion of miscible solutes and heat transfers can be modelled in LBE using a similar approach to multiple fluids: each solute or temperature field can be represented by its own distribution function with its governing equation expressed in a similar fashion to fluids, i.e.
+
+.. math:: h_i \left(\mathbf{x}+\mathbf{e}_i \Delta t, t + \Delta t\right) - h_i \left(\mathbf{x}, t\right) = C_i
+
+where :math:`C_i` is the collision operator for the solute or temperature field, and the sum of this distribution function over all lattice links is equal to the solute concentration or temperature. In these cases, the relaxation time :math:`\tau` represents the diffusivity of a solute or the thermal diffusivity instead of the kinematic viscosity [#]_.
+
+The local equilibrium distribution functions used for diffusive processes are often simpler approximations than those used for fluids, truncating to linear velocity terms:
+
+.. math:: h_i^{eq} \left(C, \mathbf{u}\right) = C w_i \left[1 + 3 \left(\mathbf{e}_i \cdot \mathbf{u} \right) \right],
+
+although because the hypothetical momentum :math:`\sum_i h_i \mathbf{e}_i` is not a physical quantity, the *fluid* velocity is used. This has the effect of coupling the motion of solutes and/or heat with fluid flow.
+
+In the case of using a temperature field, convective effects require additional temperature-dependent interaction forces for the fluid(s). These can be applied either by using a fluid interaction model (e.g. Shan-Chen or free-energy LBE) with a equation of state that includes a temperature dependence, or by applying additional buoyancy forces with the Boussinesq approximation.
+
+Boundary conditions
+~~~~~~~~~~~~~~~~~~~
+
+Any grid point in a LBE simulation can be identified as one where a boundary condition is applied. To apply a boundary condition at a grid point, the distribution functions re-entering the main simulation domain need to be determined, based on known distribution function values and the required conditions (e.g. fluid density or velocity).
+
+*Periodic boundary conditions* are the simplest as these can be implemented either by copying distribution functions into a buffer of grid points around the simulation grid or by using modulo functions for the positions of neighbouring grid points during the propagation step. *Blank sites* (e.g. inside stationary solid objects) can be implemented by zeroing all distribution function values and not applying collisions at those grid points.
+
+One useful type of boundary condition is *bounceback*, where the distribution functions entering a boundary grid point are reflected back into the simulation domain. This condition provides a no-slip (zero fluid velocity) condition at a boundary lying halfway between the boundary point and the nearest fluid-filled grid point. The *on-grid* variant reverses the distribution functions at each boundary point :math:`\mathbf{x}_w` after propagation or before collisions, i.e. for :math:`\mathbf{e}_j = -\mathbf{e}_i`
+
+.. math :: f_i \left(\mathbf{x}_w, t \right) = f_j \left(\mathbf{x}_w, t \right)
+
+which is a first-order approximation with its error proportional to the lattice spacing :math:`\Delta x`. The *mid-grid* bounceback condition assigns post-collisional distribution functions to the boundary point from neighbouring ones, i.e.
+
+.. math :: f_i \left(\mathbf{x}_w, t^{+} \right) = f_j \left(\mathbf{x}_w+\mathbf{e}_i \Delta t, t^{+} \right)
+
+and is a second-order approximation with its error proportional to the square of the lattice spacing. Both types can be applied at *any* lattice point and used to represent obstacles in the path of fluid flow and/or porous media.
+ 
+A free *outflow* boundary condition can be obtained using a Neumann (zero gradient) boundary condition to find post-collisional distribution functions for links pointing back into the simulation domain. A first-order approximation uses neighbouring grid points, i.e.
+
+.. math :: f_i \left(\mathbf{x}_w, t^{+}\right) = f_i \left(\mathbf{x}_w + \Delta x, t^{+}\right)
+
+while a second-order approximation also uses next-neighbour grid points, i.e.
+
+.. math :: f_i \left(\mathbf{x}_w, t^{+}\right) = 2 f_i \left(\mathbf{x}_w + \Delta x, t^{+}\right) - f_i \left(\mathbf{x}_w + 2 \Delta x, t^{+}\right)
+
+Constant velocity and/or density boundary conditions can be achieved using a variety of schemes to determine missing distribution functions from known values. For two-dimensional edges or three-dimensional planar surfaces along the outside of a simulation grid, zeroth and first order moments of the distribution functions at a boundary point define the fluid density and momentum, whose values can be found by eliminating the missing distribution functions in these expressions [#]_. 
+
+The Zou-He [Zou1997]_ boundary scheme makes use of non-equilibrium bounceback to determine unknown distribution functions:
+
+.. math :: f_i \left(\mathbf{x}_w, t\right) - f_i^{eq} \left(\rho_w, \mathbf{u}_w\right) = f_j \left(\mathbf{x}_w, t\right) - f_j^{eq} \left(\rho_w, \mathbf{u}_w\right)
+
+which can be rearranged to find the unknown distribution function from the known value and the conditions at the boundary point, the fluid density :math:`\rho_w` and velocity :math:`\mathbf{u}_w`. This condition can either be applied for all unknown distribution functions or used for one unknown along with the expressions for fluid density and momentum to find the others.
+
+The Inamuro [Inamuro1995]_ boundary scheme substitutes the unknown distribution functions with local equilibrium values:
+
+.. math :: f_i \left(\mathbf{x}_w, t\right) = f_i^{eq} \left(\rho^{\prime}, \mathbf{u}_w + \mathbf{u}_s\right)
+
+that use an adjusted density :math:`\rho^{\prime}` and an additional slip velocity :math:`\mathbf{u}_s`. The values of :math:`\rho^{\prime}` and :math:`\mathbf{u}_s` can be found by putting these substituted distribution functions into the expressions for fluid density and momentum at the boundary point.
+
+The regularised [Latt2008]_ boundary scheme replaces *all* distribution functions at the boundary point with newly calculated values from local equilibrium values plus a contribution obtained from the non-equilibrium momentum flux tensor:
+
+.. math :: f_i \left(\mathbf{x}_w, t\right) \approx f_i^{eq} \left(\rho_w, \mathbf{u}_w\right) + \frac{w_i}{2 c_s^2} \left(\mathbf{e}_i \mathbf{e}_i - c_s^2 \mathbf{I}\right) : \left(\mathbf{\Pi} - \mathbf{\Pi}^{eq}\right).
+
+The non-equilibrium momentum flux tensor can be obtained from distribution functions using the following expression:
+
+.. math :: \Pi_{\alpha \beta} - \Pi^{eq}_{\alpha \beta} = \left(\sum_i f_i e_{i,\alpha} e_{i,\beta}\right) - \rho u_{\alpha} u_{\beta} - \rho c_s^2 \delta_{\alpha \beta}
+
+with unknown distribution functions estimated using non-equilibrium bounceback (similar to Zou-He).
+
+.. rubric:: Footnotes
+
+.. [#] Rather than using the phase index gradient directly, it can be calculated from the densities of fluids, the interfacial normal and the parameter used for segregation: :math:`\nabla \rho_{ab}^{N} = \frac{4 \beta \rho^a \rho^b}{\rho^3} \widehat{n}_{ab}`. This approach is particularly useful when applying variants of this algorithm that cannot obtain accurate values of the gradient directly, e.g. the local form.
+
+.. [#] Kinematic viscosity (ratio of dynamic viscosity and density, :math:`\nu = \frac{\mu}{\rho}` is sometimes referred to as 'momentum diffusivity', while the thermal diffusivity is related to thermal conductivity :math:`\kappa` and specific heat capacity :math:`c_p`, :math:`\alpha = \frac{\kappa}{\rho c_p}`. All three diffusivities have the same units of :math:`\frac{\left(\Delta x\right)^2}{\Delta t}`.
+
+.. [#] Corners and three-dimensional edges need both densities and velocities to be specified as well as algebraic tricks (e.g. tangential corrections) to obtain more distribution functions than available data. Distribution functions for 'buried' links never re-enter the simulation grid but still contribute to the boundary point's fluid density and momentum.
+
+.. rubric:: References
+
+.. [Ginzburg2008] I Ginzburg, F Verhaeghe and D d'Humières, Two-relaxation-time lattice Boltzmann scheme: About parameterization, velocity, pressure and mixed boundary conditions, *Communications in Computational Physics*, **3**, 427-478, 2008.
+
+.. [Lallemand2000] P Lallemand and LS Luo, Theory of the lattice Boltzmann method: Dispersion, dissipation, isotropy, Galilean invariance, and stability, *Physical Review E*, **61**, 6546-6562, 2000, doi: 10.1103/PhysRevE.61.6546.
+
+.. [Geier2006] M Geier, A Greiner and JG Korvink, Cascaded digital lattice Boltzmann automata for high Reynolds number flow, *Physical Review E*, **73**, 066705, 2006, doi: 10.1103/PhysRevE.73.066705.
+
+.. [Boyd2006] J Boyd, J Buick and S Green, A second-order accurate lattice Boltzmann non-Newtonian flow model, *Journal of Physics A*, **39**, 14241–14247, 2006, doi: 10.1088/0305-4470/39/46/001.
+
+.. [Martys1996] NS Martys and H Chen, Simulation of multicomponent fluids in complex three-dimensional geometries by the lattice Boltzmann Method, *Physical Review E*, **53**, 743-750, 1996, doi: 10.1103/PhysRevE.53.743.
+
+.. [Kupershtokh2006] AL Kupershtokh and DA Medvedev, Lattice Boltzmann Equation method in electrohydrodynamic problems, *Journal of Electrostatics*, **64**, 581-585, 2006, doi: 10.1016/j.elstat.2005.10.012.
+
+.. [Guo2002] Z Guo, C Zheng and B Shi, Discrete lattice effects on the forcing term in the lattice Boltzmann method, *Physical Review E*, **65**, 046308, 2002, doi: 10.1103/PhysRevE.65.046308.
+
+.. [He1998] X He, X Shan and GD Doolen, Discrete Boltzmann equation model for nonideal gases, *Physical Review E*, **57**, R13-R16, 1998, doi: 10.1103/PhysRevE.57.R13.
+
+.. [Shan1993] X Shan and H Chen, Lattice Boltzmann model for simulating flows with multiple phases and components, *Physical Review E*, **47**, 1815-1819, 1993, doi: 10.1103/PhysRevE.47.1815.
+
+.. [Yuan2006] P Yuan and L Schaefer, Equations of state in a lattice Boltzmann model, *Physics of Fluids*, **18**, 042101, 2006, doi: 10.1063/1.2187070.
+
+.. [Kupershtokh2009] AL Kupershtokh, DA Medvedev and DI Karpov, On equations of state in a lattice Boltzmann method, *Computers & Mathematics with Applications*, **58**, 965-974, 2009, doi: 10.1016/j.camwa.2009.02.024.
+
+.. [Lishchuk2003] SV Lishchuk, CM Care and I Halliday, Lattice Boltzmann algorithm for surface tension with greatly reduced microcurrents, *Physical Review E*, **67**, 036701, 2003, doi: 10.1103/PhysRevE.67.036701.
+
+.. [Swift1995] MR Swift, WR Osborn and JM Yeomans, Lattice Boltzmann simulation of nonideal fluids, *Physical Review Letters*, **75**, 830-833, 1995, doi: 10.1103/PhysRevLett.75.830.
+
+.. [Pooley2008] CM Pooley and K Furtado, Eliminating spurious velocities in the free-energy lattice Boltzmann method, *Physical Review E*, **77**, 046702, 2008, doi: 10.1103/PhysRevE.77.046702.
+
+.. [Briant2002] AJ Briant, P Papatzacos and JM Yeomans, Lattice Boltzmann simulations of contact line motion in a liquid-gas system, *Philosophical Transactions of the Royal Society of London A: Mathematical, Physical and Engineering Sciences*, **360**, 485-495, 2002, doi: 10.1098/rsta.2001.0943.
+
+.. [Zou1997] Q Zou and X He, On pressure and velocity boundary conditions for the lattice Boltzmann BGK model, *Physics of Fluids*, **9**, 1591-1598, 1997, doi: 10.1063/1.869307.
+
+.. [Inamuro1995] T Inamuro, M Yoshino and F Ogino, A non-slip boundary condition for lattice Boltzmann simulations, *Physics of Fluids*, **7**, 2928-2930, 1995, doi: 10.1063/1.868766.
+
+.. [Latt2008] J Latt, B Chopard, O Malaspinas, M Deville and A Michler, Straight velocity boundaries in the lattice Boltzmann method, *Physical Review E*, **77**, 056703, 2008, doi: 10.1103/PhysRevE.77.056703.
+

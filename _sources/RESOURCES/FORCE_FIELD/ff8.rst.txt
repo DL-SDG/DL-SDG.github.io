@@ -1,0 +1,37 @@
+.. Force field Introduction - nonbonded terms 
+.. _Header_ff8:
+
+********************
+Non-bonded functions
+********************
+
+While the bonded components mainly resposible to model the molecular structures, the inter-molecular functions are mainly responsible to model the overall behaviour of the system model such as densities, molar volumes, heats of vapourisation, etc.
+
+Non-bonded functions are mainly composed of two components: the short-ranged van der Waals (vdw) interactions and the long-ranged electrostatic interactions. These energy components are calculated based on interactions between pairs of atoms and the functions depend only on the interatomic distance.
+
+.. Note:: 
+   For atoms within a molecule, non-bonded interactions will apply on the 1-4 atoms (atom pairs that are seprated by three successive bonds) onwards. 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Electrostatic interactions**
+
+The Coulombic functions are usually used.
+
+.. image:: ../../image/ff5_4.png
+   :scale: 65%
+   :align: center
+   :alt: Coulombic electrostatic
+
+As will see later in the page relates to cutoff distances, special methods would be needed to more accurately to sum them up.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**van der Waals interactions**
+
+There are many types of functional forms, the commonest are as follows:
+
+As you can see, the functions consist of two components: positive terms that describe the electron repulsion due to the Pauli exclusion principle and negative dispersive terms due to electron cloud fluctuations. 
+
+
+:ref:`^ GO TO TOP ^<Header_ff8>` 

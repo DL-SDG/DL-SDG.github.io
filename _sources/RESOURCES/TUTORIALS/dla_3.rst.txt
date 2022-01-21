@@ -1,0 +1,62 @@
+.. DL_ANALYSER Control file 
+.. _Header_dla_3:
+
+.. |br| raw:: html
+
+   <br />
+
+******************
+The *control* file
+******************
+
+This page briefly describes the features of DL_ANALYSER *control* file. It is the master control file where you can decide how analysis can be carried out. 
+
+The control file is the main interaction point for users to specify what and how to analyse the configuration files specified in the *input* file.
+
+By default, the *control* file is named as *dl_analyser.control* located in the *workspace/* folder.
+
+:TIP:
+   You can change the *control* filename or even create different *control* files for different needs. Make sure the *dl_a_path* is appropriately set to ensure correct *control* file is used.
+
+Below shows the content summary of a typical *control* file
+
+.. literalinclude:: dl_analyser.control
+
+All available analysis options are listed in the file and relevant analysis types are grouped into different *Sections*.
+For example, the *Dynamic Analysis Section*, *Structural Analysis Section*, *Trajectory Production Section*, etc.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Analysis Options**
+
+All analysis options take some forms of input parameters. The general characteristics of analysis options are as follows:
+
+(1) Each analysis option is provided with a brief descriptions including the available choices of parameters.
+
+(2) All analysis options include a switch which can be either off (0) or on (1). Some options require additional parameters to carry out the analysis, which can straddle across two lines.
+
+(3) All analysis will be carried out according to the conditions set in the *Atom Range Definition Section*.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Analysis Sections**
+
+General characteristics of *Sections*:
+
+(1) Each *Section* comes with a master switch. If this swtich is turned off (0), then the whole *Section* will be deactivated.
+
+(2) Each *Section* comes with its own output file to which the analysis results are written out. 
+
+(3) The *Trajectory Production Section* is a stand-alone *Section* that do not interact with the rest of the *Sections*.
+
+(4) All analysis *Sections* carry out analysis according to the conditions set in the *Atom Range Definition Section*.
+
+
+.. Warning::
+   No check will be made if more than two *Sections* use the same output file. Be sure to use different output filenames for each *Section*.
+
+.. Warning:: 
+   Please do not just turn on every analysis options. Depending on the systems, DL_ANALYSER can produce an error or non-sensical results. Think what you want to get out and switch on (and off) the options accordingly.
+
+
+:ref:`^ GO TO TOP ^<Header_dla_3>`

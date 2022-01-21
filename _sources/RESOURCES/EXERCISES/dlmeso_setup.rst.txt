@@ -1,0 +1,103 @@
+.. _dlmeso_setup:
+
+Setting up DL_MESO
+==================
+
+Summary
+^^^^^^^
+
+Before carrying out the practical exercises, you will need to prepare your computer by installing some packages (e.g. compilers, visualisation tools), download and compile DL_MESO [Seaton2013]_. The following presumes you are an academic researcher and can therefore register for an Academic Licence for DL_MESO. (If this is not the case, please get in touch with `Michael Seaton <michael.seaton@stfc.ac.uk>`_ to work out options for gaining access.)
+
+Prerequisites for DL_MESO
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In order to compile DL_MESO's codes and associated utilities, you will need at least the following installed on your computer:
+
+* A Fortran 2003 compiler (e.g. gfortran from the GCC suite)
+* A C++ compiler (e.g. g++ from the GCC suite)
+* GNU Make (usually already installed in Linux and macOS)
+
+Optionally, you can include an installed instance of MPI (e.g. Open-MPI) which includes compiler wrappers to use MPI libraries with DL_MESO's codes to speed up your calculations. An instance of the Java Runtime Environment (JRE) is also needed to use the GUI supplied with DL_MESO.
+
+All of the above can be installed using a Linux package manager - available via Windows Linux Subsystem if you are using Windows 10 - or either MacPorts or HomeBrew on Macs. For instance, if you are using Ubuntu, running 
+
+.. code-block:: bash
+
+  sudo apt-get install build-essential
+
+in a terminal window should install the GCC suite, although you may also need to install gfortran separately.
+
+Obtaining DL_MESO
+^^^^^^^^^^^^^^^^^
+
+You will first need to register and download DL_MESO to obtain its source code. To do this, visit `DL_MESO's website <www.ccp5.ac.uk/DL_MESO>`_, follow the link to `Registering for the DL_MESO package <https://www.scd.stfc.ac.uk/Pages/DL_MESO-register.aspx>`_ and click 'REGISTER NOW' to go to DL_MESO's Registration Form. Once you have completed and submitted the Registration Form, you should receive an automated email with a link to DL_MESO's source code, a password to decrypt it on unpacking and instructions on how to do so. 
+
+Compiling DL_MESO
+^^^^^^^^^^^^^^^^^
+
+There are two major codes to compile (DL_MESO_LBE and DL_MESO_DPD) and a number of utilities.
+
+To compile DL_MESO_LBE with OpenMP multithreading and reasonable optimisation, go into the *dl_meso/WORK* directory in a terminal window and type one of the following commands:
+
+.. code-block:: bash
+
+   c++ -O3 -openmp ../LBE/slbe.cpp -o lbe.exe
+   mpicxx -O3 -openmp ../LBE/plbe.cpp -o lbe.exe
+
+substituting ``c++`` with your C++ compiler (e.g. ``g++``), ``mpicxx`` with the C++ compiler wrapped with MPI [#]_, and ``-openmp`` with the compiler flag needed to invoke OpenMP (e.g. ``-fopenmp`` for g++). The first command compiles the serial (single core) version of DL_MESO_LBE, while the second produces the parallel (multiple core) version. In both cases, the resulting executable will be *lbe.exe*.
+
+To compile DL_MESO_DPD, you will need to use a makefile to compile several Fortran modules and link them together as an executable. To do this, the *dl_meso/DPD/makefiles* directory has Makefiles available with and without MPI, with and without OpenMP. Choose the version you wish to compile and copy the required makefile into the *dl_meso/WORK* directory, renaming it as *Makefile*. This can then be invoked while in the *dl_meso/WORK* directory using the command:
+
+.. code-block:: bash
+
+   make
+
+to produce the executable *dpd.exe*. Note that these makefiles assume you are using ``gfortran``: if you want to use a different compiler, open the makefile in a text editor and change the command in the line starting with ``FC=``.
+ 
+To compile the utilities, there is another makefile available in the *dl_meso/WORK* directory, which can be invoked with the command: 
+
+.. code-block:: bash
+
+   make -f Makefile-utils
+
+which again assumes use of ``gfortran`` and ``g++`` as compilers. (These can be modified in the lines starting with ``FC=`` and ``CC=``.)
+
+Once you have compiled everything, you can delete all the module (``rm *.mod``) and object (``rm *.o``) files.
+
+Setting up visualisation tools
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To visualise DPD trajectories, you can either install `VMD <http://www.ks.uiuc.edu/Research/vmd/>`_ or `OVITO <http://www.ovito.org>`_ [#]_. Visualising LBE results and some DPD analyses (based on grids) can be carried out using `Paraview <https://www.paraview.org>`_. You will also need a program to plot tabulated data supplied in text files (e.g. Gnuplot, Excel), although one of the supplied Python scripts (see below) can also do this for DPD calculations.
+
+Optional Python scripts
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Some Python3 scripts are available to carry out a simple DPD simulation workflow for one of the practical exercises and plot graphs of simulation outputs. These scripts are optional but very useful and recommended for the DPD exercises.
+
+As well as Python3, the following packages need to be installed using PIP (Python's Package Installer) [#]_:
+
+.. code-block:: bash
+
+   pip install docent
+   pip install tqdm
+   pip install numpy
+   pip install PyQt5
+   pip install matplotlib 
+
+
+The visualisation scripts will also need `Qt5 <https://doc.qt.io/qt-5/gettingstarted.html>`_ to be installed, e.g. ``sudo apt-get install qt5-default`` in Ubuntu.
+
+
+.. rubric:: Footnotes
+
+.. [#] The command shown here is standard for g++ with Open-MPI or MPICH-2, although it may vary for other compilers (e.g. Intel) and/or MPI implementations.
+
+.. [#] At the time of writing (September 2021), only OVITO is currently available as a stable release for Macs since the removal of 32-bit application support in macOS. There are test builds available for macOS Catalina (10.15) and Big Sur (11) of `alpha releases of VMD 1.9.4 <https://www.ks.uiuc.edu/Research/vmd/alpha/>`_, but these are not guaranteed to work: download and install them *at your own risk*!
+
+.. [#] Depending on your installation of Python3 and PIP, you might need to use ``pip3`` instead of ``pip`` in these commands to install the packages.
+
+.. rubric:: Reference
+
+.. [Seaton2013] MA Seaton, RL Anderson, S Metz and W Smith, DL_MESO: highly scalable mesoscale simulations, *Molecular Simulation*, **39**, p. 796-821, 2013, doi: 10.1080/08927022.2013.772297.
+
+

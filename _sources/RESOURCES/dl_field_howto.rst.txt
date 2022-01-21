@@ -11,7 +11,9 @@ This page tells you how to set DL_FIELD up and running.
 
 * `DL_FIELD web site <https://www.ccp5.ac.uk/DL_FIELD>`_ – force field (FF) model set up (version 4.6 and above).
 
-* DL_FIELD User Manual (:download:`PDF<./DOCUMENTS/MAN_DL_FIELD_4.6.pdf>`) - Version 4.6, January 2020.
+* DL_FIELD User Manual (:download:`PDF<./DOCUMENTS/MAN_DL_FIELD_4.7.pdf>`) - Version 4.7, December 2020.
+
+* :doc:`TUTORIALS/dlf_0` - Online learning site, useful for new users.
 
 To be able to use DL_FIELD you first need to register `here <https://www.ccp5.ac.uk/DL_FIELD/registration.shtml>`_. Successful registration will lead to you receiving a .tar.gz file (e.g. dl_f_4.6.tar.gz). Unpack or untar this for example in Linux::
 

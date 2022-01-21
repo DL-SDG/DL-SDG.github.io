@@ -1,0 +1,72 @@
+.. Force field Introduction - potential functions 
+.. _Header_ff5:
+
+*******************
+Potential functions
+*******************
+
+As mentioned earlier, all interaction components are represented by some mathematical functional forms. While the precise functions and their implementations depend on the FF schemes, in general, the force field model or the total energy of the system can be expressed as follows:
+
+*V(total) = V(bonded) + V(cross-terms) + V(nonbonded)*
+
+where
+
+*V(bonded) = V(bond) + V(angle) + V(torsion) + V(improper) + V(UB)* 
+
+*V(cross-terms) = V(bond1, bond2) + V(bond, angle) + etc.*
+
+*V(nonbonded) = V(vdw) + V(coulombic)*
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+Below shows a list of typical functional forms representing a range of interaction components.
+
+(a) Bond interaction, *V(bond)*
+
+.. image:: ../../image/ff5_1.png
+   :scale: 65%
+   :align: center
+   :alt: harmonic bond interaction 
+
+where b :subscript:`0` represents the equilibrium bond length and b is the bond distance.
+
+(b) Angle interaction, *V(angle)*
+
+.. image:: ../../image/ff5_2.png
+   :scale: 65%
+   :align: center
+   :alt: harmonic angle interaction
+
+where :math:`{\theta}`:subscript:`0` represents the equilibrium angle.
+
+(c) Dihedral interaction, *V(torsion)*
+
+.. image:: ../../image/ff5_3.png
+   :scale: 65%
+   :align: center
+   :alt: Fourier cosine
+
+where k is the dihedral constant, or torsion barrier, n is the periodicity and :math:`{\delta}` is the phase shift.
+
+(d) Cross terms, for example bond-angle, *V(bond, angle)*
+
+.. image:: ../../image/ff5_6.png
+   :scale: 65%
+   :align: center
+   :alt: Fourier cosine
+
+(e) Electrostatic, *V(coulombic)*
+
+.. image:: ../../image/ff5_4.png
+   :scale: 65%
+   :align: center
+   :alt: Coulombic electrostatic
+
+(f) Dispersive, *V(vdw)*
+
+.. image:: ../../image/ff5_5.png
+   :scale: 65%
+   :align: center
+   :alt: Coulombic electrostatic
+
+:ref:`^ GO TO TOP ^<Header_ff5>`

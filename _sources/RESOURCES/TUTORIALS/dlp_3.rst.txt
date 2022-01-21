@@ -1,0 +1,73 @@
+.. DL_POLY tutorial.
+.. _Header_dlp_3:
+
+.. |br| raw:: html
+
+   <br />
+
+*************************
+Structures and operations
+*************************
+
+This page illustrates the software's structural aspects and provides a brief summary on how it works.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**File structures**
+
+DL_POLY comes with the following file components:
+
+* DL_POLY program source in the *source/* directory. 
+
+* Makefiles stored in the *build/* directory.
+
+  * These are not required if cmake is used to build the source code for DL_POLY_4 or DL_POLY_5.
+
+* Executable and working directory in the *execute/* directory.
+
+* Utility codes (supplied by users) in the *utility/* directory.
+
+* Test data in the *data/* directory.
+
+* Java GUI source in the *java/* directory.
+
+* DL_POLY user manuals in the *manual/* directory.
+   
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png      
+
+**Operations**
+
+To run DL_POLY, you will need to supply input files to describe the simulation you wish to carry out. These need to be placed inside the directory where you want to run the program, ideally in the same directory as the executable file created during compilation.
+
+The input files for DL_POLY typically include:
+
+* *CONTROL* - simulation controls
+* *FIELD* - contents of simulation (particles, molecules) and interactions
+* *CONFIG* - initial configuration specifying positions etc. at start of simulation
+
+which are described in more detail in :ref:`DL_POLY files <Header_dlp_4>`. Running DL_POLY produces an *OUTPUT* file with running information about the simulation and optionally other files . To enable a simulation restart if the calculation is interrupted, an *REVCON* file with a simulation snapshot and a *REVIVE* file with statistical accumulators and random number generator states are written every so often: renaming *REVCON* as *CONFIG* and *REVIVE* as *REVOLD* allows either a previous calculation to be resumed or a new calculation to start from that state.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Program execution**
+
+The steps below occur when DL_POLY is run:
+
+(1) Read input files and obtain parameters to describe the simulation, required interactions etc.
+
+(2) Read in the *CONFIG* file to obtain the starting configuration, and optionally read in the *REVOLD* file to get the state of a previous simulation.
+
+(3) Run through required number of timesteps, during each one:
+
+   * Advance system by a timestep
+
+   * Calculate any system-wide properties needed for outputs
+
+   * At requested timesteps, write system state to output files, including system trajectory data, tabulated properties and simulation restart files.
+
+(4) Write simulation summaries to output file or screen/standard output, write restart files and close down simulation.
+
+   * If calculation time runs out before simulation is completed, write restart files for last available timestep.
+
+
+:ref:`^ GO TO TOP ^<Header_dlp_3>`

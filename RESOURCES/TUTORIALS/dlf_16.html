@@ -1,0 +1,208 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The Output files &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DL_FIELD control file" href="dlf_5.html" />
+    <link rel="prev" title="The Input Files" href="dlf_11.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlf_5.html" title="DL_FIELD control file"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_11.html" title="The Input Files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD Tutorial</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-output-files">
+<span id="header-dlf-16"></span><h1>The Output files<a class="headerlink" href="#the-output-files" title="Permalink to this headline">¶</a></h1>
+<p>Upon successful in running DL_FIELD, the following files will be produced:</p>
+<ol class="arabic simple">
+<li>Input files for DL_POLY simulations. They are:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>dl_poly.CONFIG - DL_POLY configuration file. For DL_POLY version 4 or below, need to change the filename to <em>CONFIG</em>.</li>
+<li>dl_poly.FIELD - DL_POLY force field file. For DL_POLY version 4 or below, need to change the filename to <em>FIELD</em>.</li>
+<li>dl_poly.CONTROL - DL_POLY control file. It is a generic file that list a number of commonly used directives in DL_POLY. Need to change the filename to <em>CONTROL</em> for DL_POLY version 4 or below.</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>DL_FIELD system structure file, <em>dlf_notation.output</em>.</li>
+</ol>
+<blockquote>
+<div><p>This file is produced if the input file format is in <em>xyz</em> or mol2. The file <em>dlf_notation.output</em> contained detailed chemical information of the system, as well as the connectivities of atoms. Example below shows the system structure of zonisamide, a small drug molecule.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List of ATOM_TYPEs in DL_F Notation</span>
+<span class="n">Atom_index</span>   <span class="n">ATOM_TYPE</span>   <span class="n">imp_flag</span>    <span class="n">neighbour_number</span>   <span class="n">neighbour1</span>  <span class="n">neighbour2</span> <span class="o">...</span>
+<span class="n">MOLECULAR_GROUP</span> <span class="n">XYZ</span>  <span class="n">POTENTIAL</span> <span class="n">cvff</span>
+<span class="mi">1</span>      <span class="n">C6_benzisoxazole</span>                <span class="mi">1</span>  <span class="mi">3</span>      <span class="mi">2</span>      <span class="mi">6</span>     <span class="mi">15</span>
+<span class="mi">2</span>      <span class="n">C5_benzisoxazole</span>                <span class="mi">1</span>  <span class="mi">3</span>      <span class="mi">1</span>      <span class="mi">3</span>     <span class="mi">16</span>
+<span class="mi">3</span>      <span class="n">C4_benzisoxazole</span>                <span class="mi">1</span>  <span class="mi">3</span>      <span class="mi">2</span>      <span class="mi">4</span>     <span class="mi">17</span>
+<span class="mi">4</span>      <span class="n">C3a_benzisoxazole</span>               <span class="mi">1</span>  <span class="mi">3</span>      <span class="mi">3</span>      <span class="mi">5</span>      <span class="mi">7</span>
+<span class="mi">5</span>      <span class="n">C7a_benzisoxazole</span>               <span class="mi">1</span>  <span class="mi">3</span>      <span class="mi">4</span>      <span class="mi">6</span>      <span class="mi">9</span>
+<span class="mi">6</span>      <span class="n">C7_benzisoxazole</span>                <span class="mi">1</span>  <span class="mi">3</span>      <span class="mi">1</span>      <span class="mi">5</span>     <span class="mi">18</span>
+<span class="mi">7</span>      <span class="n">C3_benzisoxazole</span>                <span class="mi">1</span>  <span class="mi">3</span>      <span class="mi">4</span>      <span class="mi">8</span>     <span class="mi">10</span>
+<span class="mi">8</span>      <span class="n">N2_benzisoxazole</span>                <span class="mi">0</span>  <span class="mi">2</span>      <span class="mi">7</span>      <span class="mi">9</span>
+<span class="mi">9</span>      <span class="n">O1_benzisoxazole</span>                <span class="mi">0</span>  <span class="mi">2</span>      <span class="mi">5</span>      <span class="mi">8</span>
+<span class="mi">10</span>     <span class="n">Cs_alkane</span>                       <span class="mi">0</span>  <span class="mi">4</span>      <span class="mi">7</span>     <span class="mi">11</span>     <span class="mi">19</span>     <span class="mi">20</span>
+<span class="mi">11</span>     <span class="n">S_sulphonamide</span>                  <span class="mi">0</span>  <span class="mi">4</span>     <span class="mi">10</span>     <span class="mi">12</span>     <span class="mi">13</span>     <span class="mi">14</span>
+<span class="mi">12</span>     <span class="n">Np_sulphonamide</span>                 <span class="mi">1</span>  <span class="mi">3</span>     <span class="mi">11</span>     <span class="mi">21</span>     <span class="mi">22</span>
+<span class="mi">13</span>     <span class="n">O_sulphonamide</span>                  <span class="mi">0</span>  <span class="mi">1</span>     <span class="mi">11</span>
+<span class="mi">14</span>     <span class="n">O_sulphonamide</span>                  <span class="mi">0</span>  <span class="mi">1</span>     <span class="mi">11</span>
+<span class="mi">15</span>     <span class="n">HC_aromatic</span>                     <span class="mi">0</span>  <span class="mi">1</span>      <span class="mi">1</span>
+<span class="mi">16</span>     <span class="n">HC_aromatic</span>                     <span class="mi">0</span>  <span class="mi">1</span>      <span class="mi">2</span>
+<span class="mi">17</span>     <span class="n">HC_aromatic</span>                     <span class="mi">0</span>  <span class="mi">1</span>      <span class="mi">3</span>
+<span class="mi">18</span>     <span class="n">HC_aromatic</span>                     <span class="mi">0</span>  <span class="mi">1</span>      <span class="mi">6</span>
+<span class="mi">19</span>     <span class="n">HC_alkane</span>                       <span class="mi">0</span>  <span class="mi">1</span>     <span class="mi">10</span>
+<span class="mi">20</span>     <span class="n">HC_alkane</span>                       <span class="mi">0</span>  <span class="mi">1</span>     <span class="mi">10</span>
+<span class="mi">21</span>     <span class="n">HN_sulphonamide</span>                 <span class="mi">0</span>  <span class="mi">1</span>     <span class="mi">12</span>
+<span class="mi">22</span>     <span class="n">HN_sulphonamide</span>                 <span class="mi">0</span>  <span class="mi">1</span>     <span class="mi">12</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>DL_FIELD conversion status file, <em>dl_field.output</em></li>
+</ol>
+<blockquote>
+<div><p>This file reports the conversion status in details, including any warnings. It is separated into several section.</p>
+<blockquote>
+<div><ul>
+<li><p class="first">CONTROL STATUS REPORT. This section shows options that have been selected in the DL_FIELD <em>control</em> file.</p>
+</li>
+<li><p class="first">FORCE FIELD INITIALISATION. This section reports the reading status of the <em>sf</em>, <em>par</em> and <em>udff</em> files. DL_FIELD will pick suitable parameters for the user model and computer memory is allocated to set up model structure databases.</p>
+</li>
+<li><p class="first">CONVERSION STATUS REPORT. This is the main section of <em>dl_field.output</em>, which reports the conversion process of user configuration into suitable FF models for DL_POLY.</p>
+</li>
+<li><p class="first">LINKAGE INFORMATION BETWEEN RESIDUES. This section is especially useful for protein structures in the PDB format. For instance, DL_FIELD determines the linkage information between two neighbouring residues to check for any undiscovered/undesirable bonds between two atoms from different residues.</p>
+<p>Below shows a section of the output data for a protein molecule. Note that the C-N amide linkages are the most common ones but DL_FIELD can also pick up any possible S-S linkages, which may require user’s action whether to delete any thiolate hydrogen for the S-S disulphide linkages.</p>
+</li>
+</ul>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">...</span>
+<span class="n">Link</span> <span class="n">pair</span><span class="p">:</span> <span class="o">-</span><span class="n">thr</span><span class="o">-</span> <span class="p">(</span><span class="mi">3844</span><span class="p">)</span> <span class="ow">and</span> <span class="o">-</span><span class="n">glu</span><span class="o">-</span> <span class="p">(</span><span class="mi">3846</span><span class="p">)</span> <span class="n">of</span> <span class="n">c</span><span class="o">-</span><span class="n">n</span> <span class="n">distance</span><span class="o">=</span><span class="mf">1.331446</span>
+<span class="n">Link</span> <span class="n">pair</span><span class="p">:</span> <span class="o">-</span><span class="n">glu</span><span class="o">-</span> <span class="p">(</span><span class="mi">3859</span><span class="p">)</span> <span class="ow">and</span> <span class="o">-</span><span class="n">cys</span><span class="o">-</span> <span class="p">(</span><span class="mi">3861</span><span class="p">)</span> <span class="n">of</span> <span class="n">c</span><span class="o">-</span><span class="n">n</span> <span class="n">distance</span><span class="o">=</span><span class="mf">1.330719</span>
+<span class="n">Link</span> <span class="n">pair</span><span class="p">:</span> <span class="o">-</span><span class="n">glu</span><span class="o">-</span> <span class="p">(</span><span class="mi">3857</span><span class="p">)</span> <span class="ow">and</span> <span class="o">-</span><span class="n">asp</span><span class="o">-</span> <span class="p">(</span><span class="mi">4011</span><span class="p">)</span> <span class="n">of</span> <span class="n">od1</span><span class="o">-</span><span class="n">oc2</span> <span class="n">distance</span><span class="o">=</span><span class="mf">0.730184</span>
+<span class="ne">Warning</span><span class="p">:</span> <span class="n">od1</span><span class="o">-</span><span class="n">oc2</span> <span class="n">pair</span> <span class="n">may</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">a</span> <span class="n">valid</span> <span class="n">link</span> <span class="k">for</span> <span class="n">protein</span> <span class="n">amino</span> <span class="n">acid</span><span class="o">.</span> <span class="n">It</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">considered</span> <span class="k">as</span> <span class="n">a</span> <span class="n">bond</span><span class="o">.</span>
+<span class="n">Link</span> <span class="n">pair</span><span class="p">:</span> <span class="o">-</span><span class="n">cys</span><span class="o">-</span> <span class="p">(</span><span class="mi">3869</span><span class="p">)</span> <span class="ow">and</span> <span class="o">-</span><span class="n">cys</span><span class="o">-</span> <span class="p">(</span><span class="mi">3871</span><span class="p">)</span> <span class="n">of</span> <span class="n">c</span><span class="o">-</span><span class="n">n</span> <span class="n">distance</span><span class="o">=</span><span class="mf">1.328854</span>
+<span class="n">Link</span> <span class="n">pair</span><span class="p">:</span> <span class="o">-</span><span class="n">cys</span><span class="o">-</span> <span class="p">(</span><span class="mi">3868</span><span class="p">)</span> <span class="ow">and</span> <span class="o">-</span><span class="n">cys</span><span class="o">-</span> <span class="p">(</span><span class="mi">3977</span><span class="p">)</span> <span class="n">of</span> <span class="n">s</span><span class="o">-</span><span class="n">s</span> <span class="n">distance</span><span class="o">=</span><span class="mf">2.025060</span>
+<span class="n">Link</span> <span class="n">pair</span><span class="p">:</span> <span class="o">-</span><span class="n">cys</span><span class="o">-</span> <span class="p">(</span><span class="mi">3879</span><span class="p">)</span> <span class="ow">and</span> <span class="o">-</span><span class="n">hse</span><span class="o">-</span> <span class="p">(</span><span class="mi">3881</span><span class="p">)</span> <span class="n">of</span> <span class="n">c</span><span class="o">-</span><span class="n">n</span> <span class="n">distance</span><span class="o">=</span><span class="mf">1.326833</span>
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><br /></p>
+<p><a class="reference internal" href="#header-dlf-16"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_11.html"
+                        title="previous chapter">The Input Files</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlf_5.html"
+                        title="next chapter">DL_FIELD <em>control</em> file</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlf_5.html" title="DL_FIELD control file"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_11.html" title="The Input Files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+.. DL_MESO Introduction 
+.. _Header_dlm_1:
+
+***************
+What is DL_MESO
+***************
+
+**DL_MESO package**
+
+DL_MESO started in 2003 as a CCP5 flagship project to provide general-purpose software designed to carry out mesoscale modelling. DL_MESO was first released in 2004 (version 1.0). At the time of writing (July 2021), version 2.7 was released in December 2018 with more than 350 registered users.
+
+DL_MESO consists of computer programs that can carry out simulations using various mesoscale modelling methods: a code written in C++ for Lattice Boltzmann Equation (LBE) simulations and a code written in Fortran for Dissipative Particle Dynamics (DPD). Both methods and codes enable modelling of materials at larger length and time scales than those available using molecular dynamics (MD). Other codes, including a graphical user interface, are supplied to prepare simulations and visualise or process their results.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+
+**Lattice Boltzmann Equation (LBE)**
+
+The Lattice Boltzmann Equation (LBE) method uses a statistical mechanics approach for particle motion, looking at the evolution of *distribution functions* that indicate probabilities of finding particles with particular momenta at a given position and time. The number of possible momenta is limited so particles can only exist and move on a regular grid or lattice: even with this limitation in place, the particles still exhibit correct fluid behaviour.
+
+The LBE algorithm consists of two main steps: 
+
+* Collision of particles at lattice sites
+* Propagation (free-streaming) of particles along lattice links to neighbour sites
+
+The collision step can include applications of forces on fluids, such as those arising from intra-fluid and inter-fluid interactions that can be calculated before this step. Boundary conditions can be applied at arbitrary lattice sites to provide no-slip, free-slip or constant fluid velocities or densities.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+
+**DL_MESO_LBE Capabilities**
+
+* Two- and three-dimensional lattice grids (D2Q9, D3Q15, D3Q19, D3Q27).
+
+* Can model multiple compressible or incompressible fluids with diffusion of solutes and/or heat transfer.
+
+* Collision schemes: 
+
+  * BGK single relaxation time
+  * Two Relaxation Time (TRT)
+  * Multiple Relaxation Time (MRT)
+  * Cascaded LBE (CLBE)
+
+* Mesoscopic interactions: 
+
+  * Shan-Chen pseudopotentials
+  * Lishchuk continuum-based models
+  * Swift free-energy models for one/two fluids
+
+* Boundary conditions: 
+
+  * No-slip bounce-back at arbitrary grid points
+  * Fixed velocity/fluid density/solute concentration/temperature at grid extents
+  * Surface wetting available if using Shan-Chen or Swift interactions
+
+* Non-Newtonian (non-constant viscosity) rheological models
+
+* Domain decomposition parallelisation available with MPI
+
+* OpenMP multithreading available
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+
+**Dissipative Particle Dynamics (DPD)**
+
+Dissipative Particle Dynamics (DPD) is broadly similar to molecular dynamics (MD), with particles (or 'beads') interacting predominately via pairwise potentials and forces: the net forces on all particles are calculated and integrated over a small time step to determine their motion. The main difference to MD is the inclusion of two additional pairwise forces - dissipative and random forces - that act in tandem as a momentum-conserving thermostat to control temperature while ensuring correct hydrodynamic behaviour.
+
+The DPD algorithm consists of three main steps, starting with particle positions, velocities and forces at the beginning of a timestep:
+
+* Integrating forces to find new particle positions (Velocity Verlet stage 1)
+* Calculating particle forces (interactions and pairwise thermostat)
+* Updating particle velocities (Velocity Verlet stage 2)
+
+Boundary conditions and barostats to control pressure can be applied during the Velocity Verlet force integration stages.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**DL_MESO_DPD Capabilities**
+
+* 'Standard' (Groot-Warren) DPD, many-body (density-dependent) DPD, Lennard-Jones and Weeks-Chandler-Andersen interactions between particles.
+
+* Pairwise thermostats:
+
+  * DPD with standard Velocity Verlet (VV) force integration, DPD-VV and Shardlow splitting
+  * Lowe-Andersen
+  * Peters
+  * Stoyanov-Groot
+
+* Bond interactions between particles in molecules: stretching, angles, dihedrals
+
+* Electrostatic interactions with Ewald sum or Smooth Particle Mesh Ewald (SPME) and smeared charges
+
+* Boundary conditions: 
+
+  * Periodic
+  * Hard reflecting (specular or bounce-back) surfaces with DPD/WCA wall potentials
+  * Frozen particle walls
+
+* Domain decomposition parallelisation available with MPI
+
+* OpenMP multithreading available
+
+
+:ref:`^ GO TO TOP ^<Header_dlm_1>`

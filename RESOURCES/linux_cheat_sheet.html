@@ -9,17 +9,18 @@
     <title>Linux Cheat Sheet &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tutorial Exercises" href="EXERCISES/Exercises.html" />
+    <link rel="next" title="Simulations" href="SIMULATIONS/Simulations.html" />
     <link rel="prev" title="Text Editors" href="text_editors.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -29,7 +30,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="EXERCISES/Exercises.html" title="Tutorial Exercises"
+          <a href="SIMULATIONS/Simulations.html" title="Simulations"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="text_editors.html" title="Text Editors"
@@ -46,6 +47,7 @@
             
   <div class="section" id="linux-cheat-sheet">
 <h1>Linux Cheat Sheet<a class="headerlink" href="#linux-cheat-sheet" title="Permalink to this headline">¶</a></h1>
+<p>If you are not familiar with the Linux command, below lists some basic commands that will get you moving.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DIRECTORY</span> <span class="n">NAVIGATION</span>
 
 <span class="c1"># To go up one level of the directory tree.  (Change into the parent directory.)</span>
@@ -83,6 +85,9 @@
 
 <span class="c1"># Forcefully remove directory recursively</span>
 <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">directory</span>
+
+<span class="c1"># For careful users: remove file with confirmation</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">i</span> <span class="n">file</span>
 
 <span class="c1"># Copy file1 to file2</span>
 <span class="n">cp</span> <span class="n">file1</span> <span class="n">file2</span>
@@ -238,16 +243,16 @@
 <li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXERCISES/Exercises.html">DL_Software Exercises</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Linux Cheat Sheet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Knowledge Center</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
@@ -255,8 +260,8 @@
   <p class="topless"><a href="text_editors.html"
                         title="previous chapter">Text Editors</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="EXERCISES/Exercises.html"
-                        title="next chapter">Tutorial Exercises</a></p>
+  <p class="topless"><a href="SIMULATIONS/Simulations.html"
+                        title="next chapter">Simulations</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -280,7 +285,7 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="EXERCISES/Exercises.html" title="Tutorial Exercises"
+          <a href="SIMULATIONS/Simulations.html" title="Simulations"
              >next</a> |</li>
         <li class="right" >
           <a href="text_editors.html" title="Text Editors"
@@ -290,7 +295,7 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

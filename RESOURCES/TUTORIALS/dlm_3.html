@@ -1,0 +1,212 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DL_MESO_LBE files &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DL_MESO_LBE utilities" href="dlm_6.html" />
+    <link rel="prev" title="DL_MESO_LBE basics and algorithms" href="dlm_9.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlm_6.html" title="DL_MESO_LBE utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlm_9.html" title="DL_MESO_LBE basics and algorithms"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO Tutorial</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dl-meso-lbe-files">
+<span id="header-dlm-3"></span><h1>DL_MESO_LBE files<a class="headerlink" href="#dl-meso-lbe-files" title="Permalink to this headline">¶</a></h1>
+<p>The LBE code in DL_MESO, DL_MESO_LBE, makes use of various input files to describe the simulation, including its initial state and boundary conditions, and creates output files indicating how the system has evolved over time. A summary description of the files, what they do and how they can be used are given in the diagram below.</p>
+<a class="reference internal image-reference" href="../../_images/dlm_3_1.png"><img alt="../../_images/dlm_3_1.png" class="align-center" src="../../_images/dlm_3_1.png" style="width: 773.6px; height: 374.0px;" /></a>
+<p>It should be noted that not all the input files shown here are required for a DL_MESO_LBE simulation run, while some of the output files are only produced when running DL_MESO_LBE on multiple cores using MPI.</p>
+<p>The internal units used by DL_MESO_LBE are:</p>
+<ul class="simple">
+<li>Lattice-grid spacing <span class="math notranslate nohighlight">\(\Delta x\)</span></li>
+<li>Timestep size <span class="math notranslate nohighlight">\(\Delta t\)</span></li>
+</ul>
+<p>which <a class="reference internal" href="../DOCUMENTS/LBETheory.html#lbe-scale"><span class="std std-ref">can be related</span></a> to the speed of sound and kinematic viscosity of a selected fluid. The latter quantity is also connected to the relaxation time <span class="math notranslate nohighlight">\(\tau\)</span>, which should be chosen to not be too close to <span class="math notranslate nohighlight">\(\tfrac{1}{2}\)</span> to avoid numerical instabilities. The fluid densities are generally free parameters, although these affect the values of distribution functions and are normally kept close to 1 in calculations to maximise precision.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p id="lbin-sys"><strong>lbin.sys</strong></p>
+<p>This file specifies the simulation, in terms of the LBE models in use (including collision and interaction types), the system size, initial conditions, fluid properties at boundary conditions and how long the simulation needs to run. Each line of the <em>lbin.sys</em> file contains a keyword (with underscores between individual words) and a corresponding value, as shown in the following example (an extract from a file for one of DL_MESO’s demonstration cases):</p>
+<p>The first ten lines shown here, from <code class="docutils literal notranslate"><span class="pre">space_dimension</span></code> to <code class="docutils literal notranslate"><span class="pre">domain_boundary_width</span></code>, must be included in the <em>lbin.sys</em> file for <strong>all</strong> DL_MESO_LBE simulations, although the order in which they appear does not matter. This information includes:</p>
+<ul class="simple">
+<li>the number of space dimensions and discrete speeds (lattice links), describing the lattice scheme to be used</li>
+<li>the number of fluids (each modelled on its own lattice)</li>
+<li>the number of solutes (each modelled on its own lattice)</li>
+<li>whether or not a temperature field is to be modelled</li>
+<li>whether or not a phase field is to be modelled (an option currently not in use in DL_MESO_LBE)</li>
+<li>the number of grid points in each spatial direction for the simulation</li>
+<li>the size of the boundary halo of lattice points for core-to-core communications when running in parallel</li>
+</ul>
+<p>Most of the values with the keywords are numbers, but some (e.g. for collision and interaction types) are descriptive words. Which properties need to be specified beyond the basic ones above will depend upon the numbers of fluids, solutes and temperature fields, the type of fluid interactions and the types of boundary conditions required. Some values that need to be specified for all LBE simulations include the relaxation times or frequencies and initial densities for the available fluids.</p>
+<p>It should be noted that if a particular keyword is used more than once, the value from the <strong>last</strong> line with that keyword will be used.</p>
+<p>A full list of the available keywords in <em>lbin.sys</em> and possible values can be found in Chapter 6 of <a class="reference download internal" download="" href="../../_downloads/87dfc081efcc2bdab0e87721e2f051fa/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p id="lbin-spa"><strong>lbin.spa</strong></p>
+<p>This file specifies boundary conditions that need to be applied at specific grid points. The format of the <em>lbin.spa</em> consists of lines, each of which includes the Cartesian (<span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-dimensional) coordinates of a given grid point and a numerical code indicating the boundary condition to be applied, all separated by spaces. The following example is taken from part of an <em>lbin.spa</em> file for one of DL_MESO’s demonstration cases:</p>
+<p>The grid points do not have to be in any numerical order, although the boundary condition for any repeated grid point will be overwritten by DL_MESO_LBE. Any grid point that is not specified in this file is assumed to be a fluid-filled point or, if it lies on the outside of the simulation box, to have a periodic boundary condition (equivalent to a boundary code of 0). All DL_MESO_LBE simulations require a <em>lbin.spa</em> file, even if it only applies periodic boundary conditions (and is therefore empty).</p>
+<p>The boundary condition codes indicate both the type of boundary condition and (in most cases) the direction in which it is applied. With the exception of blank sites and bounce-back boundary conditions that can be applied at any arbitrary grid point, all other boundary conditions are typically applied at planar surfaces, concave edges and concave corners at the outside of the simulation box. The conditions that can be applied at these surfaces, edges and corners include:</p>
+<ul class="simple">
+<li>constant velocity or fluid densities</li>
+<li>constant solute concentrations or zero concentration gradients (in the form of bounce-back)</li>
+<li>constant temperature or zero temperature gradient (in the form of bounce-back)</li>
+</ul>
+<p>The values of the velocities, fluid densities, solute concentrations and temperatures applied at surface, edge and corner boundaries are specified in the <em>lbin.sys</em> file, as are the methods used to apply these boundary conditions (e.g. Zou-He, Inamuro).</p>
+<p>While the <em>lbin.spa</em> file can be created and edited by hand - with the boundary condition codes specified in Chapter 6 of <a class="reference download internal" download="" href="../../_downloads/87dfc081efcc2bdab0e87721e2f051fa/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a> - it is generally easier to use the DL_MESO Java GUI or a script to create this file.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p id="lbin-init"><strong>lbin.init</strong></p>
+<p>This file is used by DL_MESO_LBE to specify the initial conditions for a LBE simulation at specific grid points. Each line in the <em>lbin.init</em> file consists of the Cartesian (<span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-dimensional) coordinates of a given grid point followed by the velocity of the fluids at that grid point (giving <span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-components), the  densities of all fluids, the concentrations of all solvents and the temperature. A short extract from an <em>lbin.init</em> file for one of DL_MESO’s demonstration cases (for a two-fluid system) is given here:</p>
+<p>The <em>lbin.init</em> file is optional since the initial conditions (velocity, fluid densities etc.) across the entire system are specified in the <em>lbin.sys</em> file, but the file can be used to substitute different initial values at selected grid points to represent e.g. suspended fluid drops. It can be created and edited by hand, but it is generally easier to use one of DL_MESO’s utilities (<a class="reference internal" href="dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a>) or a script to create it.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p id="lbout-dump"><strong>lbout.dump</strong></p>
+<p>This binary file is created by DL_MESO_LBE at regular intervals to provide a simulation restart capability. It consists of the distribution functions - the underlying values used for lattice Boltzmann calculations - at each and every point in the simulation grid. The file is created once the simulation is set up (at timestep 0) and at regular intervals, overwriting the previous version of the file each time. The distribution functions can be directly read from the file into memory by DL_MESO_LBE when it is used to restart an interrupted simulation or extend a previously completed one.</p>
+<p>The frequency of writing this file can be specified in the <em>lbin.sys</em> file with the keyword <code class="docutils literal notranslate"><span class="pre">dump_span</span></code>, although a default of 10 000 timesteps is used if this is not specified. The file can be used to restart or resume a previous simulation by including the keyword <code class="docutils literal notranslate"><span class="pre">restart_simulation</span></code> in <em>lbin.sys</em> and assigning a value of 1. This restart or resumption will only work if:</p>
+<ul class="simple">
+<li>the same lattice scheme and numbers of grid points in each direction are used as the previous calculation</li>
+<li>the total number of timesteps specified in the <em>lbin.sys</em> file is greater than the timestep number when the <em>lbout.dump</em> file was created</li>
+</ul>
+<p>The file can be used to create a <em>lbin.init</em> file for a new simulation with the <a class="reference internal" href="dlm_6.html#lbedumpinit"><span class="std std-ref">dump_to_init.exe</span></a> utility supplied with DL_MESO. The corresponding simulation state can also be visualised using the <cite>dump_to_vtk.exe &lt;lbedumpvtk&gt;</cite> utility, which generates a VTK file that can be opened in <a class="reference external" href="https://www.paraview.org">Paraview</a>.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>Standard output/screen</strong></p>
+<p>As DL_MESO_LBE runs, messages about the simulation are printed to the screen or, in the case of a supercomputer with job submissions, a file for standard output. This provides a summary of the information included in the supplied input files and how the calculation is carried out, brief summaries of the simulation state at regular intervals, and performance/timing data for the calculation. Any error messages due to problems arising from the contents of input files will also appear here before DL_MESO_LBE is terminated early.</p>
+<p>The first messages (as shown in the example below) include a header about DL_MESO_LBE, a timestamp for when the program starts to run, a summary of the simulation based on information provided in the input files - including the lattice scheme and size, the numbers of fluids, solutes and temperature scalars, collisions, forcing and fluid interactions - and how the calculation is divided up among available processor cores and/or threads. In the case of running on multiple cores, DL_MESO_LBE includes a table showing which section of the grid is assigned to each core.</p>
+<p>At intervals specified by the <code class="docutils literal notranslate"><span class="pre">save_span</span></code> keyword in <em>lbin.sys</em>, the total mass of all fluids, the masses of individual fluids and the overall system momentum are printed, along with the timestep number and the elapsed calculation time in seconds. If the number of equilibration time steps is specified in the <em>lbin.sys</em> file, a message will be printed once the equilibration period is complete.</p>
+<p>The fluid masses and momenta can be used to determine whether or not the calculation is running as expected and/or correctly. For instance: rapid changes in fluid masses are likely to indicate numerical instabilities in the LBE calculation, while convergence of system momentum to a constant value may indicate the system has reached a steady state.</p>
+<p>At the end of the calculation, DL_MESO_LBE prints the total elapsed calculation time in seconds, a timestamp when the program finishes, and a calculation efficiency measure: Millions of Lattice Updates per Second (MLUPS). The final message reminds the user to cite DL_MESO (either using its <a class="reference external" href="https://www.ccp5.ac.uk/DL_MESO">website</a> or its <a class="reference external" href="https://www.tandfonline.com/doi/abs/10.1080/08927022.2013.772297">article in Molecular Simulation</a>) if the calculation results are published.</p>
+<p>It is possible to redirect the printed messages to a file instead of to the screen or standard output when launching DL_MESO_LBE, using a command such as:</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p id="lboutsnapshot"><strong>lbout*.vts, lbout*.vtk, lbout*.q</strong></p>
+<p>The main simulation output files from DL_MESO_LBE can be generated in one of three formats:</p>
+<ul class="simple">
+<li>XML-based structured grid VTK (<em>lbout*.vts</em>, default for DL_MESO_LBE)</li>
+<li>Legacy-format structured grid VTK (<em>lbout*.vtk</em>)</li>
+<li>Plot3D (<em>lbout*.q</em>)</li>
+</ul>
+<p>These files contain all macroscopic and simulation-specific properties at each grid point - the velocity, fluid densities and mass fractions, solute concentrations, temperatures and boundary conditions - and can be used in <a class="reference external" href="https://www.paraview.org">Paraview</a> to visualise the simulation and analyse the results (as shown below). A series of files is typically generated during a simulation to provide a time progression of the system, starting after any equilibration timesteps and produced at intervals specified by the <code class="docutils literal notranslate"><span class="pre">save_span</span></code> keyword in <em>lbin.sys</em>.</p>
+<a class="reference internal image-reference" href="../../_images/dlm_3_2.png"><img alt="../../_images/dlm_3_2.png" class="align-center" src="../../_images/dlm_3_2.png" style="width: 746.0px; height: 505.0px;" /></a>
+<p>The default XML-based structured grid VTK format (<em>lbout*.vts</em>) includes XML tags describing grid properties (e.g. size, extent) and indicating the values for each property at each grid point. The text form of these files places the property values between the tags, while the binary form places the data into a large block and the tags indicate where the data for each property starts inside that block.</p>
+<p>The legacy structured grid VTK format (<em>lbout*.vtk</em>) lays out the property data underneath lines with specific keywords. Both the text and binary forms of these files use the same approach. (More details about both VTK file formats can be found in <a class="reference external" href="https://vtk.org/wp-content/uploads/2015/04/file-formats.pdf">this document</a>.)</p>
+<p>The Plot3D format consists of solution files (<em>lbout*.q</em>) indicating the values of a given property, fluid velocities and boundary conditions for all grid points at each frame, as well as a grid file (<em>lbout.xyz</em> or <em>lbout.xy</em>) indicating the locations of the grid points. Since only one property (fluid density, mass fraction, solute concentration or temperature) can be included in a solution file, a solution file is created for each property and trajectory frame. Both the grid file and the solution files need to be loaded into Paraview to visualise the simulation and analyse the results.</p>
+<p>If the simulation is run in parallel on multiple processor cores, more than one file per simulation trajectory frame may be generated: by default a file (or a set of Plot3D solution files) is produced by each processor core for each frame. This default can be overridden by using the <code class="docutils literal notranslate"><span class="pre">output_combine_x</span></code>, <code class="docutils literal notranslate"><span class="pre">output_combine_y</span></code> and <code class="docutils literal notranslate"><span class="pre">output_combine_x</span></code> keywords in the <em>lbin.sys</em> file to combine the data among processor cores in those directions for file writing, thus reducing the number of files produced per frame. If all three keywords are invoked, DL_MESO_LBE will create a single file (or set of Plot3D solution files, one per property) per trajectory frame.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>lbout.info, lbout.ext</strong></p>
+<p>These small files are only created if DL_MESO_LBE is run in parallel on multiple processor cores using MPI and are used to gather together output files for visualisation and analysis.</p>
+<p>The <em>lbout.info</em> file contains basic information about the LBE simulation: the numbers of spatial dimensions, fluids, solutes and temperature scalars, the number of files produced per trajectory frame and the sizes of integers and floating point numbers in those files (given in bytes). This file is used by two utilities:</p>
+<ul class="simple">
+<li><a class="reference internal" href="dlm_6.html#lbplot3dgather"><span class="std std-ref">plot3d.exe</span></a> creates new output files (<em>lbtout.xyz</em> and <em>lbtout*.q</em>) from multiple Plot3D files for each frame</li>
+<li><a class="reference internal" href="dlm_6.html#lbevtkgather"><span class="std std-ref">vtk.exe</span></a> creates additional <em>lbout*.pvts</em> files to link together all <em>lbout*.vts</em> created for each frame</li>
+</ul>
+<p>The <em>lbout.ext</em> file contains information about the grid extents covered by each processor core’s <em>lbout*.vts</em> files. This file is used solely by the <a class="reference internal" href="dlm_6.html#lbevtkgather"><span class="std std-ref">vtk.exe</span></a> utility and is only generated if more than one output file is produced per frame.</p>
+<p><a class="reference internal" href="#header-dlm-3"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlm_9.html"
+                        title="previous chapter">DL_MESO_LBE basics and algorithms</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlm_6.html"
+                        title="next chapter">DL_MESO_LBE utilities</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlm_6.html" title="DL_MESO_LBE utilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlm_9.html" title="DL_MESO_LBE basics and algorithms"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

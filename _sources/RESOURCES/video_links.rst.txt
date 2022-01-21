@@ -4,9 +4,21 @@
 Video Material
 **************
 
+A collection of video materials, mainly hosted in YouTube.
+
+.. image:: ../image/stock/video_learning.jpg
+   :scale: 35%
+   :align: right 
+
 .. toctree::
    :maxdepth: 2
 
    ./dl_poly_instructions
    ./dl_poly_simulations   
    ./molecular_dynamics       
+   ./dl_field_video
+
+:TIP:
+   Clicking on links: If you want to open a link in a new tab, click the middle button of the mouse (or right click and select Open Link in new tab) - this opens a new tab - and then click on the new tab. You can then always go back to DL_S_DG tab where you left off!
+
+

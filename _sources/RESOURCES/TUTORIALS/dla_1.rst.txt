@@ -1,0 +1,62 @@
+.. DL_ANALYSER Introduction 
+.. _Header_dla_1:
+
+.. |pop1| raw:: html
+
+   <a href="dlf_1_force_field.html" onclick="window.open('dlf_1_force_field.html',
+         'newwindow', 'width=500,height=200'); return false;">force field</a>
+
+*******************
+What is DL_ANALYSER
+*******************
+
+**DL_ANALYSER program**
+
+The DL_ANALYSER project was initiated by Chin Yong to facilitate DL_POLY users to carry out post analysis work on the HISTORY trajectory files produced by DL_POLY simulation runs.  At the time of this writing, the latest version 2.3 was released in September 2021.
+
+DL_ANALYSER can generate results for a variety of system models: from condensed matters to surface slabs. It has a range analysis criteria that enable users to selectively carry out the analysis on the system models.
+
+The Program's development concept and file structures are similar to that of DL_FIELD and therefore both software can work in a synchronous way.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Capabilities**
+
+* Reads DL_POLY's HISTORY, CONFIG and STATIS files; xyz and PDB files.  
+
+* Conversion of HISTORY file to PDB and xyz trajectory files.
+
+* Detailed model selection to carry out specific analysis - atom or molecule based, within (intra) or between (inter) molecules, and atom range selections.
+
+* Group-based analysis.
+
+* Analysis modules for a range of systems.
+
+* **Atomic interaction analysis** - Quantify, annotate and carry out a range of analysis on atomic interactions (require DL_FIELD for FF model setup in the DL_F Notation). 
+
+Features appear in bold are unique to DL_FIELD.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Analysis Modules**
+
+For ease of selection, analysis options are classified into different *Sections*. Some Sections are specific to certain kind system models. 
+
+* Trajectory Production Section
+
+* Atom Range Definition Section
+
+* Structural Analysis Section (general)
+
+* Dynamical Analysis Section (general)
+
+* Defect Analysis Section (surface and crystals bulk)
+
+* Sputter Analysis Section (surface models)
+
+* Biological Analysis Section (protein models)
+
+* Atomic Interaction Analysis Section (general)
+
+
+:ref:`^ GO TO TOP ^<Header_dla_1>`

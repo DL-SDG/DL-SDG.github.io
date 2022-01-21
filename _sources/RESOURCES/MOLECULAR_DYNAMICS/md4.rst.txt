@@ -1,0 +1,59 @@
+.. MD Introduction - system properties
+.. _Header_md4:
+
+*****************
+System properties
+*****************
+
+The energy in an MD simulation consists of the kinetic energy:
+
+.. math::
+
+   E_{kin} = \frac{1}{2} \sum_i m_i v_i^2
+
+and the potential (configurational) energy:
+
+.. math::
+
+   E_{pot} = U_c = \sum_i \sum_{j<i} V \left(r_{ij}\right).
+
+with both contributions interchanging during the course of the simulation. Both properties can be tracked and ensemble-averaged as static system properties, along with:
+
+* Temperature
+
+.. math:: T = \frac{2 \langle E_{kin} \rangle}{3 k_B}
+
+* Pressure
+
+.. math:: P = N k_B T - \frac{1}{3} \Big \langle \sum_i^{N} \vec{r}_i \cdot \vec{f}_i \Big \rangle
+
+* Specific heat
+
+.. math:: \langle \delta \left(U_c \right) \rangle = \frac{3}{2} N k_B T \left(1 - \frac{3 N k_B}{2 C_v} \right)
+
+noting that these values typically fluctuate during simulations and should be reported with error estimates.
+
+The structure of a material can be described by a pair correlation function, the *radial distribution function*:
+
+.. math:: g \left( r \right) = \frac{\langle n \left( r \right) \rangle}{4 \pi \rho r^2 \Delta r} = \frac{V}{N^2} \Bigg \langle \sum_{i=1}^{N-1} \sum_{j \neq i}^{N} \delta \left(r - r_{ij}\right) \Bigg \rangle
+
+which can be calculated by finding distances between atom pairs and keeping count of the numbers in 'bins' of size :math:`\Delta r`, :math:`n \left( r \right)`. The radial distribution function can be related to the *structure factor*:
+
+.. math:: S \left( k \right) = 1 + 4 \pi \rho \int_0^{\infty} \frac{\sin \left(k r\right)}{k r} \left(g \left( r \right) - 1 \right) r^2 dr
+
+which can also be obtained experimentally from X-ray diffraction.
+
+MD simulations can also be used to find various dynamic properties, including *mean squared displacements* (MSDs):
+
+.. math:: \langle | \vec{r}_i \left(t\right) - \vec{r}_i \left(0\right)|^2 \rangle
+
+and *velocity autocorrelation functions* (VAFs):
+
+.. math:: \langle \vec{v}_i \left(t\right) \cdot \vec{v}_i \left(0\right) \rangle
+
+both of which can be related to the diffusivity of the material:
+
+.. math:: D = \frac{\langle | \vec{r}_i \left(t\right) - \vec{r}_i \left(0\right)|^2 \rangle}{6t} = \frac{1}{3} \int_0^{t} \langle \vec{v}_i \left(t\right) \cdot \vec{v}_i \left(0\right) \rangle dt
+
+:ref:`^ GO TO TOP ^<Header_md4>`
+

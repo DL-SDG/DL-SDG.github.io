@@ -1,0 +1,32 @@
+.. DL_MESO_DPD jargon. 
+
+******************
+DL_MESO_DPD Jargon
+******************
+
+Below shows definitions that are related to DL_MESO_DPD, or indeed, generally to dissipative particle dynamics (DPD) simulations. 
+
+|
+
+* CONFIG - An (optional) DL_MESO_DPD file that stores the location state of particles in a system model, including positions, forces and velocities.
+
+|
+ 
+* FIELD - A DL_MESO_DPD file that describes the force field (interaction) model of a system, including particle content, molecular topology and applied external fields.
+
+|
+
+* CONTROL - A DL_MESO_DPD file that contains a set of directives to drive the DPD simulation process.
+
+|
+ 
+* particle or bead - Any entity occupying a unique entry in the *CONFIG* and *FIELD* files. It is a countable object and has a global ID index. In the case of DPD, it can be either a coarse-grained representation of selected atoms or a mesoscopic representation of a continuum fluid (a 'carrier of momentum').
+
+|
+
+* intra-molecular interactions - Interaction components that involve connectivity of particles within a molecule. For example, chemical (stretching) bonds, angles involving three particles, dihedrals and impropers involving four particles.
+
+|
+
+* inter-molecular interactions - Interaction components that do not directly involve covalent bonds, acting between individual beads or molecules. For example: conservative (van-der-Waals) interactions, many-body DPD potentials, electrostatic interactions. 
+

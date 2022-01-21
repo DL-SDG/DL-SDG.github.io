@@ -1,0 +1,67 @@
+.. DL_POLY Introduction 
+.. _Header_dlp_1:
+
+***************
+What is DL_POLY
+***************
+
+**DL_POLY program**
+
+The DL_POLY project was initiated by Bill Smith at Daresbury Laboratory in 1992 to address the needs of `CCP5 <http://www.ccp5.ac.uk/>`_ (an academic collaboration community) for computer simulation of condensed phases. Bringing together previous developments by CCP5, DL_POLY was created as a general-purpose software package for (classical) molecular dynamics (MD) simulations designed to run on parallel computing platforms.
+
+The first version of DL_POLY (DL_POLY_1) was completed in 1994 by Bill Smith and Tim Forester and given a limited release to close collaborators for testing and early exploitation, before the more widely available DL_POLY_2 was released in 1996. This version of DL_POLY was moved to a BSD open source licence in 2010 and renamed as `DL_POLY Classic <https://www.ccp5.ac.uk/DL_POLY_CLASSIC>`_. These versions make use of Replicated Data as their parallelisation strategy, which enables simulations of up to 30 000 atoms with good parallelisation on up to around 100 processor cores.
+
+A new version of DL_POLY, DL_POLY_3, was completed and released by Ilian Todorov and Bill Smith in 2003. This version uses Domain Decomposition as its parallelisation strategy, which enables simulations of up to around 2 billion atoms on many thousands of processor cores. After features for large-scale radiation damage simulations were added and improvements were made to file reading and writing, DL_POLY_4 was released in 2010. This version was further developed to add new features (e.g. multipolar electrostatics, the Two-Temperature Model for irradiated systems) before the code was completely refactored and re-released with a LGPL 3.0 open source licence in 2021 as `DL_POLY_5 <https://gitlab.com/ccp5/dl-poly/-/releases/5.0.0>`_.
+
+Both major versions of DL_POLY are written in modularised Fortran90 with MPI-2 and are fully contained, not requiring any external libraries (beyond MPI) to compile and use. While some specialist features differ between the two, they share most of the same fundamental MD functionalities and the file formats for both versions are nearly identical and mutually understandable.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+
+**Functions**
+
+* General 'simulation engine' for classical MD
+
+* Can represent molecules as point atoms, ions and coarse-grained beads with bonded (bond and angle vibrations, torsion potentials) and non-bonded (van der Waals, electrostatic) interactions
+  
+* Force field agnostic: can use many different force fields (FFs) or potentials
+
+* Designed to run on parallel computing architectures to speed up calculations and/or expand system sizes
+
+DL_POLY is a flexible classical MD program that can be used to simulate a wide range of systems, mostly at atomistic scales (length scales from :math:`10^{-10}` m upwards, time scales from :math:`10^{-11}` to :math:`10^{-3}` s) but also at larger coarse-grained MD and mesoscopic scales. It is not limited to specific force fields (FFs) to represent interactions between particles: many widely-used FF schemes can be accessed using :ref:`DL_FIELD <dl_field_intro>`, and custom FFs can also be supplied as tabulated potentials.
+
+Both versions of DL_POLY are designed to run on high performance computing (HPC) platforms with multiple CPUs to speed up MD calculations. The Domain Decomposed version (currently DL_POLY_5) is also able to run very large simulations with up to around 2 billion (:math:`\sim 2.1 \times 10^{9}`) atoms. 
+
+As well as core functionalities for MD simulations (shown below), both versions of DL_POLY include more advanced features. DL_POLY Classic includes features for:
+
+* Hyperdynamics
+
+* Metadynamics
+
+* Calculations of solvation properties
+
+and DL_POLY_5 includes features for:
+
+* Radiation damage (e.g. cascades, Two-Temperature Model)
+
+* Multipolar electrostatics
+
+* Potential mean force (PMF) calculations of intramolecular interactions
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Base Capabilities**
+
+* Molecular dynamics (MD) of polyatomic systems with options to save the micro-evolution trajectory at regular intervals.
+
+* Representations of ions, atoms, polarisable ions (core and shell), molecules with flexible bonds and fixed-length constraints, rigid molecules (with or without links between them).
+
+* Optimisation using the conjugate gradients method or zero Kelvin annealing.
+
+* Provide statistics of common thermodynamic properties (temperature, pressure, energy, enthalpy, volume) with options to specify collection intervals and stack size for production of rolling and final average values.
+
+* Calculations of radial distribution functions (RDFs) and Z-density profiles.
+
+* Temperature scaling, velocity re-Gaussing and force capping during equilibration.
+
+:ref:`^ GO TO TOP ^<Header_dlp_1>`

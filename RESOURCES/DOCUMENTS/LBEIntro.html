@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Intro to the Lattice Boltzmann Equation (LBE) &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Additional details on LBE" href="LBETheory.html" />
+    <link rel="prev" title="Additional details on DPD" href="DPDTheory.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="LBETheory.html" title="Additional details on LBE"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="DPDTheory.html" title="Additional details on DPD"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="intro-to-the-lattice-boltzmann-equation-lbe">
+<span id="lbe-intro"></span><h1>Intro to the Lattice Boltzmann Equation (LBE)<a class="headerlink" href="#intro-to-the-lattice-boltzmann-equation-lbe" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>The Lattice Boltzmann Equation (LBE) is a mesoscale modelling method with a  statistical mechanics approach. Rather than tracking the motion of individual particles, distribution functions are defined to describe the probability of finding particles at a given point in time and space with a particular momentum. The distribution functions evolve over time by considering how the particles collide and subsequently move. Summing their moments over all possible particle momenta gives macroscopic properties such as fluid density and momentum. Confining the particles to a grid and to preset links between grid points simplifies the calculations but still provides enough information to correctly calculate hydrodynamic behaviour.</p>
+<p>The particles in LBE can be considered flexibly, thus allowing larger length and time scales than atomistic modelling methods while still incorporating some detail of molecular interactions. Boundary conditions can be treated in intuitive and simple ways, allowing systems with complex geometries to be modelled nearly as efficiently as simpler ones. Methods to allow multiple fluids and phases to be modelled in LBE without fundamentally changing the algorithm have also been devised, as have ways to represent fluids with non-standard rheological behaviour and to incorporate diffusion and heat transfer effects.</p>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>LBE can be considered as a variant form of lattice gas cellular automata (LGCA), a modelling method that directly models particles colliding and moving around a regular grid <a class="footnote-reference" href="#id8" id="id1">[1]</a>. By replacing binary particle occupation numbers with probability distribution functions <a class="reference internal" href="#frisch1987" id="id2">[Frisch1987]</a>, several of LGCA’s shortcomings as a method to model fluid flows (e.g. noise, lack of Galilean invariance) were overcome.</p>
+<p>Given a lattice link <span class="math notranslate nohighlight">\(i\)</span> with vector (and momentum) <span class="math notranslate nohighlight">\(\mathbf{e}_i\)</span>, we can define an associated distribution function <span class="math notranslate nohighlight">\(f_i\)</span> for each grid point. The distribution functions evolve via the following equation:</p>
+<div class="math notranslate nohighlight" id="equation-lbebasic">
+<span class="eqno">(1)<a class="headerlink" href="#equation-lbebasic" title="Permalink to this equation">¶</a></span>\[f_i \left(\mathbf{x}+\mathbf{e}_i \Delta t, t + \Delta t \right) - f_i \left(\mathbf{x}, t \right) = C_i,\]</div>
+<p>where <span class="math notranslate nohighlight">\(C_i\)</span> is a collision operator for link <span class="math notranslate nohighlight">\(i\)</span> that may depend upon all distribution functions at a given grid point <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The evolution equation <a class="reference internal" href="#equation-lbebasic">(1)</a> can be also expressed by separating out the collision  and propagation stages as <a class="reference internal" href="#equation-lbecollide">(2)</a> and <a class="reference internal" href="#equation-lbepropagate">(3)</a> respectively:</p>
+<div class="math notranslate nohighlight" id="equation-lbecollide">
+<span class="eqno">(2)<a class="headerlink" href="#equation-lbecollide" title="Permalink to this equation">¶</a></span>\[f_i \left(\mathbf{x}, t^{+}\right) = f_i \left(\mathbf{x}, t\right) + C_i,\]</div>
+<div class="math notranslate nohighlight" id="equation-lbepropagate">
+<span class="eqno">(3)<a class="headerlink" href="#equation-lbepropagate" title="Permalink to this equation">¶</a></span>\[f_i \left(\mathbf{x}+\mathbf{e}_i \Delta t, t + \Delta t \right) = f_i \left(\mathbf{x}, t^{+}\right).\]</div>
+<p>The collision operator <span class="math notranslate nohighlight">\(C_i\)</span> can take several different forms, but the simplest and most common form without considering forces acting on the fluid is based on the Bhatnagar-Gross-Krook (BGK) approximation. This uses a single relaxation time <span class="math notranslate nohighlight">\(\tau\)</span> as the parameter defining the timescale of collisions <a class="reference internal" href="#qian1992" id="id3">[Qian1992]</a>:</p>
+<div class="math notranslate nohighlight" id="equation-bgkcollide">
+<span class="eqno">(4)<a class="headerlink" href="#equation-bgkcollide" title="Permalink to this equation">¶</a></span>\[C_i = -\frac{f_i \left(\mathbf{x}, t\right) - f_i^{eq} \left(\mathbf{x}, t\right)}{\tau},\]</div>
+<p>where <span class="math notranslate nohighlight">\(f_i^{eq}\)</span> is a distribution function corresponding to a local equilibrium state <a class="footnote-reference" href="#id10" id="id4">[2]</a>. This local equilibrium distribution function is available as a function of macroscopic fluid density and velocity, usually of the form for mildly compressible fluids at speeds significantly lower than the speed of sound <span class="math notranslate nohighlight">\(c_s\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-localequil">
+<span class="eqno">(5)<a class="headerlink" href="#equation-localequil" title="Permalink to this equation">¶</a></span>\[f_i^{eq} \left(\rho, \mathbf{u}\right) = \rho w_i \left[1 + 3 \left(\mathbf{e}_i \cdot \mathbf{u} \right) + \frac{9}{2} \left(\mathbf{e}_i \cdot \mathbf{u} \right)^2 - \frac{3}{2} u^2 \right],\]</div>
+<p>where <span class="math notranslate nohighlight">\(w_i\)</span> is a weighting parameter dependent on link and lattice scheme. To use <a class="reference internal" href="#equation-localequil">(5)</a> in the collision operator given in <a class="reference internal" href="#equation-bgkcollide">(4)</a>, we can calculate the macroscopic density and velocity by finding the zeroth and first moments of the distribution functions:</p>
+<div class="math notranslate nohighlight" id="equation-lbedensity">
+<span class="eqno">(6)<a class="headerlink" href="#equation-lbedensity" title="Permalink to this equation">¶</a></span>\[\rho \left(\mathbf{x}, t\right) = \sum_i f_i \left(\mathbf{x}, t\right),\]</div>
+<div class="math notranslate nohighlight" id="equation-lbevelocity">
+<span class="eqno">(7)<a class="headerlink" href="#equation-lbevelocity" title="Permalink to this equation">¶</a></span>\[\mathbf{u} \left(\mathbf{x}, t\right) = \frac{1}{\rho \left(\mathbf{x}, t\right)} \sum_i \mathbf{e}_i f_i \left(\mathbf{x}, t\right).\]</div>
+<p>It is ultimately possible - using a lot of mathematics(!) - to show that the above equations can accurately represent fluid flow by assuming the majority of distribution functions come from local equilibrium values and their non-equilibrium parts scale with the Knudsen number <span class="math notranslate nohighlight">\(Kn\)</span> (ratio of molecular mean free path to molecular length scale). By expanding <a class="reference internal" href="#equation-lbebasic">(1)</a> about <span class="math notranslate nohighlight">\(Kn\)</span> in time and space, applying a Chapman-Enskog expansion to various time and length scales, separating out the resulting equations based on orders of <span class="math notranslate nohighlight">\(Kn\)</span> and summing over all lattice links, we can <em>eventually</em> obtain conservation equations for mass and momentum. These conservation equations lead to the Navier-Stokes equations for systems with small variations in density <a class="reference internal" href="#chen1998" id="id5">[Chen1998]</a>, i.e.</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial t}\left( \rho \mathbf{u}\right) + \nabla \cdot \left(\rho \mathbf{u} \otimes \mathbf{u} \right) = -\nabla \left(p - \zeta \nabla \cdot \mathbf{u}\right) + \mu \nabla^2 \mathbf{u} + \frac{1}{3} \mu \nabla \left(\nabla \cdot \mathbf{u}\right),\]</div>
+<p>from which we can define the speed of sound for the LBE fluid:</p>
+<div class="math notranslate nohighlight">
+\[c_s = \frac{1}{\sqrt{3}} \frac{\Delta x}{\Delta t},\]</div>
+<p>the equation of state:</p>
+<div class="math notranslate nohighlight" id="equation-equationstatelbe">
+<span class="eqno">(8)<a class="headerlink" href="#equation-equationstatelbe" title="Permalink to this equation">¶</a></span>\[p = \rho c_s^2,\]</div>
+<p>and a relationship between kinematic viscosity (ratio of dynamic viscosity and density) and the relaxation time:</p>
+<div class="math notranslate nohighlight">
+\[\nu = \frac{\mu}{\rho} = \frac{1}{3}\left(\tau - \frac{1}{2}\right) \frac{\Delta x^2}{\Delta t}.\]</div>
+<p>We can select a value of <span class="math notranslate nohighlight">\(\tau\)</span> to avoid numerical instabilities in LBE simulations (i.e. not too close to <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>). Along with the kinematic viscosity and speed of sound for a given fluid, this sets the length scale (lattice spacing <span class="math notranslate nohighlight">\(\Delta x\)</span>) and time scale (timestep <span class="math notranslate nohighlight">\(\Delta t\)</span>) <a class="footnote-reference" href="#id11" id="id6">[3]</a>. We typically have free choice over density values used in LBE simulations, although keeping it around 1 can help maximise the calculation precision we have available.</p>
+</div>
+<div class="section" id="extensions">
+<h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h2>
+<p>We can include additional fluids by either modelling them in separate lattices and calculating interaction forces between them - which we can then apply as an additional part of the collision operator - or by modifying <a class="reference internal" href="#equation-localequil">(5)</a> to obtain the correct free energy density function and apply interfacial tensions. These approaches allow us to model immiscible fluids, including drops suspended in background fluids that can represent e.g. fluid-filled vesicles or cell membranes.</p>
+<div class="align-center figure" id="id12">
+<a class="reference internal image-reference" href="../../_images/fluidvesicles.png"><img alt="LBE simulation of fluid-filled vesicles" src="../../_images/fluidvesicles.png" style="width: 378px;" /></a>
+<p class="caption"><span class="caption-text">LBE simulation of non-spherical fluid-filled vesicles flowing through a constricted channel <a class="reference internal" href="#montessori2018" id="id7">[Montessori2018]</a>.</span></p>
+</div>
+<p>Alternative forms of <a class="reference internal" href="#equation-localequil">(5)</a> can be used to represent completely incompressible fluids and diffusive processes: the latter can represent diffusion of solutes or heat transfers and can be coupled to bulk fluid flows. We can also calculate shear rates locally at each grid point and use these to determine local values of viscosity according to a given rheological model for non-Newtonian fluids such as blood.</p>
+<p>Boundary conditions are defined to specify missing distribution functions ‘re-entering’ the system and are used to obtain required fluid densities and/or velocities. The simplest form of boundary condition we can use is bounce back, where a boundary grid point reflects distribution functions entering it: this has the effect of applying a no-slip condition (i.e. zero velocity) at any arbitrary boundary point without any extensive calculations. It is therefore straightforward and computationally inexpensive to use LBE for flows in porous media or past complex shapes.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>This is the same modelling method that was modified to produce Dissipative Particle Dynamics (DPD) <a class="reference internal" href="DPDIntro.html#hoogerbrugge1992" id="id9">[Hoogerbrugge1992]</a>!</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id10" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>An interpretation of <a class="reference internal" href="#equation-bgkcollide">(4)</a> states that the collision pushes the system towards an equilibrium state and <span class="math notranslate nohighlight">\(\tau\)</span> determines how quickly this occurs.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[3]</a></td><td>For example, if we want to model water at room temperature (298 K), its speed of sound is 1498 m s <sup>-1</sup> and kinematic viscosity is <span class="math notranslate nohighlight">\(10^{-6}\)</span> m s <sup>-2</sup>. If we select a relaxation time of <span class="math notranslate nohighlight">\(\tau = 1\)</span>, this sets the lattice spacing as <span class="math notranslate nohighlight">\(\Delta x = \frac{\sqrt{3} \nu}{c_s \left(\tau - \frac{1}{2}\right)} \approx 2.3125 \times 10^{-9}\)</span> m and the timestep as <span class="math notranslate nohighlight">\(\Delta t = \frac{\nu}{c_s^2 \left(\tau - \frac{1}{2}\right)} \approx 8.9126 \times 10^{-13}\)</span> s.</td></tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="frisch1987" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[Frisch1987]</a></td><td>U Frisch, B Hasslacher, P Lallemand, Y Pomeau and JP Rivet, Lattice gas hydrodynamics in two and three dimensions, <em>Complex Systems</em>, <strong>1</strong>, 649-707, 1987.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="qian1992" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[Qian1992]</a></td><td>YH Qian, D d’Humières and P Lallemand, Lattice BGK models for Navier-Stokes equation, <em>EPL</em>, <strong>17</strong>, 479-484, 1992, doi: 10.1209/0295-5075/17/6/001.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="chen1998" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[Chen1998]</a></td><td>S Chen and GD Doolen, Lattice Boltzmann Method for fluid flows, <em>Annual Review of Fluid Mechanics</em>, <strong>30</strong>, 329-364, 1998, doi: 10.1146/annurev.fluid.30.1.329.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="montessori2018" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[Montessori2018]</a></td><td>A Montessori, I Halliday, M Lauricella, SV Lishchuk, G Pontrelli, TJ Spencer and S Succi, ‘Multicomponent lattice Boltzmann models for biological applications’, Chapter 20 in <em>Numerical methods and advanced simulation in biomechanics and biological processes</em> (ed. M Cerrolaza, SJ Shefelbine and D Garzón-Alvarado), pp. 357-370, Academic Press, Elsevier, 2018.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../knowledge.html">Knowledge Center</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics Simulations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DPDIntro.html">Intro to Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DPDTheory.html">Additional details on DPD</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Intro to the Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LBETheory.html">Additional details on LBE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="DPDTheory.html"
+                        title="previous chapter">Additional details on DPD</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="LBETheory.html"
+                        title="next chapter">Additional details on LBE</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="LBETheory.html" title="Additional details on LBE"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="DPDTheory.html" title="Additional details on DPD"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+.. DL_MESO tutorial.
+.. _Header_dlm_8:
+
+.. |br| raw:: html
+
+   <br />
+
+*********************************
+DL_MESO_DPD basics and algorithms
+*********************************
+
+Dissipative particle dynamics (DPD) resembles classical molecular dynamics (MD): the method models condensed phase systems of particles (often described as 'beads') that interact predominately with pair potentials and forces. The net forces on each particle are integrated over a small timestep :math:`\Delta t` to determine their motion, most often using Velocity Verlet (VV) integration.
+
+What distinguishes DPD from MD is its use of additional *pairwise* dissipative and random forces to couple the particle system to a heat bath. These forces provide a momentum-conserving thermostat that gives Galilean invariance and produces correct hydrodynamic behaviour, even for small numbers of particles. The definition of beads for DPD simulations can be very flexible, as they can either be coarse-grains - representing fixed groups of atoms, molecules or segments of larger molecules - or 'carriers of momentum' representing a continuum fluid at the mesoscale.
+
+Basic DPD algorithm
+===================
+
+Dissipative particle dynamics technically refers to the pairwise thermostat, which consists of a dissipative force:
+
+.. math:: \mathbf{F}_{ij}^{D} = -\gamma_{ij} w^{D} \left( r_{ij} \right) \left( {\widehat{\mathbf{r}}}_{ij} \cdot \mathbf{v}_{ij} \right){\widehat{\mathbf{r}}}_{ij}
+
+and a random force:
+
+.. math:: \mathbf{F}_{ij}^{R} = \sigma_{ij} w^{R} \left( r_{ij} \right) \frac{\xi_{ij}}{\sqrt{\Delta t}} {\widehat{\mathbf{r}}}_{ij}
+
+connected together by their screening functions and force parameters (as described more fully :ref:`here <DPD_Intro>`).
+
+The conservative interaction forces between particles can take any form, although the most commonly-used form is that by Groot and Warren:
+
+.. math :: \mathbf{F}_{ij}^{C} = \left\{ \begin{matrix} A_{ij}\left( 1 - \frac{r_{ij}}{r_{c}} \right){\widehat{\mathbf{r}}}_{ij} & (r_{ij} < r_{c}) \\ 0 & (r_{ij} \geq r_{c}) \\ \end{matrix} \right.\ ,
+
+a soft repulsive interaction that gives a quadratic potential and a quadratic equation of state.
+
+Capabilities of DPD
+===================
+
+The Groot-Warren interaction forces can make use of different values of of :math:`A_{ij}` between pairs of bead species to give required compressibilities, hydrophobicities etc. These can be combined with bond interactions (stretching, angles, dihedrals) between beads that interact differently with other species to form mesoscopic representations of molecules, e.g. amphiphilic molecules with hydrophilic head groups and hydrophobic tails.
+
+Interactions that can be applied to particles in DPD simulations other than the Groot-Warren form include:
+
+* Hard-core interactions, e.g. Lennard-Jones, Weeks-Chandler-Andersen
+* Many-body (density-dependent) DPD
+* Long-range electrostatic interactions, often with short-range charge smearing
+* Wall interactions with planar surfaces
+
+While the majority of DPD simulations typically use periodic boundary conditions, Lees-Edwards periodic shearing boundaries can readily be used, often to find rheological properties of a fluid (e.g. viscosity). Beads can be frozen in place while still interacting with others, often applied with a reflection scheme (e.g. bounce back) to provide no-slip boundaries.
+
+DPD is the best-known example of a pairwise momentum-conserving thermostat, although its limitations include issues in maintaining temperature control with larger timestep sizes and a limited viscosity range. Alternative pairwise thermostats include Lowe-Andersen, Peters and Stoyanov-Groot, which all apply changes to particle pairs after force integration and are capable of overcome DPD's limitations. As with MD simulations, it is possible to couple these thermostats to barostats to control system pressure.
+
+DL_MESO_DPD functionalities
+===========================
+
+DL_MESO_DPD can model particle systems with any of the following basic interaction types:
+
+* 'Standard DPD' Groot-Warren interactions
+* Many-body DPD
+* Lennard-Jones (12-6)
+* Weeks-Chandler-Andersen (WCA)
+
+along with any of the following pairwise thermostats (and integration schemes):
+
+* DPD (standard VV, 'DPD Velocity Verlet', 1st and 2nd order Shardlow splitting)
+* Lowe-Andersen
+* Peters
+* Stoyanov-Groot (Lowe-Andersen and pairwise Nosé-Hoover thermostatting forces)
+
+Each thermostat can additionally be coupled to either a Langevin or Berendsen barostat to provide NPT (constant pressure and temperature), NP\ :math:`_{n}`\ AT (constant normal pressure, surface area and temperature) and NP\ :math:`_{n}`\ :math:`\gamma`\ T (constant normal pressure, surface tension and temperature) ensembles.
+
+Bond interactions - stretching (e.g. harmonic springs), angles and dihedrals - can be included between selected beads to define molecules. Electrostatic interactions between charged beads can also be applied using Ewald summation or Smooth Particle Mesh Ewald (SPME) with charge-smearing schemes to prevent ion collapse of soft charged particles.
+
+Available boundary conditions include periodic, hard reflecting (bounce back or specular) planar surfaces with Groot-Warren or WCA wall potentials, Lees-Edwards linear shear and frozen bead walls. External fields can also be applied to the beads: these include gravity fields with constant mass-dependent forces and electric fields acting on charged particles.
+
+The :ref:`input files for DL_MESO_DPD <Header_dlm_4>` use similar formats to :ref:`DL_POLY input files <Header_dlp_4>`, which provides a high degree of mutual intelligibility and enables migration of simulations between the two codes.
+
+Parallelisation of DL_MESO_DPD
+==============================
+
+DL_MESO_DPD is designed for homogeneously-distributed parallel machines. Each processor core can communicate with all of the others during a calculation, but it has its own separate allocation of memory. Its parallelisation strategy is *domain decomposition*, which involves dividing the system volume and particles among processor cores and each core calculating interaction forces for its own particles. To correctly calculate these forces, a boundary halo for each core's subdomain is defined to copy in particle data from neighbouring cores using MPI core-to-core communications. The system is usually divided equally by volume, which provides good load-balancing when the particles are distributed evenly. Provided each processor core gets plenty of computational work compared to core-to-core communication, this approach can scale well with increasing numbers of cores, even for larger numbers of particles.
+
+Pairs of particles within the cutoff distance are found using *linked cell lists*. By dividing the subdomain into cells with sides of at least the interaction cutoff distance in size and constructing lists of particles in each cell, this reduces the number of possible particle pairs to search since all pairs relative to a given particle will exist either in its own cell or nearest neighbouring cells *but no further*. This approach works well for domain decomposition since the boundary halo size can be set to at least the same size as the link cells. Three sets of link cells are used in DL_MESO_DPD: one for conservative interactions (often alongside dissipative and random forces for the DPD thermostat), one for electrostatic interactions (the real-space part of an Ewald sum) with a larger cutoff distance, and one for calculating localised densities used in many-body DPD (which often uses a smaller cutoff).
+
+Bonded interactions require explicit definitions of particles involved, which are kept track in book-keeping arrays. DL_MESO_DPD normally divides up the bonds according to which processor cores hold the particles involved, which are moved between processor cores and their associated subdomains as the particle move. A *replicated data* approach is also available to aid equilibration: this requires all processor cores to hold all bond data and to collect together particle positions in order to find the resulting forces, which are only assigned to particles held by each processor core.
+
+The searches through link cells for pairwise force calculations and bond book-keeping tables for each processor core's subdomain can be additionally divided among available threads using OpenMP. Assignment of forces to particles without conflicting reads/writes from/to memory (race conditions) can be achieved either by using additional memory per thread or by forcing only one thread at a time to assign calculated forces to particles.
+
+Writing of particle data to output files for :ref:`trajectories <historydpd>` and :ref:`simulation restart <exportrestart>` uses a process of gathering data among groups of processor cores, followed by one core in each group writing concurrently to the file with MPI-IO. While this is not quite as efficient as each core writing data to its own file (the strategy used in previous versions of DL_MESO_DPD), writing a single file for the entire system reduces the strain on the computer's filesystem and makes post-simulation processing and analysis a lot simpler and quicker.
+  
+:ref:`^ GO TO TOP ^<Header_dlm_8>`

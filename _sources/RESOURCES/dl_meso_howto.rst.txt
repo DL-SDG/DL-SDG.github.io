@@ -1,0 +1,70 @@
+.. This provides detailed information on how to get dl_meso, install and what you need to know for running it
+
+*******************************
+Ready, get set, go
+*******************************
+
+This page tells you how to set DL_MESO up and running.
+
+**How to obtain DL_MESO**
+
+* `DL_MESO <https://www.scd.stfc.ac.uk/Pages/DL_MESO.aspx>`_ – mesoscale simulations (version 2.7 and above).
+
+* DL_MESO User Manual (:download:`PDF<./DOCUMENTS/MAN_DL_MESO_2.7.pdf>`) - Version 2.7, September 2021.
+
+To be able to use the latest version of DL_MESO you first need to `register here <https://www.scd.stfc.ac.uk/Pages/DL_MESO-register.aspx>`_. Successful registration will lead to you receiving an email containing instructions on how to download the latest version of DL_MESO. Following the instructions in the email from CCP5-ADMIN should give you an unzipped directory (e.g. **dl_meso**).
+
+The next step is to compile dl_meso executables. There are two main codes - one for Lattice Boltzmann Equation (LBE) simulations (DL_MESO_LBE), one for Dissipative Particle Dynamics (DPD) simulations (DL_MESO_DPD) - and a set of utilities for preparing simulations and processing their results.
+
+**Compiling DL_MESO_LBE**
+
+The LBE code in DL_MESO requires a C++ compiler. If you want to compile an executable to run on more than one core, e.g. on a high performance computing (HPC) system, you will also need an implementation of MPI. The code can also be compiled to run on multiple available threads using OpenMP by including a compiler flag.
+
+For the single-core (serial) version of DL_MESO_LBE with OpenMP threading, starting from the folder with the **dl_meso** directory in a e.g. bash terminal, type the following commands (adapting if necessary for available modules/compilers)::
+
+  $: cd dl_meso/WORK
+  $: module load gcc7
+  $: g++ -O3 -fopenmp -o lbe.exe ../LBE/slbe.cpp
+
+For the multiple-core (parallel) version of DL_MESO_LBE with OpenMP threading, type the following commands, adapting if necessary for specific HPC and available modules/compilers/MPI implementations::
+
+  $: cd dl_meso/WORK
+  $: module load gcc7 openmpi-gcc7
+  $: mpicxx -O3 -fopenmp -o lbe.exe ../LBE/plbe.cpp
+
+Successful compilation leads to the creation of the dl_meso_lbe executable (**lbe.exe**) in **dl_meso/WORK/**.
+
+
+**Compiling DL_MESO_DPD**
+
+The DPD code in DL_MESO requires a Fortran compiler and GNU Make (normally pre-installed on Unix/Linux systems). If you want to compile an executable to run on more than one core, e.g. on a high performance computing (HPC) system, you will also need an implementation of MPI. The code can also be compiled to run on multiple available threads using OpenMP.
+
+Whichever version is required, a Makefile is available in the **dl_meso/DPD/makefiles** directory: this needs to be copied into the working directory and invoked. For instance, if you want to compile the parallel version of DL_MESO_DPD using MPI, starting from the folder with the **dl_meso** directory in a e.g. bash terminal, type the following commands, adapting if necessary for specific HPC and available modules/compilers/MPI implementations::
+
+  $: cd dl_meso/WORK
+  $: module load gcc7 openmpi-gcc7
+  $: cp ../DPD/makefiles/Makefile-MPI ./Makefile
+  $: make
+
+:TIP:
+  You may wish to check the Makefile is specifying the correct Fortran compiler (with MPI wrapper if applicable) in the line starting with ``FC=`` before invoking it.
+
+
+Successful compilation leads to the creation of the dl_meso_dpd executable (**dpd.exe**) in **dl_meso/WORK/**.
+
+**Compiling utilities**
+
+The utilities included with DL_MESO require Fortran and C++ compilers. Some of the utilities for DPD simulations can be made to run faster by applying OpenMP multithreading using a compiler flag.
+
+A Makefile for the utilities (**Makefile-utils**) is available in the **dl_meso/WORK** folder. To compile them, type the following commands in a terminal::
+
+  $: cd dl_meso/WORK
+  $: module load gcc7
+  $: make -f Makefile-utils
+
+
+:TIP:
+  The object (**.o**) and module (**.mod**) files resulting from compiling DL_MESO_DPD and the utilities are not required to run the code and can be safely deleted::
+
+     $: rm *.o *.mod
+

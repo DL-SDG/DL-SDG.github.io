@@ -1,0 +1,52 @@
+.. Force field Introduction - Dihedral terms 
+.. _Header_ff7:
+
+****************************
+Torsion (dihedral) functions
+****************************
+
+The dihedral functions are introduced to account for the energy differences due to steric hindrance between atom 1 and 4 when they are rotated about the 2-3 bond. 
+
+.. image:: ../../image/ff7_1.png
+   :scale: 70%
+   :align: center
+   :alt: cis and trans effect
+
+Where k is the torsion barrier, n is the priodicity and :math:`{\delta}` is the phase shift. 
+
+By setting n = 3, :math:`{\delta}` = 0 degree, you can model the *cis* and *gauche* conformations between the hydrogen atoms in ethane, as shown below. 
+
+.. image:: ../../image/ff7_2.png
+   :scale: 70%
+   :align: center
+   :alt: cis and trans effect 
+
+The *cis* conformation has the highest energy, whereas, the *gauche* conformation has the least since the hydrogen atoms are furtherest apart from one another. Note that there is no explicit *trans* conformation since there is only one type of atoms (hydrogen).
+
+.. Note::
+   The value of k is set arbitrarily to 2.0, representing the extent of energy differences between two conformations (well-depth).  
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+For more complicated structure, one would need to model all different conformations with different energies. This can be achieved by expanding the dihedral function with additional terms, each with the unique contribution to the rotational energy: 
+
+.. image:: ../../image/ff7_3.png
+   :scale: 70%
+   :align: center
+
+For example, for OPLS FF, the dihedral parameters for general C-C-C-C in an alkane chain is as follows 
+
+k1 = 1.135, k2 = -0.151, k3 = 0.4 kcal/mol and :math:`{\delta}` = 0.0 degree and the graph is shown below: 
+
+.. image:: ../../image/ff7_4.png
+   :scale: 70%
+   :align: center
+   :alt: cis and trans effect
+
+The structures shown on the right illustrate the rotation of terminal methyl groups in butane and results in various conformations.
+
+.. Note::
+   The *gauche* conformation appears to be more stable than the *trans* conformation. This is not the case for butane. However, the dihedral parameter sets were derived over a large number of test molecules with different atoms attached to the 1,4 positions. The parameters are therefore applicable, in a 'general sense', to molecules that contained alkyl chains. Also, bear in mind that there are other dihedral and other energy components that contribute to the structure of the molecule. 
+
+
+:ref:`^ GO TO TOP ^<Header_ff7>` 

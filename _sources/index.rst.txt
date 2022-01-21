@@ -18,7 +18,6 @@ Welcome to the DL_Software Digital Guide (DL_SDG)
 
    ./RST_PAGES/Introduction
    ./RESOURCES/Resources
-   ./RESOURCES/EXERCISES/Exercises
    ./RESOURCES/SIMULATIONS/Simulations
    ./RESOURCES/knowledge
    ./RST_PAGES/Acknowledgements

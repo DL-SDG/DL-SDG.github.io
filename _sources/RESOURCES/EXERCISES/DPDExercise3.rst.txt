@@ -1,0 +1,143 @@
+.. _DPD_Exercise3:
+
+DPD Exercise 3: Transport properties of DPD fluids
+==================================================
+
+Introduction
+------------
+
+One significant advantage DPD has over molecular dynamics is its thermostat's ability to both control system temperature *and* automatically ensure hydrodynamics are applied correctly [#]_. If a flow field, e.g. linear shear or pressure-driven flow, is applied to a DPD simulation, the use of *relative velocities* between particle pairs in dissipative forces means the hydrodynamics are not affected.
+
+The dissipative force parameter :math:`\gamma` in the DPD thermostat is one way we can control the dynamic viscosity :math:`\mu`, an important macroscopic property of a fluid. It is limited, however, as the relationship between :math:`\gamma` and :math:`\mu` is complicated - even when conservative forces are omitted - and might not be completely suitable for flows of liquids.
+
+:ref:`AlternativeDPD` can help us get around this problem, particularly the Lowe-Andersen [Lowe1999]_ and Stoyanov-Groot [Stoyanov2005]_ thermostats. The dissipative and random forces for DPD are replaced with changes to relative velocities :math:`\mathbf{v}_{ij}` between pairs of particles to randomly-chosen values from a Maxwell-Boltzmann distribution for the required system temperature. The parameter for these thermostats, the collision frequency :math:`\Gamma`, replaces the dissipative force parameter :math:`\gamma` for DPD and represents both the probability of a particle pair having its relative velocity changed and an analogue for fluid viscosity.
+
+There are number of techniques to measure the viscosity of a fluid from DPD simulations based on non-equilibrium molecular dynamics (NEMD) techniques. :ref:`ViscosityLinearShear` is one such approach: we can calculate resulting shear stresses from setting constant velocity gradients in a simulation box, with the relationship between the two providing the viscosity. 
+
+A boundary condition available in DL_MESO_DPD - the Lees-Edwards periodic boundary condition [Lees1972]_ - can apply a constant velocity gradient  (a linear shear flow) throughout a simulation box. The products of pairwise forces and vectors between particle pairs provides our shear stress tensor :math:`\sigma_{\alpha \beta}`, and values of this property averaged over a reasonably large number of timesteps gives a representative value for the flow. Only one of the off-diagonal terms is needed: for instance, if we are varying the :math:`x`-component of velocity varies along :math:`y`, we will need to look at :math:`\sigma_{yx}` [#]_.
+
+The viscosity of a fluid is equal to the derivative of shear stress :math:`\tau = |\sigma_{yx}|` with respect to shear rate :math:`\dot{\gamma} = \left|\frac{\partial v_x}{\partial y}\right|`:
+
+.. math :: \mu = \frac{d \tau}{d \dot{\gamma}},
+  :label: viscosity
+ 
+which is generally a function of the shear rate. For simple fluids, often described as *Newtonian*, this value will be a constant value regardless of shear rate. 
+
+Aim
+---
+
+We are going to use the Lees-Edwards boundary conditions to produce linear shear in a simple DPD fluid. By trying out different shear rates (velocity gradients) and measuring the resulting shear stresses, we will be able to work out the fluid's viscosity and see how it changes when we change the thermostat parameter.
+
+We are mainly going to use the Stoyanov-Groot thermostat, but we can optionally switch to the DPD thermostat later on. 
+
+Instructions
+------------
+
+For this exercise, you will need the main DL_MESO_DPD executable *dpd.exe* - either serial or parallel versions will do - and the :ref:`local.exe <local>` utility to analyse and visualise some of the results. You will also need either graph plotting software (e.g. Gnuplot, Excel) or the :download:`correl.py <./scripts/correl.py>` Python script to look at :ref:`CORREL <correl>` files: the former might also be useful to plot some graphs of your own. You will also need to have Paraview installed.
+
+Copy the :ref:`CONTROL <controldlmeso>` and :ref:`FIELD <fielddlmeso>` input files from the directory *dl_meso/DEMO/DPD/ShearFlow* in your copy of DL_MESO to your working directory (*dl_meso/WORK*) and take a look at them in a text editor. 
+
+The :ref:`CONTROL <controldlmeso>` file is fairly similar to ones you have seen before in previous exercises, although there are three directives to pay attention to. 
+
+The first is the line used to specify writing trajectories to the :ref:`HISTORY <historydpd>` file:
+
+.. code-block:: bash
+
+  trajectory 40000 10 1
+
+which means DL_MESO_DPD will start writing to :ref:`HISTORY <historydpd>` from timestep 40,000 every 10 timesteps and include both particle positions and velocities. 
+
+The second directive is that for the ensemble:
+
+.. code-block:: bash
+
+  ensemble nvt stoyanov 0.3
+
+where we are telling DL_MESO_DPD we want to use the Stoyanov-Groot thermostat for a constant volume (NVT) system. We are also setting the Nosé-Hoover thermostat coupling parameter to 0.3, although we do not need to change this value in this exercise. 
+
+The last notable directive specifies that we wish to apply shear at the boundaries orthogonal to the :math:`y`-axis:
+
+.. code-block:: bash
+
+  surface shear y
+
+The :ref:`FIELD <fielddlmeso>` file species a single particle species (``FLUID``) that uses a conservative force parameter of :math:`A_{ij}=25` - the frequently used value for one-molecule water beads - an interaction cutoff :math:`r_c = 1` and a collision frequency :math:`\Gamma = 1` [#]_. The notable addition to this file is the following block:
+
+.. code-block:: bash
+
+  EXTERNAL
+  shear 1.0 0.0 0.0
+
+which specifies the wall velocity for the top wall (:math:`v_{w, x} = 1.0`) that is undergoing shear. (The bottom wall will move with a velocity :math:`v_{w, x} = -1.0`.) Since the simulation box is 10 length units in the :math:`y`-direction, as specified in the :ref:`CONTROL <controldlmeso>` file, the expected velocity gradient is :math:`\frac{\partial v_x}{\partial y} = \frac{\Delta v_x}{L_y} = \frac{1.0 - (-1.0)}{10} = 0.2`.
+
+When you run DL_MESO_DPD, you may notice that the resulting system temperature (as reported in the :ref:`OUTPUT <outputdlmeso>` file) will be higher than the value specified in the :ref:`CONTROL <controldlmeso>` file. This is not generally a problem for this kind of simulation: we are applying a flow field in the :math:`x`-direction and DL_MESO_DPD does not directly account for this when calculating system temperature from kinetic energies. To help us check that the thermostat is working property, DL_MESO_DPD will also display partial temperatures for each direction. Since the other two directions will not include a flow field, the partial temperatures for these directions should each average out at the specified value.
+
+Once DL_MESO_DPD has finished running, you will need to run :ref:`local.exe <local>` to work out time-averaged local velocities and how those vary in the :math:`y`-direction. We can do this using the following command:
+
+.. code-block:: bash
+
+  ./local.exe -nx 1 -ny 100 -nz 1 -av
+
+which will divide the box in the :math:`y`-direction into 100 slices - sufficient for our purposes - and write to a file called *averages.vtk*, which can be opened up in Paraview. After loading the file and clicking Apply in the Properties subwindow, apply the Plot Over Line filter, select the Y Axis and click Apply to display graphs of the properties that have been calculated by :ref:`local.exe <local>`.
+
+Both the :ref:`OUTPUT <outputdlmeso>` and :ref:`CORREL <correl>` files will display pressure tensors calculated for the simulation - the former as time-averaged values separated into conservative (interaction), dissipative, random and kinetic contributions, the latter as instantaneous values. These are related to the stress tensors by:
+
+.. math::
+
+   p_{\alpha \beta} = \frac{\sigma_{\alpha \beta}}{V}
+
+where :math:`V` is the simulation volume. To obtain the stress tensors, you therefore need to multiply the pressure tensors by the box volume (in this case, :math:`V = 1000 r_c^3`). 
+
+Tasks
+-----
+
+#. Run DL_MESO_DPD in your working directory with the supplied input files, then run the :ref:`local.exe <local>` utility to obtain time-averaged properties in slices along the :math:`y`-direction. Open Paraview, load in the *averages.vtk* file and apply the Plot Over Line filter along the :math:`y`-axis to get a graph of the :math:`x`-component of velocity. 
+
+   - Confirm that the time-averaged velocity profile is linear and work out the actual velocity gradient (shear rate) :math:`\frac{\partial v_x}{\partial y}`.
+
+#. Now take a look at the various pressure tensor components using either plotting software or the Python script *correl.py* on the :ref:`CORREL <correl>` file, or the averaged values at the end of the :ref:`OUTPUT <outputdlmeso>` file.
+
+   - Find the average value of :math:`\sigma_{yx}` and plot the *absolute* value of this (i.e. without positive or negative signs) against the averaged velocity gradient. **Remember to multiple the pressure tensor values by the system volume to get the stress tensor!**
+
+#.  Change the velocity of the shearing boundary in the :ref:`FIELD <fielddlmeso>` file to modify the velocity gradient and repeat the calculation (steps 1 and 2). Find the averaged stress tensor and velocity gradient for this calculation and add this to your stress vs. stress plot.
+
+#.  Once you have calculated shear stresses for at least five different shear rates, take a look at your plot.
+
+    - What kind of relationship exists between the shear rate and shear stress?
+
+    - Try fitting a straight line to the plot using regression analysis and find the viscosity of the fluid using :eq:`viscosity` (i.e. the gradient of this plot).
+
+#.  Change the collision frequency :math:`\Gamma` in the :ref:`FIELD <fielddlmeso>` file and repeat the above calculations of shear stress against shear rate (steps 1 to 4) to find the new fluid viscosity. 
+
+#.  Try a few different collision frequencies (at least three) and plot the viscosities you find against the collision frequencies.
+
+    - What kind of relationship do you get? Try to find a suitable function for the plot using regression analysis. 
+
+    - Given that water's viscosity at room temperature (298 K) is :math:`\mu = 8.90 \times 10^{-4}` Pa s or approximately :math:`53.1` in DPD-based units (based on one molecule of water per particle), can you work out an appropriate value of :math:`\Gamma`?
+
+The following tasks are *optional* but could offer more insight in how to obtain a required viscosity for a more complicated DPD system.
+
+#.  Try switching off conservative forces by setting :math:`A_{ij}` to zero and recalculate the fluid viscosity. Does this make any noticeable difference to the viscosity you measured with the original :math:`A_{ij}` value for a given value of collision frequency :math:`\Gamma`?
+
+#.  Replace the line ``ensemble nvt stoyanov 0.3`` with ``ensemble nvt dpdvv`` in the :ref:`CONTROL <controldlmeso>` file. This implements a scheme (known as 'DPD Velocity Verlet') that applies the DPD thermostat more accurately by recalculating the dissipative forces at the end of the timestep after force integration. 
+
+    - Repeat the calculations for viscosity at several shear rates for :math:`\gamma = 4.5` (a frequently used value for the dissipative force parameter) and :math:`A_{ij} = 25`. How does the magnitude of the viscosity compare with that obtained with the Stoyanov-Groot thermostat?
+
+    - Try varying the value of :math:`\gamma` for the fluid with conservative force parameters :math:`A_{ij}` of 0 and 25. How does the viscosity change with :math:`\gamma` in each case? Does the higher value of :math:`A_{ij}` lead to a higher viscosity? Given the required value of viscosity to represent water (shown above in DPD units), do you think the DPD thermostat can achieve it?
+
+.. rubric:: Footnotes
+
+.. [#] Non-equilibrium molecular dynamics (NEMD) can model systems with correct hydrodynamics and constant temperatures using a standard thermostat, but in this instance the thermostat can only be applied to *peculiar velocities*, i.e. particle velocities without contributions from the flow field. Finding the flow field requires localised sampling of the flow field - averaging velocities in volume slices over a short period of time - which adds a significant computational cost to the simulation. 
+
+.. [#] Since off-diagonal stress tensor components are symmetrical, we could also look at :math:`\sigma_{xy}`.
+
+.. [#] With the timestep :math:`\Delta t = 0.01` given in the CONTROL file, this means the probability of a particle pair having its relative velocity changed is :math:`\Gamma \Delta t = 0.01`.
+
+
+.. rubric:: References
+
+.. [Lowe1999] CP Lowe, An alternative approach to dissipative particle dynamics, *EPL*, **47**, p. 145-151, 1999, doi: 10.1209/epl/i1999-00365-x.
+
+.. [Stoyanov2005] SD Stoyanov and RD Groot, From molecular dynamics to hydrodynamics: A novel Galilean invariant thermostat, *Journal of Chemical Physics*, **122**, 114112, 2005, doi: 10.1063/1.1870892.
+
+.. [Lees1972] AW Lees and SF Edwards, The computer study of transport processes under extreme conditions, *Journal of Physics C*, **5**, p. 1921-1928, 1972, doi: 10.1088/0022-3719/5/15/006.

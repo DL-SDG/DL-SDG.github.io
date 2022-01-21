@@ -1,0 +1,20 @@
+.. This lists a range of tutorial exercises adapted from https://www.ccpbiosim.ac.uk/workshop-sept-2020-dl-meso/
+
+   
+
+*****************
+DL_MESO Exercises
+*****************
+
+Below is a list of tutorial exercises that have been written for a range of users of DL_MESO. They are categorized according to mesoscale modelling method: Lattice Boltzmann Equation (LBE) and Dissipative Particle Dynamics (DPD). Some guidance on setting up DL_MESO for the exercises is also provided.
+
+The exercises are not intended to be step-by-step walkthroughs: not all of the tasks need to be completed, but some thought and experimentation may be required to get the most out of an exercise.
+
+
+.. toctree::
+   :maxdepth: 2
+
+
+   ./dlmeso_setup
+   ./LBE
+   ./DPD

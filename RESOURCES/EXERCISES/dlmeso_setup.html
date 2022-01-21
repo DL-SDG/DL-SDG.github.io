@@ -1,0 +1,216 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Setting up DL_MESO &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Lattice Boltzmann Equation" href="LBE.html" />
+    <link rel="prev" title="DL_MESO Exercises" href="exercises_dlmeso.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="LBE.html" title="Lattice Boltzmann Equation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="exercises_dlmeso.html" title="DL_MESO Exercises"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" accesskey="U">DL_MESO Exercises</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="setting-up-dl-meso">
+<span id="dlmeso-setup"></span><h1>Setting up DL_MESO<a class="headerlink" href="#setting-up-dl-meso" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Before carrying out the practical exercises, you will need to prepare your computer by installing some packages (e.g. compilers, visualisation tools), download and compile DL_MESO <a class="reference internal" href="#seaton2013" id="id1">[Seaton2013]</a>. The following presumes you are an academic researcher and can therefore register for an Academic Licence for DL_MESO. (If this is not the case, please get in touch with <a class="reference external" href="mailto:michael&#46;seaton&#37;&#52;&#48;stfc&#46;ac&#46;uk">Michael Seaton</a> to work out options for gaining access.)</p>
+</div>
+<div class="section" id="prerequisites-for-dl-meso">
+<h2>Prerequisites for DL_MESO<a class="headerlink" href="#prerequisites-for-dl-meso" title="Permalink to this headline">¶</a></h2>
+<p>In order to compile DL_MESO’s codes and associated utilities, you will need at least the following installed on your computer:</p>
+<ul class="simple">
+<li>A Fortran 2003 compiler (e.g. gfortran from the GCC suite)</li>
+<li>A C++ compiler (e.g. g++ from the GCC suite)</li>
+<li>GNU Make (usually already installed in Linux and macOS)</li>
+</ul>
+<p>Optionally, you can include an installed instance of MPI (e.g. Open-MPI) which includes compiler wrappers to use MPI libraries with DL_MESO’s codes to speed up your calculations. An instance of the Java Runtime Environment (JRE) is also needed to use the GUI supplied with DL_MESO.</p>
+<p>All of the above can be installed using a Linux package manager - available via Windows Linux Subsystem if you are using Windows 10 - or either MacPorts or HomeBrew on Macs. For instance, if you are using Ubuntu, running</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install build-essential
+</pre></div>
+</div>
+<p>in a terminal window should install the GCC suite, although you may also need to install gfortran separately.</p>
+</div>
+<div class="section" id="obtaining-dl-meso">
+<h2>Obtaining DL_MESO<a class="headerlink" href="#obtaining-dl-meso" title="Permalink to this headline">¶</a></h2>
+<p>You will first need to register and download DL_MESO to obtain its source code. To do this, visit <a class="reference external" href="www.ccp5.ac.uk/DL_MESO">DL_MESO’s website</a>, follow the link to <a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_MESO-register.aspx">Registering for the DL_MESO package</a> and click ‘REGISTER NOW’ to go to DL_MESO’s Registration Form. Once you have completed and submitted the Registration Form, you should receive an automated email with a link to DL_MESO’s source code, a password to decrypt it on unpacking and instructions on how to do so.</p>
+</div>
+<div class="section" id="compiling-dl-meso">
+<h2>Compiling DL_MESO<a class="headerlink" href="#compiling-dl-meso" title="Permalink to this headline">¶</a></h2>
+<p>There are two major codes to compile (DL_MESO_LBE and DL_MESO_DPD) and a number of utilities.</p>
+<p>To compile DL_MESO_LBE with OpenMP multithreading and reasonable optimisation, go into the <em>dl_meso/WORK</em> directory in a terminal window and type one of the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>c++ -O3 -openmp ../LBE/slbe.cpp -o lbe.exe
+mpicxx -O3 -openmp ../LBE/plbe.cpp -o lbe.exe
+</pre></div>
+</div>
+<p>substituting <code class="docutils literal notranslate"><span class="pre">c++</span></code> with your C++ compiler (e.g. <code class="docutils literal notranslate"><span class="pre">g++</span></code>), <code class="docutils literal notranslate"><span class="pre">mpicxx</span></code> with the C++ compiler wrapped with MPI <a class="footnote-reference" href="#id5" id="id2">[1]</a>, and <code class="docutils literal notranslate"><span class="pre">-openmp</span></code> with the compiler flag needed to invoke OpenMP (e.g. <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code> for g++). The first command compiles the serial (single core) version of DL_MESO_LBE, while the second produces the parallel (multiple core) version. In both cases, the resulting executable will be <em>lbe.exe</em>.</p>
+<p>To compile DL_MESO_DPD, you will need to use a makefile to compile several Fortran modules and link them together as an executable. To do this, the <em>dl_meso/DPD/makefiles</em> directory has Makefiles available with and without MPI, with and without OpenMP. Choose the version you wish to compile and copy the required makefile into the <em>dl_meso/WORK</em> directory, renaming it as <em>Makefile</em>. This can then be invoked while in the <em>dl_meso/WORK</em> directory using the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<p>to produce the executable <em>dpd.exe</em>. Note that these makefiles assume you are using <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>: if you want to use a different compiler, open the makefile in a text editor and change the command in the line starting with <code class="docutils literal notranslate"><span class="pre">FC=</span></code>.</p>
+<p>To compile the utilities, there is another makefile available in the <em>dl_meso/WORK</em> directory, which can be invoked with the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -f Makefile-utils
+</pre></div>
+</div>
+<p>which again assumes use of <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> and <code class="docutils literal notranslate"><span class="pre">g++</span></code> as compilers. (These can be modified in the lines starting with <code class="docutils literal notranslate"><span class="pre">FC=</span></code> and <code class="docutils literal notranslate"><span class="pre">CC=</span></code>.)</p>
+<p>Once you have compiled everything, you can delete all the module (<code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">*.mod</span></code>) and object (<code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">*.o</span></code>) files.</p>
+</div>
+<div class="section" id="setting-up-visualisation-tools">
+<h2>Setting up visualisation tools<a class="headerlink" href="#setting-up-visualisation-tools" title="Permalink to this headline">¶</a></h2>
+<p>To visualise DPD trajectories, you can either install <a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a> or <a class="reference external" href="http://www.ovito.org">OVITO</a> <a class="footnote-reference" href="#id6" id="id3">[2]</a>. Visualising LBE results and some DPD analyses (based on grids) can be carried out using <a class="reference external" href="https://www.paraview.org">Paraview</a>. You will also need a program to plot tabulated data supplied in text files (e.g. Gnuplot, Excel), although one of the supplied Python scripts (see below) can also do this for DPD calculations.</p>
+</div>
+<div class="section" id="optional-python-scripts">
+<h2>Optional Python scripts<a class="headerlink" href="#optional-python-scripts" title="Permalink to this headline">¶</a></h2>
+<p>Some Python3 scripts are available to carry out a simple DPD simulation workflow for one of the practical exercises and plot graphs of simulation outputs. These scripts are optional but very useful and recommended for the DPD exercises.</p>
+<p>As well as Python3, the following packages need to be installed using PIP (Python’s Package Installer) <a class="footnote-reference" href="#id7" id="id4">[3]</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install docent
+pip install tqdm
+pip install numpy
+pip install PyQt5
+pip install matplotlib
+</pre></div>
+</div>
+<p>The visualisation scripts will also need <a class="reference external" href="https://doc.qt.io/qt-5/gettingstarted.html">Qt5</a> to be installed, e.g. <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">qt5-default</span></code> in Ubuntu.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>The command shown here is standard for g++ with Open-MPI or MPICH-2, although it may vary for other compilers (e.g. Intel) and/or MPI implementations.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>At the time of writing (September 2021), only OVITO is currently available as a stable release for Macs since the removal of 32-bit application support in macOS. There are test builds available for macOS Catalina (10.15) and Big Sur (11) of <a class="reference external" href="https://www.ks.uiuc.edu/Research/vmd/alpha/">alpha releases of VMD 1.9.4</a>, but these are not guaranteed to work: download and install them <em>at your own risk</em>!</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Depending on your installation of Python3 and PIP, you might need to use <code class="docutils literal notranslate"><span class="pre">pip3</span></code> instead of <code class="docutils literal notranslate"><span class="pre">pip</span></code> in these commands to install the packages.</td></tr>
+</tbody>
+</table>
+<p class="rubric">Reference</p>
+<table class="docutils citation" frame="void" id="seaton2013" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Seaton2013]</a></td><td>MA Seaton, RL Anderson, S Metz and W Smith, DL_MESO: highly scalable mesoscale simulations, <em>Molecular Simulation</em>, <strong>39</strong>, p. 796-821, 2013, doi: 10.1080/08927022.2013.772297.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="exercises_dlmeso.html"
+                        title="previous chapter">DL_MESO Exercises</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="LBE.html"
+                        title="next chapter">Lattice Boltzmann Equation</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="LBE.html" title="Lattice Boltzmann Equation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="exercises_dlmeso.html" title="DL_MESO Exercises"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

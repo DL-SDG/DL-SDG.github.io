@@ -1,0 +1,92 @@
+.. DL_MESO tutorial.
+.. _Header_dlm_2:
+
+.. |br| raw:: html
+
+   <br />
+
+*************************
+Structures and operations
+*************************
+
+This page illustrates the software's structural aspects and provides a brief summary on how it works.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**File structures**
+
+The DL_MESO package comes with the following file components:
+
+* DL_MESO_LBE program source in the *LBE/* directory. 
+
+  * Utilities to prepare input files and process results in the *LBE/utility* sub-directory. 
+
+* DL_MESO_DPD program source in the *DPD/* directory.
+
+  * Utilities to prepare input files and process results in the *DPD/utility* sub-directory.
+
+  * Makefiles to compile source files and put together executables in the *DPD/makefiles* sub-directory.
+
+* DL_MESO GUI program source in the *JAVA/* directory. This also includes 
+
+* Example simulations and test cases in the *DEMO/* directory.
+
+  * Examples for LBE simulations in individual folders in the *DEMO/LBE* sub-directory. Each example consists of input files - *lbin.sys*, *lbin.spa* and (only for some examples) *lbin.init* - and sample outputs, including the simulation diagnostic printed to the screen or standard output (*lbout.screen*) and images or plots of pertinent properties.
+
+  * Examples for DPD simulations in individual folders in the *DEMO/DPD* sub-directory. Each example consists of input files - *CONTROL*, *FIELD* and (only for some examples) *CONFIG* - and sample outputs, including the simulation diagnostic (*OUTPUT*), 
+
+* The DL_MESO user manual in the *MAN/* directory.
+
+* A sample work space in the *WORK/* directory. This includes a runscript to launch the GUI (*rungui*) and a Makefile for compiling DL_MESO's utilities (*Makefile-utils*). This is the preferred location for compiling DL_MESO_LBE and DL_MESO_DPD, although the user can create their own directory at the same level if they wish to do so.
+
+
+   
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png      
+
+**Operations**
+
+To run either DL_MESO_LBE or DL_MESO_DPD, you will need to supply input files to describe the simulation you wish to carry out. These need to be placed inside the directory where you want to run the program, ideally in the same directory as the executable file created during compilation.
+
+The input files for DL_MESO_LBE typically include:
+
+* :ref:`lbin.sys <lbin_sys>` - simulation controls and initial/boundary condition values
+* :ref:`lbin.spa <lbin_spa>` - boundary conditions at specified grid points
+* :ref:`lbin.init <lbin_init>` - initial fluid, solute and temperature properties at specified grid points (optional)
+
+which are described in more detail in :ref:`DL_MESO_LBE files <Header_dlm_3>`. Running DL_MESO_LBE produces a series of files (snapshots of the system) acting as a simulation trajectory, while running information about the simulation is output to either the terminal window or (when running on high performance computers, e.g. supercomputers) to a standard output file. To enable a simulation restart if the calculation is interrupted, another file (:ref:`lbout.dump <lbout_dump>`) with a more detailed simulation snapshot is written every so often that can be read to resume a previous calculation.
+
+The input files for DL_MESO_DPD typically include:
+
+* :ref:`CONTROL <controldlmeso>` - simulation controls
+* :ref:`FIELD <fielddlmeso>` - contents of simulation (particles, molecules) and interactions
+* :ref:`CONFIG <configdlmeso>` - initial configuration specifying positions etc. at start of simulation (optional)
+
+which are described in more detail in :ref:`DL_MESO_DPD files <Header_dlm_4>`. Running DL_MESO_DPD produces an :ref:`OUTPUT <outputdlmeso>` file with running information about the simulation and (optionally) a simulation trajectory file and a file with tabulated system properties. To enable a simulation restart if the calculation is interrupted, an :ref:`export <exportrestart>` file with a detailed simulation snapshot and a :ref:`REVIVE <revivedlmeso>` file with statistical accumulators and random number generator states are written every so often, both of which can be read to resume a previous calculation or start a new calculation from that state.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Program execution**
+
+The steps below occur when either DL_MESO code is run:
+
+(1) Read input files and obtain parameters to describe the simulation, required interactions etc.
+
+(2) Either setup a new simulation based on the input files or read in the state of a previous simulation from restart files.
+
+(3) Run through required number of timesteps, during each one:
+
+   * Advance system by a timestep (a collision-propagation step in DL_MESO_LBE, Velocity Verlet force integration and calculation of new forces in DL_MESO_DPD)
+
+   * Calculate any system-wide properties needed for outputs
+
+   * At requested timesteps, write system state to output files, including system trajectory data, tabulated properties and simulation restart files.
+
+(4) Write simulation summaries to output file or screen/standard output, write restart files and close down simulation.
+
+   * If calculation time runs out before simulation is completed, write restart files for last available timestep.
+
+In many instances, a utility may need to be run after DL_MESO has finished to convert the trajectory data into a different format for visualisation or to carry out analyses on trajectories.
+
+
+
+:ref:`^ GO TO TOP ^<Header_dlm_2>`

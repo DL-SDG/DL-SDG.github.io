@@ -1,0 +1,239 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Using DL_MESO_LBE &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="LBE Exercise 1: Phase separation and equations of state" href="LBEExercise1.html" />
+    <link rel="prev" title="Lattice Boltzmann Equation" href="LBE.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="LBEExercise1.html" title="LBE Exercise 1: Phase separation and equations of state"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="LBE.html" title="Lattice Boltzmann Equation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="LBE.html" accesskey="U">Lattice Boltzmann Equation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="using-dl-meso-lbe">
+<span id="dl-meso-lbe"></span><h1>Using DL_MESO_LBE<a class="headerlink" href="#using-dl-meso-lbe" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>DL_MESO_LBE uses a number of input files to read in the details of an LBE simulation and produces output files containing the results. The Java GUI and utilities supplied with DL_MESO can be used to create/modify LBE simulation inputs and work with outputs to enable users to visualise and analyse simulations.</p>
+</div>
+<div class="section" id="input-files">
+<h2>Input files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h2>
+<p>Two input files are required for a DL_MESO_LBE calculation:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a>: gives simulation controls, specifying properties such as lattice scheme, grid size, number of timesteps, relaxation times, properties for initial and boundary conditions etc.</li>
+<li><a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a>: provides information on which lattice sites include boundary conditions and their types.</li>
+</ul>
+<p>DL_MESO_LBE will ordinarily set up the initial state of the LBE calculation (fluid velocities, densities etc.) using the initial conditions specified in <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> for every grid point. It is possible, however, to supply your own using an <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> file to specify fluid velocities, densities etc. at any grid point that should not use the defaults. The easiest way to create an <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> file is to use one of the utilities (see below) to either specify the locations, sizes and content of drops or to process the restart file (<a class="reference internal" href="../TUTORIALS/dlm_3.html#lbout-dump"><span class="std std-ref">lbout.dump</span></a>) generated by a previous DL_MESO_LBE calculation.</p>
+<p>These files are in text format and can be opened, created or modified by hand using your favourite text editor. However, the format for <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> files can be difficult to read and understand: I would therefore recommend using the GUI supplied with DL_MESO to create these files.</p>
+<div class="section" id="lbin-sys">
+<h3>lbin.sys<a class="headerlink" href="#lbin-sys" title="Permalink to this headline">¶</a></h3>
+<p>An edited extract from a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file used in <a class="reference internal" href="LBEExercise2.html#lbe-exercise2"><span class="std std-ref">LBE Exercise 2</span></a> is shown here.</p>
+<p>Each line consists of keywords separated by underscores to indicate a property and either a number or a word to specify the value for that property. The first ten lines shown here - specifying the numbers of dimensions, discrete speeds, fluids, solutes, temperature scalar, phase field, grid points in <span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-directions and the domain boundary width - are compulsory for all simulations, although the lines do not have to be in any particular order.</p>
+<p>The lattice scheme is defined by the numbers of dimensions and discrete speeds: the four lattices currently available in DL_MESO_LBE are D2Q9, D3Q15, D3Q19 and D3Q27, where <span class="math notranslate nohighlight">\(\textrm{D}n\textrm{Q}m\)</span> denotes <span class="math notranslate nohighlight">\(n\)</span> dimensions and <span class="math notranslate nohighlight">\(m\)</span> lattice links per grid point. The keywords <code class="docutils literal notranslate"><span class="pre">domain_boundary_width</span></code> indicates how many lattice points are needed as a boundary halo for parallel calculations <a class="footnote-reference" href="#id3" id="id1">[1]</a>. The keywords <code class="docutils literal notranslate"><span class="pre">collision_type</span></code> indicate both the collision scheme and how forces (externally applied and those arising from fluid interfaces) are included, while <code class="docutils literal notranslate"><span class="pre">interaction_type</span></code> is used to select the mesoscopic interaction scheme.</p>
+<p>The relaxation times (<span class="math notranslate nohighlight">\(\tau\)</span>) for each fluid (numbering starting from 0) are given with <code class="docutils literal notranslate"><span class="pre">relaxation_fluid_*</span></code> keywords. The initial density for each fluid throughout the system is given by <code class="docutils literal notranslate"><span class="pre">density_ini_*</span></code>, while constant densities used for incompressible fluids and some mesoscopic interactions are given by <code class="docutils literal notranslate"><span class="pre">density_inc_*</span></code> <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
+<p>Properties for boundary conditions applying e.g. constant densities or velocities can be specified. In this case, <code class="docutils literal notranslate"><span class="pre">speed_top_*</span></code> indicates the velocity of all fluids at the top boundary of the box (with 0, 1 and 2 indicating <span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-components respectively). These boundary conditions do not apply during any equilibration timesteps specified by <code class="docutils literal notranslate"><span class="pre">equilibration_step</span></code>.</p>
+<p>There are a few options available for the <code class="docutils literal notranslate"><span class="pre">output_format</span></code> - snapshots of the simulation showing fluid velocities, densities etc. at all grid points - which are written every <code class="docutils literal notranslate"><span class="pre">save_span</span></code> timesteps either from the start or after equilibration.</p>
+<p>Further details of available keywords in this file can be found in Chapter 6 of <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
+</div>
+<div class="section" id="lbin-spa">
+<h3>lbin.spa<a class="headerlink" href="#lbin-spa" title="Permalink to this headline">¶</a></h3>
+<p>A short extract from a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file used in <a class="reference internal" href="LBEExercise2.html#lbe-exercise2"><span class="std std-ref">LBE Exercise 2</span></a> is shown here.</p>
+<p>The format consists of lines with grid point coordinates followed by a code for the required boundary condition at that point. A full list of the available boundary condition codes can be found in Chapter 6 of the <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>, but it is much easier to create an <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file using the GUI (see below).</p>
+</div>
+</div>
+<div class="section" id="output-files">
+<h2>Output files<a class="headerlink" href="#output-files" title="Permalink to this headline">¶</a></h2>
+<p>The outputs from DL_MESO_LBE can include:</p>
+<ul class="simple">
+<li>Screen/standard output: summary of the LBE simulation with ongoing timings, fluid masses and system momenta.</li>
+<li><a class="reference internal" href="../TUTORIALS/dlm_3.html#lbout-dump"><span class="std std-ref">lbout.dump</span></a>: state of simulation recorded at time intervals, continuously overwritten (last one provided) - written in binary, can be used to restart simulation or used with utilities.</li>
+<li><a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a>: simulation trajectory as snapshots at user-specified time intervals - written in structured grid XML-based VTK format for opening in Paraview, includes macroscopic velocity, fluid densities etc. at each grid point.</li>
+</ul>
+<p>By default, the MPI parallel version of DL_MESO_LBE will write an output file per outputting timestep for each processor core. This number can be reduced by using the keywords <code class="docutils literal notranslate"><span class="pre">output_combine_x</span></code> etc. in <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> to gather data among cores in each direction before writing: selecting this option for all three dimensions will produce a single output file per timestep.</p>
+<p>Further details of these file formats can be found in Chapter 6 of <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
+</div>
+<div class="section" id="running-dl-meso-lbe">
+<h2>Running DL_MESO_LBE<a class="headerlink" href="#running-dl-meso-lbe" title="Permalink to this headline">¶</a></h2>
+<p>Before running DL_MESO_LBE, first ensure your working directory (<em>dl_meso/LBE</em>) includes at least <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> files.</p>
+<p>To launch DL_MESO_LBE to run on a single processor, type in the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./lbe.exe
+</pre></div>
+</div>
+<p>This will work for both serial and parallel versions of the code, with or without OpenMP multithreading. To run an MPI-parallelised version of DL_MESO_LBE on more than one processor core, you have to use a command - either <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>, depending on your MPI installation - that uses MPI runtime libraries and specifies how many processor cores to use. For example, to launch DL_MESO_DPD on 4 processor cores, type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -np <span class="m">4</span> ./dpd.exe
+</pre></div>
+</div>
+<p>By default, you will see messages appear on the screen as DL_MESO_LBE runs to show how the calculation is progressing. You can redirect this to a file (e.g. <em>output.txt</em>) for future reference by adding one of the following to the end of your launch command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; output.txt
+<span class="p">|</span> tee output.txt
+</pre></div>
+</div>
+<p>where the first will write the standard output to the file without displaying it on the screen, while the second will write the output to the file <em>and</em> display it on the screen.</p>
+</div>
+<div class="section" id="running-gui">
+<span id="dl-meso-gui"></span><h2>Running GUI<a class="headerlink" href="#running-gui" title="Permalink to this headline">¶</a></h2>
+<p>Some of the tasks in the practical LBE exercises can make use of the <a class="reference internal" href="../TUTORIALS/dlm_10.html#header-dlm-10"><span class="std std-ref">GUI</span></a>. You can launch it from <em>dl_meso/WORK</em> with the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>java -jar ../JAVA/GUI.jar
+</pre></div>
+</div>
+<p>A runscript in this directory (<code class="docutils literal notranslate"><span class="pre">rungui</span></code>) can alternatively be used to launch the GUI. When the GUI launches, click on the <em>LBE</em> button at the top. A sidebar on the left hand side will appear with more buttons for LBE simulations.</p>
+<div class="align-center figure" id="id5">
+<a class="reference internal image-reference" href="../../_images/guilbe1.png"><img alt="Define LBE System section of GUI" src="../../_images/guilbe1.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text"><em>Define LBE System</em> section of GUI to create and edit lbin.sys files for DL_MESO_LBE</span></p>
+</div>
+<p>The first button, <em>Define LBE System</em>, brings up some pulldown boxes and text fields to help you create a new <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file or edit a pre-existing one in the directory where you launched the GUI. If you wish to open the lbin.sys in your working directory, click <em>OPEN</em> to load it into the GUI.</p>
+<p>Clicking on the active buttons will open pop-up windows with further fields to specify e.g. fluid parameters, fluid interactions: any values you enter will only be included in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file if you click the <em>SAVE</em> button for that window. Once you have completed entering values for your simulation, clicking on <em>SAVE</em> in the main window will create a new <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file with those values and overwrite any existing file.</p>
+<div class="align-center figure" id="id6">
+<a class="reference internal image-reference" href="../../_images/guilbe2.png"><img alt="Set LBE Space section of GUI" src="../../_images/guilbe2.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text"><em>Set LBE Space</em> section of GUI to create lbin.spa files for DL_MESO_LBE</span></p>
+</div>
+<p>The second button, <em>Set LBE Space</em>, brings up some more pulldown boxes, buttons and text fields to specify boundary conditions for your LBE simulation. This section can only be used once you have opened or saved an <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file in the <em>Define LBE System</em> window and cannot open an existing <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file.</p>
+<p>The pulldown boxes at the top of the window can be used to specify boundary conditions at the edges of the simulation box. If any of the selected conditions require values for velocities, fluid densities etc., the button next to the pulldown box will become active and clicking it will open a pop-up window where you can specify the required values. (You must click <em>SET BC</em> to store the values in memory.)</p>
+<p>You can add obstacles with bounce-back boundaries - individual points, spheres, cylinders/circles or rectangular/cuboidal blocks - in the <em>ADD OBSTACLES</em> section. To add an obstacle, select the type in the pulldown box, enter the details - position at its centre or bottom left corner, radius or extent - and click <em>add obstacle</em>. The <em>SET AS POROUS MEDIA</em> section allows you to create randomised porous media for your simulations by selecting the type of bounce-back condition, entering the pore fraction (in percent) and clicking <em>set pore</em>. Note that neither of these options displays anything on screen when you click the buttons, but they will take effect when the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file is created.</p>
+<p>Once you have finished specifying boundary conditions, clicking <em>Create</em> will create a new <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file with the boundary conditions and append any boundary values to <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a>.</p>
+<p>Further details on what the GUI can do and how to use it can be found in Chapter 3 of <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
+</div>
+<div class="section" id="dl-meso-lbe-utilities">
+<h2>DL_MESO_LBE utilities<a class="headerlink" href="#dl-meso-lbe-utilities" title="Permalink to this headline">¶</a></h2>
+<p>One LBE utility will help you set up a simulation, some LBE utilities will process output files (*.vts) to make them easier to visualise in Paraview, some will read the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbout-dump"><span class="std std-ref">lbout.dump</span></a> file and produce more useable outputs. The executables for the most useful utilities are:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a>: creates a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> file to specify initial velocities, densities etc. different to those specified in <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> - can be used to insert circular/spherical fluid drops;</li>
+<li><a class="reference internal" href="../TUTORIALS/dlm_6.html#lbevtkgather"><span class="std std-ref">vtk.exe</span></a>: gathers together data in XML-based VTK files after running DL_MESO_LBE in parallel by creating linking files (lbout*.pvts) to put together *.vts files from individual processor cores when plotting in Paraview;</li>
+<li><a class="reference internal" href="../TUTORIALS/dlm_6.html#lbedumpinit"><span class="std std-ref">dump_to_init.exe</span></a>: creates a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> file from a previous simulation’s <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbout-dump"><span class="std std-ref">lbout.dump</span></a> restart file.</li>
+</ul>
+<p>These can be launched in the working directory in a similar fashion to running DL_MESO_LBE on a single processor core, e.g.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./init.exe
+</pre></div>
+</div>
+<p>although some utilities can take command-line options to change how they work. (The utility <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> will prompt the user to enter information.) Every utility can take <code class="docutils literal notranslate"><span class="pre">-h</span></code> as an option to show what the utility does and what the other available options happen to be.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>When running DL_MESO_LBE in serial, no boundary halo is required as any periodic boundaries are implemented using modulo functions on grid positions. This value should still be specified in case the simulation is run in parallel later, but it will be ignored for serial runs.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>One of the utilities (<a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a>) uses the constant densities as defaults when setting up initial conditions, e.g. when including immiscible drops in the calculation.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="LBE.html"
+                        title="previous chapter">Lattice Boltzmann Equation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="LBEExercise1.html"
+                        title="next chapter">LBE Exercise 1: Phase separation and equations of state</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="LBEExercise1.html" title="LBE Exercise 1: Phase separation and equations of state"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="LBE.html" title="Lattice Boltzmann Equation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="LBE.html" >Lattice Boltzmann Equation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

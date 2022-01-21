@@ -1,0 +1,25 @@
+Lattice Boltzmann Equation
+==========================
+
+The Lattice Boltzmann Equation (LBE) is a mesoscale modelling method based on evolving probability distribution functions representing particles colliding and moving along fixed links between points on a grid, discretising both time and space. LBE's features include the abilities to easily model multiple fluids and/or phases in geometrically complex systems with length and time scales approaching the continuum.
+
+To give you an overview of LBE's capabilities, we have put together a few exercises making use of DL_MESO. These exercises can all be run on standalone desktops or laptops, ideally with multiple core and/or threads: while these involve fairly small simulation sizes, they cover several features available with LBE.
+
+If you wish to try out LBE using these exercises, we recommend that:
+
+1. if you have not yet done so, you follow the instructions in :ref:`dlmeso_setup` to download and compile DL_MESO's LBE code and utilities; and
+
+2. you take a look at some details on using DL_MESO's LBE code in :ref:`DL_MESO_LBE`.
+
+The first two exercises cover different approaches for LBE simulations with multiple phases or fluids, while the third use LBE to study a flow-based problem.
+
+:ref:`LBE_Theory` provided here are not absolutely essential to complete the exercises, but they might be useful in providing more context on how and why LBE works, both in general and for the applications given in the exercises.
+
+.. toctree::
+   :maxdepth: 2
+
+   DL_MESO_LBE
+   LBEExercise1
+   LBEExercise2
+   LBEExercise3
+

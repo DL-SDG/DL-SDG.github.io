@@ -1,0 +1,115 @@
+.. DL_MESO tutorial.
+.. _Header_dlm_9:
+
+.. |br| raw:: html
+
+   <br />
+
+*********************************
+DL_MESO_LBE basics and algorithms
+*********************************
+
+The Lattice Boltzmann Equation (LBE) uses a statistical mechanics approach to modelling the motion of particle. Rather than tracking the locations of individual particles, LBE works with the *probabilities of finding particles* that collide together and propagate (free-stream). A distribution function :math:`f \left(t, \mathbf{x}, \mathbf{p}\right)` is defined to give the probability of finding particles at time :math:`t` and position :math:`\mathbf{x}` posessing momentum :math:`\mathbf{p}`.
+
+To make the calculations feasible, the range of possible momenta for the particles is limited to make them move solely on a regular lattice. Even with this limitation to their possible degrees of freedom, the particles can be shown (mathematically) to represent a fluid behaving according to the Navier-Stokes equations of fluid flow.
+
+Basic LBE algorithm
+===================
+
+A lattice scheme is defined with a set of vectors :math:`\mathbf{e}_i` between grid points, which also represent the available momenta for particles moving on the lattice. Distribution functions can thus be defined for each lattice link :math:`i`, :math:`f_i \left(\mathbf{x}, t\right)`, whose moments can be used to find macroscopic fluid properties (densities, momentum) at each grid point:
+
+.. math:: \rho \left(\mathbf{x}, t\right) = \sum_i f_i \left(\mathbf{x}, t\right)
+
+.. math:: \rho \left(\mathbf{x}, t\right) \mathbf{u} \left(\mathbf{x}, t\right) = \sum_i f_i \left(\mathbf{x}, t\right) \mathbf{e}_i
+
+The distribution functions evolve in collision:
+
+.. math:: f_i \left(\mathbf{x}, t^{+}\right) = f_i \left(\mathbf{x}, t\right) + C_i
+
+and propagation stages:
+
+.. math :: f_i \left(\mathbf{x}+\mathbf{e}_i \Delta t, t + \Delta t \right) = f_i \left(\mathbf{x}, t^{+}\right)
+
+where :math:`C_i` is a collision operator acting to produce post-collisional values at time :math:`t^{+}`. Collisions are generally defined based on deviation from a local equilibrium state, which can be calculated as distribution functions from a function of density and velocity, e.g.
+
+.. math:: f_i^{eq} \left(\rho, \mathbf{u}\right) = \rho w_i \left[1 + 3 \left(\mathbf{e}_i \cdot \mathbf{u} \right) + \frac{9}{2} \left(\mathbf{e}_i \cdot \mathbf{u} \right)^2 - \frac{3}{2} u^2 \right]
+
+for mildly compressible fluids, where :math:`w_i` are lattice-scheme dependent weighting parameters. The simplest collision operator is based on the Bhatnagar-Gross-Krook (BGK) approximation:
+
+.. math:: C_i = -\frac{f_i \left(\mathbf{x}, t\right) - f_i^{eq} \left(\rho \left(\mathbf{x}, t\right), \mathbf{u} \left(\mathbf{x}, t\right) \right)}{\tau}
+
+where the relaxation time :math:`\tau` is related to the kinematic viscosity of the fluid:
+
+.. math:: \nu = \frac{\mu}{\rho} = \frac{1}{3}\left(\tau - \frac{1}{2}\right) \frac{\Delta x^2}{\Delta t}
+
+and can be used along with the grid spacing :math:`\Delta x` and timestep :math:`\Delta t` to parameterise the LBE simulation.
+
+Capabilities of LBE
+===================
+
+Different *collision schemes* exist to provide greater numerical stability and wider viscosity ranges than the single relaxation time BGK scheme can provide. These involve more complex collision operators that make use of multiple relaxation times, many of which are applied directly to additional moments of distribution functions to improve numerical stability without affecting the hydrodynamics. The form of the local equilibrium distribution function can be chosen to provide greater numerical stability or specific phenomena, e.g. fluids that are exactly incompressible rather than mildly compressible. *Rheological models* for more complex fluids can be applied by making relaxation times (viscosities) at individual grid points depend on shear rates, which can be calculated at each lattice site.
+
+*Boundary conditions* in lattice Boltzmann simulations involve determining 'missing' distribution functions at specified grid points for links going back into bulk fluid. The simplest scheme is *bounce back* reflection of distribution functions by assigning them to conjugate lattice links at the required grid point: this provides a no-slip (zero velocity) condition that can be applied to *any* lattice site. Other boundary schemes exist that can apply constant fluid velocities or densities, finding the missing distribution functions from the required condition and known distribution functions for the grid point.
+
+Forces can be applied at each grid point during collisions with additional forcing terms. These forces can either be external fields (e.g. gravity) or *interaction forces* determined from gradients of fluid density or a similar property, which are calculated at each grid point using lattice-based stencils. Interaction schemes exist for LBE that can modify a fluid's equation of state and result in multiple phases (e.g. liquid and vapour). These schemes do not require interfaces to be tracked explicitly, which emerge during the course of the calculation.
+
+It is possible to model *multiple fluids* by defining distribution functions for each fluid that exist on separate lattices co-existing on the same spatial grid. Interaction forces can be calculated between different fluids to couple their motion together and keep them separated (i.e. immiscible). No single best method for representing fluid interactions in LBE simulations exists, but the available methods can provide different phenomena (e.g. fixing continuum interfacial tension or equations of state).
+
+A similar approach to modelling multiple fluids can be used to model *mass and heat diffusion*: separate distribution functions are defined for solutes and temperature fields. The sums of these distribution functions over lattice links give concentrations and temperatures respectively instead of fluid density. Local equilibrium distribution functions are often selected as simpler forms compared to those used for fluids, whose values are calculated during collisions using the *fluid* velocity to couple the solutes and temperature fields to the flow system. In the case of modelling temperature fields, heat convection can be achieved either by using a temperature-dependent buoyancy force or by selecting a temperature-dependent equation of state applied using fluid interactions.
+
+DL_MESO_LBE functionalities
+===========================
+
+DL_MESO_LBE can model fluid flows in either two-dimensions or three-dimensions using D2Q9, D3Q15, D3Q19 or D3Q27 square lattices [#]_. The fluid(s) can either be mildly compressible or exactly incompressible, and mass diffusion of solutes and/or heat diffusion can be coupled to fluid flow.
+
+The following collision schemes can be used:
+
+* Bhatnagar-Gross-Krook (BGK) single relaxation time
+* Two Relaxation Time (TRT)
+* Moment-based Multiple Relaxation Time (MRT)
+* Cascaded Lattice Boltzmann Equation (CLBE)
+
+and all of these can apply the following rheological models for fluids:
+
+* Constant kinematic viscosity (default)
+* Constant dynamic viscosity (*Newtonian*)
+* Power law
+* Bingham/Herschel-Bulkley plastics
+* Casson
+* Carreau-Yasuda
+
+The fluids can be subjected to interactions based on the following schemes:
+
+* Shan-Chen pseudopotential (for any number of fluids)
+* Lishchuk continuum-based (for two or more fluids)
+* Swift free-energy (for one or two fluid systems)
+
+with the Shan-Chen and Swift schemes able to apply various equations of state to the fluids, including cubic  (e.g. van der Waals, Redlich-Kwong) and Carnahan-Starling hard-sphere equations of state.
+
+The following boundary conditions can be applied to grid points:
+
+* Bounce back (no slip)
+* Outflows
+* Zou-He (constant velocity, density, solute concentration, temperature)
+* Inamuro (constant velocity, density, solute concentration, temperature)
+* Regularised (constant velocity, density)
+* Kinetic (constant velocity, density)
+
+and surface wetting schemes are available for simulations that include fluid interactions.
+
+Parallelisation of DL_MESO_LBE
+==============================
+
+DL_MESO_LBE is designed for homogeneously-distributed parallel machines. Each processor core can communicate with all of the others during a calculation, but it has its own separate allocation of memory. Its parallelisation strategy is *domain decomposition*, which involves dividing the system volume and grid points among processor cores and each core carrying out collisions on its own grid points. To correctly calculate any interaction forces and apply propagations, a boundary halo of additional grid points is defined to copy in data (distribution functions, calculated interaction forces etc.) from neighbouring cores using MPI core-to-core communications.
+
+Division of the grid points as equally as possible provides excellent load-balancing, with parallel scalability of DL_MESO_LBE generally being close to ideal. The amount and memory locations of data sent to neighbouring cores remains constant throughout the simulation, enabling the use of MPI derived data types to quickly specify the data to be copied into boundary halos. Aside from reporting system-wide progress, no global communications among all processor cores are required during simulations.
+
+The main calculation loops over grid points for collisions, propagation and force calculations can additionally be divided among available threads using OpenMP. This strategy is particularly successful for collisions, which can be carried out entirely autonomously for each grid point, but also works for force calculations and propagation when data in neighbouring grid points remain constant or are not directly affected by other grid points.
+
+Writing of :ref:`simulation snapshots <lboutsnapshot>` (containing fluid velocity, densities, etc.) to output files uses a default strategy of each core writing its own file for the current timestep. While this involves no synchronisation among processor cores and can happen very quickly, the resulting large numbers of files can put a strain on the filesystem and require post-processing to gather together the data for visualisation and analysis. To reduce the number of files written to disk, DL_MESO_LBE includes the user-selected option for processor cores along Cartesian axes to gather together their data, which are then written to a file by one core in that group. If all dimensions are selected for the simulation, MPI-IO is used to get multiple cores to write their grouped data to a single file per timeframe concurrently.
+
+.. rubric:: Footnote
+
+.. [#] The notation D\ :math:`n`\ Q\ :math:`m` indicates an :math:`n`-dimensional lattice with :math:`m` available lattice links per grid point, which normally includes a 'rest' link with zero displacement. Larger numbers of links per grid point require more memory for distribution functions and larger numbers of loop iterations for collisions and propagation, but provide greater numerical stability for calculations.
+
+:ref:`^ GO TO TOP ^<Header_dlm_9>`

@@ -1,0 +1,61 @@
+.. _Dimensionless_Numbers:
+
+Dimensionless numbers
+=====================
+
+Dimensionless numbers are quantities to which no physical dimension is assigned and are widely used in scientific and engineering fields. These can be used to characterise various situations and describe behaviours that can exist at various length and time scales.
+
+.. _Reynolds:
+
+Reynolds number
+---------------
+
+The Reynolds number (:math:`Re`) is an important dimensionless quantity in fluid mechanics that can be used to predict flow patterns in different situations. Two flow systems with the same Reynolds number are regarded as behaving similarly, even if their system dimensions and fluid properties are different. This allows experimentation with smaller scale systems in preparation of larger systems with confidence that the latter will behave in an expected manner.
+
+The definition of the Reynolds number is:
+
+.. math :: Re = \frac{u L}{\nu} = \frac{\rho u L}{\mu}
+
+where :math:`u` is the (average) fluid speed with respect to a given object (system or obstacle size), :math:`\rho` is the fluid density, :math:`L` is a characteristic length scale (e.g. pipe diameter), :math:`\mu` and :math:`\nu` are respectively the dynamic and kinematic viscosities of the fluid. 
+
+One major use of the Reynolds number - which can also be regarded as the ratio of inertial to viscous forces - is to characterise flow types. For instance, for fully-developed flows in cylindrical pipes, :math:`Re` values of less than 2300 typically indicate laminar (sheet-like, viscosity-dominated) flows, while values greater than 2900 indicate turbulent (chaotic, inertially-driven) flows.
+
+Capillary number
+----------------
+
+The capillary number (:math:`Ca`) describes the relative effects of viscosity and surface tension on a fluid drop surrounded by a continuous fluid. Based on the ratio of viscous to surface tension forces, it is given by the following formula:
+
+.. math :: Ca = \frac{\mu u}{\sigma} = \frac{\rho \nu u}{\sigma}
+
+where :math:`\rho` is the density of the fluid drop, :math:`u` is a representative (average) fluid speed  and :math:`\sigma` is the interfacial tension between the two fluids. For drops with small capillary numbers (less than :math:`10^{-5}`), we can assume flows in porous materials or capillaries will be dominated by interfacial tension.
+
+Schmidt and Prandtl numbers
+---------------------------
+
+Schmidt (:math:`Sc`) and Prandtl (:math:`Pr`) numbers describe fluid flows that include mass and heat diffusion convection processes respectively. They are ratios of viscous to mass or heat diffusion rates.
+
+The Schmidt number is the ratio of kinematic viscosity to diffusivity:
+
+.. math :: Sc = \frac{\nu}{D} = \frac{\mu}{\rho D}
+
+Diffusion dominates for values of the Schmidt number lower than 1, while viscosity (momentum diffusion) dominates when this value is higher. Values of the Schmidt number are typically less than or around 1 for gases, while liquids typically have values in hundreds or thousands.
+
+The Prandtl number is the ratio of kinematic viscosity to the rate of heat diffusion:
+
+.. math :: Pr = \frac{\nu}{\frac{k}{c_p \rho}} = \frac{\mu c_p}{k}
+
+where :math:`k` is the thermal conductivity and :math:`c_p` is the specific heat capacity. Values of the Prandtl number greater than 1 indicate momentum diffusion dominates over heat diffusion (conduction), which can be observed as convection of heat. Values of the Prandtl number are typically around 1 for gases, lower for liquid metals and higher for oils and polymers.
+
+Rayleigh number
+---------------
+
+The Rayleigh number (:math:`Ra`) describes buoyancy-driven flow, also known as free or natural convection. It is effectively the ratio of time scales between diffusive and convective thermal transport:
+
+.. math:: Ra = \frac{c_p L^3 g \Delta \rho}{\nu k}
+
+where :math:`g` is gravitational acceleration and :math:`\Delta \rho` is the mass density difference, which is approximated for a mildly compressible fluid undergoing a temperature difference as :math:`\Delta \rho \approx \rho \kappa_T \Delta T`, where :math:`\kappa_T` is the thermal expansion coefficient (rate of change of volume with temperature at constant pressure). For free convection near a surface with temperature :math:`T_s`, the Rayleigh number can thus be expressed as:
+
+.. math:: Ra = \frac{c_p L^3 g \rho \kappa_T}{\nu k} \left(T_s - T_{\infty}\right)
+
+where :math:`T_{\infty}` is the fluid temperature far from the wall.
+

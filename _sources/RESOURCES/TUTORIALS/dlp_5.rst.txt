@@ -1,0 +1,112 @@
+.. DL_POLY tutorial.
+.. _Header_dlp_5:
+
+.. |br| raw:: html
+
+   <br />
+
+*****************************
+DL_POLY basics and algorithms
+*****************************
+
+DL_POLY distinguishes between bonded and non-bonded interactions among particles in its simulations. Bonded or *intramolecular* interactions can include bond vibrations, angle vibrations (between pairs of bonds) and torsion potentials acting between planes formed by bonds. Non-bonded or *intermolecular* interactions include short-ranged van der Waals interactions (described by potentials such as Lennard-Jones) and long-range electrostatics with Coulombic potentials between charged particles.
+
+The molecular entities supported by DL_POLY include:
+
+* Point ions and atoms (or coarse-grained 'beads')
+* Polarisable ions (core and shell)
+* Molecules with flexible bonds between atoms
+* Molecules with fixed-length constraints between atoms
+* Rigid molecules, including those linked together with flexible bonds
+* Rigid molecules linked together with rigid bonds (only available in DL_POLY Classic)
+
+Force field definitions
+=======================
+
+DL_POLY uses the following definitions to describe the force fields it applies in molecular dynamics (MD) simulations:
+
+A *particle* is a rigid ion or an atom (with or without charge), a core or a shell of a polarisable ion (with or without associated degrees of freedom), or a massless charged site. It is a *countable object* and has a *unique global identity index*.
+
+A *site* is a particle prototype that serves to define the chemical and physical nature - the topology, connectivity and/or stoichiometry - of a particle, which can include its mass, charge and whether or not it is frozen in place. It does *not* count as an individual particle in a simulation.
+
+*Intramolecular interactions* include chemical bonds, bond angles, dihedral angles, improper dihedral angles and inversions. The members in a molecular unit (e.g. the atoms in a molecule) do not usually interact via intermolecular terms, although this can be overridden for some interactions. These interactions are defined by *site*.
+
+*Intermolecular interactions* include van der Waals, metal (embedded atom models, Gupta, Finnis-Sinclair, Sutton-Chen), Tersoff, three-body and four-body potentials, and are defined by *species*.
+
+*Electrostatics* are interactions between charged particles. In DL_POLY, methods to calculate electrostatic interactions include:
+
+  * Standard Ewald sums (DL_POLY Classic only)
+  * Hautman-Klein two-dimensional Ewald sums for slab geometries (DL_POLY Classic only)
+  * Smooth Particle Mesh Ewald (SPME) with three-dimensional Fast Fourier Transforms (FFTs)
+  * Force-shifted Coulomb potential
+  * Reaction field method
+  * Fennell-damped force-shifted Coulomb potential with reaction field
+  * Distance-dependent dielectric constant
+  * Fuchs correction for non-charge neutral MD cells
+  
+*Ion polarisation* effects can be modelled in DL_POLY using dynamic (adiabatic) or relaxed shell models.
+
+*External fields* include electric fields and magnetic fields acting on charged particles, gravity fields with constant mass-dependent forces on particles, sinusoidally-oscillating and continuous linear shear, application of a containing sphere and repulsive walls.
+
+*Intramolecular-like interactions* can be applied to particles, including tethers, core-shell units, constraint and potential-mean-force (PMF) units, and rigid body units. These are also defined by *site*.
+
+*Potentials* are interactions that are typically parameterised analytically (but can also be described in tabulated form). These are always spherically symmetric, i.e. they do not vary with the orientation of particles encountering each other.
+
+Boundary conditions
+===================
+
+DL_POLY can apply a range of different boundary conditions for simulations. These include
+
+* No periodic boundaries (e.g. for isolated macromolecules *in vacuuo*)
+* Cubic periodic boundaries
+* Orthorhombic (cuboidal) periodic boundaries
+* Parallelepiped (triclinic) periodic boundaries
+* Truncated octahedral periodic boundaries (DL_POLY Classic only)
+* Rhombic dodecahedral periodic boundaries (DL_POLY Classic only)
+* Slabs with periodic boundaries in :math:`x`- and :math:`y`-dimensions and a non-periodic boundary in the :math:`z`-dimension
+
+Parallelisations of DL_POLY
+===========================
+
+Both versions of DL_POLY - DL_POLY_5 and DL_POLY Classic - are designed for homogeneously-distributed parallel machines. Each processor core can communicate with all of the others during a calculation, but it has its own separate allocation of memory.
+
+The parallelisation strategy in DL_POLY Classic is *replicated data*. All processor cores share all the information about the entire MD simulation, including particle positions, velocities etc. The computational work to calculate particle forces and integrate the forces are shared between the available cores, but the results are synchronised and shared globally among all cores.
+
+The force calculations make use of a *Verlet neighbour list* giving possible interacting particle pairs, which is distributed equally among the available processor cores. While this approach is straightforward to implement and understand, also allowing for a comparatively large interaction cutoff distance :math:`r_{cut} \leq \frac{L}{2}` of up to half the system size, the performance overheads and limitations increase quickly with increasing numbers of particles due to the lack of memory distribution and the extensive global communications required.
+
+DL_POLY_4 and DL_POLY_5 use *domain decomposition*, which involves dividing the system volume and particles among processor cores and each core calculating interaction forces for its own particles. To correctly calculate these forces, a boundary halo for each core's subdomain is defined to copy in particle data from neighbouring cores using MPI core-to-core communications. The system is usually divided equally by volume, which provides good load-balancing when the particles are distributed evenly.
+
+Verlet neighbour lists are used to go through pairs of particles likely to be within the cutoff distance :math:`r_{cut}`, which are constructed using *linked cell lists*. By dividing the subdomain into cells with sides of at least :math:`r_{cut}` in size and constructing lists of particles in each cell, this reduces the number of possible particle pairs to search since all pairs relative to a given particle will exist either in its own cell or nearest neighbouring cells *but no further*. This approach works well for domain decomposition since the boundary halo size can be set to the same size as the link cells, and is equally efficient for three- and four-body interactions. Subcelling of the link cells can improve search efficiency further, particularly for systems with uneven particle distributions.
+
+Bonded interactions in both versions of DL_POLY are carried out using similar approaches to van der Waals and other two-body interactions, although these require explicit definitions of particles involved. Book-keeping arrays are used to keep track of particles in bonded interactions. All processor cores hold the full book-keeping arrays in DL_POLY Classic and divide up the calculations among themselves. In DL_POLY_4 and DL_POLY_5, the book-keeping arrays are divided up according to which processor cores the involved particles can be found: these change dynamically as the molecules move between subdomains.
+
+Ensembles and algorithms
+========================
+
+Integration of particle forces can be carried out using Velocity Verlet (VV) or leapfrog Verlet (LFV) schemes. (Note that *only VV is available* from DL_POLY_4 version 4.10 and later.) The following simulation ensembles are available in DL_POLY:
+
+* NVE - constant volume and energy
+* NVT - constant volume and temperature
+* NPT - constant volume and pressure
+* NP\ :math:`_{n}`\ AT - constant normal pressure, surface area and temperature
+* NP\ :math:`_{n}`\ :math:`\gamma`\ T - constant normal pressure, surface tension and temperature
+* N\ :math:`\sigma`\ T - constant pressure tensor and temperature
+
+and these can have been implemented with the following thermostats and barostats:
+
+* NVT - Evans (with additional kinetic energy constraint), DPD with 1st or 2nd order Shardlow splitting, Andersen, Langevin, Berendsen, Nosé-Hoover, Gentle Stochastic Thermostat (GST)
+* NPT - Langevin, Berendsen, Nosé-Hoover, Martyna-Tuckerman-Klein
+* NP\ :math:`_{n}`\ AT, NP\ :math:`_{n}`\ :math:`\gamma`\ T, N\ :math:`\sigma`\ T - Langevin, Berendsen, Nosé-Hoover, Martyna-Tuckerman-Klein
+
+with centre-of-mass motion removed from integrators that do not directly conserve momentum. (Note that only Berendsen, Nosé-Hooever and GST thermostats/barostats are available in DL_POLY Classic.)
+
+The coupling time constants used for thermostats and barostats control exchange of energy between the system and the reference baths. System-dependent compromises are usually needed to avoid slow equilibration with long time constants and interference with statistical properties with short constants.
+ 
+Solvers are also available to solve for fixed-length constraints and rigid body motion: RATTLE and No\_Squish are available for VV integration, SHAKE and Euler-Quaternion are available for LFV integration, and DL_POLY Classic can also use QSHAKE for both integration schemes.
+
+*Constraint bonds* can be used to increase the simulation timestep size by removing chemical bond vibrations. Solvers such as SHAKE and RATTLE introduce additional retrospective forces (iteratively) to push the bond length to the required value (within a tolerance).
+
+*Rigid bodies* provide a smarter way to move whole molecular fragments as single entities while keeping their internal distances constant with time. Their rotational motion needs to be solved numerically to satisfy the Eulerian equations of motion.
+
+  
+:ref:`^ GO TO TOP ^<Header_dlp_5>`

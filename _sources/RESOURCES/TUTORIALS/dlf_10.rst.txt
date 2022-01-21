@@ -1,0 +1,85 @@
+.. DL_FIELD tutorial.
+.. _Header_dlf_10:
+
+.. |br| raw:: html
+
+   <br /> 
+
+*******************
+The DL_F Notation 2
+*******************
+
+This page briefly describes DL_F Notation features, the notation syntax and shows some examples. For more details please consult the manual and the reference.
+
+C.W. Yong, *J. Chem. Inf. Model.* **56**, 1405-1409 (2016)
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Features**
+
+The DL_F Notation general formats are as follows:
+
+.. image:: ../../image/dlf_10_1.png
+   :scale: 55%
+   :align: center
+
+The ATOM_TYPEs are determined via molecular topology analysis. The ATOM_TYPEs are listed in a file called the *dlf_notation.output* in the *output/* directory. 
+
+There is no need to keep track of the ATOM_KEYs in the library files. The ATOM_KEYs can be generated *in-situ* in DL_FIELD, based on the ATOM_TYPEs. 
+
+The optional tokens are some alphabets and symbols that indicate the types and positions of atoms within a *CG*. For instance, the ethanol molecule in the previous page contained the tokens *p* and *s*, which refers to *primary* and *secondary* carbon atoms, respectively.
+
+Other more common tokens are *E* and *L*, which refer to *end* and *linked* position, respectively.
+
+The latest DL_FIELD version (4.7) can detect about four hundred *CGs*. More will be added when new versions are released.
+
+In summary, DL_F Notation has the following features:
+
+- Expression of standard atom types with a consistent format for a range of FF schemes.
+
+- Use of the universal atom typing procedures within DL_FIELD.
+
+- Produce DL_POLY files with consistent ATOM_KEYs for more precise and ease of results analysis.
+
+- Easy to identify, with sensible format of naming atoms that indicates precisely its chemical nature.
+
+- Use of xyz input configuration file format with full automatic determination of ATOM_TYPEs.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Example structures**
+
+(1) A pyridine molecule. The tokens *-1*, *-2*, etc, are the numering sequence that is usually used in aromatic ring systems.
+
+.. image:: ../../image/dlf_10_2.png
+   :scale: 50%
+   :align: center
+
+|br| |br|
+
+(2) Assignments of ATOM_TYPEs in DL_F Notation and PCFF force field for favipiravir molecule, an antivirial medication. 
+
+.. image:: ../../image/dlf_10_5.png
+   :scale: 50%
+   :align: center
+
+|br| |br|
+
+(3) Illustration of using xyz as the input structure in DL_FIELD, to produce the ATOM_TYPEs. Then, the corresponding *FIELD* file was produced, with the atom labels showed in the standard OPLS FF notation. 
+
+.. image:: ../../image/dlf_10_3.png
+   :scale: 60%
+   :align: center
+
+|br| |br|
+
+(4) Another similar example to the one above, but this time produced a FIELD file, with the atom labels showed in the standard notation for PCFF force field.
+
+.. image:: ../../image/dlf_10_4.png
+   :scale: 60%
+   :align: center
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dlf_10>`
+

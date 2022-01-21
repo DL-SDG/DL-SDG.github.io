@@ -1,0 +1,36 @@
+.. DL_MESO_LBE jargon. 
+
+******************
+DL_MESO_LBE Jargon
+******************
+
+Below shows definitions that are related to DL_MESO_LBE, or indeed, generally to Lattice Boltzmann Equation (LBE) simulations.
+
+|
+
+* lbin.init - An (optional) DL_MESO_LBE file that stores initial conditions for fluids (solutes and temperature fields) at specified grid points, including velocities, densities etc.
+
+|
+ 
+* lbin.spa - A DL_MESO_LBE file that specifies boundary conditions (types and directions) at grid points.
+
+|
+
+* lbin.sys - A DL_MESO_LBE file that contains a set of directives to drive the LBE simulation process.
+
+|
+ 
+* distribution function - The probability of finding particles at a specific time and location with a given momentum. In LBE simulations, the possible range of momenta is restricted to ensure particles exist solely on a regular grid (see lattice scheme), and each momentum has an associated distribution function, i.e. :math:`f_i \left(\mathbf{x}, t\right) = f \left(\mathbf{x}, t, \mathbf{\hat{e}}_i\right)`
+
+|
+
+* lattice scheme  - The selected range of particle momenta or lattice link vectors between grid points. This is often described as D\ *n*\ Q\ *m*, where *n* is the number of spatial dimensions and *m* is the number of link vectors for each grid point.
+
+|
+
+* collisions - Interactions between particles when they come into contact at grid points. These can incorporate the effects of fluid viscosity (or diffusion for solutes and temperature fields) and the application of body and interaction forces acting on fluids.
+
+|
+
+* propagation - Free-streaming of particles along lattice links to neighbouring grid points.
+

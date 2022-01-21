@@ -1,0 +1,48 @@
+.. DL_FIELD tutorial.
+.. _Header_dlf_16:
+
+.. |br| raw:: html
+
+   <br /> 
+
+****************
+The Output files
+****************
+
+Upon successful in running DL_FIELD, the following files will be produced:
+
+(1) Input files for DL_POLY simulations. They are:
+
+ - dl_poly.CONFIG - DL_POLY configuration file. For DL_POLY version 4 or below, need to change the filename to *CONFIG*.
+
+ - dl_poly.FIELD - DL_POLY force field file. For DL_POLY version 4 or below, need to change the filename to *FIELD*.
+
+ - dl_poly.CONTROL - DL_POLY control file. It is a generic file that list a number of commonly used directives in DL_POLY. Need to change the filename to *CONTROL* for DL_POLY version 4 or below. 
+
+(2) DL_FIELD system structure file, *dlf_notation.output*.
+
+ This file is produced if the input file format is in *xyz* or mol2. The file *dlf_notation.output* contained detailed chemical information of the system, as well as the connectivities of atoms. Example below shows the system structure of zonisamide, a small drug molecule.  
+
+ .. literalinclude:: dlf_notation.output
+
+(3) DL_FIELD conversion status file, *dl_field.output*
+
+ This file reports the conversion status in details, including any warnings. It is separated into several section. 
+
+  - CONTROL STATUS REPORT. This section shows options that have been selected in the DL_FIELD *control* file.
+
+  - FORCE FIELD INITIALISATION. This section reports the reading status of the *sf*, *par* and *udff* files. DL_FIELD will pick suitable parameters for the user model and computer memory is allocated to set up model structure databases.
+
+  - CONVERSION STATUS REPORT. This is the main section of *dl_field.output*, which reports the conversion process of user configuration into suitable FF models for DL_POLY.
+
+  - LINKAGE INFORMATION BETWEEN RESIDUES. This section is especially useful for protein structures in the PDB format. For instance, DL_FIELD determines the linkage information between two neighbouring residues to check for any undiscovered/undesirable bonds between two atoms from different residues.
+
+    Below shows a section of the output data for a protein molecule. Note that the C-N amide linkages are the most common ones but DL_FIELD can also pick up any possible S-S linkages, which may require user's action whether to delete any thiolate hydrogen for the S-S disulphide linkages.
+
+ .. literalinclude:: output 
+
+|br|
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_16>`
+

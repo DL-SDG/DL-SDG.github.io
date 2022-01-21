@@ -1,0 +1,50 @@
+.. File format conversion 
+.. _Header_dla_4:
+
+.. |br| raw:: html
+
+   <br />
+
+************************************
+File conversion and atom extractions
+************************************
+
+This page illustrates how to extract atoms and convert input files such as *HISTORY* files into different file formats, such as the PDB and xyz. This is achieved by using the *Trajectory Production Section*. Below shows options that are available for this *Section*.
+
+.. literalinclude:: dla_trajectory.txt
+
+Note that the numbers in brackets are added here for illustration purposes.
+
+Below provides a summary how to use some of the options.
+
+(1) Option (2) is where the output file is provided. DL_ANALYSER will automatically decide which file format to use, depending on the extentions being used. For example, filename that ends with *.pdb* will be written out in the PDB format. A PDB template file is needed (Option (3)) when the PDB format is selected.
+
+(2) Option (8) define the range of atoms to be read from the input files. Anything outside this range will be ignored. 
+
+(3) Option (9) allows you to extract a chunk of system configuration, centered around a group of atoms. 
+
+ For example, consider a system consists of some ethanol molecules in water. Assume the first eight atom indices belong to atoms that made up an ethanol molecule. Then, the following parameters:
+
+ *1   8   8.0   1*
+
+ means select atom 1 to atom 8, calculate the center of gravity of the chosen atom range. Any atoms that fall within the cut off value of 8.0 angstrom from the center of gravity will be selected and written out into the output file. The outcome would produce a sperical-shaped atomic configuration centered around the ethanol molecule.
+
+ .. image:: ../../image/dla_4_1.png
+    :scale: 40%
+    :align: center
+
+ To form a cubic box, the following parameters can be used:
+
+ *1   8   8.0   2* 
+
+ with the half-box length measures at 8.0 angstrom from x, y and z directions.
+
+|br|
+
+.. image:: ../../image/dla_4_2.png
+   :scale: 40%
+   :align: center
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dla_4>`

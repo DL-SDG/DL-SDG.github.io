@@ -1,0 +1,56 @@
+.. MD Introduction 
+.. _Header_md2:
+
+*************************
+Molecular dynamics basics
+*************************
+
+A simple example of system that can be modelled using MD - shown here as an illustration - is argon in a periodic box.
+
+.. image:: ../../image/dlp_2_1.png
+   :scale: 75%
+   :align: center
+
+Each particle represents an atom of argon and interacts with others by means of a *pair potential*. An example of a simple potential that works for argon is the *Lennard-Jones potential*:
+
+.. math::
+
+   V \left(r_{ij} \right) = 4 \epsilon \left\{ \left(\frac{\sigma}{r_{ij}}\right)^{12} - \left(\frac{\sigma}{r_{ij}} \right)^{6} \right\}
+
+where :math:`\epsilon` is the magnitude of the potential well (the minimum possible potential value) and :math:`\sigma` is the distance where the potential equals zero. Illustrated in the graph below, this potential models both the Pauli exclusion principle with repulsions at short distances and attractive van der Waals forces at longer distances.
+
+A maximum *cutoff* distance between particle pairs :math:`r_{cut}` is usually selected for calculating pair potentials and their resulting forces to make these calculations more feasible and computationally efficient. While this can lead to discontinuities in both properties depending on the pair potential in use, we can mitigate these either by using (mean field) long-range corrections or by shifting and/or truncating the potential to be zero at the cutoff.
+
+.. image:: ../../image/dlp_2_2.png
+   :scale: 40%
+   :align: center
+
+The choice of pair potential enables us to define a Lagrangian for the system which is also based on the particles' kinetic energy):
+
+.. math::
+
+   L \left(\vec{r}_i, \vec{v}_i \right) = \frac{1}{2} \sum_{i=1}^{N} m_i v_i^2 - \sum_{i=1}^{N-1} \sum_{j<i}^{N} V \left(r_{ij}\right),
+
+as well as determine the forces acting on both particles in a pair:
+
+.. math::
+
+   \vec{f}_{ij} = -\vec{\nabla} V \left( r_{ij} \right) = -\frac{\partial V \left(r_{ij}\right)}{\partial r_{ij}} \frac{\vec{r}_{ij}}{r_{ij}},
+
+noting that these forces are applied along the vector between the two particles, :math:`\vec{r}_{ij} = \vec{r}_j - \vec{r}_i`, and are equal (in value) and opposite (in direction). The equal and opposite forces between pairs of atoms mean that the total momentum for the system :math:`\sum_i m_i \vec{v}_i` cannot change and its centre-of-mass position :math:`\frac{\sum_i m_i \vec{r}_i}{\sum_i m_i}` should remain fixed, provided no external forces or changes to particle velocities are applied.
+
+.. Note::
+  The direction for the vector between a pair of particles ultimately does not make a difference to the forces acting on each particle, although in practice calculations need to use the selected sign convention consistently.
+
+The net force acting on each particle, :math:`\vec{F}_i = m_i \frac{\partial \vec{v}_i}{\partial t} = \sum_{j \neq i} \vec{f}_{ij}`, is used to determine its motion by integrating over time:
+
+.. math::
+
+   \vec{v}_i \left(\tau\right) = \vec{v}_i \left( 0 \right) + \int_{0}^{\tau} \frac{d \vec{v}_i}{dt} dt = \vec{v}_i \left( 0 \right) + \int_{0}^{\tau} \frac{\vec{F}_i}{m_i} dt
+
+.. math::
+
+   \vec{r}_i \left(\tau\right) = \vec{r}_i \left( 0 \right) + \int_{0}^{\tau} \frac{d \vec{r}_i}{dt} dt = \vec{r}_i \left( 0 \right) + \int_{0}^{\tau} \vec{v}_i \left(t\right) dt
+
+:ref:`^ GO TO TOP ^<Header_md2>`
+

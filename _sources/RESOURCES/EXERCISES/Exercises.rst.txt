@@ -2,9 +2,9 @@
 
    
 
-******************
-Tutorial Exercises
-******************
+*********************
+DL_Software Exercises
+*********************
 
 This is the main portal for the DL_Software tutorial exercises.
 
@@ -15,3 +15,4 @@ This is the main portal for the DL_Software tutorial exercises.
 	      
    ./exercises_dlpoly
    ./exercises_dlfield
+   ./exercises_dlmeso

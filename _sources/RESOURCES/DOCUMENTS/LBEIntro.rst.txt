@@ -1,0 +1,101 @@
+.. _LBE_Intro:
+
+Intro to the Lattice Boltzmann Equation (LBE)
+=============================================
+
+Summary
+^^^^^^^
+
+The Lattice Boltzmann Equation (LBE) is a mesoscale modelling method with a  statistical mechanics approach. Rather than tracking the motion of individual particles, distribution functions are defined to describe the probability of finding particles at a given point in time and space with a particular momentum. The distribution functions evolve over time by considering how the particles collide and subsequently move. Summing their moments over all possible particle momenta gives macroscopic properties such as fluid density and momentum. Confining the particles to a grid and to preset links between grid points simplifies the calculations but still provides enough information to correctly calculate hydrodynamic behaviour. 
+
+The particles in LBE can be considered flexibly, thus allowing larger length and time scales than atomistic modelling methods while still incorporating some detail of molecular interactions. Boundary conditions can be treated in intuitive and simple ways, allowing systems with complex geometries to be modelled nearly as efficiently as simpler ones. Methods to allow multiple fluids and phases to be modelled in LBE without fundamentally changing the algorithm have also been devised, as have ways to represent fluids with non-standard rheological behaviour and to incorporate diffusion and heat transfer effects.
+
+Background
+^^^^^^^^^^
+
+LBE can be considered as a variant form of lattice gas cellular automata (LGCA), a modelling method that directly models particles colliding and moving around a regular grid [#]_. By replacing binary particle occupation numbers with probability distribution functions [Frisch1987]_, several of LGCA's shortcomings as a method to model fluid flows (e.g. noise, lack of Galilean invariance) were overcome.
+
+Given a lattice link :math:`i` with vector (and momentum) :math:`\mathbf{e}_i`, we can define an associated distribution function :math:`f_i` for each grid point. The distribution functions evolve via the following equation:
+
+.. math :: f_i \left(\mathbf{x}+\mathbf{e}_i \Delta t, t + \Delta t \right) - f_i \left(\mathbf{x}, t \right) = C_i,
+  :label: LBEbasic
+
+where :math:`C_i` is a collision operator for link :math:`i` that may depend upon all distribution functions at a given grid point :math:`\mathbf{x}`. The evolution equation :eq:`LBEbasic` can be also expressed by separating out the collision  and propagation stages as :eq:`LBEcollide` and :eq:`LBEpropagate` respectively:
+
+.. math :: f_i \left(\mathbf{x}, t^{+}\right) = f_i \left(\mathbf{x}, t\right) + C_i,
+  :label: LBEcollide
+
+.. math :: f_i \left(\mathbf{x}+\mathbf{e}_i \Delta t, t + \Delta t \right) = f_i \left(\mathbf{x}, t^{+}\right).
+  :label: LBEpropagate
+ 
+The collision operator :math:`C_i` can take several different forms, but the simplest and most common form without considering forces acting on the fluid is based on the Bhatnagar-Gross-Krook (BGK) approximation. This uses a single relaxation time :math:`\tau` as the parameter defining the timescale of collisions [Qian1992]_:
+
+.. math :: C_i = -\frac{f_i \left(\mathbf{x}, t\right) - f_i^{eq} \left(\mathbf{x}, t\right)}{\tau},
+  :label: BGKcollide
+
+where :math:`f_i^{eq}` is a distribution function corresponding to a local equilibrium state [#]_. This local equilibrium distribution function is available as a function of macroscopic fluid density and velocity, usually of the form for mildly compressible fluids at speeds significantly lower than the speed of sound :math:`c_s`:
+
+.. math :: f_i^{eq} \left(\rho, \mathbf{u}\right) = \rho w_i \left[1 + 3 \left(\mathbf{e}_i \cdot \mathbf{u} \right) + \frac{9}{2} \left(\mathbf{e}_i \cdot \mathbf{u} \right)^2 - \frac{3}{2} u^2 \right],
+  :label: LocalEquil
+
+where :math:`w_i` is a weighting parameter dependent on link and lattice scheme. To use :eq:`LocalEquil` in the collision operator given in :eq:`BGKcollide`, we can calculate the macroscopic density and velocity by finding the zeroth and first moments of the distribution functions:
+
+.. math :: \rho \left(\mathbf{x}, t\right) = \sum_i f_i \left(\mathbf{x}, t\right),
+  :label: LBEdensity
+.. math :: \mathbf{u} \left(\mathbf{x}, t\right) = \frac{1}{\rho \left(\mathbf{x}, t\right)} \sum_i \mathbf{e}_i f_i \left(\mathbf{x}, t\right).
+  :label: LBEvelocity
+
+It is ultimately possible - using a lot of mathematics(!) - to show that the above equations can accurately represent fluid flow by assuming the majority of distribution functions come from local equilibrium values and their non-equilibrium parts scale with the Knudsen number :math:`Kn` (ratio of molecular mean free path to molecular length scale). By expanding :eq:`LBEbasic` about :math:`Kn` in time and space, applying a Chapman-Enskog expansion to various time and length scales, separating out the resulting equations based on orders of :math:`Kn` and summing over all lattice links, we can *eventually* obtain conservation equations for mass and momentum. These conservation equations lead to the Navier-Stokes equations for systems with small variations in density [Chen1998]_, i.e.
+
+.. math :: \frac{\partial}{\partial t}\left( \rho \mathbf{u}\right) + \nabla \cdot \left(\rho \mathbf{u} \otimes \mathbf{u} \right) = -\nabla \left(p - \zeta \nabla \cdot \mathbf{u}\right) + \mu \nabla^2 \mathbf{u} + \frac{1}{3} \mu \nabla \left(\nabla \cdot \mathbf{u}\right),
+
+from which we can define the speed of sound for the LBE fluid:
+
+.. math :: c_s = \frac{1}{\sqrt{3}} \frac{\Delta x}{\Delta t},
+
+the equation of state:
+
+.. math :: p = \rho c_s^2,
+   :label: EquationStateLBE
+
+and a relationship between kinematic viscosity (ratio of dynamic viscosity and density) and the relaxation time:
+
+.. math :: \nu = \frac{\mu}{\rho} = \frac{1}{3}\left(\tau - \frac{1}{2}\right) \frac{\Delta x^2}{\Delta t}.
+
+We can select a value of :math:`\tau` to avoid numerical instabilities in LBE simulations (i.e. not too close to :math:`\frac{1}{2}`). Along with the kinematic viscosity and speed of sound for a given fluid, this sets the length scale (lattice spacing :math:`\Delta x`) and time scale (timestep :math:`\Delta t`) [#]_. We typically have free choice over density values used in LBE simulations, although keeping it around 1 can help maximise the calculation precision we have available.
+
+Extensions
+^^^^^^^^^^
+
+We can include additional fluids by either modelling them in separate lattices and calculating interaction forces between them - which we can then apply as an additional part of the collision operator - or by modifying :eq:`LocalEquil` to obtain the correct free energy density function and apply interfacial tensions. These approaches allow us to model immiscible fluids, including drops suspended in background fluids that can represent e.g. fluid-filled vesicles or cell membranes.
+
+.. figure:: ../../image/fluidvesicles.png
+    :width: 378px
+    :align: center
+    :alt: LBE simulation of fluid-filled vesicles
+    :figclass: align-center
+
+    LBE simulation of non-spherical fluid-filled vesicles flowing through a constricted channel [Montessori2018]_.
+
+Alternative forms of :eq:`LocalEquil` can be used to represent completely incompressible fluids and diffusive processes: the latter can represent diffusion of solutes or heat transfers and can be coupled to bulk fluid flows. We can also calculate shear rates locally at each grid point and use these to determine local values of viscosity according to a given rheological model for non-Newtonian fluids such as blood.
+
+Boundary conditions are defined to specify missing distribution functions 're-entering' the system and are used to obtain required fluid densities and/or velocities. The simplest form of boundary condition we can use is bounce back, where a boundary grid point reflects distribution functions entering it: this has the effect of applying a no-slip condition (i.e. zero velocity) at any arbitrary boundary point without any extensive calculations. It is therefore straightforward and computationally inexpensive to use LBE for flows in porous media or past complex shapes.
+
+.. rubric:: Footnotes
+
+.. [#] This is the same modelling method that was modified to produce Dissipative Particle Dynamics (DPD) [Hoogerbrugge1992]_!
+
+.. [#] An interpretation of :eq:`BGKcollide` states that the collision pushes the system towards an equilibrium state and :math:`\tau` determines how quickly this occurs.
+
+.. [#] For example, if we want to model water at room temperature (298 K), its speed of sound is 1498 m s :sup:`-1` and kinematic viscosity is :math:`10^{-6}` m s :sup:`-2`. If we select a relaxation time of :math:`\tau = 1`, this sets the lattice spacing as :math:`\Delta x = \frac{\sqrt{3} \nu}{c_s \left(\tau - \frac{1}{2}\right)} \approx 2.3125 \times 10^{-9}` m and the timestep as :math:`\Delta t = \frac{\nu}{c_s^2 \left(\tau - \frac{1}{2}\right)} \approx 8.9126 \times 10^{-13}` s.
+
+.. rubric:: References
+
+.. [Frisch1987] U Frisch, B Hasslacher, P Lallemand, Y Pomeau and JP Rivet, Lattice gas hydrodynamics in two and three dimensions, *Complex Systems*, **1**, 649-707, 1987.
+
+.. [Qian1992] YH Qian, D d'Humières and P Lallemand, Lattice BGK models for Navier-Stokes equation, *EPL*, **17**, 479-484, 1992, doi: 10.1209/0295-5075/17/6/001.
+
+.. [Chen1998] S Chen and GD Doolen, Lattice Boltzmann Method for fluid flows, *Annual Review of Fluid Mechanics*, **30**, 329-364, 1998, doi: 10.1146/annurev.fluid.30.1.329.
+
+.. [Montessori2018] A Montessori, I Halliday, M Lauricella, SV Lishchuk, G Pontrelli, TJ Spencer and S Succi, 'Multicomponent lattice Boltzmann models for biological applications', Chapter 20 in *Numerical methods and advanced simulation in biomechanics and biological processes* (ed. M Cerrolaza, SJ Shefelbine and D Garzón-Alvarado), pp. 357-370, Academic Press, Elsevier, 2018. 
+

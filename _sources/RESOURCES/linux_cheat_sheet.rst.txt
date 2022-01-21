@@ -4,6 +4,7 @@
 Linux Cheat Sheet
 *****************
 
+If you are not familiar with the Linux command, below lists some basic commands that will get you moving. 
 
 .. literalinclude:: linux_cheat_sheet.dat
 

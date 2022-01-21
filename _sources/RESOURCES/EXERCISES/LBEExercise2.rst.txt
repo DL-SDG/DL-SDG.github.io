@@ -1,0 +1,107 @@
+.. _LBE_Exercise2:
+
+LBE Exercise 2: Drop flows
+==========================
+
+Introduction
+------------
+
+As discussed in :ref:`LBE Exercise 1 <LBE_Exercise1>`, LBE can readily model multiple fluids by calculating and applying interfacial forces at each lattice site. The ability to model liquid drops suspended in another immiscible (non-mixing) fluid enables us to look at systems involving microfluidics, where capillary effects such as surface and interfacial tension dominate how fluids move. For biological applications, it is possible to consider immiscible drops in LBE simulations as fluid-filled vesicles with membranes separating them from background fluid. More complex membrane dynamics can also be applied to change the shapes of drops, enabling us to study the motion of e.g. red blood cells undergoing various forms of flow.
+
+In this exercise, we will be looking at a multiple fluid modelling technique devised to correctly implement interfacial stresses at the continuum level [Lishchuk2003]_. This algorithm calculates interfacial tension forces at each grid point that depend upon the interfacial curvature between two fluids, which can be calculated using gradients of a phase index between the fluids. The fluids are combined together for the collision step of the LBE algorithm and are then re-segregated to push immiscible fluids apart from each other along interfacial normals (also obtained from phase index gradients). 
+
+While this algorithm cannot really model the microscopic kinetics of phase separation - which the Shan-Chen pseudopotential method can - it can model multiple fluid systems dominated by hydrodynamics and is numerically very stable, making it easy to apply a wide range of specified interfacial tensions.
+
+While not essential, more theoretical details about the :ref:`Lishchuk` used in this exercise are available.
+
+Aim
+---
+
+We are going to use the above-mentioned Lishchuk algorithm implemented in DL_MESO_LBE to look at a system of a liquid drop in a bulk immiscible fluid being subjected to linear shear [Halliday2006]_. 
+
+The system includes two solid walls at the top and bottom of the box: the bottom wall remains stationary while the top wall moves at a constant speed to generate a constant velocity gradient. The drop can be placed at different positions between the two walls and its initially circular shape will be deformed by the shear flow.
+
+We will be able to try different flow shear rates and interfacial tensions between the fluids to see what effects these will have on the drop.
+
+Instructions
+------------
+
+For this exercise, you will need the main DL_MESO_LBE executable ``lbe.exe`` - ideally either the serial version with OpenMP multithreading or the parallel version with MPI - and the utility :ref:`init.exe <lbeinitcreate>` to create different starting setups. You can also use the DL_MESO GUI (see :ref:`DL_MESO_GUI`) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed.
+
+Copy the :ref:`lbin.sys <lbin_sys>`, :ref:`lbin.spa <lbin_spa>` and :ref:`lbin.init <lbin_init>` input files from the directory ``dl_meso/DEMO/LBE/2D_DropShear`` in your copy of DL_MESO to your working directory (``dl_meso/WORK``). 
+
+These simulation input files will model a rectangular box (:math:`150 \times 50` grid points) with walls at the top and bottom. While most of the box will be filled with a continuous fluid (denoted as fluid 0 by DL_MESO_LBE), an immiscible drop of a different fluid (fluid 1) will be placed close to the bottom wall. The lbin.init file was created (using the :ref:`init.exe <lbeinitcreate>` utility) to give this drop a radius of 15 lattice units and place its centre at lattice grid coordinates :math:`(40, 20)`.
+
+The first few thousand timesteps of the simulation will be used to allow the drop shape to settle: no boundary conditions will be applied during this equilibration period. During the remainder of the simulation, a bounce-back boundary condition is applied at the bottom wall, while a constant velocity boundary at the top is applied with a horizontal speed (in lattice units) of 0.005 going to the right.
+
+To modify any of the parameters in the :ref:`lbin.sys <lbin_sys>` file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:
+
+.. code-block:: bash
+
+  interaction_1
+  interaction_2
+  segregation
+  speed_top_0
+
+where the first two are for the interaction parameter :math:`g_{01}` between the two fluids, ``segregation`` gives the segregation parameter :math:`\beta` and ``speed_top_0`` is the :math:`x`-component of the top wall velocity applied using a constant velocity boundary condition.
+
+If you wish to use the parallel version of DL_MESO_LBE to run this simulation, you may want to add the following three lines to the :ref:`lbin.sys <lbin_sys>` file to ensure only one output file is produced per timestep:
+
+.. code-block:: bash
+
+  output_combine_x             1
+  output_combine_y             1
+  output_combine_z             1
+
+To run the simulation, either type in:
+
+.. code-block:: bash
+
+  ./lbe.exe
+
+if you have compiled the serial version of DL_MESO_LBE (with or without OpenMP), or if you want to run the parallel version on X processor cores, type:
+
+.. code-block:: bash
+
+  mpirun -np X ./lbe.exe
+
+After running DL_MESO_LBE, open the :ref:`lbout\*.vts <lboutsnapshot>` files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed.
+
+A useful Paraview filter for this simulation is Calculator, which can generate new properties from those supplied in the output files. The total fluid densities can be calculated using:
+
+.. code-block:: bash
+
+  density_0+density_1
+
+while you can obtain values for the phase index using:
+
+.. code-block:: bash
+
+  (density_0-density_1)/(density_0+density_1)
+
+and subsequently apply the Contour filter to draw boundaries between the fluids (i.e. where the phase index :math:`\rho^N = 0`).
+
+To change the location of the drop, you will need to run the :ref:`init.exe <lbeinitcreate>` utility. This will read the :ref:`lbin.sys <lbin_sys>` for some information about the system, before asking how many drops you want to add to your system and, for each drop, which fluid to use, the drop's radius, where its centre should be and its density. The utility will then create a new :ref:`lbin.init <lbin_init>` file that you can use in your next simulation. (If you want to keep the previous :ref:`lbin.init <lbin_init>` file, you should rename it first to prevent it from being overwritten.)
+
+Tasks
+-----
+
+#. Run DL_MESO_LBE in your working directory with the supplied input files. Plot the resulting output files in Paraview and observe how the drop moves when shear is applied.
+
+   - Use the Calculation and Contour filters to calculate the phase index and plot the effective boundary of the drop.
+   - Try calculating the total fluid density with the Calculation filter. Where are the highest and lowest values?
+
+#. Try replacing the drop given in the :ref:`lbin.init <lbin_init>` file with one placed close to the top shearing boundary, e.g. at :math:`y=30`. What is the eventual vertical position of this drop? How does it compare to the previous simulation?
+
+#. The shape of the drop (or how much it deforms) will depend on its capillary number (ratio of viscous to interfacial forces). In turn, the capillary number will depend on the shearing velocity of the top wall. 
+
+   - Try modifying the top wall velocity and the interfacial tension parameter in the :ref:`lbin.sys <lbin_sys>` file and see what happens. How high can each of these values be set while ensuring the simulation still makes sense?
+
+#. You may have spotted that the boundary between the drop and continuous fluid is not sharp. One aspect of the Lishchuk mesophase algorithm is it generates diffuse phase boundaries, but ensures large interfacial tensions can be used. 
+
+   - Fluid separation is controlled using a segregation parameter :math:`\beta` defined in the :ref:`lbin.sys <lbin_sys>` file: try varying this value to see what effect it has. (Note that you will need to take care to ensure the phase boundary does not interfere with the system's solid boundaries.)
+
+.. [Lishchuk2003] SV Lishchuk, CM Care and I Halliday, Lattice Boltzmann algorithm for surface tension with greatly reduced microcurrents, *Physical Review E*, **67**, 036701, 2003, doi: 10.1103/PhysRevE.67.036701.
+
+.. [Halliday2006] I Halliday, R Law, CM Care and A Hollis, Improved simulation of drop dynamics in a shear flow at low Reynolds and capillary number, *Physical Review E*, **73**, 056708, 2006, doi: 10.1103/PhysRevE.73.056708.
+

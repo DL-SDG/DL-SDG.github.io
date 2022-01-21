@@ -1,0 +1,43 @@
+.. Main portal to DL_FIELD tutorial. 
+
+
+
+*****************
+DL_FIELD Tutorial
+*****************
+
+Welcome to the DL_FIELD tutorial main portal. If you are new to DL_FIELD or you wish to refresh your memory, you come to the right place. The contents were extracted from DL_FIELD lecture slides given in DL_Software training workshops, but modified for online self-learning experience. 
+
+Table of contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlf_1
+   ./dlf_2
+   ./dlf_3
+   ./dlf_4
+   ./dlf_17
+   ./dlf_11
+   ./dlf_16
+   ./dlf_5
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlf_8
+   ./dlf_9
+   ./dlf_10
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlf_6
+   ./dlf_7
+   ./dlf_12
+   ./dlf_14
+   ./dlf_15
+   ./dlf_18
+   ./dlf_13
+
+`DL_FIELD video series <https://www.youtube.com/playlist?list=PLm8H1n_adYecgW2k72gkDEZQ19sUYqKGP>`_ (hosted in YouTube)

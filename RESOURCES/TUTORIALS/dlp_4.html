@@ -1,0 +1,250 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DL_POLY files &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Usability with other programs" href="dlp_6.html" />
+    <link rel="prev" title="DL_POLY basics and algorithms" href="dlp_5.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlp_6.html" title="Usability with other programs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlp_5.html" title="DL_POLY basics and algorithms"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlp_0.html" accesskey="U">DL_POLY Tutorial</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dl-poly-files">
+<span id="header-dlp-4"></span><h1>DL_POLY files<a class="headerlink" href="#dl-poly-files" title="Permalink to this headline">¶</a></h1>
+<p>DL_POLY makes use of various input files to describe the simulation, including its initial state and interactions between particles, and creates output files indicating how the system has evolved over time. A summary description of the files, what they do and how they can be used are given in the diagram below.</p>
+<a class="reference internal image-reference" href="../../_images/dlp_4_1.png"><img alt="../../_images/dlp_4_1.png" class="align-center" src="../../_images/dlp_4_1.png" style="width: 378.0px; height: 546.0px;" /></a>
+<p>It should be noted that not all the input files shown here are required for a DL_POLY simulation run, while some files are specific for DL_POLY_4/DL_POLY_5 and others are available (but not shown here) for more advanced capabilities in DL_POLY Classic.</p>
+<p>The internal units used by DL_POLY include:</p>
+<ul class="simple">
+<li>Mass: dalton (Da), equivalent to <span class="math notranslate nohighlight">\(\tfrac{1}{12}\)</span> of the mass of a carbon-12 atom</li>
+<li>Charge: charge on a proton, <span class="math notranslate nohighlight">\(e\)</span></li>
+<li>Length: angstroms (Å, <span class="math notranslate nohighlight">\(10^{-10}\)</span> m)</li>
+<li>Time: picoseconds (ps, <span class="math notranslate nohighlight">\(10^{-12}\)</span> s)</li>
+<li>Force: dalton-angstroms per squared picoseconds (Da Å ps<span class="math notranslate nohighlight">\(^{-2}\)</span>)</li>
+<li>Energy: dalton-squared angstroms per squared picoseconds (Da Å<span class="math notranslate nohighlight">\(^{2}\)</span> ps<span class="math notranslate nohighlight">\(^{-2}\)</span>), equal to 10 J mol<span class="math notranslate nohighlight">\(^{-1}\)</span></li>
+</ul>
+<p>while temperatures are expressed in kelvin (K), pressures in kilo-atmospheres and angles in degrees. It is possible to use the following energy units to specify interaction potentials:</p>
+<ul class="simple">
+<li>Internal DL_POLY units (10 J mol<span class="math notranslate nohighlight">\(^{-1}\)</span>)</li>
+<li>Electron-volts (eV)</li>
+<li>Kilocalories per mole (kcal mol<span class="math notranslate nohighlight">\(^{-1}\)</span>)</li>
+<li>Kilojoules per mole (kJ mol<span class="math notranslate nohighlight">\(^{-1}\)</span>)</li>
+<li>Kelvin or joules divided by the Boltzmann constant (K or J <span class="math notranslate nohighlight">\(k_B^{-1}\)</span>)</li>
+</ul>
+<p>provided that <em>all</em> files specifying interactions for a given simulation (<em>FIELD</em>, <em>TABLE</em>, <em>TABEAM</em>, <em>TABBND</em> etc.) use the same units.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>CONTROL</strong></p>
+<p>This mandatory file specifies the simulation controls, including the required system temperature, cutoff distances, timestep size, how long the simulation needs to run etc.</p>
+<p>With the exception of the first line to give a description of the simulation, the <em>CONTROL</em> file consists of <em>keywords</em> that are used to specify particular options and/or values. Two forms of <em>CONTROL</em> file can be used in DL_POLY. The original format (up to and including version 4.10) takes the form of:</p>
+<p>where multiple options and data values can be provided in each line, while the new format (available from version 4.11 onwards) uses the form:</p>
+<p>where only a single value can be supplied per line and each non-dimensional value must be followed with a unit.</p>
+<p>The following example is a <em>CONTROL</em> file for one of DL_POLY’s test cases, first in the original format:</p>
+<p>and then in the new format:</p>
+<p>A full list of the available keywords in <em>CONTROL</em> and the values they take can be found in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/8270d8bc7fabad595848b500eda37d71/MAN_DL_POLY_5.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_POLY</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
+<p>More recent versions of DL_POLY (including DL_POLY_5) can read <em>CONTROL</em> files in <strong>both</strong> formats: a guide to convert original format <em>CONTROL</em> files to the new format can be found in Chapter 9 of <a class="reference download internal" download="" href="../../_downloads/8270d8bc7fabad595848b500eda37d71/MAN_DL_POLY_5.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_POLY</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a> and a script to carry out the conversion automatically (old2new) is available as part of the <a class="reference external" href="https://pypi.org/project/dlpoly-py/">dlpoly-py Python module</a>.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>CONFIG</strong> (<strong>REVCON</strong>, <strong>CFGMIN</strong>)</p>
+<p>The mandatory <em>CONFIG</em> file is used by DL_POLY to supply the initial configuration for a simulation with the particle coordinates <em>at the very least</em>.</p>
+<p>After the first line giving a description for the simulation, the following line provides (at least) a CONFIG file key indicating the amount of data supplied per particle, a periodic boundary key to identify the shape of the simulation box and (optionally) the total number of particles. Further values may be supplied depending on the version of DL_POLY in use and/or how it was originally created. If periodic boundaries are in use, three more lines specifying the Cartesian components of the super-cell vectors (in angstroms) are supplied.</p>
+<p>Each particle is then identified by name (for its atomic type) and numerical index, before its data are supplied as triples for Cartesian components from the following line. At least one data line to specify the particle’s position - given as coordinates in angstroms (Å) - is required. This can be followed by a line with the particle’s velocity in angstroms per picosecond (Å ps<span class="math notranslate nohighlight">\(^{-1}\)</span>) and another line with the particle’s force in angstrom-daltons per squared picosecond (Å Da ps<span class="math notranslate nohighlight">\(^{-2}\)</span>), depending on the value of the CONFIG file key.</p>
+<p>The following example is the beginning of a <em>CONFIG</em> file for one of DL_POLY’s test cases.</p>
+<p>A file in the same format is written by DL_POLY to provide a configuration for simulation restart (<em>REVCON</em>), which needs to be renamed to <em>CONFIG</em> before restarting. If the user selects an energy minimisation option, a <em>CFGMIN</em> file in the same format (but only ever containing particle positions) is created with the minimised configuration.</p>
+<p>Given its size even for small systems, we strongly recommend either using a GUI (e.g. the DL_POLY Java GUI or <a class="reference external" href="https://www.projectaten.com/aten">Aten</a>) to create a <em>CONFIG</em> file for a new simulation. <a class="reference internal" href="../dl_field_intro.html#dl-field-intro"><span class="std std-ref">DL_FIELD</span></a> can also be used to generate one from a existing structure file (e.g. PDB, xyz or mol2). The file can be opened either in <a class="reference external" href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a> or in <a class="reference external" href="https://www.ovito.org/">OVITO</a> to visualise its contents.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>FIELD</strong></p>
+<p>This mandatory file specifies the force field for the simulation to define the nature of molecular forces, including the topology of the system that <strong>must</strong> match its crystallographic description in the <em>CONFIG</em> file.</p>
+<p>Apart from the first line providing a description of the simulation and a line indicating the units in use, the <em>FIELD</em> file consists of blocks of information, each starting with a keyword on its first line. These blocks include details of molecules in the system (including population, topology and interactions for bonds, angles etc.), non-bonded interactions (e.g. van der Waals, Tersoff) and any applied external fields (e.g. electric fields, gravity).</p>
+<p>The following example is a <em>FIELD</em> file for one of DL_POLY’s test cases (the same case as for the <em>CONTROL</em> file above):</p>
+<p>The keywords and definitions in the <em>FIELD</em> file are given in further detail in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/8270d8bc7fabad595848b500eda37d71/MAN_DL_POLY_5.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_POLY</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>. The file can be created by hand in a text editor if the system is small, although for larger systems it is highly recommended to either use a GUI (e.g. the DL_POLY Java GUI or <a class="reference external" href="https://www.projectaten.com/aten">Aten</a>) to create one for a new system or to use <a class="reference internal" href="../dl_field_intro.html#dl-field-intro"><span class="std std-ref">DL_FIELD</span></a> to generate one from a existing structure file (e.g. PDB, xyz or mol2). The <code class="docutils literal notranslate"><span class="pre">nfold</span></code> option in DL_POLY (specified in the <em>CONTROL</em> file) can also be used to duplicate a smaller system and produce <em>FIELD</em> and <em>CONFIG</em> files for the expanded simulation.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>TABLE</strong></p>
+<p>This file can be used to define (van der Waals) pair potentials in tabular form. It can be used to specify force fields that cannot be expressed analytically.</p>
+<p>After the first line giving a description of the simulation, the second line gives the mesh resolution (spacing between data points, <span class="math notranslate nohighlight">\(\Delta r\)</span>) and the maximum cutoff distance for tabulated potentials, both given in angstroms (Å), as well as the number of grid points per potential.</p>
+<p>Each tabulated potential starts with a line stating the two atom types (and optionally long-range corrections for potentials and virials beyond the cutoff distance), before two blocks of tabulated data with up to four values per line are supplied. The first data block gives the pairwise potential <span class="math notranslate nohighlight">\(U \left( r \right)\)</span>, while the second gives a virial function:</p>
+<div class="math notranslate nohighlight">
+\[G \left( r \right) = -r \frac{\partial}{\partial r} U \left( r \right)\]</div>
+<p>which is used to calculate pairwise forces.</p>
+<p>The following example is the beginning of a <em>TABLE</em> file for one of DL_POLY’s test cases:</p>
+<p>The tabulated potential for an atom pair is activated by using <code class="docutils literal notranslate"><span class="pre">tab</span></code> as the van der Waals interaction type in the <em>FIELD</em> file.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>TABEAM</strong></p>
+<p>This file can be used to define embedded atom model (EAM) potentials that cannot be expressed analytically. It uses a similar format to the <em>TABLE</em> file for specifying tabulated properties.</p>
+<p>To define the EAM potential, several tabulated functions per atom pair or atom type for the pair potential and embedding functions (functions of bulk densities), as well as tabulated functions of pairwise distances used to calculate bulk densities, need to be included in the <em>TABEAM</em> file. These are indicated with <code class="docutils literal notranslate"><span class="pre">pair</span></code>, <code class="docutils literal notranslate"><span class="pre">embed</span></code> and <code class="docutils literal notranslate"><span class="pre">dens</span></code> keywords (and similar words for other EAM variants), before each function follows with four values per line. Unlike the <em>TABLE</em> file, no forces for the pair potential need to be supplied. The <span class="math notranslate nohighlight">\(G \left( r \right)\)</span> (virial) values are determined from the potential itself using five-point interpolation.</p>
+<p>Further details for the file format are given in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/8270d8bc7fabad595848b500eda37d71/MAN_DL_POLY_5.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_POLY</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>. The tabulated EAM potential for an atom pair is activated by using <code class="docutils literal notranslate"><span class="pre">eam</span></code>, <code class="docutils literal notranslate"><span class="pre">eeam</span></code>, <code class="docutils literal notranslate"><span class="pre">2bea</span></code> or <code class="docutils literal notranslate"><span class="pre">2bee</span></code> as the metal potential type in the <em>FIELD</em> file.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>REVIVE</strong> (<strong>REVOLD</strong>)</p>
+<p>This unformatted (binary) file provides the restart capability for DL_POLY and is written periodically during the simulation. It contains accumulators for thermodynamic data, data for calculating radial distribution functions (RDFs) and mean squared displacements (MSDs), as well as other simulation checkpoint data.</p>
+<p>To use a <em>REVIVE</em> file to restart a DL_POLY calculation, it needs to be renamed as <em>REVOLD</em>.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>OUTPUT</strong></p>
+<p>This mandatory output file provides a summary of the DL_POLY simulation. It is formatted to be human-readable and contains:</p>
+<ul class="simple">
+<li>A summary of the input data (supplied in input files)</li>
+<li>Instantaneous thermodynamic data at selected intervals</li>
+<li>Rolling average values of thermodynamic data</li>
+<li>Statistical averages of thermodynamic data (at end of run)</li>
+<li>A sample of the final configuration</li>
+<li>Radial distribution data (if requested in the <em>CONTROL</em> file)</li>
+<li>Estimated mean square displacements (MSDs) and a resulting three-dimensional diffusion coefficient</li>
+</ul>
+<p>It also includes timing data for the simulation to assess the computational performance of DL_POLY, iteration data for Conjugate Gradients Method (CGM) minimisation and/or the relaxed shell model (if required), and any warnings or error reports for the simulation.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>STATIS</strong></p>
+<p>This optionally-produced output file gives system properties at intervals selected by the user.</p>
+<p>After the first two lines providing the simulation name and specifying the energy units in use, each set of statistical data for the system is supplied as a block of values in five columns preceded by a line indicating the corresponding timestep number, the time given in picoseconds (ps) and the number of values supplied. The number of values provided can vary depending on the simulation being carried out.</p>
+<p>The following example is the <em>STATIS</em> file created during one of DL_POLY’s test cases:</p>
+<p>The intended uses of this file are to carry out statistical analysis, e.g. to determine errors in the calculated properties, and to plot the values as functions of time. Either the DL_POLY Java GUI or scripts in the <a class="reference external" href="https://pypi.org/project/dlpoly-py/">dlpoly-py Python module</a> can be used to extract, manipulate and plot data from this file.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>HISTORY</strong> (<strong>HISTORF</strong>)</p>
+<p>This optionally-produced output file provides configuration data at user-selected intervals as a simulation trajectory. It is formatted similarly to the <em>CONFIG</em> file but modified to enable a sequence of multiple configurations to be supplied in the same file.</p>
+<p>The <em>HISTORY</em> file starts with a simulation name in the first line, followed by a line specifying the data level (indicating the amount of data provided per particle), the periodic boundary key and the total number of particles (which should remain constant throughout the simulation).</p>
+<p>Each configuration starts with a header, whose first line includes the keyword <code class="docutils literal notranslate"><span class="pre">timestep</span></code>, the timestep number for the configuration frame, the total number of particles, the data level, periodic boundary key and the simulation time in picoseconds (ps). It is then followed by three lines providing the Cartesian components of the super-cell vectors (in angstroms). The data for all particles then follow: the name, index, mass and charge are supplied for each particle, before at least the coordinates for its position in angstroms (Å). If more data per particle are requested, the particle velocity in angstroms per picosecond (Å ps<span class="math notranslate nohighlight">\(^{-1}\)</span>) and the force acting on the particle in angstrom-daltons per squared picosecond (Å Da ps<span class="math notranslate nohighlight">\(^{-2}\)</span>) are supplied as additional lines.</p>
+<p>The following example is the beginning of a <em>HISTORY</em> file created during one of DL_POLY’s test cases:</p>
+<p>The <em>HISTORY</em> file can be opened either in <a class="reference external" href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a> or in <a class="reference external" href="https://www.ovito.org/">OVITO</a> to visualise the trajectory resulting from the DL_POLY simulation and carry out analyses.</p>
+<a class="reference internal image-reference" href="../../_images/dlp_4_2.png"><img alt="../../_images/dlp_4_2.png" class="align-center" src="../../_images/dlp_4_2.png" style="width: 361.0px; height: 263.0px;" /></a>
+<p>The <em>HISTORY</em> file can be used to replay a DL_POLY simulation and recover additional observables. If a new <em>HISTORY</em> file is to be generated in the process (e.g. if changes are made to interactions in the <em>FIELD</em> file), the previous <em>HISTORY</em> file should be renamed <em>HISTORF</em>.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>RDFDAT</strong> (<strong>ZDNDAT</strong>)</p>
+<p>The optionally-produced <em>RDFDAT</em> file supplies the radial distribution functions (RDFs) for all pairs of particle types, determined while calculating pair forces during the DL_POLY run.</p>
+<p>After a header consisting of two lines - one for the simulation title and the other giving the numbers of plots and data values per plot - each RDF follows in tabulated form, with two columns for the radius (in angstroms) and the radial distribution function itself, and preceded by the names of the particle types in the pair.</p>
+<p>The following example is the beginning of a <em>RDFDAT</em> file created during one of DL_POLY’s test cases:</p>
+<p>A similar format is used by <em>ZDNDAT</em>, substituting the radius and RDF with the distance in the <span class="math notranslate nohighlight">\(z\)</span>-direction and the Z-density (particle density at the given height <span class="math notranslate nohighlight">\(z\)</span>) for each particle species.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>Other additional files</strong></p>
+<p>Some other output files that can be written by DL_POLY include:</p>
+<ul>
+<li><p class="first"><em>REFERENCE</em></p>
+<p>Provides a reference structure to compare against the current configuration when detecting crystalline defects (similarly formatted to <em>CONFIG</em>)</p>
+</li>
+<li><p class="first"><em>DEFECTS</em></p>
+<p>A trajectory file providing a list of atoms identified as interstitials and vacancies (compared to either the <em>REFERENCE</em> or <em>CONFIG</em> file) and their locations at user-specified intervals</p>
+</li>
+<li><p class="first"><em>MSDTMP</em></p>
+<p>A dump file providing the square roots of mean squared displacements (MSDs) in angstroms (Å) and mean temperatures in kelvin (K) for all particles at user-specified intervals</p>
+</li>
+<li><p class="first"><em>RSDDAT</em></p>
+<p>A dump file providing the displacements in angstroms (Å) for all particles from their initial positions at user-specified intervals</p>
+</li>
+<li><p class="first"><em>TABBND</em>, <em>TABANG</em>, <em>TABDIH</em>, <em>TABINV</em></p>
+<p>Files with tabulated potentials for <em>intramolecular</em> interactions (bonds, angles, dihedrals, inversions)</p>
+</li>
+</ul>
+<p>These and other files are described in more detail in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/8270d8bc7fabad595848b500eda37d71/MAN_DL_POLY_5.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_POLY</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
+<p><a class="reference internal" href="#header-dlp-4"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlp_5.html"
+                        title="previous chapter">DL_POLY basics and algorithms</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlp_6.html"
+                        title="next chapter">Usability with other programs</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlp_6.html" title="Usability with other programs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlp_5.html" title="DL_POLY basics and algorithms"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlp_0.html" >DL_POLY Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

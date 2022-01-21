@@ -1,0 +1,244 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DL_FIELD control file &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Atom Typing" href="dlf_8.html" />
+    <link rel="prev" title="The Output files" href="dlf_16.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlf_8.html" title="Atom Typing"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_16.html" title="The Output files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD Tutorial</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dl-field-control-file">
+<span id="header-dlf-5"></span><h1>DL_FIELD <em>control</em> file<a class="headerlink" href="#dl-field-control-file" title="Permalink to this headline">¶</a></h1>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>Control options</strong></p>
+<p>DL_FIELD operations can be controlled by users through a single DL_FIELD <em>control</em> file, as shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Control file title. For DL_FIELD 4.7.
+1        * Construct DL_POLY output files
+0        * Unuse slot.
+charmm22_prot  * Type of force field require (see list below for choices).
+kcal/mol  * Energy unit: kcal/mol, kJ/mol, eV, or K.
+normal  * Conversion criteria (strict, normal, loose)
+1        * Bond type (0=default, 1=harmonic , 2=Morse)
+1        * Angle type (0=default, 1=harmonic, 2=harmonic cos)
+none  * Include user-defined information. Put &#39;none&#39; or a .udff filename
+1       * Verbosity mode: 1 = on, 0 = off
+Examples/sod1.pdb  * Configuration file.
+none   * Output file in PDB. Put &#39;none&#39; if not needed.
+0 0.1 mol/dm^3  15.0 * Solution Maker: on/off, density, unit, cutoff)
+0        * Optimise FIELD output size, if possible? 1=yes  0=no
+2         * Atom display: 1 = DL_FIELD format. 2 = Standard format
+2         * Vdw display format: 1 = 12-6 format   2 = LJ format
+default * Epsilon mixing rule (organic FF only) : default, or 1 = geometric, 2 = arithmatic
+default   * Sigma mixing rule (organic FF only) : default, or 1 = geometric, 2 = arithmatic
+1        * Epsilon mixing rule (inorganic FF only) : 1 = geometric   2 = arithmatic
+2        * Sigma mixing rule (inorganic FF only) : 1 = geometric   2 = arithmatic
+1    * Epsilon mixing rule (BETWEEN different FF) : 1 = geometric   2 = arithmatic
+2     * Sigma mixing rule (BETWEEN different FF): 1 = geometric 2 = arithmatic
+0         * Display additional info. for protein 1=Yes  0=No
+0         * Freeze atoms? 1 = Yes (see below)  0 = No
+0         * Tether atoms? 1 = Yes (see below)  0 = No
+1         * Constrain bonds? 1 = Yes (see below) 0 = No
+0         * Apply rigid body? 1 = Yes (see below) 0 = No
+0        * Periodic condition ? 0=no, other number = type of box (see below)
+60.0 0.0   0.0 * Cell vector a (x, y, z)
+0.0  60.0   0.0  * Cell vector b (x, y, z)
+0.0   0.0  60.0 * Cell vector c (x, y, z)
+default   * 1-4 scaling for coulombic (put default or x for scaling=x)
+default   * 1-4 scaling for vdw (put default or x for scaling=x)
+0  300.0  * Include velocity? 1=yes, 0=no and scaling temperature.
+1         * Position solute at origin? 1 = yes, 0=no
+none  1.9 * Solvate model? none or specify solvent (see below) and distance criteria.
+0  10.0   * Add counter ions? 1=yes, 0=no,  minimum distance from solute
+0        * MM energy calculation. 1=Yes, 0=No
+20.0     * Cut off for electrostatic energy calculation (angstrom)
+20.0      * Cut off for vdw energy calculation (angstrom)
+
+************* DL_POLY control ******************
+0          * Run DL_POLY program
+DLPOLY.Z   * DL_POLY executable filename
+/home/usr/ * absolute path to DL_POLY program
+1          * MM calculation 1=on  0=off
+0   3      * Equilibration on(1)/off(0)  level (1,2 or 3)
+1000       * Timestep for DL_POLY runs.
+8.0        * cutoff (vdw and electrostatic)
+1000       * Time limit for DL_POLY run (in seconds)
+
+########################################################
+Atom state specification:  type  Molecular_Group   filter   [value]
+
+FREEZE     ORG1    cp
+FREEZE     ORG2    CT
+
+RIGID A
+
+TETHER     CLY     st     100.0
+
+CONSTRAIN  SOD1    h-bond
+
+#########################################################
+
+Please do not remove those &#39;####&#39; lines.
+All select atom commands must be included within the two &#39;####&#39; lines
+
+Some remarks...
+...
+...
+...
+</pre></div>
+</div>
+<p>This is the default control file, <em>dl_field.control</em> from DL_FIELD software package. The <em>control</em> file contains all the available options in DL_FIELD. Each line contains an option followed by a brief statement, describing all the available choices.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do not change the sequence of these options, nor completely remove the comment section in each statement. This can lead to incorrect reading of the <em>control</em> file.</p>
+</div>
+<p>It shows the CHARMM22_prot FF scheme will be used as the FF model with energy unit kcal/mol. The input file is <em>sod1.pdb</em>, which is located in the <em>Examples/</em> directory. Please consult DL_FIELD User manual for more details about the options in the <em>control</em> file.</p>
+<p>For more details about the use of other <em>control</em> options, please consult DL_FIELD User Manual.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>DL_POLY Control Section</strong></p>
+<p>DL_FIELD <em>control</em> file also contains a section called the DL_POLY Control section. It allows users to run DL_POLY program via a <em>fork</em> process, by using the <em>CONFIG</em> and <em>FIELD</em> files straight after the FF model setup process.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The DL_POLY control section only applicable to DL_FIELD program compiled in the Linux environment, including cygwin or WSL within the Window system. This control section will only carry out after the FF model setup process, and therefore, will not affect the outcome of <em>dl_poly.CONFIG</em> and <em>dl_poly.FIELD</em> files.</p>
+</div>
+<p>To use this feature, a pre-compiled DL_POLY program must be available and file path specified. Then, users can run DL_POLY in one of the two choices available: a zero-step run, or equilibration runs. The formal is also called the molecular mechanic (MM) single-point calculation. This basically calculates the energy of the system without carrying out the dynamics.</p>
+<p>The other option is the equilibration runs, which comes with up to three tiers, or levels. Strictly speaking, this option does not properly equilibrate your system. Rather, it is useful if your initial configuration is in a high-energy state and successive tiers of running DL_POLY will attempt to ‘unlock’ any high-conformation states in your system. For instance, atoms that are too close to each other or molecular structures in some strained configurations.</p>
+<p>The higher the energy (or more strain) in your system, the higher tiers would be needed to relax the system. Each equilibration level comes with a different DL_POLY <em>CONTROL</em> file to run the simulation. After each run, DL_POLY output files will be saved and tagged with a level number, in the forms CONTROLX, STATISX and OUTPUTX, where X is the equilibration number of either 1, 2 or 3.</p>
+<p>The final relaxed configuration would be the DL_POLY <em>CONFIG</em> file, which can be used to carry out normal equilibration runs, perhaps in a HPC system.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p><strong>Atom state specification</strong></p>
+<p>This section is located within two lines consist of hashes (###################). It contains a series of directives to define the states of atoms that will affect the motions of atoms in DL_POLY runs. DL_FIELD permits four different atom states: (1) bond constrains, (2) freeze atoms, (3) tether atom (attach an atom by an imaginary spring to a fixed point, usually the center position of the atom in the initial configuration), and (4) rigid body.</p>
+<p>Each atom state must be defined with the corresponding directives: <em>CONSTRAIN</em>, <em>FREEZE</em>, <em>TETHER</em> and <em>RIGID</em>, respectively. Diagram below illustrates the use of these directives.</p>
+<a class="reference internal image-reference" href="../../_images/dlf_5_1.png"><img alt="../../_images/dlf_5_1.png" class="align-center" src="../../_images/dlf_5_1.png" style="width: 572.0px; height: 359.20000000000005px;" /></a>
+<p>In general, the <a href="dlf_5_Molecular_Group.html" onclick="window.open('dlf_5_Molecular_Group.html',
+      'newwindow', 'width=600,height=300'); return false;">Molecular Group</a> must be specified, to which the atom states will be applied. After that, <em>filters</em> will indicate which atoms within the Molecular Group the states will be applied.</p>
+<p>For instance, the statement:</p>
+<p><em>CONSTRAIN</em> A1 <em>h_bond</em></p>
+<p>means all molecular bonds in the Molecular Group A1 that contain the hydrogen atoms will be constrained. The constrained bonds will be listed accordingly in the <em>dl_poly.FIELD</em> file. When running DL_POLY, the SHAKE algorithm will automatically apply to these bonds.</p>
+<p>Similarly, the statement:</p>
+<p><em>TETHER</em> A2 <em>c-alpha</em> 200.0</p>
+<p>would mean all C-alpha atoms in the protein backbone, that belongs to the Molecular Group A2, will be tethered to the points centered at the initial positions of the atoms, with a spring constant of 200.0 energy units (the unit is specified in the DL_FIELD <em>control</em> files).</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If the Molecular Group specified does not match with the input configuration file, then the atom state would not be applied. DL_FIELD will not register this as an error.</p>
+</div>
+<p>Finally, to activate the Atom state specification, the option switch in the <em>control</em> must be switched on. For instance, in the <em>control</em> file example shown above, the constrain bond option is switched on (1). This means the <em>CONSTRAIN</em> directive will be applied to atoms belong to the Molecular Group SOD1.</p>
+<p><a class="reference internal" href="#header-dlf-5"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_16.html"
+                        title="previous chapter">The Output files</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlf_8.html"
+                        title="next chapter">Atom Typing</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlf_8.html" title="Atom Typing"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_16.html" title="The Output files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

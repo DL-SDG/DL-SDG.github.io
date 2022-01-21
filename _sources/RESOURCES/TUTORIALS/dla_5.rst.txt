@@ -1,0 +1,53 @@
+.. How to use Molecule Groups 
+.. _Header_dla_5:
+
+.. |br| raw:: html
+
+   <br />
+
+************************************
+Analysis Criteria - Molecular Groups
+************************************
+
+The *Atom Range Definition Section* contains a set of criteria to selectively pick atoms for analysis according to needs. For example, it is sometimes needful to pick certain portion or class of atoms for analysis, or even to carry out analysis based on molecules, rather than the individual atoms that made up a molecule.
+
+:TIP:
+   Before carry out analysis on your system models, think how you would want to do it, and what do you intend to achieve. Then, select the appropriate parameters in the *Atom Range Definition Section*.
+
+Below shows an example of the *Section*. Note the number in brackets are added for illustration purposes that should not include in the actual *inpout* files.
+
+.. literalinclude:: dla_atom_range.txt
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Molecule Groups**
+
+Before carry out any analysis, DL_ANALYSER needs to know how would you want to group your atoms. For an atomic system, you can generally divide your atoms into two groups - Molecular Group A and Molecular Group B. The ranges of atom index for each Group can be defined in Option (1) and Option (2), respectively. 
+
+Depends on which analysis options you have chosen, sometimes analysis is made between the Groups. Otherwise, the analysis is carried out within the Groups, respectively.
+
+.. Note:: 
+   Group A atoms must always be defined but Group B definition is optional. 
+
+For example, diagram below shows a system consists of some ethanol molecules with water. The ethanol molecules were assigned to Group A, while water molecules were assigned to Group B.  
+
+.. image:: ../../image/dla_5_1.png
+   :scale: 60%
+   :align: center
+
+This would mean that in the *HISTORY* files, the water and ethanol molecules must be separately grouped together, so that Group A and Group B can be conveniently assigned.
+
+Sometimes, even if the system consists only one type of atom, it is still needful to arrange the atoms into groups. For instance, consider a system consists of two silver nanoparticles, each consists of a thousand silver atoms as shown below. 
+
+.. image:: ../../image/dla_5_2.png
+  :scale: 100%
+  :align: center
+
+If the atoms are arranged correctly, then Group A can be assigned with atom range from 1 to 1000, while Group B is assigned with atom range from 1001 to 2000. Obviously, depending on your needs, you can simply assign a full range of 1 to 2000 for Group A only.
+
+:TIP: 
+   Think carefully what you intend to measure before setting up your force field model. 
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dla_5>`

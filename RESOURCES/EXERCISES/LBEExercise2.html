@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>LBE Exercise 2: Drop flows &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="LBE Exercise 3: Pressure-driven flows and Kármán vortex streets" href="LBEExercise3.html" />
+    <link rel="prev" title="LBE Exercise 1: Phase separation and equations of state" href="LBEExercise1.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="LBEExercise3.html" title="LBE Exercise 3: Pressure-driven flows and Kármán vortex streets"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="LBEExercise1.html" title="LBE Exercise 1: Phase separation and equations of state"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="LBE.html" accesskey="U">Lattice Boltzmann Equation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lbe-exercise-2-drop-flows">
+<span id="lbe-exercise2"></span><h1>LBE Exercise 2: Drop flows<a class="headerlink" href="#lbe-exercise-2-drop-flows" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>As discussed in <a class="reference internal" href="LBEExercise1.html#lbe-exercise1"><span class="std std-ref">LBE Exercise 1</span></a>, LBE can readily model multiple fluids by calculating and applying interfacial forces at each lattice site. The ability to model liquid drops suspended in another immiscible (non-mixing) fluid enables us to look at systems involving microfluidics, where capillary effects such as surface and interfacial tension dominate how fluids move. For biological applications, it is possible to consider immiscible drops in LBE simulations as fluid-filled vesicles with membranes separating them from background fluid. More complex membrane dynamics can also be applied to change the shapes of drops, enabling us to study the motion of e.g. red blood cells undergoing various forms of flow.</p>
+<p>In this exercise, we will be looking at a multiple fluid modelling technique devised to correctly implement interfacial stresses at the continuum level <a class="reference internal" href="#lishchuk2003" id="id1">[Lishchuk2003]</a>. This algorithm calculates interfacial tension forces at each grid point that depend upon the interfacial curvature between two fluids, which can be calculated using gradients of a phase index between the fluids. The fluids are combined together for the collision step of the LBE algorithm and are then re-segregated to push immiscible fluids apart from each other along interfacial normals (also obtained from phase index gradients).</p>
+<p>While this algorithm cannot really model the microscopic kinetics of phase separation - which the Shan-Chen pseudopotential method can - it can model multiple fluid systems dominated by hydrodynamics and is numerically very stable, making it easy to apply a wide range of specified interfacial tensions.</p>
+<p>While not essential, more theoretical details about the <a class="reference internal" href="../DOCUMENTS/LBETheory.html#lishchuk"><span class="std std-ref">Lishchuk continuum-based chromodynamic method</span></a> used in this exercise are available.</p>
+</div>
+<div class="section" id="aim">
+<h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
+<p>We are going to use the above-mentioned Lishchuk algorithm implemented in DL_MESO_LBE to look at a system of a liquid drop in a bulk immiscible fluid being subjected to linear shear <a class="reference internal" href="#halliday2006" id="id2">[Halliday2006]</a>.</p>
+<p>The system includes two solid walls at the top and bottom of the box: the bottom wall remains stationary while the top wall moves at a constant speed to generate a constant velocity gradient. The drop can be placed at different positions between the two walls and its initially circular shape will be deformed by the shear flow.</p>
+<p>We will be able to try different flow shear rates and interfacial tensions between the fluids to see what effects these will have on the drop.</p>
+</div>
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<p>For this exercise, you will need the main DL_MESO_LBE executable <code class="docutils literal notranslate"><span class="pre">lbe.exe</span></code> - ideally either the serial version with OpenMP multithreading or the parallel version with MPI - and the utility <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> to create different starting setups. You can also use the DL_MESO GUI (see <a class="reference internal" href="DL_MESO_LBE.html#dl-meso-gui"><span class="std std-ref">Running GUI</span></a>) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed.</p>
+<p>Copy the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a>, <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> input files from the directory <code class="docutils literal notranslate"><span class="pre">dl_meso/DEMO/LBE/2D_DropShear</span></code> in your copy of DL_MESO to your working directory (<code class="docutils literal notranslate"><span class="pre">dl_meso/WORK</span></code>).</p>
+<p>These simulation input files will model a rectangular box (<span class="math notranslate nohighlight">\(150 \times 50\)</span> grid points) with walls at the top and bottom. While most of the box will be filled with a continuous fluid (denoted as fluid 0 by DL_MESO_LBE), an immiscible drop of a different fluid (fluid 1) will be placed close to the bottom wall. The lbin.init file was created (using the <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> utility) to give this drop a radius of 15 lattice units and place its centre at lattice grid coordinates <span class="math notranslate nohighlight">\((40, 20)\)</span>.</p>
+<p>The first few thousand timesteps of the simulation will be used to allow the drop shape to settle: no boundary conditions will be applied during this equilibration period. During the remainder of the simulation, a bounce-back boundary condition is applied at the bottom wall, while a constant velocity boundary at the top is applied with a horizontal speed (in lattice units) of 0.005 going to the right.</p>
+<p>To modify any of the parameters in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>interaction_1
+interaction_2
+segregation
+speed_top_0
+</pre></div>
+</div>
+<p>where the first two are for the interaction parameter <span class="math notranslate nohighlight">\(g_{01}\)</span> between the two fluids, <code class="docutils literal notranslate"><span class="pre">segregation</span></code> gives the segregation parameter <span class="math notranslate nohighlight">\(\beta\)</span> and <code class="docutils literal notranslate"><span class="pre">speed_top_0</span></code> is the <span class="math notranslate nohighlight">\(x\)</span>-component of the top wall velocity applied using a constant velocity boundary condition.</p>
+<p>If you wish to use the parallel version of DL_MESO_LBE to run this simulation, you may want to add the following three lines to the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file to ensure only one output file is produced per timestep:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>output_combine_x             <span class="m">1</span>
+output_combine_y             <span class="m">1</span>
+output_combine_z             <span class="m">1</span>
+</pre></div>
+</div>
+<p>To run the simulation, either type in:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./lbe.exe
+</pre></div>
+</div>
+<p>if you have compiled the serial version of DL_MESO_LBE (with or without OpenMP), or if you want to run the parallel version on X processor cores, type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -np X ./lbe.exe
+</pre></div>
+</div>
+<p>After running DL_MESO_LBE, open the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a> files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed.</p>
+<p>A useful Paraview filter for this simulation is Calculator, which can generate new properties from those supplied in the output files. The total fluid densities can be calculated using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>density_0+density_1
+</pre></div>
+</div>
+<p>while you can obtain values for the phase index using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>density_0-density_1<span class="o">)</span>/<span class="o">(</span>density_0+density_1<span class="o">)</span>
+</pre></div>
+</div>
+<p>and subsequently apply the Contour filter to draw boundaries between the fluids (i.e. where the phase index <span class="math notranslate nohighlight">\(\rho^N = 0\)</span>).</p>
+<p>To change the location of the drop, you will need to run the <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> utility. This will read the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> for some information about the system, before asking how many drops you want to add to your system and, for each drop, which fluid to use, the drop’s radius, where its centre should be and its density. The utility will then create a new <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> file that you can use in your next simulation. (If you want to keep the previous <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> file, you should rename it first to prevent it from being overwritten.)</p>
+</div>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Run DL_MESO_LBE in your working directory with the supplied input files. Plot the resulting output files in Paraview and observe how the drop moves when shear is applied.<ul>
+<li>Use the Calculation and Contour filters to calculate the phase index and plot the effective boundary of the drop.</li>
+<li>Try calculating the total fluid density with the Calculation filter. Where are the highest and lowest values?</li>
+</ul>
+</li>
+<li>Try replacing the drop given in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> file with one placed close to the top shearing boundary, e.g. at <span class="math notranslate nohighlight">\(y=30\)</span>. What is the eventual vertical position of this drop? How does it compare to the previous simulation?</li>
+<li>The shape of the drop (or how much it deforms) will depend on its capillary number (ratio of viscous to interfacial forces). In turn, the capillary number will depend on the shearing velocity of the top wall.<ul>
+<li>Try modifying the top wall velocity and the interfacial tension parameter in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file and see what happens. How high can each of these values be set while ensuring the simulation still makes sense?</li>
+</ul>
+</li>
+<li>You may have spotted that the boundary between the drop and continuous fluid is not sharp. One aspect of the Lishchuk mesophase algorithm is it generates diffuse phase boundaries, but ensures large interfacial tensions can be used.<ul>
+<li>Fluid separation is controlled using a segregation parameter <span class="math notranslate nohighlight">\(\beta\)</span> defined in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file: try varying this value to see what effect it has. (Note that you will need to take care to ensure the phase boundary does not interfere with the system’s solid boundaries.)</li>
+</ul>
+</li>
+</ol>
+<table class="docutils citation" frame="void" id="lishchuk2003" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Lishchuk2003]</a></td><td>SV Lishchuk, CM Care and I Halliday, Lattice Boltzmann algorithm for surface tension with greatly reduced microcurrents, <em>Physical Review E</em>, <strong>67</strong>, 036701, 2003, doi: 10.1103/PhysRevE.67.036701.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="halliday2006" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[Halliday2006]</a></td><td>I Halliday, R Law, CM Care and A Hollis, Improved simulation of drop dynamics in a shear flow at low Reynolds and capillary number, <em>Physical Review E</em>, <strong>73</strong>, 056708, 2006, doi: 10.1103/PhysRevE.73.056708.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="LBEExercise1.html"
+                        title="previous chapter">LBE Exercise 1: Phase separation and equations of state</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="LBEExercise3.html"
+                        title="next chapter">LBE Exercise 3: Pressure-driven flows and Kármán vortex streets</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="LBEExercise3.html" title="LBE Exercise 3: Pressure-driven flows and Kármán vortex streets"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="LBEExercise1.html" title="LBE Exercise 1: Phase separation and equations of state"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="LBE.html" >Lattice Boltzmann Equation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

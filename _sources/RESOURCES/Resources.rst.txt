@@ -5,16 +5,18 @@
 Resources
 *********
 
-Simulation resources main portal: useful software tools, DL_Software features, functions, how-to, tips, etc.
+Simulation resources main portal: DL_Software features, useful software tools, functions, how-to, tips, learning resources etc.
+
 
 .. toctree::
    :maxdepth: 2
 
    ./manual	      
    ./tools
-   ./tutorials
-   ./visualisation   
+   ./TUTORIALS/tutorials
+   ./EXERCISES/Exercises
    ./video_links   
+   ./visualisation   
    ./text_editors
    ./linux_cheat_sheet 
 

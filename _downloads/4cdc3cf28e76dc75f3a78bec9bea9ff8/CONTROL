@@ -1,0 +1,21 @@
+DL_MESO lipid bilayer example
+
+volume 4096.0
+temperature 1.0
+cutoff 1.0
+boundary halo 2.0
+
+timestep 0.03
+steps 100000
+equilibration steps 0
+scale temperature every 100
+trajectory 0 2000
+stats every 2000
+stack size 100
+print every 1000
+job time 10800.0
+close time 100.0
+
+ensemble nvt mdvv
+
+finish

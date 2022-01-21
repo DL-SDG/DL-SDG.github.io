@@ -1,0 +1,39 @@
+.. Main Portal to DL_MESO 
+
+*******
+DL_MESO
+*******
+
+**Table of Content**
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dl_meso_howto
+   ./dl_meso_lbe_jargon
+   ./dl_meso_dpd_jargon
+   ../RST_PAGES/Installation_further_reading 
+
+
+DL_MESO is a general-purpose mesoscale simulation software package.
+
+**Functions**
+
+1. Lattice Boltzmann Equation (LBE) simulations of two- and three-dimensional systems
+
+   * Multiple interacting fluids 
+   * Mass and heat transfers coupled to fluid flows
+   * Wide range of boundary conditions
+
+2. Dissipative Particle Dynamics (DPD) simulations of mesoscopic particles ('beads')
+
+   * Galilean-invariant thermostats (DPD and others)
+   * Wide variety of interaction types, e.g. many-body DPD, bonded interactions and electrostatics
+   * Non-periodic systems available with frozen beads, hard reflecting surfaces and linear shear
+
+3. Domain decomposition parallelisation strategy for both methods and codes, allowing simulation of model sizes that are limited to computer memories.
+
+4. OpenMP multithreading available to speed up computationally intensive sections of simulations.
+
+5. Self-contained, free-formatted C++ and Fortran 2003 codes (with MPI2 and/or OpenMP), can run on most computer platforms - single-processor PC to multi-processor supercomputers.
+

@@ -4,7 +4,7 @@
 Main features
 *************
 
-**Last update: July 2020 (DL_FIELD version 4.6)**
+**Last update: December 2020 (DL_FIELD version 4.7)**
 
 Below shows the some of the main DL_FIELD capabilities.
 
@@ -34,6 +34,8 @@ Below shows the some of the main DL_FIELD capabilities.
 * AMBER - proteins, Glycam for glycans and GAFF general FF.
 
 * OPLS2005 - for proteins and organic molecules including drug molecules.
+
+* OPLS-CL&P - OPLS FF for ionic liquids.
 
 * OPLS-DES - OPLS FF for deep eutectic solvents
 

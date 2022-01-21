@@ -1,0 +1,47 @@
+.. Force field Introduction - bonded interactions 
+.. _Header_ff3:
+
+*******************
+Bonded interactions
+*******************
+
+The intra-molecular or bonded interactions consist of energy components that are short range in nature and usually applied within the molecule to maintain the geometrical structure of the molecule.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+Bonded interactions consist of several energy components as follows:
+
+* Bond interaction. Also called the 1-2 interaction. It describes interaction between two bonded atoms.
+
+* Angle interaction. Also called the 1-3 interaction. It describes interaction two atoms that are bonded to a common atom. 
+
+* Dihedral (tortional) interaction. Also called the 1-4 interaction. It describes the angular interaction drawn between planes 1,2,3 and 2,3,4. 
+
+Diagram below shows the summary of these interactions.
+
+.. image:: ../../image/ff3_1.png
+   :scale: 70%
+   :align: center
+   :alt: bonded energy component.
+
+* Improper interaction. This is a type of dihedral interaction that is imposed on certain molecular functional group to preserve a particular geometry of three atoms around a central atom. Example of these functional groups are carbonate and carbonyls, to maintain a planar conformation (where alpha = 0 degree).
+
+.. image:: ../../image/ff3_2.png
+   :scale: 70%
+   :align: center
+   :alt: improper interaction.
+
+Diagram below illustrates how these interactions are applied on a molecular structure (salicylic acid).
+
+.. image:: ../../image/ff3_3.png
+   :scale: 60%
+   :align: center
+   :alt: improper interaction.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+So far, we have discussed the 'direct' bonded interactions, depending on the type of FFs, there are other types of cross component bonded interactions.
+
+For instance, the bond-bond interaction, where the cross component interactions are described in terms of the bond distances between two succesive bonds 1-2 and 2-3. Other cross components may also involve a more extensive geometries such as angle-angle, bond-angle and even angle-torsion interactions.
+
+:ref:`^ GO TO TOP ^<Header_ff3>`

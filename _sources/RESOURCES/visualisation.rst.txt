@@ -48,3 +48,5 @@ A few examples include:
 
 * `Travis Software <http://www.travis-analyzer.de/>`_ General-purpose trajectory visualiser, that works with DL_POLY HISTORY files `Reference paper <https://pubs.acs.org/doi/10.1021/ci200217w>`_  
 
+* `Paraview <https://www.paraview.org/>`_ This is 'an open-source, multi-platform data analysis and visualization application' ideal for visualising and analysing data-based datasets, including Lattice Boltzmann Equation (LBE) trajectories from DL_MESO_LBE and some analysis results (e.g. localised properties, density maps) from DL_MESO_DPD.
+

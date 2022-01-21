@@ -1,0 +1,220 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DPD Exercise 1: DPD, hydrophobicity and parameterisation &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DPD Exercise 2: Lipid bilayers, micelles and vesicles" href="DPDExercise2.html" />
+    <link rel="prev" title="Using DL_MESO_DPD" href="DL_MESO_DPD.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="DPDExercise2.html" title="DPD Exercise 2: Lipid bilayers, micelles and vesicles"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="DL_MESO_DPD.html" title="Using DL_MESO_DPD"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="DPD.html" accesskey="U">Dissipative Particle Dynamics</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dpd-exercise-1-dpd-hydrophobicity-and-parameterisation">
+<span id="dpd-exercise1"></span><h1>DPD Exercise 1: DPD, hydrophobicity and parameterisation<a class="headerlink" href="#dpd-exercise-1-dpd-hydrophobicity-and-parameterisation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>As a mesoscale modelling method, DPD is particularly useful for looking at phase and structural behaviour of multiple-component systems due to the method’s ability to step quickly in time. Large-scale changes such as phase separation and self-assembly can emerge more rapidly than they normally can with molecular dynamics, both in terms of available timescales and computational time.</p>
+<p>A large part of this comes down to the choice of interaction potential. Groot and Warren’s <a class="reference internal" href="#groot1997" id="id1">[Groot1997]</a> form of conservative interaction provides a quadratic potential and a quadratic equation of state. For single component systems, while this interaction limits us to a single fluid phase, it does incorporate some non-ideality and we can parameterise it by considering the fluid’s isothermal compressibility.</p>
+<p>To extend DPD and Groot-Warren interactions to multiple components, we need to find some way to obtain conservative force parameters between pairs of different species. To that end, one approach available to us is to map these parameters to the Flory-Huggins solution theory of polymers.</p>
+<p>If we assume particle species A and B interact among themselves in the same way (i.e. <span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}} = A_{ij}^{\text{BB}}\)</span>), we can define a parameter for the non-ideal part of the mixing Gibbs free energy between A and B, <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>. This parameter can be shown to be proportional to an increase in conservative force parameter from the value for like-like interactions, i.e.</p>
+<div class="math notranslate nohighlight" id="equation-chia">
+<span class="eqno">(1)<a class="headerlink" href="#equation-chia" title="Permalink to this equation">¶</a></span>\[\chi^{\text{AB}} \propto \left( A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}} \right).\]</div>
+<p>To determine the proportionality constant, we can carry out DPD simulations of two separating species of beads with different values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> and measure the resulting values of <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>. If the two species separate into regions rich in either species A or species B, we can find an average volume fraction of one species (e.g. <span class="math notranslate nohighlight">\(\phi_{\text{A}}\)</span> for species A) away from the interfaces between the regions. The volume fraction can then be used to calculate <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-chiphi">
+<span class="eqno">(2)<a class="headerlink" href="#equation-chiphi" title="Permalink to this equation">¶</a></span>\[\chi^{\text{AB}} = \frac{\ln\lbrack(1 - \phi_{\text{A}})/\phi_{\text{A}}\rbrack}{1 - 2\phi_{\text{A}}}.\]</div>
+<p>Once we have the actual relationship between <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>, we can then calculate conservative force parameters between pairs of species for which we know lory-Huggins <span class="math notranslate nohighlight">\(\chi\)</span>-parameters. If we do not have experimental values of <span class="math notranslate nohighlight">\(\chi\)</span>-parameters available, it is possible to calculate them from energies of mixing determined from e.g. atomistic molecular dynamics simulations.</p>
+<p>More theoretical details on parameterising DPD simulations using <a class="reference internal" href="../DOCUMENTS/DPDTheory.html#floryhuggins"><span class="std std-ref">Flory-Huggins solution theory</span></a> are available as additional background for this Exercise.</p>
+</div>
+<div class="section" id="aim">
+<h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
+<p>We want to find the actual relationship between <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> for DPD systems with a commonly-used particle density, <span class="math notranslate nohighlight">\(\rho=3\)</span>.</p>
+<p>To do this, we can follow the procedure given above to calculate <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> from simulations of separating beads with different values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>, holding both the overall bead density and the like-like conservative force parameters (<span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}}\)</span> and <span class="math notranslate nohighlight">\(A_{ij}^{\text{BB}}\)</span>) constant. Using several data points, we can plot <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> as a function of <span class="math notranslate nohighlight">\(\left( A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}} \right)\)</span> and get a best-fit line to find the proportionality constant for the overall bead density.</p>
+</div>
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<p>If you have not yet done so, follow the instructions in <a class="reference internal" href="dlmeso_setup.html#dlmeso-setup"><span class="std std-ref">Setting up DL_MESO</span></a> to download DL_MESO and compile its DPD code (DL_MESO_DPD) and associated utilities. In particular for this exercise, you will need the main executable <em>dpd.exe</em> (either serial or parallel) as well as the utilities <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a> and either <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a> or <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a>. Optionally, you can also make use of the <a class="reference download internal" download="" href="../../_downloads/bde19889c28a193270a115d552bd9d76/flory_huggins.py"><code class="xref download docutils literal notranslate"><span class="pre">flory_huggins.py</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/6cb83a4f2ab2e1b00388df7079a21426/flory_huggins_plot.py"><code class="xref download docutils literal notranslate"><span class="pre">flory_huggins_plot.py</span></code></a> Python scripts. You will also need to have Paraview and either VMD or OVITO installed.</p>
+<p>Copy the <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="../TUTORIALS/dlm_4.html#configdlmeso"><span class="std std-ref">CONFIG</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> input files from the directory <em>dl_meso/DEMO/DPD/FloryHuggins</em> in your copy of DL_MESO to your working directory (<em>dl_meso/WORK</em>). You might like to take a look at these files in a text editor and see how they are set out: <a class="reference internal" href="DL_MESO_DPD.html#dl-meso-dpd"><span class="std std-ref">Using DL_MESO_DPD</span></a> has some more details on how <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> are formatted.</p>
+<p>In summary, these files represent a DPD simulation of a periodic cuboidal box with <span class="math notranslate nohighlight">\(20 \times 8 \times 8\)</span> and 3840 beads, half of which are of species A and the other half species B. We are using the CONFIG file to override DL_MESO_DPD’s default randomised setup and initially place the beads of species A in one half of the box and the beads for species B in the other half. We will be running DL_MESO_DPD for 120,000 timesteps, using the first 20,000 to let the system equilibrate before collecting trajectory data in a HISTORY file every 100 timesteps. The FIELD file specifies the interactions between beads: in this case, <span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}} = A_{ij}^{\text{BB}} = 25\)</span> and <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}} = 37\)</span>. (We are also setting <span class="math notranslate nohighlight">\(r_c = 1\)</span> for the interactions and <span class="math notranslate nohighlight">\(\gamma = 1\)</span> for all species pairs.)</p>
+<p>To run the simulation, either type in:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dpd.exe
+</pre></div>
+</div>
+<p>if you have compiled the serial version of DL_MESO_DPD (with or without OpenMP), or if you want to run the parallel version on X processor cores, type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -np X ./dpd.exe
+</pre></div>
+</div>
+<p>Once the simulation has finished, type in either one of the following two commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./traject_vtf.exe
+./traject_xml.exe
+</pre></div>
+</div>
+<p>Both utilities will convert the contents of the <a class="reference internal" href="../TUTORIALS/dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> file into a format that can be read using visualisation software: <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a> will generate a <em>traject.vtf</em> file to open in VMD, while <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a> will generate a series of files (<em>traject_*.xml</em>) that can be read by OVITO. (Which one to use will depend on what you have installed!)</p>
+<p>A useful analysis we can carry out for this simulation is to slice the simulation box into a number of sections along the longest dimension (in this case, <span class="math notranslate nohighlight">\(x\)</span>), count the numbers of particles for each species and divide by the volume of each slice to get local particle densities. We can get these by running the <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a> utility using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./local.exe -nx <span class="m">200</span> -ny <span class="m">1</span> -nz <span class="m">1</span> -av
+</pre></div>
+</div>
+<p>This utility requires information about the number of slices in each dimension, which can be provided by the <code class="docutils literal notranslate"><span class="pre">-nx</span></code>, <code class="docutils literal notranslate"><span class="pre">-ny</span></code> and <code class="docutils literal notranslate"><span class="pre">-nz</span></code> command line options. (The above will split the box into 200 slices along the <span class="math notranslate nohighlight">\(x\)</span>-direction, but not split it in the <span class="math notranslate nohighlight">\(y\)</span>- or <span class="math notranslate nohighlight">\(z\)</span>-directions.) The <code class="docutils literal notranslate"><span class="pre">-av</span></code> command line option also asks <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a> to only provide a time-averaged profile in a file called averages.vtk: omitting this will also produce instantaneous profiles, although these will be statistically very noisy!</p>
+<p>Once you have obtained the averages.vtk file, you can open it using Paraview. Note that once you have loaded the file, you then need to click Apply in the Properties subwindow to create the visualisation, and use the pull-down boxes near the top to select the different properties and the type of plot. To calculate new properties from the data, you can apply the Calculation filter: this allows you to create a new property from a mathematical expression based on those provided in the file. For instance, the total particle densities can be calculated using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>density_A+density_B
+</pre></div>
+</div>
+<p>while the volume fraction of species A can be obtained with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>density_A/<span class="o">(</span>density_A+density_B<span class="o">)</span>
+</pre></div>
+</div>
+<p>(Again, you will need to click Apply in the Properties subwindow to carry out the calculation.) There is also a Plot Over Line filter to produce a graph of the available properties along a given line, which can go along a particular axis.</p>
+<p>The later tasks can be carried out using all of the above, but you might find it easier and quicker to use the Python3 scripts.</p>
+<p>The <em>flory_huggins.py</em> script will automatically run a series of DL_MESO_DPD calculations to find values of <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> for different values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>. Full details of what it does and its defaults are given in <a class="reference internal" href="DL_MESO_DPD.html#dl-meso-dpd"><span class="std std-ref">Using DL_MESO_DPD</span></a>, although for this exercise there are a few things you can do to speed up the simulations it runs (with the corresponding command line flags):</p>
+<ul class="simple">
+<li>Decrease the dimensions of the simulation box: <code class="docutils literal notranslate"><span class="pre">--L</span> <span class="pre">10.0</span> <span class="pre">--W</span> <span class="pre">4.0</span></code></li>
+<li>Increase the change in <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> between simulations: <code class="docutils literal notranslate"><span class="pre">--dA</span> <span class="pre">2.0</span></code></li>
+<li>Run DL_MESO_DPD on multiple processor cores: <code class="docutils literal notranslate"><span class="pre">--nproc</span> <span class="pre">4</span></code></li>
+</ul>
+<p>The <em>flory_huggins_plot.py</em> script uses the results from the previous script and can plot the concentration profiles, recalculate values of <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>, plot the values of <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> against <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\)</span> and find the relationship between these quantities.</p>
+</div>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Run DL_MESO_DPD in your working directory with the supplied input files. Use either <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a> or <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a> to convert the HISTORY file data into the format to load into VMD or OVITO respectively. Take a look at the results: what happens to the different species?</li>
+<li>If the two bead species have separated, run the <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a> utility, then open Paraview and load in the <em>averages.vtk</em> file.<ul>
+<li>Take a look at the density of one of the two species and produce a Surface plot. Can you see two distinct regions in the box?</li>
+<li>Apply the Calculation filter to work out and visualise the total particle densities in each slice. Is the total density constant throughout the box? If there are any regions that are different to most of the box, what do you think is happening in those regions?</li>
+<li>Apply the Calculation filter again to calculate the volume fraction of one species and then use the Plot Over Line filter along the <span class="math notranslate nohighlight">\(x\)</span>-axis to get a graph of this property.</li>
+<li>Use the plot of volume fraction to work out a representative value of <span class="math notranslate nohighlight">\(\phi_A\)</span> for one of the bulk regions, then use <a class="reference internal" href="#equation-chiphi">(2)</a> to calculate <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>.</li>
+</ul>
+</li>
+<li>Either by hand or by using the <em>flory_huggins.py</em> Python script, run through a series of DL_MESO_DPD simulations, varying <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> from 33 to 43, obtain concentration profiles for each simulation, calculate <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> values from those profiles and plot <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> against <span class="math notranslate nohighlight">\(\Delta A_{ij} = \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)\)</span>.<ul>
+<li>Do all of the simulations produce clearly separated regions for each particle species? Which ones do not manage this? (Why might that be?)</li>
+<li>Would you agree there is a proportional relationship between <span class="math notranslate nohighlight">\(\Delta A_{ij} = \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)\)</span> and <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>? If so, what is the proportionality constant?</li>
+<li>Is there a minimum value of <span class="math notranslate nohighlight">\(\Delta A_{ij}\)</span> that gives separation of the two species?</li>
+</ul>
+</li>
+<li>Run some more simulations to calculate values of <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>, only this time try a different value of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}}\)</span>, adjusting the range of values for <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> to produce some more data points for the previous plots. Do these additional points still lie on more-or-less the same line as before?</li>
+<li><em>Optionally</em> vary the system particle density from the default of 3.0 to a higher value: say either 5.0 or 6.0. (You will need the <em>flory_huggins.py</em> script to at least obtain the necessary <a class="reference internal" href="../TUTORIALS/dlm_4.html#configdlmeso"><span class="std std-ref">CONFIG</span></a> file.) Do you still get the same kind of relationship between <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(\Delta A_{ij}\)</span> as before? How does the relationship change compared with the original particle density?</li>
+</ol>
+<p class="rubric">Reference</p>
+<table class="docutils citation" frame="void" id="groot1997" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Groot1997]</a></td><td>RD Groot and PB Warren, Dissipative particle dynamics: Bridging the gap between atomistic and mesoscopic simulation, <em>Journal of Chemical Physics</em>, <strong>107</strong>, 4423-4435 (1997), doi: 10.1063/1.474784.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="DL_MESO_DPD.html"
+                        title="previous chapter">Using DL_MESO_DPD</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="DPDExercise2.html"
+                        title="next chapter">DPD Exercise 2: Lipid bilayers, micelles and vesicles</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="DPDExercise2.html" title="DPD Exercise 2: Lipid bilayers, micelles and vesicles"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="DL_MESO_DPD.html" title="Using DL_MESO_DPD"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="DPD.html" >Dissipative Particle Dynamics</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

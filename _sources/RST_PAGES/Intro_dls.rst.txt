@@ -1,6 +1,10 @@
 .. This is an introduction to the DL_Spftware Codes 
 .. _Header:
 
+.. |br| raw:: html
+
+   <br />
+
 ***************************
 Introduction to DL_Software
 ***************************
@@ -16,33 +20,19 @@ The philosophy behind the software development is to maintain a 'forward-looking
 
 DL_Software has been applied in both academics and industrial settings and can adapt to new scientific challenges and technological advances. For many years, DL_Software has been the main flagship codes and provide R&D services to a number of UK academic consortia such as CCP5, MCC, CCP-BioSim and UKCOMES. Below lists the the software packages that are currently available:
 
-* `DL_POLY <https://www.scd.stfc.ac.uk/Pages/DL_POLY.aspx>`_ - a general purpose classical molecular dynamics (MD)  simulation software developed by IT Todorov and W Smith. It is  capable of handling 'large' molecular systems (i.e. > 100,000 atoms) 
+* `DL_POLY <https://www.scd.stfc.ac.uk/Pages/DL_POLY.aspx>`_ - a general purpose classical molecular dynamics (MD)  simulation software developed by IT Todorov and W Smith. It is  capable of handling 'large' molecular systems (i.e. > 100,000 atoms) |br| |br|
 
-|
+* `DL_FIELD <https://www.ccp5.ac.uk/DL_FIELD>`_ - a force-field construction tool built for DL_POLY by CW Yong |br| |br|
 
-* `DL_FIELD <https://www.ccp5.ac.uk/DL_FIELD>`_ - a force-field construction tool built for DL_POLY by CW Yong
+* `DL_ANALYSER <http://www.ccp5.ac.uk/DL_ANALYSER>`_ - a general analysis tool built for DL_POLY's trajectory files by CW Yong |br| |br|
 
-|
+* `DL_MONTE <https://www.ccp5.ac.uk/DL_MONTE>`_    - a general purpose parallel Monte Carlo simulation package developed by John Purton, Nigel Wilding and Steve Parker |br| |br|
 
-* `DL_ANALYSER <http://www.ccp5.ac.uk/DL_ANALYSER>`_ - a general analysis tool built for DL_POLY's trajectory files by CW Yong
+* `DL_MESO <https://www.scd.stfc.ac.uk/Pages/DL_MESO.aspx>`_  - a general purpose mesoscale simulation package developed by Michael Seaton. It supports both Lattice Boltzmann Equation (LBE) and Dissipative Particle Dynamics (DPD) |br| |br|
 
-|
+* `CHEMSHELL <https://www.chemshell.org/>`_ - a scriptable computational chemistry environment with support for hybrid QM/MM simulations for mutliscale modelling. Hybrid QM/MM is its main strength |br| |br|
 
-* `DL_MONTE <https://www.ccp5.ac.uk/DL_MONTE>`_    - a general purpose parallel Monte Carlo simulation package developed by John Purton, Nigel Wilding and Steve Parker
-
-|
-
-* `DL_MESO <https://www.scd.stfc.ac.uk/Pages/DL_MESO.aspx>`_  - a general purpose mesoscale simulation package developed by Michael Seaton. It supports both Lattice Boltzmann Equation (LBE) and Dissipative Particle Dynamics (DPD)
-
-|
-
-* `CHEMSHELL <https://www.chemshell.org/>`_ - a scriptable computational chemistry environment with support for hybrid QM/MM simulations for mutliscale modelling. Hybrid QM/MM is its main strength
-
-|
-
-* `DL_FIND <http://www.cse.scitech.ac.uk/ccg/software/chemshell/manual/dlfind.html>`_ - a powerful and flexible geometry optimisation library and is the recommended optimiser module in ChemShell
-
-|
+* `DL_FIND <http://www.cse.scitech.ac.uk/ccg/software/chemshell/manual/dlfind.html>`_ - a powerful and flexible geometry optimisation library and is the recommended optimiser module in ChemShell |br| |br|
 
 :ref:`^ GO TO TOP ^<Header>`
 

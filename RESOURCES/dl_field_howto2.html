@@ -9,13 +9,14 @@
     <title>How to do something &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom_CY.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -55,7 +56,7 @@
 <a class="reference internal" href="#header-howto-bond-constrain"><span class="std std-ref">Setup constrained bond model</span></a> <br />
 <a class="reference internal" href="#header-howto-xyz"><span class="std std-ref">Using xyz input files</span></a> <br />
 <a class="reference internal" href="#header-howto-multiple"><span class="std std-ref">How to setup a multiple potential model</span></a> <br /></p>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
 <p id="header-howto-liquid"><strong>How to set up a liquid model</strong></p>
 <ol class="arabic simple">
 <li>Create a single-molecule configuration file. This would be the liquid molecule, or the solute molecule if you were to setup a solution. Let’s call this file <em>molecule.xyz</em></li>
@@ -114,7 +115,7 @@ none 2.0 * Solvate model? none or specify solvent (see below) and distance crite
 <p class="last">Once the system is setup, it is recommended to view your <em>dl_poly.CONFIG</em> structure in a graphical display software to make sure the structure is evenly distributed. You can adjust the distance accordingly and rerun DL_FIELD. A smaller distance means molecules will be tightly packed against each other. Whereas, large distance means the molecules are more widely apart.</p>
 </div>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
 <p id="header-howto-solution"><strong>How to setup a solution model</strong></p>
 <p>Use the same procedures for setting up liquid as described above. However, use the Solvation feature in the DL_FIELD <em>control</em> file as shown below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>..
@@ -155,7 +156,7 @@ default   * 1-4 scaling for vdw (put default or x for scaling=x)
 <p class="last">Depending on the FF schemes, you may get an error in DL_FIELD if there is no MOLECULE template or potential parameters available for some solvent molecules. In addition, you cannot solvate your system if an inorganic FF scheme is used.</p>
 </div>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
 <p id="header-howto-bond-constrain"><strong>How to setup a constraint bond model</strong></p>
 <p>Constraining bonds are one of the effective way to remove fastest mode of motion in your system, that is, the bond vibration, especially bonds that contain the hydrogen atoms.</p>
 <ol class="arabic simple">
@@ -220,7 +221,7 @@ CONSTRAIN  ORG2  all <br /></p>
 <p class="last">If the Molecular Group names in the configuration file do not match with any of the CONSTRAIN directive statements, no bond constrain will be applied. DL_FIELD does not consider this as an error.</p>
 </div>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
 <p id="header-howto-xyz"><strong>How to use xyz file structure</strong></p>
 <p>The xyz file format is the simplest format one could use in DL_FIELD to setup force field models. In general, atoms must be expressed in standard element symbols together with the corresponding xyz coordinates.</p>
 <p>For organic systems, this is a must. DL_FIELD will attempt to determine the ATOM_KEYs depending on the FF scheme chosen. For inorganic systems, you can use either the element symbols or ATOM_KEYs. Below show a few examples for different types of systems.</p>
@@ -295,7 +296,7 @@ CONSTRAIN  ORG2  all <br /></p>
 </pre></div>
 </div>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
 <p id="header-howto-multiple"><strong>How to setup a multiple potential model</strong></p>
 <p>The multiple potential feature is only applied to PDB and <em>xyz</em> input files.</p>
 <p>DL_FIELD provides simple procedures to setup models that use more than one potential scheme. First of all, the keyword <em>multiple</em> must be used instead of any specific FF scheme in the DL_FIELD <em>control</em> file. Then specify the potential schemes in the input configuration file.</p>
@@ -374,7 +375,7 @@ CONSTRAIN  ORG2  all <br /></p>
 </div>
 <p>Note that by using inorganic force field scheme would need an additional directive, which in this case, is <em>MOLECULE_KEY CLYF</em>. This provides additional information for DL_FIELD to look for the specific MOLECULE template as defined in the corresponding library file for inorganic_clay FF, or the <em>DLPOLY_INORGANIC_CLAY.sf</em> file.</p>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -393,18 +394,19 @@ CONSTRAIN  ORG2  all <br /></p>
 <li class="toctree-l3 current"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dl_analyser_intro.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dl_meso_intro.html">DL_MESO</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Online Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXERCISES/Exercises.html">DL_Software Exercises</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="EXERCISES/Exercises.html">Tutorial Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SIMULATIONS/Simulations.html">Simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Advanced Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Knowledge Center</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
@@ -449,7 +451,7 @@ CONSTRAIN  ORG2  all <br /></p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Dawn Geatches, Chin Yong.
+        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

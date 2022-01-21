@@ -1,0 +1,31 @@
+.. MD Introduction - atom and particles trajectories
+.. _Header_md3:
+
+*********************
+Particle trajectories
+*********************
+
+Since moving the particles changes the distances between them and thus their forces, molecular dynamics involves continuously integrating these equations of motion to obtain trajectories numerically. This leads to the overall scheme for MD simulations, shown in the diagram below and consisting of the following stages:
+
+* Set up initial system - obtain initial positions and velocities of atoms
+* Calculate atomic forces based on potential model
+* Calculate particle motion from force integration
+* Calculate physical properties - collect instantaneous data for statistical purposes
+* Repeat until done
+
+.. image:: ../../image/dlp_2_4.png
+   :scale: 75%
+   :align: center
+
+We can choose how to integrate the forces based on requirements for high computational speed, low memory demand, accuracy, stability (i.e. conservation of energy without drifting) and time reversibility. The use of a *symplectic* integrator provides time reversibility and long-term stability. One commonly-used integration scheme for MD simulations is Velocity Verlet (VV), which is second-order accurate (i.e. errors are proportional to the square of the timestep size :math:`\Delta t`) and updates particle positions and velocities without requiring additional memory to do so.
+
+We can choose boundary conditions for our MD simulation to fit our application, although most of the time we use periodic boundary conditions (PBCs) to prevent surface effects dominating over bulk effects, as illustrated below. This approach limits the maximum size of the interaction cutoff :math:`r_{cut}` to no more than half of the simulation cell width as spatial correlations beyond this are artificial, but it does enable us to use the *minimum image convention* to find the shortest possible distances between particle pairs for potential and force calculations.
+
+.. image:: ../../image/dlp_2_3.png
+   :scale: 70%
+   :align: center
+
+If very long-range interactions are required, e.g. for charge-based electrostatics, PBCs enable the use of *Ewald summation* to split the interactions into *real space* and *reciprocal space* parts: pairwise calculations with a cutoff are used for real space contributions, while the reciprocal space part deals with large numbers of periodic images for the system by applying Fourier transforms.
+
+:ref:`^ GO TO TOP ^<Header_md3>`
+

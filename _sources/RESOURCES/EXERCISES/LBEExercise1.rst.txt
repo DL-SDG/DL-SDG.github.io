@@ -1,0 +1,108 @@
+.. _LBE_Exercise1:
+
+LBE Exercise 1: Phase separation and equations of state
+=======================================================
+
+Introduction
+------------
+
+A major feature of LBE is its ability to model multiple fluids and/or phases by calculating and applying interfacial forces locally at each lattice site. Any interfaces between fluids or phases are *emergent* and do not need to be explicitly tracked, which makes modelling multiple fluids or phases in LBE just as computationally efficient as modelling one fluid. 
+
+One frequently used form of mesoscopic fluid interactions in LBE simulation is the Shan-Chen pseudopotential method [Shan1993]_. This method works by defining a pseudopotential :math:`\psi` - a function of fluid density - and calculating forces that are related to gradients of the pseudopotential that can be applied during the collision step. The gradients can be calculated easily and accurately using a stencil, i.e. using pseudopotential values at neighbouring grid points.
+
+The interaction forces have the effect of modifying the equation of state for the lattice fluid:
+
+.. math :: p = \rho c_s^2 + \frac{1}{2} g c_s^2 \psi^2
+
+where :math:`g` is the interaction strength used as a multiplier for the forces. The functional form of :math:`\psi` can therefore be chosen to apply a chosen equation of state [Yuan2006]_:
+
+.. math :: \psi = \sqrt{\frac{2\left(p \left(\rho, T\right) - \rho c_s^2\right)}{g c_s^2}}
+
+where the interaction strength :math:`g` is set to :math:`\pm 1` to ensure the square root in the above expression is evaluated with a positive value.
+
+There are some limitations with this method - most notably, it is not always thermodynamically consistent and the interfacial tension between phases is an emergent property (i.e. it cannot be controlled directly and depends on the relaxation time :math:`\tau`). Other methods to model multiple phases such as free-energy LBE [Swift1996]_ can alleviate these problems, although they can be more complicated to apply.
+
+More theoretical details about the :ref:`ShanChen` used in this exercise are available.
+
+Aim
+---
+
+We are going to take a look at how well the Shan-Chen pseudopotential method can model vapour/liquid equilibrium for a fluid behaving according to the Peng-Robinson cubic equation of state [Peng1976]_:
+
+.. math :: p = \frac{\rho RT}{1 - b \rho} - \frac{a \alpha\left(T_r, \omega\right) \rho^2}{1 + 2b \rho - b^2 \rho^2}
+
+where :math:`R` is the universal gas constant, :math:`a` and :math:`b` are species dependent coefficients representing attraction and finite volume effects, :math:`\alpha` is a function of reduced temperature :math:`T_r = \frac{T}{T_c}` and acentric (non-sphericity) factor :math:`\omega`, given as:
+
+.. math :: \alpha \left(T_r, \omega\right) = \left[1 + \left(0.37464 + 1.54226 \omega - 0.26992 \omega^2 \right) \left(1 - \sqrt{T_r} \right) \right].
+
+The values of :math:`a` and :math:`b` can be obtained from the critical temperature :math:`T_c` and pressure :math:`p_c` for the species:
+
+.. math :: a \approx 0.45724 \frac{R^2 T_c^2}{p_c},
+
+.. math :: b \approx 0.07780 \frac{R T_c}{p_c}.
+
+Our simulations are going to start by setting :math:`R = 1`, :math:`a = \tfrac{2}{49}`, :math:`b = \tfrac{2}{21}`, :math:`\omega = 0.344` and the system temperature :math:`T = 0.055`, which is below the critical value. The initial density of the fluid will be somewhere between the densities for the liquid and vapour phases: to encourage the fluid to separate into these two phases, we can set a random 'noise' to produce density gradients.
+
+Instructions
+------------
+
+For this exercise, you will need the main DL_MESO_LBE executable ``lbe.exe`` - the serial (single processor core) version with or without OpenMP multithreading is preferred to keep down the number of output files. You can also use the DL_MESO GUI (see :ref:`DL_MESO_GUI`) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed.
+
+Copy the :ref:`lbin.sys <lbin_sys>` and :ref:`lbin.spa <lbin_spa>` input files from the directory ``dl_meso/DEMO/LBE/2D_PhaseSeparation`` in your copy of DL_MESO to your working directory (``dl_meso/WORK``). 
+
+These simulation input files represent a periodic box of a single fluid with a density (or rather, a small range of densities) that lie between the expected densities of the liquid and vapour phases. These phases should form spontaneously, with the liquid phase collecting either into a circular drop or a rectangular layer across the box (depending on how much fluid exists in the box).
+
+To modify any of the parameters in the :ref:`lbin.sys <lbin_sys>` file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:
+
+.. code-block:: bash
+
+  noise_intensity
+  density_ini_0
+  relaxation_fluid_0
+  eos_parameter_a_0
+  eos_parameter_b_0
+  acentric_factor_0
+  gas_constant
+  temperature_system
+
+for the random noise intensity, initial fluid density, relaxation time :math:`\tau`, :math:`a`, :math:`b`, :math:`\omega`, :math:`R` and system temperature respectively.
+
+To run the simulation using the serial version of DL_MESO_LBE (with or without OpenMP), type in:
+
+.. code-block:: bash
+
+  ./lbe.exe
+
+After running DL_MESO_LBE, open the :ref:`lbout\*.vts <lboutsnapshot>` files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed. To plot the properties along a straight line, you can apply the Plot Over Line filter, move the line in the display window and click Apply to display the graphs. The Information subwindow will give you the minimum and maximum values for the available properties at the currently displayed timestep.
+
+Tasks
+-----
+
+#.  Run DL_MESO_LBE in your working directory with the supplied input files for 5000 timesteps and visualise with Paraview. You should see the fluid separate into two static phases: the high-density fluid can be considered liquid, while the low-density fluid is vapour.
+
+    - Try editing the :ref:`lbin.sys <lbin_sys>` file to vary the noise intensity, initial density and/or fluid relaxation time before re-running the simulation: does this change the obtained liquid and vapour densities?
+    - Apply the Plot Over Line filter in Paraview to a region with a boundary between the phases: how does the fluid density vary as it goes from phase to phase?
+
+#.  Take a look at the fluid velocities in the system at the end of the simulation. Where are the highest velocities situated (relative to the two phases)? Given the speed of sound in lattice units is :math:`c_s = \frac{1}{\sqrt{3}} \approx 0.577`, are the velocity magnitudes reasonable?
+
+#.  What is the critical temperature? (Hint: either rearrange the above expressions for :math:`a` and :math:`b`, or take a look at what DL_MESO_LBE prints to screen.) Try varying the system temperature towards this value:
+
+    - What happens to the liquid and vapour densities as the temperature changes?
+    - What happens to the maximum fluid velocities in the system when you change the system temperature?
+
+#.  One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials [Liu2010]_. For the Peng-Robinson equation of state, reducing the universal gas constant :math:`R` and attraction parameter :math:`a` by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.
+
+    - What effect does this have on fluid velocities at equilibrium?
+    - How does this strategy change the width of the interface between the phases?
+
+.. rubric:: References
+
+.. [Shan1993] X Shan and H Chen, Lattice Boltzmann model for simulating flows with multiple phases and components, *Physical Review E*, **47** 1815-1819, 1993, doi: 10.1103/PhysRevE.47.1815.
+
+.. [Yuan2006] P Yuan and L Schaefer, Equations of state in a lattice Boltzmann model, *Physics of Fluids*, **18** 042101, 2006, doi: 10.1063/1.2187070.
+
+.. [Swift1996] MR Swift, E Orlandini, WR Osborn and JM Yeomans, Lattice Boltzmann simulations of liquid-gas and binary fluid systems, *Physical Review E*, **54**, 5041-5052, 1996, doi: 10.1103/PhysRevE.54.5041.
+
+.. [Peng1976] DY Peng and DB Robinson, A new two-constant equation of state, *Industrial & Engineering Chemistry Fundamentals*, **15**, 59-64, 1976, doi: 10.1021/i160057a011.
+
+.. [Liu2010] M Liu, Z Yu, T Wang, J Wang and LS Fan, A modified pseudopotential for a lattice Boltzmann simulation of bubbly flow, *Chemical Engineering Science*, **65**, 5615-5623, 2010, doi: 10.1016/j.ces.2010.08.014.

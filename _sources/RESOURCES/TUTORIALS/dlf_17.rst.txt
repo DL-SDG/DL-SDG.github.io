@@ -1,0 +1,58 @@
+.. DL_FIELD tutorial.
+.. _Header_dlf_17:
+
+.. |br| raw:: html
+
+   <br /> 
+
+*****************
+Bond connectivity
+*****************
+
+In DL_FIELD, there are three different types of bond connections can be defined in the MOLECULE templates. This is defined as follows:
+
+1. Normal CONNECT.
+
+   This type of connection is commmonly encountered in covalent molecules, which means a physical or covalent bond is established between two ATOMs. DL_FIELD will use this information to setup relevant bond, angle and dihedral interactions within the MOLECULE.
+
+   .. image:: ../../image/dlf_17_1.png
+      :scale: 50%
+      :align: center
+
+2. self-CONNECT.
+
+   With this type of connection, DL_FIELD assumes the ATOM is an isolated species that does not form bond with other ATOMs.  
+
+   For organic FF, self-CONNECT statements are seldom used except for pseudo points and shell part of a polarisable atom. The self-CONNECT is most commonly found in inorganic FF since ionic materials are usually interacted via non-bonded electrostatic interactions.
+
+   Example below shows the use of self-CONNECT statements, for silicalite.
+
+   .. literalinclude:: self_connect
+   
+3. auto-CONNECT.
+
+   This type of connection instructs DL_FIELD to determine the bond connections automatically and assign all the interactions accordingly. The general syntax is as follows:
+
+   *CONNECT*  ATOM_KEY  >  number_of_neighbours  *AUTO*
+
+   Similar to the self-CONNECT type, ATOM_KEYs must be used in the PDB file, instead of element symbols or any arbitrary labels. The number_of_neighbours indicates the number of bonds that are expected to connect to the ATOM. DL_FIELD will flag up an error if this number is not matched. Alternatively, the symbol * can be used to represent an unknown or variable number of neighbours.
+
+   .. image:: ../../image/dlf_17_2.png
+      :scale: 50%
+      :align: center
+ 
+Example below shows the use of auto-CONNECT features. The MOLECULE template can be found in *alcohol.udff* file in the *Examples/* folder.
+
+   .. literalinclude:: auto_connect
+
+Note that this MOLECULE template can be used to map all types of aliphatic alcohols (primary, secondary and tertiary). Unlike the MOLECULEs that use the normal CONNECT type, DL_FIELD permits the use of a subset number of ATOMs within the MOLECULEs with the auto-CONNECT type.
+
+Example below shows a PDB file contains two alcohols: ethanol and 2-propanol (from *alcohols.pdb* in the *Examples/* folder):
+
+  .. literalinclude:: pdb.alcohols
+
+Note that the alcohols are split into two residue sequences (1 and 2). It is enitrely valid if they are merged into one and the atomic sequences can also be mixed with one another. In addition, the third data column shows the use of ATOM_KEYs (such as HA, CT3, etc.), which in this case, is specific to CHARMM22 FF.
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_17>`
+

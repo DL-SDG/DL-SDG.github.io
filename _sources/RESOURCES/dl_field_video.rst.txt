@@ -1,0 +1,35 @@
+.. List of useful DL_FIELD video, showing how to setup force field models 
+
+.. |br| raw:: html
+
+   <br />
+
+************************
+DL_FIELD Tutorial Videos
+************************
+
+`DL_FIELD video playlist <https://www.youtube.com/playlist?list=PLm8H1n_adYecgW2k72gkDEZQ19sUYqKGP>`_ (hosted in YouTube)
+
+Breakdown as follows:
+
+`Ready, get set, go! <https://www.youtube.com/watch?v=CiPpmb0ja5g>`_ |br|
+How to obtain, compile and run DL_FIELD - introduction. |br|
+
+`User's configuration input file <https://www.youtube.com/watch?v=02kehe6xT9c>`_ |br|
+Guide to PDB, mol2 and xyz file format for your input structures. |br|
+
+`Setup liquids and solutions force field model <https://www.youtube.com/watch?v=bR9Ajwbx4kw>`_ |br|
+Step by step guide to setup liquids and solution using the Solution Maker feature. |br|
+
+`How to add solvents <https://www.youtube.com/watch?v=i1LzjbzKHCc>`_ |br|
+Guide to the use of solvent templates to solvate your model and addition of counter-ions. |br|
+
+`Define atom states <https://www.youtube.com/watch?v=t4nguevBgE4>`_ |br|
+How to impose bond constrains, freeze atoms, define rigid body, etc. |br|
+
+`How to setup models using more than one force field schemes <https://www.youtube.com/watch?v=736ZfzH5q-E>`_ |br|
+Introduction to the setting up of multiple potential systems (Part 1). |br|
+
+
+
+
