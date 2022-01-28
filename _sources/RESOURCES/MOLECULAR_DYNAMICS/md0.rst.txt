@@ -2,14 +2,19 @@
 
 
 
-******************************
-Molecular Dynamics Simulations
-******************************
+******************
+Molecular Dynamics
+******************
 
 This is the main portal that provides introductory information about one of the most popular molecular simulation technique, namely, the molecular dynamics.
 
 If you want to learn how to carry out MD simulation using DL_POLY, you can go to the :doc:`../TUTORIALS/dlp_0` portal.
 
+.. image:: ../../image/periodic_md.png
+   :scale: 70%
+   :align: right 
+
+|
 
 Table of contents:
 
@@ -21,3 +26,6 @@ Table of contents:
    ./md3
    ./md4
    ./md5
+
+|
+

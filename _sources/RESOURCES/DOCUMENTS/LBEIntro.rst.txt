@@ -1,7 +1,7 @@
 .. _LBE_Intro:
 
-Intro to the Lattice Boltzmann Equation (LBE)
-=============================================
+Lattice Boltzmann Equation (LBE)
+================================
 
 Summary
 ^^^^^^^

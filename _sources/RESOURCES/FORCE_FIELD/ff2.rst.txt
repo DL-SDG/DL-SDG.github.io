@@ -1,11 +1,11 @@
 .. Force field Introduction - atomic interactions 
 .. _Header_ff2:
 
-************
-Force Fields
-************
+*****************
+Force Fields (FF)
+*****************
 
-Potentials often contain (usually implicitly) a number of physical approximations – they are related to models of system behaviour. They can be generic to a class or specific for a material.
+A system potential often contains (usually implicitly) a number of physical approximations – they are related to models of system behaviour. Force fields can be generic to a class of molecules or specific for a material.
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
@@ -13,7 +13,7 @@ The FF is modelled classically as some mathematical descriptions of energies and
 
 *FF = pot1 + pot2 + ... + potn*
 
-Where *pot* is a mathematical function (or potential function) of an energy component. Each function also contains some constants, or the potential parameters, that are adjusted such that the potential function approximately represent the chemical behaviour of the interaction component.
+Where *pot* is a mathematical function (or potential function) of an energy component. Each function also contains some constants, or the potential parameters, that are adjusted such that the potential functions approximately represent the chemical behaviour of the interaction components.
 
 The first derivative of these functions give the forces applied on each atom, from such, the velocities and positions of the atom are derived.
 

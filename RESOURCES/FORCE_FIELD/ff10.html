@@ -1,0 +1,135 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lennard-Jones Mixing Rules &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Distance cutoffs" href="ff11.html" />
+    <link rel="prev" title="Lennard-Jones 12-6 Functions" href="ff9.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ff11.html" title="Distance cutoffs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ff9.html" title="Lennard-Jones 12-6 Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lennard-jones-mixing-rules">
+<span id="header-ff10"></span><h1>Lennard-Jones Mixing Rules<a class="headerlink" href="#lennard-jones-mixing-rules" title="Permalink to this headline">¶</a></h1>
+<p>The vdw parameters are normally fitted against the experimental results such as the liquid densities and enthalpy of vaporisation of pure components. It is also a standard practice to obtain parameters of similar type of atoms, of <em>i</em> = <em>j</em> as we have seen in the previous page for the methyl carbon atoms.</p>
+<p>However, molecular systems can consist of different types of atoms (where <em>i</em> <span class="math notranslate nohighlight">\(\neq\)</span> <em>j</em>) and each different combination pairs of atom types would have a different set of parameters that are often too many to fit them all.</p>
+<p>These missing vdw parameters are usually derived by using some kind of <em>mixing rules</em> involving parameters for those of atomic components (<em>ii</em> and <em>jj</em>) that made up the atom pairs (<em>ij</em>).</p>
+<p>Diagram below shows some of the mixing rules for LJ 12-6 functions:</p>
+<a class="reference internal image-reference" href="../../_images/ff10_1.png"><img alt="../../_images/ff10_1.png" class="align-center" src="../../_images/ff10_1.png" style="width: 626.6px; height: 286.65000000000003px;" /></a>
+<p>Out of these rules, the geometric and arithmatic rules are being used the most frequently by a wide range of force field schemes. However, the rules differ from one scheme to the other. For example, OPLS uses geometric rule to determine both the <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> for <em>ij</em> pairs. Whereas, for DREIDING FF, the arithmatic rule is used for the <span class="math notranslate nohighlight">\(\sigma\)</span> and geometric for the <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Mixing rules have minimal scientific justification but appear to work ‘quite well’. Also, the mixing rules should only apply to the same function type. For example, you cannot mix parameters between LJ and Buckingham functions. Neither should you mix parameters from LJ 12-6 and, say, LJ 9-6.</p>
+</div>
+<p><a class="reference internal" href="#header-ff10"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../knowledge.html">Knowledge Center</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ff9.html"
+                        title="previous chapter">Lennard-Jones 12-6 Functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ff11.html"
+                        title="next chapter">Distance cutoffs</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ff11.html" title="Distance cutoffs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ff9.html" title="Lennard-Jones 12-6 Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

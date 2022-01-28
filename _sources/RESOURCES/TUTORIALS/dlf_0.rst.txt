@@ -8,6 +8,18 @@ DL_FIELD Tutorial
 
 Welcome to the DL_FIELD tutorial main portal. If you are new to DL_FIELD or you wish to refresh your memory, you come to the right place. The contents were extracted from DL_FIELD lecture slides given in DL_Software training workshops, but modified for online self-learning experience. 
 
+.. image:: ../../image/dl_f_0_1.png
+   :scale: 65%
+   :align: right
+
+.. image:: ../../image/dl_f_0_2.png
+   :scale: 65%
+   :align: right
+
+.. image:: ../../image/dl_f_0_3.png
+   :scale: 65%
+   :align: right
+
 Table of contents:
 
 .. toctree::

@@ -1,7 +1,7 @@
 .. _DPD_Intro:
 
-Intro to Dissipative Particle Dynamics (DPD)
-============================================
+Dissipative Particle Dynamics (DPD)
+===================================
 
 Summary
 ^^^^^^^

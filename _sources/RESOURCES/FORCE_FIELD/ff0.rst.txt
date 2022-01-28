@@ -10,6 +10,11 @@ This is the main portal that provides introductory information about clssical fo
 
 If you want to learn how to set up force field models for simulation runs, you can go to the :doc:`../TUTORIALS/dlf_0` portal.
 
+.. image:: ../../image/force_field_force.png
+   :scale: 70%
+   :align: right
+
+|
 
 Table of contents:
 
@@ -24,3 +29,12 @@ Table of contents:
    ./ff6
    ./ff7
    ./ff8
+   ./ff9
+   ./ff10
+   ./ff11
+
+.. toctree::
+   :maxdepth: 2
+
+   ./ff12
+   ./ff13

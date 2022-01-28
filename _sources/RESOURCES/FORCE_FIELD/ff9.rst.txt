@@ -1,0 +1,46 @@
+.. Force field Introduction - Lennarj-Jones functions 
+.. _Header_ff9:
+
+****************************
+Lennard-Jones 12-6 Functions 
+****************************
+
+The Lennard-Jone 12-6 function is the most commonly used for vdw interactions due to its simplistic form for computations. It is expressed in various equivalent forms and they can be inter-changed via algebraic operations.
+
+.. math::
+
+   V \left(r \right) = \epsilon \left\{ \left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6} \right\} 
+
+.. math::
+
+   V \left(r \right) = \epsilon \left\{ \left(\frac{R}{r}\right)^{12} - 2 \left(\frac{R}{r}\right)^{6} \right\}
+
+
+.. math::
+
+   V \left(r \right) = \frac{A}{r^{12}} - \frac{B}{r^{6}} 
+
+where :math:`\epsilon` is the well depth, which measures the strength of the interaction; :math:`\sigma` is the steric parameter, which is the distance when the LJ function changes sign. *R* is the distance at which *V* is at the minimum. They are related to each other as follows:
+
+.. math::
+
+   R = 2^{ \frac{1}{6}} \sigma
+
+Normally, the third form is used in the programming since it is easier to compute, with *A* and *B* having the following relationships:
+
+.. math::
+
+   A = 4 \epsilon \sigma^{12}
+
+.. math::
+
+   B = 4 \epsilon \sigma^{6}
+
+Diagram below shows the vdw interactions between two methyl carbon atoms, with the parameters obtained from the CHARMM FF.
+
+.. image:: ../../image/ff9_1.png
+   :scale: 60%
+   :align: center
+
+
+:ref:`^ GO TO TOP ^<Header_ff9>` 

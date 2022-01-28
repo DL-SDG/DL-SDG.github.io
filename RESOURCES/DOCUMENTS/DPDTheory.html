@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Additional details on DPD &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <title>Additional details on DPD &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -20,8 +20,8 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Intro to the Lattice Boltzmann Equation (LBE)" href="LBEIntro.html" />
-    <link rel="prev" title="Intro to Dissipative Particle Dynamics (DPD)" href="DPDIntro.html" /> 
+    <link rel="next" title="Lattice Boltzmann Equation (LBE)" href="LBEIntro.html" />
+    <link rel="prev" title="Dissipative Particle Dynamics (DPD)" href="DPDIntro.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -30,12 +30,12 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="LBEIntro.html" title="Intro to the Lattice Boltzmann Equation (LBE)"
+          <a href="LBEIntro.html" title="Lattice Boltzmann Equation (LBE)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="DPDIntro.html" title="Intro to Dissipative Particle Dynamics (DPD)"
+          <a href="DPDIntro.html" title="Dissipative Particle Dynamics (DPD)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
       </ul>
     </div>  
@@ -216,7 +216,7 @@
 <div class="section" id="alternative-pairwise-thermostats-to-dpd">
 <span id="alternativedpd"></span><h3>Alternative pairwise thermostats to DPD<a class="headerlink" href="#alternative-pairwise-thermostats-to-dpd" title="Permalink to this headline">¶</a></h3>
 <p>The dissipative force parameter <span class="math notranslate nohighlight">\(\gamma\)</span> in the DPD thermostat is one way we can control the dynamic viscosity <span class="math notranslate nohighlight">\(\mu\)</span>. There are, however, limitations on how much we can control the viscosity using this thermostat.</p>
-<p>Assuming the random force has a similar linear dependence to that used by Groot-Warren conservative forces, i.e. for <a class="reference internal" href="DPDIntro.html#equation-dissipative">(1)</a>-<a class="reference internal" href="DPDIntro.html#equation-screen">(4)</a> in <a class="reference internal" href="DPDIntro.html#dpd-intro"><span class="std std-ref">Intro to Dissipative Particle Dynamics (DPD)</span></a>:</p>
+<p>Assuming the random force has a similar linear dependence to that used by Groot-Warren conservative forces, i.e. for <a class="reference internal" href="DPDIntro.html#equation-dissipative">(1)</a>-<a class="reference internal" href="DPDIntro.html#equation-screen">(4)</a> in <a class="reference internal" href="DPDIntro.html#dpd-intro"><span class="std std-ref">Dissipative Particle Dynamics (DPD)</span></a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}w^R (r_{ij}) = \left\{ \begin{matrix} 1 - \frac{r_{ij}}{r_{c}} &amp; (r_{ij} &lt; r_{c}) \\ 0 &amp; (r_{ij} \geq r_{c}) \\ \end{matrix} \right.\ ,\end{split}\]</div>
 <p>and also <strong>not applying conservative forces</strong>, we can obtain the following relationship for the viscosity <a class="reference internal" href="#marsh1997" id="id17">[Marsh1997]</a>:</p>
@@ -364,11 +364,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../knowledge.html">Knowledge Center</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics Simulations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="DPDIntro.html">Intro to Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Additional details on DPD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="LBEIntro.html">Intro to the Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="LBETheory.html">Additional details on LBE</a></li>
 </ul>
 </li>
@@ -380,10 +380,10 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="DPDIntro.html"
-                        title="previous chapter">Intro to Dissipative Particle Dynamics (DPD)</a></p>
+                        title="previous chapter">Dissipative Particle Dynamics (DPD)</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="LBEIntro.html"
-                        title="next chapter">Intro to the Lattice Boltzmann Equation (LBE)</a></p>
+                        title="next chapter">Lattice Boltzmann Equation (LBE)</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -407,17 +407,17 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="LBEIntro.html" title="Intro to the Lattice Boltzmann Equation (LBE)"
+          <a href="LBEIntro.html" title="Lattice Boltzmann Equation (LBE)"
              >next</a> |</li>
         <li class="right" >
-          <a href="DPDIntro.html" title="Intro to Dissipative Particle Dynamics (DPD)"
+          <a href="DPDIntro.html" title="Dissipative Particle Dynamics (DPD)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+        &#169; Copyright 2022, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

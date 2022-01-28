@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Classical force fields &#8212; DL_Software Digital Guide (DL_SDG) 1.0 documentation</title>
+    <title>Classical force fields &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="../MOLECULAR_DYNAMICS/md5.html" title="Uses and limitation of MD"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
       </ul>
     </div>  
@@ -49,17 +49,30 @@
 <h1>Classical force fields<a class="headerlink" href="#classical-force-fields" title="Permalink to this headline">¶</a></h1>
 <p>This is the main portal that provides introductory information about clssical force field for molecular simulations.</p>
 <p>If you want to learn how to set up force field models for simulation runs, you can go to the <a class="reference internal" href="../TUTORIALS/dlf_0.html"><span class="doc">DL_FIELD Tutorial</span></a> portal.</p>
+<a class="reference internal image-reference" href="../../_images/force_field_force.png"><img alt="../../_images/force_field_force.png" class="align-right" src="../../_images/force_field_force.png" style="width: 249.89999999999998px; height: 151.89999999999998px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>Table of contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ff1.html">Atomic Interactions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ff2.html">Force Fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ff2.html">Force Fields (FF)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ff3.html">Bonded interactions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ff4.html">Non-bonded interactions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ff5.html">Potential functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ff6.html">Model approximation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ff7.html">Torsion (dihedral) functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ff8.html">Non-bonded functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ff9.html">Lennard-Jones 12-6 Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ff10.html">Lennard-Jones Mixing Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ff11.html">Distance cutoffs</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ff12.html">Force field schemes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ff13.html">Model examples</a></li>
 </ul>
 </div>
 </div>
@@ -77,11 +90,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../knowledge.html">Knowledge Center</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics Simulations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Classical force fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Intro to Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Intro to the Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
 </ul>
 </li>
@@ -125,12 +138,12 @@
         <li class="right" >
           <a href="../MOLECULAR_DYNAMICS/md5.html" title="Uses and limitation of MD"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Chin Yong, Dawn Geatches.
+        &#169; Copyright 2022, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

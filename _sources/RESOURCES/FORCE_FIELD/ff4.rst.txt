@@ -13,7 +13,7 @@ Nonbonded interactions consist of several energy components as follows:
 
 * Electrostatic (Coulombic) interactions. This arises due to charges on atoms and they are considered long-range in nature.
 
-* Dispersive (van der Waals) interactions. Such interactions are due to electron cloud fluctuations, forming instanteneous dipoles. They present even in inert gas systems and neutral atoms.
+* Dispersive (van der Waals) interactions. Such interactions are due to electron cloud fluctuations, forming instanteneous dipoles. They can be found even in inert gas systems and neutral atoms.
 
 * Urey-Bradley (UB) 1-3 atom pair interactions - This is specific to CHARMM FF schemes. They correlate with the angle interactions. Diagram below shows the UB interactions for the benzene molecule.
 

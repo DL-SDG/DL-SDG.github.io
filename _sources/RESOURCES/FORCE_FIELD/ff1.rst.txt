@@ -10,11 +10,11 @@
 Atomic Interactions
 *******************
 
-The molecular dynamics (MD) is a powerful molecular modelling technique that yields dynamical and structural data in atomistic details based in the motions of atoms and molecules.
+The molecular dynamics (MD) is a powerful molecular modelling technique that yields dynamical and structural data in atomistic details based on the motions of atoms and molecules.
 
 The atomic interactions are the fundemental aspect in making molecular simulations meaningful. In classical MD simulations, we are interested in probing evolution of molecular systems over time, while neglecting the electronic effects. 
 
-For this reason, classical molecular dynamics can be used to investigate a variety of molecular phenomena provided there is no chemical reaction involved.  
+For this reason, classical molecular dynamics can be used to investigate a variety of molecular phenomena provided there is no chemical reaction involved (no breaking and forming of bond).  
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 

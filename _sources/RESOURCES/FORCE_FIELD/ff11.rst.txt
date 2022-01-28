@@ -1,0 +1,60 @@
+.. Force field Introduction - non-bonded cutoffs 
+.. _Header_ff11:
+
+****************
+Distance cutoffs   
+****************
+
+Recall that the non-bonded interactions are determined by summing up all possible pairs of atoms in the system. Quite often this is not feasible, and indeed, calculation of pair-wise interactions is one of the major bottle neck in molecular simulations. 
+
+In practice, only the atoms that are within a certain distance, call the cutoff distance, :math:`r_{cut}`, are considered in the calculations. Anything beyond the :math:`r_{cut}` will be ignored. 
+
+.. image:: ../../image/dlp_2_1.png
+   :scale: 65%
+   :align: center
+
+|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Cutoffs in vdw interactions**
+
+The LJ potentials decay (in ~ :math:`r^{-6}`) asymptotically to zero at large distances. By simply ignoring the potentials beyond the :math:`r_{cut}` will introduce a discontinuity in the force calculations and may introduce strange behaviour in the dynamics. 
+
+However, this behaviour maybe negligible if :math:`r_{cut}` is large enough. In practice, :math:`r_{cut}` is set to 10-15 anstroms. There are different ways to minimise the discontinuity:
+
+1. Use of some sort of long-range correction, assuming a uniform density in the system. 
+
+2. Shift the whole function to zero at :math:`r_{cut}`. This is simple and convenient, but does it alter the chemistry, consider the well depth has also been shifted correspondingly?
+
+3. Use of a smoothing function. This function would normally activate around :math:`r_{cut}` and naturally smooth the function to zero at :math:`r_{max}`. For example, the use of the sine smoothing function with the following conditions:
+
+.. image:: ../../image/ff11_1.png
+   :scale: 60%
+   :align: center
+
+.. image:: ../../image/ff11_2.png
+   :scale: 65%
+   :align: center
+
+|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Cutoffs in electrostatic calculations**
+
+Unlike the LJ functions, the Coulombic function decays as :math:`r^{-1}` so that discontinuity would be more pronounced even at large distances. In addition, the decay is also conditionally convergent, of which the results depend on the order of summation. This means the usual cutoff tricks for vdw interactions are not applicable and, in periodic systems, all charges would need to include in periodic images. 
+
+.. image:: ../../image/ff11_3.png
+   :scale: 70%
+   :align: left 
+
+One way to solve this is the use of Ewald summation.
+
+The method offers a solution to solving the full electrostatic problem by splitting it into two parts: one in *real space* and the other in the *reciprocal space*.
+
+In real space, complying with the usual cutoff concept, a convenient screening function (a Gaussian charge cloud) is added around all (delta-like) charges of opposite signs to make their interaction decay very fast at :math:`r_{cut}`.  
+
+The added screening functions can then be substracted in reciprocal space due to the boundary condition by using Fourier transforms.
+
+:ref:`^ GO TO TOP ^<Header_ff11>` 

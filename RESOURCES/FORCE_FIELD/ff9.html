@@ -1,0 +1,142 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lennard-Jones 12-6 Functions &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Lennard-Jones Mixing Rules" href="ff10.html" />
+    <link rel="prev" title="Non-bonded functions" href="ff8.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ff10.html" title="Lennard-Jones Mixing Rules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ff8.html" title="Non-bonded functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lennard-jones-12-6-functions">
+<span id="header-ff9"></span><h1>Lennard-Jones 12-6 Functions<a class="headerlink" href="#lennard-jones-12-6-functions" title="Permalink to this headline">¶</a></h1>
+<p>The Lennard-Jone 12-6 function is the most commonly used for vdw interactions due to its simplistic form for computations. It is expressed in various equivalent forms and they can be inter-changed via algebraic operations.</p>
+<div class="math notranslate nohighlight">
+\[V \left(r \right) = \epsilon \left\{ \left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6} \right\}\]</div>
+<div class="math notranslate nohighlight">
+\[V \left(r \right) = \epsilon \left\{ \left(\frac{R}{r}\right)^{12} - 2 \left(\frac{R}{r}\right)^{6} \right\}\]</div>
+<div class="math notranslate nohighlight">
+\[V \left(r \right) = \frac{A}{r^{12}} - \frac{B}{r^{6}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the well depth, which measures the strength of the interaction; <span class="math notranslate nohighlight">\(\sigma\)</span> is the steric parameter, which is the distance when the LJ function changes sign. <em>R</em> is the distance at which <em>V</em> is at the minimum. They are related to each other as follows:</p>
+<div class="math notranslate nohighlight">
+\[R = 2^{ \frac{1}{6}} \sigma\]</div>
+<p>Normally, the third form is used in the programming since it is easier to compute, with <em>A</em> and <em>B</em> having the following relationships:</p>
+<div class="math notranslate nohighlight">
+\[A = 4 \epsilon \sigma^{12}\]</div>
+<div class="math notranslate nohighlight">
+\[B = 4 \epsilon \sigma^{6}\]</div>
+<p>Diagram below shows the vdw interactions between two methyl carbon atoms, with the parameters obtained from the CHARMM FF.</p>
+<a class="reference internal image-reference" href="../../_images/ff9_1.png"><img alt="../../_images/ff9_1.png" class="align-center" src="../../_images/ff9_1.png" style="width: 801.6px; height: 506.4px;" /></a>
+<p><a class="reference internal" href="#header-ff9"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../knowledge.html">Knowledge Center</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ff8.html"
+                        title="previous chapter">Non-bonded functions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ff10.html"
+                        title="next chapter">Lennard-Jones Mixing Rules</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ff10.html" title="Lennard-Jones Mixing Rules"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ff8.html" title="Non-bonded functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

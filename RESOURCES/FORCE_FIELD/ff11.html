@@ -1,0 +1,153 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Distance cutoffs &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Force field schemes" href="ff12.html" />
+    <link rel="prev" title="Lennard-Jones Mixing Rules" href="ff10.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ff12.html" title="Force field schemes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ff10.html" title="Lennard-Jones Mixing Rules"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="distance-cutoffs">
+<span id="header-ff11"></span><h1>Distance cutoffs<a class="headerlink" href="#distance-cutoffs" title="Permalink to this headline">¶</a></h1>
+<p>Recall that the non-bonded interactions are determined by summing up all possible pairs of atoms in the system. Quite often this is not feasible, and indeed, calculation of pair-wise interactions is one of the major bottle neck in molecular simulations.</p>
+<p>In practice, only the atoms that are within a certain distance, call the cutoff distance, <span class="math notranslate nohighlight">\(r_{cut}\)</span>, are considered in the calculations. Anything beyond the <span class="math notranslate nohighlight">\(r_{cut}\)</span> will be ignored.</p>
+<a class="reference internal image-reference" href="../../_images/dlp_2_11.png"><img alt="../../_images/dlp_2_11.png" class="align-center" src="../../_images/dlp_2_11.png" style="width: 279.5px; height: 263.90000000000003px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<p><strong>Cutoffs in vdw interactions</strong></p>
+<p>The LJ potentials decay (in ~ <span class="math notranslate nohighlight">\(r^{-6}\)</span>) asymptotically to zero at large distances. By simply ignoring the potentials beyond the <span class="math notranslate nohighlight">\(r_{cut}\)</span> will introduce a discontinuity in the force calculations and may introduce strange behaviour in the dynamics.</p>
+<p>However, this behaviour maybe negligible if <span class="math notranslate nohighlight">\(r_{cut}\)</span> is large enough. In practice, <span class="math notranslate nohighlight">\(r_{cut}\)</span> is set to 10-15 anstroms. There are different ways to minimise the discontinuity:</p>
+<ol class="arabic simple">
+<li>Use of some sort of long-range correction, assuming a uniform density in the system.</li>
+<li>Shift the whole function to zero at <span class="math notranslate nohighlight">\(r_{cut}\)</span>. This is simple and convenient, but does it alter the chemistry, consider the well depth has also been shifted correspondingly?</li>
+<li>Use of a smoothing function. This function would normally activate around <span class="math notranslate nohighlight">\(r_{cut}\)</span> and naturally smooth the function to zero at <span class="math notranslate nohighlight">\(r_{max}\)</span>. For example, the use of the sine smoothing function with the following conditions:</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/ff11_1.png"><img alt="../../_images/ff11_1.png" class="align-center" src="../../_images/ff11_1.png" style="width: 407.4px; height: 88.8px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ff11_2.png"><img alt="../../_images/ff11_2.png" class="align-center" src="../../_images/ff11_2.png" style="width: 554.45px; height: 314.6px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<p><strong>Cutoffs in electrostatic calculations</strong></p>
+<p>Unlike the LJ functions, the Coulombic function decays as <span class="math notranslate nohighlight">\(r^{-1}\)</span> so that discontinuity would be more pronounced even at large distances. In addition, the decay is also conditionally convergent, of which the results depend on the order of summation. This means the usual cutoff tricks for vdw interactions are not applicable and, in periodic systems, all charges would need to include in periodic images.</p>
+<a class="reference internal image-reference" href="../../_images/ff11_3.png"><img alt="../../_images/ff11_3.png" class="align-left" src="../../_images/ff11_3.png" style="width: 258.3px; height: 319.9px;" /></a>
+<p>One way to solve this is the use of Ewald summation.</p>
+<p>The method offers a solution to solving the full electrostatic problem by splitting it into two parts: one in <em>real space</em> and the other in the <em>reciprocal space</em>.</p>
+<p>In real space, complying with the usual cutoff concept, a convenient screening function (a Gaussian charge cloud) is added around all (delta-like) charges of opposite signs to make their interaction decay very fast at <span class="math notranslate nohighlight">\(r_{cut}\)</span>.</p>
+<p>The added screening functions can then be substracted in reciprocal space due to the boundary condition by using Fourier transforms.</p>
+<p><a class="reference internal" href="#header-ff11"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../knowledge.html">Knowledge Center</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ff10.html"
+                        title="previous chapter">Lennard-Jones Mixing Rules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ff12.html"
+                        title="next chapter">Force field schemes</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ff12.html" title="Force field schemes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ff10.html" title="Lennard-Jones Mixing Rules"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
