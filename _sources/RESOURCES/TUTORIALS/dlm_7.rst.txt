@@ -11,9 +11,7 @@ DL_MESO_DPD utilities
 
 As well as the main DPD code (DL_MESO_DPD), DL_MESO comes with a number of utilities that can be used to help set up DL_MESO_DPD simulations and process the outputs. 
 
-The source codes for all of these utilities can be found in the *DPD/utility* directory of the DL_MESO package: most of these need to be compiled with a Fortran compiler (e.g. ``gfortran``), although two others need to be compiled using a C++ compiler (e.g. ``g++``). All DPD utilities (along with the LBE utilities) can be compiled using the Makefile in the *WORK* directory with the instructions shown in the :doc:`DL_MESO Ready, get set, go guide <../dl_meso_howto>`. Each utility can be run with a command-line flag ``-h``, e.g.
-
-.. code-block:: bash
+The source codes for all of these utilities can be found in the *DPD/utility* directory of the DL_MESO package: most of these need to be compiled with a Fortran compiler (e.g. ``gfortran``), although two others need to be compiled using a C++ compiler (e.g. ``g++``). All DPD utilities (along with the LBE utilities) can be compiled using the Makefile in the *WORK* directory with the instructions shown in the :doc:`DL_MESO Ready, get set, go guide <../dl_meso_howto>`. Each utility can be run with a command-line flag ``-h``, e.g. ::
 
    ./utility.exe -h
 
@@ -28,9 +26,7 @@ to provide details and show the available command-line options.
 
 This utility helps to set up a molecular DPD simulation by creating sample configurations for molecules and writing these, bond connectivities and interactions, to a *FIELD* file. It can devise initial configurations for molecular chains with branches that fit inside cubes, which enable the molecules to be inserted into simulation boxes as part of DL_MESO_DPD's simulation set up.
 
-The source code for this utility is normally compiled to produce the executable ``molecule.exe``, and can be run with the command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``molecule.exe``, and can be run with the command: ::
 
    ./molecule.exe
 
@@ -51,9 +47,7 @@ The positions for particles in each molecule will be generated using a constrain
 
 This utility helps users of older versions of DL_MESO_DPD (up to version 2.4) to migrate their input files to the current format so the simulations can be run using the current version of DL_MESO_DPD. It takes up to three input files - *CONTROL*, *FIELD* and *MOLECULE* - and converts them into the newer (DL_POLY-style) format *CONTROL* and *FIELD* files. 
 
-The source code for this utility is normally compiled (using the Makefile in the *DPD/utility* directory) to produce the executable ``convert.exe``, and can be run with the command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled (using the Makefile in the *DPD/utility* directory) to produce the executable ``convert.exe``, and can be run with the command: ::
 
    ./convert.exe
 
@@ -76,9 +70,7 @@ No user input is required for this utility, which automatically creates a *CONTR
 
 This utility helps users to devise starting configurations for DPD simulations from previous calculations. It reads in an *export* file containing a configuration at a given timestep and writes that configuration to a *CONFIG* file, also using the *FIELD* file to obtain the names of particle species.
 
-The source code for this utility is normally compiled to produce the executable ``export_config.exe`` and can be run with the command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``export_config.exe`` and can be run with the command: ::
 
    ./export_config.exe
 
@@ -106,16 +98,14 @@ It should be noted that the particles are only likely to be in a randomised orde
 
 These utilities enable users to visualise a DPD simulation at the point when a *export* restart file was created. They read in the *export* file containing a configuration at a given timestep and write that configuration into a format that can be opened with graphical visualisation software, also using the *FIELD* file to find the names and other properties of particle species.
 
-The source codes for these utilities are normally compiled to produce the executables ``export_image_vtf.exe`` and ``export_image_xml.exe``. They can be run with the following commands:
-
-.. code-block:: bash
+The source codes for these utilities are normally compiled to produce the executables ``export_image_vtf.exe`` and ``export_image_xml.exe``. They can be run with the following commands: ::
 
    ./export_image_vtf.exe
    ./export_image_xml.exe
 
 The optional command-line option ``-s`` can be used with ``export_image_vtf.exe`` to sort the particles in numerical order: this is carried out automatically by ``export_image_xml.exe``. If no *FIELD* file is available, the utility will close with an error message.
 
-No user intervention is required for the utilities to produce either an ``export.vtf`` file that can be opened in `VMD <https://www.ks.uiuc.edu/Research/vmd/>`_ or an ``export.xml`` file (in GALAMOST format) to open in `OVITO <https://www.ovito.org/>`_.
+No user intervention is required for the utilities to produce either an *export.vtf* file that can be opened in `VMD <https://www.ks.uiuc.edu/Research/vmd/>`_ or an *export.xml* file (in GALAMOST format) to open in `OVITO <https://www.ovito.org/>`_.
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
@@ -125,9 +115,7 @@ No user intervention is required for the utilities to produce either an ``export
 
 This utility helps users to devise starting configurations for DPD simulations from previous calculations. It reads in a *HISTORY* file containing a series of configurations and writes one of those configurations (as selected by the user) to a *CONFIG* file.
 
-The source code for this utility is normally compiled to produce the executable ``history_config.exe`` and can be run with the command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``history_config.exe`` and can be run with the command: ::
 
    ./history_config.exe
    
@@ -149,9 +137,7 @@ It should be noted that the available *CONFIG* file keys are limited based on th
 
 These utilities help user visualise DPD simulations by reading in *HISTORY* files and writing out at least one VTF file that can be opened in `VMD <https://www.ks.uiuc.edu/Research/vmd/>`_.
 
-The source codes for these utilities are normally compiled to produce the executables ``traject_vtf.exe`` and ``trajects_vtf.exe``. They can be run with the following commands:
-
-.. code-block:: bash
+The source codes for these utilities are normally compiled to produce the executables ``traject_vtf.exe`` and ``trajects_vtf.exe``. They can be run with the following commands: ::
 
    ./traject_vtf.exe
    ./trajects_vtf.exe
@@ -174,9 +160,7 @@ No user input is required for ``traject_vtf.exe``, which by default will produce
 
 These utilities help user visualise DPD simulations by reading in *HISTORY* files and writing out a series of GALAMOST-formatted XML files that can be opened in `OVITO <https://www.ovito.org/>`_.
 
-The source codes for these utilities are normally compiled to produce the executables ``traject_xml.exe`` and ``trajects_xml.exe``. They can be run with the following commands:
-
-.. code-block:: bash
+The source codes for these utilities are normally compiled to produce the executables ``traject_xml.exe`` and ``trajects_xml.exe``. They can be run with the following commands: ::
 
    ./traject_xml.exe
    ./trajects_xml.exe
@@ -191,9 +175,7 @@ No command-line options are available for both utilities, since the particle *mu
 
 This utility takes the available trajectory frames in a *HISTORY* file, divides the simulation volume into cuboidal cells and calculates local properties (e.g. densities, velocities) for all cells that can be visualised and analysed.
 
-The source code for this utility is normally compiled to produce the executable ``local.exe`` and run with the following command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``local.exe`` and run with the following command: ::
 
    ./local.exe
    
@@ -216,9 +198,7 @@ The results are written to Legacy VTK files - *local\_\*.vtk* for each frame, *a
 
 This utility helps users identify and visualise mesophases in DPD simulations. For each trajectory frame in the *HISTORY* file, it assigns Gaussian functions with centres at particle positions for a selected species to a grid to create a density map. The density map is then used to calculate the second moment of the isosurface normal distributions, whose eigenvalues can be used as order parameters to determine the structure formed by the particles.
 
-The source code for this utility is normally compiled to produce the executable ``isosurfaces.exe`` and run with the following command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``isosurfaces.exe`` and run with the following command: ::
 
    ./isosurfaces.exe
    
@@ -242,9 +222,7 @@ The utility will generate a Legacy VTK file (density\_\*.vtk) for each trajector
 
 This utility calculates end-to-end distances and radii of gyration for all molecules at each trajectory frame in a *HISTORY* file, recording averages for each molecule type per frame and calculating time-averaged distributions of end-to-end distances for each molecule type at the end.
 
-The source code for this utility is normally compiled to produce the executable ``radius.exe`` and run with the following command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``radius.exe`` and run with the following command: ::
 
    ./radius.exe
    
@@ -267,9 +245,7 @@ The end-to-end distances and radii of gyration for all molecules are calculated 
 
 This utility calculates total dipole moments for each molecule type based on trajectory frames in a *HISTORY* file, their autocorrelation functions and (optionally) Fourier transforms, which can be used to analyse the charge polarisability of a DPD simulation.
 
-The source code for this utility is normally compiled to produce the executable ``dipole.exe`` and run with the following command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``dipole.exe`` and run with the following command: ::
 
    ./dipole.exe
    
@@ -293,9 +269,7 @@ The averaged dipole moments for each molecule type are given in *dipole\_*\ * fi
 
 These utilities calculate radial distribution functions (RDFs) for all pairs of species or molecule types using available trajectory frames in a *HISTORY* file.
 
-The source codes for these utilities are normally compiled to produce the executables ``rdf.exe`` and ``rdfmol.exe``, both of which can be compiled with OpenMP to speed up calculations. They can be run with the following commands:
-
-.. code-block:: bash
+The source codes for these utilities are normally compiled to produce the executables ``rdf.exe`` and ``rdfmol.exe``, both of which can be compiled with OpenMP to speed up calculations. They can be run with the following commands: ::
 
    ./rdf.exe
    ./rdfmol.exe
@@ -319,9 +293,7 @@ The ``rdf.exe`` utility calculates the radial distribution functions for all pai
 
 This utility calculates excess chemical potentials by means of Widom insertion, using the trajectory frames in a *HISTORY* file to provide configurations for randomised trial insertions.
 
-The source code for this utility is normally compiled to produce the executable ``widom.exe`` and can be compiled with OpenMP to speed up calculations. It can be run with the following command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``widom.exe`` and can be compiled with OpenMP to speed up calculations. It can be run with the following command: ::
 
    ./widom.exe
 

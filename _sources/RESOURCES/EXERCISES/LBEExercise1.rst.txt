@@ -52,9 +52,7 @@ Copy the :ref:`lbin.sys <lbin_sys>` and :ref:`lbin.spa <lbin_spa>` input files f
 
 These simulation input files represent a periodic box of a single fluid with a density (or rather, a small range of densities) that lie between the expected densities of the liquid and vapour phases. These phases should form spontaneously, with the liquid phase collecting either into a circular drop or a rectangular layer across the box (depending on how much fluid exists in the box).
 
-To modify any of the parameters in the :ref:`lbin.sys <lbin_sys>` file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:
-
-.. code-block:: bash
+To modify any of the parameters in the :ref:`lbin.sys <lbin_sys>` file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are: ::
 
   noise_intensity
   density_ini_0
@@ -67,9 +65,7 @@ To modify any of the parameters in the :ref:`lbin.sys <lbin_sys>` file, you can 
 
 for the random noise intensity, initial fluid density, relaxation time :math:`\tau`, :math:`a`, :math:`b`, :math:`\omega`, :math:`R` and system temperature respectively.
 
-To run the simulation using the serial version of DL_MESO_LBE (with or without OpenMP), type in:
-
-.. code-block:: bash
+To run the simulation using the serial version of DL_MESO_LBE (with or without OpenMP), type in: ::
 
   ./lbe.exe
 

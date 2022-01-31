@@ -32,9 +32,7 @@ where each of the above (apart from charge) are chosen for the specific simulati
 
 **CONTROL**
 
-This file specifies the simulation properties, including the required system temperature, cutoff distances, timestep size, how long the simulation needs to run etc. Following the similarly-named file in DL_POLY, the first line of the *CONTROL* file is a description of the simulation. This is followed by lines consisting of keywords, most of which are followed with numerical values to define properties, as shown in the following example (an extract from a file for one of DL_MESO's demonstration cases):
-
-.. code-block::
+This file specifies the simulation properties, including the required system temperature, cutoff distances, timestep size, how long the simulation needs to run etc. Following the similarly-named file in DL_POLY, the first line of the *CONTROL* file is a description of the simulation. This is followed by lines consisting of keywords, most of which are followed with numerical values to define properties, as shown in the following example (an extract from a file for one of DL_MESO's demonstration cases): ::
 
   DL_MESO lipid bilayer example
   
@@ -71,9 +69,7 @@ A full list of the available keywords in *CONTROL* and the values they take can 
 
 **FIELD**
 
-This file specifies the contents of the simulation box and how particles interact with each other. After the first line providing a description of the simulation, the format of the *FIELD* file consists of blocks of information describing the particle species, molecule types, particle-particle interactions and external fields. The following example is a *FIELD* file for one of DL_MESO's demonstration cases:
-
-.. code-block::
+This file specifies the contents of the simulation box and how particles interact with each other. After the first line providing a description of the simulation, the format of the *FIELD* file consists of blocks of information describing the particle species, molecule types, particle-particle interactions and external fields. The following example is a *FIELD* file for one of DL_MESO's demonstration cases: ::
 
   DL_MESO lipid bilayer example
 
@@ -143,9 +139,7 @@ The keywords and definitions in the *FIELD* file are given in further detail in 
 
 **CONFIG**
 
-This file is used by DL_MESO_DPD to specify the initial conditions for a DPD simulation by providing the starting configuration: the positions of all particles in the simulation box are the minimum information required for this purpose. A short extract from an example *CONFIG* file is given here:
-
-.. code-block::
+This file is used by DL_MESO_DPD to specify the initial conditions for a DPD simulation by providing the starting configuration: the positions of all particles in the simulation box are the minimum information required for this purpose. A short extract from an example *CONFIG* file is given here: ::
 
   DL_MESO phase separation example                                                
          0       1
@@ -227,10 +221,8 @@ As DL_MESO_DPD runs, messages about the simulation are printed to a file called 
 
 The first messages include a header about DL_MESO_DPD, the simulation name as given in the *CONTROL* file, a table showing how the simulation volume is divided among available processor cores (if using the parallel version of DL_MESO_DPD), a summary of the simulation based on information provided in the input files - including the simulation controls, interaction types and parameters, molecule definitions - and a small sample of the starting configuration (given as selected particle positions and velocities). 
 
-At intervals specified by the ``print`` keyword in the *CONTROL* file, some basic information about the simulation is printed (as shown in the example below). This information includes the timestep number, the elapsed calculation time in seconds, different contributions to system energies given on a per-particle basis, and system-wide properties. The energy contributions and system-wide properties shown will depend on the simulation: in the example given below, the total (``en-total``), potential (``pe-total``), bond (``be-total``), angle (``ae-total``) and kinetic (``ke-total``) energies per particle are provided, along with the virial per particle (``vir-total``), the system pressure and temperature. At each timestep the first line of properties are instantaneous values, while the second line are rolling average (mean) values with the stack size given in the *CONTROL* file. If a non-zero number of equilibration time steps is specified in the *CONTROL* file, a message will be printed once the equilibration period is complete.
+At intervals specified by the ``print`` keyword in the *CONTROL* file, some basic information about the simulation is printed (as shown in the example below). This information includes the timestep number, the elapsed calculation time in seconds, different contributions to system energies given on a per-particle basis, and system-wide properties. The energy contributions and system-wide properties shown will depend on the simulation: in the example given below, the total (``en-total``), potential (``pe-total``), bond (``be-total``), angle (``ae-total``) and kinetic (``ke-total``) energies per particle are provided, along with the virial per particle (``vir-total``), the system pressure and temperature. At each timestep the first line of properties are instantaneous values, while the second line are rolling average (mean) values with the stack size given in the *CONTROL* file. If a non-zero number of equilibration time steps is specified in the *CONTROL* file, a message will be printed once the equilibration period is complete. ::
 
-.. code-block::
-  
   ---------------------------------------------------------------------------------------------------------------------------
          step      en-total      pe-total      be-total      ae-total     vir-total      ke-total      pressure   temperature
   ---------------------------------------------------------------------------------------------------------------------------
@@ -260,9 +252,7 @@ At intervals specified by the ``print`` keyword in the *CONTROL* file, some basi
        11.077  6.642604E+00  5.116271E+00  1.667179E-01  2.131899E-01 -2.040209E+01  1.526333E+00  2.345475E+01  1.017555E+00
   ---------------------------------------------------------------------------------------------------------------------------
 
-Comparisons of the instantaneous and rolling average values for the energies and system properties can be used to determined whether or not the calculation is running as expected and/or correctly. For instance: convergence of the system temperature towards the required value after an initial increase when starting a new simulation indicates that the thermostat is working, while convergence to a minimum value for the total or potential energy per particle could indicate the system has reached an equilibrated state.
-
-.. code-block::
+Comparisons of the instantaneous and rolling average values for the energies and system properties can be used to determined whether or not the calculation is running as expected and/or correctly. For instance: convergence of the system temperature towards the required value after an initial increase when starting a new simulation indicates that the thermostat is working, while convergence to a minimum value for the total or potential energy per particle could indicate the system has reached an equilibrated state. ::
 
   run terminating. elapsed cpu time =     216.17, job time =   10800.00, close time =     100.00
   
@@ -362,9 +352,7 @@ The contents of the *OUTPUT* file can be redirected to the screen or standard ou
 
 **CORREL**
 
-This optionally-produced output file gives instantaneous values of system properties calculated during the simulation at regular intervals starting from the end of equilibration. Its format consists of tabulated data in columns with values separated by spaces and a first line indicating the property in each column (as shown in the example below).
-
-.. code-block::
+This optionally-produced output file gives instantaneous values of system properties calculated during the simulation at regular intervals starting from the end of equilibration. Its format consists of tabulated data in columns with values separated by spaces and a first line indicating the property in each column (as shown in the example below). ::
 
   #         time      en-total      pe-total      be-total      ae-total      pressure          p_xx          p_xy          p_xz          p_yx          p_yy          p_yz          p_zx          p_zy          p_zz   temperature     bndlen-av    bndlen-max    bndlen-min      angle-av
     0.000000E+00  1.843173E+01  1.693173E+01  1.475151E-12  3.988697E+00  4.650991E+01  4.599991E+01  3.359824E-02 -6.037229E-02  3.359824E-02  4.577098E+01  2.942863E-02 -6.037229E-02  2.942863E-02  4.775884E+01  1.000000E+00  5.000001E-01  5.000006E-01  4.999997E-01  9.175807E+01
@@ -400,21 +388,21 @@ Visualising or analysing a DL_MESO_DPD *HISTORY* file requires the use of utilit
 * :ref:`widom.exe <widominsertion>`: carries out Widom insertions (trial insertions) of a particle or molecule into *HISTORY* file trajectory frames to determine excess chemical potentials
 * :ref:`history_config.exe <historyconfig>`: creates a *CONFIG* file for a subsequent simulation based on a selected trajectory frame in a *HISTORY* file
 
-The results file produced by ``traject_vtf.exe`` can be opened in `VMD <https://www.ks.uiuc.edu/Research/vmd/>`_ to visualise the trajectory resulting from the DL_MESO_DPD simulation and carry out some analyses.
+The results file produced by :ref:`traject_vtf.exe <trajectvtf>` can be opened in `VMD <https://www.ks.uiuc.edu/Research/vmd/>`_ to visualise the trajectory resulting from the DL_MESO_DPD simulation and carry out some analyses.
 
 .. image:: ../../image/dlm_4_2.png
    :scale: 40%
    :align: center
 
 
-Similarly, the result files from ``traject_xml.exe`` can be opened in `OVITO <https://www.ovito.org/>`_, which can also visualise the trajectory and carry out analyses.
+Similarly, the result files from :ref:`traject_xml.exe <trajectxml>` can be opened in `OVITO <https://www.ovito.org/>`_, which can also visualise the trajectory and carry out analyses.
 
 .. image:: ../../image/dlm_4_3.png
    :scale: 15%
    :align: center
 
 
-The files produced by ``local.exe`` and ``isosurfaces.exe`` are in a VTK format, which can be opened in `Paraview <https://www.paraview.org>`_ to visualise and analyse the results.
+The files produced by :ref:`local.exe <local>` and :ref:`isosurfaces.exe <isosurfaces>` are in a VTK format, which can be opened in `Paraview <https://www.paraview.org>`_ to visualise and analyse the results.
 
 The other files generated by the utilities are text-based tabulated data formats, all of which can be opened using spreadsheet or graph plotting programs. Further details of these files and their corresponding utilities can be found in Appendix C of the :download:`The DL_MESO User Manual <../DOCUMENTS/MAN_DL_MESO_2.7.pdf>`.
 

@@ -42,23 +42,17 @@ provided that *all* files specifying interactions for a given simulation (*FIELD
 
 This mandatory file specifies the simulation controls, including the required system temperature, cutoff distances, timestep size, how long the simulation needs to run etc.
 
-With the exception of the first line to give a description of the simulation, the *CONTROL* file consists of *keywords* that are used to specify particular options and/or values. Two forms of *CONTROL* file can be used in DL_POLY. The original format (up to and including version 4.10) takes the form of:
-
-.. code-block::
+With the exception of the first line to give a description of the simulation, the *CONTROL* file consists of *keywords* that are used to specify particular options and/or values. Two forms of *CONTROL* file can be used in DL_POLY. The original format (up to and including version 4.10) takes the form of: ::
 
    keyword [options] {data}
 
-where multiple options and data values can be provided in each line, while the new format (available from version 4.11 onwards) uses the form:
-
-.. code-block::
+where multiple options and data values can be provided in each line, while the new format (available from version 4.11 onwards) uses the form: ::
 
    keyword value [unit]
    
 where only a single value can be supplied per line and each non-dimensional value must be followed with a unit.
 
-The following example is a *CONTROL* file for one of DL_POLY's test cases, first in the original format:
-
-.. code-block::
+The following example is a *CONTROL* file for one of DL_POLY's test cases, first in the original format: ::
 
   SODIUM CHLORIDE WITH (27000 IONS)
 
@@ -84,9 +78,7 @@ The following example is a *CONTROL* file for one of DL_POLY's test cases, first
 
   finish
 
-and then in the new format:
-
-.. code-block::
+and then in the new format: ::
 
   SODIUM CHLORIDE WITH (27000 IONS)
 
@@ -125,9 +117,7 @@ After the first line giving a description for the simulation, the following line
 
 Each particle is then identified by name (for its atomic type) and numerical index, before its data are supplied as triples for Cartesian components from the following line. At least one data line to specify the particle's position - given as coordinates in angstroms (Å) - is required. This can be followed by a line with the particle's velocity in angstroms per picosecond (Å ps\ :math:`^{-1}`) and another line with the particle's force in angstrom-daltons per squared picosecond (Å Da ps\ :math:`^{-2}`), depending on the value of the CONFIG file key.
 
-The following example is the beginning of a *CONFIG* file for one of DL_POLY's test cases.
-
-.. code-block::
+The following example is the beginning of a *CONFIG* file for one of DL_POLY's test cases. ::
 
   SODIUM CHLORIDE WITH EWALD SUM (27000 IONS)
            2         2     27000         0   1.0000000E-03   0.0000000E+00
@@ -175,9 +165,7 @@ This mandatory file specifies the force field for the simulation to define the n
 
 Apart from the first line providing a description of the simulation and a line indicating the units in use, the *FIELD* file consists of blocks of information, each starting with a keyword on its first line. These blocks include details of molecules in the system (including population, topology and interactions for bonds, angles etc.), non-bonded interactions (e.g. van der Waals, Tersoff) and any applied external fields (e.g. electric fields, gravity).
 
-The following example is a *FIELD* file for one of DL_POLY's test cases (the same case as for the *CONTROL* file above):
-
-.. code-block::
+The following example is a *FIELD* file for one of DL_POLY's test cases (the same case as for the *CONTROL* file above):  ::
 
   SODIUM CHLORIDE WITH EWALD SUM (27000 IONS)
   units internal
@@ -212,9 +200,7 @@ Each tabulated potential starts with a line stating the two atom types (and opti
 
 which is used to calculate pairwise forces.
 
-The following example is the beginning of a *TABLE* file for one of DL_POLY's test cases:
-
-.. code-block::
+The following example is the beginning of a *TABLE* file for one of DL_POLY's test cases: ::
 
   table for NaCl interactions
           0.0030024019       15.0000000000      5000
@@ -292,9 +278,7 @@ This optionally-produced output file gives system properties at intervals select
 
 After the first two lines providing the simulation name and specifying the energy units in use, each set of statistical data for the system is supplied as a block of values in five columns preceded by a line indicating the corresponding timestep number, the time given in picoseconds (ps) and the number of values supplied. The number of values provided can vary depending on the simulation being carried out.
 
-The following example is the *STATIS* file created during one of DL_POLY's test cases:
-
-.. code-block::
+The following example is the *STATIS* file created during one of DL_POLY's test cases: ::
 
   IRON WITH TABULATED EAM POTENTIAL, TTM AND CASCADE
    ENERGY UNITS = electron Volts
@@ -347,9 +331,7 @@ The *HISTORY* file starts with a simulation name in the first line, followed by 
 
 Each configuration starts with a header, whose first line includes the keyword ``timestep``, the timestep number for the configuration frame, the total number of particles, the data level, periodic boundary key and the simulation time in picoseconds (ps). It is then followed by three lines providing the Cartesian components of the super-cell vectors (in angstroms). The data for all particles then follow: the name, index, mass and charge are supplied for each particle, before at least the coordinates for its position in angstroms (Å). If more data per particle are requested, the particle velocity in angstroms per picosecond (Å ps\ :math:`^{-1}`) and the force acting on the particle in angstrom-daltons per squared picosecond (Å Da ps\ :math:`^{-2}`) are supplied as additional lines.
 
-The following example is the beginning of a *HISTORY* file created during one of DL_POLY's test cases:
-
-.. code-block::
+The following example is the beginning of a *HISTORY* file created during one of DL_POLY's test cases: ::
 
   DL_POLY TEST CASE 10: DNA Strand in SPC Water
            2         7      3378
@@ -402,9 +384,7 @@ The optionally-produced *RDFDAT* file supplies the radial distribution functions
 
 After a header consisting of two lines - one for the simulation title and the other giving the numbers of plots and data values per plot - each RDF follows in tabulated form, with two columns for the radius (in angstroms) and the radial distribution function itself, and preceded by the names of the particle types in the pair.
 
-The following example is the beginning of a *RDFDAT* file created during one of DL_POLY's test cases:
-
-.. code-block::
+The following example is the beginning of a *RDFDAT* file created during one of DL_POLY's test cases: ::
 
   Silver Iodide Alpha Phase
            3       160

@@ -39,31 +39,23 @@ Copy the :ref:`CONTROL <controldlmeso>` and :ref:`FIELD <fielddlmeso>` input fil
 
 The :ref:`CONTROL <controldlmeso>` file is fairly similar to ones you have seen before in previous exercises, although there are three directives to pay attention to. 
 
-The first is the line used to specify writing trajectories to the :ref:`HISTORY <historydpd>` file:
-
-.. code-block:: bash
+The first is the line used to specify writing trajectories to the :ref:`HISTORY <historydpd>` file: ::
 
   trajectory 40000 10 1
 
 which means DL_MESO_DPD will start writing to :ref:`HISTORY <historydpd>` from timestep 40,000 every 10 timesteps and include both particle positions and velocities. 
 
-The second directive is that for the ensemble:
-
-.. code-block:: bash
+The second directive is that for the ensemble: ::
 
   ensemble nvt stoyanov 0.3
 
 where we are telling DL_MESO_DPD we want to use the Stoyanov-Groot thermostat for a constant volume (NVT) system. We are also setting the Nosé-Hoover thermostat coupling parameter to 0.3, although we do not need to change this value in this exercise. 
 
-The last notable directive specifies that we wish to apply shear at the boundaries orthogonal to the :math:`y`-axis:
-
-.. code-block:: bash
+The last notable directive specifies that we wish to apply shear at the boundaries orthogonal to the :math:`y`-axis: ::
 
   surface shear y
 
-The :ref:`FIELD <fielddlmeso>` file species a single particle species (``FLUID``) that uses a conservative force parameter of :math:`A_{ij}=25` - the frequently used value for one-molecule water beads - an interaction cutoff :math:`r_c = 1` and a collision frequency :math:`\Gamma = 1` [#]_. The notable addition to this file is the following block:
-
-.. code-block:: bash
+The :ref:`FIELD <fielddlmeso>` file species a single particle species (``FLUID``) that uses a conservative force parameter of :math:`A_{ij}=25` - the frequently used value for one-molecule water beads - an interaction cutoff :math:`r_c = 1` and a collision frequency :math:`\Gamma = 1` [#]_. The notable addition to this file is the following block: ::
 
   EXTERNAL
   shear 1.0 0.0 0.0
@@ -72,9 +64,7 @@ which specifies the wall velocity for the top wall (:math:`v_{w, x} = 1.0`) that
 
 When you run DL_MESO_DPD, you may notice that the resulting system temperature (as reported in the :ref:`OUTPUT <outputdlmeso>` file) will be higher than the value specified in the :ref:`CONTROL <controldlmeso>` file. This is not generally a problem for this kind of simulation: we are applying a flow field in the :math:`x`-direction and DL_MESO_DPD does not directly account for this when calculating system temperature from kinetic energies. To help us check that the thermostat is working property, DL_MESO_DPD will also display partial temperatures for each direction. Since the other two directions will not include a flow field, the partial temperatures for these directions should each average out at the specified value.
 
-Once DL_MESO_DPD has finished running, you will need to run :ref:`local.exe <local>` to work out time-averaged local velocities and how those vary in the :math:`y`-direction. We can do this using the following command:
-
-.. code-block:: bash
+Once DL_MESO_DPD has finished running, you will need to run :ref:`local.exe <local>` to work out time-averaged local velocities and how those vary in the :math:`y`-direction. We can do this using the following command: ::
 
   ./local.exe -nx 1 -ny 100 -nz 1 -av
 

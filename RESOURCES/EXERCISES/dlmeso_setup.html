@@ -63,7 +63,7 @@
 </ul>
 <p>Optionally, you can include an installed instance of MPI (e.g. Open-MPI) which includes compiler wrappers to use MPI libraries with DL_MESO’s codes to speed up your calculations. An instance of the Java Runtime Environment (JRE) is also needed to use the GUI supplied with DL_MESO.</p>
 <p>All of the above can be installed using a Linux package manager - available via Windows Linux Subsystem if you are using Windows 10 - or either MacPorts or HomeBrew on Macs. For instance, if you are using Ubuntu, running</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install build-essential
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span>
 </pre></div>
 </div>
 <p>in a terminal window should install the GCC suite, although you may also need to install gfortran separately.</p>
@@ -76,18 +76,18 @@
 <h2>Compiling DL_MESO<a class="headerlink" href="#compiling-dl-meso" title="Permalink to this headline">¶</a></h2>
 <p>There are two major codes to compile (DL_MESO_LBE and DL_MESO_DPD) and a number of utilities.</p>
 <p>To compile DL_MESO_LBE with OpenMP multithreading and reasonable optimisation, go into the <em>dl_meso/WORK</em> directory in a terminal window and type one of the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>c++ -O3 -openmp ../LBE/slbe.cpp -o lbe.exe
-mpicxx -O3 -openmp ../LBE/plbe.cpp -o lbe.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">++</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">openmp</span> <span class="o">../</span><span class="n">LBE</span><span class="o">/</span><span class="n">slbe</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">lbe</span><span class="o">.</span><span class="n">exe</span>
+<span class="n">mpicxx</span> <span class="o">-</span><span class="n">O3</span> <span class="o">-</span><span class="n">openmp</span> <span class="o">../</span><span class="n">LBE</span><span class="o">/</span><span class="n">plbe</span><span class="o">.</span><span class="n">cpp</span> <span class="o">-</span><span class="n">o</span> <span class="n">lbe</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>substituting <code class="docutils literal notranslate"><span class="pre">c++</span></code> with your C++ compiler (e.g. <code class="docutils literal notranslate"><span class="pre">g++</span></code>), <code class="docutils literal notranslate"><span class="pre">mpicxx</span></code> with the C++ compiler wrapped with MPI <a class="footnote-reference" href="#id5" id="id2">[1]</a>, and <code class="docutils literal notranslate"><span class="pre">-openmp</span></code> with the compiler flag needed to invoke OpenMP (e.g. <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code> for g++). The first command compiles the serial (single core) version of DL_MESO_LBE, while the second produces the parallel (multiple core) version. In both cases, the resulting executable will be <em>lbe.exe</em>.</p>
 <p>To compile DL_MESO_DPD, you will need to use a makefile to compile several Fortran modules and link them together as an executable. To do this, the <em>dl_meso/DPD/makefiles</em> directory has Makefiles available with and without MPI, with and without OpenMP. Choose the version you wish to compile and copy the required makefile into the <em>dl_meso/WORK</em> directory, renaming it as <em>Makefile</em>. This can then be invoked while in the <em>dl_meso/WORK</em> directory using the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
 </pre></div>
 </div>
 <p>to produce the executable <em>dpd.exe</em>. Note that these makefiles assume you are using <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>: if you want to use a different compiler, open the makefile in a text editor and change the command in the line starting with <code class="docutils literal notranslate"><span class="pre">FC=</span></code>.</p>
 <p>To compile the utilities, there is another makefile available in the <em>dl_meso/WORK</em> directory, which can be invoked with the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make -f Makefile-utils
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">f</span> <span class="n">Makefile</span><span class="o">-</span><span class="n">utils</span>
 </pre></div>
 </div>
 <p>which again assumes use of <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> and <code class="docutils literal notranslate"><span class="pre">g++</span></code> as compilers. (These can be modified in the lines starting with <code class="docutils literal notranslate"><span class="pre">FC=</span></code> and <code class="docutils literal notranslate"><span class="pre">CC=</span></code>.)</p>
@@ -101,11 +101,11 @@ mpicxx -O3 -openmp ../LBE/plbe.cpp -o lbe.exe
 <h2>Optional Python scripts<a class="headerlink" href="#optional-python-scripts" title="Permalink to this headline">¶</a></h2>
 <p>Some Python3 scripts are available to carry out a simple DPD simulation workflow for one of the practical exercises and plot graphs of simulation outputs. These scripts are optional but very useful and recommended for the DPD exercises.</p>
 <p>As well as Python3, the following packages need to be installed using PIP (Python’s Package Installer) <a class="footnote-reference" href="#id7" id="id4">[3]</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install docent
-pip install tqdm
-pip install numpy
-pip install PyQt5
-pip install matplotlib
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">docent</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">tqdm</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">PyQt5</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">matplotlib</span>
 </pre></div>
 </div>
 <p>The visualisation scripts will also need <a class="reference external" href="https://doc.qt.io/qt-5/gettingstarted.html">Qt5</a> to be installed, e.g. <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">qt5-default</span></code> in Ubuntu.</p>

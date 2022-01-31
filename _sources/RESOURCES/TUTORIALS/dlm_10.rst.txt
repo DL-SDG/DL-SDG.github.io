@@ -15,9 +15,7 @@ DL_MESO includes a platform-independent graphical user interface (GUI) programme
 * Edit, compile and launch codes
 * Launch utilities and other software for analysis and visualisation
 
-There is normally no need to compile the source code for the GUI, as a pre-compiled JAR (Java archive) file comes with DL_MESO. Only a Java Runtime Environment (JRE) needs to be installed on your machine to be able to run the GUI, which can be launched from the *dl_meso/WORK* directory with the command:
-
-.. code-block:: bash
+There is normally no need to compile the source code for the GUI, as a pre-compiled JAR (Java archive) file comes with DL_MESO. Only a Java Runtime Environment (JRE) needs to be installed on your machine to be able to run the GUI, which can be launched from the *dl_meso/WORK* directory with the command: ::
 
    java -jar ../JAVA/GUI.jar
    

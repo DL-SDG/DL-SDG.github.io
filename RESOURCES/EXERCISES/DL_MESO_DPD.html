@@ -66,6 +66,29 @@
 <div class="section" id="control">
 <h3>CONTROL<a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h3>
 <p>An example of a <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> file used in <a class="reference internal" href="DPDExercise2.html#dpd-exercise2"><span class="std std-ref">DPD Exercise 2</span></a> is shown here.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DL_MESO</span> <span class="n">lipid</span> <span class="n">bilayer</span> <span class="n">example</span>
+
+<span class="n">volume</span> <span class="mf">16384.0</span>
+<span class="n">temperature</span> <span class="mf">1.0</span>
+<span class="n">cutoff</span> <span class="mf">1.0</span>
+<span class="n">boundary</span> <span class="n">halo</span> <span class="mf">2.0</span>
+
+<span class="n">timestep</span> <span class="mf">0.03</span>
+<span class="n">steps</span> <span class="mi">100000</span>
+<span class="n">equilibration</span> <span class="n">steps</span> <span class="mi">0</span>
+<span class="n">scale</span> <span class="n">temperature</span> <span class="n">every</span> <span class="mi">100</span>
+<span class="n">trajectory</span> <span class="mi">0</span> <span class="mi">2000</span>
+<span class="n">stats</span> <span class="n">every</span> <span class="mi">2000</span>
+<span class="n">stack</span> <span class="n">size</span> <span class="mi">100</span>
+<span class="nb">print</span> <span class="n">every</span> <span class="mi">1000</span>
+<span class="n">job</span> <span class="n">time</span> <span class="mf">10800.0</span>
+<span class="n">close</span> <span class="n">time</span> <span class="mf">100.0</span>
+
+<span class="n">ensemble</span> <span class="n">nvt</span> <span class="n">mdvv</span>
+
+<span class="n">finish</span>
+</pre></div>
+</div>
 <p>The first line gives a title for the simulation for your own reference. Subsequent lines use keywords to specify properties required for the simulation, - <code class="docutils literal notranslate"><span class="pre">volume</span></code>, <code class="docutils literal notranslate"><span class="pre">temperature</span></code> etc. - which are normally followed by the required value or values in the same line, all separated by spaces, commas or tabs. Many of these are clearly understandable and are explained fully in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>, although the following are worth noting here:</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">volume</span></code> specifies the volume of the simulation box. If a single number follows this keyword, the box is assumed to be cubic, while using three numbers specifies the box sizes for each dimension.</li>
@@ -82,6 +105,50 @@
 <div class="section" id="field">
 <h3>FIELD<a class="headerlink" href="#field" title="Permalink to this headline">¶</a></h3>
 <p>An example of a <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> file used in <a class="reference internal" href="DPDExercise2.html#dpd-exercise2"><span class="std std-ref">DPD Exercise 2</span></a> is shown here.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DL_MESO</span> <span class="n">lipid</span> <span class="n">bilayer</span> <span class="n">example</span>
+
+<span class="n">SPECIES</span> <span class="mi">3</span>
+<span class="n">H</span>        <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mi">0</span>
+<span class="n">C</span>        <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mi">0</span>
+<span class="n">W</span>        <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mi">35152</span>
+
+<span class="n">MOLECULES</span> <span class="mi">1</span>
+<span class="n">HC6</span>
+<span class="n">nummols</span> <span class="mi">2000</span>
+<span class="n">beads</span> <span class="mi">7</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">0.0172847</span> <span class="mf">0.383451</span> <span class="mf">0.2849</span>
+<span class="n">C</span>        <span class="o">-</span><span class="mf">0.016165</span> <span class="mf">0.381111</span> <span class="o">-</span><span class="mf">0.215093</span>
+<span class="n">C</span>        <span class="mf">0.280007</span> <span class="mf">0.0703806</span> <span class="mf">0.0412832</span>
+<span class="n">C</span>        <span class="mf">0.440339</span> <span class="o">-</span><span class="mf">0.359403</span> <span class="o">-</span><span class="mf">0.157664</span>
+<span class="n">C</span>        <span class="mf">0.00469362</span> <span class="o">-</span><span class="mf">0.136529</span> <span class="o">-</span><span class="mf">0.260333</span>
+<span class="n">C</span>        <span class="o">-</span><span class="mf">0.455453</span> <span class="o">-</span><span class="mf">0.119133</span> <span class="o">-</span><span class="mf">0.0654933</span>
+<span class="n">C</span>        <span class="o">-</span><span class="mf">0.236136</span> <span class="o">-</span><span class="mf">0.219878</span> <span class="mf">0.3724</span>
+<span class="n">bonds</span> <span class="mi">6</span>
+<span class="n">harm</span>  <span class="mi">1</span> <span class="mi">2</span> <span class="mf">128.000</span> <span class="mf">0.500000</span>
+<span class="n">harm</span>  <span class="mi">2</span> <span class="mi">3</span> <span class="mf">128.000</span> <span class="mf">0.500000</span>
+<span class="n">harm</span>  <span class="mi">3</span> <span class="mi">4</span> <span class="mf">128.000</span> <span class="mf">0.500000</span>
+<span class="n">harm</span>  <span class="mi">4</span> <span class="mi">5</span> <span class="mf">128.000</span> <span class="mf">0.500000</span>
+<span class="n">harm</span>  <span class="mi">5</span> <span class="mi">6</span> <span class="mf">128.000</span> <span class="mf">0.500000</span>
+<span class="n">harm</span>  <span class="mi">6</span> <span class="mi">7</span> <span class="mf">128.000</span> <span class="mf">0.500000</span>
+<span class="n">angles</span> <span class="mi">5</span>
+<span class="n">cos</span>   <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mf">20.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="n">cos</span>   <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mf">20.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="n">cos</span>   <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mf">20.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="n">cos</span>   <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mf">20.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="n">cos</span>   <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mf">20.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+<span class="n">finish</span>
+
+<span class="n">INTERACTIONS</span> <span class="mi">6</span>
+<span class="n">H</span> <span class="n">H</span> <span class="n">dpd</span> <span class="mf">25.0</span> <span class="mf">1.0</span> <span class="mf">4.5</span>
+<span class="n">C</span> <span class="n">C</span> <span class="n">dpd</span> <span class="mf">25.0</span> <span class="mf">1.0</span> <span class="mf">4.5</span>
+<span class="n">W</span> <span class="n">W</span> <span class="n">dpd</span> <span class="mf">25.0</span> <span class="mf">1.0</span> <span class="mf">4.5</span>
+<span class="n">H</span> <span class="n">W</span> <span class="n">dpd</span> <span class="mf">35.0</span> <span class="mf">1.0</span> <span class="mf">4.5</span>
+<span class="n">H</span> <span class="n">C</span> <span class="n">dpd</span> <span class="mf">50.0</span> <span class="mf">1.0</span> <span class="mf">9.0</span>
+<span class="n">C</span> <span class="n">W</span> <span class="n">dpd</span> <span class="mf">75.0</span> <span class="mf">1.0</span> <span class="mf">20.0</span>
+
+<span class="n">close</span>
+</pre></div>
+</div>
 <p>The first line gives a title for the simulation for your own reference. This is followed by a number of sections starting with a keyword - <code class="docutils literal notranslate"><span class="pre">SPECIES</span></code>, <code class="docutils literal notranslate"><span class="pre">INTERACTIONS</span></code>, <code class="docutils literal notranslate"><span class="pre">MOLECULES</span></code> - that specify the numbers of particle species, pairwise interactions and molecule types respectively.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">SPECIES</span></code> keyword is followed by lines defining each particle species, giving the name, mass, charge, the number of particles for the species <em>not included in molecules</em> - usually indicating which species is the solvent - and (optionally) whether or not the particles are frozen in place (1 if they are, 0 or no value if they are not).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">INTERACTIONS</span></code> keyword is followed by lines indicating which two particle species are involved in an interaction, the functional form (<code class="docutils literal notranslate"><span class="pre">dpd</span></code> in this case referring to ‘standard’ Groot-Warren), the conservative force parameter <span class="math notranslate nohighlight">\(A_{ij}\)</span>, the cutoff distance <span class="math notranslate nohighlight">\(r_{c,ij}\)</span> and the dissipative force parameter <span class="math notranslate nohighlight">\(\gamma_{ij}\)</span>. Not all species pairs necessarily have to have interactions specified, as mixing rules can be used to fill in missing information.</p>
@@ -106,15 +173,15 @@
 <h2>Running DL_MESO_DPD<a class="headerlink" href="#running-dl-meso-dpd" title="Permalink to this headline">¶</a></h2>
 <p>Before running DL_MESO_DPD, first ensure your working directory (<em>dl_meso/WORK</em>) includes at least <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> files.</p>
 <p>To launch DL_MESO_DPD to run on a single processor, type in the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dpd.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">dpd</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>This will work for both serial and parallel versions of the code, with or without OpenMP multithreading. To run an MPI-parallelised version of DL_MESO_DPD on more than one processor core, you have to use a command - either <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>, depending on your MPI installation - that uses MPI runtime libraries and specifies how many processor cores to use. For example, to launch DL_MESO_DPD on 4 processor cores, type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -np <span class="m">4</span> ./dpd.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">-</span><span class="n">np</span> <span class="mi">4</span> <span class="o">./</span><span class="n">dpd</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>By default, no messages will be displayed on screen while DL_MESO_DPD runs. You can either add the directive <code class="docutils literal notranslate"><span class="pre">l_scr</span></code> to the <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> file to redirect what normally gets written to <a class="reference internal" href="../TUTORIALS/dlm_4.html#outputdlmeso"><span class="std std-ref">OUTPUT</span></a> to the screen, or open a new terminal window or tab in the working directory and type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail -f OUTPUT
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tail</span> <span class="o">-</span><span class="n">f</span> <span class="n">OUTPUT</span>
 </pre></div>
 </div>
 <p>to see what gets written to <a class="reference internal" href="../TUTORIALS/dlm_4.html#outputdlmeso"><span class="std std-ref">OUTPUT</span></a> continuously as DL_MESO_DPD runs.</p>
@@ -122,7 +189,7 @@
 <div class="section" id="running-gui">
 <h2>Running GUI<a class="headerlink" href="#running-gui" title="Permalink to this headline">¶</a></h2>
 <p>There is no real need to use the GUI for these practical DPD exercises, but you can launch it from <em>dl_meso/WORK</em> with the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>java -jar ../JAVA/GUI.jar
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="o">../</span><span class="n">JAVA</span><span class="o">/</span><span class="n">GUI</span><span class="o">.</span><span class="n">jar</span>
 </pre></div>
 </div>
 <p>A runscript in this directory (<code class="docutils literal notranslate"><span class="pre">rungui</span></code>) launches the GUI using the same command while being easier to remember. Details on what the GUI can do and how to use it can be found in Chapter 3 of <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
@@ -140,7 +207,7 @@
 <li><a class="reference internal" href="../TUTORIALS/dlm_7.html#moleculegenerate"><span class="std std-ref">molecule.exe</span></a>: determines inputs required to include molecules in DPD simulations, including sample configurations, bond connectivity etc. and writes them to the <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> file.</li>
 </ul>
 <p>These can be launched in the working directory in a similar fashion to running DL_MESO_DPD on a single processor core, e.g.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./traject_vtf.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">traject_vtf</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>although each utility can take command-line options to change how they work. Every utility can take <code class="docutils literal notranslate"><span class="pre">-h</span></code> as an option to show what the utility does and what the other available options happen to be.</p>
@@ -154,8 +221,8 @@
 <p><a class="reference download internal" download="" href="../../_downloads/bde19889c28a193270a115d552bd9d76/flory_huggins.py"><code class="xref download docutils literal notranslate"><span class="pre">flory_huggins.py</span></code></a> is a simulation workflow script to carry out a series of DL_MESO_DPD simulations of two separating species. These simulations are designed to obtain a relationship between DPD conservative force parameters <span class="math notranslate nohighlight">\(A_{ij}\)</span> and the Flory-Huggins <span class="math notranslate nohighlight">\(\chi\)</span>-parameters (see <a class="reference internal" href="DPDExercise1.html#dpd-exercise1"><span class="std std-ref">DPD Exercise 1: DPD, hydrophobicity and parameterisation</span></a> for more details).</p>
 <p>It creates the required input files - <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="../TUTORIALS/dlm_4.html#configdlmeso"><span class="std std-ref">CONFIG</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> - to carry out these simulations for various values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>, launches the simulations one-by-one, obtains a time-averaged local concentration profile for one bead species and adds these profiles to a text file for later analysis. It also calculates a value of <span class="math notranslate nohighlight">\(\chi\)</span> for each simulation and estimates its error.</p>
 <p>To use the script, invoke it with your Python3 interpreter with one of the following commands (the latter if permissions on the script allow it to be executed):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 flory_huggins.py
-./flory_huggins.py
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">flory_huggins</span><span class="o">.</span><span class="n">py</span>
+<span class="o">./</span><span class="n">flory_huggins</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>You can add a number of optional command-line options at the end of the invocation:</p>
@@ -177,8 +244,8 @@
 <h3>flory_huggins_plot.py<a class="headerlink" href="#flory-huggins-plot-py" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference download internal" download="" href="../../_downloads/6cb83a4f2ab2e1b00388df7079a21426/flory_huggins_plot.py"><code class="xref download docutils literal notranslate"><span class="pre">flory_huggins_plot.py</span></code></a> will visualise the results from <em>flory_huggins.py</em> using the generated text file. You can look at the local concentration profiles generated from the DL_MESO_DPD simulations, recalculate <span class="math notranslate nohighlight">\(\chi\)</span> values for each set of conservative force parameters, plot these values and find a relationship between <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\)</span>.</p>
 <p>To use the script, invoke it with your Python3 interpreter using either command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 flory_huggins_plot.py
-./flory_huggins_plot.py
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">flory_huggins_plot</span><span class="o">.</span><span class="n">py</span>
+<span class="o">./</span><span class="n">flory_huggins_plot</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>You can optionally add the command-line option <code class="docutils literal notranslate"><span class="pre">--rho</span> <span class="pre">&lt;rho&gt;</span></code>, which chooses data for the system-wide particle density <code class="docutils literal notranslate"><span class="pre">&lt;rho&gt;</span></code> (which is equal to 3.0 by default).</p>
@@ -200,8 +267,8 @@
 <h3>correl.py<a class="headerlink" href="#correl-py" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference download internal" download="" href="../../_downloads/8cce48f7d97d0e6a3544cccb812a9b2a/correl.py"><code class="xref download docutils literal notranslate"><span class="pre">correl.py</span></code></a> is a more general-purpose script to plot and analyse the results from DL_MESO_DPD, using its <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> and (if available) RDFDAT files with calculated properties for the system and radial distribution functions respectively. (This is based on a similar script written for DL_POLY STATIS files called <em>statis.py</em>.)</p>
 <p>To use the script, invoke it with your Python3 interpreter with either command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 correl.py
-./correl.py
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">correl</span><span class="o">.</span><span class="n">py</span>
+<span class="o">./</span><span class="n">correl</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>You can add up to two optional command-line options at the end of the invocation:</p>

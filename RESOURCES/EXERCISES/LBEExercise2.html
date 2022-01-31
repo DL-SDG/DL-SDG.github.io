@@ -70,34 +70,34 @@
 <p>These simulation input files will model a rectangular box (<span class="math notranslate nohighlight">\(150 \times 50\)</span> grid points) with walls at the top and bottom. While most of the box will be filled with a continuous fluid (denoted as fluid 0 by DL_MESO_LBE), an immiscible drop of a different fluid (fluid 1) will be placed close to the bottom wall. The lbin.init file was created (using the <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> utility) to give this drop a radius of 15 lattice units and place its centre at lattice grid coordinates <span class="math notranslate nohighlight">\((40, 20)\)</span>.</p>
 <p>The first few thousand timesteps of the simulation will be used to allow the drop shape to settle: no boundary conditions will be applied during this equilibration period. During the remainder of the simulation, a bounce-back boundary condition is applied at the bottom wall, while a constant velocity boundary at the top is applied with a horizontal speed (in lattice units) of 0.005 going to the right.</p>
 <p>To modify any of the parameters in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>interaction_1
-interaction_2
-segregation
-speed_top_0
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interaction_1</span>
+<span class="n">interaction_2</span>
+<span class="n">segregation</span>
+<span class="n">speed_top_0</span>
 </pre></div>
 </div>
 <p>where the first two are for the interaction parameter <span class="math notranslate nohighlight">\(g_{01}\)</span> between the two fluids, <code class="docutils literal notranslate"><span class="pre">segregation</span></code> gives the segregation parameter <span class="math notranslate nohighlight">\(\beta\)</span> and <code class="docutils literal notranslate"><span class="pre">speed_top_0</span></code> is the <span class="math notranslate nohighlight">\(x\)</span>-component of the top wall velocity applied using a constant velocity boundary condition.</p>
 <p>If you wish to use the parallel version of DL_MESO_LBE to run this simulation, you may want to add the following three lines to the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file to ensure only one output file is produced per timestep:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>output_combine_x             <span class="m">1</span>
-output_combine_y             <span class="m">1</span>
-output_combine_z             <span class="m">1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output_combine_x</span>             <span class="mi">1</span>
+<span class="n">output_combine_y</span>             <span class="mi">1</span>
+<span class="n">output_combine_z</span>             <span class="mi">1</span>
 </pre></div>
 </div>
 <p>To run the simulation, either type in:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./lbe.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">lbe</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>if you have compiled the serial version of DL_MESO_LBE (with or without OpenMP), or if you want to run the parallel version on X processor cores, type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -np X ./lbe.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">-</span><span class="n">np</span> <span class="n">X</span> <span class="o">./</span><span class="n">lbe</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>After running DL_MESO_LBE, open the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a> files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed.</p>
 <p>A useful Paraview filter for this simulation is Calculator, which can generate new properties from those supplied in the output files. The total fluid densities can be calculated using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>density_0+density_1
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">density_0</span><span class="o">+</span><span class="n">density_1</span>
 </pre></div>
 </div>
 <p>while you can obtain values for the phase index using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>density_0-density_1<span class="o">)</span>/<span class="o">(</span>density_0+density_1<span class="o">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">density_0</span><span class="o">-</span><span class="n">density_1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">density_0</span><span class="o">+</span><span class="n">density_1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and subsequently apply the Contour filter to draw boundaries between the fluids (i.e. where the phase index <span class="math notranslate nohighlight">\(\rho^N = 0\)</span>).</p>

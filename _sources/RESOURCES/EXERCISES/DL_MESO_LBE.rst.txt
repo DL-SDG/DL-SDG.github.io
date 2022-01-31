@@ -23,9 +23,7 @@ These files are in text format and can be opened, created or modified by hand us
 lbin.sys
 ~~~~~~~~
 
-An edited extract from a :ref:`lbin.sys <lbin_sys>` file used in :ref:`LBE Exercise 2 <LBE_Exercise2>` is shown here.
-
-.. code-block::
+An edited extract from a :ref:`lbin.sys <lbin_sys>` file used in :ref:`LBE Exercise 2 <LBE_Exercise2>` is shown here. ::
 
   space_dimension              2
   discrete_speed               9
@@ -70,9 +68,7 @@ Further details of available keywords in this file can be found in Chapter 6 of 
 lbin.spa
 ~~~~~~~~
 
-A short extract from a :ref:`lbin.spa <lbin_spa>` file used in :ref:`LBE Exercise 2 <LBE_Exercise2>` is shown here.
-
-.. code-block::
+A short extract from a :ref:`lbin.spa <lbin_spa>` file used in :ref:`LBE Exercise 2 <LBE_Exercise2>` is shown here. ::
 
   145 49 0 149
   146 49 0 149
@@ -105,21 +101,15 @@ Running DL_MESO_LBE
 
 Before running DL_MESO_LBE, first ensure your working directory (*dl_meso/LBE*) includes at least :ref:`lbin.sys <lbin_sys>` and :ref:`lbin.spa <lbin_spa>` files.
 
-To launch DL_MESO_LBE to run on a single processor, type in the following command:
-
-.. code-block:: bash
+To launch DL_MESO_LBE to run on a single processor, type in the following command: :: 
 
   ./lbe.exe
 
-This will work for both serial and parallel versions of the code, with or without OpenMP multithreading. To run an MPI-parallelised version of DL_MESO_LBE on more than one processor core, you have to use a command - either ``mpirun`` or ``mpiexec``, depending on your MPI installation - that uses MPI runtime libraries and specifies how many processor cores to use. For example, to launch DL_MESO_DPD on 4 processor cores, type:
-
-.. code-block:: bash
+This will work for both serial and parallel versions of the code, with or without OpenMP multithreading. To run an MPI-parallelised version of DL_MESO_LBE on more than one processor core, you have to use a command - either ``mpirun`` or ``mpiexec``, depending on your MPI installation - that uses MPI runtime libraries and specifies how many processor cores to use. For example, to launch DL_MESO_DPD on 4 processor cores, type: ::
 
    mpirun -np 4 ./dpd.exe 
 
-By default, you will see messages appear on the screen as DL_MESO_LBE runs to show how the calculation is progressing. You can redirect this to a file (e.g. *output.txt*) for future reference by adding one of the following to the end of your launch command:
-
-.. code-block:: bash
+By default, you will see messages appear on the screen as DL_MESO_LBE runs to show how the calculation is progressing. You can redirect this to a file (e.g. *output.txt*) for future reference by adding one of the following to the end of your launch command: ::
 
    > output.txt
    | tee output.txt
@@ -131,9 +121,7 @@ where the first will write the standard output to the file without displaying it
 Running GUI
 ^^^^^^^^^^^
 
-Some of the tasks in the practical LBE exercises can make use of the :ref:`GUI <Header_dlm_10>`. You can launch it from *dl_meso/WORK* with the command:
-
-.. code-block:: bash
+Some of the tasks in the practical LBE exercises can make use of the :ref:`GUI <Header_dlm_10>`. You can launch it from *dl_meso/WORK* with the command: ::
 
    java -jar ../JAVA/GUI.jar
 
@@ -179,9 +167,7 @@ One LBE utility will help you set up a simulation, some LBE utilities will proce
 - :ref:`vtk.exe <lbevtkgather>`: gathers together data in XML-based VTK files after running DL_MESO_LBE in parallel by creating linking files (lbout\*.pvts) to put together \*.vts files from individual processor cores when plotting in Paraview;
 - :ref:`dump_to_init.exe <lbedumpinit>`: creates a :ref:`lbin.init <lbin_init>` file from a previous simulation's :ref:`lbout.dump <lbout_dump>` restart file.
 
-These can be launched in the working directory in a similar fashion to running DL_MESO_LBE on a single processor core, e.g.
-
-.. code-block:: bash
+These can be launched in the working directory in a similar fashion to running DL_MESO_LBE on a single processor core, e.g. ::
 
   ./init.exe
 

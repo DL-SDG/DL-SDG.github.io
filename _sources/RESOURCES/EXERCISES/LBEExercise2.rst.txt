@@ -34,9 +34,7 @@ These simulation input files will model a rectangular box (:math:`150 \times 50`
 
 The first few thousand timesteps of the simulation will be used to allow the drop shape to settle: no boundary conditions will be applied during this equilibration period. During the remainder of the simulation, a bounce-back boundary condition is applied at the bottom wall, while a constant velocity boundary at the top is applied with a horizontal speed (in lattice units) of 0.005 going to the right.
 
-To modify any of the parameters in the :ref:`lbin.sys <lbin_sys>` file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:
-
-.. code-block:: bash
+To modify any of the parameters in the :ref:`lbin.sys <lbin_sys>` file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are: ::
 
   interaction_1
   interaction_2
@@ -45,37 +43,27 @@ To modify any of the parameters in the :ref:`lbin.sys <lbin_sys>` file, you can 
 
 where the first two are for the interaction parameter :math:`g_{01}` between the two fluids, ``segregation`` gives the segregation parameter :math:`\beta` and ``speed_top_0`` is the :math:`x`-component of the top wall velocity applied using a constant velocity boundary condition.
 
-If you wish to use the parallel version of DL_MESO_LBE to run this simulation, you may want to add the following three lines to the :ref:`lbin.sys <lbin_sys>` file to ensure only one output file is produced per timestep:
-
-.. code-block:: bash
+If you wish to use the parallel version of DL_MESO_LBE to run this simulation, you may want to add the following three lines to the :ref:`lbin.sys <lbin_sys>` file to ensure only one output file is produced per timestep: ::
 
   output_combine_x             1
   output_combine_y             1
   output_combine_z             1
 
-To run the simulation, either type in:
-
-.. code-block:: bash
+To run the simulation, either type in: ::
 
   ./lbe.exe
 
-if you have compiled the serial version of DL_MESO_LBE (with or without OpenMP), or if you want to run the parallel version on X processor cores, type:
-
-.. code-block:: bash
+if you have compiled the serial version of DL_MESO_LBE (with or without OpenMP), or if you want to run the parallel version on X processor cores, type: ::
 
   mpirun -np X ./lbe.exe
 
 After running DL_MESO_LBE, open the :ref:`lbout\*.vts <lboutsnapshot>` files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed.
 
-A useful Paraview filter for this simulation is Calculator, which can generate new properties from those supplied in the output files. The total fluid densities can be calculated using:
-
-.. code-block:: bash
+A useful Paraview filter for this simulation is Calculator, which can generate new properties from those supplied in the output files. The total fluid densities can be calculated using: ::
 
   density_0+density_1
 
-while you can obtain values for the phase index using:
-
-.. code-block:: bash
+while you can obtain values for the phase index using: ::
 
   (density_0-density_1)/(density_0+density_1)
 

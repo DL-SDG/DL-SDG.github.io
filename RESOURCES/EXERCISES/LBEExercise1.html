@@ -85,19 +85,19 @@
 <p>Copy the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> input files from the directory <code class="docutils literal notranslate"><span class="pre">dl_meso/DEMO/LBE/2D_PhaseSeparation</span></code> in your copy of DL_MESO to your working directory (<code class="docutils literal notranslate"><span class="pre">dl_meso/WORK</span></code>).</p>
 <p>These simulation input files represent a periodic box of a single fluid with a density (or rather, a small range of densities) that lie between the expected densities of the liquid and vapour phases. These phases should form spontaneously, with the liquid phase collecting either into a circular drop or a rectangular layer across the box (depending on how much fluid exists in the box).</p>
 <p>To modify any of the parameters in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>noise_intensity
-density_ini_0
-relaxation_fluid_0
-eos_parameter_a_0
-eos_parameter_b_0
-acentric_factor_0
-gas_constant
-temperature_system
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">noise_intensity</span>
+<span class="n">density_ini_0</span>
+<span class="n">relaxation_fluid_0</span>
+<span class="n">eos_parameter_a_0</span>
+<span class="n">eos_parameter_b_0</span>
+<span class="n">acentric_factor_0</span>
+<span class="n">gas_constant</span>
+<span class="n">temperature_system</span>
 </pre></div>
 </div>
 <p>for the random noise intensity, initial fluid density, relaxation time <span class="math notranslate nohighlight">\(\tau\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span>, <span class="math notranslate nohighlight">\(R\)</span> and system temperature respectively.</p>
 <p>To run the simulation using the serial version of DL_MESO_LBE (with or without OpenMP), type in:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./lbe.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">lbe</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>After running DL_MESO_LBE, open the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a> files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed. To plot the properties along a straight line, you can apply the Plot Over Line filter, move the line in the display window and click Apply to display the graphs. The Information subwindow will give you the minimum and maximum values for the available properties at the currently displayed timestep.</p>

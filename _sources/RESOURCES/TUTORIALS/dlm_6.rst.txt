@@ -11,9 +11,7 @@ DL_MESO_LBE utilities
 
 As well as the main LBE code (DL_MESO_LBE), DL_MESO comes with a number of utilities that can be used to help set up DL_MESO_LBE simulations and process some of the outputs. 
 
-The source codes for all of these utilities can be found in the *LBE/utility* directory of the DL_MESO package, all of which need be compiled using a C++ compiler (e.g. ``g++``). All LBE utilities (along with the DPD utilities) can be compiled using the Makefile in the *WORK* directory with the instructions shown in the :doc:`DL_MESO Ready, get set, go guide <../dl_meso_howto>`. Each utility can be run with a command-line flag ``-h``, e.g.
-
-.. code-block:: bash
+The source codes for all of these utilities can be found in the *LBE/utility* directory of the DL_MESO package, all of which need be compiled using a C++ compiler (e.g. ``g++``). All LBE utilities (along with the DPD utilities) can be compiled using the Makefile in the *WORK* directory with the instructions shown in the :doc:`DL_MESO Ready, get set, go guide <../dl_meso_howto>`. Each utility can be run with a command-line flag ``-h``, e.g. ::
 
    ./utility.exe -h
 
@@ -28,9 +26,7 @@ to provide details and show the available command-line options.
 
 This utility helps to create a :ref:`lbin.init <lbin_init>` file to specify initial conditions for a LBE simulation other than uniform values specified in the :ref:`lbin.sys <lbin_sys>` simulation setup file. In particular, it can be used to add circular/spherical fluid drops and/or rectangular/cuboidal regions with fixed values of solute concentration or temperature.
 
-The source code for this utility is normally compiled to produce the executable ``init.exe``, and can be run with the command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``init.exe``, and can be run with the command: ::
 
    ./init.exe
 
@@ -52,9 +48,7 @@ After this, the utility will print relevant information to the screen before pro
 
 After a parallel DL_MESO_LBE calculation producing multiple Plot3D output files per timestep, this utility pulls those files together to create a single file per timestep.
 
-This utility is normally compiled to produce the executable ``plot3d.exe``, and can be run with the command:
-
-.. code-block:: bash
+This utility is normally compiled to produce the executable ``plot3d.exe``, and can be run with the command: ::
 
    ./plot3d.exe
 
@@ -72,9 +66,7 @@ No user input is required: the utility will find all of the available solution a
 
 After a parallel DL_MESO_LBE calculation producing multiple XML-style VTK output files per timestep, this utility creates linking files that can be opened directly in `Paraview <https://www.paraview.org>`_ to visualise the simulation.
 
-This utility is normally compiled to produce the executable ``vtk.exe``, and can be run with the command:
-
-.. code-block:: bash
+This utility is normally compiled to produce the executable ``vtk.exe``, and can be run with the command: ::
 
    ./vtk.exe
 
@@ -97,9 +89,7 @@ No user input is required by default, although if the output files were created 
 
 This utility creates a *lbin.init* file for a new LBE simulation from the :ref:`lbout.dump <lbout_dump>` simulation restart file of a previous one. 
 
-The source code for this utility is normally compiled to produce the executable ``dump_to_init.exe``, and can be run with the command:
-
-.. code-block:: bash
+The source code for this utility is normally compiled to produce the executable ``dump_to_init.exe``, and can be run with the command: ::
 
    ./dump_to_init.exe
 
@@ -113,9 +103,7 @@ No user input or other files are required: the :ref:`lbout.dump <lbout_dump>` fi
 
 This utility creates an XML-style VTK file from a :ref:`lbout.dump <lbout_dump>` simulation restart file, which can be used to visualise the simulation at that point.
 
-This utility is normally compiled to produce the executable ``dump_to_vtk.exe``, and can be run with the command:
-
-.. code-block:: bash
+This utility is normally compiled to produce the executable ``dump_to_vtk.exe``, and can be run with the command: ::
 
    ./dump_to_vtk.exe
 

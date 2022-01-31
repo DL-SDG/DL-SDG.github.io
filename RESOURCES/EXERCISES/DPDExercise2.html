@@ -86,14 +86,14 @@
 <p>Change into the <em>LIPID3</em> directory and open the <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> file. We now want to observe the effect of lipid molecule concentration on the structure that forms, so change the number in the line beginning with <code class="docutils literal notranslate"><span class="pre">nummols</span></code> to a lower value. Note that we still want the same total number of beads in the simulation and the same particle density, so add some more water beads in the appropriate line under <code class="docutils literal notranslate"><span class="pre">SPECIES</span></code>.</p>
 <p>Change into the <em>LIPID4</em> directory, open the <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> file and make the same changes to the numbers of molecules and water beads as you did for the third simulation.</p>
 <p>Now run each of the simulations in turn by entering each directory and using one of the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>../dpd.exe
-mpirun -np <span class="m">4</span> ../dpd.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../</span><span class="n">dpd</span><span class="o">.</span><span class="n">exe</span>
+<span class="n">mpirun</span> <span class="o">-</span><span class="n">np</span> <span class="mi">4</span> <span class="o">../</span><span class="n">dpd</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>to launch the executable found in the parent directory <a class="footnote-reference" href="#id5" id="id3">[2]</a>.</p>
 <p>When each calculation has finished, run the required trajectory conversion utility to produce your file(s) to launch in VMD or OVITO from the trajectories in the <a class="reference internal" href="../TUTORIALS/dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> files. Again you can run the utility (located in your working directory) in each sub-directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>../traject_vtf.exe
-../traject_xml.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../</span><span class="n">traject_vtf</span><span class="o">.</span><span class="n">exe</span>
+<span class="o">../</span><span class="n">traject_xml</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 </div>

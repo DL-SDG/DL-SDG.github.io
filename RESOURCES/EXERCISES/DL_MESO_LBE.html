@@ -66,6 +66,35 @@
 <div class="section" id="lbin-sys">
 <h3>lbin.sys<a class="headerlink" href="#lbin-sys" title="Permalink to this headline">¶</a></h3>
 <p>An edited extract from a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file used in <a class="reference internal" href="LBEExercise2.html#lbe-exercise2"><span class="std std-ref">LBE Exercise 2</span></a> is shown here.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">space_dimension</span>              <span class="mi">2</span>
+<span class="n">discrete_speed</span>               <span class="mi">9</span>
+<span class="n">number_of_fluid</span>              <span class="mi">2</span>
+<span class="n">number_of_solute</span>             <span class="mi">0</span>
+<span class="n">temperature_scalar</span>           <span class="mi">0</span>
+<span class="n">phase_field</span>                  <span class="mi">0</span>
+<span class="n">grid_number_x</span>                <span class="mi">150</span>
+<span class="n">grid_number_y</span>                <span class="mi">50</span>
+<span class="n">grid_number_z</span>                <span class="mi">1</span>
+<span class="n">domain_boundary_width</span>        <span class="mi">1</span>
+<span class="n">incompressible_fluids</span>        <span class="mi">0</span>
+<span class="n">collision_type</span>               <span class="n">BGKGuo</span>
+<span class="n">interaction_type</span>             <span class="n">Lishchuk</span>
+<span class="n">output_format</span>                <span class="n">VTK</span>
+<span class="n">output_type</span>                  <span class="n">Binary</span>
+<span class="n">total_step</span>                   <span class="mi">400000</span>
+<span class="n">equilibration_step</span>           <span class="mi">5000</span>
+<span class="n">save_span</span>                    <span class="mi">500</span>
+<span class="n">relaxation_fluid_0</span>           <span class="mf">1.0</span>
+<span class="n">relaxation_fluid_1</span>           <span class="mf">1.0</span>
+<span class="n">density_ini_0</span>                <span class="mf">2.0</span>
+<span class="n">density_ini_1</span>                <span class="mf">0.0</span>
+<span class="n">density_inc_0</span>                <span class="mf">2.0</span>
+<span class="n">density_inc_1</span>                <span class="mf">2.0</span>
+<span class="n">speed_top_0</span>                  <span class="mf">0.005</span>
+<span class="n">speed_top_1</span>                  <span class="mf">0.0</span>
+<span class="n">speed_top_2</span>                  <span class="mf">0.0</span>
+</pre></div>
+</div>
 <p>Each line consists of keywords separated by underscores to indicate a property and either a number or a word to specify the value for that property. The first ten lines shown here - specifying the numbers of dimensions, discrete speeds, fluids, solutes, temperature scalar, phase field, grid points in <span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-directions and the domain boundary width - are compulsory for all simulations, although the lines do not have to be in any particular order.</p>
 <p>The lattice scheme is defined by the numbers of dimensions and discrete speeds: the four lattices currently available in DL_MESO_LBE are D2Q9, D3Q15, D3Q19 and D3Q27, where <span class="math notranslate nohighlight">\(\textrm{D}n\textrm{Q}m\)</span> denotes <span class="math notranslate nohighlight">\(n\)</span> dimensions and <span class="math notranslate nohighlight">\(m\)</span> lattice links per grid point. The keywords <code class="docutils literal notranslate"><span class="pre">domain_boundary_width</span></code> indicates how many lattice points are needed as a boundary halo for parallel calculations <a class="footnote-reference" href="#id3" id="id1">[1]</a>. The keywords <code class="docutils literal notranslate"><span class="pre">collision_type</span></code> indicate both the collision scheme and how forces (externally applied and those arising from fluid interfaces) are included, while <code class="docutils literal notranslate"><span class="pre">interaction_type</span></code> is used to select the mesoscopic interaction scheme.</p>
 <p>The relaxation times (<span class="math notranslate nohighlight">\(\tau\)</span>) for each fluid (numbering starting from 0) are given with <code class="docutils literal notranslate"><span class="pre">relaxation_fluid_*</span></code> keywords. The initial density for each fluid throughout the system is given by <code class="docutils literal notranslate"><span class="pre">density_ini_*</span></code>, while constant densities used for incompressible fluids and some mesoscopic interactions are given by <code class="docutils literal notranslate"><span class="pre">density_inc_*</span></code> <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
@@ -76,6 +105,18 @@
 <div class="section" id="lbin-spa">
 <h3>lbin.spa<a class="headerlink" href="#lbin-spa" title="Permalink to this headline">¶</a></h3>
 <p>A short extract from a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file used in <a class="reference internal" href="LBEExercise2.html#lbe-exercise2"><span class="std std-ref">LBE Exercise 2</span></a> is shown here.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">145</span> <span class="mi">49</span> <span class="mi">0</span> <span class="mi">149</span>
+<span class="mi">146</span> <span class="mi">49</span> <span class="mi">0</span> <span class="mi">149</span>
+<span class="mi">147</span> <span class="mi">49</span> <span class="mi">0</span> <span class="mi">149</span>
+<span class="mi">0</span> <span class="mi">49</span> <span class="mi">0</span> <span class="mi">134</span>
+<span class="mi">149</span> <span class="mi">49</span> <span class="mi">0</span> <span class="mi">133</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">13</span>
+<span class="mi">148</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">13</span>
+<span class="mi">2</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">13</span>
+<span class="mi">3</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">13</span>
+<span class="mi">4</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">13</span>
+</pre></div>
+</div>
 <p>The format consists of lines with grid point coordinates followed by a code for the required boundary condition at that point. A full list of the available boundary condition codes can be found in Chapter 6 of the <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>, but it is much easier to create an <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file using the GUI (see below).</p>
 </div>
 </div>
@@ -94,16 +135,16 @@
 <h2>Running DL_MESO_LBE<a class="headerlink" href="#running-dl-meso-lbe" title="Permalink to this headline">¶</a></h2>
 <p>Before running DL_MESO_LBE, first ensure your working directory (<em>dl_meso/LBE</em>) includes at least <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> files.</p>
 <p>To launch DL_MESO_LBE to run on a single processor, type in the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./lbe.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">lbe</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>This will work for both serial and parallel versions of the code, with or without OpenMP multithreading. To run an MPI-parallelised version of DL_MESO_LBE on more than one processor core, you have to use a command - either <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> or <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>, depending on your MPI installation - that uses MPI runtime libraries and specifies how many processor cores to use. For example, to launch DL_MESO_DPD on 4 processor cores, type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun -np <span class="m">4</span> ./dpd.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">-</span><span class="n">np</span> <span class="mi">4</span> <span class="o">./</span><span class="n">dpd</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>By default, you will see messages appear on the screen as DL_MESO_LBE runs to show how the calculation is progressing. You can redirect this to a file (e.g. <em>output.txt</em>) for future reference by adding one of the following to the end of your launch command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; output.txt
-<span class="p">|</span> tee output.txt
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">output</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">|</span> <span class="n">tee</span> <span class="n">output</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>where the first will write the standard output to the file without displaying it on the screen, while the second will write the output to the file <em>and</em> display it on the screen.</p>
@@ -111,7 +152,7 @@
 <div class="section" id="running-gui">
 <span id="dl-meso-gui"></span><h2>Running GUI<a class="headerlink" href="#running-gui" title="Permalink to this headline">¶</a></h2>
 <p>Some of the tasks in the practical LBE exercises can make use of the <a class="reference internal" href="../TUTORIALS/dlm_10.html#header-dlm-10"><span class="std std-ref">GUI</span></a>. You can launch it from <em>dl_meso/WORK</em> with the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>java -jar ../JAVA/GUI.jar
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="o">../</span><span class="n">JAVA</span><span class="o">/</span><span class="n">GUI</span><span class="o">.</span><span class="n">jar</span>
 </pre></div>
 </div>
 <p>A runscript in this directory (<code class="docutils literal notranslate"><span class="pre">rungui</span></code>) can alternatively be used to launch the GUI. When the GUI launches, click on the <em>LBE</em> button at the top. A sidebar on the left hand side will appear with more buttons for LBE simulations.</p>
@@ -140,7 +181,7 @@
 <li><a class="reference internal" href="../TUTORIALS/dlm_6.html#lbedumpinit"><span class="std std-ref">dump_to_init.exe</span></a>: creates a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> file from a previous simulation’s <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbout-dump"><span class="std std-ref">lbout.dump</span></a> restart file.</li>
 </ul>
 <p>These can be launched in the working directory in a similar fashion to running DL_MESO_LBE on a single processor core, e.g.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./init.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">init</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>although some utilities can take command-line options to change how they work. (The utility <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> will prompt the user to enter information.) Every utility can take <code class="docutils literal notranslate"><span class="pre">-h</span></code> as an option to show what the utility does and what the other available options happen to be.</p>

@@ -51,7 +51,7 @@
 <span id="header-dlm-7"></span><h1>DL_MESO_DPD utilities<a class="headerlink" href="#dl-meso-dpd-utilities" title="Permalink to this headline">¶</a></h1>
 <p>As well as the main DPD code (DL_MESO_DPD), DL_MESO comes with a number of utilities that can be used to help set up DL_MESO_DPD simulations and process the outputs.</p>
 <p>The source codes for all of these utilities can be found in the <em>DPD/utility</em> directory of the DL_MESO package: most of these need to be compiled with a Fortran compiler (e.g. <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>), although two others need to be compiled using a C++ compiler (e.g. <code class="docutils literal notranslate"><span class="pre">g++</span></code>). All DPD utilities (along with the LBE utilities) can be compiled using the Makefile in the <em>WORK</em> directory with the instructions shown in the <a class="reference internal" href="../dl_meso_howto.html"><span class="doc">DL_MESO Ready, get set, go guide</span></a>. Each utility can be run with a command-line flag <code class="docutils literal notranslate"><span class="pre">-h</span></code>, e.g.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./utility.exe -h
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">utility</span><span class="o">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">h</span>
 </pre></div>
 </div>
 <p>to provide details and show the available command-line options.</p>
@@ -59,7 +59,7 @@
 <p id="moleculegenerate"><strong>molecule-generate.cpp</strong></p>
 <p>This utility helps to set up a molecular DPD simulation by creating sample configurations for molecules and writing these, bond connectivities and interactions, to a <em>FIELD</em> file. It can devise initial configurations for molecular chains with branches that fit inside cubes, which enable the molecules to be inserted into simulation boxes as part of DL_MESO_DPD’s simulation set up.</p>
 <p>The source code for this utility is normally compiled to produce the executable <code class="docutils literal notranslate"><span class="pre">molecule.exe</span></code>, and can be run with the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./molecule.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">molecule</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Two command-line options can be invoked:</p>
@@ -74,7 +74,7 @@
 <p><strong>convert-input.cpp</strong></p>
 <p>This utility helps users of older versions of DL_MESO_DPD (up to version 2.4) to migrate their input files to the current format so the simulations can be run using the current version of DL_MESO_DPD. It takes up to three input files - <em>CONTROL</em>, <em>FIELD</em> and <em>MOLECULE</em> - and converts them into the newer (DL_POLY-style) format <em>CONTROL</em> and <em>FIELD</em> files.</p>
 <p>The source code for this utility is normally compiled (using the Makefile in the <em>DPD/utility</em> directory) to produce the executable <code class="docutils literal notranslate"><span class="pre">convert.exe</span></code>, and can be run with the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./convert.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">convert</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Four command-line options can be invoked:</p>
@@ -90,7 +90,7 @@
 <p id="exportconfig"><strong>export_config.F90</strong></p>
 <p>This utility helps users to devise starting configurations for DPD simulations from previous calculations. It reads in an <em>export</em> file containing a configuration at a given timestep and writes that configuration to a <em>CONFIG</em> file, also using the <em>FIELD</em> file to obtain the names of particle species.</p>
 <p>The source code for this utility is normally compiled to produce the executable <code class="docutils literal notranslate"><span class="pre">export_config.exe</span></code> and can be run with the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./export_config.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">export_config</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Three command-line options can be invoked:</p>
@@ -111,17 +111,17 @@
 <p id="exportimage"><strong>export_image_vtf.F90</strong> and <strong>export_image_xml.F90</strong></p>
 <p>These utilities enable users to visualise a DPD simulation at the point when a <em>export</em> restart file was created. They read in the <em>export</em> file containing a configuration at a given timestep and write that configuration into a format that can be opened with graphical visualisation software, also using the <em>FIELD</em> file to find the names and other properties of particle species.</p>
 <p>The source codes for these utilities are normally compiled to produce the executables <code class="docutils literal notranslate"><span class="pre">export_image_vtf.exe</span></code> and <code class="docutils literal notranslate"><span class="pre">export_image_xml.exe</span></code>. They can be run with the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./export_image_vtf.exe
-./export_image_xml.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">export_image_vtf</span><span class="o">.</span><span class="n">exe</span>
+<span class="o">./</span><span class="n">export_image_xml</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>The optional command-line option <code class="docutils literal notranslate"><span class="pre">-s</span></code> can be used with <code class="docutils literal notranslate"><span class="pre">export_image_vtf.exe</span></code> to sort the particles in numerical order: this is carried out automatically by <code class="docutils literal notranslate"><span class="pre">export_image_xml.exe</span></code>. If no <em>FIELD</em> file is available, the utility will close with an error message.</p>
-<p>No user intervention is required for the utilities to produce either an <code class="docutils literal notranslate"><span class="pre">export.vtf</span></code> file that can be opened in <a class="reference external" href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a> or an <code class="docutils literal notranslate"><span class="pre">export.xml</span></code> file (in GALAMOST format) to open in <a class="reference external" href="https://www.ovito.org/">OVITO</a>.</p>
+<p>No user intervention is required for the utilities to produce either an <em>export.vtf</em> file that can be opened in <a class="reference external" href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a> or an <em>export.xml</em> file (in GALAMOST format) to open in <a class="reference external" href="https://www.ovito.org/">OVITO</a>.</p>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p id="historyconfig"><strong>history_config.F90</strong></p>
 <p>This utility helps users to devise starting configurations for DPD simulations from previous calculations. It reads in a <em>HISTORY</em> file containing a series of configurations and writes one of those configurations (as selected by the user) to a <em>CONFIG</em> file.</p>
 <p>The source code for this utility is normally compiled to produce the executable <code class="docutils literal notranslate"><span class="pre">history_config.exe</span></code> and can be run with the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./history_config.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">history_config</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Five command-line options can be invoked:</p>
@@ -137,8 +137,8 @@
 <p id="trajectvtf"><strong>traject_vtf.F90</strong> and <strong>traject_selected_vtf.F90</strong></p>
 <p>These utilities help user visualise DPD simulations by reading in <em>HISTORY</em> files and writing out at least one VTF file that can be opened in <a class="reference external" href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a>.</p>
 <p>The source codes for these utilities are normally compiled to produce the executables <code class="docutils literal notranslate"><span class="pre">traject_vtf.exe</span></code> and <code class="docutils literal notranslate"><span class="pre">trajects_vtf.exe</span></code>. They can be run with the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./traject_vtf.exe
-./trajects_vtf.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">traject_vtf</span><span class="o">.</span><span class="n">exe</span>
+<span class="o">./</span><span class="n">trajects_vtf</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Three command-line options can be invoked by both utilities:</p>
@@ -153,8 +153,8 @@
 <p id="trajectxml"><strong>traject_xml.F90</strong> and <strong>traject_selected_xml.F90</strong></p>
 <p>These utilities help user visualise DPD simulations by reading in <em>HISTORY</em> files and writing out a series of GALAMOST-formatted XML files that can be opened in <a class="reference external" href="https://www.ovito.org/">OVITO</a>.</p>
 <p>The source codes for these utilities are normally compiled to produce the executables <code class="docutils literal notranslate"><span class="pre">traject_xml.exe</span></code> and <code class="docutils literal notranslate"><span class="pre">trajects_xml.exe</span></code>. They can be run with the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./traject_xml.exe
-./trajects_xml.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">traject_xml</span><span class="o">.</span><span class="n">exe</span>
+<span class="o">./</span><span class="n">trajects_xml</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>No command-line options are available for both utilities, since the particle <em>must</em> be sorted by number for the file format. No user input is required for <code class="docutils literal notranslate"><span class="pre">traject_xml.exe</span></code>, which will write a series of XML files (one per trajectory frame) each with the particle positions (and velocities if available) for the trajectory frame and bond connectivity data. <code class="docutils literal notranslate"><span class="pre">trajects_xml.exe</span></code> will ask the user to select which particles are to be written to the XML files (based on numbers or species/molecule types) as well as which trajectory frames should be used.</p>
@@ -162,7 +162,7 @@
 <p id="local"><strong>local.F90</strong></p>
 <p>This utility takes the available trajectory frames in a <em>HISTORY</em> file, divides the simulation volume into cuboidal cells and calculates local properties (e.g. densities, velocities) for all cells that can be visualised and analysed.</p>
 <p>The source code for this utility is normally compiled to produce the executable <code class="docutils literal notranslate"><span class="pre">local.exe</span></code> and run with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./local.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">local</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Seven command-line options can be invoked:</p>
@@ -178,7 +178,7 @@
 <p id="isosurfaces"><strong>isosurfaces.F90</strong></p>
 <p>This utility helps users identify and visualise mesophases in DPD simulations. For each trajectory frame in the <em>HISTORY</em> file, it assigns Gaussian functions with centres at particle positions for a selected species to a grid to create a density map. The density map is then used to calculate the second moment of the isosurface normal distributions, whose eigenvalues can be used as order parameters to determine the structure formed by the particles.</p>
 <p>The source code for this utility is normally compiled to produce the executable <code class="docutils literal notranslate"><span class="pre">isosurfaces.exe</span></code> and run with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./isosurfaces.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">isosurfaces</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Six command-line options can be invoked:</p>
@@ -195,7 +195,7 @@
 <p id="radius"><strong>radius.F90</strong></p>
 <p>This utility calculates end-to-end distances and radii of gyration for all molecules at each trajectory frame in a <em>HISTORY</em> file, recording averages for each molecule type per frame and calculating time-averaged distributions of end-to-end distances for each molecule type at the end.</p>
 <p>The source code for this utility is normally compiled to produce the executable <code class="docutils literal notranslate"><span class="pre">radius.exe</span></code> and run with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./radius.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">radius</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Five command-line options can be invoked:</p>
@@ -211,7 +211,7 @@
 <p id="dipole"><strong>dipole.F90</strong></p>
 <p>This utility calculates total dipole moments for each molecule type based on trajectory frames in a <em>HISTORY</em> file, their autocorrelation functions and (optionally) Fourier transforms, which can be used to analyse the charge polarisability of a DPD simulation.</p>
 <p>The source code for this utility is normally compiled to produce the executable <code class="docutils literal notranslate"><span class="pre">dipole.exe</span></code> and run with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dipole.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">dipole</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Six command-line options can be invoked:</p>
@@ -228,8 +228,8 @@
 <p id="rdfdpd"><strong>rdf.F90</strong> and <strong>rdfmol.F90</strong></p>
 <p>These utilities calculate radial distribution functions (RDFs) for all pairs of species or molecule types using available trajectory frames in a <em>HISTORY</em> file.</p>
 <p>The source codes for these utilities are normally compiled to produce the executables <code class="docutils literal notranslate"><span class="pre">rdf.exe</span></code> and <code class="docutils literal notranslate"><span class="pre">rdfmol.exe</span></code>, both of which can be compiled with OpenMP to speed up calculations. They can be run with the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./rdf.exe
-./rdfmol.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">rdf</span><span class="o">.</span><span class="n">exe</span>
+<span class="o">./</span><span class="n">rdfmol</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Seven command-line options can be invoked:</p>
@@ -246,7 +246,7 @@
 <p id="widominsertion"><strong>widom_insertion.F90</strong></p>
 <p>This utility calculates excess chemical potentials by means of Widom insertion, using the trajectory frames in a <em>HISTORY</em> file to provide configurations for randomised trial insertions.</p>
 <p>The source code for this utility is normally compiled to produce the executable <code class="docutils literal notranslate"><span class="pre">widom.exe</span></code> and can be compiled with OpenMP to speed up calculations. It can be run with the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./widom.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">widom</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Eight command-line options can be invoked:</p>

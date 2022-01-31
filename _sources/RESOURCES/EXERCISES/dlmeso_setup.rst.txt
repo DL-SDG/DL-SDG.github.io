@@ -19,9 +19,7 @@ In order to compile DL_MESO's codes and associated utilities, you will need at l
 
 Optionally, you can include an installed instance of MPI (e.g. Open-MPI) which includes compiler wrappers to use MPI libraries with DL_MESO's codes to speed up your calculations. An instance of the Java Runtime Environment (JRE) is also needed to use the GUI supplied with DL_MESO.
 
-All of the above can be installed using a Linux package manager - available via Windows Linux Subsystem if you are using Windows 10 - or either MacPorts or HomeBrew on Macs. For instance, if you are using Ubuntu, running 
-
-.. code-block:: bash
+All of the above can be installed using a Linux package manager - available via Windows Linux Subsystem if you are using Windows 10 - or either MacPorts or HomeBrew on Macs. For instance, if you are using Ubuntu, running ::
 
   sudo apt-get install build-essential
 
@@ -37,26 +35,20 @@ Compiling DL_MESO
 
 There are two major codes to compile (DL_MESO_LBE and DL_MESO_DPD) and a number of utilities.
 
-To compile DL_MESO_LBE with OpenMP multithreading and reasonable optimisation, go into the *dl_meso/WORK* directory in a terminal window and type one of the following commands:
-
-.. code-block:: bash
+To compile DL_MESO_LBE with OpenMP multithreading and reasonable optimisation, go into the *dl_meso/WORK* directory in a terminal window and type one of the following commands: ::
 
    c++ -O3 -openmp ../LBE/slbe.cpp -o lbe.exe
    mpicxx -O3 -openmp ../LBE/plbe.cpp -o lbe.exe
 
 substituting ``c++`` with your C++ compiler (e.g. ``g++``), ``mpicxx`` with the C++ compiler wrapped with MPI [#]_, and ``-openmp`` with the compiler flag needed to invoke OpenMP (e.g. ``-fopenmp`` for g++). The first command compiles the serial (single core) version of DL_MESO_LBE, while the second produces the parallel (multiple core) version. In both cases, the resulting executable will be *lbe.exe*.
 
-To compile DL_MESO_DPD, you will need to use a makefile to compile several Fortran modules and link them together as an executable. To do this, the *dl_meso/DPD/makefiles* directory has Makefiles available with and without MPI, with and without OpenMP. Choose the version you wish to compile and copy the required makefile into the *dl_meso/WORK* directory, renaming it as *Makefile*. This can then be invoked while in the *dl_meso/WORK* directory using the command:
-
-.. code-block:: bash
+To compile DL_MESO_DPD, you will need to use a makefile to compile several Fortran modules and link them together as an executable. To do this, the *dl_meso/DPD/makefiles* directory has Makefiles available with and without MPI, with and without OpenMP. Choose the version you wish to compile and copy the required makefile into the *dl_meso/WORK* directory, renaming it as *Makefile*. This can then be invoked while in the *dl_meso/WORK* directory using the command: ::
 
    make
 
 to produce the executable *dpd.exe*. Note that these makefiles assume you are using ``gfortran``: if you want to use a different compiler, open the makefile in a text editor and change the command in the line starting with ``FC=``.
  
-To compile the utilities, there is another makefile available in the *dl_meso/WORK* directory, which can be invoked with the command: 
-
-.. code-block:: bash
+To compile the utilities, there is another makefile available in the *dl_meso/WORK* directory, which can be invoked with the command: ::
 
    make -f Makefile-utils
 
@@ -74,9 +66,7 @@ Optional Python scripts
 
 Some Python3 scripts are available to carry out a simple DPD simulation workflow for one of the practical exercises and plot graphs of simulation outputs. These scripts are optional but very useful and recommended for the DPD exercises.
 
-As well as Python3, the following packages need to be installed using PIP (Python's Package Installer) [#]_:
-
-.. code-block:: bash
+As well as Python3, the following packages need to be installed using PIP (Python's Package Installer) [#]_: ::
 
    pip install docent
    pip install tqdm

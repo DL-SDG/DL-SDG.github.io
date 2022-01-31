@@ -30,9 +30,7 @@ which :ref:`can be related <LBE_scale>` to the speed of sound and kinematic visc
 
 **lbin.sys**
 
-This file specifies the simulation, in terms of the LBE models in use (including collision and interaction types), the system size, initial conditions, fluid properties at boundary conditions and how long the simulation needs to run. Each line of the *lbin.sys* file contains a keyword (with underscores between individual words) and a corresponding value, as shown in the following example (an extract from a file for one of DL_MESO's demonstration cases):
-
-.. code-block::
+This file specifies the simulation, in terms of the LBE models in use (including collision and interaction types), the system size, initial conditions, fluid properties at boundary conditions and how long the simulation needs to run. Each line of the *lbin.sys* file contains a keyword (with underscores between individual words) and a corresponding value, as shown in the following example (an extract from a file for one of DL_MESO's demonstration cases): ::
 
    space_dimension              2
    discrete_speed               9
@@ -87,9 +85,7 @@ A full list of the available keywords in *lbin.sys* and possible values can be f
 
 **lbin.spa**
 
-This file specifies boundary conditions that need to be applied at specific grid points. The format of the *lbin.spa* consists of lines, each of which includes the Cartesian (:math:`x`-, :math:`y`- and :math:`z`-dimensional) coordinates of a given grid point and a numerical code indicating the boundary condition to be applied, all separated by spaces. The following example is taken from part of an *lbin.spa* file for one of DL_MESO's demonstration cases:
-
-.. code-block::
+This file specifies boundary conditions that need to be applied at specific grid points. The format of the *lbin.spa* consists of lines, each of which includes the Cartesian (:math:`x`-, :math:`y`- and :math:`z`-dimensional) coordinates of a given grid point and a numerical code indicating the boundary condition to be applied, all separated by spaces. The following example is taken from part of an *lbin.spa* file for one of DL_MESO's demonstration cases: ::
 
    131 49 0 149
    132 49 0 149
@@ -137,9 +133,7 @@ While the *lbin.spa* file can be created and edited by hand - with the boundary 
 
 **lbin.init**
 
-This file is used by DL_MESO_LBE to specify the initial conditions for a LBE simulation at specific grid points. Each line in the *lbin.init* file consists of the Cartesian (:math:`x`-, :math:`y`- and :math:`z`-dimensional) coordinates of a given grid point followed by the velocity of the fluids at that grid point (giving :math:`x`-, :math:`y`- and :math:`z`-components), the  densities of all fluids, the concentrations of all solvents and the temperature. A short extract from an *lbin.init* file for one of DL_MESO's demonstration cases (for a two-fluid system) is given here:
-
-.. code-block::
+This file is used by DL_MESO_LBE to specify the initial conditions for a LBE simulation at specific grid points. Each line in the *lbin.init* file consists of the Cartesian (:math:`x`-, :math:`y`- and :math:`z`-dimensional) coordinates of a given grid point followed by the velocity of the fluids at that grid point (giving :math:`x`-, :math:`y`- and :math:`z`-components), the  densities of all fluids, the concentrations of all solvents and the temperature. A short extract from an *lbin.init* file for one of DL_MESO's demonstration cases (for a two-fluid system) is given here: ::
 
    26 15 0 0.0 0.0 0.0 0.0 2.0
    26 16 0 0.0 0.0 0.0 0.0 2.0
@@ -184,10 +178,8 @@ The file can be used to create a *lbin.init* file for a new simulation with the 
 
 As DL_MESO_LBE runs, messages about the simulation are printed to the screen or, in the case of a supercomputer with job submissions, a file for standard output. This provides a summary of the information included in the supplied input files and how the calculation is carried out, brief summaries of the simulation state at regular intervals, and performance/timing data for the calculation. Any error messages due to problems arising from the contents of input files will also appear here before DL_MESO_LBE is terminated early.
 
-The first messages (as shown in the example below) include a header about DL_MESO_LBE, a timestamp for when the program starts to run, a summary of the simulation based on information provided in the input files - including the lattice scheme and size, the numbers of fluids, solutes and temperature scalars, collisions, forcing and fluid interactions - and how the calculation is divided up among available processor cores and/or threads. In the case of running on multiple cores, DL_MESO_LBE includes a table showing which section of the grid is assigned to each core. 
+The first messages (as shown in the example below) include a header about DL_MESO_LBE, a timestamp for when the program starts to run, a summary of the simulation based on information provided in the input files - including the lattice scheme and size, the numbers of fluids, solutes and temperature scalars, collisions, forcing and fluid interactions - and how the calculation is divided up among available processor cores and/or threads. In the case of running on multiple cores, DL_MESO_LBE includes a table showing which section of the grid is assigned to each core. ::
 
-.. code-block::
-  
   Welcome to DL_MESO_LBE
   
   UKRI STFC/CCP5 Program Library Package
@@ -235,9 +227,7 @@ The first messages (as shown in the example below) include a header about DL_MES
 
 At intervals specified by the ``save_span`` keyword in *lbin.sys*, the total mass of all fluids, the masses of individual fluids and the overall system momentum are printed, along with the timestep number and the elapsed calculation time in seconds. If the number of equilibration time steps is specified in the *lbin.sys* file, a message will be printed once the equilibration period is complete.
 
-The fluid masses and momenta can be used to determine whether or not the calculation is running as expected and/or correctly. For instance: rapid changes in fluid masses are likely to indicate numerical instabilities in the LBE calculation, while convergence of system momentum to a constant value may indicate the system has reached a steady state. 
-
-.. code-block::
+The fluid masses and momenta can be used to determine whether or not the calculation is running as expected and/or correctly. For instance: rapid changes in fluid masses are likely to indicate numerical instabilities in the LBE calculation, while convergence of system momentum to a constant value may indicate the system has reached a steady state. ::
 
   399000       MASS: total = 719999, fluid 0 = 692008, fluid 1 = 27991.2
   3782.82      MOMENTUM: x: 1780.09, y: 3.83279e-05, z: -0.000806123
@@ -264,9 +254,7 @@ The fluid masses and momenta can be used to determine whether or not the calcula
 
 At the end of the calculation, DL_MESO_LBE prints the total elapsed calculation time in seconds, a timestamp when the program finishes, and a calculation efficiency measure: Millions of Lattice Updates per Second (MLUPS). The final message reminds the user to cite DL_MESO (either using its `website <https://www.ccp5.ac.uk/DL_MESO>`_ or its `article in Molecular Simulation <https://www.tandfonline.com/doi/abs/10.1080/08927022.2013.772297>`_) if the calculation results are published.
 
-It is possible to redirect the printed messages to a file instead of to the screen or standard output when launching DL_MESO_LBE, using a command such as:
-
-.. code-block::
+It is possible to redirect the printed messages to a file instead of to the screen or standard output when launching DL_MESO_LBE, using a command such as: ::
 
   ./lbe.exe > outputfile
 

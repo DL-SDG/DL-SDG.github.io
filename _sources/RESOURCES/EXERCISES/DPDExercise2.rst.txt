@@ -57,18 +57,14 @@ Change into the *LIPID3* directory and open the :ref:`FIELD <fielddlmeso>` file.
 
 Change into the *LIPID4* directory, open the :ref:`FIELD <fielddlmeso>` file and make the same changes to the numbers of molecules and water beads as you did for the third simulation.
 
-Now run each of the simulations in turn by entering each directory and using one of the following commands:
-
-.. code-block:: bash
+Now run each of the simulations in turn by entering each directory and using one of the following commands: ::
 
    ../dpd.exe
    mpirun -np 4 ../dpd.exe 
 
 to launch the executable found in the parent directory [#]_. 
 
-When each calculation has finished, run the required trajectory conversion utility to produce your file(s) to launch in VMD or OVITO from the trajectories in the :ref:`HISTORY <historydpd>` files. Again you can run the utility (located in your working directory) in each sub-directory:
-
-.. code-block:: bash
+When each calculation has finished, run the required trajectory conversion utility to produce your file(s) to launch in VMD or OVITO from the trajectories in the :ref:`HISTORY <historydpd>` files. Again you can run the utility (located in your working directory) in each sub-directory: ::
 
    ../traject_vtf.exe
    ../traject_xml.exe

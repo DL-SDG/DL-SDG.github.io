@@ -34,9 +34,7 @@ This simulation input file will model one fluid in a lattice grid of :math:`250 
 
 Before we can run the simulation, we will need to create an :ref:`lbin.spa <lbin_spa>` file. To do this, open the GUI, click the *LBE* button at the top and then *Define LBE System* on the left hand side. Click the *OPEN* button and then select *Set LBE Space*. In this window, select *top mid-grid bounce back* and *bottom mid-grid bounce back* in the pulldown boxes, and then click *Create*. This will create an :ref:`lbin.spa <lbin_spa>` file with bounce-back boundaries at the top and bottom of the box.
 
-To run the simulation, type in:
-
-.. code-block:: bash
+To run the simulation, type in: ::
 
   ./lbe.exe
 
@@ -44,9 +42,7 @@ and after it has finished, open the :ref:`lbout\*.vts <lboutsnapshot>` files in 
 
 To plot the properties along a straight line, you can apply the Plot Over Line filter and either move the line in the display window or select either X Axis or Y Axis, before clicking Apply to display the graphs. The Stream Tracer filter will find and plot flow streamlines for each simulation snapshot.
 
-To change the applied force or the relaxation time for the fluid, you can either open the :ref:`lbin.sys <lbin_sys>` file in the GUI - using the *set fluid parameters* and *set fluid forces* buttons respectively in the *Define LBE System* window - or open the same file in a text editor and modify the lines starting with the following:
-
-.. code-block:: bash
+To change the applied force or the relaxation time for the fluid, you can either open the :ref:`lbin.sys <lbin_sys>` file in the GUI - using the *set fluid parameters* and *set fluid forces* buttons respectively in the *Define LBE System* window - or open the same file in a text editor and modify the lines starting with the following: ::
 
   body_force_0
   relaxation_0
