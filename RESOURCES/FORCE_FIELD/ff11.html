@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Distance cutoffs &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <title>Distance cutoffs and Ewald sums &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -20,7 +20,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Force field schemes" href="ff12.html" />
+    <link rel="next" title="1-4 interaction scaling Factors" href="ff15.html" />
     <link rel="prev" title="Lennard-Jones Mixing Rules" href="ff10.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,7 +30,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ff12.html" title="Force field schemes"
+          <a href="ff15.html" title="1-4 interaction scaling Factors"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="ff10.html" title="Lennard-Jones Mixing Rules"
@@ -46,8 +46,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="distance-cutoffs">
-<span id="header-ff11"></span><h1>Distance cutoffs<a class="headerlink" href="#distance-cutoffs" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="distance-cutoffs-and-ewald-sums">
+<span id="header-ff11"></span><h1>Distance cutoffs and Ewald sums<a class="headerlink" href="#distance-cutoffs-and-ewald-sums" title="Permalink to this headline">¶</a></h1>
 <p>Recall that the non-bonded interactions are determined by summing up all possible pairs of atoms in the system. Quite often this is not feasible, and indeed, calculation of pair-wise interactions is one of the major bottle neck in molecular simulations.</p>
 <p>In practice, only the atoms that are within a certain distance, call the cutoff distance, <span class="math notranslate nohighlight">\(r_{cut}\)</span>, are considered in the calculations. Anything beyond the <span class="math notranslate nohighlight">\(r_{cut}\)</span> will be ignored.</p>
 <a class="reference internal image-reference" href="../../_images/dlp_2_1.png"><img alt="../../_images/dlp_2_1.png" class="align-center" src="../../_images/dlp_2_1.png" style="width: 279.5px; height: 263.90000000000003px;" /></a>
@@ -65,6 +65,10 @@
 </ol>
 <a class="reference internal image-reference" href="../../_images/ff11_1.png"><img alt="../../_images/ff11_1.png" class="align-center" src="../../_images/ff11_1.png" style="width: 407.4px; height: 88.8px;" /></a>
 <a class="reference internal image-reference" href="../../_images/ff11_2.png"><img alt="../../_images/ff11_2.png" class="align-center" src="../../_images/ff11_2.png" style="width: 554.45px; height: 314.6px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For molecular systems with periodic boundary conditions, the value of <span class="math notranslate nohighlight">\(r_{cut}\)</span> set must not be larger than half length of the smallest box dimensions. Otherwise, the minimum image convention cannot be applied to determine the distances between pairs of atoms for potential and force calculations.</p>
+</div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -72,10 +76,22 @@
 <p><strong>Cutoffs in electrostatic calculations</strong></p>
 <p>Unlike the LJ functions, the Coulombic function decays as <span class="math notranslate nohighlight">\(r^{-1}\)</span> so that discontinuity would be more pronounced even at large distances. In addition, the decay is also conditionally convergent, of which the results depend on the order of summation. This means the usual cutoff tricks for vdw interactions are not applicable and, in periodic systems, all charges would need to include in periodic images.</p>
 <a class="reference internal image-reference" href="../../_images/ff11_3.png"><img alt="../../_images/ff11_3.png" class="align-left" src="../../_images/ff11_3.png" style="width: 258.3px; height: 319.9px;" /></a>
-<p>One way to solve this is the use of Ewald summation.</p>
-<p>The method offers a solution to solving the full electrostatic problem by splitting it into two parts: one in <em>real space</em> and the other in the <em>reciprocal space</em>.</p>
+<p>One way to solve this is the use of Ewald summation. This method converts the summations that converges rapidly and absolutely in the Fourier space.</p>
+<p>It offers a solution to solving the full electrostatic problem by splitting it into two parts: one in <em>real space</em> and the other in the <em>reciprocal space</em>.</p>
 <p>In real space, complying with the usual cutoff concept, a convenient screening function (a Gaussian charge cloud) is added around all (delta-like) charges of opposite signs to make their interaction decay very fast at <span class="math notranslate nohighlight">\(r_{cut}\)</span>.</p>
 <p>The added screening functions can then be substracted in reciprocal space due to the boundary condition by using Fourier transforms.</p>
+<p>Finally, the completed Ewald sum requires an additional correction, known as the self energy correction, which is a constant, that arises from a Gaussian acting on its own site.</p>
+<p>In summary, the Ewald’s method replaces a potentially infinite sum in real space by two finite sums: one in real space, one in reciprocal space, and the self energy correction. The precision of the Ewald sum is controlled by three parameters: the <span class="math notranslate nohighlight">\(r_{cut}\)</span>, the convergence parameter <span class="math notranslate nohighlight">\(\alpha\)</span> and the largest reciprocal space vector, <span class="math notranslate nohighlight">\(k_{max}\)</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">In DL_POLY, the three Ewald parameters can be automatically determined by using the following directive in the <em>CONTROL</em> file: <br /> <br />
+<em>ewald precision 1d-6</em> <br /> <br />
+The quickest check on the accuracy of the Ewald sum is to compare the coulombic energy (U) and its virial (v) shown in the <em>OUTPUT</em> or <em>STATIS</em> files, where U = -v.</td>
+</tr>
+</tbody>
+</table>
 <p><a class="reference internal" href="#header-ff11"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -94,6 +110,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
@@ -110,8 +127,8 @@
   <p class="topless"><a href="ff10.html"
                         title="previous chapter">Lennard-Jones Mixing Rules</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="ff12.html"
-                        title="next chapter">Force field schemes</a></p>
+  <p class="topless"><a href="ff15.html"
+                        title="next chapter">1-4 interaction scaling Factors</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -135,7 +152,7 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ff12.html" title="Force field schemes"
+          <a href="ff15.html" title="1-4 interaction scaling Factors"
              >next</a> |</li>
         <li class="right" >
           <a href="ff10.html" title="Lennard-Jones Mixing Rules"

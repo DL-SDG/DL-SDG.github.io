@@ -24,8 +24,21 @@ Table of contents:
    ./md1
    ./md2
    ./md3
+   ./md6
    ./md4
    ./md5
 
 |
+
+.. image:: ../SIMULATIONS/IMAGES/iddy-reading.jpg
+   :scale: 15 %
+   :align: left
+
+|
+
+|
+
+D.C. Rapaport, 'The Art of Molecular Dynamics Simulation', 2nd Ed., Cambridge Univ. Press (2004)
+
+M.P. Allen and D.J. Tildersley, 'Computer Simulation of Liquids', 2nd Ed., Oxford Univ. Press (2017)
 

@@ -20,7 +20,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="System properties" href="md4.html" />
+    <link rel="next" title="Boundary Conditions" href="md6.html" />
     <link rel="prev" title="Molecular dynamics basics" href="md2.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,7 +30,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="md4.html" title="System properties"
+          <a href="md6.html" title="Boundary Conditions"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="md2.html" title="Molecular dynamics basics"
@@ -58,9 +58,10 @@
 </ul>
 <a class="reference internal image-reference" href="../../_images/dlp_2_4.png"><img alt="../../_images/dlp_2_4.png" class="align-center" src="../../_images/dlp_2_4.png" style="width: 272.25px; height: 408.0px;" /></a>
 <p>We can choose how to integrate the forces based on requirements for high computational speed, low memory demand, accuracy, stability (i.e. conservation of energy without drifting) and time reversibility. The use of a <em>symplectic</em> integrator provides time reversibility and long-term stability. One commonly-used integration scheme for MD simulations is Velocity Verlet (VV), which is second-order accurate (i.e. errors are proportional to the square of the timestep size <span class="math notranslate nohighlight">\(\Delta t\)</span>) and updates particle positions and velocities without requiring additional memory to do so.</p>
-<p>We can choose boundary conditions for our MD simulation to fit our application, although most of the time we use periodic boundary conditions (PBCs) to prevent surface effects dominating over bulk effects, as illustrated below. This approach limits the maximum size of the interaction cutoff <span class="math notranslate nohighlight">\(r_{cut}\)</span> to no more than half of the simulation cell width as spatial correlations beyond this are artificial, but it does enable us to use the <em>minimum image convention</em> to find the shortest possible distances between particle pairs for potential and force calculations.</p>
-<a class="reference internal image-reference" href="../../_images/dlp_2_3.png"><img alt="../../_images/dlp_2_3.png" class="align-center" src="../../_images/dlp_2_3.png" style="width: 303.09999999999997px; height: 263.9px;" /></a>
-<p>If very long-range interactions are required, e.g. for charge-based electrostatics, PBCs enable the use of <em>Ewald summation</em> to split the interactions into <em>real space</em> and <em>reciprocal space</em> parts: pairwise calculations with a cutoff are used for real space contributions, while the reciprocal space part deals with large numbers of periodic images for the system by applying Fourier transforms.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In DL_POLY, system trajectories can be saved into a file called <em>HOSTORY</em>. To do this, the directive <em>traj</em> must be included in the <em>CONTROL</em> file.</p>
+</div>
 <p><a class="reference internal" href="#header-md3"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -79,6 +80,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
@@ -95,8 +97,8 @@
   <p class="topless"><a href="md2.html"
                         title="previous chapter">Molecular dynamics basics</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="md4.html"
-                        title="next chapter">System properties</a></p>
+  <p class="topless"><a href="md6.html"
+                        title="next chapter">Boundary Conditions</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -120,7 +122,7 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="md4.html" title="System properties"
+          <a href="md6.html" title="Boundary Conditions"
              >next</a> |</li>
         <li class="right" >
           <a href="md2.html" title="Molecular dynamics basics"

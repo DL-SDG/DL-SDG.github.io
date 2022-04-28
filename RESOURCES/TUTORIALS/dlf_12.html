@@ -52,7 +52,7 @@
 <p>This page describes how you can redefine the ways atoms would behave in a molecular system.</p>
 <p>In molecular dynamics, the velocities and virials of atoms are updated according to the forces exert on them, often rescaled with some sort of pressure and temperature regulators called the barostat and thermostat, respectively. From such, the positions of the atoms are updated accordingly. These are called <em>free atoms</em> since their motions are not constrained.</p>
 <p>By default, all atoms are considered <em>free</em> in DL_POLY. However, you can redefine the states of atoms to <em>constrain</em>, <em>tether</em>, <em>rigid</em>, or <em>freeze</em>. To find out more details about these atom states, please consult DL_POLY User Manual. Here, you will be shown how to define these states in DL_FIELD.</p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Bond Constraints</strong></p>
 <p>The chemical bonds between two atoms are usually represented by some functional forms such as harmonic, to mimic the bond vibrations. Classically, this would be the fastest mode of motion and small MD timestep would be needed to account for this, especially the bonds that contained the H atoms.</p>
 <p>However, the timestep can be increased if the bond length is fixed. This is achieved by applying an additional force to restrict the position of atom relative to the other.</p>
@@ -107,7 +107,7 @@
 <p class="last">If the constrain switch is turned off (0), then the <em>CONSTRAIN</em> directive will be ignored. Also, only one <em>CONSTRAIN</em> directive is allowed for each Molecular Group.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Freeze atom</strong></p>
 <p>Atoms can be assigned in a frozen state, which means the atom remain static in space as if there is no forces apply on them. However, the positions of these atoms will be rescaled if the simulation box sizes change, as in the NPT ensembles.</p>
 <p>Similar to the <em>CONSTRAIN</em> state, the freeze option must be switched on (1) for DL_FIELD to read the <em>FREEZE</em> directive in the <em>control</em> file:</p>
@@ -149,7 +149,7 @@ CONSTRAIN  SOD1    h-bond
 <p class="last">If the freeze switch is turned off (0), then the <em>FREEZE</em> directive will be ignored. Also, only one <em>FREEZE</em> directive is allowed for each Molecular Group.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Tether atom</strong></p>
 <p>Unlike freeze atoms, restricted movements are allowed for tether atoms. A tethered atom is pegged to its initial position but is allowed to move about the initial position a if it is tethered to a spring.</p>
 <p>Once again, as before, to assign tether atoms, the tether option must be switched on (1) for DL_FIELD to read the <em>TETHER</em> directive in the <em>control</em> file:</p>
@@ -192,7 +192,7 @@ CONSTRAIN  SOD1    h-bond
 <p class="last">If the tether switch is turned off (0), then the <em>TETHER</em> directive will be ignored. Also, only one <em>TETHER</em> directive is allowed for each Molecular Group.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Rigid atom</strong></p>
 <p>So far, all atom states can be assigned individually to atoms. However, a number of atoms can be defined collectively and form a single rigid body where the positions of each rigid atom are fixed relative to one another. This effectively reduces the degrees of freedom and only the body translational and rotational motions are considered.</p>
 <p>For this reason, more than one atoms must be defined to form a rigid body. Once again, similar to other atom states mentioned above, the rigid option must be switched on for DL_FIELD to read the accompanied <em>RIGID</em> directive in the <em>control</em> file:</p>

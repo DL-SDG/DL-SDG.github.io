@@ -1,9 +1,13 @@
 .. Force field Introduction - non-bonded cutoffs 
 .. _Header_ff11:
 
-****************
-Distance cutoffs   
-****************
+.. |br| raw:: html
+
+   <br />
+
+*******************************
+Distance cutoffs and Ewald sums  
+*******************************
 
 Recall that the non-bonded interactions are determined by summing up all possible pairs of atoms in the system. Quite often this is not feasible, and indeed, calculation of pair-wise interactions is one of the major bottle neck in molecular simulations. 
 
@@ -37,6 +41,9 @@ However, this behaviour maybe negligible if :math:`r_{cut}` is large enough. In 
    :scale: 65%
    :align: center
 
+.. Note::
+   For molecular systems with periodic boundary conditions, the value of :math:`r_{cut}` set must not be larger than half length of the smallest box dimensions. Otherwise, the minimum image convention cannot be applied to determine the distances between pairs of atoms for potential and force calculations.  
+
 |
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
@@ -49,12 +56,22 @@ Unlike the LJ functions, the Coulombic function decays as :math:`r^{-1}` so that
    :scale: 70%
    :align: left 
 
-One way to solve this is the use of Ewald summation.
+One way to solve this is the use of Ewald summation. This method converts the summations that converges rapidly and absolutely in the Fourier space.
 
-The method offers a solution to solving the full electrostatic problem by splitting it into two parts: one in *real space* and the other in the *reciprocal space*.
+It offers a solution to solving the full electrostatic problem by splitting it into two parts: one in *real space* and the other in the *reciprocal space*.
 
 In real space, complying with the usual cutoff concept, a convenient screening function (a Gaussian charge cloud) is added around all (delta-like) charges of opposite signs to make their interaction decay very fast at :math:`r_{cut}`.  
 
 The added screening functions can then be substracted in reciprocal space due to the boundary condition by using Fourier transforms.
+
+Finally, the completed Ewald sum requires an additional correction, known as the self energy correction, which is a constant, that arises from a Gaussian acting on its own site.
+
+In summary, the Ewald's method replaces a potentially infinite sum in real space by two finite sums: one in real space, one in reciprocal space, and the self energy correction. The precision of the Ewald sum is controlled by three parameters: the :math:`r_{cut}`, the convergence parameter :math:`\alpha` and the largest reciprocal space vector, :math:`k_{max}`. 
+
+:TIP:
+   In DL_POLY, the three Ewald parameters can be automatically determined by using the following directive in the *CONTROL* file: |br| |br|
+   *ewald precision 1d-6* |br| |br|
+   The quickest check on the accuracy of the Ewald sum is to compare the coulombic energy (U) and its virial (v) shown in the *OUTPUT* or *STATIS* files, where U = -v. 
+    
 
 :ref:`^ GO TO TOP ^<Header_ff11>` 

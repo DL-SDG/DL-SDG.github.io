@@ -58,7 +58,7 @@
 <li>Molecular topology analysis using the DL_F Notation (for xyz, mol2 files).</li>
 <li>Combination of both (for xyz).</li>
 </ol>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Template Matching</strong></p>
 <p>This atom typing procedure involves matching of molecular system against pre-defined MOLECULE templates in the <em>sf</em> files or the <em>udff</em> file if available. DL_FIELD will give an error if no suitable template is found.</p>
 <p>Once a MOLECULE is identified, ATOM_TYPEs are assigned according to the connectivity information and the atoms are rearranged according to the template assignment.</p>
@@ -74,7 +74,7 @@
 <a class="reference internal image-reference" href="../../_images/dl_f_8_1.png"><img alt="../../_images/dl_f_8_1.png" class="align-center" src="../../_images/dl_f_8_1.png" style="width: 592.8000000000001px; height: 276.0px;" /></a>
 <p>The disadvantage of using template matching procedure is that the MOLECULE template construction can be tedious and the ATOM_TYPEs must be pre-assigned by the users.</p>
 <p>Diagram above illustrates the FF conversion of ethyl acetate (ethyl ethanoate) for Amber GAFF force field. In the PDB file, the MOLECULE_KEY ETAC must be inserted in the PDB file. DL_FIELD will base on this information to look for the corresponding MOLECULE template to produce the DL_POLY FF files.</p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Molecular topology analysis</strong></p>
 <p>Carry out detailed molecular topology analysis. From such, DL_FIELD can determine the chemical nature of every atom in the system that naturally expresses by the ATOM_TYPEs, by making use of the DL_F Notation (see next page).</p>
 <p>In summary, the topology analysis approach has the following characteristics:</p>
@@ -84,7 +84,7 @@
 <li>Limited fine-tuning options. For example, only allow constrains on H-containing bonds.</li>
 <li>Applicable to OPLS2005, PCFF and CVFF only.</li>
 </ul>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Combination of both procedures</strong></p>
 <p>Some FF schemes require the use of templates to setup FF models. CHARMM and AMBER are two of such examples and they are called the template-based FF. Normally, PDB files would be needed. However, DL_FIELD allows the use of xyz file, provided the MOLECULE templates are available, either in the <em>.sf</em> file or the udff file.</p>
 <p>In the case, DL_FIELD will automatically identify the molecules in the system and search for a suitable template to match with the molecules. Once a template is found, it will carry out the template matching procedure as mentioned above.</p>

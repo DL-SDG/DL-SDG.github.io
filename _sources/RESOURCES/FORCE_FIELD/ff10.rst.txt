@@ -22,6 +22,13 @@ Out of these rules, the geometric and arithmatic rules are being used the most f
 .. Note::
    Mixing rules have minimal scientific justification but appear to work 'quite well'. Also, the mixing rules should only apply to the same function type. For example, you cannot mix parameters between LJ and Buckingham functions. Neither should you mix parameters from LJ 12-6 and, say, LJ 9-6.   
 
+.. Note::
+   In DL_POLY, mixing rules can be defined using the *vdw mix* directive in the *CONTROL* file. For example:
 
+   *vdw mix fender* 
+   
+   for Fender-Halsey type of mixing.
+
+   In DL_FIELD, mixing rules can be independantly set for the :math:`\epsilon` and :math:`\sigma` parameters. For the Slater-Kirkwood scheme, DL_FIELD will obtain the atomic data from the *dl_field.atom_data* file by matching against atom types in DL_F Notation..  
 
 :ref:`^ GO TO TOP ^<Header_ff10>` 

@@ -50,7 +50,7 @@
   <div class="section" id="structures-and-operations">
 <span id="header-dlm-2"></span><h1>Structures and operations<a class="headerlink" href="#structures-and-operations" title="Permalink to this headline">¶</a></h1>
 <p>This page illustrates the software’s structural aspects and provides a brief summary on how it works.</p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>File structures</strong></p>
 <p>The DL_MESO package comes with the following file components:</p>
 <ul class="simple">
@@ -72,7 +72,7 @@
 <li>The DL_MESO user manual in the <em>MAN/</em> directory.</li>
 <li>A sample work space in the <em>WORK/</em> directory. This includes a runscript to launch the GUI (<em>rungui</em>) and a Makefile for compiling DL_MESO’s utilities (<em>Makefile-utils</em>). This is the preferred location for compiling DL_MESO_LBE and DL_MESO_DPD, although the user can create their own directory at the same level if they wish to do so.</li>
 </ul>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Operations</strong></p>
 <p>To run either DL_MESO_LBE or DL_MESO_DPD, you will need to supply input files to describe the simulation you wish to carry out. These need to be placed inside the directory where you want to run the program, ideally in the same directory as the executable file created during compilation.</p>
 <p>The input files for DL_MESO_LBE typically include:</p>
@@ -89,7 +89,7 @@
 <li><a class="reference internal" href="dlm_4.html#configdlmeso"><span class="std std-ref">CONFIG</span></a> - initial configuration specifying positions etc. at start of simulation (optional)</li>
 </ul>
 <p>which are described in more detail in <a class="reference internal" href="dlm_4.html#header-dlm-4"><span class="std std-ref">DL_MESO_DPD files</span></a>. Running DL_MESO_DPD produces an <a class="reference internal" href="dlm_4.html#outputdlmeso"><span class="std std-ref">OUTPUT</span></a> file with running information about the simulation and (optionally) a simulation trajectory file and a file with tabulated system properties. To enable a simulation restart if the calculation is interrupted, an <a class="reference internal" href="dlm_4.html#exportrestart"><span class="std std-ref">export</span></a> file with a detailed simulation snapshot and a <a class="reference internal" href="dlm_4.html#revivedlmeso"><span class="std std-ref">REVIVE</span></a> file with statistical accumulators and random number generator states are written every so often, both of which can be read to resume a previous calculation or start a new calculation from that state.</p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Program execution</strong></p>
 <p>The steps below occur when either DL_MESO code is run:</p>
 <ol class="arabic simple">

@@ -21,3 +21,14 @@ Table of contents:
 
    ./dlp_6
 
+|
+
+.. image:: ../SIMULATIONS/IMAGES/iddy-reading.jpg
+   :scale: 15 %
+   :align: left
+
+|
+
+|
+
+W. Smith, C.W. Yong and P.M. Rodger, 'DL_POLY: Application to molecular simulation', *Mol. Sim.* **28**, 385-471 (2002)

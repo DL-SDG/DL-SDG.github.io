@@ -20,7 +20,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Distance cutoffs" href="ff11.html" />
+    <link rel="next" title="Distance cutoffs and Ewald sums" href="ff11.html" />
     <link rel="prev" title="Lennard-Jones 12-6 Functions" href="ff9.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,7 +30,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ff11.html" title="Distance cutoffs"
+          <a href="ff11.html" title="Distance cutoffs and Ewald sums"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="ff9.html" title="Lennard-Jones 12-6 Functions"
@@ -58,6 +58,13 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Mixing rules have minimal scientific justification but appear to work ‘quite well’. Also, the mixing rules should only apply to the same function type. For example, you cannot mix parameters between LJ and Buckingham functions. Neither should you mix parameters from LJ 12-6 and, say, LJ 9-6.</p>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In DL_POLY, mixing rules can be defined using the <em>vdw mix</em> directive in the <em>CONTROL</em> file. For example:</p>
+<p><em>vdw mix fender</em></p>
+<p>for Fender-Halsey type of mixing.</p>
+<p class="last">In DL_FIELD, mixing rules can be independantly set for the <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> parameters. For the Slater-Kirkwood scheme, DL_FIELD will obtain the atomic data from the <em>dl_field.atom_data</em> file by matching against atom types in DL_F Notation..</p>
+</div>
 <p><a class="reference internal" href="#header-ff10"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -76,6 +83,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
@@ -93,7 +101,7 @@
                         title="previous chapter">Lennard-Jones 12-6 Functions</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="ff11.html"
-                        title="next chapter">Distance cutoffs</a></p>
+                        title="next chapter">Distance cutoffs and Ewald sums</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -117,7 +125,7 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ff11.html" title="Distance cutoffs"
+          <a href="ff11.html" title="Distance cutoffs and Ewald sums"
              >next</a> |</li>
         <li class="right" >
           <a href="ff9.html" title="Lennard-Jones 12-6 Functions"

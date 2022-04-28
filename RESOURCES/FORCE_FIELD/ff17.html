@@ -1,0 +1,168 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Parameter fittings &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Thermostats and barostats (system regulators)" href="../DOCUMENTS/thermostat_barostat.html" />
+    <link rel="prev" title="Atom typing" href="ff16.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../DOCUMENTS/thermostat_barostat.html" title="Thermostats and barostats (system regulators)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ff16.html" title="Atom typing"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="parameter-fittings">
+<span id="header-ff17"></span><h1>Parameter fittings<a class="headerlink" href="#parameter-fittings" title="Permalink to this headline">¶</a></h1>
+<p>Recall that a molecular system behaviour is driven by the force field which consists of a set of mathematical (potential) functions that represent the various interaction components of the atoms in molecules. This section will give you a rough idea how parameters of these functions are adjusted, or tuned, to model different chemical behaviour of atoms.</p>
+<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<p>In a nutshell, the goal of fitting parameters is to develop a FF model that reproduces experimental measurements to as close as possible. If the experimental measurement is not available, then quantum mechanical (QM) data will be used. In general, the parameter fitting strategy is achieved via a combination of scientific and chemical intuitive approaches. Many in fact regard parameter fitting execercies as an arti!</p>
+<p>Diagram below shows a summary of a fitting procedure. The paramaters are fitted in cyclic steps until the energies or calculations (with respect to a chosen standard such as experiments) are converged to within a tolerence limit, tweaking the parameters along the way.</p>
+<a class="reference internal image-reference" href="../../_images/ff17_1.png"><img alt="../../_images/ff17_1.png" class="align-center" src="../../_images/ff17_1.png" style="width: 728.4px; height: 506.4px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Similar to atom typing, there is no universal protocol to follow how potential parameters would be derived or fitted. Each FF scheme uses
+different levels of theories, techniques and procedures to obtain these numbers that approximately represent the behaviour of the molecules.</p>
+</div>
+<p>The tolerence limits can be arbitrary. For instance, deviation of bond lengths (between the experiments and calculations) to within, say 0.01 angstrom; deviation of bond angle to within 2 degrees, etc.</p>
+<p>Since there are so many parameters would need to be optimised, in practice, the following approaches are taken to reduce the burden and scope of fittings:</p>
+<blockquote>
+<div><ul class="simple">
+<li>some of the parameters were held fixed (perhaps predetermined from a smaller dataset) so as to fit other parameters over a larger dataset.</li>
+<li>assign same parameter sets to atoms with the same bond orders or hybridised orbitals.</li>
+<li>limit the scope of fittings to a certain class of molecules, which only consist of certain number of elements.</li>
+<li>for vdw parameters, use of vdw mixing rules to obtain vdw parameters between different atom types.</li>
+</ul>
+</div></blockquote>
+<p>Furthermore, it is more tractable to carry out fitting procedures in stepwise fashions, as shown above. Also, the quality of the FF scheme is generally improved if the parameters were fitted to a large number of test molecules.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Usually, different atom types would have different sets of parameters, reflecting different chamical behaviour of atoms. Larger number of atom types for a smaller set of elements would also improve accuracy of the FF for molecules that contain these elements. However, larger number of atom types also means more parameters would need to be optimised, and increases the FF library size.</p>
+</div>
+<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<p>Below shows a summary of the class of materials and some of the measurements to which the parameters can be fitted to.</p>
+<p><strong>Pure solvents</strong>:
+heats of vaporisation, molecular volumes, heat capacities.</p>
+<p><strong>Aqueous</strong>:
+free energy of solvation, partial molar volumes.</p>
+<p><strong>Crystals</strong>:
+heats of sublimation, lattice parameters.</p>
+<p><strong>Force constants</strong>:
+IR, Raman spectra, <em>ab initio</em> QM.</p>
+<p><strong>Torsional surfaces</strong>:
+Microwave, NMR spectroscopies, <em>ab initio</em> QM scan.</p>
+<p>Depends on the purposes of a FF scheme, a FF designer may only emphasise a subset of measurements and materials for fittings.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The scope of FF applicability depends on the classes of materials and their phases to which they were fitted to. This is why sometimes a software package will report missing parameters if the structure has a chemical space that is beyond the scope of the FF scheme.</p>
+</div>
+<p><a class="reference internal" href="#header-ff17"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../knowledge.html">Knowledge Center</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ff16.html"
+                        title="previous chapter">Atom typing</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../DOCUMENTS/thermostat_barostat.html"
+                        title="next chapter">Thermostats and barostats (system regulators)</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../DOCUMENTS/thermostat_barostat.html" title="Thermostats and barostats (system regulators)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ff16.html" title="Atom typing"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

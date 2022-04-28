@@ -5,6 +5,7 @@
 
 Welcome to the DL_Software Digital Guide (DL_SDG) 
 ====================================================
+(DL_SDG ver 2.0, last update: February 2022)
 
 .. image:: image/DL_Software_logo.png
     :width: 258px

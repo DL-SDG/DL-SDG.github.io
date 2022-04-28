@@ -56,18 +56,19 @@
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the magnitude of the potential well (the minimum possible potential value) and <span class="math notranslate nohighlight">\(\sigma\)</span> is the distance where the potential equals zero. Illustrated in the graph below, this potential models both the Pauli exclusion principle with repulsions at short distances and attractive van der Waals forces at longer distances.</p>
 <p>A maximum <em>cutoff</em> distance between particle pairs <span class="math notranslate nohighlight">\(r_{cut}\)</span> is usually selected for calculating pair potentials and their resulting forces to make these calculations more feasible and computationally efficient. While this can lead to discontinuities in both properties depending on the pair potential in use, we can mitigate these either by using (mean field) long-range corrections or by shifting and/or truncating the potential to be zero at the cutoff.</p>
 <a class="reference internal image-reference" href="../../_images/dlp_2_2.png"><img alt="../../_images/dlp_2_2.png" class="align-center" src="../../_images/dlp_2_2.png" style="width: 533.6px; height: 318.8px;" /></a>
-<p>The choice of pair potential enables us to define a Lagrangian for the system which is also based on the particles’ kinetic energy):</p>
+<p>The choice of pair potential enables us to define a <a href="md2_lagrangian.html" onclick="window.open('md2_lagrangian.html',
+         'newwindow', 'width=500,height=250'); return false;">Lagrangian</a> for the system which is also based on the particles’ kinetic energy):</p>
 <div class="math notranslate nohighlight">
 \[L \left(\vec{r}_i, \vec{v}_i \right) = \frac{1}{2} \sum_{i=1}^{N} m_i v_i^2 - \sum_{i=1}^{N-1} \sum_{j&lt;i}^{N} V \left(r_{ij}\right),\]</div>
 <p>as well as determine the forces acting on both particles in a pair:</p>
 <div class="math notranslate nohighlight">
 \[\vec{f}_{ij} = -\vec{\nabla} V \left( r_{ij} \right) = -\frac{\partial V \left(r_{ij}\right)}{\partial r_{ij}} \frac{\vec{r}_{ij}}{r_{ij}},\]</div>
-<p>noting that these forces are applied along the vector between the two particles, <span class="math notranslate nohighlight">\(\vec{r}_{ij} = \vec{r}_j - \vec{r}_i\)</span>, and are equal (in value) and opposite (in direction). The equal and opposite forces between pairs of atoms mean that the total momentum for the system <span class="math notranslate nohighlight">\(\sum_i m_i \vec{v}_i\)</span> cannot change and its centre-of-mass position <span class="math notranslate nohighlight">\(\frac{\sum_i m_i \vec{r}_i}{\sum_i m_i}\)</span> should remain fixed, provided no external forces or changes to particle velocities are applied.</p>
+<p>noting that these forces are applied along the vector between the two particles, <span class="math notranslate nohighlight">\(\vec{r}_{ij} = \vec{r}_j - \vec{r}_i\)</span>, and, according to Newton’s third law, are equal (in value) and opposite (in direction). The equal and opposite forces between pairs of atoms mean that the total momentum for the system <span class="math notranslate nohighlight">\(\sum_i m_i \vec{v}_i\)</span> cannot change and its centre-of-mass position <span class="math notranslate nohighlight">\(\frac{\sum_i m_i \vec{r}_i}{\sum_i m_i}\)</span> should remain fixed, provided no external forces or changes to particle velocities are applied.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The direction for the vector between a pair of particles ultimately does not make a difference to the forces acting on each particle, although in practice calculations need to use the selected sign convention consistently.</p>
 </div>
-<p>The net force acting on each particle, <span class="math notranslate nohighlight">\(\vec{F}_i = m_i \frac{\partial \vec{v}_i}{\partial t} = \sum_{j \neq i} \vec{f}_{ij}\)</span>, is used to determine its motion by integrating over time:</p>
+<p>From Newton’s second law, the net force acting on each particle, <span class="math notranslate nohighlight">\(\vec{F}_i = m_i \frac{\partial \vec{v}_i}{\partial t} = \sum_{j \neq i} \vec{f}_{ij}\)</span>, is used to determine its motion by integrating over time:</p>
 <div class="math notranslate nohighlight">
 \[\vec{v}_i \left(\tau\right) = \vec{v}_i \left( 0 \right) + \int_{0}^{\tau} \frac{d \vec{v}_i}{dt} dt = \vec{v}_i \left( 0 \right) + \int_{0}^{\tau} \frac{\vec{F}_i}{m_i} dt\]</div>
 <div class="math notranslate nohighlight">
@@ -90,6 +91,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>

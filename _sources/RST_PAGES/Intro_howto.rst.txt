@@ -35,4 +35,18 @@ All of the above will appear in various places throughout the resource centre; h
 :TIP:
    Clicking on hyperlinks: If you want to open a hyperlink in a new tab,  click the middle button of the mouse - this opens a new tab - and then click on the new tab!
 
+|
 
+.. image:: ../RESOURCES/SIMULATIONS/IMAGES/Orange_bar.png
+
+**Lost in space**
+
+Feeling lost and don't know where to go from here? Well, here is a rough guide:
+
+Panel on the left shows the main portals to various topics and information.
+
+**Resources** - Anything about DL_Software: general information, tutorials, excercises
+
+**Knowledge Center** - introduction to modelling methods. For example, molecular dynamics, lattice boltzmann, and related topics.
+
+**Simulations** - Step-by-step pratical guide to running simulations, from model setup to results analysis.

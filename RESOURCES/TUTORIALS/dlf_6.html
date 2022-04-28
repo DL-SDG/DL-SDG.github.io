@@ -60,25 +60,25 @@
 <p>The <em>switch</em> activates the feature if it is 1. Otherwise, the value 0 will switch it off.</p>
 <p>The <em>concentration</em> is a number which goes with the <em>unit</em>. Both pieces of information would be needed for DL_FIELD to duplicate a number of ‘single-unit’ structures in the system.</p>
 <p>Finally, the <em>cutoff_distance</em> is the minimum distance in Angstrom that is permitted between any two structures during the duplication process.</p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Setup a liquid model</strong></p>
 <p>In DL_FIELD, a liquid is considered to be a system consists of purely a number of ‘single-unit’ structures. For example, to setup a pure ethanoic acid liquid system, the single-unit input structure would consists of a single ethanoic acid molecule. The following parameters:</p>
 <p><em>1</em> &nbsp; &nbsp; <em>1.05</em> &nbsp; &nbsp; <em>g/cm^3</em> &nbsp; &nbsp; <em>1.9</em></p>
 <p>will instruct DL_FIELD to setup an ethanoic acid liquid system of density 1.05 g/cm <sup>3</sup>. Each molecule must be separated by at least 1.9 Angstrom from one another.</p>
 <p>Alternatively, DL_FIELD also recognises the density unit in kg/m <sup>3</sup>.</p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Setup a solution model</strong></p>
 <p>A solution model is considered to consist of at least two components in the liquid state - the solute and solvent molecules. For example, to set up a 0.1 M concentration of ethnoic acid in water, the input file would only need to be a single ethanoic acid molecule. Set the following parameters:</p>
 <p><em>1</em> &nbsp; &nbsp; <em>1.0</em> &nbsp; &nbsp; <em>mol/dm^3</em> &nbsp; &nbsp; <em>4.0</em></p>
 <p>Then, switch on the solvation feature (more details in the next page), and select one of the water models (TIP3P_O, say) as the solvent molecules.</p>
 <p>DL_FIELD will automatically calculate the number of ethanoic acid require base on the concentration and simulation box size specified. Then, duplicate the number of ethanoic acid, with a distance of at least 4 angstroms apart from one another. After that, the resultant system will be populated with the solvent molecules.</p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Custom duplication</strong></p>
 <p>DL_FIELD also permits user to specify the exact number of ‘single-unit’ structures to be duplicated. For instance:</p>
 <p><em>1</em> &nbsp; &nbsp; <em>5</em> &nbsp; &nbsp; <em>molecules</em> &nbsp; &nbsp; <em>6.0</em></p>
 <p>will instruct DL_FIELD to duplicate five ‘single-unit’ structures, each much be separated at least 6.0 angstrom from one another.</p>
 <p>Users also have the option to solvate the system after duplication.</p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Cutoff values</strong></p>
 <p>The way how the single-unit structures distribute in a simulation box depends very much on the value of cutoff. In general, the larger the value the more random, and evenly distribute they would be. In any case, all duplicated structures will be orientated in some random orientation before they are placed in the simuation box.</p>
 <p>Choosing a suitable cutoff value therefore is a matter of choice and trial and error. Basically, a liquid system would need a small cutoff value (typical value: 1.8 ~ 2.5 angstrom). For a dilute solution, typical value can vary a lot, but at least 5.0 angstrom or larger.</p>

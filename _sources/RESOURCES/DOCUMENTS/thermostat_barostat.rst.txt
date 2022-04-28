@@ -1,0 +1,240 @@
+.. _Thermostat_barostat:
+
+Thermostats and barostats (system regulators)
+=============================================
+
+There is a range of integration techniques available in DL_POLY to bring
+and maintain a model system on **N** particles to a targeted volume
+(**V**), energy (**E**) or temperature (**T**) via *NVE*
+(microcanonical) and *NVT* (canonical) ensembles, and pressure (**P**)
+via *NPT* and *NsT* (isobaric-isothermal) ensembles.
+
+Thermostats help drive the model system to the desired target
+temperature, :math:`T_{target}`, and need a user-specified relaxation time or
+a friction frequency, depending on its definition within the equations
+of motion. Barostats help drive the system to the desired target
+pressure, :math:`P_{target}`, and also need a user-specified relaxation time
+or a friction frequency, depending on its definition within the
+equations of motion. These time-related constants regulate the eagerness
+with which the thermostat and/or barostat (collectively called the
+‘system regulators’) apply control onto the system in order to maintain
+its temperature and/or pressure (collectively called the ‘system
+parameters’) to the desired targeted values (thermodynamic state). In
+general, the larger the value of the relaxation time (the smaller the
+frction frequency), the slower the response of the regulators to
+maintain the targeted parameters.
+
+If the relaxation time is too large then the integrator will allow the
+system to relax but it will be difficult to maintain the desired system
+parameters close to their targeted values. This could lead to the system
+responding more slowly to fluctuations in the system parameters or
+obtaining values offset from the targeted values.
+
+If the relaxation time is too small the integrator will maintain the
+system parameter too vigorously and it may not allow the system to relax
+properly or even lead to large uncontrolled fluctuations of the system
+regulators around their targeted values.
+
+There are no unique ‘ideal values’ for the relaxation times: their
+choice is dependent on the type of system being modelled and the nature
+of the regulators (equation of motions). However, for many atomistic
+systems a typical value for a thermostat relaxation time is within the
+interval of **0.2 to 2.0 ps** (e.g. **0.75 ps**) and a typical value for a
+barostat relaxation time is within the interval of **0.5 to 4.0 ps**.
+(e.g. **1.5 ps**).
+
+Check the temperature of the system in the *STATIS* or *OUTPUT* file to see if
+you are happy with the temperature and pressure fluctuations.
+
+It is worth noting that not all integrators generate correct ensembles
+and hence not all of them can sample correctly the equilibrium or be
+used correctly for non-equilibrium simulations. However, all of them
+have their own uses and it is generally a matter of preference which one
+should be used, especially for equilibration.
+
+Temperature rescale
+~~~~~~~~~~~~~~~~~~~
+
+Another way to maintain the temperature of the system is by using
+brute-force rescaling of the particle velocities to maintain precisely
+the specified target temperature (given in the *CONTROL* file) at
+user-specified intervals of time. This option is only recommended for
+equilibrating the system at the initial stage. Since this option
+interferes with the integrators’ temperature fluctuations, the forced
+dynamics do not correspond to any ensemble dynamics and any properties
+measured while using this option should not be used for system sampling.
+
+Temperature rescaling will be activated in DL_POLY by using the
+directive *equilibration*. Such rescaling only applies while the MD
+timestep number is less than the specified number of *equilibration*
+steps in the *CONTROL* file. Once the timestep number exceeds the number
+of *equilibration* steps (i.e. when the number of *steps* is larger), 
+only then are the system regulators from the selected integrator applied.
+
+Different types of system regulators have different characteristics that
+perform suitably depending on the system types. There is a vague
+consensus, often with weak scientific argument but largely an empirical
+‘community-led’ preference, to choose one type over the others. The
+preferred type for equilibration purposes is the Berendsen thermostat as
+it controls each particle velocity directly down to target temperature.
+This could lead to 'the flying icecube' effect if no control is
+exercised to the centre of mass motion gathered by this algorithm.
+However, this undesired effect is counteracted by default in DL_POLY.
+
+Types of system regulators
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two broad types of system regulators are **deterministic** and
+**stochastic**. From a given initial state, deterministic regulators act
+consistently (at least to machine precision) on a system regardless of
+how a simulation is run.
+
+Stochastic regulators depend upon the use of pseudorandom number
+generators, whose setup may affect the results of a simulation. That
+said, (i) generators and their initial states can be selected to give
+consistent results for different runs, and (ii) regulators with
+correctly defined dynamics should give statistically similar results
+even for runs with different generator setups.
+
+Coupling methods
+~~~~~~~~~~~~~~~~
+
+Evans thermostat
+----------------
+
+It couples the particles in the system to a heat
+‘bath’ via a kinetic temperature constraint that generates a
+self-adjusting velocity (kinetic) friction. It generates a proper
+*NVE\ kin* ensemble and can be used for systems with a steady flow. It
+can be used for equilibration. It is suitable for soft condensed matter
+systems such as liquids.
+
+Langevin thermostat
+-------------------
+
+It couples the system to a coupled viscous
+background (with a user-defined kinetic friction) and a **stochastic**
+heat ‘bath’ (with random frictional forces). The effect of the algorithm
+is to thermostat that system on a local scale – 'cold' particles are
+given energy whereas 'hot' particles are cooled down. It generates a
+proper *NVT* ensemble. It is suitable for soft condensed matter systems
+such as fluids and such with varying density. The thermostat is suitable
+for biological systems (e.g. proteins and water) as well as solids in
+condensed phase. It can use larger time steps than other thermostats.
+The thermostat adds a random centre of mass motion that has zero mean,
+i.e. there will not be a long-term drift of the centre of mass.
+
+Andersen thermostat
+-------------------
+
+It randomly selects particles and replaces
+their velocities with values **randomly** chosen from a
+Maxwell-Boltzmann distribution for the target temperature.
+**Stochastic** collision operator determines the number of particles
+whose velocities are replaced. The thermostat is not a true *NVT*
+ensemble. However, it is still suitable and popular for soft condensed
+matter systems such as fluids and biological, provide it is not used for
+the calculation of exact dynamical properties. If no care is taken the
+original algorithm may lead to centre of mass drift. However, this is
+counteracted in all modern versions of the algorithm.
+
+Berendsen thermostat
+--------------------
+
+It couples the system to a virtual heat 'bath'
+via a brute force velocity rescaling, only moderated by the relaxation
+time parameter. Suitable for equilibration. However, its direct
+rescaling of velocities results in wrong equipartition of energy
+components that leads to systematic global motion of the system (flying
+ice cube). This effect is counteracted nowadays but it does not sample
+correctly the *NVT* ensemble and as such is non-ergodic. In general, it
+is thought the Berendsen approach is quite suitable for equilibration
+purposes (e.g. a steep descent to :math:`T_{target}`) but not recommended for
+sampling. Although, if a system is well defined by a model and in
+equilibrium, all integrators should generate the same energies and
+virials.
+
+Nosé-Hoover thermostat
+----------------------
+
+It defines a mass for the heat 'bath'
+governed by the relaxation parameter. It results in slow, decreasing
+fluctuations of the system kinetic energy towards the desired
+:math:`T_{target}`. It samples the *NVT* (canonical ensemble) and is
+considered the gold standard by many communities. It is suitable for all
+condensed matter systems (liquids, solutions, biological systems).
+
+GST thermostat
+--------------
+
+The Gentle Stochastic Thermostat (GST) is an
+extension on the Nosé-Hoover thermostat in which the Nosé-Hoover
+thermostat friction has its own Brownian dynamics, governed by a
+Langevin friction. The GST samples the *NVT* (canonical ensemble) and is
+considered the new gold standard. It is the only ensemble that warrants
+ergodicity by construction and thus is suitable for all model systems.
+
+DPD thermostat
+--------------
+
+Dissipative Particle Dynamics (DPD) is a pairwise
+generalised form of the Langevin thermostat. It applies random ('heat
+bath') and frictional (viscous) forces to pairs of particles within a
+cutoff. It conserves both system-wide and local momentum and is thus
+Galilean invariant, i.e. it does not produce global motion (flying ice
+cube) for static systems while providing the correct hydrodynamic
+behaviour if flow fields are applied. Dissipative (friction) force terms
+can be related to fluid viscosity and self-diffusivity, although
+relationships are complex and affected by particle interactions. It can
+use larger time steps than other thermostats. It is suitable for soft
+condensed matter systems (including those with flow fields) at coarse
+grain length scales, intended for mesoscopic (DPD) simulations.
+
+Berendsen barostat
+------------------
+
+It couples the system to a virtual external
+pressure ‘bath’ by rescaling the simulation volume and particle
+positions according to how far the instantaneous pressure is from the
+target value :math:`P_{target}`. The scaling factor is related to the ratio
+of the system isothermal compressibility and the barostat relaxation
+time parameter. DL_POLY uses the isothermal compressibility of liquid
+water as a representative value for the barostat. The Berendsen barostat
+is often used along with the Berendsen thermostat (as in DL_POLY) to
+generate constant pressure and temperature (e.g. *NPT*) ensembles,
+although it can be coupled with other thermostats. In general, it is
+thought the Berendsen approach is quite suitable for equilibration
+purposes (e.g. a steep ascent or descent to :math:`P_{target}`) but not
+recommended for sampling.
+
+Langevin barostat
+-----------------
+
+It couples the system to a virtual piston, which
+moves according to how far instantaneous pressure is from the target
+value :math:`P_{target}`. The piston is also coupled to a viscous background
+with a user-defined kinetic friction and a stochastic heat 'bath' with
+random frictional forces. The piston mass and the kinetic friction are
+both determined from the barostat relaxation time parameter, while the
+random frictional forces are scaled according to the kinetic friction
+and target system temperature :math:`T_{target}`. The Langevin barostat is
+often used along with the Langevin thermostat (as in DL_POLY) to
+generate constant pressure and temperature (e.g. *NPT*) ensembles. It
+can frequently obtain the target pressure more quickly than other
+barostats and reduce correlation times for sampling of system
+properties.
+
+Nosé-Hoover barostat
+--------------------
+
+It couples the system to a virtual external
+pressure 'bath', whose mass is governed by the relaxation parameter. It
+rescales simulation volume and particle positions, using how far the
+instantaneous pressure is from the target value :math:`P_{target}` to evolve
+the rescaling factor. Coupled with the Nosé-Hoover thermostat, it
+samples *NPT* and other isobaric-isothermal ensembles. It is suitable
+for all condensed matter systems (liquids, solutions, biological
+systems), although it only acts correctly for larger simulations. An
+extended form of this barostat with further connections to the
+thermostat – the **Martyna-Tuckerman-Klein barostat** – overcomes this
+restriction.

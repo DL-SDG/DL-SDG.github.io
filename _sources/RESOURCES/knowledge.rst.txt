@@ -19,6 +19,7 @@ Modelling methods
 
    ./MOLECULAR_DYNAMICS/md0.rst
    ./FORCE_FIELD/ff0.rst
+   ./DOCUMENTS/thermostat_barostat.rst
 
 .. toctree::
    :maxdepth: 1

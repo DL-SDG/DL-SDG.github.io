@@ -1,6 +1,11 @@
 .. MD Introduction 
 .. _Header_md2:
 
+.. |pop1| raw:: html
+
+   <a href="md2_lagrangian.html" onclick="window.open('md2_lagrangian.html',
+            'newwindow', 'width=500,height=250'); return false;">Lagrangian</a>
+
 *************************
 Molecular dynamics basics
 *************************
@@ -25,7 +30,7 @@ A maximum *cutoff* distance between particle pairs :math:`r_{cut}` is usually se
    :scale: 40%
    :align: center
 
-The choice of pair potential enables us to define a Lagrangian for the system which is also based on the particles' kinetic energy):
+The choice of pair potential enables us to define a |pop1| for the system which is also based on the particles' kinetic energy):
 
 .. math::
 
@@ -37,12 +42,12 @@ as well as determine the forces acting on both particles in a pair:
 
    \vec{f}_{ij} = -\vec{\nabla} V \left( r_{ij} \right) = -\frac{\partial V \left(r_{ij}\right)}{\partial r_{ij}} \frac{\vec{r}_{ij}}{r_{ij}},
 
-noting that these forces are applied along the vector between the two particles, :math:`\vec{r}_{ij} = \vec{r}_j - \vec{r}_i`, and are equal (in value) and opposite (in direction). The equal and opposite forces between pairs of atoms mean that the total momentum for the system :math:`\sum_i m_i \vec{v}_i` cannot change and its centre-of-mass position :math:`\frac{\sum_i m_i \vec{r}_i}{\sum_i m_i}` should remain fixed, provided no external forces or changes to particle velocities are applied.
+noting that these forces are applied along the vector between the two particles, :math:`\vec{r}_{ij} = \vec{r}_j - \vec{r}_i`, and, according to Newton's third law, are equal (in value) and opposite (in direction). The equal and opposite forces between pairs of atoms mean that the total momentum for the system :math:`\sum_i m_i \vec{v}_i` cannot change and its centre-of-mass position :math:`\frac{\sum_i m_i \vec{r}_i}{\sum_i m_i}` should remain fixed, provided no external forces or changes to particle velocities are applied.
 
 .. Note::
   The direction for the vector between a pair of particles ultimately does not make a difference to the forces acting on each particle, although in practice calculations need to use the selected sign convention consistently.
 
-The net force acting on each particle, :math:`\vec{F}_i = m_i \frac{\partial \vec{v}_i}{\partial t} = \sum_{j \neq i} \vec{f}_{ij}`, is used to determine its motion by integrating over time:
+From Newton's second law, the net force acting on each particle, :math:`\vec{F}_i = m_i \frac{\partial \vec{v}_i}{\partial t} = \sum_{j \neq i} \vec{f}_{ij}`, is used to determine its motion by integrating over time:
 
 .. math::
 

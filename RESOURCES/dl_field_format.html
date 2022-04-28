@@ -87,7 +87,7 @@ discussed here. For more details, please see Chapter 6.1 of the user manuals.</p
 <p>Column 77-79 inclusive is the region where the element symbols of the atoms are specified. If this information is missing, DL_FIELD will look at the atom labels (13-16) for the element symbols.</p>
 <p>Any other details that appear in the columns not mentioned above will be ignored.</p>
 <p>The CRYST1 statement in PDB contains the cell parameters of the molecular system. When DL_FIELD encounters this statement, it will process and automatically convert the information to the equivalent cell vectors. This would be the system size and the cell vectors are printed in the DL_POLY <em>CONFIG</em> file. Without this statement, DL_FIELD will assume an open periodic boundary, unless the cell vectors are defined in the DL_FIELD <em>control</em> file.</p>
-<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
+<img alt="../_images/Orange_bar4.png" src="../_images/Orange_bar4.png" />
 <p><strong>The xyz format</strong></p>
 <p>This is the simplest format and contains least amount of atomic information. The xyz is suitable for the following FF schemes: OPLS2005, PCFF and CVFF. It is also applicable to template-based FF schemes such as CHARMM and AMBER, provided the MOLECULE templates are available. For these types of FF schemes, DL_FIELD will trace out the molecular connectivities and search through the library and udff files to look for matching templates.</p>
 <p>Below shows the two-ethanoic acid system, which is equivalent to the PDB format.</p>
@@ -125,7 +125,7 @@ no title given, a line must still appear and leave blank. In this case, the exam
 <p class="last">Using the xyz format in DL_FIELD will also produce a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory. It contains the ATOM_TYPEs expressed in DL_F Notation for every atom in the system. At the moment, the file is created for user’s reference only.</p>
 </div>
 <p>For organic molecules, DL_FIELD only recognises elemental symbols for all atoms that involve in covalent bonds. Elemental symbols with charges will be treated as either isolated cations or anions that do not form part of a molecule. For example, for sodium cation in solution, this would be Na+. For chloride anion in solution, this would be Cl-. For the nitrogen atom in ammonium ion, this would be the symbol N, instead of N+, since it is connected with other atoms such as the hydrogen atoms.</p>
-<img alt="../_images/Orange_bar3.png" src="../_images/Orange_bar3.png" />
+<img alt="../_images/Orange_bar4.png" src="../_images/Orange_bar4.png" />
 <p><strong>The mol2 format</strong></p>
 <p>The mol2 format is a complete, portable representation of a <a class="reference external" href="http://cheminf.cmbi.ru.nl/cheminf/sybyl/">SYBYL</a> (SLN) molecule. Unlike the PDB format, mol2 files are free format and contain detailed information of molecular structures. It is applicable to the following FF schemes: OPLS2005, CVFF, PCFF and AMBER16_GAFF.</p>
 <p>Below shows a mol2 example file, consists of a single ethanoic acid molecule.</p>

@@ -16,7 +16,11 @@ The atomic interactions are the fundemental aspect in making molecular simulatio
 
 For this reason, classical molecular dynamics can be used to investigate a variety of molecular phenomena provided there is no chemical reaction involved (no breaking and forming of bond).  
 
+Compare with *ab-inito* calculations, the use of classical force fields in simulations can be quick and able to probe much longer scales, in the orders of tens of millions of atoms and up to microsecond timescales. At the same time, classical force fields can also empirically reproduce molecular conformations and interactions such as hydrogen bonds and hydrophobic contacts.
+
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+The chemical forces between atoms and molecules are the fundemental aspects of imparting the observed features of materials.
 
 In molecular simulations, atomic interactions can be separated into two parts:
 
