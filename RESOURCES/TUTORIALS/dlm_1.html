@@ -52,7 +52,7 @@
 <p><strong>DL_MESO package</strong></p>
 <p>DL_MESO started in 2003 as a CCP5 flagship project to provide general-purpose software designed to carry out mesoscale modelling. DL_MESO was first released in 2004 (version 1.0). At the time of writing (July 2021), version 2.7 was released in December 2018 with more than 350 registered users.</p>
 <p>DL_MESO consists of computer programs that can carry out simulations using various mesoscale modelling methods: a code written in C++ for Lattice Boltzmann Equation (LBE) simulations and a code written in Fortran for Dissipative Particle Dynamics (DPD). Both methods and codes enable modelling of materials at larger length and time scales than those available using molecular dynamics (MD). Other codes, including a graphical user interface, are supplied to prepare simulations and visualise or process their results.</p>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>Lattice Boltzmann Equation (LBE)</strong></p>
 <p>The Lattice Boltzmann Equation (LBE) method uses a statistical mechanics approach for particle motion, looking at the evolution of <em>distribution functions</em> that indicate probabilities of finding particles with particular momenta at a given position and time. The number of possible momenta is limited so particles can only exist and move on a regular grid or lattice: even with this limitation in place, the particles still exhibit correct fluid behaviour.</p>
 <p>The LBE algorithm consists of two main steps:</p>
@@ -61,7 +61,7 @@
 <li>Propagation (free-streaming) of particles along lattice links to neighbour sites</li>
 </ul>
 <p>The collision step can include applications of forces on fluids, such as those arising from intra-fluid and inter-fluid interactions that can be calculated before this step. Boundary conditions can be applied at arbitrary lattice sites to provide no-slip, free-slip or constant fluid velocities or densities.</p>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>DL_MESO_LBE Capabilities</strong></p>
 <ul class="simple">
 <li>Two- and three-dimensional lattice grids (D2Q9, D3Q15, D3Q19, D3Q27).</li>
@@ -89,7 +89,7 @@
 <li>Domain decomposition parallelisation available with MPI</li>
 <li>OpenMP multithreading available</li>
 </ul>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>Dissipative Particle Dynamics (DPD)</strong></p>
 <p>Dissipative Particle Dynamics (DPD) is broadly similar to molecular dynamics (MD), with particles (or ‘beads’) interacting predominately via pairwise potentials and forces: the net forces on all particles are calculated and integrated over a small time step to determine their motion. The main difference to MD is the inclusion of two additional pairwise forces - dissipative and random forces - that act in tandem as a momentum-conserving thermostat to control temperature while ensuring correct hydrodynamic behaviour.</p>
 <p>The DPD algorithm consists of three main steps, starting with particle positions, velocities and forces at the beginning of a timestep:</p>
@@ -99,7 +99,7 @@
 <li>Updating particle velocities (Velocity Verlet stage 2)</li>
 </ul>
 <p>Boundary conditions and barostats to control pressure can be applied during the Velocity Verlet force integration stages.</p>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>DL_MESO_DPD Capabilities</strong></p>
 <ul class="simple">
 <li>‘Standard’ (Groot-Warren) DPD, many-body (density-dependent) DPD, Lennard-Jones and Weeks-Chandler-Andersen interactions between particles.</li>

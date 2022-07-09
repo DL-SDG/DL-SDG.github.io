@@ -1,0 +1,166 @@
+.. This provides even more detailed information on how to compile dl_meso and modify it
+
+*******************************
+Advanced Installation
+*******************************
+
+This page provides even more details on how to compile DL_MESO, including more advanced options than the defaults given in the :ref:`dl_meso_howto` guide, and how to modify the codes to implement your own features. 
+
+**Requirements**
+
+To build the codes, you will need a PC running either a form of Linux, macOS or Windows and the following packages installed:
+
+* GNU Make
+* (Optional) MPI implementation, supporting at least version 2 of the standard (e.g. openMPI)
+* A Fortran compiler supporting at least the Fortran 2003 standard (e.g. gfortran)
+* A C++ compiler supporting at least the C++14 standard (e.g. g++)
+* (Optional) An up-to-date Java Runtime Environment (JRE), version 1.7 or later
+
+If you are running Linux, you will probably have all of the preceding requirements pre-installed, although it is worth checking you have a Fortrran compiler (e.g. gfortran), an MPI library (including wrappers for compilers) and, if you want to compile the GUI, an up-to-date Java Software Development Kit (SDK). If the compilers, MPI implementation etc. are available as pre-installed modules, you may need to load them in first to enable the invocations to work; these may vary from machine to machine, but the command to load them in might be similar to the following: ::
+
+  $: module load gcc7 openmpi-gcc7
+
+Apple macOS users will need to install additional packages, particularly the Fortran compiler and MPI implementation, using either `MacPorts <https://www.macports.org/>`_ or `Homebrew <https://brew.sh/>`_ as package managers for components not readily available via the App Store, e.g. ::
+
+  $: sudo port install gcc11 openmpi
+  $: brew install gcc open-mpi
+
+Both of these options require Xcode and its command-line developer tools to be installed first, which are available in the App Store.
+
+It is possible to build native binaries in Windows by using the package manager `Chocolatey <https://chocolatey.org/>`_ to install GNU Make and GCC compilers (MinGW-w64), although the simplest approach for Windows 10 or later - particularly for compiling parallel versions of the codes with MPI - is to use the Windows Linux Subsystem (WSL) to install and use a Linux distribution.
+
+**Contents of DL_MESO**
+
+After downloading and unpacking the DL_MESO package, you will see the following sub-directories in the resulting **dl_meso** folder::
+
+  $: :~> ls
+  $: DEMO
+  $: DPD
+  $: JAVA
+  $: LBE
+  $: MAN
+  $: WORK
+
+
+#. The **DEMO** directory contains input files and sample results from test cases for both DPD and LBE codes (with subfolders for the two methods and each test case).
+#. The **DPD** directory contains the Fortran source files for the DPD code (DL_MESO_DPD) and subfolders with makefiles and source files for utilities.
+#. The **JAVA** directory contains the Java source files for the Graphical User Interface (GUI).
+#. The **LBE** directory contains the C++ source files for the LBE code (DL_MESO_LBE) and source files for utilities.
+#. The **MAN** directory includes the DL_MESO User Manual and Technical Manual.
+#. The **WORK** directory is a sample working directory for compiling and running DL_MESO, and contains a makefile for compiling the utilities and a unscript to launch the GUI.
+
+**Compiling DL_MESO_LBE**
+
+To compile the single-core (serial) version of DL_MESO_LBE with OpenMP multi-threading, starting from the **dl_meso** folder in a e.g. bash terminal, type the following commands (assuming g++ is the C++ compiler: adapt the compiler invocation and flag for Openmp if necessary)::
+
+  $: cd dl_meso/WORK
+  $: g++ -O3 -fopenmp -o lbe.exe ../LBE/slbe.cpp
+
+For the multiple-core (parallel) version of DL_MESO_LBE with OpenMP threading, type the following commands, adapting if necessary for specific HPC and available modules/compilers/MPI implementations::
+
+  $: cd dl_meso/WORK
+  $: mpicxx -O3 -fopenmp -o lbe.exe ../LBE/plbe.cpp
+
+Successful compilation leads to the creation of the dl_meso_lbe executable (**lbe.exe**) in **dl_meso/WORK/**. No residual object or module files are created in this folder as a result.
+
+Two additional compile-time options can be added to the commands used to compile DL_MESO_LBE:
+
+.. list-table:: 
+   :widths: 33 67
+   :header-rows: 1
+
+   * - Compile-time option
+     - Description
+   * - ``-DPackbuf``
+     - Carries out core-to-core communications (of distribution functions, interaction forces etc.) by packing data into arrays before sending and unpacking received arrays as an alternative to default MPI derived data types. (Can be used with OpenMP to speed up packing and unpacking of data.)
+   * - ``-DMPIold``
+     - Uses MPI-1 commands to set up MPI derived data types, which differ from those used in MPI-2 and later
+
+**Compiling DL_MESO_DPD**
+
+All available versions of DL_MESO_DPD require a makefile, which can be invoked to compile the required code modules and put the executable (**dpd.exe**) together. Five makefiles are available in the **dl_meso/DPD/makefiles** folder:
+
+.. list-table:: 
+   :widths: 33 67
+
+   * - ``Makefile-serial``
+     - Compiles serial (single core), single thread version
+   * - ``Makefile-OMP``
+     - Compiles serial (single core), OpenMP multithreaded version
+   * - ``Makefile-MPI``
+     - Compiles parallel (multiple core), single thread per core version
+   * - ``Makefile-MPIOMP``
+     - Compiles parallel (multiple core), OpenMP multithreaded version
+   * - ``Makefile-ARCHER``
+     - Compiles parallel (multiple core), single thread per core version for ARCHER2 (UK national supercomputer)
+
+With the exception of the ARCHER2 makefile, all of these assume the Fortran compiler is gfortran and, when applicable, the MPI implementation is OpenMPI. 
+
+To compile any of these versions, type the following commands to copy the required makefile into the **dl_meso/WORK** folder and rename it as Makefile, and then invoke the makefile: ::
+
+  $: cd dl_meso/WORK
+  $: cp ../DPD/makefiles/Makefile-MPI ./Makefile
+  $: make
+
+Successful compilation leads to the creation of the dl_meso_lbe executable (**lbe.exe**) in **dl_meso/WORK/**. 
+
+:TIP:
+  The object (**.o**) and module (**.mod**) files resulting from compiling DL_MESO_DPD are not required to run the code and can be safely deleted::
+
+     $: rm *.o *.mod
+
+
+If you need to use a different Fortran compiler and/or MPI implementation, copy the appropriate makefile for the required combination of single/multiple cores and single/multiple OpenMP threads, and then edit the makefile to change the invocation for the compiler, which can be found in the line starting ``FC``.  The line starting with ``FFLAGS`` gives the compiler flags, which may need to be altered for an OpenMP multithread version. 
+
+Two additional compile-time options can be added to the makefile compiler flags:
+
+.. list-table:: 
+   :widths: 33 67
+   :header-rows: 1
+
+   * - Compile-time option
+     - Description
+   * - ``-DESSL``
+     - Replaces internal Fast Fourier Transform (FFT) solver and Quicksort routine with subroutines from the IBM Engineering and Scientific Subroutine Library (ESSL)
+   * - ``-DFFTW``
+     - Replaces internal Fast Fourier Transform (FFT) solver with the Fastest Fourier Transform in the West (FFTW) version 3.x or later
+
+If you wish to use the ``-DFFTW`` option, you will also need to tell the makefile to link the FFTW libraries to the DL_MESO_DPD executable file and, if FFTW is not installed in the default location, the locations of the include and library files for FFTW. These can be added to the makefile, e.g. ::
+
+  -I/usr/local/fftw/3.3.10/include
+
+to the end of the line starting ``FFLAGS``, and ::
+
+  -L/usr/local/fftw/3.3.10/lib -lfftw3
+
+to the end of the line starting ``LFLAGS``. 
+
+**Compiling DL_MESO GUI**
+
+A Java Software Development Kit (SDK) or Java Development Kit (JDK) is needed to compile the DL_MESO GUI. The following commands can be used to compile the source files and put together an executable Java archive file **GUI.jar** : ::
+
+  $: cd dl_meso/JAVA
+  $: javac *.java
+  $: jar -cfm GUI.jar manifest.mf *.class 
+
+The last two commands are also available as a runscript **makegui** inside the same directory.
+
+**Compiling utilities**
+
+The utilities included with DL_MESO require Fortran and C++ compilers. Some of the utilities for DPD simulations can be made to run faster by applying OpenMP multithreading using a compiler flag.
+
+A Makefile for the utilities (**Makefile-utils**) is available in the **dl_meso/WORK** folder. To compile them, type the following commands in a terminal::
+
+  $: cd dl_meso/WORK
+  $: make -f Makefile-utils
+
+This makefile is set up to use gfortran as the Fortran compiler and g++ as the C++ compiler: these can be modified in the lines starting with ``FC`` and ``CC`` if other compilers are required.
+
+:TIP:
+  The object (**.o**) and module (**.mod**) files resulting from compiling the utilities are not required to run the code and can be safely deleted::
+
+     $: rm *.o *.mod
+
+**Modifying DL_MESO**
+
+Each of the codes in DL_MESO can be modified by advanced users (user-developers) to e.g. modify or add interaction types, boundary conditions, output files etc. The :download:`DL_MESO Technical Manual <./DOCUMENTS/TECMAN_DL_MESO_2.7.pdf>` gives details of how DL_MESO_LBE, DL_MESO_DPD and the DL_MESO GUI have been written and suggestions on how modifications can be made to the codes.

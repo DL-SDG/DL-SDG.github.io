@@ -47,7 +47,10 @@
             
   <div class="section" id="thermostats-and-barostats-system-regulators">
 <span id="thermostat-barostat"></span><h1>Thermostats and barostats (system regulators)<a class="headerlink" href="#thermostats-and-barostats-system-regulators" title="Permalink to this headline">¶</a></h1>
-<p>There is a range of integration techniques available in DL_POLY to bring
+<p>This page illustrates characteristics feature of various types of regulators used in molecular simulations to maintain the temperature and pressure of the system.</p>
+<p>The text will make references to DL_POLY but it is also applicable to other packages.</p>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<p>There is a range of integration techniques available in DL_POLY and other MD packages to bring
 and maintain a model system on <strong>N</strong> particles to a targeted volume
 (<strong>V</strong>), energy (<strong>E</strong>) or temperature (<strong>T</strong>) via <em>NVE</em>
 (microcanonical) and <em>NVT</em> (canonical) ensembles, and pressure (<strong>P</strong>)
@@ -75,13 +78,16 @@ obtaining values offset from the targeted values.</p>
 system parameter too vigorously and it may not allow the system to relax
 properly or even lead to large uncontrolled fluctuations of the system
 regulators around their targeted values.</p>
-<p>There are no unique ‘ideal values’ for the relaxation times: their
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There are no unique ‘ideal values’ for the relaxation times: their
 choice is dependent on the type of system being modelled and the nature
 of the regulators (equation of motions). However, for many atomistic
 systems a typical value for a thermostat relaxation time is within the
 interval of <strong>0.2 to 2.0 ps</strong> (e.g. <strong>0.75 ps</strong>) and a typical value for a
 barostat relaxation time is within the interval of <strong>0.5 to 4.0 ps</strong>.
 (e.g. <strong>1.5 ps</strong>).</p>
+</div>
 <p>Check the temperature of the system in the <em>STATIS</em> or <em>OUTPUT</em> file to see if
 you are happy with the temperature and pressure fluctuations.</p>
 <p>It is worth noting that not all integrators generate correct ensembles
@@ -213,6 +219,10 @@ relationships are complex and affected by particle interactions. It can
 use larger time steps than other thermostats. It is suitable for soft
 condensed matter systems (including those with flow fields) at coarse
 grain length scales, intended for mesoscopic (DPD) simulations.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To obtain equilibration as quickly as possible in DPD simulations, the dissipative force parameter <span class="math notranslate nohighlight">\(\gamma\)</span> is often set to <span class="math notranslate nohighlight">\(4.5 \frac{k_B T \tau}{r_c^3}\)</span> (where <span class="math notranslate nohighlight">\(k_B T\)</span>, <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(r_c\)</span> are the selected energy, time and length scales for the simulation). This value corresponds to a minimum fluid viscosity and maximum diffusivity.</p>
+</div>
 </div>
 <div class="section" id="berendsen-barostat">
 <h3>Berendsen barostat<a class="headerlink" href="#berendsen-barostat" title="Permalink to this headline">¶</a></h3>
@@ -225,10 +235,10 @@ time parameter. DL_POLY uses the isothermal compressibility of liquid
 water as a representative value for the barostat. The Berendsen barostat
 is often used along with the Berendsen thermostat (as in DL_POLY) to
 generate constant pressure and temperature (e.g. <em>NPT</em>) ensembles,
-although it can be coupled with other thermostats. In general, it is
-thought the Berendsen approach is quite suitable for equilibration
-purposes (e.g. a steep ascent or descent to <span class="math notranslate nohighlight">\(P_{target}\)</span>) but not
-recommended for sampling.</p>
+although it can be coupled with other thermostats (e.g. with DPD in DL_MESO).
+In general, it is thought the Berendsen approach is quite suitable for
+equilibration purposes (e.g. a steep ascent or descent to <span class="math notranslate nohighlight">\(P_{target}\)</span>)
+but not recommended for sampling.</p>
 </div>
 <div class="section" id="langevin-barostat">
 <h3>Langevin barostat<a class="headerlink" href="#langevin-barostat" title="Permalink to this headline">¶</a></h3>
@@ -237,14 +247,18 @@ moves according to how far instantaneous pressure is from the target
 value <span class="math notranslate nohighlight">\(P_{target}\)</span>. The piston is also coupled to a viscous background
 with a user-defined kinetic friction and a stochastic heat ‘bath’ with
 random frictional forces. The piston mass and the kinetic friction are
-both determined from the barostat relaxation time parameter, while the
-random frictional forces are scaled according to the kinetic friction
+both determined from a barostat relaxation time parameter, while the
+random frictional forces are scaled according to the barostat kinetic friction
 and target system temperature <span class="math notranslate nohighlight">\(T_{target}\)</span>. The Langevin barostat is
 often used along with the Langevin thermostat (as in DL_POLY) to
 generate constant pressure and temperature (e.g. <em>NPT</em>) ensembles. It
 can frequently obtain the target pressure more quickly than other
 barostats and reduce correlation times for sampling of system
 properties.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Care needs to be taken when selecting the Langevin barostat relaxation time parameter, particularly for the choice of piston mass. Overly large values can decouple the barostat and particle dynamics (leading to inefficient sampling), while too small values can disturb the particle dynamics. The optimum value normally has to be chosen by trial-and-error, although a rule of thumb suggests the resulting frequency of volume fluctuations should be around ten times smaller than the thermostat frequency (related to its kinetic friction parameter). In turn, a good choice for barostat kinetic friction is between half and one tenth of the volume fluctuation frequency.</p>
+</div>
 </div>
 <div class="section" id="nose-hoover-barostat">
 <h3>Nosé-Hoover barostat<a class="headerlink" href="#nose-hoover-barostat" title="Permalink to this headline">¶</a></h3>

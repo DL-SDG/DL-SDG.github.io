@@ -3,7 +3,13 @@
 Thermostats and barostats (system regulators)
 =============================================
 
-There is a range of integration techniques available in DL_POLY to bring
+This page illustrates characteristics feature of various types of regulators used in molecular simulations to maintain the temperature and pressure of the system. 
+
+The text will make references to DL_POLY but it is also applicable to other packages.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+There is a range of integration techniques available in DL_POLY and other MD packages to bring
 and maintain a model system on **N** particles to a targeted volume
 (**V**), energy (**E**) or temperature (**T**) via *NVE*
 (microcanonical) and *NVT* (canonical) ensembles, and pressure (**P**)
@@ -35,13 +41,14 @@ system parameter too vigorously and it may not allow the system to relax
 properly or even lead to large uncontrolled fluctuations of the system
 regulators around their targeted values.
 
-There are no unique ‘ideal values’ for the relaxation times: their
-choice is dependent on the type of system being modelled and the nature
-of the regulators (equation of motions). However, for many atomistic
-systems a typical value for a thermostat relaxation time is within the
-interval of **0.2 to 2.0 ps** (e.g. **0.75 ps**) and a typical value for a
-barostat relaxation time is within the interval of **0.5 to 4.0 ps**.
-(e.g. **1.5 ps**).
+.. Note:: 
+   There are no unique ‘ideal values’ for the relaxation times: their
+   choice is dependent on the type of system being modelled and the nature
+   of the regulators (equation of motions). However, for many atomistic
+   systems a typical value for a thermostat relaxation time is within the
+   interval of **0.2 to 2.0 ps** (e.g. **0.75 ps**) and a typical value for a
+   barostat relaxation time is within the interval of **0.5 to 4.0 ps**.
+   (e.g. **1.5 ps**).
 
 Check the temperature of the system in the *STATIS* or *OUTPUT* file to see if
 you are happy with the temperature and pressure fluctuations.
@@ -190,6 +197,9 @@ use larger time steps than other thermostats. It is suitable for soft
 condensed matter systems (including those with flow fields) at coarse
 grain length scales, intended for mesoscopic (DPD) simulations.
 
+.. Note::
+   To obtain equilibration as quickly as possible in DPD simulations, the dissipative force parameter :math:`\gamma` is often set to :math:`4.5 \frac{k_B T \tau}{r_c^3}` (where :math:`k_B T`, :math:`\tau` and :math:`r_c` are the selected energy, time and length scales for the simulation). This value corresponds to a minimum fluid viscosity and maximum diffusivity.
+
 Berendsen barostat
 ------------------
 
@@ -202,10 +212,10 @@ time parameter. DL_POLY uses the isothermal compressibility of liquid
 water as a representative value for the barostat. The Berendsen barostat
 is often used along with the Berendsen thermostat (as in DL_POLY) to
 generate constant pressure and temperature (e.g. *NPT*) ensembles,
-although it can be coupled with other thermostats. In general, it is
-thought the Berendsen approach is quite suitable for equilibration
-purposes (e.g. a steep ascent or descent to :math:`P_{target}`) but not
-recommended for sampling.
+although it can be coupled with other thermostats (e.g. with DPD in DL_MESO). 
+In general, it is thought the Berendsen approach is quite suitable for 
+equilibration purposes (e.g. a steep ascent or descent to :math:`P_{target}`) 
+but not recommended for sampling.
 
 Langevin barostat
 -----------------
@@ -215,14 +225,17 @@ moves according to how far instantaneous pressure is from the target
 value :math:`P_{target}`. The piston is also coupled to a viscous background
 with a user-defined kinetic friction and a stochastic heat 'bath' with
 random frictional forces. The piston mass and the kinetic friction are
-both determined from the barostat relaxation time parameter, while the
-random frictional forces are scaled according to the kinetic friction
+both determined from a barostat relaxation time parameter, while the
+random frictional forces are scaled according to the barostat kinetic friction
 and target system temperature :math:`T_{target}`. The Langevin barostat is
 often used along with the Langevin thermostat (as in DL_POLY) to
 generate constant pressure and temperature (e.g. *NPT*) ensembles. It
 can frequently obtain the target pressure more quickly than other
 barostats and reduce correlation times for sampling of system
 properties.
+
+.. Note::
+   Care needs to be taken when selecting the Langevin barostat relaxation time parameter, particularly for the choice of piston mass. Overly large values can decouple the barostat and particle dynamics (leading to inefficient sampling), while too small values can disturb the particle dynamics. The optimum value normally has to be chosen by trial-and-error, although a rule of thumb suggests the resulting frequency of volume fluctuations should be around ten times smaller than the thermostat frequency (related to its kinetic friction parameter). In turn, a good choice for barostat kinetic friction is between half and one tenth of the volume fluctuation frequency.
 
 Nosé-Hoover barostat
 --------------------

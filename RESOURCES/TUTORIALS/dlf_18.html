@@ -51,7 +51,7 @@
 <span id="header-dlf-18"></span><h1>Selective interactions<a class="headerlink" href="#selective-interactions" title="Permalink to this headline">¶</a></h1>
 <p>By default, DL_FIELD will look for all possible two-body (bond), three-body (angle), and four-body (dihedral) interactions, based on the bond connections. However, DL_FIELD allows a selection of these interactions to be excluded and will not be considered in the DL_POLY simulation runs.</p>
 <p>These optional directives are always defined after the <em>CONNECT</em> statements in MOLECULE templates.</p>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>REMOVE, ONLY and OFF directives</strong></p>
 <p>These directives must always be used in conjunction with the body interaction directives: <em>BOND</em>, <em>ANGLE</em> and <em>DIHEDRAL</em>. They are used to selectively include or exclude certain types of interactions. Diagram below illustrates the use of these directives.</p>
 <a class="reference internal image-reference" href="../../_images/dlf_18_1.png"><img alt="../../_images/dlf_18_1.png" class="align-center" src="../../_images/dlf_18_1.png" style="width: 568.4px; height: 292.0px;" /></a>
@@ -83,7 +83,7 @@
 <p class="last">Avoid conflicting statements such as <em>ANGLE OFF</em> and <em>ANGLE ONLY</em> directives appeared within a same MOLECULE template.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>Remove 1-4 non-bonded interactions</strong></p>
 <p>An atom pair that is separated by three bonds will usually be treated with vdw and coulombic interactions, called the 1-4 non-bonded interactions, and often scaled with some scaling factors. Such interaction can be switched off selectively within a MOLECULE. The syntax is as follows:</p>
 <p><em>EXCLUSION_14</em> label_1 label_2 …</p>

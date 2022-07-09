@@ -61,14 +61,16 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
 <p><strong>Cutoff values and minimum image convention</strong></p>
 <p>For a system with PBC, the <em>minimum image convention</em> must be applied to find the shortest possible distances between particle pairs for potential and force calculations. This means the selected atom pairs could either be originated from the actual simulation box or from its image.</p>
 <p>For the minimum image convention to work, the interaction cutoff <span class="math notranslate nohighlight">\(r_{cut}\)</span> must be set to no more than half of the smallest simulation cell width.</p>
 <p>For instance, if a system is a cubic box of size 40 angstrom with PBC, then <span class="math notranslate nohighlight">\(r_{cut}\)</span> must not be larger than 20 angstrom.</p>
-<p>For calculating van-der-Waals (vdw) interactions, only consider the atoms in the actual simulation box.</p>
+<a class="reference internal image-reference" href="../../_images/md6_2.png"><img alt="../../_images/md6_2.png" class="align-left" src="../../_images/md6_2.png" style="width: 234.0px; height: 216.0px;" /></a>
+<p>Diagram on the left illustrates the minimum image convention. Consider a simulation box (in 2D projection) of length L. To calculate the forces acting between atom i and j, the shorter interatomic distance between atom i and the atom j image (j’) is chosen.</p>
+<p>To calculate van-der-Waals (vdw) interactions, only consider interatomic distances according to minimum image convention.</p>
 <p>If very long-range interactions are required, e.g. for charge-based electrostatics, PBCs enable the use of <em>Ewald summation</em> to split the interactions into <em>real space</em> and <em>reciprocal space</em> parts: pairwise calculations with a cutoff are used for real space contributions, while the reciprocal space part deals with large numbers of periodic images for the system by applying Fourier transforms.</p>
-<p>For more information, see <a class="reference internal" href="../FORCE_FIELD/ff11.html"><span class="doc">Distance cutoffs and Ewald sums</span></a></p>
+<p>For more information, see <a class="reference internal" href="../FORCE_FIELD/ff11.html"><span class="doc">Distance cutoffs and Ewald sums</span></a> in the Classical Force Field section.</p>
 <p><a class="reference internal" href="#header-md6"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 

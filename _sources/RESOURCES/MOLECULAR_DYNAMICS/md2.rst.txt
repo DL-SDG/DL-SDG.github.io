@@ -42,7 +42,11 @@ as well as determine the forces acting on both particles in a pair:
 
    \vec{f}_{ij} = -\vec{\nabla} V \left( r_{ij} \right) = -\frac{\partial V \left(r_{ij}\right)}{\partial r_{ij}} \frac{\vec{r}_{ij}}{r_{ij}},
 
-noting that these forces are applied along the vector between the two particles, :math:`\vec{r}_{ij} = \vec{r}_j - \vec{r}_i`, and, according to Newton's third law, are equal (in value) and opposite (in direction). The equal and opposite forces between pairs of atoms mean that the total momentum for the system :math:`\sum_i m_i \vec{v}_i` cannot change and its centre-of-mass position :math:`\frac{\sum_i m_i \vec{r}_i}{\sum_i m_i}` should remain fixed, provided no external forces or changes to particle velocities are applied.
+which basically means the forces acting on two particles *i* and *j* are the derivatives of the potential function V. Note that these forces are applied along the vector between the two particles, :math:`\vec{r}_{ij} = \vec{r}_j - \vec{r}_i`, and, according to Newton's third law, are equal (in value) and opposite (in direction). The equal and opposite forces between pairs of atoms mean that the total momentum for the system :math:`\sum_i m_i \vec{v}_i` cannot change and its centre-of-mass position :math:`\frac{\sum_i m_i \vec{r}_i}{\sum_i m_i}` should remain fixed, provided no external forces or changes to particle velocities are applied.
+
+.. image:: ../../image/md2_1.png
+   :scale: 60%
+   :align: center
 
 .. Note::
   The direction for the vector between a pair of particles ultimately does not make a difference to the forces acting on each particle, although in practice calculations need to use the selected sign convention consistently.

@@ -49,7 +49,7 @@
             
   <div class="section" id="dl-field-control-file">
 <span id="header-dlf-5"></span><h1>DL_FIELD <em>control</em> file<a class="headerlink" href="#dl-field-control-file" title="Permalink to this headline">¶</a></h1>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>Control options</strong></p>
 <p>DL_FIELD operations can be controlled by users through a single DL_FIELD <em>control</em> file, as shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Control file title. For DL_FIELD 4.7.
@@ -133,7 +133,7 @@ Some remarks...
 </div>
 <p>It shows the CHARMM22_prot FF scheme will be used as the FF model with energy unit kcal/mol. The input file is <em>sod1.pdb</em>, which is located in the <em>Examples/</em> directory. Please consult DL_FIELD User manual for more details about the options in the <em>control</em> file.</p>
 <p>For more details about the use of other <em>control</em> options, please consult DL_FIELD User Manual.</p>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>DL_POLY Control Section</strong></p>
 <p>DL_FIELD <em>control</em> file also contains a section called the DL_POLY Control section. It allows users to run DL_POLY program via a <em>fork</em> process, by using the <em>CONFIG</em> and <em>FIELD</em> files straight after the FF model setup process.</p>
 <div class="admonition note">
@@ -144,7 +144,7 @@ Some remarks...
 <p>The other option is the equilibration runs, which comes with up to three tiers, or levels. Strictly speaking, this option does not properly equilibrate your system. Rather, it is useful if your initial configuration is in a high-energy state and successive tiers of running DL_POLY will attempt to ‘unlock’ any high-conformation states in your system. For instance, atoms that are too close to each other or molecular structures in some strained configurations.</p>
 <p>The higher the energy (or more strain) in your system, the higher tiers would be needed to relax the system. Each equilibration level comes with a different DL_POLY <em>CONTROL</em> file to run the simulation. After each run, DL_POLY output files will be saved and tagged with a level number, in the forms CONTROLX, STATISX and OUTPUTX, where X is the equilibration number of either 1, 2 or 3.</p>
 <p>The final relaxed configuration would be the DL_POLY <em>CONFIG</em> file, which can be used to carry out normal equilibration runs, perhaps in a HPC system.</p>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>Atom state specification</strong></p>
 <p>This section is located within two lines consist of hashes (###################). It contains a series of directives to define the states of atoms that will affect the motions of atoms in DL_POLY runs. DL_FIELD permits four different atom states: (1) bond constrains, (2) freeze atoms, (3) tether atom (attach an atom by an imaginary spring to a fixed point, usually the center position of the atom in the initial configuration), and (4) rigid body.</p>
 <p>Each atom state must be defined with the corresponding directives: <em>CONSTRAIN</em>, <em>FREEZE</em>, <em>TETHER</em> and <em>RIGID</em>, respectively. Diagram below illustrates the use of these directives.</p>

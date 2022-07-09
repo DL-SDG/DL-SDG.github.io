@@ -21,7 +21,10 @@ By default, all atoms are considered *free* in DL_POLY. However, you can redefin
 
 The chemical bonds between two atoms are usually represented by some functional forms such as harmonic, to mimic the bond vibrations. Classically, this would be the fastest mode of motion and small MD timestep would be needed to account for this, especially the bonds that contained the H atoms.
 
-However, the timestep can be increased if the bond length is fixed. This is achieved by applying an additional force to restrict the position of atom relative to the other.  
+However, the timestep can be increased if the bond length is fixed. This is achieved by applying an additional force to restrict the position of atoms relative to the other.  
+
+.. Note::
+   Typically, systems with unconstrain bonds would need a timestep in the order of 0.5 fs. If bond constrains are applied to bonds contained hydrogen atoms, the MD timestep can be increased to around 2 fs.
 
 To apply bond constrains in DL_FIELD, firstly, the feature must be switched on in the DL_FIELD *control* file as highlighted below: 
 

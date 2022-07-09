@@ -49,7 +49,7 @@
   <div class="section" id="atom-typing">
 <span id="header-ff16"></span><h1>Atom typing<a class="headerlink" href="#atom-typing" title="Permalink to this headline">¶</a></h1>
 <p>The atom typing is a set of procedures to determine the chemical type of an atom. From such, appropriate FF parameters for the atom can be determined, to ensure the FF model is correctly setup for a given set of interactions.</p>
-<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Atom types</strong></p>
 <p>Consider a propanol molecule shown below. It consists of three different types of elements: carbon, hydrogen and oxygen. However, in molecular simulations, atom typing would identify more than three atom types. This is because same elemental atoms can behave chemically different depending on their chemical environments.</p>
 <a class="reference internal image-reference" href="../../_images/ff16_1.png"><img alt="../../_images/ff16_1.png" class="align-center" src="../../_images/ff16_1.png" style="width: 471.0px; height: 243.0px;" /></a>
@@ -58,7 +58,7 @@
 <p>Example 1:  [CX4](CO)(F)(F)(F)</p>
 <p>Example 2:  type = C &amp; count(bonded_atoms(type = F)) = 3 &amp; count(bonded_atoms(type = C)) = 1</p>
 <p>The above examples show two different typing procedures that were used by different software packages to determine specifically a trifluoro alkyl carbon atom.</p>
-<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Atom keys</strong></p>
 <p>Atom keys are the labels for atom types. By referring to the two examples above, one software assigns the atom key as <em>CT</em> and the other as <em>C791</em>. They are of different labels but in fact refer to the same atom types, that is, a trifluoro alkyl carbon.</p>
 <p>Of note is that these labels are arbitrary and do not follow any standard protocal to name them, simply because there are none. Furthermore, some FF schemes use different atom keys for different type of interactions. The most common one is to use one atom key for all bonded interactions and another one for the non-bonded vdw interaction.</p>
@@ -67,7 +67,7 @@
 <p>Most FF schemes refer atom keys and atom types as the same thing. Usually, only atom labels are shown in library files, with the typing procedures hidden within the program.</p>
 <p class="last">However, DL_FIELD distinguishes both atom keys and atom types and they are explicitly listed in the library files. They are refer to as ATOM_KEYs and ATOM_TYPEs, respectively, within the DL_FIELD framework. An ATOM_TYPE is a human readable label that uniquely refer to an ATOM_KEY. Different ATOM_TYPEs can refer to the same ATOM_KEY but not the other way round.</p>
 </div>
-<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Atom typing challenges</strong></p>
 <p>Different FF schemes (or different software) use different atom typing procedures and assign atoms with different atom keys. Situations also become more complicated because different FF schemes can also classify atoms differently.</p>
 <p>For example, by referring to the propanol structure shown above, some FF schemes will assign an additional atom type for the secondary carbon atom, C3, that is connected to the oxygen atom. However, some FF schemes may even reduce the number of atom types, for instance, by collectively treating all alkyl carbons (C1, C2 and C3) as a single atom type.</p>

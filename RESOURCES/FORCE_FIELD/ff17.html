@@ -48,10 +48,10 @@
             
   <div class="section" id="parameter-fittings">
 <span id="header-ff17"></span><h1>Parameter fittings<a class="headerlink" href="#parameter-fittings" title="Permalink to this headline">¶</a></h1>
-<p>Recall that a molecular system behaviour is driven by the force field which consists of a set of mathematical (potential) functions that represent the various interaction components of the atoms in molecules. This section will give you a rough idea how parameters of these functions are adjusted, or tuned, to model different chemical behaviour of atoms.</p>
-<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
-<p>In a nutshell, the goal of fitting parameters is to develop a FF model that reproduces experimental measurements to as close as possible. If the experimental measurement is not available, then quantum mechanical (QM) data will be used. In general, the parameter fitting strategy is achieved via a combination of scientific and chemical intuitive approaches. Many in fact regard parameter fitting execercies as an arti!</p>
-<p>Diagram below shows a summary of a fitting procedure. The paramaters are fitted in cyclic steps until the energies or calculations (with respect to a chosen standard such as experiments) are converged to within a tolerence limit, tweaking the parameters along the way.</p>
+<p>Recall that a molecular system behaviour is driven by the force field which consists of a set of mathematical (potential) functions that represent the various interaction components of atoms in molecules. This section will give you a rough idea how parameters of these functions are adjusted, or tuned, to model different chemical behaviour of atoms.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p>In a nutshell, the goal of fitting parameters is to develop a FF model that reproduces experimental measurements to as close as possible. If the experimental measurement is not available, then quantum mechanical (QM) data will be used. In general, the parameter fitting strategy is achieved via a combination of scientific and chemical intuitive approaches. Many in fact regard parameter fitting execercies as an art!</p>
+<p>Diagram below shows a summary of a fitting procedure. The paramaters are fitted in cyclic steps until the energies or some calculations (by comparing against a chosen standard such as experiments) are converged to within a tolerence limit, tweaking the parameters along the way.</p>
 <a class="reference internal image-reference" href="../../_images/ff17_1.png"><img alt="../../_images/ff17_1.png" class="align-center" src="../../_images/ff17_1.png" style="width: 728.4px; height: 506.4px;" /></a>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -73,8 +73,8 @@ different levels of theories, techniques and procedures to obtain these numbers 
 <p class="first admonition-title">Note</p>
 <p class="last">Usually, different atom types would have different sets of parameters, reflecting different chamical behaviour of atoms. Larger number of atom types for a smaller set of elements would also improve accuracy of the FF for molecules that contain these elements. However, larger number of atom types also means more parameters would need to be optimised, and increases the FF library size.</p>
 </div>
-<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
-<p>Below shows a summary of the class of materials and some of the measurements to which the parameters can be fitted to.</p>
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<p>Below shows a summary of systems and measurements to which the parameters can be fitted to.</p>
 <p><strong>Pure solvents</strong>:
 heats of vaporisation, molecular volumes, heat capacities.</p>
 <p><strong>Aqueous</strong>:
@@ -85,7 +85,7 @@ heats of sublimation, lattice parameters.</p>
 IR, Raman spectra, <em>ab initio</em> QM.</p>
 <p><strong>Torsional surfaces</strong>:
 Microwave, NMR spectroscopies, <em>ab initio</em> QM scan.</p>
-<p>Depends on the purposes of a FF scheme, a FF designer may only emphasise a subset of measurements and materials for fittings.</p>
+<p>Depends on the purposes of a FF scheme, a FF designer may only emphasise a subset of measurements and systems for fittings.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The scope of FF applicability depends on the classes of materials and their phases to which they were fitted to. This is why sometimes a software package will report missing parameters if the structure has a chemical space that is beyond the scope of the FF scheme.</p>

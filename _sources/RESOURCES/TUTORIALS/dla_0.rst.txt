@@ -20,4 +20,6 @@ Table of contents:
    ./dla_5
    ./dla_6
    ./dla_7
+   ./dla_8
+   ./dla_9
 

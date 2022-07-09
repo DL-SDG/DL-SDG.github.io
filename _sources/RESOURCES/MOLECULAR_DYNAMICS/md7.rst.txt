@@ -1,0 +1,27 @@
+.. MD Introduction - limitations 
+.. _Header_md7:
+
+****************
+Limitation of MD
+****************
+
+The limitations of MD simulations include:
+
+* Imperfect parameters, often fit to *particular* pressures, temperatures, pH etc.
+* Use of empirical functions to evaluate atomic forces.
+* Inability to exhaustively sample phase space
+* Sampling errors when calculating system properties (e.g. free energies of solvation and binding are likely to be :math:`\pm` 1 kJ mol\ :math:`^{-1}`)
+* Chemical bond breaking and creation not possible
+* Limited charge polarisation effects (e.g. can only use fixed partial charges)
+* Inability to probe long-time events.
+
+Just because you 'see' something in a simulation does not mean it is real. Neither does it mean if you don't see something means it does not exist. This is because, from the practical perspective, MD is only able to probe events in the order of nanoseconds to, at most, the order of several microseconds. 
+
+This is certainly the case for simulations involving carbohydrates and proteins. Rare and relaxation events may occur over long time scales and there are always questions remain that how long is long for simulations. 
+
+Note also equilibrium properties are all about statistics. Systems may be subjected to trapping in certain region of phase space depending on initial conditions: the simulation may spend a lot of time probing the space due to deep potential energy surfaces. For this reason, for complex systems such as proteins, it is better to repeat the simulations several times with different initial conditions (perhaps with a different set of initial velocities).
+
+However, MD simulations are typically cheaper than experiments, being easier to set up and repeat with changes to the models, force field and/or initial conditions. Moreover, MD has the capability to provide insights to mechanisms the drive the changes at atomic scale. As such, they can serve as an invaluable testing tool for scientists and can be used to answer hypothetical and comparative questions cheaply and more quickly than real-life experiments.
+
+:ref:`^ GO TO TOP ^<Header_md7>`
+

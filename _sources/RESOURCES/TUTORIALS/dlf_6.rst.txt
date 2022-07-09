@@ -14,9 +14,9 @@
 Solution Maker Feature
 **********************
 
-This page briefly describe how to use the Solution Maker feature, which is one of the option available in the DL_FIELD *control* file. In a more general sense, the feature is used to setup disordered systems such as liquids and solutions.
+This page describes how to use the Solution Maker feature available in the DL_FIELD *control* file. It is used to setup disordered systems such as liquids and solutions.
 
-To use this feature, supply the input file that contains a 'single-unit' structure. The 'single-unit' can be a single molecule, an atom, or even a group of molecules. DL_FIELD will duplication this 'single-unit' structure according to the parameters specified in the Solution Maker options.
+To use this feature, supply the input file that contains a 'single-unit' structure. The 'single-unit' can be a single molecule, an atom, or even a group of molecules. DL_FIELD will duplicate this 'single-unit' structure according to the parameters specified in the Solution Maker options.
 
 .. Note::
    Solution Maker feature only works when the cell vectors are also specified, either in the *control* file, or in the input configuration file (as cell parameters). The resulting simulation box MUST be either a cubic or orthorhombic.   
@@ -47,11 +47,11 @@ Alternatively, DL_FIELD also recognises the density unit in kg/m :sup:`3`.
 
 **Setup a solution model**
 
-A solution model is considered to consist of at least two components in the liquid state - the solute and solvent molecules. For example, to set up a 0.1 M concentration of ethnoic acid in water, the input file would only need to be a single ethanoic acid molecule. Set the following parameters:
+A solution model consists of at least two components in the liquid state - the solute and solvent molecules. For example, to set up a 0.1 M concentration of ethnoic acid in water, the input file would only need to be a single ethanoic acid molecule. Set the following parameters:
 
 *1* |sp| |sp| *1.0* |sp| |sp| *mol/dm^3* |sp| |sp| *4.0*
 
-Then, switch on the solvation feature (more details in the next page), and select one of the water models (TIP3P_O, say) as the solvent molecules.
+Then, switch on the solvation feature (more details in the next page), and select one of the water models (TIP3P_O, say) as solvent molecules.
 
 DL_FIELD will automatically calculate the number of ethanoic acid require base on the concentration and simulation box size specified. Then, duplicate the number of ethanoic acid, with a distance of at least 4 angstroms apart from one another. After that, the resultant system will be populated with the solvent molecules.
 
@@ -65,7 +65,7 @@ DL_FIELD also permits user to specify the exact number of 'single-unit' structur
 
 will instruct DL_FIELD to duplicate five 'single-unit' structures, each much be separated at least 6.0 angstrom from one another.
 
-Users also have the option to solvate the system after duplication.
+Solvent molecules can be added after the duplication.
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
@@ -77,7 +77,7 @@ Choosing a suitable cutoff value therefore is a matter of choice and trial and e
 
 Sometimes the the structure duplication may fail. When this happens, try a smaller cut off value.
 
-.. Note:: After conversion using the Solution Maker feature, the system must always be equilibrated before doing the sampling.
+.. Note:: After using the Solution Maker feature, the system must be equilibrated before doing the sampling.
 
 Diagram below shows duplication of twenty ethanoic acid molecules in a box size of 40 x 40 x 40 Angstrom :sup:`3` using differnt cutoff values.
 

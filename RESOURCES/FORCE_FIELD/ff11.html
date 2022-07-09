@@ -54,7 +54,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Cutoffs in vdw interactions</strong></p>
 <p>The LJ potentials decay (in ~ <span class="math notranslate nohighlight">\(r^{-6}\)</span>) asymptotically to zero at large distances. By simply ignoring the potentials beyond the <span class="math notranslate nohighlight">\(r_{cut}\)</span> will introduce a discontinuity in the force calculations and may introduce strange behaviour in the dynamics.</p>
 <p>However, this behaviour maybe negligible if <span class="math notranslate nohighlight">\(r_{cut}\)</span> is large enough. In practice, <span class="math notranslate nohighlight">\(r_{cut}\)</span> is set to 10-15 anstroms. There are different ways to minimise the discontinuity:</p>
@@ -72,7 +72,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Cutoffs in electrostatic calculations</strong></p>
 <p>Unlike the LJ functions, the Coulombic function decays as <span class="math notranslate nohighlight">\(r^{-1}\)</span> so that discontinuity would be more pronounced even at large distances. In addition, the decay is also conditionally convergent, of which the results depend on the order of summation. This means the usual cutoff tricks for vdw interactions are not applicable and, in periodic systems, all charges would need to include in periodic images.</p>
 <a class="reference internal image-reference" href="../../_images/ff11_3.png"><img alt="../../_images/ff11_3.png" class="align-left" src="../../_images/ff11_3.png" style="width: 258.3px; height: 319.9px;" /></a>

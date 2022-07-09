@@ -1,0 +1,61 @@
+.. Examples of micro-interactions
+.. _Header_dla_9:
+
+.. |br| raw:: html
+
+   <br />
+
+********************
+Interaction Notation
+********************
+
+This page shows a few examples of micro-interactions expressed by using the DANAI notation for interactions between two carboxylic group (*CGI* = 20).
+
+We know the interactions among the carboxylic groups involve predominantly hydrogen bonds (HB). The macro-interaction is therefore expressed in the DANAI notation as *HB_20_20*, as illustrated in the diagram below. 
+
+.. image:: ../../image/dla_9_1.png
+   :scale: 60%
+   :align: center
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Micro-interactions for HB_20_20**
+
+Of course, carboxylic groups can interact among one another in a variety of ways. Consider a simplest interaction, that is, the *HB* formation between the carbonyl oxygen (O20E) and the hydroxyl hydrogen (H20O).
+
+.. Note::
+   O20E and H20O are atom labels expressed in the standard DL_F Notation.
+
+.. image:: ../../image/dla_9_2.png
+   :scale: 60%
+   :align: center
+
+The black dotted line means the non-bonded HB interaction, which is expressed as the colon (:) in the DANAI micro-interaction notation. The box enclosure indicates the interaction region to which the micro-interaction is precisely being referred to. 
+
+The only difference between the two diagrams is the number of HB interactions present *within* the enclosures: If only *one* HB is detected for that atom, then the atom is expressed in CAPITAL letters (diagram on the left). If the atom involved in one or more HB interactions, then the atom is expressed in lowercase (diagram on the right, with the green dotted lines indicating the additional HB interactions with other carboxylic groups).
+
+Diagram below shows a situation where only one of the atom contained more than one HB. Notice the combination of upper and lower cases are used. 
+
+.. image:: ../../image/dla_9_3.png
+   :scale: 60%
+   :align: center
+
+Diagram below shows the DANAI notation for a minimised structure which involves two carboxylic groups adopting a ring conformation, with one of the hydroxyl hydrogen formed two hydrogen bonds.
+
+.. image:: ../../image/dla_9_4.png
+   :scale: 55%
+   :align: center
+
+The arrows indicate the dashes which refer to covalent bonds. For a ring conformation, the first and the last atom in the DANAI statement is always refer to the identical atom, indicating a closed loop conformation.
+
+Since interactions only involve carboxylic groups, the DANAI statement can be abbreviated without expressing the index number as:
+
+[R2]C-OE:H:OL-C
+
+Such abbreviation is also applicable to the [L2] conformations as mentioned above.
+
+For example, [L2]o20E:H20O can be abbreviated as [L2]oE:HO
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dla_9>`

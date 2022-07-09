@@ -10,9 +10,9 @@ DL_MESO
    :maxdepth: 2
 
    ./dl_meso_howto
+   ./dl_meso_advance_install 
    ./dl_meso_lbe_jargon
    ./dl_meso_dpd_jargon
-   ../RST_PAGES/Installation_further_reading 
 
 
 DL_MESO is a general-purpose mesoscale simulation software package.

@@ -19,7 +19,7 @@ You do the right thing to reach here.
 
 |
 
-* :download:`The DL_MESO User Manual <./DOCUMENTS/MAN_DL_MESO_2.7.pdf>` (Version 2.7 rev 09 - September 2021)
+* :download:`The DL_MESO User Manual <./DOCUMENTS/MAN_DL_MESO_2.7.pdf>` (Version 2.7 rev 10 - March 2022)
 
 |
 

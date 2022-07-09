@@ -50,7 +50,7 @@
   <div class="section" id="structures-and-operations">
 <span id="header-dlp-3"></span><h1>Structures and operations<a class="headerlink" href="#structures-and-operations" title="Permalink to this headline">¶</a></h1>
 <p>This page illustrates the software’s structural aspects and provides a brief summary on how it works.</p>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>File structures</strong></p>
 <p>DL_POLY comes with the following file components:</p>
 <ul class="simple">
@@ -65,7 +65,7 @@
 <li>Java GUI source in the <em>java/</em> directory.</li>
 <li>DL_POLY user manuals in the <em>manual/</em> directory.</li>
 </ul>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>Operations</strong></p>
 <p>To run DL_POLY, you will need to supply input files to describe the simulation you wish to carry out. These need to be placed inside the directory where you want to run the program, ideally in the same directory as the executable file created during compilation.</p>
 <p>The input files for DL_POLY typically include:</p>
@@ -75,7 +75,7 @@
 <li><em>CONFIG</em> - initial configuration specifying positions etc. at start of simulation</li>
 </ul>
 <p>which are described in more detail in <a class="reference internal" href="dlp_4.html#header-dlp-4"><span class="std std-ref">DL_POLY files</span></a>. Running DL_POLY produces an <em>OUTPUT</em> file with running information about the simulation and optionally other files . To enable a simulation restart if the calculation is interrupted, an <em>REVCON</em> file with a simulation snapshot and a <em>REVIVE</em> file with statistical accumulators and random number generator states are written every so often: renaming <em>REVCON</em> as <em>CONFIG</em> and <em>REVIVE</em> as <em>REVOLD</em> allows either a previous calculation to be resumed or a new calculation to start from that state.</p>
-<img alt="../../_images/Orange_bar3.png" src="../../_images/Orange_bar3.png" />
+<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
 <p><strong>Program execution</strong></p>
 <p>The steps below occur when DL_POLY is run:</p>
 <ol class="arabic simple">

@@ -36,11 +36,17 @@ For the minimum image convention to work, the interaction cutoff :math:`r_{cut}`
 
 For instance, if a system is a cubic box of size 40 angstrom with PBC, then :math:`r_{cut}` must not be larger than 20 angstrom. 
 
-For calculating van-der-Waals (vdw) interactions, only consider the atoms in the actual simulation box.
+.. image:: ../../image/md6_2.png
+   :scale: 50%
+   :align: left
+
+Diagram on the left illustrates the minimum image convention. Consider a simulation box (in 2D projection) of length L. To calculate the forces acting between atom i and j, the shorter interatomic distance between atom i and the atom j image (j') is chosen.
+
+To calculate van-der-Waals (vdw) interactions, only consider interatomic distances according to minimum image convention.
 
 If very long-range interactions are required, e.g. for charge-based electrostatics, PBCs enable the use of *Ewald summation* to split the interactions into *real space* and *reciprocal space* parts: pairwise calculations with a cutoff are used for real space contributions, while the reciprocal space part deals with large numbers of periodic images for the system by applying Fourier transforms.
 
-For more information, see :doc:`../FORCE_FIELD/ff11`
+For more information, see :doc:`../FORCE_FIELD/ff11` in the Classical Force Field section.
 
 :ref:`^ GO TO TOP ^<Header_md6>`
 

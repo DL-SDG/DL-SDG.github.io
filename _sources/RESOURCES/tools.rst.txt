@@ -4,7 +4,9 @@
 DL_Software Tools
 *****************
 
-This is the main portal to assess all things about DL_Software: how to obtain, compilation, running programs, tips, dos and don'ts, etc.
+This is the main portal to assess all things about DL_Software: how to obtain, compilation, running programs, software features, tips, dos and don'ts, etc.
+
+If you want to know how to use the software in more details, go to :doc:`TUTORIALS/tutorials`
 
 .. toctree::
    :maxdepth: 2

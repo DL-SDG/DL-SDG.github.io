@@ -78,16 +78,24 @@ discussed here. For more details, please see Chapter 6.1 of the user manuals.</p
 <span class="n">END</span>
 </pre></div>
 </div>
-<p>It contains two ethanoic acid molecules, numbered from 1 to 16. DL_FIELD is insensitive to the sequence of these numbers. In other words, the numbers do not have to be in order. DL_FIELD will only treat it as an atom if the line starts with the word ‘ATOM’ or ‘HTEATM’.</p>
-<p>Following after the sequence numbers, at columns 13 to 16 are the atom labels. If the element symbols columns (77-79) are absent, then DL_FIELD will attempt to extract elemental symbols from atom labels.</p>
+<p>It contains two ethanoic acid molecules. Notice that the sequence numbers appeared in the second column were numbered from 1 to 8 for each molecule. DL_FIELD is insensitive to the sequence of these numbers. In other words, the numbers do not have to be in order. DL_FIELD will only treat it as an atom if the line starts with the word ‘ATOM’ or ‘HETATM’.</p>
+<p>Following after the sequence numbers, at columns 13 to 16, are the atom labels. If the element symbols columns (77-79) are absent, then DL_FIELD will attempt to extract elemental symbols from atom labels.</p>
 <p>The label ‘ACEH’ are the residue label, or the MOLECULE_KEY. It appears between 18 to 21 columns inclusive. By refering to a <em>.sf</em> file, say, <em>DLPOLY_OPLS2005.sf</em>, ACEH is the key for MOLECULE acetic_acid template.</p>
 <p>At column 23-26 inclusive is the residue sequence. In this example, the first ethanoic acid molecule is assigned with the number 1 for each atom and the second molecule is assigned with the number 2 to each atom. DL_FIELD will use these numbers to distinguish the molecules.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The residue sequence is the equivalent term for MOLECULE_KEY in DL_FIELD.</p>
+</div>
 <p>The location of each atom is specified by the three coordinates x,y and z, located in the region between column 29-56 inclusive.</p>
-<p>At column 70-76 inclusive is where the Molecular Group is defined. In this example, it is defined as ACID. This means it will be shown in the DL_POLY <em>FIELD</em> file as <em>molecules ACID</em>. If this information is absent, DL_FIELD will assume a name called <em>not_define</em> and shows as <em>molecules not_define</em> in the <em>FIELD</em> file.</p>
+<p>At column 70-76 inclusive is where the Molecular Group is defined. In this example, it is defined as ACID. This means it will be shown in the DL_POLY <em>FIELD</em> file as the directive <em>molecules ACID</em>. If this information is absent, DL_FIELD will assume a default name called <em>not_define</em> and shows as <em>molecules not_define</em> in the <em>FIELD</em> file.</p>
 <p>Column 77-79 inclusive is the region where the element symbols of the atoms are specified. If this information is missing, DL_FIELD will look at the atom labels (13-16) for the element symbols.</p>
-<p>Any other details that appear in the columns not mentioned above will be ignored.</p>
+<p>Any other details that appear in other column ranges not mentioned above will be ignored.</p>
 <p>The CRYST1 statement in PDB contains the cell parameters of the molecular system. When DL_FIELD encounters this statement, it will process and automatically convert the information to the equivalent cell vectors. This would be the system size and the cell vectors are printed in the DL_POLY <em>CONFIG</em> file. Without this statement, DL_FIELD will assume an open periodic boundary, unless the cell vectors are defined in the DL_FIELD <em>control</em> file.</p>
-<img alt="../_images/Orange_bar4.png" src="../_images/Orange_bar4.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To use the cell parameters in PDB file as your simulation box, you must set the periodic boundary type to <em>auto</em> in DL_FIELD <em>control</em> file.</p>
+</div>
+<img alt="../_images/Orange_bar5.png" src="../_images/Orange_bar5.png" />
 <p><strong>The xyz format</strong></p>
 <p>This is the simplest format and contains least amount of atomic information. The xyz is suitable for the following FF schemes: OPLS2005, PCFF and CVFF. It is also applicable to template-based FF schemes such as CHARMM and AMBER, provided the MOLECULE templates are available. For these types of FF schemes, DL_FIELD will trace out the molecular connectivities and search through the library and udff files to look for matching templates.</p>
 <p>Below shows the two-ethanoic acid system, which is equivalent to the PDB format.</p>
@@ -114,8 +122,13 @@ discussed here. For more details, please see Chapter 6.1 of the user manuals.</p
 </div>
 <p>Notice that all atoms must be expressed in the elemental symbols, follow by the three coordinates.
 The number 16 shows the total number of atoms in the system. This is immediately followed by the title. If there is
-no title given, a line must still appear and leave blank. In this case, the example contains the CRYST1 statement, which is similar to that of PDB format that defines the cell parameters of the system.</p>
-<p>After the title is the symbol ‘#’, which appears right at the first column and represents the beginning of the remark statement. Normally, DL_FIELD will ignore the remark statement. In this case, this statement is called the <em>special remark statement</em>, because it contains the DL_FIELD directive <em>MOLECULAR_GROUP</em>, that labels the whole system as ‘ACID’. It instructs DL_FIELD to write out the directive <em>molecules ACID</em> in the DL_POLY <em>FIELD</em> file. If there is no <em>MOLECULAR_GROUP</em> directive, then DL_FIELD will assume the default group called <em>not_define</em>.</p>
+no title given, a line must still appear and leave blank. The example above contains the CRYST1 statement and DL_FIELD will treat this as a directive statement and not a normal title text. It is similar to that of PDB format that defines the system cell parameters.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You must set the periodic boundary type to <em>auto</em> in DL_FIELD <em>control</em> file to make use of the CRYST1 statement.</p>
+</div>
+<p>After the title is the symbol ‘#’, which appears right at the first column and represents the beginning of the remark statement. Normally, DL_FIELD will ignore the remark statement.</p>
+<p>The remark statement is optional and can appear anywhere in the file. In this case, this statement is called the <em>special remark statement</em>, because it contains the DL_FIELD directive <em>MOLECULAR_GROUP</em>, that labels the whole system as ‘ACID’. It instructs DL_FIELD to write out the directive <em>molecules ACID</em> in the DL_POLY <em>FIELD</em> file. If there is no <em>MOLECULAR_GROUP</em> directive, then DL_FIELD will assume the default group called <em>not_define</em>.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">The above xyz example structure may cause an error if it is read in by a graphical display program. This is due to the presence of DL_FIELD-specific statements that begins with the #. To properly display the structure, remove all the remark statements.</p>
@@ -125,7 +138,7 @@ no title given, a line must still appear and leave blank. In this case, the exam
 <p class="last">Using the xyz format in DL_FIELD will also produce a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory. It contains the ATOM_TYPEs expressed in DL_F Notation for every atom in the system. At the moment, the file is created for user’s reference only.</p>
 </div>
 <p>For organic molecules, DL_FIELD only recognises elemental symbols for all atoms that involve in covalent bonds. Elemental symbols with charges will be treated as either isolated cations or anions that do not form part of a molecule. For example, for sodium cation in solution, this would be Na+. For chloride anion in solution, this would be Cl-. For the nitrogen atom in ammonium ion, this would be the symbol N, instead of N+, since it is connected with other atoms such as the hydrogen atoms.</p>
-<img alt="../_images/Orange_bar4.png" src="../_images/Orange_bar4.png" />
+<img alt="../_images/Orange_bar5.png" src="../_images/Orange_bar5.png" />
 <p><strong>The mol2 format</strong></p>
 <p>The mol2 format is a complete, portable representation of a <a class="reference external" href="http://cheminf.cmbi.ru.nl/cheminf/sybyl/">SYBYL</a> (SLN) molecule. Unlike the PDB format, mol2 files are free format and contain detailed information of molecular structures. It is applicable to the following FF schemes: OPLS2005, CVFF, PCFF and AMBER16_GAFF.</p>
 <p>Below shows a mol2 example file, consists of a single ethanoic acid molecule.</p>
