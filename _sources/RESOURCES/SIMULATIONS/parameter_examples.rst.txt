@@ -1,0 +1,22 @@
+.. Example simulation control parameters and simulation procedures. 
+
+
+****************************************
+Example Simulation Models and Procedures
+****************************************
+
+This section provides a few example of control parameters and simulation procedures for a number of system materials. It can be used as a guidance for your system model.
+
+
+.. image:: ../../image/sim_glass.jpg
+   :scale: 40%
+   :align: right
+
+|
+
+.. toctree::
+   :maxdepth: 2
+
+   ./parameter_glass/glass_materials.rst
+   ./parameter_il/il_materials.rst 
+

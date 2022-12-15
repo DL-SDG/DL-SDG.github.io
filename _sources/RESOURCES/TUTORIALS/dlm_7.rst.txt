@@ -235,7 +235,7 @@ Five command-line options can be invoked:
 
 If no molecules are included in the *HISTORY* file, the utility will stop with an error message. No user input is otherwise required, as the utility will use default values for the maximum distance, histogram spacing and trajectory frame selection (i.e. all frames) if the command-line options are not specified.
 
-The end-to-end distances and radii of gyration for all molecules are calculated from the particle positions given in each frame of the *HISTORY* file and averaged for all molecules of each type. Files named *radius\_\*\ * are written for each molecule type with columns for these quantities, and a single *MOLDIST* file is produced at the end with time-averaged distributions of end-to-end distances for all molecule types. All files can be read by plotting software (e.g. Gnuplot) and used for later analysis.
+The end-to-end distances and radii of gyration for all molecules are calculated from the particle positions given in each frame of the *HISTORY* file and averaged for all molecules of each type. Files named *radius\_*\ * are written for each molecule type with columns for these quantities, and a single *MOLDIST* file is produced at the end with time-averaged distributions of end-to-end distances for all molecule types. All files can be read by plotting software (e.g. Gnuplot) and used for later analysis.
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 

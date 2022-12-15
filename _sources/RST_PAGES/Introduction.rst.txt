@@ -33,4 +33,5 @@ This an attempt to enable users (particularly new users) to get themselves up-an
 
    ./Intro_howto
    ./Intro_dls
+   ./Version
 

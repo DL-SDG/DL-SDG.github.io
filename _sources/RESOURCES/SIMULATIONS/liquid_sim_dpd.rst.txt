@@ -1,0 +1,21 @@
+.. This describes the simulation of a liquid using DPD
+
+
+***************************************
+Simulating a liquid using DPD (DL_MESO)
+***************************************
+
+This is an exercise in simulating a box of liquid at the mesoscale using Dissipative Particle Dynamics (DPD). The liquid can be represented in DPD simulations in one of two forms:
+
+#. Individual particles (beads), each containing at least one (small) molecule; or
+#. Chains of particles connected by bonds, each chain representing one (larger) molecule and providing its basic topology.
+
+This exercise goes from preparing the input files with the required representation of the fluid, its interactions and system set-up parameters, to running a DPD simulation using DL_MESO and analysing the results.
+
+
+.. toctree::
+   :maxdepth: 2
+
+	      
+   ./inputs_prep_dpd
+   ./simple_simulation_run_dpd.rst

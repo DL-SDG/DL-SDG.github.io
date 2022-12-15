@@ -1,0 +1,42 @@
+.. Example simulation control parameters for ionic liquids 
+.. _Header_il:
+
+
+*************
+Ionic Liquids
+*************
+
+This section provides a few example of control parameters and simulation procedures for a number of system materials. It can be used as a guidance for your system model.
+
+.. image:: ../IMAGES/Orange_bar.png
+
+**Example 1**: Ionic liquid droplets interaction with silicon surface 
+
+Reference: Y. Guan, Q. Shao, W. Chen, S. Liu, X. Zhang, and Y. Deng, *J. Phys. Chem. C* **121** 23716–23726 (2017)
+
+Simulation box size: 80 Å × 160 Å × 130 Å 
+
+Silicon surface: Held rigid (frozen), with a lattice constant (5.46 Å): 76.8 × 153.6 × 5.76 Å (3000 atoms). Arranged with the surface plane orthogonal to the z-direction of the simulation box.
+
+Ionic liquid: Initial structures consist of spherical droplets of varying radii, from 10 to 30 Å. For example, a droplet with a radius of 25 Å can consist of 253 ion pairs.
+
+Initial configuration placed the droplet just on top of the Si surface.
+
+Protocols: Equilibrated silicon and ionic liquids separately.
+
+For combined silicon and IL [Emim][BF4] systems: 
+
+(1) Equilibrated for 20 ns at 300 K.
+
+(2) Sampling taken every 1000 steps (2 ps) for 10 ns.
+
+.. literalinclude:: il1.control 
+
+|
+
+.. image:: ../IMAGES/Orange_bar.png 
+
+
+
+
+:ref:`^ GO TO TOP ^<Header_il>`

@@ -78,6 +78,21 @@ steps in the *CONTROL* file. Once the timestep number exceeds the number
 of *equilibration* steps (i.e. when the number of *steps* is larger), 
 only then are the system regulators from the selected integrator applied.
 
+.. Note::
+   Example below shows an example how to apply brute-force temperature rescale  
+   effect in the DL_POLY *CONTROL* file:
+
+   *steps 80000*
+
+   *equilibration steps 50000*
+   
+   This means brute-force scaling temperature applies for the first 50,000 steps.
+   After that, the selected system regulators apply for the remaining 30,000 steps. 
+
+
+Types of system regulators
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Different types of system regulators have different characteristics that
 perform suitably depending on the system types. There is a vague
 consensus, often with weak scientific argument but largely an empirical
@@ -87,9 +102,6 @@ it controls each particle velocity directly down to target temperature.
 This could lead to 'the flying icecube' effect if no control is
 exercised to the centre of mass motion gathered by this algorithm.
 However, this undesired effect is counteracted by default in DL_POLY.
-
-Types of system regulators
-~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Two broad types of system regulators are **deterministic** and
 **stochastic**. From a given initial state, deterministic regulators act
@@ -130,6 +142,9 @@ for biological systems (e.g. proteins and water) as well as solids in
 condensed phase. It can use larger time steps than other thermostats.
 The thermostat adds a random centre of mass motion that has zero mean,
 i.e. there will not be a long-term drift of the centre of mass.
+
+The damping effects apply on the particles means there is a lost of momentum transfer. 
+Therefore, diffusion coefficients cannot be determined when applying the Langevin thermostat.
 
 Andersen thermostat
 -------------------

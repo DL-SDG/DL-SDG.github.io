@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Particle trajectories &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <title>Simulation Procedures &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -20,8 +20,8 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Boundary Conditions" href="md6.html" />
-    <link rel="prev" title="Molecular dynamics basics" href="md2.html" /> 
+    <link rel="next" title="Constrained bonds" href="md8.html" />
+    <link rel="prev" title="Particle Trajectories" href="md9.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -30,12 +30,12 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="md6.html" title="Boundary Conditions"
+          <a href="md8.html" title="Constrained bonds"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="md2.html" title="Molecular dynamics basics"
+          <a href="md9.html" title="Particle Trajectories"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="md0.html" accesskey="U">Molecular Dynamics</a> &#187;</li> 
       </ul>
@@ -46,8 +46,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="particle-trajectories">
-<span id="header-md3"></span><h1>Particle trajectories<a class="headerlink" href="#particle-trajectories" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="simulation-procedures">
+<span id="header-md3"></span><h1>Simulation Procedures<a class="headerlink" href="#simulation-procedures" title="Permalink to this headline">¶</a></h1>
 <p>Since moving the particles changes the distances between them and thus their forces, molecular dynamics involves continuously integrating these equations of motion to obtain trajectories numerically. This leads to the overall scheme for MD simulations, shown in the diagram below and consisting of the following stages:</p>
 <ul class="simple">
 <li>Set up initial system - obtain initial positions and velocities of atoms</li>
@@ -57,10 +57,11 @@
 <li>Repeat until done</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/dlp_2_4.png"><img alt="../../_images/dlp_2_4.png" class="align-center" src="../../_images/dlp_2_4.png" style="width: 272.25px; height: 408.0px;" /></a>
-<p>We can choose how to integrate the forces based on requirements for high computational speed, low memory demand, accuracy, stability (i.e. conservation of energy without drifting) and time reversibility. The use of a <em>symplectic</em> integrator provides time reversibility and long-term stability. One commonly-used integration scheme for MD simulations is Velocity Verlet (VV), which is second-order accurate (i.e. errors are proportional to the square of the timestep size <span class="math notranslate nohighlight">\(\Delta t\)</span>) and updates particle positions and velocities without requiring additional memory to do so.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">In DL_POLY, system trajectories can be saved into a file called <em>HISTORY</em>. To do this, the directive <em>traj</em> must be included in the <em>CONTROL</em> file.</p>
+<p>In DL_POLY, system trajectories can be saved into a file called <em>HISTORY</em>. To do this, the directive <em>traj</em> must be included in the <em>CONTROL</em> file. For example, to save the positions and velocities of the system at every 100 MD steps (not timestep!):</p>
+<p><em>traj 0 100 1</em></p>
+<p class="last">This will produce a time series of atomic ocnfigurations. The time interval between the configurations would be simply multiply of the MD timstep.</p>
 </div>
 <p><a class="reference internal" href="#header-md3"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
@@ -94,11 +95,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="md2.html"
-                        title="previous chapter">Molecular dynamics basics</a></p>
+  <p class="topless"><a href="md9.html"
+                        title="previous chapter">Particle Trajectories</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="md6.html"
-                        title="next chapter">Boundary Conditions</a></p>
+  <p class="topless"><a href="md8.html"
+                        title="next chapter">Constrained bonds</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -122,12 +123,12 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="md6.html" title="Boundary Conditions"
+          <a href="md8.html" title="Constrained bonds"
              >next</a> |</li>
         <li class="right" >
-          <a href="md2.html" title="Molecular dynamics basics"
+          <a href="md9.html" title="Particle Trajectories"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="md0.html" >Molecular Dynamics</a> &#187;</li> 
       </ul>

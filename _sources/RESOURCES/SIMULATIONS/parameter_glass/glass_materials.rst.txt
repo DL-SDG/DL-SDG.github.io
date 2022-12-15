@@ -1,0 +1,97 @@
+.. Example simulation control parameters for glassy materials 
+.. _Header_glass:
+
+
+***************
+Glass Materials
+***************
+
+This section provides a few example of control parameters and simulation procedures for a number of system materials. It can be used as a guidance for your system model.
+
+.. image:: ../IMAGES/Orange_bar.png
+
+**Example 1**: Rare-earth (La, Y, Lu, Sc) aluminosilicate
+
+Reference: K. Okhotnikov, B. Stevensson and M. Edén, *Phys. Chem. Chem. Phys.* **15**, 15041 (2013)
+
+Model size: 35Å x 35Å x 35Å, ~3300 atoms.
+
+Procedures: Run at a high temperature to melt the system. Then, quenched (lower) it to a desired temperature:
+
+(1) Melt to equilibrate the structure at 3500 K for 100 ps
+
+(2) Stepwise decrease temperature every 10 ps at a rate of 10 K ps :sup:`-1` to 300 K
+
+(3) Run for 200 ps at 300 K and simulation extracted for analysis for the last 150 ps.
+
+Repeat the procedures 12 times, each starts with a different initial configurations to obtain average results.
+
+DL_FIELD FF scheme: inorganic_glass.
+
+.. literalinclude:: glass1.control 
+
+|
+
+.. image:: ../IMAGES/Orange_bar.png 
+
+**Example 2**: Silicate glasses
+
+Reference: A. Tilocca, N.H. de Leeuw, and A.N. Cormack, *Phys. Rev. B* **73**, 104209 (2006)
+
+Model: Use of core-shell model (adiabatic) with small mass assigned to shell parts. Use smaller timestep than usual, to correctly keep track of the shell with a much faster motion due to small mass.
+
+Protocols: Run at a high temperature to melt the system, and then quenched (lower) it to a desired temperature. Investigate ion migration in glass structure.
+
+.. literalinclude:: glass2.control
+
+|
+
+.. image:: ../IMAGES/Orange_bar.png
+
+**Example 3**: Oxide glasses
+
+Reference: B.W.M. Thomas, R.N. Mead and G. Mountjoy, *J. Phys.: Condens. Matter* **18** 4697 (2006)
+
+Model: 23.7Å x 23.7Å x 23.7Å, 1000 atoms.
+
+Protocols: Run at a high temperature to melt the system, and then quenched (lower) it to a desired temperature. Investigate ion migration in glass structure.
+
+(1) At 6000K for 40,000 MD steps.
+(2) Change to 4000 K for 40,000 MD steps.
+(3) Change to 2000 K for 40,000 MD steps.
+(4) Quench from 2000 K to 300 K over 85,000 steps. (10 :sup:`13` K s :sup:`-1`)
+(5) Sample structure at 300 K for 40,000 steps (without further equilibration), sampled every 200 steps.
+
+Use Berendsen temperature bath to maintain temperature at NVT for all stages.
+
+.. literalinclude:: glass3.control
+
+|
+
+.. image:: ../IMAGES/Orange_bar.png
+
+**Example 4** Silica Yttrium Aluminosilicate glass
+
+Reference: J. Du, *J. Am. Ceram. Soc.* **92**, 87 (2009) 
+
+System size: about 2900 atoms
+
+Protocols: Run at a high temperature to melt the system, and then quenched (lower) it to a desired temperature.
+
+(1) Run NVT ensemble at 6000 K to randomise the structure for 80 ps.
+
+(2) Run NVE ensemble at 6000 K for a further 80 ps.
+
+(3) Temperature is changed (lowered) to 4000 K and run for 80 ps at NVT.
+
+(4) Run NVE ensemble at 4000 K for a further 80 ps.
+
+(5) Temperature linearly scaled down to 300 K at the rate 10 K/ps.
+
+(6) Run NVT at 300 K for 80 ps.
+
+(7) Run NVE at 300 K for a further 80 ps. Collect data for analysis for the final 40 ps.
+
+|
+
+:ref:`^ GO TO TOP ^<Header_glass>`

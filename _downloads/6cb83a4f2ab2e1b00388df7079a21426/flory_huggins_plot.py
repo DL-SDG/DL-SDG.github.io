@@ -6,9 +6,10 @@
 Plots data file for Flory-Huggins chi parameter determination, both concentration profiles obtained from simulations and chi parameters determined from profiles
 
 Options:
+    -h, --help          Display this message
     --rho <rho>         Particle density [default: 3.0]
 
-michael.seaton@stfc.ac.uk, 24/03/19
+michael.seaton@stfc.ac.uk, 22/07/22
 """
 
 from docopt import docopt

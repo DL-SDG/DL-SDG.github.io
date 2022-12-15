@@ -1,0 +1,45 @@
+.. This page keeps DL_SDG Versions 
+.. _Version:
+
+.. |br| raw:: html
+
+   <br />
+
+***************
+DL_SDG Versions
+***************
+
+.. image:: ../image/DL_Software_logo.png
+    :align: center
+    :width: 297px
+    :height: 69px
+    :alt: DL_Software Logo
+
+**Version 2.1**, released December 2022
+
+- Knowledge Center: Molecular Dynamics: bond constrains, MD integration.
+
+- DL_ANALYSER tutorial: illustration on DANAI and results analysis.
+
+- Created new section on Simulation: Example simulation models and procedures.
+
+- Created new section on Simulation: Simulating a liquid using DPD for DL_MESO.
+
+- Misc. editing, corrections, with clearer narratives.
+
+**Version 2.0**, released July 2022
+
+- DL_ANALYSER tutorial on Atomic Interaction Analysis.
+
+- Update DL_MESO installation guide.
+
+- Knowledge Center: Force Field: 1-4 scaling, atom typing, parameter fittings, improper.
+
+- Knowledge Center: System regulators - Barostat, thermostat.
+
+- Knowledge Center: Molecular Dynamics: enhancement and include boundary conditions.
+
+
+
+:ref:`^ GO TO TOP ^<Version>`
+

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Core-shell model &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <title>Core-shell model &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="dlf_12.html" title="Define Atom States"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD Tutorial</a> &#187;</li> 
@@ -55,7 +55,7 @@
 <p>Charges are then redistributed to both components, while the vdw interactions apply only to the shell component of the atom. There is no electrostatic interaction between the components within the same atom.</p>
 <p>DL_FIELD can define two types of core-shell model: (1) the dynamical (adiabatic) shell model, where a small fraction of mass is assigned to the shell, or (2) the relaxed (massless) shell model where shell components have no mass. Please consult DL_POLY manual for more details about the characteristics of these different models.</p>
 <p><br /></p>
-<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Core-shell model for organic systems</strong></p>
 <p>Core-shell models are usually implemented for inorganic models, for instance, on the oxygen atom of a mineral oxide. However, DL_FIELD uses a standard set of protocol on all FF schemes. All core-shell models must be implemented by using MOLECULE templates.</p>
 <p>Example below shows a modified ethanol MOLECULE with core-shell model applied on the hydroxyl oxygen. This MOLECULE can be found in the <em>ethanol.udff</em> file in the <em>Examples/</em> folder.</p>
@@ -114,7 +114,7 @@ END SHELL
 <p class="last">Atoms can have arbitrary labels, or just element symbols. However, the shell part of an atom must always be described as the ATOM_KEY, which in this case, is the <em>OZ</em>.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Core-shell model for inorganic systems</strong></p>
 <p>Unlike the organic systems, DL_FIELD has the capability to automatically insert the shell part of an atom if this is available, depending on the MOLECULE template used.</p>
 <p>For example, consider a simple <em>xyz</em> file consists of magnesium oxide (MgO), a binary oxide species:</p>
@@ -204,7 +204,7 @@ END SHELL
         <li class="right" >
           <a href="dlf_12.html" title="Define Atom States"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD Tutorial</a> &#187;</li> 

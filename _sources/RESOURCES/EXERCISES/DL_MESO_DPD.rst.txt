@@ -131,7 +131,7 @@ The output files from DL_MESO_DPD can include:
 
 The output file formats for DL_MESO_DPD (:ref:`HISTORY <historydpd>`, :ref:`export <exportrestart>` and :ref:`CORREL <correl>`) are deliberately agnostic, in the sense that they are not designed to be read by a single proprietary program. The utilities supplied with DL_MESO (see below) can convert this data into specific formats, but if you are able to write your own programs or scripts, you can get the data into the format of your choice.
 
-Further details of these file formats can be found in Chapter 10 of :download:`The DL_MESO User Manual <../DOCUMENTS/MAN_DL_MESO_2.7.pdf>`.
+Further details of these file formats can be found in Chapter 10 of :download:`The DL_MESO User Manual <../DOCUMENTS/MAN_DL_MESO_2.7.pdf>` and in Chapter 11 of :download:`The DL_MESO Technical Manual <../DOCUMENTS/TECMAN_DL_MESO_2.7.pdf>`.
 
 Running DL_MESO_DPD
 ^^^^^^^^^^^^^^^^^^^
@@ -196,6 +196,7 @@ It creates the required input files - :ref:`CONTROL <controldlmeso>`, :ref:`CONF
 
 To use the script, invoke it with your Python3 interpreter with one of the following commands (the latter if permissions on the script allow it to be executed): ::
 
+   python flory_huggins.py
    python3 flory_huggins.py
    ./flory_huggins.py
 
@@ -219,8 +220,9 @@ flory_huggins_plot.py
 
 :download:`flory_huggins_plot.py <./scripts/flory_huggins_plot.py>` will visualise the results from *flory_huggins.py* using the generated text file. You can look at the local concentration profiles generated from the DL_MESO_DPD simulations, recalculate :math:`\chi` values for each set of conservative force parameters, plot these values and find a relationship between :math:`\chi^{\text{AB}}` and :math:`A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}`.
 
-To use the script, invoke it with your Python3 interpreter using either command: ::
+To use the script, invoke it with your Python3 interpreter using one of the following commands: ::
 
+   python flory_huggins_plot.py
    python3 flory_huggins_plot.py
    ./flory_huggins_plot.py
 
@@ -258,8 +260,9 @@ correl.py
 
 :download:`correl.py <./scripts/correl.py>` is a more general-purpose script to plot and analyse the results from DL_MESO_DPD, using its :ref:`CORREL <correl>` and (if available) RDFDAT files with calculated properties for the system and radial distribution functions respectively. (This is based on a similar script written for DL_POLY STATIS files called *statis.py*.)
 
-To use the script, invoke it with your Python3 interpreter with either command: ::
+To use the script, invoke it with your Python3 interpreter with one of the following commands: ::
 
+   python correl.py
    python3 correl.py
    ./correl.py
 

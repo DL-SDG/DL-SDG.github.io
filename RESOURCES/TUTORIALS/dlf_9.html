@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>The DL_F Notation 1 &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <title>The DL_F Notation 1 &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="dlf_8.html" title="Atom Typing"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD Tutorial</a> &#187;</li> 
@@ -53,7 +53,8 @@
       'newwindow', 'width=600,height=300'); return false;">atom typing</a> notation with a syntax format that is contiguous across a wide range of FF schemes.</p>
 <p>For more information, please refer to the follow reference:</p>
 <p>C.W. Yong, <em>J. Chem. Inf. Model.</em> <strong>56</strong>, 1405-1409 (2016)</p>
-<img alt="../../_images/Orange_bar4.png" src="../../_images/Orange_bar4.png" />
+<p>Additional information about DL_F Notation, available at SSRN: <a class="reference external" href="https://dx.doi.org/10.2139/ssrn.4254942">https://dx.doi.org/10.2139/ssrn.4254942</a></p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Atom typing</strong></p>
 <p>Different FF schemes use different rules to determine the ATOM_TYPEs. For this reason, converting one FF model to the other FF models is often a non-trivial task.</p>
 <p>DL_FIELD uses a single DL_F conversion engine to carry out atom typing for a range of FF schemes. This means switching from one FF scheme to the other is a seamless process, without making any change to the configuration file, nor involvment of additional program script. Moreover, DL_FIELD can express ATOM_KEYs in DL_F Notation, which contain the chemical information of every atom in the system.</p>
@@ -67,7 +68,11 @@
 <p class="last">Users can choose the option whether to produce ATOM_KEY labels in the standard FF schemes or the DL_F Notation in DL_FIELD <em>control</em> file.</p>
 </div>
 <p>In DL_F Notation, all atoms must always belong to a Chemical Group (<em>CG</em>), which is similar to the chemistry functional group. It indicates the chemical member to which the atom belongs to. Each <em>CG</em> is represented by the unique number, called the Chemical Group Index (<em>CGI</em>).</p>
-<p>Ethanol contains alkane and alcohol <em>CGs</em>, with the corresponding <em>CGI</em> of 1 and 15, respectively.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A complete list of Chemical Group Index is shown in the file <em>DLF_notation</em> located in the <em>lib/</em> folder. There are more than 400 entries and the list grows when newer DL_FIELD versions are released.</p>
+</div>
+<p>For instance, ethanol contains alkane and alcohol <em>CGs</em>, with the corresponding <em>CGI</em> of 1 and 15, respectively.</p>
 <p><a class="reference internal" href="#header-dlf-9"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -136,7 +141,7 @@
         <li class="right" >
           <a href="dlf_8.html" title="Atom Typing"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD Tutorial</a> &#187;</li> 

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>User input file format &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <title>User input file format &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="dl_field_conversion.html" title="Force field conversion"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li> 
@@ -95,7 +95,7 @@ discussed here. For more details, please see Chapter 6.1 of the user manuals.</p
 <p class="first admonition-title">Note</p>
 <p class="last">To use the cell parameters in PDB file as your simulation box, you must set the periodic boundary type to <em>auto</em> in DL_FIELD <em>control</em> file.</p>
 </div>
-<img alt="../_images/Orange_bar5.png" src="../_images/Orange_bar5.png" />
+<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
 <p><strong>The xyz format</strong></p>
 <p>This is the simplest format and contains least amount of atomic information. The xyz is suitable for the following FF schemes: OPLS2005, PCFF and CVFF. It is also applicable to template-based FF schemes such as CHARMM and AMBER, provided the MOLECULE templates are available. For these types of FF schemes, DL_FIELD will trace out the molecular connectivities and search through the library and udff files to look for matching templates.</p>
 <p>Below shows the two-ethanoic acid system, which is equivalent to the PDB format.</p>
@@ -138,7 +138,7 @@ no title given, a line must still appear and leave blank. The example above cont
 <p class="last">Using the xyz format in DL_FIELD will also produce a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory. It contains the ATOM_TYPEs expressed in DL_F Notation for every atom in the system. At the moment, the file is created for user’s reference only.</p>
 </div>
 <p>For organic molecules, DL_FIELD only recognises elemental symbols for all atoms that involve in covalent bonds. Elemental symbols with charges will be treated as either isolated cations or anions that do not form part of a molecule. For example, for sodium cation in solution, this would be Na+. For chloride anion in solution, this would be Cl-. For the nitrogen atom in ammonium ion, this would be the symbol N, instead of N+, since it is connected with other atoms such as the hydrogen atoms.</p>
-<img alt="../_images/Orange_bar5.png" src="../_images/Orange_bar5.png" />
+<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
 <p><strong>The mol2 format</strong></p>
 <p>The mol2 format is a complete, portable representation of a <a class="reference external" href="http://cheminf.cmbi.ru.nl/cheminf/sybyl/">SYBYL</a> (SLN) molecule. Unlike the PDB format, mol2 files are free format and contain detailed information of molecular structures. It is applicable to the following FF schemes: OPLS2005, CVFF, PCFF and AMBER16_GAFF.</p>
 <p>Below shows a mol2 example file, consists of a single ethanoic acid molecule.</p>
@@ -250,7 +250,7 @@ no title given, a line must still appear and leave blank. The example above cont
         <li class="right" >
           <a href="dl_field_conversion.html" title="Force field conversion"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li> 

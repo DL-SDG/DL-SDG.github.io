@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Molecular dynamics basics &#8212; DL_Software Digital Guide (DL_SDG) 2.0 documentation</title>
+    <title>Molecular dynamics basics &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -20,7 +20,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Particle trajectories" href="md3.html" />
+    <link rel="next" title="Particle Trajectories" href="md9.html" />
     <link rel="prev" title="What is molecular dynamics" href="md1.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,12 +30,12 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="md3.html" title="Particle trajectories"
+          <a href="md9.html" title="Particle Trajectories"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="md1.html" title="What is molecular dynamics"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="md0.html" accesskey="U">Molecular Dynamics</a> &#187;</li> 
       </ul>
@@ -69,11 +69,18 @@
 <p class="first admonition-title">Note</p>
 <p class="last">The direction for the vector between a pair of particles ultimately does not make a difference to the forces acting on each particle, although in practice calculations need to use the selected sign convention consistently.</p>
 </div>
-<p>From Newton’s second law, the net force acting on each particle, <span class="math notranslate nohighlight">\(\vec{F}_i = m_i \frac{\partial \vec{v}_i}{\partial t} = \sum_{j \neq i} \vec{f}_{ij}\)</span>, is used to determine its motion by integrating over time:</p>
+<p>From Newton’s <a href="md2_newton_laws.html" onclick="window.open('md2_newton_laws.html',
+            'newwindow', 'width=400,height=400'); return false;">second law</a>, the net force acting on each particle, <span class="math notranslate nohighlight">\(\vec{F}_i = m_i \frac{\partial \vec{v}_i}{\partial t} = \sum_{j \neq i} \vec{f}_{ij}\)</span>, is used to determine its motion by integrating over time:</p>
 <div class="math notranslate nohighlight">
 \[\vec{v}_i \left(\tau\right) = \vec{v}_i \left( 0 \right) + \int_{0}^{\tau} \frac{d \vec{v}_i}{dt} dt = \vec{v}_i \left( 0 \right) + \int_{0}^{\tau} \frac{\vec{F}_i}{m_i} dt\]</div>
 <div class="math notranslate nohighlight">
 \[\vec{r}_i \left(\tau\right) = \vec{r}_i \left( 0 \right) + \int_{0}^{\tau} \frac{d \vec{r}_i}{dt} dt = \vec{r}_i \left( 0 \right) + \int_{0}^{\tau} \vec{v}_i \left(t\right) dt\]</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>In molecular simulations, the time interval <em>dt</em> is also called the timestep. It must be small enough to make sure the position of an atom does not travel too far and ‘jump over’ another atom that is located along the direction of the atom’s movement. In practice, <em>dt</em> has a typical value from 0.5 fs to 2.0 fs (femtosecond).</p>
+<p>For example, to set a timestep of 0.15 fs in DL_POLY, this is done in the <em>CONTROL</em> file as follows:</p>
+<p class="last"><em>timestep 0.0015</em></p>
+</div>
 <p><a class="reference internal" href="#header-md2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -109,8 +116,8 @@
   <p class="topless"><a href="md1.html"
                         title="previous chapter">What is molecular dynamics</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="md3.html"
-                        title="next chapter">Particle trajectories</a></p>
+  <p class="topless"><a href="md9.html"
+                        title="next chapter">Particle Trajectories</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -134,12 +141,12 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="md3.html" title="Particle trajectories"
+          <a href="md9.html" title="Particle Trajectories"
              >next</a> |</li>
         <li class="right" >
           <a href="md1.html" title="What is molecular dynamics"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="md0.html" >Molecular Dynamics</a> &#187;</li> 
       </ul>

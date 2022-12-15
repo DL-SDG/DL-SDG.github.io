@@ -57,6 +57,8 @@ Experimental properties or outcomes that can be used to fit :math:`A_{ij}` value
 
 Alternative and additional approaches for interactions between DPD particles include many-body DPD, bond interactions (stretching, fixed-length holonomic constraints, angles, dihedrals etc.) and electrostatics.
 
+.. _DPD_like_like:
+
 Like-like interactions
 ----------------------
 

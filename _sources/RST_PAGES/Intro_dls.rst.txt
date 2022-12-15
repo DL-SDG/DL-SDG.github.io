@@ -32,7 +32,7 @@ DL_Software has been applied in both academics and industrial settings and can a
 
 * `CHEMSHELL <https://www.chemshell.org/>`_ - a scriptable computational chemistry environment with support for hybrid QM/MM simulations for mutliscale modelling. Hybrid QM/MM is its main strength |br| |br|
 
-* `DL_FIND <http://www.cse.scitech.ac.uk/ccg/software/chemshell/manual/dlfind.html>`_ - a powerful and flexible geometry optimisation library and is the recommended optimiser module in ChemShell |br| |br|
+* `DL_FIND <https://chemshell.org/dl-find/>`_ - a powerful and flexible geometry optimisation library and is the recommended optimiser module in ChemShell |br| |br|
 
 :ref:`^ GO TO TOP ^<Header>`
 
