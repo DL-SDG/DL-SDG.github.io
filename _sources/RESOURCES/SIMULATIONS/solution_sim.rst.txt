@@ -1,9 +1,9 @@
 .. This describes the simulation of a solution
 
 
-*********************
-Simulating a solution
-*********************
+******************************************************
+Simulating a solution (DL_FIELD, DL_POLY, DL_ANALYSER)
+******************************************************
 
 Version 1.0, last update: April 2020
 Chin Yong, Computation Chemistry Group, Daresbury Laboratory

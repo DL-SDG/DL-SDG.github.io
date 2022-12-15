@@ -1,10 +1,15 @@
-.. MD Introduction 
+.. MD Introduction to molecular dynamics 
 .. _Header_md2:
 
 .. |pop1| raw:: html
 
    <a href="md2_lagrangian.html" onclick="window.open('md2_lagrangian.html',
             'newwindow', 'width=500,height=250'); return false;">Lagrangian</a>
+
+.. |pop2| raw:: html
+
+   <a href="md2_newton_laws.html" onclick="window.open('md2_newton_laws.html',
+               'newwindow', 'width=400,height=400'); return false;">second law</a>
 
 *************************
 Molecular dynamics basics
@@ -51,7 +56,7 @@ which basically means the forces acting on two particles *i* and *j* are the der
 .. Note::
   The direction for the vector between a pair of particles ultimately does not make a difference to the forces acting on each particle, although in practice calculations need to use the selected sign convention consistently.
 
-From Newton's second law, the net force acting on each particle, :math:`\vec{F}_i = m_i \frac{\partial \vec{v}_i}{\partial t} = \sum_{j \neq i} \vec{f}_{ij}`, is used to determine its motion by integrating over time:
+From Newton's |pop2|, the net force acting on each particle, :math:`\vec{F}_i = m_i \frac{\partial \vec{v}_i}{\partial t} = \sum_{j \neq i} \vec{f}_{ij}`, is used to determine its motion by integrating over time:
 
 .. math::
 
@@ -61,5 +66,13 @@ From Newton's second law, the net force acting on each particle, :math:`\vec{F}_
 
    \vec{r}_i \left(\tau\right) = \vec{r}_i \left( 0 \right) + \int_{0}^{\tau} \frac{d \vec{r}_i}{dt} dt = \vec{r}_i \left( 0 \right) + \int_{0}^{\tau} \vec{v}_i \left(t\right) dt
 
+.. NOTE::
+   In molecular simulations, the time interval *dt* is also called the timestep. It must be small enough to make sure the position of an atom does not travel too far and 'jump over' another atom that is located along the direction of the atom's movement. In practice, *dt* has a typical value from 0.5 fs to 2.0 fs (femtosecond).
+
+   For example, to set a timestep of 0.15 fs in DL_POLY, this is done in the *CONTROL* file as follows:
+
+   *timestep 0.0015* 
+
+ 
 :ref:`^ GO TO TOP ^<Header_md2>`
 

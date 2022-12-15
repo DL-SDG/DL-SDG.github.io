@@ -5,7 +5,9 @@
 What is molecular dynamics
 **************************
 
-Molecular dynamics (MD) is a theoretical tool for modelling the detailed microscopic behaviour of many different types of system, such as gases, liquids, solids, polymers, surfaces and clusters. It can be used to monitor the microscopic mechanisms of energy and mass transfer in chemical processes, and to calculate dynamical properties such as absorption spectra, rate constants and transport properties. It can also be employed as a means of sampling from a statistical mechanical ensemble to determine equilibrium properties, including average thermodynamic quantities (pressure, volume, temperature etc.), structure and free energies along reaction paths. The time scales for MD simulations are typically between picoseconds (:math:`10^{-12}` s) and milliseconds (:math:`10^{-3}` s), while length scales start at angstroms (:math:`10^{-10}` m) and can extend to micrometres (:math:`10^{-6}` m).
+Molecular dynamics (MD) is a theoretical tool for modelling the detailed microscopic behaviour of many different types of system, such as gases, liquids, solids, polymers, surfaces and clusters. It can be used to monitor the microscopic mechanisms of energy and mass transfer in chemical processes, and to calculate dynamical properties such as absorption spectra, rate constants and transport properties. It can also be employed as a means of sampling from a statistical mechanical ensemble to determine equilibrium properties, including average thermodynamic quantities (pressure, volume, temperature etc.), structure and free energies along reaction paths. 
+
+The system time scales for MD simulations are typically between picoseconds (:math:`10^{-12}` s) and milliseconds (:math:`10^{-3}` s), while length scales start at angstroms (:math:`10^{-10}` m) and can extend to micrometres (:math:`10^{-6}` m).
 
 .. image:: ../../image/md1_1.png
    :align: center

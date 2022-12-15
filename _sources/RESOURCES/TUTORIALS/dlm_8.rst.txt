@@ -46,7 +46,7 @@ Interactions that can be applied to particles in DPD simulations other than the 
 
 While the majority of DPD simulations typically use periodic boundary conditions, Lees-Edwards periodic shearing boundaries can readily be used, often to find rheological properties of a fluid (e.g. viscosity). Beads can be frozen in place while still interacting with others, often applied with a reflection scheme (e.g. bounce back) to provide no-slip boundaries.
 
-DPD is the best-known example of a pairwise momentum-conserving thermostat, although its limitations include issues in maintaining temperature control with larger timestep sizes and a limited viscosity range. Alternative pairwise thermostats include Lowe-Andersen, Peters and Stoyanov-Groot, which all apply changes to particle pairs after force integration and are capable of overcome DPD's limitations. As with MD simulations, it is possible to couple these thermostats to barostats to control system pressure.
+DPD is the best-known example of a pairwise momentum-conserving thermostat, although its limitations include issues in maintaining temperature control with larger timestep sizes and a limited viscosity range. Alternative pairwise thermostats include Lowe-Andersen, Peters and Stoyanov-Groot, which all apply changes to particle pairs after force integration and are capable of overcoming DPD's limitations. As with MD simulations, it is possible to couple these thermostats to barostats to control system pressure.
 
 DL_MESO_DPD functionalities
 ===========================

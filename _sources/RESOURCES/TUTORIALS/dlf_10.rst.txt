@@ -73,7 +73,7 @@ In summary, DL_F Notation has the following features:
 
 |br| |br|
 
-(4) Another similar example to the one above, but this time produced a FIELD file, with the atom labels showed in the standard notation for PCFF force field.
+(4) Another similar example to the one above but the *FIELD* file shows the atom labels expressed in the standard notation for PCFF force field.
 
 .. image:: ../../image/dlf_10_4.png
    :scale: 60%

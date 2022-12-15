@@ -11,7 +11,7 @@ You do the right thing to reach here.
 	  
 |
 
-* :download:`The DL_FIELD User Manual <./DOCUMENTS/MAN_DL_FIELD_4.8.pdf>` (Version 4.8 - September 2021)
+* :download:`The DL_FIELD User Manual <./DOCUMENTS/MAN_DL_FIELD_4.9.pdf>` (Version 4.9 - November 2022)
   
 |
 

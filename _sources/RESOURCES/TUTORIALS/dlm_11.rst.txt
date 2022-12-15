@@ -14,9 +14,7 @@ DL_MESO can be used in conjunction with several other programs developed by othe
 VMD
 ===
 
-`VMD <http://www.ks.uiuc.edu/Research/vmd/>`_ is a free open-source software package for visualising and analysing MD and DPD data, capable of rendering single snapshots and generating movies of particle simulations. It can read in :ref:`CONFIG <configdlmeso>` and VTF trajectory files, the latter of which can be generated from DL_MESO_DPD :ref:`HISTORY <historydpd>` files using the :ref:`traject_vtf.exe <trajectvtf>` utility.
-
-It includes plug-ins that enable it to read DL_POLY *CONFIG* and *HISTORY* files without any further manipulation.
+`VMD <http://www.ks.uiuc.edu/Research/vmd/>`_ is a free open-source software package for visualising and analysing MD and DPD data, capable of rendering single snapshots and generating movies of particle simulations. It can read in DL_MESO_DPD/DL_POLY :ref:`CONFIG <configdlmeso>` and VTF trajectory files: the former using VMD's DL_POLY *CONFIG* file plug-in, while the latter can be generated from DL_MESO_DPD :ref:`HISTORY <historydpd>` files using the :ref:`traject_vtf.exe <trajectvtf>` utility.
 
 .. image:: ../../image/dlp_4_2.png
    :scale: 100%
@@ -25,7 +23,7 @@ It includes plug-ins that enable it to read DL_POLY *CONFIG* and *HISTORY* files
 OVITO
 =====
 
-`OVITO <https://www.ovito.org/>`_ is a software package for visualising and analysing MD and DPD data, capable of rendering single snapshots and generating movies of particle simulations. Both the free open-source (OVITO Basic) and the commercial (OVITO Pro) versions can read DL_POLY *CONFIG* and GALAMOST XML files, the latter of which can be generated from DL_MESO_DPD :ref:`HISTORY <historydpd>` files using the :ref:`traject_xml.exe <trajectxml>` utility.
+`OVITO <https://www.ovito.org/>`_ is a software package for visualising and analysing MD and DPD data, capable of rendering single snapshots and generating movies of particle simulations. Both the free open-source (OVITO Basic) and the commercial (OVITO Pro) versions can read DL_MESO_DPD/DL_POLY :ref:`CONFIG <configdlmeso>` and GALAMOST XML files, the latter of which can be generated from DL_MESO_DPD :ref:`HISTORY <historydpd>` files using the :ref:`traject_xml.exe <trajectxml>` utility.
 
 .. image:: ../../image/dlm_4_3.png
    :scale: 15%

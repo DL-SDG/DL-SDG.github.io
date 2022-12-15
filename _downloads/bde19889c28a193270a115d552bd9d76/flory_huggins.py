@@ -7,6 +7,7 @@ Flory-Huggins chi parameters and conservative force parameters, analyse
 data and plot results
 
 Options:
+    -h, --help          Display this message
     --rho <rho>         Particle density [default: 3.0]
     --Aii <Aii>         Conservative force parameter for like-like particle
                         interactions [default: 25.0]
@@ -23,7 +24,7 @@ Options:
     --print-to-screen   Re-direct simulation outputs to screen
     --nproc <nproc>     Number of processor cores to run DL_MESO_DPD calculations [default: 1]
 
-michael.seaton@stfc.ac.uk, 08/10/20
+michael.seaton@stfc.ac.uk, 22/07/22
 """
 from docopt import docopt
 from tqdm import tqdm

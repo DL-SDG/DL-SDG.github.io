@@ -23,7 +23,9 @@ Table of contents:
 
    ./md1
    ./md2
+   ./md9
    ./md3
+   ./md8
    ./md6
    ./md4
    ./md5

@@ -4,5 +4,6 @@
 Ethanoic Acid
 *************
 
+This is an ethanoic acid molecule structure expressed in the *mol2* format. To extract this structure, copy and paste into a new file that ends with the *.mol2* extension.
 
 .. literalinclude:: ethanoic_acid.dat

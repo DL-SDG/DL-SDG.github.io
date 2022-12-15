@@ -18,7 +18,7 @@ DL_ANALYSER can carry out precise identification and quantification of atomic in
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
-**Universal Notation**
+**DANAI - a universal notation to describe atomic interactions**
 
 By following the flavours of the standard DL_F Notation 
 for atom typing in molecular simulations, the DANAI expression 

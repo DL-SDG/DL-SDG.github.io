@@ -14,7 +14,9 @@
 Adding solvents
 ***************
 
-The DL_FIELD *control* file also contain a feature where you can solvate your system. This is done once the FF model for the input structure has been setup. If the Solution Maker feature is activated, then the system will only be solvated after molecules have been duplicated. In DL_FIELD, before solvation, the molecular system is collectively considered to consist of solute molecules.
+The DL_FIELD *control* file also contain a feature where you can solvate your system. This is done once the FF model for the input structure has been setup. If the Solution Maker feature is activated, then the system will only be solvated after molecules have been duplicated. 
+
+Prior to solvation, the whole molecular system is considered to be the solute unit. This also includes solvent molecules that have been included in the user input configuration file. 
 
 The necessary input parameters are as follows:
 

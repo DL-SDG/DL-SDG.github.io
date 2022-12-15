@@ -5,9 +5,9 @@
 
    <br />
 
-********************
-Interaction Notation
-********************
+****************************
+Interaction Notation - DANAI
+****************************
 
 This page shows a few examples of micro-interactions expressed by using the DANAI notation for interactions between two carboxylic group (*CGI* = 20).
 

@@ -6,7 +6,7 @@
 Structures
 ***********
 
-Below is a list of structures used in the exercises. The files can be copied, pasted into a text editor and saved as a .xyz file (e.g. *ethanoic_acid.xyz*).
+Below is a list of structures used in examples and exercises. The files can be copied and pasted into a text editor and save it in either *xyz*, *PDB*, or *mol2* formats. For example, *ethanoic_acid.mol2*. To find out which format to save into, please read the instruction contained in every structrure. 
 
 
 .. toctree::

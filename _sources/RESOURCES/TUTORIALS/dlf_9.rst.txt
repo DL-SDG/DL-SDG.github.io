@@ -20,6 +20,7 @@ For more information, please refer to the follow reference:
 
 C.W. Yong, *J. Chem. Inf. Model.* **56**, 1405-1409 (2016)
 
+Additional information about DL_F Notation, available at SSRN: https://dx.doi.org/10.2139/ssrn.4254942 
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
@@ -48,7 +49,10 @@ By using the DL_F Notation, DL_FIELD assigns a consistent set of ATOM_KEY labels
 
 In DL_F Notation, all atoms must always belong to a Chemical Group (*CG*), which is similar to the chemistry functional group. It indicates the chemical member to which the atom belongs to. Each *CG* is represented by the unique number, called the Chemical Group Index (*CGI*). 
 
-Ethanol contains alkane and alcohol *CGs*, with the corresponding *CGI* of 1 and 15, respectively.
+.. Note::
+   A complete list of Chemical Group Index is shown in the file *DLF_notation* located in the *lib/* folder. There are more than 400 entries and the list grows when newer DL_FIELD versions are released.   
+
+For instance, ethanol contains alkane and alcohol *CGs*, with the corresponding *CGI* of 1 and 15, respectively.
 
 
 :ref:`^ GO TO TOP ^<Header_dlf_9>`

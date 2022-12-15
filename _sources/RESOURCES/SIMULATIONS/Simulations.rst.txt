@@ -5,15 +5,22 @@
 Simulations
 ***********
 
-Below is a list of simulation tutorials that have been written for new users of DL_Software. Some of these tutorials show you how to setup, run and analyse the system models.
+This is the main portal that provides all things relate to practical aspects of runnning simulations. It contains the following information:
+
+1. Example simulation control parameters used by researchers on a range of materials. Information extracted from peer-reviewed journal. Use as a guidance for your models.
+
+2. Simulation tutorials that have been written for new users of DL_Software. Some of these tutorials show you how to setup, run and analyse the system models.
 
 
 .. toctree::
    :maxdepth: 2
 
+   ./parameter_examples
 	      
    ./liquid_sim
 
    ./solution_sim
    
+   ./liquid_sim_dpd	      
+
    ../STRUCTURES/Structures

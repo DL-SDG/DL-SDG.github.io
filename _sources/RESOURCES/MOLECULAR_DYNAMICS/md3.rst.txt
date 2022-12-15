@@ -1,8 +1,8 @@
-.. MD Introduction - atom and particles trajectories
+.. MD Introduction - molecular dynamics schemes 
 .. _Header_md3:
 
 *********************
-Particle trajectories
+Simulation Procedures
 *********************
 
 Since moving the particles changes the distances between them and thus their forces, molecular dynamics involves continuously integrating these equations of motion to obtain trajectories numerically. This leads to the overall scheme for MD simulations, shown in the diagram below and consisting of the following stages:
@@ -17,10 +17,13 @@ Since moving the particles changes the distances between them and thus their for
    :scale: 75%
    :align: center
 
-We can choose how to integrate the forces based on requirements for high computational speed, low memory demand, accuracy, stability (i.e. conservation of energy without drifting) and time reversibility. The use of a *symplectic* integrator provides time reversibility and long-term stability. One commonly-used integration scheme for MD simulations is Velocity Verlet (VV), which is second-order accurate (i.e. errors are proportional to the square of the timestep size :math:`\Delta t`) and updates particle positions and velocities without requiring additional memory to do so.
-
 .. Note::
-   In DL_POLY, system trajectories can be saved into a file called *HISTORY*. To do this, the directive *traj* must be included in the *CONTROL* file. 
+   In DL_POLY, system trajectories can be saved into a file called *HISTORY*. To do this, the directive *traj* must be included in the *CONTROL* file. For example, to save the positions and velocities of the system at every 100 MD steps (not timestep!):
    
+   *traj 0 100 1*
+
+   This will produce a time series of atomic ocnfigurations. The time interval between the configurations would be simply multiply of the MD timstep.
+   
+
 :ref:`^ GO TO TOP ^<Header_md3>`
 
