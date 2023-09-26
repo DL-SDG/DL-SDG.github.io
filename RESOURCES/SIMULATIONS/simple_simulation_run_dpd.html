@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Simulation Run &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
+    <title>Simulation Run &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -20,7 +20,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Structures" href="../STRUCTURES/Structures.html" />
+    <link rel="next" title="Visualising Simulation" href="simple_simulation_visualise_dpd.html" />
     <link rel="prev" title="Inputs Preparation" href="inputs_prep_dpd.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,12 +30,12 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../STRUCTURES/Structures.html" title="Structures"
+          <a href="simple_simulation_visualise_dpd.html" title="Visualising Simulation"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="inputs_prep_dpd.html" title="Inputs Preparation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="liquid_sim_dpd.html" accesskey="U">Simulating a liquid using DPD (DL_MESO)</a> &#187;</li> 
       </ul>
@@ -92,8 +92,8 @@
 </div>
 <p>The second image shows part of the summary written to the <strong>OUTPUT</strong> file once the calculation has finished, including average values and fluctuations (standard deviations) of system properties, including pressure tensors separated into four contributions, which are calculated during the simulation <em>after equilibration</em>.</p>
 <p><strong>Step 4</strong>: Take a look at the values of system properties in the <strong>OUTPUT</strong> file (or the <strong>CORREL</strong> file) and check they are settling around average values after equilibration has taken place.</p>
-<p>For a constant-volume (<em>NVT</em>) ensemble, the total potential energy per particle (<code class="docutils literal notranslate"><span class="pre">pe-total</span></code>) and system pressure should settle and oscillate around average values, indicating the system is likely to have reached an equilibrium state. In the example shown here (for a simple fluid), the potential energy per particle after equilibration is reported as <span class="math notranslate nohighlight">\(6.053 \pm 0.027\)</span>, which is markedly different from the value at the start of the simulation (<span class="math notranslate nohighlight">\(5.337\)</span>), while the pressure is reported as <span class="math notranslate nohighlight">\(23.69 \pm 0.22\)</span>. Both the potential energy and the system pressure are <em>configurational</em> properties, i.e. they depend on the positions or arrangements of particles in the system.</p>
-<p>The system temperature for this static system (i.e. one with no applied flow field) should also settle and osscillate around an average value, which should ideally be close to the value specified in the <strong>CONTROL</strong> file. In this case, the temperature is reported as <span class="math notranslate nohighlight">\(1.004 \pm 0.015\)</span>, close to the specified value of 1. This <em>kinetic</em> property is dependent on particle velocities and should be controlled by the DPD thermostat (dissipative and random forces) in this instance.</p>
+<p>For a constant-volume (<em>NVT</em>) ensemble, the total potential energy per particle (<code class="docutils literal notranslate"><span class="pre">pe-total</span></code>) and system pressure should settle and oscillate around average values, indicating the system is likely to have reached an equilibrium state. In the example shown here (for a simple fluid), the potential energy per particle after equilibration is reported as <span class="math notranslate nohighlight">\(4.547 \pm 0.014\)</span>, which is markedly different from the value at the start of the simulation (<span class="math notranslate nohighlight">\(3.837\)</span>), while the pressure is reported as <span class="math notranslate nohighlight">\(23.69 \pm 0.22\)</span>. Both the potential energy and the system pressure are <em>configurational</em> properties, i.e. they depend on the positions or arrangements of particles in the system.</p>
+<p>The system temperature for this static system (i.e. one with no applied flow field) should also settle and oscillate around an average value close to the temperature specified in the <strong>CONTROL</strong> file. In this case, the temperature is reported as <span class="math notranslate nohighlight">\(1.004 \pm 0.015\)</span>. This <em>kinetic</em> property is dependent on particle velocities and should be controlled by the DPD thermostat (dissipative and random forces) in this instance.</p>
 <p>The instantaneous values of these properties at each reported timestep can be checked against rolling average values, which sample the properties over a number of previous timesteps, to check whether or not the system is still moving towards an equilibrated state.</p>
 <p><strong>Step 5</strong>: If the system properties have not yet settled and an equilibrium state has not yet been reached, the simulation can be extended further to give it more time to equilibrate. This can be achieved in DL_MESO_DPD without re-calculating previous timesteps by <em>restarting</em> the simulation.</p>
 <p>Open the <strong>CONTROL</strong> file, increase the total number of timesteps (<code class="docutils literal notranslate"><span class="pre">steps</span></code>) and add the following line before the final <code class="docutils literal notranslate"><span class="pre">finish</span></code> directive:</p>
@@ -160,8 +160,11 @@
 <li class="toctree-l2 current"><a class="reference internal" href="liquid_sim_dpd.html">Simulating a liquid using DPD (DL_MESO)</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="inputs_prep_dpd.html">Inputs Preparation</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Simulation Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simple_simulation_visualise_dpd.html">Visualising Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simple_simulation_analysis_dpd.html">Analysing Results</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="vapour_liquid_sim_lbe.html">Simulating vapour-liquid coexistence using LBE (DL_MESO)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../STRUCTURES/Structures.html">Structures</a></li>
 </ul>
 </li>
@@ -173,8 +176,8 @@
   <p class="topless"><a href="inputs_prep_dpd.html"
                         title="previous chapter">Inputs Preparation</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../STRUCTURES/Structures.html"
-                        title="next chapter">Structures</a></p>
+  <p class="topless"><a href="simple_simulation_visualise_dpd.html"
+                        title="next chapter">Visualising Simulation</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -198,18 +201,18 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../STRUCTURES/Structures.html" title="Structures"
+          <a href="simple_simulation_visualise_dpd.html" title="Visualising Simulation"
              >next</a> |</li>
         <li class="right" >
           <a href="inputs_prep_dpd.html" title="Inputs Preparation"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="liquid_sim_dpd.html" >Simulating a liquid using DPD (DL_MESO)</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, DL_SDG.
+        &#169; Copyright 2023, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

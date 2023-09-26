@@ -14,9 +14,11 @@ The dissipative force parameter :math:`\gamma` in the DPD thermostat is one way 
 
 There are number of techniques to measure the viscosity of a fluid from DPD simulations based on non-equilibrium molecular dynamics (NEMD) techniques. :ref:`ViscosityLinearShear` is one such approach: we can calculate resulting shear stresses from setting constant velocity gradients in a simulation box, with the relationship between the two providing the viscosity. 
 
-A boundary condition available in DL_MESO_DPD - the Lees-Edwards periodic boundary condition [Lees1972]_ - can apply a constant velocity gradient  (a linear shear flow) throughout a simulation box. The products of pairwise forces and vectors between particle pairs provides our shear stress tensor :math:`\sigma_{\alpha \beta}`, and values of this property averaged over a reasonably large number of timesteps gives a representative value for the flow. Only one of the off-diagonal terms is needed: for instance, if we are varying the :math:`x`-component of velocity varies along :math:`y`, we will need to look at :math:`\sigma_{yx}` [#]_.
+A boundary condition available in DL_MESO_DPD - the Lees-Edwards periodic boundary condition [Lees1972]_ - can apply a constant velocity gradient (a linear shear flow) throughout a simulation box. The products of pairwise forces and vectors between particle pairs provides our shear stress tensor :math:`\sigma_{\alpha \beta}`, and values of this property averaged over a reasonably large number of timesteps gives a representative value for the flow. 
 
-The viscosity of a fluid is equal to the derivative of shear stress :math:`\tau = |\sigma_{yx}|` with respect to shear rate :math:`\dot{\gamma} = \left|\frac{\partial v_x}{\partial y}\right|`:
+The same tensor divided by the system volume provides the *pressure tensor* :math:`p_{\alpha \beta}`, which will not depend upon the system size (either volume or number of particles). Only one of the off-diagonal terms is needed: for instance, if we are varying the :math:`x`-component of velocity varies along :math:`y`, we will need to look at :math:`p_{yx}` [#]_. This value will equal the negative of the shear stress :math:`\tau` for the applied flow, i.e. :math:`\tau = -p_{yx}`.
+
+The viscosity of a fluid is equal to the derivative of shear stress :math:`\tau` with respect to shear rate :math:`\dot{\gamma} = \left|\frac{\partial v_x}{\partial y}\right|`:
 
 .. math :: \mu = \frac{d \tau}{d \dot{\gamma}},
   :label: viscosity
@@ -33,7 +35,7 @@ We are mainly going to use the Stoyanov-Groot thermostat, but we can optionally 
 Instructions
 ------------
 
-For this exercise, you will need the main DL_MESO_DPD executable *dpd.exe* - either serial or parallel versions will do - and the :ref:`local.exe <local>` utility to analyse and visualise some of the results. You will also need either graph plotting software (e.g. Gnuplot, Excel) or the :download:`correl.py <./scripts/correl.py>` Python script to look at :ref:`CORREL <correl>` files: the former might also be useful to plot some graphs of your own. You will also need to have Paraview installed.
+For this exercise, you will need the main DL_MESO_DPD executable *dpd.exe* - either serial or parallel versions will do - and the :ref:`local.exe <local>` utility to analyse and visualise some of the results. You will also need either graph plotting software (e.g. Gnuplot, Excel) or the :download:`dlmresultviewer.py <./scripts/dlmresultviewer.py>` Python script to look at :ref:`CORREL <correl>` files: the former might also be useful to plot some graphs of your own. The same Python script can be used to look at the outputs (VTK files) from the :ref:`local.exe <local>` utility, although if you decide not to use this, you will also need to have Paraview installed.
 
 Copy the :ref:`CONTROL <controldlmeso>` and :ref:`FIELD <fielddlmeso>` input files from the directory *dl_meso/DEMO/DPD/ShearFlow* in your copy of DL_MESO to your working directory (*dl_meso/WORK*) and take a look at them in a text editor. 
 
@@ -68,7 +70,7 @@ Once DL_MESO_DPD has finished running, you will need to run :ref:`local.exe <loc
 
   ./local.exe -nx 1 -ny 100 -nz 1 -av
 
-which will divide the box in the :math:`y`-direction into 100 slices - sufficient for our purposes - and write to a file called *averages.vtk*, which can be opened up in Paraview. After loading the file and clicking Apply in the Properties subwindow, apply the Plot Over Line filter, select the Y Axis and click Apply to display graphs of the properties that have been calculated by :ref:`local.exe <local>`.
+which will divide the box in the :math:`y`-direction into 100 slices - sufficient for our purposes - and write to a file called *averages.vtk*, which can be opened up in Paraview. After loading the file and clicking Apply in the Properties subwindow, apply the Plot Over Line filter, select the Y Axis and click Apply to display graphs of the properties that have been calculated by :ref:`local.exe <local>`. Alternatively, you can open this same file using the *dlmresultviewer.py* script, which will plot graphs of the same properties and allow you to draw lines indicating average values and/or fit polynomial functions to the data.
 
 Both the :ref:`OUTPUT <outputdlmeso>` and :ref:`CORREL <correl>` files will display pressure tensors calculated for the simulation - the former as time-averaged values separated into conservative (interaction), dissipative, random and kinetic contributions, the latter as instantaneous values. These are related to the stress tensors by:
 
@@ -76,20 +78,20 @@ Both the :ref:`OUTPUT <outputdlmeso>` and :ref:`CORREL <correl>` files will disp
 
    p_{\alpha \beta} = \frac{\sigma_{\alpha \beta}}{V}
 
-where :math:`V` is the simulation volume. To obtain the stress tensors, you therefore need to multiply the pressure tensors by the box volume (in this case, :math:`V = 1000 r_c^3`). 
+where :math:`V` is the simulation volume. 
 
 Tasks
 -----
 
-#. Run DL_MESO_DPD in your working directory with the supplied input files, then run the :ref:`local.exe <local>` utility to obtain time-averaged properties in slices along the :math:`y`-direction. Open Paraview, load in the *averages.vtk* file and apply the Plot Over Line filter along the :math:`y`-axis to get a graph of the :math:`x`-component of velocity. 
+#. Run DL_MESO_DPD in your working directory with the supplied input files, then run the :ref:`local.exe <local>` utility to obtain time-averaged properties in slices along the :math:`y`-direction. Either use the *dlmresultviewer.py* script or open Paraview, load in the *averages.vtk* file and apply the Plot Over Line filter along the :math:`y`-axis to get a graph of the :math:`x`-component of velocity. 
 
    - Confirm that the time-averaged velocity profile is linear and work out the actual velocity gradient (shear rate) :math:`\frac{\partial v_x}{\partial y}`.
 
-#. Now take a look at the various pressure tensor components using either plotting software or the Python script *correl.py* on the :ref:`CORREL <correl>` file, or the averaged values at the end of the :ref:`OUTPUT <outputdlmeso>` file.
+#. Now take a look at the various pressure tensor components using either plotting software or the Python script *dlmresultviewer.py* on the :ref:`CORREL <correl>` file, or the averaged values at the end of the :ref:`OUTPUT <outputdlmeso>` file.
 
-   - Find the average value of :math:`\sigma_{yx}` and plot the *absolute* value of this (i.e. without positive or negative signs) against the averaged velocity gradient. **Remember to multiple the pressure tensor values by the system volume to get the stress tensor!**
+   - Find the average value of :math:`p_{yx}` and plot the *absolute* value of this (i.e. without positive or negative signs) against the averaged velocity gradient.
 
-#.  Change the velocity of the shearing boundary in the :ref:`FIELD <fielddlmeso>` file to modify the velocity gradient and repeat the calculation (steps 1 and 2). Find the averaged stress tensor and velocity gradient for this calculation and add this to your stress vs. stress plot.
+#.  Change the velocity of the shearing boundary in the :ref:`FIELD <fielddlmeso>` file to modify the velocity gradient and repeat the calculation (steps 1 and 2). Find the averaged pressure tensor and velocity gradient for this calculation and add this to your stress vs. stress plot.
 
 #.  Once you have calculated shear stresses for at least five different shear rates, take a look at your plot.
 
@@ -119,7 +121,7 @@ The following tasks are *optional* but could offer more insight in how to obtain
 
 .. [#] Non-equilibrium molecular dynamics (NEMD) can model systems with correct hydrodynamics and constant temperatures using a standard thermostat, but in this instance the thermostat can only be applied to *peculiar velocities*, i.e. particle velocities without contributions from the flow field. Finding the flow field requires localised sampling of the flow field - averaging velocities in volume slices over a short period of time - which adds a significant computational cost to the simulation. 
 
-.. [#] Since off-diagonal stress tensor components are symmetrical, we could also look at :math:`\sigma_{xy}`.
+.. [#] Since off-diagonal stress and pressure tensor components are symmetrical, we could also look at :math:`p_{xy}`. 
 
 .. [#] With the timestep :math:`\Delta t = 0.01` given in the CONTROL file, this means the probability of a particle pair having its relative velocity changed is :math:`\Gamma \Delta t = 0.01`.
 

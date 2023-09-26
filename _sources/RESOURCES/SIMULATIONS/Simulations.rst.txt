@@ -21,6 +21,8 @@ This is the main portal that provides all things relate to practical aspects of 
 
    ./solution_sim
    
-   ./liquid_sim_dpd	      
+   ./liquid_sim_dpd
+
+   ./vapour_liquid_sim_lbe	      
 
    ../STRUCTURES/Structures

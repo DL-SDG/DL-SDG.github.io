@@ -75,7 +75,11 @@ The steps below show what happens when DL_FIELD is run:
 
 (2) Read DL_FIELD *control* file.
 
-(3) Carry out |pop2| procedures to obtain |pop1|. DL_FIELD will use the following typing approaches, depending on the FF schemes and input file format:
+(3) Read configuration (input) file.
+
+(4) Carry out |pop2| procedures to obtain |pop1| for each atom in the system. Each ATOM_TYPE is uniquely referenced to an ATOM_KEY, as defined in the *sf* file.
+
+   DL_FIELD will use the following typing approaches, depending on the FF schemes and input file format:
 
    * Template matching - Looking for suitable MOLECULE templates in *sf* data files (for PDB input files).
 
@@ -83,9 +87,11 @@ The steps below show what happens when DL_FIELD is run:
 
    * Combination of both (for *xyz* input files). 
 
-(4) Assign force field parameters, usually obtained from the *par* data files.
+(5) Base on the ATOM_KEYs assigned to the atoms to determine force field parameters.
+    This is carried out by searching for a matching set of ATOM_KEYs for a given interaction component against the parameter list in the 
+    *udff* or *par* file.
 
-(5) Produce *dl_poly.CONFIG*, *dl_poly.FIELD* and *dl_poly.CONTROL* files.
+(6) Produce *dl_poly.CONFIG*, *dl_poly.FIELD* and *dl_poly.CONTROL* files.
 
 
 :ref:`^ GO TO TOP ^<Header_dlf_2>`

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Using DL_MESO_DPD &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
+    <title>Using DL_MESO_DPD &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="DPD.html" title="Dissipative Particle Dynamics"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
@@ -265,25 +265,33 @@
 <p>Assuming the relationship between <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(\Delta A_{ij}\)</span> to be entirely proportional, a dashed line indicating the best fit of available data to a linear plot with zero at the origin is included. The equations for this best-fit line are given at the top of the plot with errors indicating the extremes of the gradient.</p>
 <p>Since data below and above certain values of <span class="math notranslate nohighlight">\(\Delta A_{ij}\)</span> may not be reliable, you can change the minimum and maximum values of this property used to calculate the best-fit line in the text boxes at the bottom of the window.</p>
 </div>
-<div class="section" id="correl-py">
-<h3>correl.py<a class="headerlink" href="#correl-py" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference download internal" download="" href="../../_downloads/8cce48f7d97d0e6a3544cccb812a9b2a/correl.py"><code class="xref download docutils literal notranslate"><span class="pre">correl.py</span></code></a> is a more general-purpose script to plot and analyse the results from DL_MESO_DPD, using its <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> and (if available) RDFDAT files with calculated properties for the system and radial distribution functions respectively. (This is based on a similar script written for DL_POLY STATIS files called <em>statis.py</em>.)</p>
+<div class="section" id="dlmresultviewer-py">
+<h3>dlmresultviewer.py<a class="headerlink" href="#dlmresultviewer-py" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference download internal" download="" href="../../_downloads/794258a9b8c026c8e03ced11466dabaf/dlmresultviewer.py"><code class="xref download docutils literal notranslate"><span class="pre">dlmresultviewer.py</span></code></a> is a more general-purpose script to plot and analyse the results from DL_MESO_DPD, using any of the following files if available:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> with calculated properties for the system</li>
+<li>RDFDAT with radial distribution functions</li>
+<li>MSDDAT with mean-squared displacements</li>
+<li>A VTK file ending with .vtk or .vts containing local values of properties calculated for voxels (volume divisions)</li>
+</ul>
 <p>To use the script, invoke it with your Python3 interpreter with one of the following commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">correl</span><span class="o">.</span><span class="n">py</span>
-<span class="n">python3</span> <span class="n">correl</span><span class="o">.</span><span class="n">py</span>
-<span class="o">./</span><span class="n">correl</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">dlmresultviewer</span><span class="o">.</span><span class="n">py</span>
+<span class="n">python3</span> <span class="n">dlmresultviewer</span><span class="o">.</span><span class="n">py</span>
+<span class="o">./</span><span class="n">dlmresultviewer</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>You can add up to two optional command-line options at the end of the invocation:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">--cor</span> <span class="pre">&lt;cor&gt;</span></code> sets the name of the <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> file to <code class="docutils literal notranslate"><span class="pre">&lt;cor&gt;</span></code> (default: CORREL)</li>
-<li><code class="docutils literal notranslate"><span class="pre">--rdf</span> <span class="pre">&lt;rdf&gt;</span></code> sets the name of the RDFDAT file to <code class="docutils literal notranslate"><span class="pre">&lt;rdf&gt;</span></code> (default: RDFDAT)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--cor</span> <span class="pre">&lt;correl&gt;</span></code> sets the name of the <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> file to <code class="docutils literal notranslate"><span class="pre">&lt;correl&gt;</span></code> (default: CORREL)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--rdf</span> <span class="pre">&lt;rdfdat&gt;</span></code> sets the name of the RDFDAT file to <code class="docutils literal notranslate"><span class="pre">&lt;rdfdat&gt;</span></code> (default: RDFDAT)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--msd</span> <span class="pre">&lt;msddat&gt;</span></code> sets the name of the MSDDAT file to <code class="docutils literal notranslate"><span class="pre">&lt;msddat&gt;</span></code> (default: MSDDAT)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--loc</span> <span class="pre">&lt;local&gt;</span></code> sets the name of the VTK file with localised properties to <code class="docutils literal notranslate"><span class="pre">&lt;local&gt;</span></code> (default: averages.vtk)</li>
 </ul>
 <div class="align-center figure" id="id5">
-<a class="reference internal image-reference" href="../../_images/correlplot.png"><img alt="Plot of total system energy per particle in correl.py" src="../../_images/correlplot.png" style="width: 6.00000in;" /></a>
-<p class="caption"><span class="caption-text">Plot of total system energy per particle as a function of time, obtained from a CORREL file, shown in <em>correl.py</em></span></p>
+<a class="reference internal image-reference" href="../../_images/correlplot.png"><img alt="Plot of total system energy per particle in dlmresultviewer.py" src="../../_images/correlplot.png" style="width: 6.00000in;" /></a>
+<p class="caption"><span class="caption-text">Plot of total system energy per particle as a function of time, obtained from a CORREL file, shown in <em>dlmresultviewer.py</em></span></p>
 </div>
-<p>When the script is launched, the data in the <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> file is read and is made available for plotting and analysis in the first tab. There are two pulldown boxes at the bottom left of the window: <strong>Data set</strong> selects which system property you wish to visualise - the list of which depends on the contents of the <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> file -  while <strong>Analysis</strong> selects what you want to do with the selected data. You can plot one of the following for a given property:</p>
+<p>When the script is launched, it looks for any of the four kinds of file and, if it finds any, opens the main window and creates tabs for each file, where its data can be plotted and analysed. For a <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> file, there are two pulldown boxes at the bottom left of the window: <strong>Data set</strong> selects which system property you wish to visualise - the list of which depends on the contents of the <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> file -  while <strong>Analysis</strong> selects what you want to do with the selected data. You can plot one of the following for a given property:</p>
 <ul class="simple">
 <li>A simple <em>Timeseries</em></li>
 <li>A <em>Histogram</em> of the values obtained during the simulation</li>
@@ -295,7 +303,9 @@
 <a class="reference internal image-reference" href="../../_images/rdfdatplot.png"><img alt="Plot of radial distribution function in correl.py" src="../../_images/rdfdatplot.png" style="width: 6.00000in;" /></a>
 <p class="caption"><span class="caption-text">Plot of radial distribution function between particle species pair A-A, obtained from an RDFDAT file, shown in <em>correl.py</em></span></p>
 </div>
-<p>If an RDFDAT file is available after running the <a class="reference internal" href="../TUTORIALS/dlm_7.html#rdfdpd"><span class="std std-ref">rdf.exe</span></a> utility, the second tab for this file will be populated with a plotting window. The <strong>Data set</strong> pulldown box allows you to select which pair of particle species you wish to plot, while the <strong>Analysis</strong> pulldown box allows you to choose to plot the raw <em>Radial Distribution Function</em> or its <em>Fourier Transform</em> (related to the structure factor). The plot for the latter can also depend upon the number of bins used to calculate the Fourier transform, which can be modified using the text box at the bottom of the window.</p>
+<p>If an RDFDAT file is available after running the <a class="reference internal" href="../TUTORIALS/dlm_7.html#rdfdpd"><span class="std std-ref">rdf.exe</span></a> utility or an equivalent Python script, the tab for this file will be populated with a plotting window. The <strong>Data set</strong> pulldown box allows you to select which pair of particle species you wish to plot, while the <strong>Analysis</strong> pulldown box allows you to choose to plot the raw <em>Radial Distribution Function</em> or its <em>Fourier Transform</em> (related to the structure factor). The plot for the latter can also depend upon the number of bins used to calculate the Fourier transform, which can be modified using the text box at the bottom of the window.</p>
+<p>If an MSDDAT file is available after running the msd.exe utility or an equivalent Python script, the tab for this file will be populated with a plotting window. The <strong>Data set</strong> pulldown box allows you to select which particle species you wish to plot, while the <strong>Analysis</strong> pulldown box allows you to choose to plot the raw <em>Mean Squared Displacements</em> or <em>Diffusivity</em> calculated from gradients of the MSDs. The plot for the latter will depend on a block-averaging bin size that the user can change, and can either be a plot of the diffusivity as a function of time or a histogram, again with a user-selected number of bins and an option to normalise the frequencies. For both diffusivity plots, an averaged value of the diffusivity with standard deviation will be shown.</p>
+<p>If a VTK file with locally calculated properties is available after running the local.exe utility or an equivalent Python script, the tab for this file will be populated with a plotting window.</p>
 <p class="rubric">Footnote</p>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -371,7 +381,7 @@
         <li class="right" >
           <a href="DPD.html" title="Dissipative Particle Dynamics"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
@@ -379,7 +389,7 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, DL_SDG.
+        &#169; Copyright 2023, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

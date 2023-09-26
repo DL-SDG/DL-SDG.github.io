@@ -28,7 +28,7 @@ The calculation will take place inside a periodic box, whose size we will specif
 Background theory and information
 ---------------------------------
 
-Groot-Warren 'standard DPD' interactions between particles of a single type can be parameterised - through the conservative force parameter :math:`A_{ij}` - to obtain a required :ref:`isothermal compressibility <DPD_like_like>` :math:`\kappa_T`. For particle densities (number of beads per unit volume :math:`r_c^3`) of :math:`\rho \ge 2` to ensure the :ref:`predicted equation of state <DPD_like_like>` will apply, assuming one molecule of water per bead:
+Groot-Warren 'standard DPD' interactions between particles of a single type can be parameterised - through the conservative force parameter :math:`A_{ij}` - to obtain a required :ref:`isothermal compressibility <DPD_like_like>` :math:`\kappa_T`. For particle densities (number of beads per unit volume :math:`r_c^3`) of :math:`\rho \ge 2` to ensure the :ref:`predicted equation of state <DPD_like_like>` will apply and assuming one molecule of water per bead, this parameter will equal:
 
 .. math::
 
@@ -108,7 +108,7 @@ Molecular fluid
 
 **Step 1: Create the FIELD file**
 
-We are following a previous study [Horsch2004]_ and using molecules of 10 particles bonded together with harmonic springs, each with 3 beads of species A and 7 of species B. To keep the same total number of beads as before, we would therefore need to include 100 of these molecules.
+We are following a previous study [Horsch2004]_ and using molecules of 10 particles bonded together with harmonic springs, each with 3 beads of species A and 7 of species B. To keep the same total number of beads as before, we would therefore need to include 300 of these molecules.
 
 
 Open a text editor, then copy and paste the following into it:

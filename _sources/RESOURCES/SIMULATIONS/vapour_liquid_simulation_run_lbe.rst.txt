@@ -1,0 +1,85 @@
+.. This describes how to run a simulation to model a vapour-liquid system using LBE
+
+Simulation Run
+##############
+
+**Step 1**: If you have not yet done so, :ref:`obtain and compile DL_MESO <dl_meso_howto>`, specifically DL_MESO_LBE and the utilities. If you have an implementation of MPI on your machine, the parallel version of DL_MESO_LBE is highly recommended; otherwise compile the serial version with OpenMP.
+
+:TIP:
+
+    If you are using a high-performance computing (HPC) facility, it *might* have a pre-compiled DL_MESO module that you can load in and use, which should make the required executable files available to you when submitting a job. If it does not, you can still compile DL_MESO_LBE yourself using the instructions linked above, although you may need to consult the HPC facility's documentation to find out how to load in compilers and MPI.
+
+**Step 2**: Select your working folder, which can either be the **dl_meso/WORK** folder - where the DL_MESO and utility executables were created - or another folder of your choosing. If the latter, either copy the **lbe.exe** and other executable files (ending **.exe**) into that folder or work out the path to the **dl_meso/WORK** folder from that folder (e.g. use the command ``pwd`` to provide the absolute path).
+
+Copy the **lbin.sys** and **lbin.spa** files into your working folder.
+
+:TIP:
+
+    The DL_MESO_LBE executable (**lbe.exe**) expects the **lbin.sys** and **lbin.spa** input files to be in the same directory where it is launched, and needs to find these files to run a simulation successfully.
+
+**Step 3**: Navigate a terminal (command line) window into the working folder and either type ::
+
+  ./lbe.exe
+
+
+to run the serial version of DL_MESO_LBE in that folder, or ::
+
+  mpirun -np X ./lbe.exe
+
+
+to run the parallel version, substituting ``X`` with the required number of processor cores. If the **lbe.exe** executable is in a different folder, replace the dot in either command with the path to the **dl_meso/WORK** folder, e.g. ::
+
+
+  /path/to/dl_meso/WORK/lbe.exe
+  mpirun -np X /path/to/dl_meso/WORK/lbe.exe
+
+
+If you are using a high-performance computing (HPC) service with a batch job manager (e.g. Slurm), you will need to write a job script to specify the computing resources (number of cores, runtime) and the ``mpirun`` (or similar) command, which would be used to submit the calculation to a job queue. The form this job script should take and how to use it will depend on the HPC system in use, so you will need to consult its documentation for further details.
+
+If you need to change the number of OpenMP threads being used for your calculation, either type the following command before running DL_MESO_LBE (substituting ``X`` with the required number of threads): ::
+
+  export OMP_NUM_THREADS=X
+  
+or add a similar command to your job script (which may again depend on the HPC service in use), which normally sets the *number of threads used per processor core*.
+
+DL_MESO_LBE will print messages about the simulation to either the screen or a file representing the standard output. It will also generate a number of files ending **.vts** (**lbout000000.vts** etc.) as simulation snapshots and an **lbout.dump** file to enable simulation restart.
+
+:TIP:
+
+    If you want to redirect what is written to the screen or standard output to a file of your choosing (e.g. **lboutput**), you can add ``>> lboutput`` to the end of the command launching DL_MESO_LBE.
+    
+    
+The images below show the contents of the screen/standard output for the vapour-liquid example using Shan-Chen interactions.
+
+.. figure:: ./IMAGES/output_vapour_liquid_lbe1.png
+
+This first image shows a summary of the upcoming calculation, based on available numbers of cores and threads and the contents of the **lbin.sys** file, and the first few sample points. For each sampling timestep, the total mass of all fluids and the mass of each fluid (first line), the time taken to reach that point in seconds and the overall momentum of the system (second line).
+
+.. figure:: ./IMAGES/output_vapour_liquid_lbe2.png
+
+The second image shows the end of the calculation, including the time taken to complete the calculation and a measure of calculation efficiency: Millions of Lattice Updates Per Second (MLUPS). A message is also included asking the user to cite DL_MESO if it is used for published research.
+
+
+**Step 4**: Take a look at the values of fluid masses and momentum, and check the calculation is numerically stable and/or settled to a steady state.
+
+The overall mass for the majority of LBE calculations should remain constant throughout within available computational accuracy: very small changes to the overall mass or to the masses of individual fluids might happen over very large numbers of timesteps. Rapid changes of masses and/or values of 'NaN' (not a number) indicate that the calculation is numerically unstable and will need adjusting to alleviate this.
+
+The vapour-liquid systems do not directly impose any motion to the system, so the overall momentum should be close to zero. For multiple-phase or multiple-fluid systems, there are likely to be spurious velocity fields generated at phase/fluid interfaces, but these should ideally be small and, for fully equilibrated systems with circular/spherical drops, symmetrical.
+
+**Step 5**: If the system has somehow not yet settled and/or an equilibrium state has not yet been reached, the simulation can be extended further to give it more time to equilibrate. This can be achieved in DL_MESO_LBE without re-calculating previous timesteps by *restarting* the simulation.
+
+Open the **lbin.sys** file, increase the total number of timesteps (``total_steps``) and add the following line: ::
+
+    restart_simulation           1
+
+
+before running DL_MESO_LBE again (Step 3).
+
+Restarting DL_MESO_LBE requires an **lbout.dump** file, which includes the values of all distribution functions for all grid points and is (over)written periodically by DL_MESO_LBE during a calculation.
+
+To start a new calculation using the current state given in the **lbout.dump** file instead of a full restart, run the utility: ::
+
+  ./dump_to_init.exe
+
+This creates an initial state file **lbin.init** from the **lbout.dump** file, which DL_MESO_LBE can use to work out the starting point for the new simulation.
+

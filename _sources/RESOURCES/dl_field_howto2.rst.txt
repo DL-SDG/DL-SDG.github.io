@@ -155,11 +155,4 @@ Note that by using inorganic force field scheme would need an additional directi
 
 :ref:`^ GO TO TOP ^<Header_dlf_howto2>`
 
-.. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
-
-:ref:`^ GO TO TOP ^<Header_dlf_howto2>`
-
-
-
-
 

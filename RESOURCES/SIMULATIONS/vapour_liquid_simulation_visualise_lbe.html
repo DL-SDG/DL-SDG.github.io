@@ -1,0 +1,147 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Visualising Simulation &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Analysing Results" href="vapour_liquid_simulation_analysis_lbe.html" />
+    <link rel="prev" title="Simulation Run" href="vapour_liquid_simulation_run_lbe.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="vapour_liquid_simulation_analysis_lbe.html" title="Analysing Results"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="vapour_liquid_simulation_run_lbe.html" title="Simulation Run"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" accesskey="U">Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="visualising-simulation">
+<span id="vapour-liquid-simulation-visualise-lbe"></span><h1>Visualising Simulation<a class="headerlink" href="#visualising-simulation" title="Permalink to this headline">¶</a></h1>
+<p>The results from a DL_MESO_LBE simulation includes periodic snapshots of the system in VTK files, usually ending in .vts for structured grids, essentially as a trajectory. These can be visualised and analysed by loading them into a visualisation package designed to look at grid-based data, i.e.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.paraview.org/">ParaView</a></li>
+</ul>
+<p>The data is already in a form that can be read in and visualised and/or manipulated for analysis. (There are also Python scripts available to read these files and work out particular properties.)</p>
+<p><strong>ParaView</strong>:</p>
+<p>ParaView can automatically open a numbered sequence of VTK files and visualise them each in turn, including generating an animation showing how the simulation has progressed. After selecting the group of <strong>lbout*.vts</strong> files and opening them, you then need to click Apply in the Properties window to load in the data and create a visualisation. Pull-down boxes indicating which data are being visualised and the type of visualisation are then made available, and controls are also available to play through or select the available frames.</p>
+<div class="figure">
+<img alt="../../_images/paraview.png" src="../../_images/paraview.png" />
+</div>
+<p>In the above, the fluid densities in last frame of the vapour-liquid simulation using Shan-Chen interactions are shown. The colour scale indicates the available values, including maxima and minima related to the bulk liquid and vapour densities respectively. (This information is also available in the Information window.)</p>
+<p>Any of the supplied data in the files can be manipulated in ParaView by using filters. Among many others, these include:</p>
+<ul class="simple">
+<li><strong>Calculator</strong>: uses the values of existing properties at each grid point to come up with new properties</li>
+<li><strong>Contour</strong>: draw lines for various values of a given property</li>
+<li><strong>Plot Over Line</strong>: creates a graph of all available properties along a user-specified line through the simulation domain</li>
+<li><strong>Glyph</strong>: draws arrows or similar objects indicating directions (and magnitudes) of flows</li>
+<li><strong>Stream Tracer</strong>: generates streamlines of fluid flows</li>
+<li><strong>Slice</strong>: cuts through a three-dimensional grid and visualises a cross-section along a selected axis or direction</li>
+</ul>
+<p>Note that these filters come up with further properties or values that can be plotted on the grid, rather than single system-wide values.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Resources.html">Resources</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="Simulations.html">Simulations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="parameter_examples.html">Example Simulation Models and Procedures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="liquid_sim.html">Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solution_sim.html">Simulating a solution (DL_FIELD, DL_POLY, DL_ANALYSER)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="liquid_sim_dpd.html">Simulating a liquid using DPD (DL_MESO)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="vapour_liquid_sim_lbe.html">Simulating vapour-liquid coexistence using LBE (DL_MESO)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="inputs_prep_lbe.html">Inputs Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vapour_liquid_simulation_run_lbe.html">Simulation Run</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Visualising Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vapour_liquid_simulation_analysis_lbe.html">Analysing Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../STRUCTURES/Structures.html">Structures</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="vapour_liquid_simulation_run_lbe.html"
+                        title="previous chapter">Simulation Run</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="vapour_liquid_simulation_analysis_lbe.html"
+                        title="next chapter">Analysing Results</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="vapour_liquid_simulation_analysis_lbe.html" title="Analysing Results"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="vapour_liquid_simulation_run_lbe.html" title="Simulation Run"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" >Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

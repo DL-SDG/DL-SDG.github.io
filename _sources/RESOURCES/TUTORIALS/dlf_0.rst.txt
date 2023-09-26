@@ -29,10 +29,13 @@ Table of contents:
    ./dlf_2
    ./dlf_3
    ./dlf_4
+   ./dlf_21
    ./dlf_17
    ./dlf_11
    ./dlf_16
    ./dlf_5
+   ./dlf_19
+   ./dlf_20
 
 .. toctree::
    :maxdepth: 2
@@ -49,6 +52,8 @@ Table of contents:
    ./dlf_12
    ./dlf_14
    ./dlf_15
+   ./dlf_22
+   ./dlf_23
    ./dlf_18
    ./dlf_13
 

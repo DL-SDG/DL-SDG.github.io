@@ -79,11 +79,11 @@ This is a useful quantity to an overall view how atoms and molecules pack around
 
 **General guidance in using Interaction Analysis Section**
 
-This analysis Section is unique to DL_ANALYSER, to identify, quantify and annotate specific interactions within a molecular system. To use this feature, you would need to use DL_FIELD to setup force field models that express atoms in the DL_F Notation, which encode the chemical characteristics of every atom in the system.
+This analysis Section is unique to DL_ANALYSER, to identify, quantify and annotate specific interactions within a molecular system. To use this feature, you would need to use DL_FIELD to setup force field models that express atoms in the DL_F Notation, which encodes the chemical characteristics of every atom in the system.
 
 (1) Pre-requisite: Generate FIELD and CONFIG from DL_FIELD by specifying the atom display format as the DL_FIELD format in the *control* file. 
 
-(2) Decide which type of interaction you intend to track. Be specific in terms of which chemical groups you intend to monitor. For instance, if you system contains carboxylic group and alcohol group and you intend to determine the interactions between these group, then select alcohol-carboxylic interaction interactions (collectively, the interactions is called HB_15_20) in the DL_ANALYSER *control* file.
+(2) Decide which type of interaction you intend to track. Be specific in terms of which chemical groups you intend to monitor. For instance, if your system contains carboxylic group and alcohol group and you intend to determine the interactions between these groups, then select alcohol-carboxylic interactions (HB_15_20) in the DL_ANALYSER *control* file.
 
 (3) Edit DL_ANALYSER *input* file and insert molecular configurations such as the HISTORY files.
 

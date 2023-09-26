@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Additional details on DPD &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
+    <title>Additional details on DPD &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="DPDIntro.html" title="Dissipative Particle Dynamics (DPD)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
       </ul>
     </div>  
@@ -71,12 +71,12 @@
 <p>and thus the length unit</p>
 <div class="math notranslate nohighlight">
 \[r_c \approx 4.48 \times 10^{-10} N_m^{\frac{1}{3}} \text{ m}.\]</div>
-<p>There are two possible approaches to obtaining a time unit <span class="math notranslate nohighlight">\(\tau\)</span> for the simulation. The first is to apply dimensional analysis and make use of the three units defined above:</p>
+<p>There are two possible approaches to obtaining a time unit <span class="math notranslate nohighlight">\(\tau_0\)</span> for the simulation. The first is to apply dimensional analysis and make use of the three units defined above:</p>
 <div class="math notranslate nohighlight">
-\[\tau = r_c \sqrt{\frac{m}{k_B T}} \approx 1.21 \times 10^{-12} N_m^{\frac{5}{6}}\text{ s}.\]</div>
-<p>The second is to compare the self-diffusivity of the DPD beads - measured by calculating mean-squared displacements from simulations - with experimental values for the fluid we wish to model <a class="reference internal" href="#groot2001" id="id2">[Groot2001]</a>. In our case of modelling water beads each with <span class="math notranslate nohighlight">\(N_m\)</span> molecules, the time unit is found to be:</p>
+\[\tau_0 = r_c \sqrt{\frac{m}{k_B T}} \approx 1.21 \times 10^{-12} N_m^{\frac{5}{6}}\text{ s}.\]</div>
+<p>The second is to compare the self-diffusivity of the DPD beads - measured by calculating mean-squared displacements from simulations - with experimental values for the fluid we wish to model <a class="reference internal" href="#groot2001" id="id2">[Groot2001]</a>. In our case of modelling water beads each with <span class="math notranslate nohighlight">\(N_m\)</span> molecules and setting the dissipative force parameter <span class="math notranslate nohighlight">\(\gamma = 4.5\)</span>, the time unit is found to be:</p>
 <div class="math notranslate nohighlight">
-\[\tau = \frac{N_m D_{sim} r_c^2}{D_w} \approx 1.41 \times 10^{-11} N_m^{\frac{5}{3}} \text{ s}.\]</div>
+\[\tau_0 = \frac{N_m D_{sim} r_c^2}{D_w} \approx 1.41 \times 10^{-11} N_m^{\frac{5}{3}} \text{ s}.\]</div>
 </div>
 <div class="section" id="parameterising-dpd-interactions">
 <h2>Parameterising DPD interactions<a class="headerlink" href="#parameterising-dpd-interactions" title="Permalink to this headline">¶</a></h2>
@@ -210,7 +210,7 @@
 <p>We can calculate a stress tensor for the system at a given timestep by summing products of components of pairwise forces and vectors between particle pairs, i.e.</p>
 <div class="math notranslate nohighlight">
 \[\sigma_{\alpha \beta} = \sum_i \left(m_i v_{i,\alpha} v_{i,\beta} + \sum_{j&gt;i} F_{ij,\alpha} r_{ij,\beta} \right), ~~~~~ (\alpha, \beta = x, y, z)\]</div>
-<p>which can be averaged over a reasonably large number of timesteps to obtain representative values. For a system with shear flow, only one of the symmetric off-diagonal terms (<span class="math notranslate nohighlight">\(\sigma_{\alpha \beta} = \sigma_{\beta \alpha}\)</span>, <span class="math notranslate nohighlight">\(\alpha \ne \beta\)</span>) is required and will represent the shear stress <span class="math notranslate nohighlight">\(\tau\)</span>. For instance, if the <span class="math notranslate nohighlight">\(x\)</span>-component of velocity varies along <span class="math notranslate nohighlight">\(y\)</span> (so the velocity gradient is <span class="math notranslate nohighlight">\(\frac{\partial v_x}{\partial y}\)</span>), we will need to look at either <span class="math notranslate nohighlight">\(\sigma_{yx}\)</span> or <span class="math notranslate nohighlight">\(\sigma_{xy}\)</span>.</p>
+<p>which can be averaged over a reasonably large number of timesteps to obtain representative values. For a system with shear flow, only one of the symmetric off-diagonal terms (<span class="math notranslate nohighlight">\(\sigma_{\alpha \beta} = \sigma_{\beta \alpha}\)</span>, <span class="math notranslate nohighlight">\(\alpha \ne \beta\)</span>) is required. The stress tensor can be divided by the system volume to give the <em>pressure tensor</em>, i.e. <span class="math notranslate nohighlight">\(p_{\alpha \beta} = \sigma_{\alpha \beta}/V\)</span>, and the relevant off-diagonal term of this will be equal to the negative of the shear stress <span class="math notranslate nohighlight">\(\tau\)</span>. For instance, if the <span class="math notranslate nohighlight">\(x\)</span>-component of velocity varies along <span class="math notranslate nohighlight">\(y\)</span> (so the velocity gradient is <span class="math notranslate nohighlight">\(\frac{\partial v_x}{\partial y}\)</span>), the shear stress is equal to either <span class="math notranslate nohighlight">\(-p_{yx}\)</span> or <span class="math notranslate nohighlight">\(-p_{xy}\)</span>.</p>
 <p>We can therefore carry out several simulations with different velocity gradients (by changing the wall velocities <span class="math notranslate nohighlight">\(\pm\mathbf{v}_{w}\)</span>) and find the resulting shear stresses. Plotting the stresses against shear rates will give the relationship between the two, and the gradient of the curve at each point will give the fluid viscosity. If the fluid is Newtonian, the curve will be a straight line crossing through the origin (i.e. zero stress at zero shear rate).</p>
 </div>
 <div class="section" id="alternative-pairwise-thermostats-to-dpd">
@@ -222,7 +222,7 @@
 <p>and also <strong>not applying conservative forces</strong>, we can obtain the following relationship for the viscosity <a class="reference internal" href="#marsh1997" id="id17">[Marsh1997]</a>:</p>
 <div class="math notranslate nohighlight" id="equation-viscdpdtheory">
 <span class="eqno">(3)<a class="headerlink" href="#equation-viscdpdtheory" title="Permalink to this equation">¶</a></span>\[\mu \approx \frac{45 k_B T}{4 \pi \gamma r_c^3} + \frac{2 \pi \gamma \rho^2 r_c^5}{1575}\]</div>
-<p>which is pretty complex and might not really be suited for modelling flows of dense liquids <a class="footnote-reference" href="#id26" id="id18">[4]</a>. Adding conservative forces will change this relationship, but it might still be difficult to obtain a realistic viscosity for a liquid with the DPD thermostat. <strong>Note</strong>: This does <em>not</em> mean the DPD thermostat cannot be used for liquid systems, particularly if you are more interested in equilibrium structures than the detailed hydrodynamics.</p>
+<p>which is pretty complex and might not really be suited for modelling flows of dense liquids <a class="footnote-reference" href="#id26" id="id18">[4]</a>. Adding conservative forces will change this relationship and is likely to increase the viscosity further, but it might still be difficult to obtain a realistic viscosity for a liquid with the DPD thermostat. <strong>Note</strong>: This does <em>not</em> mean the DPD thermostat cannot be used for liquid systems, particularly if you are more interested in equilibrium structures than the detailed hydrodynamics.</p>
 <p>One way around this is to use a different pairwise thermostat. Two particularly interesting choices for flow-based systems are the Lowe-Andersen <a class="reference internal" href="../EXERCISES/DPDExercise3.html#lowe1999" id="id19">[Lowe1999]</a> and Stoyanov-Groot <a class="reference internal" href="../EXERCISES/DPDExercise3.html#stoyanov2005" id="id20">[Stoyanov2005]</a> thermostats, both of which are pairwise variants of the Andersen thermostat <a class="reference internal" href="#andersen1980" id="id21">[Andersen1980]</a> and use a collision frequency <span class="math notranslate nohighlight">\(\Gamma\)</span> as their main parameter.</p>
 <p>For each interacting particle pair, we generate a random number <span class="math notranslate nohighlight">\(u_{ij}\)</span> between 0 and 1, and if <span class="math notranslate nohighlight">\(u_{ij} &lt; \Gamma \Delta t\)</span>, we select that pair for thermostatting after integration of conservative (interaction) forces. Going through the selected particle pairs in a randomised order and using the most up-to-date values of particle velocities, we apply the following modifications to each pair’s velocities:</p>
 <div class="math notranslate nohighlight">
@@ -413,12 +413,12 @@
         <li class="right" >
           <a href="DPDIntro.html" title="Dissipative Particle Dynamics (DPD)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, DL_SDG.
+        &#169; Copyright 2023, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

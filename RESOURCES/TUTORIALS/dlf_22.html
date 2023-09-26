@@ -1,0 +1,197 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Customise VDW interactions (VDW_FIX directive) &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Auto VDW determination" href="dlf_23.html" />
+    <link rel="prev" title="Pseudo points" href="dlf_15.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlf_23.html" title="Auto VDW determination"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_15.html" title="Pseudo points"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD Tutorial</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="customise-vdw-interactions-vdw-fix-directive">
+<span id="header-dlf-22"></span><h1>Customise VDW interactions (VDW_FIX directive)<a class="headerlink" href="#customise-vdw-interactions-vdw-fix-directive" title="Permalink to this headline">¶</a></h1>
+<p>This page illustrates the use of <em>VDW_FIX</em> directive to customise the vdw interactions between atoms <em>i</em> and <em>j</em>.</p>
+<p>In organic FF schemes, these parameter sets are automatically derived in DL_FIELD by using some form of mixing rules involving the parameters of the pure components for <em>i</em> and <em>j</em>, respectively (see <a class="reference internal" href="../FORCE_FIELD/ff10.html"><span class="doc">Lennard-Jones Mixing Rules</span></a>).</p>
+<p>For inorganic FF schemes, the vdw parameters for different pairs of atoms are explicitly defined in the library.</p>
+<p>These vdw parameters can be altered. One way to do this is to override the standard vdw parameters derived from the library by using a <em>udff</em> file. This can potentially change all vdw interactions involving the override atom. Another way is to use <em>VDW_FIX</em> directive which is useful if only a specific combination of atom pairs are needed to adjust.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Without using VDW_FIX</strong></p>
+<p>Suppose we have a molecular system contains ethanol molecules and we want to set up a force field model by using CHARMM CGenFF.</p>
+<p>Below illustrates how DL_FIELD determined Lennard-Jones (LJ) vdw parameters for two atoms between the ethanol molecules. The labels HGP1 and OG311 are the ATOM_KEYs expressed in the standard CHARMM CGenFF force field scheme. They are referred to the hydroxyl hydrogen and hydroxyl oxygen, respectively.</p>
+<a class="reference internal image-reference" href="../../_images/dl_f_22_1.png"><img alt="../../_images/dl_f_22_1.png" class="align-center" src="../../_images/dl_f_22_1.png" style="width: 772.4000000000001px; height: 347.20000000000005px;" /></a>
+<p>In the library file, the vdw parameters for HGP1 and OG311 are independantly listed as shown above. To determined the LJ parameters for the HGP1—OG311 atom pairs, the arithmatic and geometric mixing rules are applied (mixing rules for CHARMM FF) for the <span class="math notranslate nohighlight">\(R_{min}\)</span> and <span class="math notranslate nohighlight">\(\epsilon\)</span>, respectively.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In DL_POLY FIELD file, the LJ parameter <span class="math notranslate nohighlight">\(\sigma\)</span> (steric) is used, rather than the <span class="math notranslate nohighlight">\(R_{min}\)</span>. DL_FIELD will do the conversion internally.</p>
+</div>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>VDW_FIX Syntax</strong></p>
+<p>The syntax for using the directive is as follows:</p>
+<p>VDW_FIX   <em>potential_label</em>  <br />
+atom1&nbsp;&nbsp;atom2    func    p1 p2 p3 <br />
+atom3&nbsp;&nbsp;atom4    func    p1 p2 p3 <br />
+… <br />
+… <br />
+END VDW_FIX</p>
+<p>Where atom1, atom2 and atom3, atom4 are two sets of atom pairs of which the vdw parameters will be redefined.</p>
+<p>The value ‘func’ is the vdw functional form, which can be either the 12-6 Lennard-Jones (lj), morse, or Buckingham. The values p1, p2 and p3 are the parameter values of the functional forms.</p>
+<p>The <em>potential_label</em> is the name of a potential scheme. Usually, this would be the same where the <em>VDW_FIX</em> directive is located in the <em>.par</em> file.</p>
+<p>For exmaple, the CHARMM36 CGenFF contains several <em>VDW_FIX</em> statements in the <em>.par</em> file as shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll">VDW_FIX charmm*
+</span>OG2D1   CLGR1   lj   0.200       3.400  ! NBFIX based on NMA (carbonyl oxygen in amide) and CL of CGenFF
+O       CLGR1   lj   0.2000      3.4000 ! NBFIX for carbonyl oxygen in amide of protein
+ON1     CLGR1   lj   0.2000      3.4000 ! NBFIX for carbonyl oxygen in nucleic acid bases
+ON1C    CLGR1   lj   0.2000      3.4000 ! NBFIX for carbonyl oxygen in nucleic acid bases
+OC2D1   CLGR1   lj   0.2000      3.4000 ! NBFIX for carbonyl oxygen in carbohydrate amides
+S       CLGR1   lj   0.3800      3.8300 ! NBFIX for cysteine sulphur
+HS      CLGR1   lj   0.2000      2.8200 ! NBFIX for cysteine sulphur
+SOD     OG2D2   lj   0.07502     3.23   ! CGenFF: osmotic P; carboxylate =O
+SOD     OG2P1   lj   0.07502     3.16   ! CGenFF: POPC optim.; phosphate =O
+<span class="hll">SOD     CLA     lj   0.083875    3.731   ! Protein: Osmotic pressure J Phys. Chem. Lett. 1:183-189
+</span>POT     CLA     lj   0.114236    4.081   ! Protein: Osmotic pressure J Phys. Chem. Lett. 1:183-189
+END VDW_FIX
+</pre></div>
+</div>
+<p>The <em>potential_label</em> is the name of a potential scheme. Normally, this would be the same as that where the <em>VDW_FIX</em> directive is located. In this case, it is shown with a wildcard ‘*’ (charmm*), which means ‘any CHARMM FF components’. This means the VDW_FIX will be applied to pairs of matching non-bonded atoms that belong to any CHARMM FFs. At least one of the atom must belong to CGenFF, whereas, the other atom can belong to any CHARMM FF components (protein, DNA, carbohydrates, etc).</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Atom equivalence does not apply to the atoms listed in <em>VDW_FIX</em>. In other words, DL_FIELD only matches exactly the atoms as shown within the <em>VDW_FIX</em> directive.</p>
+</div>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Using VDW_FIX</strong></p>
+<p>Suppose the system also contain sodium (SOD) and chloride (CLA) ions. Since there is a matching (SOD and CLA) pair defined in the VDW_FIX block (see above), no mixing rule will be applied and the parameters are directly extracted from the list. Diagram below illustrates the differences in prameters with and without VDW_FIX.</p>
+<a class="reference internal image-reference" href="../../_images/dl_f_22_2.png"><img alt="../../_images/dl_f_22_2.png" class="align-center" src="../../_images/dl_f_22_2.png" style="width: 690.8000000000001px; height: 437.6px;" /></a>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Using VDW_FIX in bio-inorganic systems</strong></p>
+<p>The <em>VDW_FIX</em> directive is especially useful for models using multiple-potential models such as bio-inorganic systems. For example, suppose a system consists of a binary oxide inorganic material and an organic compound. The inorganic material is applied with the <em>inorganic_binary_oxide</em> FF scheme, whereas, the organic component is applied with, say, <em>CHARMM22_prot</em> FF scheme.</p>
+<p>By default, the vdw parameters between an inorganic and organic component are not defined. DL_FIELD will display these atom pairs but not the parameters: It is up to you to insert these values manually.</p>
+<p>However, you can use <em>VDW_FIX</em> directive to instruct DL_FIELD to insert vdw parameters for these mixed component atom pairs. For example, consider the following <em>VDW_FIX</em> directive, perhaps included in a <em>udff</em> file for the <em>inorganic_binary_oxide</em> FF scheme:</p>
+<a class="reference internal image-reference" href="../../_images/dl_f_22_3.png"><img alt="../../_images/dl_f_22_3.png" class="align-center" src="../../_images/dl_f_22_3.png" style="width: 659.25px; height: 238.5px;" /></a>
+<p>The directive <em>VDW_FIX charmm22_prot</em> means, for each atom pair that is listed within the directive, one atom must belong to the <em>inorganic_binary_oxide</em> and the other atom must belong to the <em>charmm22_prot</em> scheme.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only two and only two FF schemes are allowed within a <em>VDW_FIX</em> directive block and only one block is allowed in each file: one FF scheme is implicit to which the <em>VDW_FIX</em> is located, and the other FF scheme is the <em>potential_label</em> defined along the <em>VDW_FIX</em> heading.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For more information about VDW_FIX, please consult DL_FIELD manual, Section 3.11 and Section 10.6.</p>
+</div>
+<p><a class="reference internal" href="#header-dlf-22"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_15.html"
+                        title="previous chapter">Pseudo points</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlf_23.html"
+                        title="next chapter">Auto VDW determination</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlf_23.html" title="Auto VDW determination"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_15.html" title="Pseudo points"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

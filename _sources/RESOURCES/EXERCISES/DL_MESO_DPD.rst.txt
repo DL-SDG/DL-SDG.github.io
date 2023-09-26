@@ -255,32 +255,39 @@ Assuming the relationship between :math:`\chi^{\text{AB}}` and :math:`\Delta A_{
 
 Since data below and above certain values of :math:`\Delta A_{ij}` may not be reliable, you can change the minimum and maximum values of this property used to calculate the best-fit line in the text boxes at the bottom of the window.
 
-correl.py
-~~~~~~~~~
+dlmresultviewer.py
+~~~~~~~~~~~~~~~~~~
 
-:download:`correl.py <./scripts/correl.py>` is a more general-purpose script to plot and analyse the results from DL_MESO_DPD, using its :ref:`CORREL <correl>` and (if available) RDFDAT files with calculated properties for the system and radial distribution functions respectively. (This is based on a similar script written for DL_POLY STATIS files called *statis.py*.)
+:download:`dlmresultviewer.py <./scripts/dlmresultviewer.py>` is a more general-purpose script to plot and analyse the results from DL_MESO_DPD, using any of the following files if available:
+
+* :ref:`CORREL <correl>` with calculated properties for the system
+* RDFDAT with radial distribution functions
+* MSDDAT with mean-squared displacements
+* A VTK file ending with .vtk or .vts containing local values of properties calculated for voxels (volume divisions)
 
 To use the script, invoke it with your Python3 interpreter with one of the following commands: ::
 
-   python correl.py
-   python3 correl.py
-   ./correl.py
+   python dlmresultviewer.py
+   python3 dlmresultviewer.py
+   ./dlmresultviewer.py
 
 You can add up to two optional command-line options at the end of the invocation:
 
-* ``--cor <cor>`` sets the name of the :ref:`CORREL <correl>` file to ``<cor>`` (default: CORREL)
-* ``--rdf <rdf>`` sets the name of the RDFDAT file to ``<rdf>`` (default: RDFDAT)
+* ``--cor <correl>`` sets the name of the :ref:`CORREL <correl>` file to ``<correl>`` (default: CORREL)
+* ``--rdf <rdfdat>`` sets the name of the RDFDAT file to ``<rdfdat>`` (default: RDFDAT)
+* ``--msd <msddat>`` sets the name of the MSDDAT file to ``<msddat>`` (default: MSDDAT)
+* ``--loc <local>`` sets the name of the VTK file with localised properties to ``<local>`` (default: averages.vtk)
 
 .. figure:: ./images/correlplot.png
     :width: 6.00000in
     :align: center
-    :alt: Plot of total system energy per particle in correl.py
+    :alt: Plot of total system energy per particle in dlmresultviewer.py
     :figclass: align-center
 
-    Plot of total system energy per particle as a function of time, obtained from a CORREL file, shown in *correl.py*
+    Plot of total system energy per particle as a function of time, obtained from a CORREL file, shown in *dlmresultviewer.py*
 
 
-When the script is launched, the data in the :ref:`CORREL <correl>` file is read and is made available for plotting and analysis in the first tab. There are two pulldown boxes at the bottom left of the window: **Data set** selects which system property you wish to visualise - the list of which depends on the contents of the :ref:`CORREL <correl>` file -  while **Analysis** selects what you want to do with the selected data. You can plot one of the following for a given property:
+When the script is launched, it looks for any of the four kinds of file and, if it finds any, opens the main window and creates tabs for each file, where its data can be plotted and analysed. For a :ref:`CORREL <correl>` file, there are two pulldown boxes at the bottom left of the window: **Data set** selects which system property you wish to visualise - the list of which depends on the contents of the :ref:`CORREL <correl>` file -  while **Analysis** selects what you want to do with the selected data. You can plot one of the following for a given property:
 
 * A simple *Timeseries*
 * A *Histogram* of the values obtained during the simulation
@@ -297,7 +304,12 @@ When the script is launched, the data in the :ref:`CORREL <correl>` file is read
     Plot of radial distribution function between particle species pair A-A, obtained from an RDFDAT file, shown in *correl.py*
 
 
-If an RDFDAT file is available after running the :ref:`rdf.exe <rdfdpd>` utility, the second tab for this file will be populated with a plotting window. The **Data set** pulldown box allows you to select which pair of particle species you wish to plot, while the **Analysis** pulldown box allows you to choose to plot the raw *Radial Distribution Function* or its *Fourier Transform* (related to the structure factor). The plot for the latter can also depend upon the number of bins used to calculate the Fourier transform, which can be modified using the text box at the bottom of the window.
+If an RDFDAT file is available after running the :ref:`rdf.exe <rdfdpd>` utility or an equivalent Python script, the tab for this file will be populated with a plotting window. The **Data set** pulldown box allows you to select which pair of particle species you wish to plot, while the **Analysis** pulldown box allows you to choose to plot the raw *Radial Distribution Function* or its *Fourier Transform* (related to the structure factor). The plot for the latter can also depend upon the number of bins used to calculate the Fourier transform, which can be modified using the text box at the bottom of the window.
+
+
+If an MSDDAT file is available after running the msd.exe utility or an equivalent Python script, the tab for this file will be populated with a plotting window. The **Data set** pulldown box allows you to select which particle species you wish to plot, while the **Analysis** pulldown box allows you to choose to plot the raw *Mean Squared Displacements* or *Diffusivity* calculated from gradients of the MSDs. The plot for the latter will depend on a block-averaging bin size that the user can change, and can either be a plot of the diffusivity as a function of time or a histogram, again with a user-selected number of bins and an option to normalise the frequencies. For both diffusivity plots, an averaged value of the diffusivity with standard deviation will be shown.
+
+If a VTK file with locally calculated properties is available after running the local.exe utility or an equivalent Python script, the tab for this file will be populated with a plotting window. 
 
 .. rubric:: Footnote
 

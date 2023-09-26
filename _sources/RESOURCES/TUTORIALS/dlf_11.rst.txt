@@ -5,9 +5,9 @@
 
    <br /> 
 
-***************
-The Input Files
-***************
+*****************************
+The Input Configuration Files
+*****************************
 
 This page describes the use of input files, or users' system configuration files in DL_FIELD. 
 

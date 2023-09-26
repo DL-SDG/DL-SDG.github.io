@@ -1,0 +1,44 @@
+.. DL_FIELD tutorial. The udff file.
+.. _Header_dlf_19:
+
+*****************************
+The udff file: 1. File format
+*****************************
+
+The *udff* file, or the *user-define force field* file, is a DL_FIELD input file where you can include new force field information that are not available in the library files.  
+
+A *udff* file allows you to define new FF models and parameters without tampering with the library files. You can also redefine the existing library data without doing any physical change to the library files. 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**The udff file structure**
+
+You can include *DIRECTIVES* from both the DL_FIELD's *sf* and *par* library files. The general formats are shown as follows:
+
+.. literalinclude:: dlf_udff.txt
+   :emphasize-lines: 3,5,36
+
+You can give any name to the file provided it ends with the extension *.udff*. Most *DIRECTIVES* are optional and a *udff* file can have as few as a single *DIRECTIVE*, perhaps to modify a set of parameters; or all *DIRECTIVES*, perhaps to fully define a complete FF model. In addition, the *DIRECTIVES* can also appear in any order according to your liking.
+
+However, the following *DIRECTIVES* must always include in a *udff* file. For instance, the *POTENTIAL* and *END POTENTIAL*, within which the relevant FF data are located. In this case, the data is related to the CHARMM22_prot FF scheme. The way how data is displayed must also follow that of in the library files for that FF scheme. 
+
+The energy *UNIT* must also be specified within the *POTENTIAL*. DL_FIELD will assume all potential parameters will be expressed in this unit. In this example, all potential parameters would be expressed in the energy unit eV. Whereas, in the library, CHARMM22_prot FF is expressed in unit kcal/mol. DL_FIELD will carry out correct unit conversions, according to the energy unit specified in the DL_FIELD *control* file. 
+
+Note that more than one *POTENTIAL* scheme can be specified in a *udff* file, with the corresponding FF data enclosed within the appropriate *POTENTIAL* and *END POTENTIAL* directives. DL_FIELD will only look for the relevant data located within the appropriate *POTENTIAL* scheme according to the specification in the *control* file.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Using udff file**
+
+Once a *udff* file is constructed, DL_FIELD can read in the file by specifying the file in the *control* file as shown below, with the relevant rows being highlighted as follows:
+
+.. literalinclude:: dlf_udff2.txt
+   :emphasize-lines: 4,5,9
+
+In this *control* file, the *udff* file is specified. This means DL_FIELD will read this file before moving on to read the library files. DL_FIELD will only read in the information from the same FF scheme in the *udff* file. 
+
+In addition, the energy unit kJ/mol is specified. This means all the parameters will be automatically converted into this unit, whether they are from the *udff* or library sources.
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_19>`
+

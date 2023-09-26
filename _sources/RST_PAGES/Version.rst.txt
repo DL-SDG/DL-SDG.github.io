@@ -15,6 +15,18 @@ DL_SDG Versions
     :height: 69px
     :alt: DL_Software Logo
 
+**Version 2.2**, released September 2023 
+
+- DL_ANALYSER tutorial: illustration on cluster analysis and characterisation.
+
+- DL_FIELD tutorial: guide to *udff* file, use of *VDW_FIX*, auto determine vdw parameters and atom equivalence.
+
+- Simulations: Simulating a liquid using DPD (DL_MESO): improvement to include detailed descriptions of simulation visualisation and result analysis.
+
+- Simulations: Simulating vapour-liquid coexistence using Lattice Boltzmann (DL_MESO): from input preparation, simulation to results analysis.
+
+- Misc. editing, corrections.
+
 **Version 2.1**, released December 2022
 
 - Knowledge Center: Molecular Dynamics: bond constrains, MD integration.

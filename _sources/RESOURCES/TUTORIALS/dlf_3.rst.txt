@@ -20,9 +20,9 @@
 
    <br />
 
-************************
-Force field data files 1
-************************
+***************************************
+Force field data files: Structure Files
+***************************************
 
 In molecular simulations, FF parameters are usually derived by some empirical rules, either derived from some experimental observations or quantum mechanical calculations. Different research groups use different rules to obtain these parameters. Collectively, a set of rules that model a class of molecules is called a FF scheme.
 
@@ -65,15 +65,15 @@ Each FF scheme (XX) consists of the following file components:
 
 * Parameter file (*.par*), *DLPOLY_XX.par*.
 
-* Miscellaneous supporting files for some FF.
+* Miscellaneous supporting files for some FF schemes.
 
 These files are located in the *lib/* directory and they are all expressed in the same format for all FF schemes.
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
-**The structure data file (*sf* file)**
+**The structure data file (sf file)**
 
-These files have filenames in the form of *DLPOLY_XX.sf*. For example, *DLPOLY_CHARMM36_lipid.sf* for CHARMM36 lipid data file. This file defines the |pop1| templates. They define the molecular states, ATOM_TYPEs, atomic connectivity information and associated partial charges of |pop3| that made up a template. 
+These files have filenames in the form of *DLPOLY_XX.sf*. For example, *DLPOLY_CHARMM36_lipid.sf* for CHARMM36 lipid data file. This file contains the |pop1| templates, which define the molecular states, ATOM_TYPEs, atomic connectivity information and associated partial charges of |pop3| that made up the template. 
 
 Diagram below shows a typical example of what constitute a MOLECULE template. It is extracted from the *CHARMM36_cgenff.sf* file. In this example, it is a ethanethiol MOLECULE. The name ethanethiol is called a MOLECULE_TYPE in DL_FIELD term. It is a MOLECULE name, usually in a human-redable form. This is similar in analogy to |pop2|.   
 

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Force field data files 1 &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
+    <title>Force field data files: Structure Files &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -20,7 +20,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Force field data files 2" href="dlf_4.html" />
+    <link rel="next" title="Force field data files: Parameter Files" href="dlf_4.html" />
     <link rel="prev" title="Structures and operations" href="dlf_2.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,12 +30,12 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="dlf_4.html" title="Force field data files 2"
+          <a href="dlf_4.html" title="Force field data files: Parameter Files"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="dlf_2.html" title="Structures and operations"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD Tutorial</a> &#187;</li> 
@@ -47,8 +47,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="force-field-data-files-1">
-<span id="header-dlf-3"></span><h1>Force field data files 1<a class="headerlink" href="#force-field-data-files-1" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="force-field-data-files-structure-files">
+<span id="header-dlf-3"></span><h1>Force field data files: Structure Files<a class="headerlink" href="#force-field-data-files-structure-files" title="Permalink to this headline">¶</a></h1>
 <p>In molecular simulations, FF parameters are usually derived by some empirical rules, either derived from some experimental observations or quantum mechanical calculations. Different research groups use different rules to obtain these parameters. Collectively, a set of rules that model a class of molecules is called a FF scheme.</p>
 <p>DL_FIELD implements some of the popular FF schemes as shown below:</p>
 <ul class="simple">
@@ -72,14 +72,14 @@
 <ul class="simple">
 <li>Structure file (<em>.sf</em>), <em>DLPOLY_XX.sf</em>.</li>
 <li>Parameter file (<em>.par</em>), <em>DLPOLY_XX.par</em>.</li>
-<li>Miscellaneous supporting files for some FF.</li>
+<li>Miscellaneous supporting files for some FF schemes.</li>
 </ul>
 <p>These files are located in the <em>lib/</em> directory and they are all expressed in the same format for all FF schemes.</p>
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
-<p><strong>The structure data file (*sf* file)</strong></p>
-<p>These files have filenames in the form of <em>DLPOLY_XX.sf</em>. For example, <em>DLPOLY_CHARMM36_lipid.sf</em> for CHARMM36 lipid data file. This file defines the <a href="dlf_3_MOLECULE.html" onclick="window.open('dlf_3_MOLECULE.html',
-   'newwindow', 'width=700,height=400'); return false;">MOLECULE</a> templates. They define the molecular states, ATOM_TYPEs, atomic connectivity information and associated partial charges of <a href="dlf_3_ATOM.html" onclick="window.open('dlf_3_ATOM.html',
-      'newwindow', 'width=500,height=300'); return false;">ATOMs</a> that made up a template.</p>
+<p><strong>The structure data file (sf file)</strong></p>
+<p>These files have filenames in the form of <em>DLPOLY_XX.sf</em>. For example, <em>DLPOLY_CHARMM36_lipid.sf</em> for CHARMM36 lipid data file. This file contains the <a href="dlf_3_MOLECULE.html" onclick="window.open('dlf_3_MOLECULE.html',
+   'newwindow', 'width=700,height=400'); return false;">MOLECULE</a> templates, which define the molecular states, ATOM_TYPEs, atomic connectivity information and associated partial charges of <a href="dlf_3_ATOM.html" onclick="window.open('dlf_3_ATOM.html',
+      'newwindow', 'width=500,height=300'); return false;">ATOMs</a> that made up the template.</p>
 <p>Diagram below shows a typical example of what constitute a MOLECULE template. It is extracted from the <em>CHARMM36_cgenff.sf</em> file. In this example, it is a ethanethiol MOLECULE. The name ethanethiol is called a MOLECULE_TYPE in DL_FIELD term. It is a MOLECULE name, usually in a human-redable form. This is similar in analogy to <a href="dlf_2_ATOM_TYPE.html" onclick="window.open('dlf_2_ATOM_TYPE.html',
    'newwindow', 'width=500,height=300'); return false;">ATOM_TYPE</a>.</p>
 <a class="reference internal image-reference" href="../../_images/dl_f_3_1.png"><img alt="../../_images/dl_f_3_1.png" class="align-center" src="../../_images/dl_f_3_1.png" style="width: 520.8000000000001px; height: 263.2px;" /></a>
@@ -134,7 +134,7 @@
                         title="previous chapter">Structures and operations</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="dlf_4.html"
-                        title="next chapter">Force field data files 2</a></p>
+                        title="next chapter">Force field data files: Parameter Files</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -158,19 +158,19 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="dlf_4.html" title="Force field data files 2"
+          <a href="dlf_4.html" title="Force field data files: Parameter Files"
              >next</a> |</li>
         <li class="right" >
           <a href="dlf_2.html" title="Structures and operations"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD Tutorial</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, DL_SDG.
+        &#169; Copyright 2023, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

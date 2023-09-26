@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Additional details on LBE &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
+    <title>Additional details on LBE &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="LBEIntro.html" title="Lattice Boltzmann Equation (LBE)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
       </ul>
     </div>  
@@ -87,7 +87,7 @@
 <p>which can be calculated locally at each grid point from its distribution functions. (Similar expressions are available for collisions other than BGK.) This expression is implicit with <span class="math notranslate nohighlight">\(\tau\)</span> - the property being determined - and therefore the previously calculated value of <span class="math notranslate nohighlight">\(\tau\)</span> for the given grid point can be used to calculate the rate-of-strain tensor. The resulting shear rate <span class="math notranslate nohighlight">\(\dot{\gamma}\)</span> is then used in the selected rheological model (relationship between viscosity and shear rate) to calculate new values of <span class="math notranslate nohighlight">\(\tau\)</span>: convergence is normally obtained for steady flow systems within a small number of timesteps.</p>
 </div>
 <div class="section" id="forcing-terms">
-<h2>Forcing terms<a class="headerlink" href="#forcing-terms" title="Permalink to this headline">¶</a></h2>
+<span id="lbeforcing"></span><h2>Forcing terms<a class="headerlink" href="#forcing-terms" title="Permalink to this headline">¶</a></h2>
 <p>Forces acting on a fluid can be applied during collisions by modifying the velocity used to calculate local equilibrium distribution functions <span class="math notranslate nohighlight">\(f_i^{eq}\)</span> and/or adding a forcing term <span class="math notranslate nohighlight">\(F_i \Delta t\)</span> to the collision operator.</p>
 <p>A simple scheme to apply forces to a fluid was devised for Shan-Chen pseudopotential interactions <a class="reference internal" href="#martys1996" id="id5">[Martys1996]</a>, which modifies the velocity used in local equilibrium distribution functions for collisions to the following value:</p>
 <div class="math notranslate nohighlight">
@@ -120,7 +120,7 @@
 <p>The above interaction force results in the following equation of state:</p>
 <div class="math notranslate nohighlight" id="equation-shancheneos">
 <span class="eqno">(1)<a class="headerlink" href="#equation-shancheneos" title="Permalink to this equation">¶</a></span>\[p = \rho c_s^2 + \frac{1}{2} g c_s^2 \psi^2\]</div>
-<p>where the pseudopotential and the interaction strength <span class="math notranslate nohighlight">\(g\)</span> control the  pressure contributions that deviate from standard lattice fluid behaviour. A rearrangement of <a class="reference internal" href="#equation-shancheneos">(1)</a> to give <span class="math notranslate nohighlight">\(\psi\)</span> as a function of pressure <span class="math notranslate nohighlight">\(p\)</span> can be used to impose a particular equation of state <a class="reference internal" href="../EXERCISES/LBEExercise1.html#yuan2006" id="id11">[Yuan2006]</a>.</p>
+<p>where the pseudopotential and the interaction strength <span class="math notranslate nohighlight">\(g\)</span> control the  pressure contributions that deviate from standard lattice fluid behaviour. A rearrangement of <a class="reference internal" href="#equation-shancheneos">(1)</a> to give <span class="math notranslate nohighlight">\(\psi\)</span> as a function of pressure <span class="math notranslate nohighlight">\(p\)</span> can be used to impose a particular equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#yuan2006" id="id11">[Yuan2006]</a>.</p>
 <p>The interaction force can be extended to multiple fluids (shown here acting on fluid <span class="math notranslate nohighlight">\(a\)</span>) with individual pseudopotentials <span class="math notranslate nohighlight">\(\psi^a\)</span> and interaction parameters between pairs of fluids <span class="math notranslate nohighlight">\(g_{ab}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{F}^{a} \left(\mathbf{x}\right) = -\psi^a \left(\mathbf{x}\right) \sum_b g_{ab} \sum_i w_i \psi^b \left(\mathbf{x} + \mathbf{e}_i \Delta t \right) \mathbf{e}_i,\]</div>
@@ -148,7 +148,7 @@
 <p>The above method can be extended to more than two fluids, calculating phase indices and forces and extending the segregation formula to include terms for all possible pairs of fluids. Lattice points with three or more fluids present can make it difficult to accurately calculate the interfacial curvatures, but there are alternate methods to calculate forces acting on fluids or apply forcing directly to fluids without calculating curvatures. A variant also exists that uses distribution functions at a lattice point directly to calculate approximate phase index gradients, which are accurate enough to find interfacial normals.</p>
 </div>
 <div class="section" id="free-energy-lbe-methods">
-<h3>Free-energy LBE methods<a class="headerlink" href="#free-energy-lbe-methods" title="Permalink to this headline">¶</a></h3>
+<span id="freeenergylbe"></span><h3>Free-energy LBE methods<a class="headerlink" href="#free-energy-lbe-methods" title="Permalink to this headline">¶</a></h3>
 <p>To provide better thermodynamic consistency at the continuum and give direct control of interfacial tension between phases or fluids, <em>free energy lattice Boltzmann</em> methods can be used <a class="reference internal" href="#swift1995" id="id16">[Swift1995]</a>. This approach defines a Landau free energy density function to describe the energy penalty in building density gradients (dependent on interfacial tension) and the bulk free energy density. Its derivative with respect to density gives the chemical potential, while the equation of state is related to the bulk free energy density.</p>
 <p>The resulting pressure tensor requires modification of the local equilibrium distribution function <a class="reference internal" href="LBEIntro.html#equation-localequil">(5)</a> to the following form:</p>
 <div class="math notranslate nohighlight">
@@ -402,12 +402,12 @@
         <li class="right" >
           <a href="LBEIntro.html" title="Lattice Boltzmann Equation (LBE)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, DL_SDG.
+        &#169; Copyright 2023, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

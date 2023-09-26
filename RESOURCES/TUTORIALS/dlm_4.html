@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>DL_MESO_DPD files &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
+    <title>DL_MESO_DPD files &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="dlm_8.html" title="DL_MESO_DPD basics and algorithms"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO Tutorial</a> &#187;</li> 
@@ -203,8 +203,8 @@
 </ul>
 <p>DL_MESO_DPD can still restart a simulation without a <em>REVIVE</em> file, although its progression will evidently differ due to effective resets in statistical accumulators and random number generator states. A warning message is printed if the <code class="docutils literal notranslate"><span class="pre">restart</span></code> option is given in the <em>CONTROL</em> file and no <em>REVIVE</em> file can be found.</p>
 <p>The <em>REVIVE</em> file is not required if a new simulation is started using the particle data given in the <em>export</em> file as the starting state (i.e. if the <code class="docutils literal notranslate"><span class="pre">restart</span> <span class="pre">noscale</span></code> or  <code class="docutils literal notranslate"><span class="pre">restart</span> <span class="pre">scale</span></code> options in the <em>CONTROL</em> file are used).</p>
-<p>Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/fb6054199bf602cdf3d593e0449640ea/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.
-.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png</p>
+<p>Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/fb6054199bf602cdf3d593e0449640ea/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p id="outputdlmeso"><strong>OUTPUT</strong></p>
 <p>As DL_MESO_DPD runs, messages about the simulation are printed to a file called <em>OUTPUT</em>. This provides a summary of the information included in the supplied input files and how the calculation is carried out, summaries of the simulation state at regular intervals, and performance/timing data for the calculation. All warning messages and (wherever possible) all error messages due to problems arising from the contents of input files or running the simulation will also appear in this file: if the simulation cannot continue, these messages will be printed before DL_MESO_DPD terminates early.</p>
 <p>The first messages include a header about DL_MESO_DPD, the simulation name as given in the <em>CONTROL</em> file, a table showing how the simulation volume is divided among available processor cores (if using the parallel version of DL_MESO_DPD), a summary of the simulation based on information provided in the input files - including the simulation controls, interaction types and parameters, molecule definitions - and a small sample of the starting configuration (given as selected particle positions and velocities).</p>
@@ -365,8 +365,7 @@
 <p>Similarly, the result files from <a class="reference internal" href="dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a> can be opened in <a class="reference external" href="https://www.ovito.org/">OVITO</a>, which can also visualise the trajectory and carry out analyses.</p>
 <a class="reference internal image-reference" href="../../_images/dlm_4_3.png"><img alt="../../_images/dlm_4_3.png" class="align-center" src="../../_images/dlm_4_3.png" style="width: 609.6px; height: 363.9px;" /></a>
 <p>The files produced by <a class="reference internal" href="dlm_7.html#local"><span class="std std-ref">local.exe</span></a> and <a class="reference internal" href="dlm_7.html#isosurfaces"><span class="std std-ref">isosurfaces.exe</span></a> are in a VTK format, which can be opened in <a class="reference external" href="https://www.paraview.org">Paraview</a> to visualise and analyse the results.</p>
-<p>The other files generated by the utilities are text-based tabulated data formats, all of which can be opened using spreadsheet or graph plotting programs. Further details of these files and their corresponding utilities can be found in Appendix C of the <a class="reference download internal" download="" href="../../_downloads/87dfc081efcc2bdab0e87721e2f051fa/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>. Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/fb6054199bf602cdf3d593e0449640ea/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.
-.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png</p>
+<p>The other files generated by the utilities are text-based tabulated data formats, all of which can be opened using spreadsheet or graph plotting programs. Further details of these files and their corresponding utilities can be found in Appendix C of the <a class="reference download internal" download="" href="../../_downloads/87dfc081efcc2bdab0e87721e2f051fa/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>. Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/fb6054199bf602cdf3d593e0449640ea/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.</p>
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Stress_*.d</strong></p>
 <p>These optionally-produced four files (<em>Stress_pot.d</em>, <em>Stress_diss.d</em>, <em>Stress_rn.d</em> and <em>Stress_kin.d</em>) consist of instantaneous values of the pressure tensor divided into conservative (potential), dissipative, random and kinetic contributions respectively. Their file format is similar to that for the <em>CORREL</em> file and these files can be also opened using spreadsheet and graph-plotting software: they are intended for more detailed rheological analyses of DPD systems.</p>
@@ -439,14 +438,14 @@
         <li class="right" >
           <a href="dlm_8.html" title="DL_MESO_DPD basics and algorithms"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO Tutorial</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, DL_SDG.
+        &#169; Copyright 2023, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

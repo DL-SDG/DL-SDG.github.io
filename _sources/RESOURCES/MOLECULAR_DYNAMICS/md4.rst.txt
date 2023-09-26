@@ -55,5 +55,15 @@ both of which can be related to the diffusivity of the material:
 
 .. math:: D = \frac{\langle | \vec{r}_i \left(t\right) - \vec{r}_i \left(0\right)|^2 \rangle}{6t} = \frac{1}{3} \int_0^{t} \langle \vec{v}_i \left(t\right) \cdot \vec{v}_i \left(0\right) \rangle dt
 
+The *shear viscosity* can be found by using *shear stress autocorrelation functions* (SSAFs):
+
+.. math:: \mu = \frac{V}{k_B T} \int_0^t \langle \sigma_{\alpha \beta} \left(t\right) \cdot \sigma_{\alpha \beta} \left(0\right) \rangle dt
+
+based on off-diagonal components of the stress tensor :math:`\sigma_{\alpha \beta}` (i.e. :math:`\alpha \neq \beta`). Alternatively, the relationship between shear stress and velocity gradient:
+
+.. math:: \tau = \mu \frac{\partial u_x}{\partial y}
+
+can be determined using non-equilibrium MD simulations to find the shear viscosity and the system *rheology*. These involve applying constant velocity gradients and measuring the resulting shear stresses, given as the relevant component of the pressure tensor (stress tensor divided by system volume), :math:`\tau = |\langle\sigma_{yx}\rangle|/V`.
+
 :ref:`^ GO TO TOP ^<Header_md4>`
 

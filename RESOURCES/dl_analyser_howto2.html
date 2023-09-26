@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>How to do something &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
+    <title>How to do something &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="dl_analyser_jargon.html" title="Jargons"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dl_analyser_intro.html" accesskey="U">DL_ANALYSER</a> &#187;</li> 
@@ -89,10 +89,10 @@
 <p><a class="reference internal" href="#header-dla-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 <img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
 <p id="header-howto-interaction"><strong>General guidance in using Interaction Analysis Section</strong></p>
-<p>This analysis Section is unique to DL_ANALYSER, to identify, quantify and annotate specific interactions within a molecular system. To use this feature, you would need to use DL_FIELD to setup force field models that express atoms in the DL_F Notation, which encode the chemical characteristics of every atom in the system.</p>
+<p>This analysis Section is unique to DL_ANALYSER, to identify, quantify and annotate specific interactions within a molecular system. To use this feature, you would need to use DL_FIELD to setup force field models that express atoms in the DL_F Notation, which encodes the chemical characteristics of every atom in the system.</p>
 <ol class="arabic simple">
 <li>Pre-requisite: Generate FIELD and CONFIG from DL_FIELD by specifying the atom display format as the DL_FIELD format in the <em>control</em> file.</li>
-<li>Decide which type of interaction you intend to track. Be specific in terms of which chemical groups you intend to monitor. For instance, if you system contains carboxylic group and alcohol group and you intend to determine the interactions between these group, then select alcohol-carboxylic interaction interactions (collectively, the interactions is called HB_15_20) in the DL_ANALYSER <em>control</em> file.</li>
+<li>Decide which type of interaction you intend to track. Be specific in terms of which chemical groups you intend to monitor. For instance, if your system contains carboxylic group and alcohol group and you intend to determine the interactions between these groups, then select alcohol-carboxylic interactions (HB_15_20) in the DL_ANALYSER <em>control</em> file.</li>
 <li>Edit DL_ANALYSER <em>input</em> file and insert molecular configurations such as the HISTORY files.</li>
 <li>Run DL_ANALYSER. The program will identify various modes of interactions between the chemical groups and annotate the interactions using <a class="reference external" href="https://www.mdpi.com/1420-3049/23/1/36">DANAI</a> notation. The various modes of interactions will be determined from the trajectory files with respect to MD time together with the overall averages. In addition, cross-correlation of the modes of interactions will also be determined and tabulated. A positive value means both modes of interaction of interest are correlated. A negative value means the formation of a mode of interaction is at the expense of the other. A zero value means the interactions are not related.</li>
 </ol>
@@ -192,14 +192,14 @@
         <li class="right" >
           <a href="dl_analyser_jargon.html" title="Jargons"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dl_analyser_intro.html" >DL_ANALYSER</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, DL_SDG.
+        &#169; Copyright 2023, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

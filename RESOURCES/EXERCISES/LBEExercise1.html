@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>LBE Exercise 1: Phase separation and equations of state &#8212; DL_Software Digital Guide (DL_SDG) 2.1 documentation</title>
+    <title>LBE Exercise 1: Phase separation and equations of state &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="DL_MESO_LBE.html" title="Using DL_MESO_LBE"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
@@ -57,7 +57,7 @@
 <p>The interaction forces have the effect of modifying the equation of state for the lattice fluid:</p>
 <div class="math notranslate nohighlight">
 \[p = \rho c_s^2 + \frac{1}{2} g c_s^2 \psi^2\]</div>
-<p>where <span class="math notranslate nohighlight">\(g\)</span> is the interaction strength used as a multiplier for the forces. The functional form of <span class="math notranslate nohighlight">\(\psi\)</span> can therefore be chosen to apply a chosen equation of state <a class="reference internal" href="#yuan2006" id="id2">[Yuan2006]</a>:</p>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is the interaction strength used as a multiplier for the forces. The functional form of <span class="math notranslate nohighlight">\(\psi\)</span> can therefore be chosen to apply a chosen equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#yuan2006" id="id2">[Yuan2006]</a>:</p>
 <div class="math notranslate nohighlight">
 \[\psi = \sqrt{\frac{2\left(p \left(\rho, T\right) - \rho c_s^2\right)}{g c_s^2}}\]</div>
 <p>where the interaction strength <span class="math notranslate nohighlight">\(g\)</span> is set to <span class="math notranslate nohighlight">\(\pm 1\)</span> to ensure the square root in the above expression is evaluated with a positive value.</p>
@@ -66,7 +66,7 @@
 </div>
 <div class="section" id="aim">
 <h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
-<p>We are going to take a look at how well the Shan-Chen pseudopotential method can model vapour/liquid equilibrium for a fluid behaving according to the Peng-Robinson cubic equation of state <a class="reference internal" href="#peng1976" id="id4">[Peng1976]</a>:</p>
+<p>We are going to take a look at how well the Shan-Chen pseudopotential method can model vapour/liquid equilibrium for a fluid behaving according to the Peng-Robinson cubic equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#peng1976" id="id4">[Peng1976]</a>:</p>
 <div class="math notranslate nohighlight">
 \[p = \frac{\rho RT}{1 - b \rho} - \frac{a \alpha\left(T_r, \omega\right) \rho^2}{1 + 2b \rho - b^2 \rho^2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(R\)</span> is the universal gas constant, <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are species dependent coefficients representing attraction and finite volume effects, <span class="math notranslate nohighlight">\(\alpha\)</span> is a function of reduced temperature <span class="math notranslate nohighlight">\(T_r = \frac{T}{T_c}\)</span> and acentric (non-sphericity) factor <span class="math notranslate nohighlight">\(\omega\)</span>, given as:</p>
@@ -116,7 +116,7 @@
 <li>What happens to the maximum fluid velocities in the system when you change the system temperature?</li>
 </ul>
 </li>
-<li>One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials <a class="reference internal" href="#liu2010" id="id5">[Liu2010]</a>. For the Peng-Robinson equation of state, reducing the universal gas constant <span class="math notranslate nohighlight">\(R\)</span> and attraction parameter <span class="math notranslate nohighlight">\(a\)</span> by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.<ul>
+<li>One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials <a class="reference internal" href="../SIMULATIONS/vapour_liquid_simulation_analysis_lbe.html#liu2010" id="id5">[Liu2010]</a>. For the Peng-Robinson equation of state, reducing the universal gas constant <span class="math notranslate nohighlight">\(R\)</span> and attraction parameter <span class="math notranslate nohighlight">\(a\)</span> by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.<ul>
 <li>What effect does this have on fluid velocities at equilibrium?</li>
 <li>How does this strategy change the width of the interface between the phases?</li>
 </ul>
@@ -220,7 +220,7 @@
         <li class="right" >
           <a href="DL_MESO_LBE.html" title="Using DL_MESO_LBE"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
@@ -228,7 +228,7 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, DL_SDG.
+        &#169; Copyright 2023, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

@@ -12,7 +12,7 @@ What is DL_FIELD
 
 **DL_FIELD program**
 
-The DL_FIELD project was initiated by Chin Yong to address the needs of CCP5 users to facilitate the construction of |pop1| models for use in DL_POLY. DL_FIELD was first released in October 2010 (version 1.0). At the time of this writing, the latest version 4.8 was released in September 2021 with over 1500 registered users.
+The DL_FIELD project was initiated by Chin Yong to address the needs of CCP5 users to facilitate the construction of |pop1| models for use in DL_POLY. DL_FIELD was first released in October 2010 (version 1.0). At the time of this writing, the latest version 4.9 was released in November 2022 with over 1500 registered users.
 
 DL_FIELD is a computer program package written in C that primarily serves as a support application software tools for DL_POLY molecular dynamics (MD) simulation package. It is a useful application tool to enchance the usability of DL_POLY and to facilitate the use of a wide range of advanced features included in the DL_POLY program.
 

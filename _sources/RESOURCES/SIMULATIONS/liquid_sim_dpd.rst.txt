@@ -19,3 +19,5 @@ This exercise goes from preparing the input files with the required representati
 	      
    ./inputs_prep_dpd
    ./simple_simulation_run_dpd.rst
+   ./simple_simulation_visualise_dpd.rst
+   ./simple_simulation_analysis_dpd.rst

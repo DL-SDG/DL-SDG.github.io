@@ -1,0 +1,146 @@
+.. This provides detailed information on how to prepare input files to model coexisting vapour and liquid using LBE
+
+
+Inputs Preparation
+******************
+
+The aim of these instructions is to show you how to simulate coexisting vapour and liquid at the mesoscale using the Lattice Boltzmann Equation (LBE). 
+
+We will prepare two sets of DL_MESO_LBE input files for different mesoscopic interaction models. One of these uses Shan-Chen pseudopotentials to calculate interaction forces on the fluid. The other is based on a free-energy LBE method that incorporates the required equation of state into the local equilibrium.
+
+In both cases, the main input file required is used to specify the interaction model, the equation of state (EOS) and its parameters, and other simulation controls (**lbin.sys**).
+
+
+:TIP: 
+
+    DL_MESO_LBE can read **lbin.spa** files specifying boundary conditions and **lbin.init** files specifying the initial conditions at specific grid points, although the latter is entirely optional. Initial conditions that apply across the entire calculation grid can be specified in the **lbin.sys** file.
+
+
+Both simulations will make use of :ref:`internal LBE simulation units <LBE_scale>`, which are normally:
+
+* the grid spacing (length scale), :math:`\Delta x`
+* the timestep size (time scale), :math:`\Delta t`
+
+and both usually set to 1 internally in the calculation. Fluid densities are free parameters and can be selected arbitrarily, although most LBE simulations try to keep their values around 1 to maximise available computational precision. An important parameter to choose is the relaxation time :math:`\tau` for the fluid, which is related to kinematic viscosity :math:`\nu` (ratio of dynamic viscosity to density) as well as the grid spacing and timestep size. 
+
+The calculation will take place inside a two-dimensional periodic box, whose size we will specify in the **lbin.sys** file. 
+
+Background theory and information
+---------------------------------
+
+Equations of state can be used to represent how a fluid behaves thermodynamically. One type of equation of state commonly used to describe fluids capable of separating into vapour and liquid phases below a critical point are *cubic equations of state*, i.e. they express pressure as a cubic function of density. One particularly useful cubic equation of state is the Peng-Robinson equation [Peng1976]_:
+
+.. math :: p = \frac{\rho RT}{1 - b \rho} - \frac{a \alpha\left(T_r, \omega\right) \rho^2}{1 + 2b \rho - b^2 \rho^2}
+
+which is especially good at predicting the densities of coexisting liquid and vapour phases for a wide variety of materials.
+
+The parameters :math:`a` and :math:`b` are related to the critical temperature :math:`T_c` and pressure :math:`p_c` for the species:
+
+.. math :: a \approx 0.45724 \frac{R^2 T_c^2}{p_c},
+
+.. math :: b \approx 0.07780 \frac{R T_c}{p_c}.
+
+where :math:`R` is the universal gas constant, equivalent to the product of the Boltzmann constant and Avogadro number, :math:`k_B N_A`. The function :math:`\alpha` depends on reduced temperature :math:`T_r = T/T_c` and a species-dependent acentric factor :math:`\omega` related to molecular non-sphericity. 
+
+We can exploit the *theorem of corresponding states* in our simulation and use any values for :math:`a`, :math:`b` and :math:`R` that result in numerically stable calculations. If we model our fluid at the required reduced temperature :math:`T_r`, the ratio between liquid (higher) and vapour (lower) densities should be correct regardless of the values of :math:`a` and :math:`b`. The acentric factor :math:`\omega` will provide the chemical specificity for our system through the function :math:`\alpha` [#]_.
+
+We will model hydrogen chloride (HCl) at 0ºC (273.15 K), which has the following properties:
+
+* Critical temperature :math:`T_c = 324.7`\  K
+* Acentric factor :math:`\omega = 0.133`
+* Kinematic viscosity :math:`\nu = 1.9 \times 10^{-6}`\  m\ :sup:`2`\  s\ :sup:`-1`
+* Speed of sound :math:`c_s = 294`\  m\  s\ :sup:`-1`
+
+If we set the relaxation time (:math:`\tau`) for our calculations to 1, this gives a grid spacing of :math:`\Delta x \approx 2.2387 \times 10^{-8}`\  m and a timestep of :math:`\Delta t \approx 4.3963 \times 10^{-11}`\  s.
+
+Using the values for :math:`a = \frac{2}{49}`, :math:`b = \frac{2}{21}` and :math:`R = 1` suggested by Yuan and Schaefer [Yuan2006]_ and rearranging the above equations, we get a lattice-scaled critical temperature of :math:`T_c \approx 0.072919`. The target reduced temperature is :math:`T_r \approx 0.84124`, so we can set the temperature for the simuation to :math:`T = T_c T_r \approx 0.061342`.
+
+We want to model the hydrogen chloride with an initial density between expected values for the vapour and liquid phases, but also vary the density randomly by a small amount to provide some initial gradients and encourage separation. 
+
+It is possible to work out the expected liquid and vapour densities - which we can compare to the values obtained in simulations - by carrying out a `Maxwell construction <https://en.wikipedia.org/wiki/Maxwell_construction>`_ on our equation of state at the required temperature. For the given equation of state, parameters and temperature, we would expect liquid and vapour densities of :math:`\rho_l \approx 6.4471` and :math:`\rho_v \approx 0.3955`.
+
+:TIP:
+
+     We have supplied a Python script that can carry out a Maxwell construction for a given equation of state, reduced temperature and acentric factor: :download:`maxwell.py </RESOURCES/SIMULATIONS/SCRIPTS/maxwell.py>`. The above values for the densities can be obtained using this script by typing: ::
+
+       python maxwell.py --PR --Tr 0.84124 --omega 0.133 --a 2.0/49.0 --b 2.0/21.0 --R 1.0
+
+
+
+There are two approaches available to impose an equation of state onto a fluid in LBE simulations: the :ref:`ShanChen` and :ref:`free-energy LBE <FreeEnergyLBE>`.
+
+Shan-Chen pseudopotential approach
+----------------------------------
+
+The :ref:`ShanChen` defines a function of density :math:`\rho` known as a *pseudopotential*, :math:`\psi (\rho)` [#]_, and calculates gradients of  :math:`\psi` to find the interaction force acting on the fluid at a given lattice point. This force is then applied during the LBE collision step using a :ref:`forcing term <LBEforcing>`. The function :math:`\psi` can be selected to give the required equation of state [Yuan2006]_. The interfacial tension between coexisting phases is an *emergent* property rather than one that can be imposed and, as such, this method is not always thermodynamically consistent: the resulting densities therefore might not be quite correct.
+
+Open a text editor, then copy and paste the following into it:
+
+.. literalinclude:: vapour_liquid_shanchen_lbe.dat 
+
+
+and save as a file called **lbin.sys**.
+
+This file allows us to specify important properties of our LBE simulation. The first 10 lines here include keywords that are essential for a DL_MESO_LBE calculation and **must** be included in the file. They specify the numbers of: 
+
+* Spatial dimensions (2 or 3)
+* Discrete speeds (lattice links per grid point)
+* Fluids
+* Solutes
+* Temperature scalars
+* Phase fields
+* Grid points in each Cartesian direction
+* Grid points to use as a boundary halo for parallel (multiple-core) calculations
+
+:TIP:
+
+    The number of spatial dimensions :math:`n` and discrete speeds per grid point :math:`m` indicate the *lattice model* to be used, which is often denoted as D\ :math:`n`\ Q\ :math:`m`. Only a few are currently available in DL_MESO_LBE: D2Q9 for two-dimensional calculations, D3Q15, D3Q19 and D3Q27 for three-dimensional calculations.
+
+We are using a :math:`50 \times 50` grid for our calculation and running it over 20 000 timesteps (without equilibration), saving snapshots every 100 timesteps to binary VTK-formatted files. The last four lines in the file (``output_combine_x`` etc.) are only needed for multiple-core parallel calculation runs to ensure one file per snapshot is generated and DL_MESO_LBE can close down safely after a set time (given in seconds) if the calculation needs to be submitted to a job queue.
+
+We are modelling one fluid [#]_ and setting its initial density to :math:`\rho_0 = 2.0 (1 \pm 0.1 \xi)`, where :math:`\xi` is a random number between :math:`-1` and :math:`+1` chosen for each grid point. Its relaxation time :math:`\tau = 1` (as chosen above) and we are applying the Peng-Robinson equation of state (``potential_type_0``) with the values of :math:`a` (``eos_parameter_a_0``), :math:`b` (``eos_parameter_a_0``), acentric factor :math:`\omega` (``acentric_factor_0``) and :math:`R` (``gas_constant``) given above.
+
+We are assuming the system is isothermal (constant temperature throughout) and are therefore fixing its temperature (``temperature_system``) to a value that should give the correct reduced temperature for diethyl ether at 298 K. Since there are no heat transfers involved, we do not need to model a temperature field.
+
+The speed of sound (``sound_speed``) and kinematic viscosity (``kinetic_viscosity``) can be used to scale the grid in the snapshot files. To keep the scaling in lattice units, we are using the lattice values for these properties: :math:`c_s = \frac{1}{\sqrt{3}}` and :math:`\nu = \frac{2 \tau - 1}{6}`.
+
+The keyword ``collision_type`` indicates how collisions between particles on the lattice will be determined, including how forces are applied: we have chosen the simplest form of collisions (BGK) and forcing terms. The ``interaction_type`` keyword indicates how we are calculating interaction forces for the fluid. 
+
+Free-energy approach
+--------------------
+
+:ref:`Free-energy LBE <FreeEnergyLBE>` modifies the local equilibrium distribution function used in collisions to include the bulk pressure on the fluid (calculated from the equation of state) and various density gradient terms to apply a user-specified interfacial tension between the phases. No additional forces need to be applied to the fluid and thermodynamic consistency is guaranteed using this approach.
+
+Open a text editor, then copy and paste the following into it:
+
+.. literalinclude:: vapour_liquid_freeenergy_lbe.dat 
+
+
+and save as a file called **lbin.sys**.
+
+You will note this is similar to the file used for the Shan-Chen approach, but there are some notable differences. These include the fact that free-energy LBE calculations can only apply a single equation of state for one or two fluids, which affects the specification of the equation of state (``equation_of_state``) and the parameters. There is also an additional parameter for the surface tension between phases, :math:`\kappa` (``surface_tension_parameter``), that needs to be a non-zero value and controls the size of the interface between phases.
+
+Boundary conditions
+-------------------
+
+Open a text editor and save an empty file as **lbin.spa**.
+
+This file will supply the boundary conditions for a DL_MESO_LBE calculation. If not otherwise specified, every grid point will contain fluid and opposite sides of the grid will have periodic boundary conditions. Since this is what we want for this calculation but DL_MESO_LBE still requires an **lbin.spa** file to run, we therefore need to supply an empty **lbin.spa** file.
+
+
+.. rubric:: References
+
+.. [Peng1976] DY Peng and DB Robinson, A new two-constant equation of state, *Industrial & Engineering Chemistry Fundamentals*, **15**, 59-64, 1976, doi: 10.1021/i160057a011.
+
+.. [Yuan2006] P Yuan and L Schaefer, Equations of state in a lattice Boltzmann model, *Physics of Fluids*, **18** 042101, 2006, doi: 10.1063/1.2187070.
+
+.. rubric:: Footnotes
+
+.. [#] This function can be chosen to represent particular molecular forms, e.g. polar fluids, although we are going to stick with the original equation proposed by Peng and Robinson: 
+
+       .. math :: \alpha \left(T_r, \omega\right) = \left[1 + \left(0.37464 + 1.54226 \omega - 0.26992 \omega^2 \right) \left(1 - \sqrt{T_r} \right) \right]^2.
+
+.. [#] The pseudopotential can also be a function of temperature, just as the equation of state it represents can be, although this dependence disappears when modelling an isothermal (constant temperature) system.
+
+.. [#] DL_MESO_LBE counts fluids and solutes from 0 to :math:`N-1`, in the style of C/C++.
+

@@ -1,0 +1,100 @@
+.. Cluster analysis and characterisation - Lindemann parameter 
+.. _Header_dla_11:
+
+.. |br| raw:: html
+
+   <br />
+
+*******************************************************
+Cluster characterisation - Lindemann (Berry) Parameter
+*******************************************************
+
+This page describes how you can characterise a cluster, for instance, whether it is solid-like or in the molten state.
+It can be characterised in three different ways:
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**1. Cluster characterisation: Berry parameter**
+
+Clusters are characterised in terms of inter-particle distance fluctuations among the member particles that made up a cluster.
+
+This is defined as follows:
+
+.. math::
+   \Delta_B = \frac{1}{A} \sum_{i < j} \frac{\sqrt{<r_{ij}^2>-<r_{ij}>^2}}{<r_{ij}>}
+
+The quatity :math:`{\Delta}_B` is called inter-particle distance-based Lindemann parameter, or the Berry Parameter where *r* is the distance between particle *i* and *j* and *A* is the total unique pairs of N particles.
+
+.. math::
+   A = \frac{N(N-1)}{2}
+
+The parameter is obtained by averaging over all the configurations. So, Berry parameter is actually a measure of fractional deviation of the average distance per particle pair. A simple solid cluster would have a value :math:`{\Delta}_B` of ~0.10-0.15. The smaller the value, the more rigid the cluster.
+
+.. Note::
+   Cluster characterisation is more suited for well-defined clusters in the system. If there are several clusters and they are constantly forming and destroying, then :math:`{\Delta}_B` may only reflect the everage effects, depending on the stability of clusters.
+
+The cluster characterisation option takes three values: the on/off switch, *atom_label* and *Molecule_label*.  
+For example, consider MD simulations of a silver nanocluster in gas phase, which consists of 4000 atoms, the relevant options in the *control* file are shown below:
+
+.. literalinclude:: dla_cluster2.txt
+   :emphasize-lines: 4,5,6,7,15,32
+
+Note that, we switch off the priodic boundary (0), to prevent counting of image distances, especially for particles that move too far away from the main cluster body.
+
+The 'AG' is the *atom_label* as in the *CONFIG* file. Since atom-based analysis is selected with 'all-atom' (1) as the analysis criteria, therfore, the *Molecule_label* is ignored. Below lists the values of :math:`{\Delta}_B` over different temperatures. These values were obtain from reading the *HISTORY* files generated for each temperature in MD simulations.
+
+.. list-table:: Berry Parameters for Ag nanoparticle
+   :widths: 70 70
+   :header-rows: 1
+   :align: center
+
+   * - Temperature/K
+     - :math:`{\Delta}_B`
+   * - 400
+     - 0.007554
+   * - 1000
+     - 0.033418
+   * - 1100
+     - 0.047785
+   * - 1200
+     - 0.077138
+   * - 1300
+     - 0.112668 
+
+Diagram below shows the final structure of the cluster at different temperatures.
+
+.. image:: ../../image/dla_11_2.png
+   :scale: 40%
+   :align: center
+
+At 400 K, Ag particle is practically a solid, adopting the usuall FCC structure. At around 1100-1200 K, there is a significant increase in Berry parameter, indicating the melting transition, which coincide with the melting point of silver. At 1300 K, the particle begins to disintegrate.
+
+**2. Cluster characterisation: Distance-dependant Berry parameter**
+
+DL_ANALYSER also calculates the distance-dependant Berry parameters, :math:`{\Delta}_B(r)`  in terms of particles' distances from the CG of the cluster. In this case, similar equation as shown above is calculated but this time the quantity *N* refers to the number of particle members that are located within a spherical region of radius *r* from the CG of the cluster. This is illustrated as shown below:
+
+.. image:: ../../image/dla_11_3.png
+   :scale: 50%
+   :align: center
+
+DL_ANALYSER repeatedly calculates :math:`{\Delta}_B(r)` as *r* increases incrementally, from :math:`r_1`, :math:`r_2` to :math:`r_3`. Obviously, if *r* is large enough, then all cluster particles will be included in the calculation and the original :math:`{\Delta}_B` is recovered. Graph below shows the distance dependant Berry parameter at different temperatures for the Ag nanoparticle.
+
+.. image:: ../../image/dla_11_4.png
+   :scale: 60%
+   :align: center
+
+Note that, at 400 K, there is a smooth decrease towards an asymptoptic value. At higher temperatures, the outer layer of the cluster begins to liquify, as indicated by the large increase in :math:`{\Delta}_B(r)` at around 20-25 angstrom.
+
+**3. Cluster characterisation: Berry parameter radial distribution**
+
+In addition, DL_ANALYSER also calculates Berry parameter radial distribution profile, :math:`{\Delta}_B(R)`, to assess the cross sectional cluster structure. This is quite similar to the more familiar radial distribution function. In this case, DL_ANALYSER only calculates the Berry parameter for particles that are confined within between two succesive *r* values (for example, *R* = :math:`r_2 - r_1`). Graph below shows the distribution profile for the Ag nanoparticle.
+
+.. image:: ../../image/dla_11_5.png
+   :scale: 60%
+   :align: center
+
+Note that, at 400 K, the distribution profile maintains a steady small value throughout the cluster region, indicating the solid nature of the material. At higher temepratures, increased fluctuations at outer regions are due to increased agitation of atoms while some atoms practically 'fly out', indicated by wild profile variations beyond the cluster region. 
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dla_11>`

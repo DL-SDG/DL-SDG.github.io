@@ -1,0 +1,20 @@
+.. This describes the simulation of coexisting vapour and liquid using LBE
+
+
+********************************************************
+Simulating vapour-liquid coexistence using LBE (DL_MESO)
+********************************************************
+
+This is an exercise in simulating coexisting vapour and liquid at the mesoscale using the Lattice Boltzmann Equation (LBE). This can be achieved by applying mesoscopic interactions with a specified equation of state and modelling a fluid below its critical point.
+
+This exercise goes from preparing the input files with the required equation of state, its parameters and system set-up parameters, to running a LBE simulation using DL_MESO and analysing the results.
+
+
+.. toctree::
+   :maxdepth: 2
+
+	      
+   ./inputs_prep_lbe
+   ./vapour_liquid_simulation_run_lbe.rst
+   ./vapour_liquid_simulation_visualise_lbe.rst
+   ./vapour_liquid_simulation_analysis_lbe.rst

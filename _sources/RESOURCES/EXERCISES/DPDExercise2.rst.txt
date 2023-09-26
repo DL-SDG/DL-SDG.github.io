@@ -36,7 +36,7 @@ Any initial configuration for the lipids and solvent can be used in a DPD simula
 Instructions
 ------------
 
-For this exercise, you will need the main DL_MESO_DPD executable *dpd.exe* - ideally the parallel version with MPI - and either :ref:`traject_vtf.exe <trajectvtf>` or :ref:`traject_xml.exe <trajectxml>` to visualise the simulations along with VMD or OVITO respectively. Optionally, you can also make use of the :download:`correl.py <./scripts/correl.py>` Python script to look at calculated system properties, although you can also use graph plotting software that can read tabulated text files (e.g. Gnuplot, Excel).
+For this exercise, you will need the main DL_MESO_DPD executable *dpd.exe* - ideally the parallel version with MPI - and either :ref:`traject_vtf.exe <trajectvtf>` or :ref:`traject_xml.exe <trajectxml>` to visualise the simulations along with VMD or OVITO respectively. Optionally, you can also make use of the :download:`dlmresultviewer.py <./scripts/dlmresultviewer.py>` Python script to look at calculated system properties, although you can also use graph plotting software that can read tabulated text files (e.g. Gnuplot, Excel).
 
 Download :download:`CONTROL <./DPDExercise2/CONTROL>` and :download:`FIELD <./DPDExercise2/FIELD>` into your working directory: these are input files for a smaller version of one of the test cases supplied with DL_MESO, which you can find in *dl_meso/DEMO/DPD/LipidBilayer* [#]_. Both versions include three species of bead - solvent beads W, head beads H and tail beads C - and defines molecules (HC6), each consisting of one H bead and 6 C beads. The harmonic bonds between the beads - described by :eq:`harmbond` - use a spring force constant :math:`\kappa = 128 k_B T / r_c` and equilibrium bond length :math:`r_0 = 0.5 r_c`, while the bond angles described by the cosine potential in :eq:`cosineangle` use an energy level :math:`A = 20 k_B T`, multiplier :math:`m = 1` and equilibrium angle :math:`\theta_{0} = 0{^\circ}`. 
 
@@ -72,7 +72,7 @@ When each calculation has finished, run the required trajectory conversion utili
 Analysis
 --------
 
-#.  Take a look at the first simulation: visualise it with VMD or OVITO, and also take a look at the total and/or potential energies stated in :ref:`OUTPUT <outputdlmeso>` or :ref:`CORREL <correl>`, using either *correl.py* or graphing software for the latter.
+#.  Take a look at the first simulation: visualise it with VMD or OVITO, and also take a look at the total and/or potential energies stated in :ref:`OUTPUT <outputdlmeso>` or :ref:`CORREL <correl>`, using either *dlmresultviewer.py* or graphing software for the latter.
 
     - Does a lipid bilayer eventually form? If so, does its formation coincide with the lowest energy levels for the system? 
     - The final column in :ref:`CORREL <correl>` gives averaged bond angles in degrees: how close are they to the desired 180°?

@@ -36,13 +36,13 @@ and thus the length unit
 
 .. math:: r_c \approx 4.48 \times 10^{-10} N_m^{\frac{1}{3}} \text{ m}.
 
-There are two possible approaches to obtaining a time unit :math:`\tau` for the simulation. The first is to apply dimensional analysis and make use of the three units defined above:
+There are two possible approaches to obtaining a time unit :math:`\tau_0` for the simulation. The first is to apply dimensional analysis and make use of the three units defined above:
 
-.. math:: \tau = r_c \sqrt{\frac{m}{k_B T}} \approx 1.21 \times 10^{-12} N_m^{\frac{5}{6}}\text{ s}.
+.. math:: \tau_0 = r_c \sqrt{\frac{m}{k_B T}} \approx 1.21 \times 10^{-12} N_m^{\frac{5}{6}}\text{ s}.
 
-The second is to compare the self-diffusivity of the DPD beads - measured by calculating mean-squared displacements from simulations - with experimental values for the fluid we wish to model [Groot2001]_. In our case of modelling water beads each with :math:`N_m` molecules, the time unit is found to be:
+The second is to compare the self-diffusivity of the DPD beads - measured by calculating mean-squared displacements from simulations - with experimental values for the fluid we wish to model [Groot2001]_. In our case of modelling water beads each with :math:`N_m` molecules and setting the dissipative force parameter :math:`\gamma = 4.5`, the time unit is found to be:
 
-.. math:: \tau = \frac{N_m D_{sim} r_c^2}{D_w} \approx 1.41 \times 10^{-11} N_m^{\frac{5}{3}} \text{ s}.
+.. math:: \tau_0 = \frac{N_m D_{sim} r_c^2}{D_w} \approx 1.41 \times 10^{-11} N_m^{\frac{5}{3}} \text{ s}.
 
 Parameterising DPD interactions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -238,7 +238,7 @@ We can calculate a stress tensor for the system at a given timestep by summing p
 
 .. math :: \sigma_{\alpha \beta} = \sum_i \left(m_i v_{i,\alpha} v_{i,\beta} + \sum_{j>i} F_{ij,\alpha} r_{ij,\beta} \right), ~~~~~ (\alpha, \beta = x, y, z)
 
-which can be averaged over a reasonably large number of timesteps to obtain representative values. For a system with shear flow, only one of the symmetric off-diagonal terms (:math:`\sigma_{\alpha \beta} = \sigma_{\beta \alpha}`, :math:`\alpha \ne \beta`) is required and will represent the shear stress :math:`\tau`. For instance, if the :math:`x`-component of velocity varies along :math:`y` (so the velocity gradient is :math:`\frac{\partial v_x}{\partial y}`), we will need to look at either :math:`\sigma_{yx}` or :math:`\sigma_{xy}`.
+which can be averaged over a reasonably large number of timesteps to obtain representative values. For a system with shear flow, only one of the symmetric off-diagonal terms (:math:`\sigma_{\alpha \beta} = \sigma_{\beta \alpha}`, :math:`\alpha \ne \beta`) is required. The stress tensor can be divided by the system volume to give the *pressure tensor*, i.e. :math:`p_{\alpha \beta} = \sigma_{\alpha \beta}/V`, and the relevant off-diagonal term of this will be equal to the negative of the shear stress :math:`\tau`. For instance, if the :math:`x`-component of velocity varies along :math:`y` (so the velocity gradient is :math:`\frac{\partial v_x}{\partial y}`), the shear stress is equal to either :math:`-p_{yx}` or :math:`-p_{xy}`.
 
 We can therefore carry out several simulations with different velocity gradients (by changing the wall velocities :math:`\pm\mathbf{v}_{w}`) and find the resulting shear stresses. Plotting the stresses against shear rates will give the relationship between the two, and the gradient of the curve at each point will give the fluid viscosity. If the fluid is Newtonian, the curve will be a straight line crossing through the origin (i.e. zero stress at zero shear rate).
 
@@ -258,7 +258,7 @@ and also **not applying conservative forces**, we can obtain the following relat
 .. math :: \mu \approx \frac{45 k_B T}{4 \pi \gamma r_c^3} + \frac{2 \pi \gamma \rho^2 r_c^5}{1575} 
   :label: viscDPDtheory
 
-which is pretty complex and might not really be suited for modelling flows of dense liquids [#]_. Adding conservative forces will change this relationship, but it might still be difficult to obtain a realistic viscosity for a liquid with the DPD thermostat. **Note**: This does *not* mean the DPD thermostat cannot be used for liquid systems, particularly if you are more interested in equilibrium structures than the detailed hydrodynamics.
+which is pretty complex and might not really be suited for modelling flows of dense liquids [#]_. Adding conservative forces will change this relationship and is likely to increase the viscosity further, but it might still be difficult to obtain a realistic viscosity for a liquid with the DPD thermostat. **Note**: This does *not* mean the DPD thermostat cannot be used for liquid systems, particularly if you are more interested in equilibrium structures than the detailed hydrodynamics.
 
 One way around this is to use a different pairwise thermostat. Two particularly interesting choices for flow-based systems are the Lowe-Andersen [Lowe1999]_ and Stoyanov-Groot [Stoyanov2005]_ thermostats, both of which are pairwise variants of the Andersen thermostat [Andersen1980]_ and use a collision frequency :math:`\Gamma` as their main parameter. 
 

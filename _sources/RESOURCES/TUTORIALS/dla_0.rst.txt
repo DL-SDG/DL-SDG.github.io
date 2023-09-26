@@ -24,3 +24,8 @@ Table of contents:
    ./dla_9
    ./dla_10
 
+.. toctree::
+   :maxdepth: 2
+
+   ./dla_12
+   ./dla_11

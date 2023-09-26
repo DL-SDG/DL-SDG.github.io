@@ -20,15 +20,19 @@ Prior to solvation, the whole molecular system is considered to be the solute un
 
 The necessary input parameters are as follows:
 
-*solvent_key* |sp| |sp| *cutoff*
+*solvent_key* |sp| |sp| *cutoff*  |sp| |sp| *FF_scheme*
 
 where *solvent_key* is the name of the molecule that will fill the system. The *cutoff* value is the minimum permitted distance between a solvent molecule and a solute molecule. The solvent molecule will be rejected if the distance is smaller than the *cutoff* value. 
 
+The *FF_scheme* indicates the type of FF scheme for the solvent. DL_FIELD will use this information to look for the solvent MOLECULE according to the FF scheme. 
+
 For example:
 
-*meoh* |sp| |sp| *2.0*
+*meoh* |sp| |sp| *2.0* |sp| |sp| *cvff*
 
-Means solvate the system with methanol with a cutoff distance of 2.0 Angstrom.
+Means solvate the system with methanol with a cutoff distance of 2.0 Angstrom. The FF model for the solvent would be the CVFF. 
+
+DL_FIELD also recognise the command *default* for the *FF_scheme*. It means the FF scheme for the solvent would be the same as what's been specified in the *control* file.
 
 .. Note::
    Solvation feature only works if simulation box size is specified and must be either cubic or orthrhombic shapes. In addition, DL_FIELD can only solvate systems of sizes that are at least 20 Angstrom at all x, y, and z directions.

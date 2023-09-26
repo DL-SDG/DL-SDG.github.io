@@ -60,6 +60,8 @@ To avoid needing to calculate velocity gradients non-locally using grid stencils
 
 which can be calculated locally at each grid point from its distribution functions. (Similar expressions are available for collisions other than BGK.) This expression is implicit with :math:`\tau` - the property being determined - and therefore the previously calculated value of :math:`\tau` for the given grid point can be used to calculate the rate-of-strain tensor. The resulting shear rate :math:`\dot{\gamma}` is then used in the selected rheological model (relationship between viscosity and shear rate) to calculate new values of :math:`\tau`: convergence is normally obtained for steady flow systems within a small number of timesteps.
 
+.. _LBEforcing:
+
 Forcing terms
 ~~~~~~~~~~~~~
 
@@ -150,6 +152,8 @@ and collided along with the sum of all pairwise interfacial forces, normally app
 where :math:`\beta` is a segregation parameter which results in a diffuse interface between the two fluids but reduces non-physical effects such as pinning of drops to the lattice, spatial anisotropy in interfacial tension and spurious microcurrents. 
 
 The above method can be extended to more than two fluids, calculating phase indices and forces and extending the segregation formula to include terms for all possible pairs of fluids. Lattice points with three or more fluids present can make it difficult to accurately calculate the interfacial curvatures, but there are alternate methods to calculate forces acting on fluids or apply forcing directly to fluids without calculating curvatures. A variant also exists that uses distribution functions at a lattice point directly to calculate approximate phase index gradients, which are accurate enough to find interfacial normals.
+
+.. _FreeEnergyLBE:
 
 Free-energy LBE methods
 -----------------------

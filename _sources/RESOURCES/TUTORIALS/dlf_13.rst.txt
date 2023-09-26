@@ -19,7 +19,9 @@ In DL_FIELD this can be achieved by using one of the following approaches:
 
 (2) Automatically determine the mixed vdw parameters based on a chosen mixing scheme.
 
-(3) Use of *VDW_FIX* directive.
+(3) Use of :doc:`dlf_22`
+
+(4) :doc:`dlf_23`
 
 .. Warning::
    While DL_FIELD allows different ways to mix the vdw interactions, it is up to the user to check the validity of parameters otained in this manner.
