@@ -10,17 +10,17 @@
 Atomic Interactions
 *******************
 
-The molecular dynamics (MD) is a powerful molecular modelling technique that yields dynamical and structural data in atomistic details based on the motions of atoms and molecules.
+Molecular dynamics (MD) is a powerful molecular modelling technique that yields dynamical and structural data in atomistic detail based on the motion of atoms and molecules.
 
-The atomic interactions are the fundemental aspect in making molecular simulations meaningful. In classical MD simulations, we are interested in probing evolution of molecular systems over time, while neglecting the electronic effects. 
+The atomic interactions are the fundamental aspect in making molecular simulations meaningful. In classical MD simulations, we are interested in probing evolution of molecular systems over time, while neglecting electronic effects. 
 
-For this reason, classical molecular dynamics can be used to investigate a variety of molecular phenomena provided there is no chemical reaction involved (no breaking and forming of bond).  
+For this reason, classical molecular dynamics can be used to investigate a variety of molecular phenomena, provided there is no chemical reaction involved (no breaking and forming of bonds).  
 
-Compare with *ab-inito* calculations, the use of classical force fields in simulations can be quick and able to probe much longer scales, in the orders of tens of millions of atoms and up to microsecond timescales. At the same time, classical force fields can also empirically reproduce molecular conformations and interactions such as hydrogen bonds and hydrophobic contacts.
+Compared with *ab-inito* calculations, the use of classical force fields in simulations can be quick and capable of probing much longer scales, in the orders of tens of millions of atoms and timescales of up to microseconds. At the same time, classical force fields can also empirically reproduce molecular conformations and interactions such as hydrogen bonds and hydrophobic contacts.
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
-The chemical forces between atoms and molecules are the fundemental aspects of imparting the observed features of materials.
+The chemical forces between atoms and molecules are the fundamental aspects of imparting the observed features of materials.
 
 In molecular simulations, atomic interactions can be separated into two parts:
 
@@ -28,6 +28,6 @@ In molecular simulations, atomic interactions can be separated into two parts:
 
 * Intra-molecular (bonded) interactions
 
-Atomic interactions are also known as the potential, collectively formed a force field (FF) of the system.
+Atomic interactions are also known as *potentials*, collectively formed into a *force field* (FF) for the system.
 
 :ref:`^ GO TO TOP ^<Header_ff1>`

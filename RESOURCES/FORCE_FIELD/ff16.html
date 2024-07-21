@@ -20,7 +20,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Parameter fittings" href="ff17.html" />
+    <link rel="next" title="Parameter fitting" href="ff17.html" />
     <link rel="prev" title="Model examples" href="ff13.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,7 +30,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ff17.html" title="Parameter fittings"
+          <a href="ff17.html" title="Parameter fitting"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="ff13.html" title="Model examples"
@@ -48,32 +48,32 @@
             
   <div class="section" id="atom-typing">
 <span id="header-ff16"></span><h1>Atom typing<a class="headerlink" href="#atom-typing" title="Permalink to this headline">¶</a></h1>
-<p>The atom typing is a set of procedures to determine the chemical type of an atom. From such, appropriate FF parameters for the atom can be determined, to ensure the FF model is correctly setup for a given set of interactions.</p>
+<p>Atom typing is a set of procedures to determine the chemical type of an atom. By doing this, appropriate FF parameters for the atom can be determined to ensure the FF model is correctly set up for a given set of interactions.</p>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Atom types</strong></p>
-<p>Consider a propanol molecule shown below. It consists of three different types of elements: carbon, hydrogen and oxygen. However, in molecular simulations, atom typing would identify more than three atom types. This is because same elemental atoms can behave chemically different depending on their chemical environments.</p>
+<p>Consider a propanol molecule such as the one shown below. It consists of three different types of elements: carbon, hydrogen and oxygen. However, in molecular simulations, atom typing would identify more than three atom types. This is because the same elemental atoms can behave differently depending on their chemical environment.</p>
 <a class="reference internal image-reference" href="../../_images/ff16_1.png"><img alt="../../_images/ff16_1.png" class="align-center" src="../../_images/ff16_1.png" style="width: 471.0px; height: 243.0px;" /></a>
-<p>For instance, there are five different atom types: the primary (C1) and secondary (C2 and C3) alkyl carbons; the alkyl hydrogen and hydroxyl hydrogen; and a hydroxyl oxygen (O).</p>
-<p>Obviously, some sort of atomic identification would be needed to determine atom types. Some of the common atom typing implementions would be either based on, or in combinations of, some file scripts, logic and symbolic syntax. For instance, consider the following two examples of typing procedures:</p>
-<p>Example 1:  [CX4](CO)(F)(F)(F)</p>
-<p>Example 2:  type = C &amp; count(bonded_atoms(type = F)) = 3 &amp; count(bonded_atoms(type = C)) = 1</p>
-<p>The above examples show two different typing procedures that were used by different software packages to determine specifically a trifluoro alkyl carbon atom.</p>
+<p>For instance, there are five different atom types: the primary (C1) and secondary (C2 and C3) alkyl carbons, the alkyl hydrogen and hydroxyl hydrogen, and a hydroxyl oxygen (O).</p>
+<p>Obviously, some sort of atomic identification would be needed to determine the atom types. Some of the common atom typing implementations would be either based on, or involve combinations of, some file scripts, logic and symbolic syntax. For instance, consider the following two examples of typing procedures:</p>
+<p>Example 1:  <code class="docutils literal notranslate"><span class="pre">[CX4](CO)(F)(F)(F)</span></code></p>
+<p>Example 2:  <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">=</span> <span class="pre">C</span> <span class="pre">&amp;</span> <span class="pre">count(bonded_atoms(type</span> <span class="pre">=</span> <span class="pre">F))</span> <span class="pre">=</span> <span class="pre">3</span> <span class="pre">&amp;</span> <span class="pre">count(bonded_atoms(type</span> <span class="pre">=</span> <span class="pre">C))</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
+<p>The above examples show two different typing procedures that were used by different software packages to determine (specifically) a trifluoro alkyl carbon atom.</p>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Atom keys</strong></p>
-<p>Atom keys are the labels for atom types. By referring to the two examples above, one software assigns the atom key as <em>CT</em> and the other as <em>C791</em>. They are of different labels but in fact refer to the same atom types, that is, a trifluoro alkyl carbon.</p>
-<p>Of note is that these labels are arbitrary and do not follow any standard protocal to name them, simply because there are none. Furthermore, some FF schemes use different atom keys for different type of interactions. The most common one is to use one atom key for all bonded interactions and another one for the non-bonded vdw interaction.</p>
+<p>Atom keys are the labels for atom types. By referring to the two examples above, one software assigns the atom key for the trifluoro alkyl carbon as <em>CT</em> and the other as <em>C791</em>. They use different labels but in fact refer to the same atom type.</p>
+<p>It should be noted that these labels are arbitrary and do not follow any standard protocol when they are named, simply because such a protocol does not exist. Furthermore, some FF schemes use different atom keys for different types of interactions. The most common approach is to use one atom key for all bonded interactions and another one for non-bonded vdW interactions.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Most FF schemes refer atom keys and atom types as the same thing. Usually, only atom labels are shown in library files, with the typing procedures hidden within the program.</p>
-<p class="last">However, DL_FIELD distinguishes both atom keys and atom types and they are explicitly listed in the library files. They are refer to as ATOM_KEYs and ATOM_TYPEs, respectively, within the DL_FIELD framework. An ATOM_TYPE is a human readable label that uniquely refer to an ATOM_KEY. Different ATOM_TYPEs can refer to the same ATOM_KEY but not the other way round.</p>
+<p>Most FF schemes refer to atom keys and atom types as the same thing. Usually, only the atom labels are shown in library files, with the typing procedures hidden within the program.</p>
+<p class="last">However, DL_FIELD can distinguish both atom keys and atom types; these are explicitly listed in its library files. Each of these are referred to as <code class="docutils literal notranslate"><span class="pre">ATOM_KEY</span></code> and <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code> respectively within the DL_FIELD framework. An <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code> is a human-readable label that uniquely refers to an <code class="docutils literal notranslate"><span class="pre">ATOM_KEY</span></code>. Different <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code>s can refer to the same <code class="docutils literal notranslate"><span class="pre">ATOM_KEY</span></code> but not the other way around.</p>
 </div>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Atom typing challenges</strong></p>
 <p>Different FF schemes (or different software) use different atom typing procedures and assign atoms with different atom keys. Situations also become more complicated because different FF schemes can also classify atoms differently.</p>
-<p>For example, by referring to the propanol structure shown above, some FF schemes will assign an additional atom type for the secondary carbon atom, C3, that is connected to the oxygen atom. However, some FF schemes may even reduce the number of atom types, for instance, by collectively treating all alkyl carbons (C1, C2 and C3) as a single atom type.</p>
-<p>Atom typing is one of the main reason why it is difficult to interconvert FF models between different FF schemes for a given molecular system, since atom typing does not conform to any standard.</p>
-<p>To reduce these non-standard barriers, DL_FIELD expresses ATOM_TYPEs in DL_F Notation syntax, which is universal across different FF schemes. The Notation ensures smooth data transformation within DL_FIELD when setting up a molecular system with different FF schemes.</p>
-<p>For more information about how DL_F Notation works, please refer to the <a class="reference internal" href="../TUTORIALS/dlf_0.html"><span class="doc">DL_FIELD Tutorial</span></a></p>
+<p>For example, referring to the propanol structure shown above: some FF schemes will assign an additional atom type for the secondary carbon atom (C3) that is connected to the oxygen atom. However, some FF schemes may even reduce the number of atom types, for instance, by collectively treating all alkyl carbons (C1, C2 and C3) as a single atom type.</p>
+<p>Atom typing is one of the main reasons why it is difficult to interconvert FF models between different FF schemes for a given molecular system, since atom typing does not conform to any standard.</p>
+<p>To reduce these non-standard barriers, DL_FIELD expresses <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code>s in DL_F Notation syntax, which is universal across different FF schemes. The Notation ensures smooth data transformation within DL_FIELD when setting up a molecular system with different FF schemes.</p>
+<p>For more information about how DL_F Notation works, please refer to the <a class="reference internal" href="../TUTORIALS/dlf_0.html"><span class="doc">DL_FIELD Tutorial</span></a>.</p>
 <p><a class="reference internal" href="#header-ff16"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -92,6 +92,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
@@ -110,7 +111,7 @@
                         title="previous chapter">Model examples</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="ff17.html"
-                        title="next chapter">Parameter fittings</a></p>
+                        title="next chapter">Parameter fitting</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -134,7 +135,7 @@
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ff17.html" title="Parameter fittings"
+          <a href="ff17.html" title="Parameter fitting"
              >next</a> |</li>
         <li class="right" >
           <a href="ff13.html" title="Model examples"

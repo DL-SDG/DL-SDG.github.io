@@ -59,9 +59,14 @@
 <a class="reference internal image-reference" href="../../_images/dlp_2_4.png"><img alt="../../_images/dlp_2_4.png" class="align-center" src="../../_images/dlp_2_4.png" style="width: 272.25px; height: 408.0px;" /></a>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>In DL_POLY, system trajectories can be saved into a file called <em>HISTORY</em>. To do this, the directive <em>traj</em> must be included in the <em>CONTROL</em> file. For example, to save the positions and velocities of the system at every 100 MD steps (not timestep!):</p>
-<p><em>traj 0 100 1</em></p>
-<p class="last">This will produce a time series of atomic ocnfigurations. The time interval between the configurations would be simply multiply of the MD timstep.</p>
+<p>In DL_POLY, system trajectories can be saved into a file called <em>HISTORY</em>. To do this, directives starting with <code class="docutils literal notranslate"><span class="pre">traj</span></code> must be included in the <em>CONTROL</em> file. For example, to save the positions and velocities of the system at every 100 MD steps (not timestep!) from the very beginning, the following should be included for older versions of DL_POLY:</p>
+<p><code class="docutils literal notranslate"><span class="pre">traj</span> <span class="pre">0</span> <span class="pre">100</span> <span class="pre">1</span></code></p>
+<p>while DL_POLY_5 requires the following four directives:</p>
+<p><code class="docutils literal notranslate"><span class="pre">traj_calculate</span> <span class="pre">ON</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">traj_start</span> <span class="pre">0</span> <span class="pre">steps</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">traj_interval</span> <span class="pre">100</span> <span class="pre">steps</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">traj_key</span> <span class="pre">pos-vel</span></code></p>
+<p class="last">These will produce a time series of atomic configurations. The time interval between the configurations would be simply a multiple of the MD timestep (in this case, <span class="math notranslate nohighlight">\(100 dt\)</span>).</p>
 </div>
 <p><a class="reference internal" href="#header-md3"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
@@ -81,6 +86,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

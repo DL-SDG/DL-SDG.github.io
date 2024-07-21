@@ -52,8 +52,8 @@
 <p>This page tells you how to set DL_FIELD up and running.</p>
 <p><strong>How to obtain DL_FIELD</strong></p>
 <ul class="simple">
-<li><a class="reference external" href="https://www.ccp5.ac.uk/DL_FIELD">DL_FIELD web site</a> – force field (FF) model set up (version 4.9 and above).</li>
-<li>DL_FIELD User Manual (<a class="reference download internal" download="" href="../_downloads/ea21449e498d455071345eec9fbc78e0/MAN_DL_FIELD_4.9.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 4.9, November 2022.</li>
+<li><a class="reference external" href="https://www.ccp5.ac.uk/DL_FIELD">DL_FIELD web site</a> – force field (FF) model set up.</li>
+<li>DL_FIELD User Manual (<a class="reference download internal" download="" href="../_downloads/f395c4513e488ca9b0658e56e65fb080/MAN_DL_FIELD_4.11.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 4.9, November 2022.</li>
 <li><a class="reference internal" href="TUTORIALS/dlf_0.html"><span class="doc">DL_FIELD Tutorial</span></a> - Online learning site, useful for new users.</li>
 </ul>
 <p>To be able to use DL_FIELD you first need to register <a class="reference external" href="https://www.ccp5.ac.uk/DL_FIELD/registration.shtml">here</a>. Successful registration will lead to you receiving a .tar.gz file (e.g. dl_f_4.6.tar.gz). Unpack or untar this for example in Linux:</p>
@@ -83,12 +83,12 @@
 <div class="figure">
 <img alt="../_images/dl_field_filepaths_resized.png" src="../_images/dl_field_filepaths_resized.png" />
 </div>
-<p>All directory paths must always be specified relative to the DL_FIELD home directory where the <em>dl_field.exe</em> is located.
+<p>All directory paths must always be specified relative to the DL_FIELD home directory where the <em>dl_field.exe</em> is located. Alternatively, an absolute path can be specified.
 By default, you don’t have to keep changing the above-mentioned path. It is the <strong>control</strong> path that you would need to change from time to time.</p>
-<p>The <em>dl_field.control</em> is the default control file. You can change the name or create different control files, so long you don’t change the basic structures of the files. The control file is where you specify the system configuration input file and the choice of force field scheme, amongst other options. To choose which files to use, just change the <strong>control</strong> path in <em>dl_f_path</em> accordingly.</p>
+<p>The <em>dl_field.control</em> is the default control filename. You can change the name or create different control files, so long you don’t change the basic structures of the files. The control file is where you specify the system configuration input file and the choice of force field scheme, amongst other options. To choose which files to use, just change the <strong>control</strong> path in <em>dl_f_path</em> accordingly.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">You would need to change all the paths should you move the <em>dl_field.exe</em> away from its original location.</p>
+<p class="last">You would need to change all the paths should you move the <em>dl_field.exe</em> away from its original location. When you do so, please remember to move the accompany <em>dl_f_path</em> file as well.</p>
 </div>
 <p>To run DL_FIELD program, just type:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: ./dl_field

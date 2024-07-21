@@ -51,12 +51,13 @@
 <span id="header-dlf-1"></span><h1>What is DL_FIELD<a class="headerlink" href="#what-is-dl-field" title="Permalink to this headline">¶</a></h1>
 <p><strong>DL_FIELD program</strong></p>
 <p>The DL_FIELD project was initiated by Chin Yong to address the needs of CCP5 users to facilitate the construction of <a href="dlf_1_force_field.html" onclick="window.open('dlf_1_force_field.html',
-      'newwindow', 'width=500,height=200'); return false;">force field</a> models for use in DL_POLY. DL_FIELD was first released in October 2010 (version 1.0). At the time of this writing, the latest version 4.9 was released in November 2022 with over 1500 registered users.</p>
+      'newwindow', 'width=500,height=200'); return false;">force field</a> models for use in DL_POLY. DL_FIELD was first released in October 2010 (version 1.0). The latest version 4.11 is released in August 2024. For the first time, this version can also setup FF files for Gromacs simulation software.</p>
 <p>DL_FIELD is a computer program package written in C that primarily serves as a support application software tools for DL_POLY molecular dynamics (MD) simulation package. It is a useful application tool to enchance the usability of DL_POLY and to facilitate the use of a wide range of advanced features included in the DL_POLY program.</p>
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Functions</strong></p>
 <ul class="simple">
 <li>Force field model convertor - converts users’ system configurations into <em>CONFIG</em> and <em>FIELD</em> files that are recognisable to run in DL_POLY_2.19, DL_POLY_3 and DL_POLY_4 programs.</li>
+<li>Converts users’ system configurations into ready-to-run Gromacs <em>itp</em>, <em>top</em>, <em>gro</em> files.</li>
 <li>Force field model editor: allows users to edit, modify or customise force field (FF) models.</li>
 <li>Force field model repertoire: easily expand the existing library to include user-defined models and parameters.</li>
 <li>Full automatic atom typing and identification of chemical nature of atoms in molecular systems.</li>
@@ -68,7 +69,7 @@
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Capabilities</strong></p>
 <ul class="simple">
-<li>Able to read user configurations in PDB, xyz and mol2 formats.</li>
+<li>Read user configurations in PDB, xyz and mol2 formats.</li>
 <li>Assign freeze, tether, rigid and bond constrains to atoms.</li>
 <li>Pseudo point assignment.</li>
 <li>Core-shell polarisable model assignment.</li>
@@ -77,9 +78,10 @@
 <li>Solvation with a range of solvents with insertion of counter ions.</li>
 <li>Bond, angles and dihedrals selections and exclusions.</li>
 <li>Solution Maker - molecular duplicate feature to set up liquid and solution models.</li>
-<li>Running DL_POLY (via <em>fork</em> process) within DL_FIELD.</li>
+<li>Running DL_POLY and Gromacs within DL_FIELD.</li>
 <li><strong>Universal atom typing (DL_F Notation)</strong> - a single conversion kernel embeded within DL_FIELD that is applicable to a wide range of FF schemes, with automatic atom typing capability.</li>
 <li><strong>Multiple-potential capability</strong> - enable mixing of various FF schemes, including those of organic and inorganic components (bio-inorganic models).</li>
+<li>Third-party force field file format (CHARMM’s rtf, psf) conversions to <em>udff</em>.</li>
 </ul>
 <p>Features appear in bold are unique to DL_FIELD.</p>
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />

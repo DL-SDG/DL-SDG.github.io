@@ -9,9 +9,9 @@ This page tells you how to set DL_FIELD up and running.
 
 **How to obtain DL_FIELD**
 
-* `DL_FIELD web site <https://www.ccp5.ac.uk/DL_FIELD>`_ – force field (FF) model set up (version 4.9 and above).
+* `DL_FIELD web site <https://www.ccp5.ac.uk/DL_FIELD>`_ – force field (FF) model set up.
 
-* DL_FIELD User Manual (:download:`PDF<./DOCUMENTS/MAN_DL_FIELD_4.9.pdf>`) - Version 4.9, November 2022.
+* DL_FIELD User Manual (:download:`PDF<./DOCUMENTS/MAN_DL_FIELD_4.11.pdf>`) - Version 4.9, November 2022.
 
 * :doc:`TUTORIALS/dlf_0` - Online learning site, useful for new users.
 
@@ -45,13 +45,13 @@ Before running DL_FIELD, make sure paths to the library files and the DL_FIELD c
 
 
 
-All directory paths must always be specified relative to the DL_FIELD home directory where the *dl_field.exe* is located.
+All directory paths must always be specified relative to the DL_FIELD home directory where the *dl_field.exe* is located. Alternatively, an absolute path can be specified.
 By default, you don’t have to keep changing the above-mentioned path. It is the **control** path that you would need to change from time to time.
 
-The *dl_field.control* is the default control file. You can change the name or create different control files, so long you don't change the basic structures of the files. The control file is where you specify the system configuration input file and the choice of force field scheme, amongst other options. To choose which files to use, just change the **control** path in *dl_f_path* accordingly. 
+The *dl_field.control* is the default control filename. You can change the name or create different control files, so long you don't change the basic structures of the files. The control file is where you specify the system configuration input file and the choice of force field scheme, amongst other options. To choose which files to use, just change the **control** path in *dl_f_path* accordingly. 
 
 .. Warning::
-  You would need to change all the paths should you move the *dl_field.exe* away from its original location.
+  You would need to change all the paths should you move the *dl_field.exe* away from its original location. When you do so, please remember to move the accompany *dl_f_path* file as well.
 
 To run DL_FIELD program, just type::
    

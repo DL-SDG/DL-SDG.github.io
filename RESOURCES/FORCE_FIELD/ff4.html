@@ -48,19 +48,19 @@
             
   <div class="section" id="non-bonded-interactions">
 <span id="header-ff4"></span><h1>Non-bonded interactions<a class="headerlink" href="#non-bonded-interactions" title="Permalink to this headline">¶</a></h1>
-<p>The inter-molecular or nonbonded interactions consist of energy components interact between pairs of atoms and depend only on the interatomic distances.</p>
+<p>Inter-molecular or non-bonded interactions consist of energy components that interact between pairs of atoms and depend only on interatomic distances.</p>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
-<p>Nonbonded interactions consist of several energy components as follows:</p>
+<p>Non-bonded interactions consist of several energy components as follows:</p>
 <ul class="simple">
-<li>Electrostatic (Coulombic) interactions. This arises due to charges on atoms and they are considered long-range in nature.</li>
-<li>Dispersive (van der Waals) interactions. Such interactions are due to electron cloud fluctuations, forming instanteneous dipoles. They can be found even in inert gas systems and neutral atoms.</li>
-<li>Urey-Bradley (UB) 1-3 atom pair interactions - This is specific to CHARMM FF schemes. They correlate with the angle interactions. Diagram below shows the UB interactions for the benzene molecule.</li>
-<li>Others. This includes dipole-dipole interactions such as the hydrogen bonds, charge-dipole interactions, etc. However, most FF schemes do not explicitly include such interactions as they are implicitly included in the above mentioned interactions.</li>
+<li><strong>Electrostatic (Coulombic) interactions</strong>. These arise due to charges on atoms and they are considered long-range in nature.</li>
+<li><strong>Dispersive (van der Waals) interactions</strong>. Such interactions are due to electron cloud fluctuations, forming instantaneous dipoles. They can be found even in inert gas systems and neutral atoms.</li>
+<li><strong>Urey-Bradley (UB) 1-3 atom pair interactions</strong>. These are specific to CHARMM FF schemes and correlate with angle interactions. The diagram below shows UB interactions for a benzene molecule.</li>
+<li><strong>Others</strong>. These can include dipole-dipole interactions such as the hydrogen bonds, charge-dipole interactions, etc. However, most FF schemes do not explicitly include such interactions as they are implicitly included in the above mentioned interactions.</li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/ff4_1.png"><img alt="Urey-Bradley interactions" class="align-center" src="../../_images/ff4_1.png" style="width: 287.7px; height: 320.59999999999997px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ff4_1.png"><img alt="Urey-Bradley interactions in benzene." class="align-center" src="../../_images/ff4_1.png" style="width: 287.7px; height: 320.59999999999997px;" /></a>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For covalent molecules nonbonded interactions do not apply to 1-2 and 1-3 bonded atoms, except the UB interactions. For the 1-4 atoms, a constant scaling factor is usually applied, depending on the FF schemes.</p>
+<p class="last">For covalent molecules, non-bonded interactions do not apply to 1-2 and 1-3 bonded atoms (except for any UB interactions). For 1-4 bonded atoms (e.g. those involved in dihedrals), a constant scaling factor is usually applied to non-bonded interactions between them: this will depend on the FF scheme.</p>
 </div>
 <p><a class="reference internal" href="#header-ff4"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
@@ -80,6 +80,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

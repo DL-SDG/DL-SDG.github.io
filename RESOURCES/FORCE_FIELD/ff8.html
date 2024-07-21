@@ -48,25 +48,25 @@
             
   <div class="section" id="non-bonded-functions">
 <span id="header-ff8"></span><h1>Non-bonded functions<a class="headerlink" href="#non-bonded-functions" title="Permalink to this headline">¶</a></h1>
-<p>While the bonded components mainly resposible to maintain the molecular structures, the inter-molecular functions are mainly responsible to model the overall behaviour of the system model such as densities, molar volumes, heats of vapourisation, etc.</p>
-<p>Non-bonded functions are mainly composed of two components: the short-ranged van der Waals (vdw) interactions and the long-ranged electrostatic interactions. These energy components are calculated based on interactions between pairs of atoms and the functions depend only on the interatomic distances.</p>
+<p>While the bonded components are mainly responsible for maintaining molecular structures, the inter-molecular functions are mainly responsible for modelling the overall behaviour of the system model, providing properties such as densities, molar volumes, heats of vaporisation, etc.</p>
+<p>Non-bonded functions are mainly composed of two components: the short-ranged van der Waals (vdW) interactions and the long-ranged electrostatic interactions. These energy components are calculated based on interactions between pairs of atoms and the functions depend only on interatomic distances.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For atoms within a molecule, non-bonded interactions will apply on the 1-4 atoms (atom pairs that are seprated by three successive bonds) onwards.</p>
+<p class="last">For atoms within a molecule, non-bonded interactions will usually only apply on the 1-4 atoms (atom pairs separated by three successive bonds) onwards. For 1-4 atoms, these interactions might be scaled by a constant factor that depends on the force field.</p>
 </div>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Electrostatic interactions</strong></p>
-<p>The Coulombic functions are usually used.</p>
+<p>Coulombic functions are usually used.</p>
 <a class="reference internal image-reference" href="../../_images/ff5_4.png"><img alt="Coulombic electrostatic" class="align-center" src="../../_images/ff5_4.png" style="width: 316.55px; height: 73.45px;" /></a>
-<p>As will see later in the page relates to cutoff distances, special methods would be needed to more accurately to sum them up.</p>
+<p>As we will see later in the page related to <a class="reference internal" href="ff11.html#header-ff11"><span class="std std-ref">cutoff distances</span></a>, special methods are needed to more accurately sum these up.</p>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>van der Waals interactions</strong></p>
 <p>There are many types of functional forms, the commonest are as follows:</p>
 <a class="reference internal image-reference" href="../../_images/ff8_1.png"><img alt="LJ12-6 and Bickingham" class="align-center" src="../../_images/ff8_1.png" style="width: 715.65px; height: 175.5px;" /></a>
-<p>As you can see, the functions consist of two components: positive terms that describe the electron repulsion due to the Pauli exclusion principle and negative dispersive terms due to electron cloud fluctuations.</p>
-<p>Lennard-Jones 12-6 is commononly used in organic systems and condensed phase systems. There are other forms, such as the LJ 9-6, which is used by the PCFF force field scheme. On the other hand, the 9-3 form is used for adsorption of LJ walls. More about LJ function will be discussed later.</p>
-<p>The Buckingham form is normally used in inorganic systems such as ionic oxides. The Pauli repulsion is more accurately described by the exponential term. There are three constants: <em>A</em> which affects how high the energy barrier rises and both <span class="math notranslate nohighlight">\(\rho\)</span> and <em>C</em> affect the size and shape of the function graph.</p>
-<p>Due to convergence nature of the exponential term as r -&gt; 0, an unphysical ‘well collapse’ can occur at small distances, and the nature of the collapse can be different depending on the combinations of the three constants. However, this can be masked by the electrostatic function for ion pairs of the like-charges.</p>
+<p>The functions consist of two components: positive terms that describe electron repulsions due to the Pauli exclusion principle and negative dispersive terms due to electron cloud fluctuations.</p>
+<p>Lennard-Jones 12-6 is commonly used in organic systems and condensed phase systems. There are other forms: LJ 9-6 is used by the PCFF force field scheme, while the 9-3 form is used for wall adsorption. More about <a class="reference internal" href="ff9.html#header-ff9"><span class="std std-ref">LJ functions</span></a> will be discussed later.</p>
+<p>The Buckingham form is normally used in inorganic systems such as ionic oxides. The Pauli repulsion is more accurately described by the exponential term. There are three constants: <span class="math notranslate nohighlight">\(A\)</span> affects how high the energy barrier rises and both <span class="math notranslate nohighlight">\(\rho\)</span> and <span class="math notranslate nohighlight">\(C\)</span> affect the size and shape of the function graph.</p>
+<p>Due to nature of convergence of the exponential term as <span class="math notranslate nohighlight">\(r \rightarrow 0\)</span>, an unphysical ‘well collapse’ can occur at small distances. The nature of the collapse can differ depending on the combinations of the three constants. However, this can be masked by the electrostatic function for ion pairs of like-like (same sign) charges.</p>
 <p><a class="reference internal" href="#header-ff8"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -85,6 +85,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

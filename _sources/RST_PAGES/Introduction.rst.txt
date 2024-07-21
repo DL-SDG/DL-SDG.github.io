@@ -5,13 +5,10 @@
 Introduction
 ************
 
-.. image:: ../image/DL_Software_logo.png
+.. image:: ../image/DL_Software_logo_new.png
     :align: center
-    :width: 297px
-    :height: 69px
+    :scale: 12%
     :alt: DL_Software Logo
-
-|
 
 .. figure:: ../image/daresbury.jpg
     :align: right 
@@ -26,12 +23,12 @@ offer great flexibility to handle a wide variety of system models, exploiting ad
 set-up designs and post-processing analytics.
 
 The DL_Software Digital Guide (DL_SDG) is intended to be a one-stop resource centre for DL_Software users. You will find tutorials, modelling procedures, tips, pit falls to watch out for the range of codes with examples of input and output. 
-This an attempt to enable users (particularly new users) to get themselves up-and-running with the particular DL_Software that gets their science done.
 
 .. toctree::
    :maxdepth: 2
 
    ./Intro_howto
+   ./Intro_model
    ./Intro_dls
    ./Version
 

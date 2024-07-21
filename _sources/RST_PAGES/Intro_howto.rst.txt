@@ -5,19 +5,18 @@
 Using DL_SDG
 ************
 
-.. image:: ../image/DL_Software_logo.png
+.. image:: ../image/DL_Software_logo_new.png
     :align: center
-    :width: 297px
-    :height: 69px
+    :scale: 12%
     :alt: DL_Software Logo
 
 As you work your way through the material available in the resource centre you will find variously coloured boxes like those shown below:
 
 .. Note::
-   These are grey boxes describing important pieces of information of which the user should be aware
+   These are grey boxes describing important pieces of information of which the user should be aware.
 
 .. Warning::
-   These are pale red boxes describing information that should be not ignored!
+   These are pale red boxes describing information that should not be ignored!
 
 :TIP:
    These are (hopefully!) helpful hints to enable ease-of-use or understanding. They are marked by the presence of a pale purple box that extends down the left hand side of the page aligned with the text.

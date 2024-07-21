@@ -48,23 +48,75 @@
             
   <div class="section" id="lennard-jones-mixing-rules">
 <span id="header-ff10"></span><h1>Lennard-Jones Mixing Rules<a class="headerlink" href="#lennard-jones-mixing-rules" title="Permalink to this headline">¶</a></h1>
-<p>The vdw parameters are normally fitted against the experimental results such as the liquid densities and enthalpy of vaporisation of pure components. It is also a standard practice to obtain parameters of similar type of atoms, of <em>i</em> = <em>j</em> as we have seen in the previous page for the methyl carbon atoms.</p>
-<p>However, molecular systems can consist of different types of atoms (where <em>i</em> <span class="math notranslate nohighlight">\(\neq\)</span> <em>j</em>) and each different combination pairs of atom types would have a different set of parameters that are often too many to fit them all.</p>
-<p>These missing vdw parameters are usually derived by using some kind of <em>mixing rules</em> involving parameters for those of atomic components (<em>ii</em> and <em>jj</em>) that made up the atom pairs (<em>ij</em>).</p>
-<p>Diagram below shows some of the mixing rules for LJ 12-6 functions:</p>
-<a class="reference internal image-reference" href="../../_images/ff10_1.png"><img alt="../../_images/ff10_1.png" class="align-center" src="../../_images/ff10_1.png" style="width: 626.6px; height: 286.65000000000003px;" /></a>
-<p>Out of these rules, the geometric and arithmatic rules are being used the most frequently by a wide range of force field schemes. However, the rules differ from one scheme to the other. For example, OPLS uses geometric rule to determine both the <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> for <em>ij</em> pairs. Whereas, for DREIDING FF, the arithmatic rule is used for the <span class="math notranslate nohighlight">\(\sigma\)</span> and geometric for the <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<p>vdW parameters are normally fitted against experimental results such as the liquid densities and enthalpy of vaporisation of pure components. It is also a standard practice to obtain parameters of similar types of atoms, <span class="math notranslate nohighlight">\(i = j\)</span>, such as those we have seen in the <a class="reference internal" href="ff9.html#header-ff9"><span class="std std-ref">previous page</span></a> for methyl carbon atoms.</p>
+<p>However, molecular systems can consist of different types of atoms (where <span class="math notranslate nohighlight">\(i \neq j\)</span>) and each different combination of pairs of atom types would have a different set of parameters. There are often too many possible pairs to fit them all experimentally.</p>
+<p>These missing vdW parameters are usually derived by using some kind of <em>mixing rules</em>, involving parameters for those of atomic components (<span class="math notranslate nohighlight">\(ii\)</span> and <span class="math notranslate nohighlight">\(jj\)</span>) to make up values for atom pairs (<span class="math notranslate nohighlight">\(ij\)</span>).</p>
+<p>The table below shows some of the mixing rules for LJ 12-6 functions:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="9%" />
+<col width="51%" />
+<col width="31%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Mixing rule no.</strong></td>
+<td><strong>Scheme name</strong></td>
+<td><strong>Energy,</strong> <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span></td>
+<td><strong>Steric,</strong> <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span></td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>Standard geometric</td>
+<td><span class="math notranslate nohighlight">\(\sqrt{\epsilon_{ii} \epsilon_{jj}}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\sqrt{\sigma_{ii}\sigma_{jj}}\)</span></td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>Standard arithmetic</td>
+<td><span class="math notranslate nohighlight">\(\frac{\epsilon_{ii} + \epsilon_{jj}}{2}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\frac{\sigma_{ii}+\sigma_{jj}}{2}\)</span></td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>Fender-Halsey</td>
+<td><span class="math notranslate nohighlight">\(\frac{2 \epsilon_{ii} \epsilon_{jj}}{\epsilon_{ii} + \epsilon_{jj}}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\frac{\sigma_{ii}+\sigma_{jj}}{2}\)</span></td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>Halgren HHG</td>
+<td><span class="math notranslate nohighlight">\(\frac{4 \epsilon_{ii} \epsilon_{jj}}{\left(\sqrt{\epsilon_{ii}} + \sqrt{\epsilon_{jj}}\right)^2}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\frac{\sigma_{ii}^3+\sigma_{jj}^3}{\sigma_{ii}^2+\sigma_{jj}^2}\)</span></td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>Waldman-Hagler</td>
+<td><span class="math notranslate nohighlight">\(2 \sqrt{\epsilon_{ii} \epsilon_{jj}} \frac{\left(\sigma_{ii} \sigma_{jj}\right)^3}{\sigma_{ii}^6 + \sigma_{jj}^2}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\left(\frac{\sigma_{ii}^6+\sigma_{jj}^6}{2}\right)^{\tfrac{1}{6}}\)</span></td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>Slater-Kirkwood <a class="footnote-reference" href="#id2" id="id1">[1]</a></td>
+<td><span class="math notranslate nohighlight">\(B_{ij} = \frac{3 \alpha_i \alpha_j}{2 \sqrt{\frac{\alpha_i}{N_i}+\frac{\alpha_j}{N_j}}}\)</span></td>
+<td><span class="math notranslate nohighlight">\(A_{ij} = \frac{1}{2} B_{ij}\left(w_i + w_j\right)^6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Out of these rules, the geometric and arithmetic rules are used the most frequently by a wide range of force field schemes. However, the rules differ from one scheme to the other. For example, OPLS uses the geometric rule to determine both <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span> for <span class="math notranslate nohighlight">\(ij\)</span> pairs, whereas, for DREIDING FF, the arithmetic rule is used for <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span> and the geometric rule for <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Mixing rules have minimal scientific justification but appear to work ‘quite well’. Also, the mixing rules should only apply to the same function type. For example, you cannot mix parameters between LJ and Buckingham functions. Neither should you mix parameters from LJ 12-6 and, say, LJ 9-6.</p>
+<p class="last">Mixing rules have minimal scientific justification but appear to work ‘quite well’. They should also only apply to the same function type. For example, you cannot mix parameters between LJ and Buckingham functions, neither should you mix parameters from LJ 12-6 and, say, LJ 9-6.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>In DL_POLY, mixing rules can be defined using the <em>vdw mix</em> directive in the <em>CONTROL</em> file. For example:</p>
-<p><em>vdw mix fender</em></p>
-<p>for Fender-Halsey type of mixing.</p>
-<p class="last">In DL_FIELD, mixing rules can be independantly set for the <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> parameters. For the Slater-Kirkwood scheme, DL_FIELD will obtain the atomic data from the <em>dl_field.atom_data</em> file by matching against atom types in DL_F Notation..</p>
+<p>In DL_POLY, mixing rules can be defined using the <code class="docutils literal notranslate"><span class="pre">vdw</span> <span class="pre">mix</span></code> or <code class="docutils literal notranslate"><span class="pre">vdw_mix_method</span></code> directive in the <em>CONTROL</em> file. For example, for Fender-Halsey mixing rules:</p>
+<p><code class="docutils literal notranslate"><span class="pre">vdw</span> <span class="pre">mix</span> <span class="pre">fender</span></code></p>
+<p>should be used in older versions of DL_POLY, while DL_POLY_5 would require:</p>
+<p><code class="docutils literal notranslate"><span class="pre">vdw_mix_method</span> <span class="pre">Fender-Hasley</span></code></p>
+<p class="last">In DL_FIELD, mixing rules can be independently set for the <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span> parameters. For the Slater-Kirkwood scheme, DL_FIELD will obtain the atomic data from the <em>dl_field.atom_data</em> file by matching against atom types using DL_F Notation.</p>
 </div>
+<p class="rubric">Footnote</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>This mixing rule derives the Lennard-Jones parameters from atomic data: polarisabilities <span class="math notranslate nohighlight">\(\alpha_i\)</span>, effective numbers of electrons <span class="math notranslate nohighlight">\(N_i\)</span> and atomic radii <span class="math notranslate nohighlight">\(w_i\)</span> for both components.</td></tr>
+</tbody>
+</table>
 <p><a class="reference internal" href="#header-ff10"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -83,6 +135,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

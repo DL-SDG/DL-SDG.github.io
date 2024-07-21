@@ -9,12 +9,12 @@
 Introduction to DL_Software
 ***************************
 
-.. image:: ../image/DL_Software_logo.png
+.. image:: ../image/DL_Software_logo_new.png
     :align: center
-    :width: 297px
-    :height: 69px
+    :scale: 12%
     :alt: DL_Software Logo
 
+DL_Software is the collective term to describe a number of computational chemistry software packages developed at Daresbury Laboratory. The software consists of both simulation and utility packages relate to materials modelling. Each software package is developed to deal with different aspects of theories, to probe the behaviour of a simulated material at different length and timescales. 
 
 The philosophy behind the software development is to maintain a 'forward-looking' stance, making them as agnostic as possible, to ensure the computer programs are future-proofed and capable to handle a variety of large and complex simulation model. The software codes are constantly tested and modified with the inclusion of advanced computational methodologies and innovative schemes so as to completely exploit the capability of the state-of-the-art massively parallelised supercomputers. The aim is to produce quality software that can meet and exceed the current modelling demands of modelling communities and to readily provide new modelling capabilities of more complex and grand-challenging problems.
 

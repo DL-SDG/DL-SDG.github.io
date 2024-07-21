@@ -67,16 +67,16 @@ The equation of state resulting from the Groot-Warren conservative interaction h
 .. math :: p = \rho k_B T + \alpha A_{ij} \rho^2,
   :label: eostheory
 
-where :math:`\alpha \approx 0.101 r_c^{-4}` when the numerical bead density :math:`\rho > 2`. While it is not especially realistic in describing a real fluid's behaviour, we can still use it to parameterise interactions between particles of the same species by deriving a relationship with isothermal compressibility :math:`\kappa_T`, the rate of change of density with pressure at constant temperature. The derivative of :eq:`eostheory` with respect to density at constant temperature gives the following relationship:
+where :math:`\alpha \approx 0.101 r_c^{4}` when the bead density :math:`r_c^3 \rho > 2`. While it is not especially realistic in describing a real fluid's behaviour, we can still use it to parameterise interactions between particles of the same species by deriving a relationship with isothermal compressibility :math:`\kappa_T`, the rate of change of density with pressure at constant temperature. The derivative of :eq:`eostheory` with respect to density at constant temperature gives the following relationship:
 
 .. math :: \kappa^{-1} = \frac{V_{mol} N_m}{k_B T \kappa_T } = \frac{M_r N_m}{\rho_m R T \kappa_T} = \frac{1}{k_B T} \left( \frac{\partial p}{\partial \rho} \right)_T = 1 + \frac{2 \alpha A_{ij} \rho}{k_B T}.
   :label: compress
 
 Applying this to water at room temperature - which has an isothermal compressibility of :math:`\kappa_T = 4.533 \times 10^{-10}` Pa\ :math:`^{-1}` - with one molecule per bead (:math:`N_m = 1`), we can determine a reciprocal of dimensionless isothermal compressibility of :math:`\kappa^{-1} \approx 16.09`. Rearrangement of the above equation with this value then gives the conservative force parameter as:
 
-.. math :: A_{ij} \approx \frac{75 k_B T}{\rho}.
+.. math :: A_{ij} \approx \frac{75 k_B T}{\rho r_c^4}.
 
-Setting the bead density as :math:`\rho = 3` along with :math:`k_B T = 1` leads to :math:`A_{ij} = 25`. This value for the conservative force parameter is very commonly used in DPD simulations.
+Setting the bead density as :math:`\rho = 3 r_c^{-3}` leads to :math:`A_{ij} = 25 k_B T r_c^{-1}`, which is very commonly used in DPD simulations. Alternatively, if :math:`N_m = 3` (three water molecules per bead), the conservative force parameter would end up being :math:`A_{ij} = 78 k_B T r_c^{-1}` [Groot2001]_.
 
 .. _FloryHuggins:
 
@@ -234,11 +234,11 @@ To determine the viscosity of a fluid, we need to find a relationship between ap
 
 The Lees-Edwards periodic boundary condition [Lees1972]_ can apply a linear shear flow field to a particle simulation. It works by both changing the velocities and tangential positions of particles that move through the given periodic boundary. For example, to apply wall velocities of :math:`-\mathbf{v}_{w}` and :math:`+\mathbf{v}_{w}` at the bottom and top boundaries of a box, any particle moving through the top boundary would be shifted by a displacement :math:`-\mathbf{v}_{w} t` before re-entering the box - where :math:`t` is the time since shearing started - and its velocity modified by :math:`-2\mathbf{v}_{w}`. Similarly, a particle moving through the bottom boundary would be displaced by :math:`+\mathbf{v}_{w} t` and its velocity modified by :math:`+2\mathbf{v}_{w}`.
 
-We can calculate a stress tensor for the system at a given timestep by summing products of components of pairwise forces and vectors between particle pairs, i.e.
+We can calculate a stress tensor for the system at a given timestep by summing products of components of pairwise forces and vectors between particle pairs and dividing by the system volume, i.e.
 
-.. math :: \sigma_{\alpha \beta} = \sum_i \left(m_i v_{i,\alpha} v_{i,\beta} + \sum_{j>i} F_{ij,\alpha} r_{ij,\beta} \right), ~~~~~ (\alpha, \beta = x, y, z)
+.. math :: \sigma_{\alpha \beta} = \frac{1}{V} \sum_i \left(m_i v_{i,\alpha} v_{i,\beta} + \sum_{j>i} F_{ij,\alpha} r_{ij,\beta} \right), ~~~~~ (\alpha, \beta = x, y, z)
 
-which can be averaged over a reasonably large number of timesteps to obtain representative values. For a system with shear flow, only one of the symmetric off-diagonal terms (:math:`\sigma_{\alpha \beta} = \sigma_{\beta \alpha}`, :math:`\alpha \ne \beta`) is required. The stress tensor can be divided by the system volume to give the *pressure tensor*, i.e. :math:`p_{\alpha \beta} = \sigma_{\alpha \beta}/V`, and the relevant off-diagonal term of this will be equal to the negative of the shear stress :math:`\tau`. For instance, if the :math:`x`-component of velocity varies along :math:`y` (so the velocity gradient is :math:`\frac{\partial v_x}{\partial y}`), the shear stress is equal to either :math:`-p_{yx}` or :math:`-p_{xy}`.
+which can be averaged over a reasonably large number of timesteps to obtain representative values. For a system with shear flow, only one of the symmetric off-diagonal terms (:math:`\sigma_{\alpha \beta} = \sigma_{\beta \alpha}`, :math:`\alpha \ne \beta`) is required, which will be equal to the negative of the shear stress :math:`\tau`. For instance, if the :math:`x`-component of velocity varies along :math:`y` (so the velocity gradient is :math:`\frac{\partial v_x}{\partial y}`), the shear stress is equal to either :math:`-\sigma_{yx}` or :math:`-\sigma_{xy}`.
 
 We can therefore carry out several simulations with different velocity gradients (by changing the wall velocities :math:`\pm\mathbf{v}_{w}`) and find the resulting shear stresses. Plotting the stresses against shear rates will give the relationship between the two, and the gradient of the curve at each point will give the fluid viscosity. If the fluid is Newtonian, the curve will be a straight line crossing through the origin (i.e. zero stress at zero shear rate).
 
@@ -287,7 +287,7 @@ where :math:`\alpha^{T}` is an additional system-wide coupling parameter for the
 
 .. rubric:: Footnotes
 
-.. [#] The numerical density shown here is frequently used in DPD simulations with Groot-Warren conservative interactions as this is close to the lowest density for which the constant (density-insensitive) equation of state applies.
+.. [#] The numerical density shown here has units of :math:`r_c^{-3}` (i.e. a number per unit volume). This particular value is frequently used in DPD simulations with Groot-Warren conservative interactions as this is close to the lowest density for which the constant (density-insensitive) equation of state applies. 
 
 .. [#] This follows from the assumption in Flory-Huggins solution theory that all particles (solvent and monomers) are equal in size.
 

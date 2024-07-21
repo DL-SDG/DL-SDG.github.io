@@ -1,10 +1,10 @@
-.. main portal to DL_FIELD 
+.. DL_FIELD - Main features
 
 *************
 Main features
 *************
 
-**Last update: December 2020 (DL_FIELD version 4.7)**
+**Last update: July 2024 (DL_FIELD version 4.11)**
 
 Below shows the some of the main DL_FIELD capabilities.
 
@@ -22,6 +22,8 @@ Below shows the some of the main DL_FIELD capabilities.
 
 * Definition of more than one FF scheme within a molecular model (multiple potential capability).
 
+* Run DL_POLY and Gromacs programs after conversion (in a same device).
+
 |
 
 .. image:: ./SIMULATIONS/IMAGES/Orange_bar.png
@@ -29,7 +31,7 @@ Below shows the some of the main DL_FIELD capabilities.
 
 **Available force field (FF) schemes**
 
-* CHARMM - CHARMM22, CHARMM36 for proteins, CHARMM36 for lipids and carbohydrates, CGenFF general FF.
+* CHARMM - CHARMM22, CHARMM36 for proteins, nuclei acids, lipids and carbohydrates, CGenFF general FF.
 
 * AMBER - proteins, Glycam for glycans and GAFF general FF.
 
@@ -44,6 +46,8 @@ Below shows the some of the main DL_FIELD capabilities.
 * PCFF - Small organic molecules including organic polymers.
 
 * CVFF - Small organic molecules, proteins.
+
+* TraPPE_EH - Transferable force field for phase equilibria studies - small organic molecules.
 
 * DREIDING - General FF for covalent molecules.
 

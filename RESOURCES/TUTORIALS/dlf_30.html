@@ -1,0 +1,235 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Setup FF from CHARMM’s rtf and prm &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DL_ANALYSER Tutorial" href="dla_0.html" />
+    <link rel="prev" title="Setup FF from Amber’s Antechamber" href="dlf_29.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dla_0.html" title="DL_ANALYSER Tutorial"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_29.html" title="Setup FF from Amber’s Antechamber"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD Tutorial</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="setup-ff-from-charmm-s-rtf-and-prm">
+<span id="header-dlf-30"></span><h1>Setup FF from CHARMM’s rtf and prm<a class="headerlink" href="#setup-ff-from-charmm-s-rtf-and-prm" title="Permalink to this headline">¶</a></h1>
+<p>This page shows how DL_FIELD can be used to extract FF information from rtf and prm files to
+setup FF models for DL_POLY and Gromacs.</p>
+<p>The rtf (residue topology file) and prm (parameter file) are standard CHARMM FF file formats that are produced from many third-party
+sources for simulation and modelling using packages such as CHARMM and NAMD.</p>
+<p>For example, the <em>LigParGen</em> is an FF web server interface (<a class="reference external" href="http://zarbi.chem.yale.edu/ligpargen/">http://zarbi.chem.yale.edu/ligpargen/</a>) that can automatically generate OPLSAA models for organic molecules, such as drug molecules or ligands with proteins and DNA.</p>
+<p>DL_FIELD can transcribe these FF models into DL_POLY and Gromacs files, via the Charmm’s rtf and prm files produced by LigParGen. This is done as follows, by using ascorbic acid as an example:</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Example procedure</strong></p>
+<p>When reading in CHARMM’s rtf and prm files, DL_FIELD will convert the FF data and create a corresponding <em>udff</em> file called <em>dlf_charmm.udff</em> file.</p>
+<p>Steps below illustrate the possible workflow procedures to setup FF models from rtf and prm files.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Step 1</strong>: Visit <em>LigParGen</em> site (shown above) and use <em>ascorbic_acid.pdb</em> as the input structure for the <em>LigParGen</em> server and
+select the 1.14*CM1A-LBCC charge model.</p>
+<p><strong>Step 2</strong>: Upon successful run, you are given several Download options. Select and download PRM and RTF files for CHARMM/NAMD.</p>
+<p><strong>Step 3</strong>: Rename these prm and rtf files into something sensible, such as ascorbic_acid.rtf and ascorbic_acid.prm. However, this step is optional.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>At DL_FIELD side:</p>
+<p><strong>Step 4</strong>: Specify the rtf and prm files in the <em>dl_f_path</em> file (see below).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># paths</span>
+<span class="n">library</span> <span class="o">=</span> <span class="n">lib</span><span class="o">/</span>
+<span class="n">solvent</span> <span class="o">=</span> <span class="n">solvent</span><span class="o">/</span>
+<span class="n">output</span>  <span class="o">=</span> <span class="n">output</span><span class="o">/</span>
+
+<span class="c1"># paths and filenames</span>
+<span class="n">control</span> <span class="o">=</span> <span class="n">dl_field</span><span class="o">.</span><span class="n">control5</span>
+
+<span class="hll"><span class="n">charmm_rtf</span> <span class="o">=</span> <span class="n">ascorbic_acid</span><span class="o">.</span><span class="n">rtf</span>  <span class="n">opls2005</span>
+</span><span class="hll"><span class="n">charmm_prm</span> <span class="o">=</span> <span class="n">ascorbic_acid</span><span class="o">.</span><span class="n">prm</span>  <span class="n">opls2005</span>
+</span>
+</pre></div>
+</div>
+<p>The <em>COMPONENT FILE TYPEs</em> charmm_rtf and charmm_prm indicate the location of the rtf and prm files and the associated FF scheme, which
+is OPLS2005.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Although rtf and prm are the original file formats for CHARMM software, in this case, the <em>LigParGen</em> produces FF data for OPLS scheme. For this reason, the FF scheme must be specified as OPLS2005 in <em>dl_f_path</em> and not some CHARMM FF schemes.</p>
+</div>
+<p><strong>Step 5</strong>: Run DL_FIELD. The following message will be shown on the screen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">...</span>
+
+<span class="n">Processing</span> <span class="n">Charmm</span> <span class="n">rtf</span> <span class="n">file</span><span class="p">:</span> <span class="n">pentanoic_acid</span><span class="o">.</span><span class="n">rtf</span><span class="o">...</span>
+<span class="n">Completed</span><span class="o">.</span>
+
+<span class="n">Processing</span> <span class="n">Charmm</span> <span class="n">prm</span> <span class="n">file</span><span class="p">:</span> <span class="n">pentanoic_acid</span><span class="o">.</span><span class="n">prm</span><span class="o">...</span>
+<span class="n">Completed</span><span class="o">.</span>
+
+<span class="n">The</span> <span class="n">udff</span> <span class="n">file</span> <span class="n">dlf_charmm</span><span class="o">.</span><span class="n">udff</span> <span class="n">has</span> <span class="n">been</span> <span class="n">created</span><span class="o">.</span>
+
+<span class="n">Only</span> <span class="n">file</span> <span class="nb">format</span> <span class="n">conversions</span> <span class="n">had</span> <span class="n">been</span> <span class="n">carried</span> <span class="n">out</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">rest</span> <span class="n">of</span> <span class="n">the</span> <span class="n">control</span> <span class="n">options</span> <span class="n">have</span> <span class="n">been</span> <span class="n">ignored</span><span class="o">.</span>
+<span class="n">If</span> <span class="n">you</span> <span class="n">want</span> <span class="n">conversion</span> <span class="n">to</span> <span class="n">DL_POLY</span> <span class="n">FIELD</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">single</span> <span class="n">step</span><span class="p">,</span>
+<span class="n">you</span> <span class="n">can</span> <span class="n">insert</span> <span class="n">dlf_charmm</span><span class="o">.</span><span class="n">udff</span> <span class="ow">and</span> <span class="n">dlf_charmm</span><span class="o">.</span><span class="n">pdb</span> <span class="k">as</span> <span class="n">the</span> <span class="n">udff</span> <span class="ow">and</span> <span class="nb">input</span> <span class="n">files</span><span class="o">.</span>
+<span class="n">prior</span> <span class="n">to</span> <span class="n">file</span> <span class="nb">format</span> <span class="n">conversion</span><span class="o">.</span>
+
+<span class="n">Program</span> <span class="n">executed</span> <span class="n">successfully</span><span class="o">.</span> <span class="n">Thank</span> <span class="n">you</span> <span class="k">for</span> <span class="n">using</span> <span class="n">DL_FIELD</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>As the message above shown, all control options will be ignored. The only output file would be the <em>dlf_charmm.udff</em> file, which contains all the FF information extracted from the rtf and prm files.</p>
+<p>However, file format conversions and FF model set up processes can be combined by carrying out the additional steps as follows:</p>
+<p><strong>Step 6</strong>: Ensure the correct residue labels are used in the intput PDB file. From the rtf file, the ascorbic acid molecule is given the RESIdue name UNK. This would be the same label for the MOLECULE_KEY in <em>dlf_charmm.udff</em> file. This label must be included in the PDB file (at column 18-21 as shown below), so that DL_FIELD would know which MOLECULE template to use when setting up the FF.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>REMARK PDB file
+HETATM    1  CT  UNK     1       0.532   0.696   0.513  1.00  0.00           C
+HETATM    2  CT  UNK     1       1.113  -0.707   0.463  1.00  0.00           C
+HETATM    3  HC  UNK     1       1.181   1.391   1.091  1.00  0.00           H
+HETATM    4  OH  UNK     1      -0.719   0.667   1.173  1.00  0.00           O
+HETATM    5  HC  UNK     1       0.376   1.116  -0.505  1.00  0.00           H
+HETATM    6  HC  UNK     1       0.965  -1.221   1.442  1.00  0.00           H
+HETATM    7  OH  UNK     1       0.426  -1.459  -0.512  1.00  0.00           O
+…
+…
+
+</pre></div>
+</div>
+<p><strong>Step 7</strong>: Insert the udff filename <em>dlf_charmm.udff</em> and the input configuration file in DL_FIELD <em>control</em> file, as shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Control</span> <span class="n">file</span> <span class="n">title</span><span class="o">.</span>
+<span class="mi">1</span>        <span class="o">*</span> <span class="n">Construct</span> <span class="n">DL_POLY</span> <span class="n">output</span> <span class="n">files</span>
+<span class="n">none</span>        <span class="o">*</span> <span class="n">chemsh</span> <span class="n">interface</span> <span class="p">(</span><span class="k">for</span> <span class="n">QM</span><span class="o">/</span><span class="n">MM</span><span class="p">),</span> <span class="n">gromacs</span> <span class="ow">or</span> <span class="n">none</span>
+<span class="hll"><span class="n">opls2005</span>  <span class="o">*</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">force</span> <span class="n">field</span> <span class="n">require</span> <span class="p">(</span><span class="n">see</span> <span class="nb">list</span> <span class="n">below</span> <span class="k">for</span> <span class="n">choices</span><span class="p">)</span><span class="o">.</span>
+</span><span class="n">kcal</span><span class="o">/</span><span class="n">mol</span>  <span class="o">*</span> <span class="n">Energy</span> <span class="n">unit</span><span class="p">:</span> <span class="n">kcal</span><span class="o">/</span><span class="n">mol</span><span class="p">,</span> <span class="n">kJ</span><span class="o">/</span><span class="n">mol</span><span class="p">,</span> <span class="n">eV</span><span class="p">,</span> <span class="ow">or</span> <span class="n">K</span><span class="o">.</span>
+<span class="n">normal</span>  <span class="o">*</span> <span class="n">Conversion</span> <span class="n">criteria</span> <span class="p">(</span><span class="n">strict</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">loose</span><span class="p">)</span>
+<span class="mi">1</span>        <span class="o">*</span> <span class="n">Bond</span> <span class="nb">type</span> <span class="p">(</span><span class="mi">0</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="mi">1</span><span class="o">=</span><span class="n">harmonic</span> <span class="p">,</span> <span class="mi">2</span><span class="o">=</span><span class="n">Morse</span><span class="p">)</span>
+<span class="mi">1</span>        <span class="o">*</span> <span class="n">Angle</span> <span class="nb">type</span> <span class="p">(</span><span class="mi">0</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="mi">1</span><span class="o">=</span><span class="n">harmonic</span><span class="p">,</span> <span class="mi">2</span><span class="o">=</span><span class="n">harmonic</span> <span class="n">cos</span><span class="p">)</span>
+<span class="hll"><span class="n">dlf_charmm</span><span class="o">.</span><span class="n">udff</span>  <span class="o">*</span> <span class="n">Include</span> <span class="n">user</span><span class="o">-</span><span class="n">defined</span> <span class="n">information</span><span class="o">.</span> <span class="n">Put</span> <span class="s1">&#39;none&#39;</span> <span class="ow">or</span> <span class="n">a</span> <span class="o">.</span><span class="n">udff</span> <span class="n">filename</span>
+</span><span class="mi">1</span>       <span class="o">*</span> <span class="n">Verbosity</span> <span class="n">mode</span><span class="p">:</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">on</span><span class="p">,</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">off</span>
+<span class="hll"><span class="n">ascorbic_acid</span><span class="o">.</span><span class="n">pdb</span>   <span class="o">*</span> <span class="n">Configuration</span> <span class="n">file</span><span class="o">.</span>
+</span><span class="n">none</span>   <span class="o">*</span> <span class="n">Output</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">PDB</span><span class="o">.</span> <span class="n">Put</span> <span class="s1">&#39;none&#39;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">needed</span><span class="o">.</span>
+<span class="mi">0</span> <span class="mi">40</span> <span class="n">molecules</span>  <span class="mf">9.0</span> <span class="o">*</span> <span class="n">Solution</span> <span class="n">Maker</span><span class="p">:</span> <span class="n">on</span><span class="o">/</span><span class="n">off</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p><strong>Step 8</strong>: Run DL_FIELD. Once a <em>dlf_charmm.udff</em> file is created, DL_FIELD proceeds to read in the input configuration file and setup the FF model as usual.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to setup Gromacs FF files, remember to insert <em>gromacs</em> keyword in the <em>control</em> file.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><a class="reference internal" href="#header-dlf-30"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_29.html"
+                        title="previous chapter">Setup FF from Amber’s Antechamber</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dla_0.html"
+                        title="next chapter">DL_ANALYSER Tutorial</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dla_0.html" title="DL_ANALYSER Tutorial"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_29.html" title="Setup FF from Amber’s Antechamber"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD Tutorial</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

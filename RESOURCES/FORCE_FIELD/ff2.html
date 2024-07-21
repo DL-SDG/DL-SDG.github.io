@@ -50,10 +50,11 @@
 <span id="header-ff2"></span><h1>Force Fields (FF)<a class="headerlink" href="#force-fields-ff" title="Permalink to this headline">¶</a></h1>
 <p>A system potential often contains (usually implicitly) a number of physical approximations – they are related to models of system behaviour. Force fields can be generic to a class of molecules or specific for a material.</p>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
-<p>The FF is modelled classically as some mathematical descriptions of energies and forces between atoms in terms of atomic positions:</p>
-<p><em>FF = pot1 + pot2 + … + potn</em></p>
-<p>Where <em>pot</em> is a mathematical function (or potential function) of an energy component. Each function also contains some constants, or the potential parameters, that are adjusted such that the potential functions approximately represent the chemical behaviour of the interaction components.</p>
-<p>The first derivative of these functions give the forces applied on each atom, from such, the velocities and positions of the atom are derived.</p>
+<p>The FF is modelled classically as some mathematical description of the energies and forces between atoms in terms of atomic positions:</p>
+<div class="math notranslate nohighlight">
+\[FF = pot_1 + pot_2 + \cdots + pot_n\]</div>
+<p>Where <span class="math notranslate nohighlight">\(pot\)</span> is a mathematical function (or potential function) of an energy component. Each function also contains some constants, or potential <em>parameters</em>, that are adjusted such that the potential functions approximately represent the chemical behaviour of the interacting components.</p>
+<p>The first derivative of these functions give the forces applied on each atom: from such, the velocities and positions of the atom are derived.</p>
 <p><a class="reference internal" href="#header-ff2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -72,6 +73,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Dissipative Particle Dynamics (DPD)" href="DPDIntro.html" />
-    <link rel="prev" title="Parameter fittings" href="../FORCE_FIELD/ff17.html" /> 
+    <link rel="prev" title="Coarse-graining" href="coarse_graining.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -33,7 +33,7 @@
           <a href="DPDIntro.html" title="Dissipative Particle Dynamics (DPD)"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../FORCE_FIELD/ff17.html" title="Parameter fittings"
+          <a href="coarse_graining.html" title="Coarse-graining"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
@@ -223,16 +223,16 @@ generalised form of the Langevin thermostat. It applies random (‘heat
 bath’) and frictional (viscous) forces to pairs of particles within a
 cutoff. It conserves both system-wide and local momentum and is thus
 Galilean invariant, i.e. it does not produce global motion (flying ice
-cube) for static systems while providing the correct hydrodynamic
-behaviour if flow fields are applied. Dissipative (friction) force terms
-can be related to fluid viscosity and self-diffusivity, although
-relationships are complex and affected by particle interactions. It can
+cube) for static systems while providing correct hydrodynamic
+behaviours when flow fields are applied. Dissipative (friction) force terms
+can be related to fluid viscosity and self-diffusivity, although these
+relationships are complex and are affected by particle interactions. It can
 use larger time steps than other thermostats. It is suitable for soft
 condensed matter systems (including those with flow fields) at coarse
 grain length scales, intended for mesoscopic (DPD) simulations.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">To obtain equilibration as quickly as possible in DPD simulations, the dissipative force parameter <span class="math notranslate nohighlight">\(\gamma\)</span> is often set to <span class="math notranslate nohighlight">\(4.5 \frac{k_B T \tau}{r_c^3}\)</span> (where <span class="math notranslate nohighlight">\(k_B T\)</span>, <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(r_c\)</span> are the selected energy, time and length scales for the simulation). This value corresponds to a minimum fluid viscosity and maximum diffusivity.</p>
+<p class="last">To obtain equilibration as quickly as possible in DPD simulations, the dissipative force parameter <span class="math notranslate nohighlight">\(\gamma\)</span> is often set to <span class="math notranslate nohighlight">\(4.5 \frac{k_B T \tau}{r_c^2}\)</span> (where <span class="math notranslate nohighlight">\(k_B T\)</span>, <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(r_c\)</span> are the selected energy, time and length scales for the simulation). This value corresponds to a minimum fluid viscosity and maximum diffusivity when no interaction forces are in use.</p>
 </div>
 </div>
 <div class="section" id="berendsen-barostat">
@@ -262,7 +262,8 @@ both determined from a barostat relaxation time parameter, while the
 random frictional forces are scaled according to the barostat kinetic friction
 and target system temperature <span class="math notranslate nohighlight">\(T_{target}\)</span>. The Langevin barostat is
 often used along with the Langevin thermostat (as in DL_POLY) to
-generate constant pressure and temperature (e.g. <em>NPT</em>) ensembles. It
+generate constant pressure and temperature (e.g. <em>NPT</em>) ensembles, or it can
+Be coupled with the DPD thermostat as in DL_MESO. It
 can frequently obtain the target pressure more quickly than other
 barostats and reduce correlation times for sampling of system
 properties.</p>
@@ -303,6 +304,7 @@ restriction.</p>
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DPDTheory.html">Additional details on DPD</a></li>
@@ -317,8 +319,8 @@ restriction.</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../FORCE_FIELD/ff17.html"
-                        title="previous chapter">Parameter fittings</a></p>
+  <p class="topless"><a href="coarse_graining.html"
+                        title="previous chapter">Coarse-graining</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="DPDIntro.html"
                         title="next chapter">Dissipative Particle Dynamics (DPD)</a></p>
@@ -348,7 +350,7 @@ restriction.</p>
           <a href="DPDIntro.html" title="Dissipative Particle Dynamics (DPD)"
              >next</a> |</li>
         <li class="right" >
-          <a href="../FORCE_FIELD/ff17.html" title="Parameter fittings"
+          <a href="coarse_graining.html" title="Coarse-graining"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 

@@ -27,6 +27,8 @@ Table of contents:
 
    ./dlf_1
    ./dlf_2
+   ./dlf_24
+   ./dlf_25
    ./dlf_3
    ./dlf_4
    ./dlf_21
@@ -56,5 +58,18 @@ Table of contents:
    ./dlf_23
    ./dlf_18
    ./dlf_13
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlf_26
+   ./dlf_27
+   ./dlf_28
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlf_29
+   ./dlf_30
 
 `DL_FIELD video series <https://www.youtube.com/playlist?list=PLm8H1n_adYecgW2k72gkDEZQ19sUYqKGP>`_ (hosted in YouTube)

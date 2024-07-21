@@ -49,26 +49,28 @@
   <div class="section" id="model-examples">
 <span id="header-ff13"></span><h1>Model examples<a class="headerlink" href="#model-examples" title="Permalink to this headline">¶</a></h1>
 <p>For inorganic materials such as simple ionic crystals, only a few parameters are needed to accurately model the system.</p>
-<p>For example, diagram below shows a set of potential parameters for magnesium oxide crystal. It is highly ionic and there is no covalent bond. This means the total energy of the system consists of only the non-bonded components:</p>
+<p>For example, the diagram below shows a set of potential parameters for a magnesium oxide crystal. It is highly ionic and there are no covalent bonds. This means the total energy of the system consists of just non-bonded components:</p>
 <a class="reference internal image-reference" href="../../_images/ff13_1.png"><img alt="../../_images/ff13_1.png" class="align-left" src="../../_images/ff13_1.png" style="width: 512.4px; height: 210.7px;" /></a>
-<p><em>V(total) = V(vdw) + V(coulombic)</em></p>
+<div class="math notranslate nohighlight">
+\[V_{total} = V_{vdW} + V_{Coulombic}\]</div>
 <p>with</p>
-<p><em>V(bonded) = 0</em></p>
-<p>The corresponding FF parameters are shown below (in DL_POLY form).</p>
+<div class="math notranslate nohighlight">
+\[V_{bonded} = 0\]</div>
+<p>The corresponding FF parameters are shown below (in the form of a DL_POLY <em>FIELD</em> file).</p>
 <a class="reference internal image-reference" href="../../_images/ff13_2.png"><img alt="../../_images/ff13_2.png" class="align-center" src="../../_images/ff13_2.png" style="width: 433.29999999999995px; height: 142.79999999999998px;" /></a>
-<p>The magnesium cation is assigned with the charge +2 and the oxide anion with the charge -2 and three vdw parameter sets for Buckingham potential were assigned to account for all three possible pair-wise combinations: Mg…Mg, Mg…O and O…O.</p>
+<p>The magnesium cation is assigned with a charge of +2 and the oxide anion with a charge of -2, while three vdW parameter sets using the Buckingham potential are assigned to account for all three possible pairwise combinations: Mg…Mg, Mg…O and O…O.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The Mg3 and O10 as shown are just atom labels for the magnesium and oxygen, respectively. Also, there are no vdw interaction for Mg…Mg pair. The pair would repel naturally from each other due to the strong electrostatic charge.</p>
+<p class="last">Mg3 and O10 as shown above are just atom labels for the magnesium and oxygen respectively. There are also no vdW interactions for the Mg…Mg pair (where the parameters are set to zero). The pair would repel naturally from each other due to the strong electrostatic charge.</p>
 </div>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
-<p>Unlike ionic crystals, FF models for organic molecules contain a lot more parameters since <em>V(bonded)</em> is needed to maintain the structure of the molecule.</p>
-<p>Take for example dimethyl sulfoxide, a small organic molecule which is commonly used as a solvent.</p>
+<p>Unlike ionic crystals, FF models for organic molecules contain many more parameters since <span class="math notranslate nohighlight">\(V_{bonded}\)</span> is needed to maintain the structure of the molecule.</p>
+<p>Take, for example, dimethyl sulfoxide, a small organic molecule which is commonly used as a solvent.</p>
 <a class="reference internal image-reference" href="../../_images/ff13_3.png"><img alt="../../_images/ff13_3.png" class="align-left" src="../../_images/ff13_3.png" style="width: 217.0px; height: 184.79999999999998px;" /></a>
 <p>In this case, all bonded interactions would need to take into account.</p>
-<p>Below shows part of the potential parameters (shown in DL_POLY’s FIELD file format) for CHARMM FF.</p>
+<p>A section of the potential parameters (in DL_POLY’s FIELD file format) for CHARMM FF is shown below.</p>
 <a class="reference internal image-reference" href="../../_images/ff13_4.png"><img alt="../../_images/ff13_4.png" class="align-center" src="../../_images/ff13_4.png" style="width: 744.0999999999999px; height: 366.09999999999997px;" /></a>
-<p>Note the amount of parameters needed even for a small molecule. While manual entry of parameters can be trivial for simple ionic crystals, large covalent molecules would need some utility programs, such as DL_FIELD, to help setting up the FF models correctly.</p>
+<p>Note the large number of parameters needed even for a small molecule. While manual entry of parameters can be trivial for simple ionic crystals, large covalent molecules need some utility programs, such as DL_FIELD, to help set up the FF models correctly.</p>
 <p><a class="reference internal" href="#header-ff13"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -87,6 +89,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

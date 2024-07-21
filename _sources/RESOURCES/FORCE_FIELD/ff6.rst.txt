@@ -9,29 +9,29 @@
 Model approximation
 *******************
 
-Note that these potential functions only approximately represent the molecular structures. 
+Note that these potential functions only *approximately* represent molecular structures. 
 
-For example, bond vibrations are commonly represented as a simple harmonic with a force constant and bond equilibrium length that represent the characteristics of the bond. Such a representation is not realistic because it renders the bond becomes unbreakable, as shown in the diagram below.
+For example, bond vibrations are commonly represented as a simple harmonic with a force constant and bond equilibrium length that represent the characteristics of the bond. Such a representation is not realistic because it renders the bond as unbreakable, as shown in the diagram below.
 
 .. image:: ../../image/ff6_1.png
    :scale: 65%
    :align: center
    :alt: bond approximation 
 
-Note that the harmonic function only fits close to the equilibrium distance, usually close to the room temperature.
+Note that the harmonic function is only a close fit around the equilibrium distance :math:`b_0`. This approximation is usually applicable close to room temperature (298 K) and might not be appropriate for higher temperatures.
 
-Alternatively, Morse function, which provides a better fit to the reality, can be used. It is a better approximation for the vibrational structure of the molecule that accounts for the anharmonicity of a real bond.
+Alternatively, a Morse function, which provides a better fit to reality, can be used. It is a better approximation for the vibrational structure of the molecule that accounts for the anharmonicity of a real bond.
 
-The Morse function would need to fit to three parameters: |br|
-D :subscript:`e`, the well depth, which measures the bond strength |br|
-:math:`{\alpha}`, which associates with the width of the potential |br|
-b :subscript:`0`, the equilibrium bond length. |br|
+The Morse function would need fitting to three parameters:
 
-The quantity :math:`{\alpha}` is related to the force constant, *k*, at the minimum well depth as:
+* :math:`D_e`, the well depth, which measures the bond strength
+* :math:`\alpha`, which is associated with the width of the potential
+* :math:`b_0`, the equilibrium bond length
 
-.. image:: ../../image/ff6_2.png
-   :scale: 50%
-   :align: center
+The quantity :math:`\alpha` is related to the (harmonic) force constant, :math:`k_b`, at the minimum well depth:
+
+.. math::
+   \alpha = \sqrt{\frac{k_b}{2 D_e}}
 
 
 :ref:`^ GO TO TOP ^<Header_ff6>`

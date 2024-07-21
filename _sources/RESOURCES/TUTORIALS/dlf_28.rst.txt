@@ -1,0 +1,43 @@
+.. DL_FIELD tutorial. Gromacs example output. 
+.. _Header_dlf_28:
+
+.. |br| raw:: html
+
+   <br />
+
+**********************
+Gromacs example output 
+**********************
+
+This page provide an example of FF conversion for Gromacs. 
+
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Conversion of organic molecules**
+
+Consider a molecular system consists of phenylalanine enclosed in a :math:`\beta`\-cyclodextrin (structure shown below) and solvates the whole system with ethanol in a cubic box of size 80 Å. All H-containing bonds are also constrained.
+
+.. image:: ../../image/dl_f_28_1.jpg
+   :scale: 40%
+   :align: center
+
+The corresponding confirguration file (in *xyz* format) is shown below. The molecular system is separated into two Molecular Groups: CYC refers the cyclodextrin cage and PHE for the organic molecule enclosed within the cage.
+
+.. literalinclude:: cyc_phe.xyz 
+   :emphasize-lines: 3,19
+
+To carry out this conversion, below highlights the relevant options in a DL_FIELD *control* file.
+
+.. literalinclude:: dl_field.control.cyc_phe 
+   :emphasize-lines: 3,4,11,16,19,20,21,22,27,33,34
+
+After conversion, DL_FIELD will produce three *itp* files, one for each Molecular Group: one for CYC, one for PHE and the other for ethanol solvent (ETOH). They are all included in the *gromacs.top* as follows:
+
+.. literalinclude:: gromacs.top
+
+The file shows an additional 5212 ethanol molecules have been added as solvent in the system.
+
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_28>`

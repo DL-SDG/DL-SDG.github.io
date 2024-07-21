@@ -1,0 +1,45 @@
+.. DL_FIELD tutorial. The dl_f_path file. 
+.. _Header_dlf_24:
+
+.. |nbsp| unicode:: 0xA0
+   :trim:
+
+.. |br| raw:: html
+
+   <br />
+
+********************
+The *dl_f_path* file 
+********************
+
+When DL_FIELD is run, the *dl_f_path* file is the first file to read. It contains information about the directory paths of various file components. Each file precedes with a *COMPONENT FILE TYPE* and an equal '=' sign. These are shown as follows:
+
+*LIBRARY* = directory location to force field library files.
+
+*SOLVENT* = directory location to solvent templates. This *COMPONENT* is only relevant if solvation feature is used.
+
+*OUTPUT* = directory location where the output files are written out. Example output files are the converted FF model files such as *dlpoly.CONFIG*, *dlpoly.FIELD* and *dlf_notation.output*.
+
+*CONTROL* = location and filename of the DL_FIELD *control* file.
+
+*CHARMM_RTF* = location and filename for CHARMM's residue topology file (rtf). DL_FIELD reads this file and converts it to the equivalent *udff* file to setup force field models.
+
+*CHARMM_PRM* = location and filename for CHARMM's parameter file (prm). DL_FIELD reads this file and converts it to the equivalent *udff* file to setup force field models.
+
+*CHARMM_PSF* = location and filename of CHARMM's protein structure file (psf). DL_FIELD reads this file and converts it to the equivalent *udff* file to setup force field models.
+
+*CHARMM_PDB* = location and filename of a PDB file that is produced along with a matching psf file using CHARMM's *psfgen*.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+The remark statement is indicated with the '#' symbol at the first column of the line and the rest of the information will be ignored by DL_FIELD. Below shows an example of *dl_f_path* file. 
+
+
+.. literalinclude:: dl_f_path.txt
+
+The *dl_f_path* must be located in the DL_FIELD home directory, which is where DL_FIELD program is run. The directory paths can be either absolute or relative (to DL_FIELD home directory) type. 
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dlf_24>`
+

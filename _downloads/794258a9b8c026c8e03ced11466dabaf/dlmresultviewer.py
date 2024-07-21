@@ -1221,32 +1221,32 @@ def readCorrel(filename):
         datumNames.append("pressure")
         datumAxes.append('$P$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_xx' or names[i]=='p_xx'):
-        datumNames.append("pressure tensor xx-component")
-        datumAxes.append('$P_{xx}$ [$k_B T \ell_0^{-3}$]')
+        datumNames.append("stress tensor xx-component")
+        datumAxes.append('$\sigma_{xx}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_xy' or names[i]=='p_xy'):
-        datumNames.append("pressure tensor xy-component")
-        datumAxes.append('$P_{xy}$ [$k_B T \ell_0^{-3}$]')
+        datumNames.append("stress tensor xy-component")
+        datumAxes.append('$\sigma_{xy}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_xz' or names[i]=='p_xz'):
-        datumNames.append("pressure tensor xz-component")
-        datumAxes.append('$P_{xz}$ [$k_B T \ell_0^{-3}$]')
+        datumNames.append("stress tensor xz-component")
+        datumAxes.append('$\sigma_{xz}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_yx' or names[i]=='p_yx'):
-        datumNames.append("pressure tensor yx-component")
-        datumAxes.append('$P_{yx}$ [$k_B T \ell_0^{-3}$]')
+        datumNames.append("stress tensor yx-component")
+        datumAxes.append('$\sigma_{yx}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_yy' or names[i]=='p_yy'):
-        datumNames.append("pressure tensor yy-component")
-        datumAxes.append('$P_{yy}$ [$k_B T \ell_0^{-3}$]')
+        datumNames.append("stress tensor yy-component")
+        datumAxes.append('$\sigma_{yy}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_yz' or names[i]=='p_yz'):
-        datumNames.append("pressure tensor yz-component")
-        datumAxes.append('$P_{yz}$ [$k_B T \ell_0^{-3}$]')
+        datumNames.append("stress tensor yz-component")
+        datumAxes.append('$\sigma_{yz}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_zx' or names[i]=='p_zx'):
-        datumNames.append("pressure tensor zx-component")
-        datumAxes.append('$P_{zx}$ [$k_B T \ell_0^{-3}$]')
+        datumNames.append("stress tensor zx-component")
+        datumAxes.append('$\sigma_{zx}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_zy' or names[i]=='p_zy'):
-        datumNames.append("pressure tensor zy-component")
-        datumAxes.append('$P_{zy}$ [$k_B T \ell_0^{-3}$]')
+        datumNames.append("stress tensor zy-component")
+        datumAxes.append('$\sigma_{zy}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_zz' or names[i]=='p_zz'):
-        datumNames.append("pressure tensor zz-component")
-        datumAxes.append('$P_{zz}$ [$k_B T \ell_0^{-3}$]')
+        datumNames.append("stress tensor zz-component")
+        datumAxes.append('$\sigma_{zz}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='volume'):
         datumNames.append("volume")
         datumAxes.append('$V$ [$\ell_0^3$]')

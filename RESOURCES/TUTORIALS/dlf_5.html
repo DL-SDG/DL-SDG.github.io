@@ -52,9 +52,9 @@
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Control options</strong></p>
 <p>DL_FIELD operations can be controlled by users through a single DL_FIELD <em>control</em> file, as shown below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Control file title. For DL_FIELD 4.7.
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Control file title. For DL_FIELD 4.11
 1        * Construct DL_POLY output files
-0        * Unuse slot.
+0        * Seconday output files (gromacs, chemshell or none). 
 charmm22_prot  * Type of force field require (see list below for choices).
 kcal/mol  * Energy unit: kcal/mol, kJ/mol, eV, or K.
 normal  * Conversion criteria (strict, normal, loose)
@@ -94,14 +94,21 @@ none  1.9 * Solvate model? none or specify solvent (see below) and distance crit
 20.0      * Cut off for vdw energy calculation (angstrom)
 
 ************* DL_POLY control ******************
-0          * Run DL_POLY program
-DLPOLY.Z   * DL_POLY executable filename
-/home/usr/ * absolute path to DL_POLY program
-1          * MM calculation 1=on  0=off
-0   3      * Equilibration on(1)/off(0)  level (1,2 or 3)
-1000       * Timestep for DL_POLY runs.
+1          * Run DL_POLY program
+DLPOLY_AMD.Z   * DL_POLY executable filename
+/home/user_pc/DL_POLY/  * absolute path to DL_POLY program
+8          * Number of processors (mpirun)
+0          * MM calculation 1=on  0=off
+3   5000   * Structural Relaxation level (0 - off, 1,2 or 3). Total timestep
 8.0        * cutoff (vdw and electrostatic)
-1000       * Time limit for DL_POLY run (in seconds)
+100000       * Time limit for DL_POLY run (in seconds)
+
+************* Gromacs control ******************
+0            * Run Gromacs
+gmx          * Gromacs executable filename
+/usr/bin/ * absolute path to Gromacs
+1            * MM single-point calc.
+
 
 ########################################################
 Atom state specification:  type  Molecular_Group   filter   [value]
@@ -135,7 +142,7 @@ Some remarks...
 <p>For more details about the use of other <em>control</em> options, please consult DL_FIELD User Manual.</p>
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>DL_POLY Control Section</strong></p>
-<p>DL_FIELD <em>control</em> file also contains a section called the DL_POLY Control section. It allows users to run DL_POLY program via a <em>fork</em> process, by using the <em>CONFIG</em> and <em>FIELD</em> files straight after the FF model setup process.</p>
+<p>DL_FIELD <em>control</em> file also contains a section called the DL_POLY Control section. It allows users to run DL_POLY program via a <em>fork</em> process for a single processor, by using the <em>CONFIG</em> and <em>FIELD</em> files straight after the FF model setup process. If more than one processor are specified, then DL_FIELD will execute via the <em>mpirun</em> command.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The DL_POLY control section only applicable to DL_FIELD program compiled in the Linux environment, including cygwin or WSL within the Window system. This control section will only carry out after the FF model setup process, and therefore, will not affect the outcome of <em>dl_poly.CONFIG</em> and <em>dl_poly.FIELD</em> files.</p>
@@ -144,6 +151,10 @@ Some remarks...
 <p>The other option is the equilibration runs, which comes with up to three tiers, or levels. Strictly speaking, this option does not properly equilibrate your system. Rather, it is useful if your initial configuration is in a high-energy state and successive tiers of running DL_POLY will attempt to ‘unlock’ any high-conformation states in your system. For instance, atoms that are too close to each other or molecular structures in some strained configurations.</p>
 <p>The higher the energy (or more strain) in your system, the higher tiers would be needed to relax the system. Each equilibration level comes with a different DL_POLY <em>CONTROL</em> file to run the simulation. After each run, DL_POLY output files will be saved and tagged with a level number, in the forms CONTROLX, STATISX and OUTPUTX, where X is the equilibration number of either 1, 2 or 3.</p>
 <p>The final relaxed configuration would be the DL_POLY <em>CONFIG</em> file, which can be used to carry out normal equilibration runs, perhaps in a HPC system.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Gromacs Control Section</strong></p>
+<p>This option only works if Gromacs program is installed in the computer and the keyword <em>gromacs</em> option is selected in the <em>control</em> file. The only option to run Gromacs is a single-point MM calculations.</p>
+<p>Before running Gromacs, DL_FIELD will automatically setup a <em>tpr</em> file based on the Gromacs files produced, to verify the files are matched. After running a single-point calculation, Gromacs will produce the following files: <em>gromacs_sp.edr</em> and <em>gromacs_sp.log</em>.</p>
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Atom state specification</strong></p>
 <p>This section is located within two lines consist of hashes (###################). It contains a series of directives to define the states of atoms that will affect the motions of atoms in DL_POLY runs. DL_FIELD permits four different atom states: (1) bond constrains, (2) freeze atoms, (3) tether atom (attach an atom by an imaginary spring to a fixed point, usually the center position of the atom in the initial configuration), and (4) rigid body.</p>

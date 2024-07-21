@@ -18,11 +18,11 @@ Force field data files: Parameter Files
 
 **The Parameter file (par file)**
 
-These files have filenames in the form of *DLPOLY_XX.par*, where *XX* is the FF scheme name. The *par* files are where all the FF parameters are stored. The files contain all types of interactions with the exception of coulombic charges, which are defined for every ATOMs in the MOLECULEs.
+These files have filenames in the form of *XX.par*, where *XX* is the FF scheme name. The *par* files are where all the FF parameters are stored. The files contain all types of interactions with the exception of coulombic charges, which are defined for every ATOMs in the MOLECULEs.
 
 All the parameters are enclosed within the appropriate directives according to the type of interactions. For example, for two-body bonding interactions, the parameters are listed within the *BOND* and *END BOND* directives; for three-body angle interactions, the parameters are listed within the *ANGLE* and *END ANGLE* directives, and so forth.
 
-Diagram below shows a portion of bond and dihedral parameters, extracted from the *DLPOLY_CHARMM36_lipid.par* file. Words in red were added for illustration purposes.
+Diagram below shows a portion of bond and dihedral parameters, extracted from the *CHARMM36_lipid.par* file. Words in red were added for illustration purposes.
 
 .. image:: ../../image/dl_f_4_1.png
    :scale: 80%

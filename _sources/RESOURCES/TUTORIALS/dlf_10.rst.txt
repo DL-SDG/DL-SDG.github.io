@@ -31,7 +31,7 @@ The optional tokens are some alphabets and symbols that indicate the types and p
 
 Other more common tokens are *E* and *L*, which refer to *end* and *linked* position, respectively.
 
-The latest DL_FIELD version (4.7) can detect about four hundred *CGs*. More will be added when new versions are released.
+The latest DL_FIELD version (4.10) can detect about four hundred *CGs*. More will be added when new versions are released.
 
 In summary, DL_F Notation has the following features:
 
@@ -79,7 +79,16 @@ In summary, DL_F Notation has the following features:
    :scale: 60%
    :align: center
 
-|br|
+|br| |br|
+
+(5) Finally, example below shows ATOM_TYPEs for dynemicin A, a drug molecule. The corresponding ATOM_KEYs are shown in blue. These ATOM_KEYs are similar irrespective of which FF schemes are used: OPLS2005, CVFF or PCFF but the potential parameters are different.
+
+.. image:: ../../image/dlf_10_6.png
+   :scale: 70%
+   :align: center
+
+Can you tell which atoms are located in which parts of the molecule?
+
 
 :ref:`^ GO TO TOP ^<Header_dlf_10>`
 

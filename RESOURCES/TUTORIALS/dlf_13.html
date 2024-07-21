@@ -20,7 +20,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="DL_ANALYSER Tutorial" href="dla_0.html" />
+    <link rel="next" title="Force field files for Gromacs" href="dlf_26.html" />
     <link rel="prev" title="Selective interactions" href="dlf_18.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,7 +30,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="dla_0.html" title="DL_ANALYSER Tutorial"
+          <a href="dlf_26.html" title="Force field files for Gromacs"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="dlf_18.html" title="Selective interactions"
@@ -49,14 +49,15 @@
             
   <div class="section" id="multiple-potential-features">
 <span id="header-dlf-13"></span><h1>Multiple Potential Features<a class="headerlink" href="#multiple-potential-features" title="Permalink to this headline">¶</a></h1>
-<p>One of the unique aspect of DL_FIELD is that it enables users to use more than one potential schemes in the force field model. This is particularly useful if one were to setup a bio-inorganic system, or any organic-inorganic/organic mixed component systems.</p>
-<p>Each FF scheme has its own protocol to setup the FF model. The trickiest part is how to account for the vdw interactions between atoms that are assigned with different FF schemes. Normally, a FF scheme such as CHARMM and AMBER follow a certain set of predefined rule to obtain vdw parameters for atoms of different types. However, this is not well defined for vdw parameters across different FF schemes.</p>
-<p>In DL_FIELD this can be achieved by using one of the following approaches:</p>
+<p>One of the unique aspect of DL_FIELD is that it enables users to use more than one potential schemes in the force field model. This is particularly useful if one were to setup a bio-inorganic system, or any inorganic/organic mixed component systems.</p>
+<p>Each FF scheme has its own protocol to setup the FF model. The trickiest part is how to account for the vdw interactions between atoms that are assigned with different FF schemes. Normally, FF schemes such as CHARMM and AMBER follow certain sets of predefined rules to obtain vdw parameters for atoms of different types. However, this is not well defined for vdw parameters across different FF schemes.</p>
+<p>In most cases, the Lj 12-6 forms are used for the vdw interactions and there are various mixing schemes can be used for this type of interaction forms. If atom pairs contain different functional forms, then one of the following approaches will be used:</p>
 <ol class="arabic simple">
-<li>Identify all possible vdw atom pairs but leave it blank for user to manually insert suitable parameters.</li>
 <li>Automatically determine the mixed vdw parameters based on a chosen mixing scheme.</li>
+<li>Automatic refit vdw functions to LJ 12-6 forms and then carry out vdw mixing scheme as per the options specify in the <em>control</em> file. This only applies if the vdw functions are of LJ 9-6 or Morse forms.</li>
 <li>Use of <a class="reference internal" href="dlf_22.html"><span class="doc">Customise VDW interactions (VDW_FIX directive)</span></a></li>
-<li><a class="reference internal" href="dlf_23.html"><span class="doc">Auto VDW determination</span></a></li>
+<li><a class="reference internal" href="dlf_23.html"><span class="doc">Auto VDW determination</span></a>. Additional data such as atomic polarisabilities and vdw radii would be needed.</li>
+<li>Identify all possible vdw atom pairs but leave it blank for user to manually insert suitable parameters. This would be the last resort if the above mention procedures fail or not applicable.</li>
 </ol>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -68,7 +69,7 @@
 <p>To setup a multiple-potential system, you would need to define the potential schemes in the input configuration file. This is done by using the <em>POTENTIAL</em> directive in the input file. Also, you would need to specify the keyword ‘multiple’ in the DL_FIELD <em>control</em> file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Control</span> <span class="n">file</span> <span class="n">title</span><span class="o">.</span> 
 <span class="mi">1</span>        <span class="o">*</span> <span class="n">Construct</span> <span class="n">DL_POLY</span> <span class="n">output</span> <span class="n">files</span>
-<span class="mi">0</span>        <span class="o">*</span> <span class="n">Unuse</span> <span class="n">slot</span><span class="o">.</span>
+<span class="mi">0</span>        <span class="o">*</span> <span class="n">Secondary</span> <span class="n">output</span> <span class="n">files</span><span class="p">:</span> <span class="n">chemshell</span><span class="p">,</span> <span class="n">gromacs</span><span class="p">,</span> <span class="ow">or</span> <span class="n">none</span> 
 <span class="hll"><span class="n">multiple</span>  <span class="o">*</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">force</span> <span class="n">field</span> <span class="n">require</span> <span class="p">(</span><span class="n">see</span> <span class="nb">list</span> <span class="n">below</span> <span class="k">for</span> <span class="n">choices</span><span class="p">)</span><span class="o">.</span>
 </span><span class="n">kcal</span><span class="o">/</span><span class="n">mol</span>  <span class="o">*</span> <span class="n">Energy</span> <span class="n">unit</span><span class="p">:</span> <span class="n">kcal</span><span class="o">/</span><span class="n">mol</span><span class="p">,</span> <span class="n">kJ</span><span class="o">/</span><span class="n">mol</span><span class="p">,</span> <span class="n">eV</span><span class="p">,</span> <span class="ow">or</span> <span class="n">K</span><span class="o">.</span>
 <span class="n">normal</span>  <span class="o">*</span> <span class="n">Conversion</span> <span class="n">criteria</span> <span class="p">(</span><span class="n">strict</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">loose</span><span class="p">)</span>
@@ -164,7 +165,7 @@ HA_A      O10_B     ????  xxx  xxx
 ...
 </pre></div>
 </div>
-<p>In this case, you would need to insert manually the values for these parameters. Alternatively, you can use <em>VDW_FIX</em> directive to do this for you (consult the manual for details).</p>
+<p>In this case, you would need to insert manually the values for these parameters. Alternatively, you can use <em>VDW_FIX</em> directive. See <a class="reference internal" href="dlf_22.html"><span class="doc">Customise VDW interactions (VDW_FIX directive)</span></a>.</p>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dlf-13"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
@@ -204,8 +205,8 @@ HA_A      O10_B     ????  xxx  xxx
   <p class="topless"><a href="dlf_18.html"
                         title="previous chapter">Selective interactions</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="dla_0.html"
-                        title="next chapter">DL_ANALYSER Tutorial</a></p>
+  <p class="topless"><a href="dlf_26.html"
+                        title="next chapter">Force field files for Gromacs</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -229,7 +230,7 @@ HA_A      O10_B     ????  xxx  xxx
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="dla_0.html" title="DL_ANALYSER Tutorial"
+          <a href="dlf_26.html" title="Force field files for Gromacs"
              >next</a> |</li>
         <li class="right" >
           <a href="dlf_18.html" title="Selective interactions"

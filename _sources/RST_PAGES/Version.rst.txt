@@ -9,11 +9,20 @@
 DL_SDG Versions
 ***************
 
-.. image:: ../image/DL_Software_logo.png
+.. image:: ../image/DL_Software_logo_new.png
     :align: center
-    :width: 297px
-    :height: 69px
+    :scale: 12%
     :alt: DL_Software Logo
+
+**Version 2.3**, released July 2024
+
+- DL_FIELD tutorial: Force field conversion for Gromacs and force field conversions from third party file formats (rtf, prm).
+
+- Included general introduction to molecular modelling, for general audience.
+
+- Knowledge Center: Coarse graining methods.
+
+- Misc. editing, improvements - addition of information on suggested control parameters for simulations.
 
 **Version 2.2**, released September 2023 
 

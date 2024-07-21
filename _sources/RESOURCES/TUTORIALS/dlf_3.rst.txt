@@ -1,4 +1,4 @@
-.. DL_FIELD tutorial.
+.. DL_FIELD tutorial. The data structure file.
 .. _Header_dlf_3:
 
 .. |pop1| raw:: html
@@ -24,56 +24,9 @@
 Force field data files: Structure Files
 ***************************************
 
-In molecular simulations, FF parameters are usually derived by some empirical rules, either derived from some experimental observations or quantum mechanical calculations. Different research groups use different rules to obtain these parameters. Collectively, a set of rules that model a class of molecules is called a FF scheme.
-
-DL_FIELD implements some of the popular FF schemes as shown below:
-
-* CHARMM - For protein molecules, lipids, carbohydrates and general small organic molecules (CGenFF).
- 
-* AMBER - For protein molecules, glycans (Glycam), and general organic molecules (GAFF).
-
-* OPLS2005 - Proteins, small organic molecules and drug molecules.
-
-* OPLS-DES - Deep eutectic solvents.
-
-* OPLS CL&P - Organic cationic and anionic species for ionic liquids.
-
-* OPLS AA/M - Protein molecules.
-
-* PCFF - Small organic molecules, organic polymers.
-
-* CVFF - Small organic molecules.
-
-* Dreiding - General FF for covalent molecules.
-
-* Inorgnic - force fields for inorganic materials. 
-
-* CHARMM19 - United atom protein model.
-
-* G54A7 - united atom Gromos FF.
-
-* MISC FF - general purpose definable FF.
-
-
-.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
-
-**FF Files**
-
-Each FF scheme (XX) consists of the following file components:
-
-* Structure file (*.sf*), *DLPOLY_XX.sf*.
-
-* Parameter file (*.par*), *DLPOLY_XX.par*.
-
-* Miscellaneous supporting files for some FF schemes.
-
-These files are located in the *lib/* directory and they are all expressed in the same format for all FF schemes.
-
-.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
-
 **The structure data file (sf file)**
 
-These files have filenames in the form of *DLPOLY_XX.sf*. For example, *DLPOLY_CHARMM36_lipid.sf* for CHARMM36 lipid data file. This file contains the |pop1| templates, which define the molecular states, ATOM_TYPEs, atomic connectivity information and associated partial charges of |pop3| that made up the template. 
+These files have filenames in the form of *XX.sf*. For example, *CHARMM36_lipid.sf* for CHARMM36 lipid data file. This file contains the |pop1| templates, which define the molecular states, ATOM_TYPEs, atomic connectivity information and associated partial charges of |pop3| that made up the template. 
 
 Diagram below shows a typical example of what constitute a MOLECULE template. It is extracted from the *CHARMM36_cgenff.sf* file. In this example, it is a ethanethiol MOLECULE. The name ethanethiol is called a MOLECULE_TYPE in DL_FIELD term. It is a MOLECULE name, usually in a human-redable form. This is similar in analogy to |pop2|.   
 
@@ -99,7 +52,7 @@ In other words, all ATOMs have to be listed in *ATOM_TYPE* directive before they
 
 The ATOM_KEYs are DL_FIELD-specific jargon, which is the corresponding key codes for the ATOM_TYPEs. These are the actual labels that will be used in the *dl_poly.CONFIG* and *dl_poly.FIELD* files. In addition, they are also used to map the corresponding potential parameters in *par* files. 
 
-The MOLECULE_KEYs are DL_FIELD-specific jargon, which is the corresponding codes for the MOLECULE_TYPEs. These are the actual labels that are used in the PDB files. For example, the amino acid residue labels in PDB protein files are actually the MOLECULE_KEYs in DL_FIELD term. DL_FIELD will read these labels and then look for the corresponding MOLECULE templates to set up the FF models.
+The MOLECULE_KEYs are DL_FIELD-specific jargon, which is the corresponding codes for the MOLECULE_TYPEs. These are the actual labels that are used in the PDB files. For example, the amino acid residue labels in PDB protein files are actually the MOLECULE_KEYs in DL_FIELD term. DL_FIELD will read these labels and then look for the corresponding MOLECULE templates to set up the FF models.  
 
 .. Note:: 
    All MOLECULE_TYPEs have the corresponding unique MOLECULE_KEYs. All ATOM_TYPEs are unique but different ATOM_TYPEs can share the same ATOM_KEYs.

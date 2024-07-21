@@ -14,6 +14,6 @@ The system time scales for MD simulations are typically between picoseconds (:ma
    :scale: 45%
    :alt: Application of MD over length and timescales
 
-In an MD simulation, the *classical equations of motion* governing the *microscopic time evolution* of a many body system are *solved numerically*, subject to the boundary conditions that are appropriate for the geometry or symmetry of the system. Since a general analytical solution is not possible for many-particle systems, we must resort to numerical methods and computers. Only classical mechanics are covered since a fully fledged many-particle time-dependent quantum method is not yet available. A Maxwell-Boltzmann averaging process (i.e. time-averaging) is used to calculate thermodynamic properties from the results of an MD simulation.
+In an MD simulation, the *classical equations of motion* governing the *microscopic time evolution* of a many-body system are *solved numerically*, subject to boundary conditions that are appropriate for the geometry or symmetry of the system. Since a general analytical solution is not possible for many-particle systems, we must resort to numerical methods and computers. Only classical mechanics are covered since a fully fledged many-particle time-dependent quantum method is not yet available. A Maxwell-Boltzmann averaging process (i.e. time-averaging) is used to calculate thermodynamic properties from the results of an MD simulation.
 
 :ref:`^ GO TO TOP ^<Header_md1>`

@@ -74,7 +74,7 @@
 <p>The structure of a material can be described by a pair correlation function, the <em>radial distribution function</em>:</p>
 <div class="math notranslate nohighlight">
 \[g \left( r \right) = \frac{\langle n \left( r \right) \rangle}{4 \pi \rho r^2 \Delta r} = \frac{V}{N^2} \Bigg \langle \sum_{i=1}^{N-1} \sum_{j \neq i}^{N} \delta \left(r - r_{ij}\right) \Bigg \rangle\]</div>
-<p>which can be calculated by finding distances between atom pairs and keeping count of the numbers in ‘bins’ of size <span class="math notranslate nohighlight">\(\Delta r\)</span>, <span class="math notranslate nohighlight">\(n \left( r \right)\)</span>. The radial distribution function can be related to the <em>structure factor</em>:</p>
+<p>which can be calculated by finding distances between atom pairs and keeping count of the numbers, <span class="math notranslate nohighlight">\(n \left( r \right)\)</span>, in ‘bins’ of size <span class="math notranslate nohighlight">\(\Delta r\)</span>. The radial distribution function can be related to the <em>structure factor</em>:</p>
 <div class="math notranslate nohighlight">
 \[S \left( k \right) = 1 + 4 \pi \rho \int_0^{\infty} \frac{\sin \left(k r\right)}{k r} \left(g \left( r \right) - 1 \right) r^2 dr\]</div>
 <p>which can also be obtained experimentally from X-ray diffraction.</p>
@@ -89,11 +89,12 @@
 \[D = \frac{\langle | \vec{r}_i \left(t\right) - \vec{r}_i \left(0\right)|^2 \rangle}{6t} = \frac{1}{3} \int_0^{t} \langle \vec{v}_i \left(t\right) \cdot \vec{v}_i \left(0\right) \rangle dt\]</div>
 <p>The <em>shear viscosity</em> can be found by using <em>shear stress autocorrelation functions</em> (SSAFs):</p>
 <div class="math notranslate nohighlight">
-\[\mu = \frac{V}{k_B T} \int_0^t \langle \sigma_{\alpha \beta} \left(t\right) \cdot \sigma_{\alpha \beta} \left(0\right) \rangle dt\]</div>
-<p>based on off-diagonal components of the stress tensor <span class="math notranslate nohighlight">\(\sigma_{\alpha \beta}\)</span> (i.e. <span class="math notranslate nohighlight">\(\alpha \neq \beta\)</span>). Alternatively, the relationship between shear stress and velocity gradient:</p>
+\[\mu_0 = \frac{V}{k_B T} \int_0^t \langle \sigma_{\alpha \beta} \left(t\right) \cdot \sigma_{\alpha \beta} \left(0\right) \rangle dt\]</div>
+<p>based on off-diagonal components of the stress tensor <span class="math notranslate nohighlight">\(\sigma_{\alpha \beta}\)</span> (i.e. <span class="math notranslate nohighlight">\(\alpha \neq \beta\)</span>). This value is obtained at the limit of zero shear rate.</p>
+<p>Alternatively, the relationship between shear stress and velocity gradient (shear rate):</p>
 <div class="math notranslate nohighlight">
 \[\tau = \mu \frac{\partial u_x}{\partial y}\]</div>
-<p>can be determined using non-equilibrium MD simulations to find the shear viscosity and the system <em>rheology</em>. These involve applying constant velocity gradients and measuring the resulting shear stresses, given as the relevant component of the pressure tensor (stress tensor divided by system volume), <span class="math notranslate nohighlight">\(\tau = |\langle\sigma_{yx}\rangle|/V\)</span>.</p>
+<p>can be determined using non-equilibrium MD simulations to find the shear viscosity and the system <em>rheology</em>. These involve applying constant velocity gradients and measuring the resulting shear stresses, given as the relevant component of the pressure tensor (stress tensor), <span class="math notranslate nohighlight">\(\tau = |\langle\sigma_{yx}\rangle|\)</span>. Simple <em>Newtonian</em> fluids produce a constant viscosity regardless of shear rate, while longer molecules and solutions often do not.</p>
 <p><a class="reference internal" href="#header-md4"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -112,6 +113,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

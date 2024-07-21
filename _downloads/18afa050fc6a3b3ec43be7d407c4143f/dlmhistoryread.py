@@ -108,13 +108,16 @@ def read_header(filename, bo, ri, rd, intsize, longintsize, realsize, numframe):
     #   text            name of simulation as given in HISTORY file
     #   keytrj          trajectory key: level of information available per particle (0 = positions,
     #                   1 = positions and velocities, 2 = positions, velocities and forces)
+    #   surfaceprop     information about boundary conditions at box boundaries, given orthogonally
+    #                   to x-, y- and z-axes (0 = periodic, 1 = shear, 2 = specular reflection, 
+    #                   3 = bounceback reflection)
     #   speciesprop     information about all available species: name, mass, radius, charge,
     #                   frozen property for each species
     #   moleculeprop    information about all available molecule types: name for each molecule type
     #   particleprop    information about all available particles: global particle ID,
     #                   species number, molecule type, molecule number for each particle
     #   bondtable       bond connectivity table: each entry consists of global particle IDs for
-    #                   pait of particles bonded together
+    #                   pair of particles bonded together
     #   framesize       total size of a single trajectory frame in bytes
     #   headerpos       position in HISTORY file (in bytes) where trajectory data starts
 
@@ -147,7 +150,7 @@ def read_header(filename, bo, ri, rd, intsize, longintsize, realsize, numframe):
 
     moleculeprop = []
     for i in range(nmoldef):
-        moleculeprop.append(fr.read(8).decode('ascii'))
+        moleculeprop.append(fr.read(8).decode('ascii').strip())
 
     # now read properties of individual particles, identifying global ID
     # numbers, species types, molecule types and molecule numbers

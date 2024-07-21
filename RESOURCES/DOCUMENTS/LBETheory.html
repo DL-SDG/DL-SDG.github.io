@@ -73,8 +73,8 @@
 <p>whose inverse can be used to later transform collided moments back into distribution functions. The moments include conserved bulk properties (e.g. fluid density and momentum), ‘hydrodynamic modes’ with relaxation times or frequencies corresponding to kinematic or bulk viscosities, and non-hydrodynamic modes that can be damped out to improve numerical stability.</p>
 <p>A variant MRT scheme includes cascaded lattice Boltzmann (CLBE) <a class="reference internal" href="#geier2006" id="id3">[Geier2006]</a>, which uses central moments incorporating the fluid velocity and the general Maxwell-Boltzmann local equilibrium distribution function (rather than the standard approximation to quadratic velocity terms) for even greater numerical stability.</p>
 </div>
-<div class="section" id="rheological-models">
-<h2>Rheological models<a class="headerlink" href="#rheological-models" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rheological-and-turbulence-models">
+<h2>Rheological and turbulence models<a class="headerlink" href="#rheological-and-turbulence-models" title="Permalink to this headline">¶</a></h2>
 <p>Most LBE simulations assume the kinematic viscosity of a fluid is constant. To relax this assumption, it is possible to calculate kinematic viscosities and relaxation times <span class="math notranslate nohighlight">\(\tau\)</span> for individual grid points based on the local shear rate:</p>
 <div class="math notranslate nohighlight">
 \[\dot{\gamma} = \sqrt{2 \sum_{\alpha,\beta} S_{\alpha \beta} S_{\alpha \beta}}\]</div>
@@ -83,8 +83,16 @@
 \[S_{\alpha \beta} = \frac{1}{2} \left( \frac{\partial u_{\beta}}{\partial x_{\alpha}} + \frac{\partial u_{\alpha}}{\partial x_{\beta}}\right).\]</div>
 <p>To avoid needing to calculate velocity gradients non-locally using grid stencils, the rate-of-strain tensors can alternatively be calculated from momentum flux tensors <a class="reference internal" href="#boyd2006" id="id4">[Boyd2006]</a>:</p>
 <div class="math notranslate nohighlight">
-\[S_{\alpha \beta} = -\frac{3}{2 \tau \rho \Delta t} \left(\Pi_{\alpha \beta} - \Pi^{eq}_{\alpha \beta} \right) = -\frac{3}{2 \tau \rho \Delta t} \sum_i \left(f_i - f_i^{eq}\right) e_{i,\alpha} e_{I,\beta}\]</div>
+\[S_{\alpha \beta} = -\frac{1}{2 c_s^2 \tau \rho \Delta t} \left(\Pi_{\alpha \beta} - \Pi^{eq}_{\alpha \beta} \right) = -\frac{1}{2 c_s^2 \tau \rho \Delta t} \sum_i \left(f_i - f_i^{eq}\right) e_{i,\alpha} e_{I,\beta}\]</div>
 <p>which can be calculated locally at each grid point from its distribution functions. (Similar expressions are available for collisions other than BGK.) This expression is implicit with <span class="math notranslate nohighlight">\(\tau\)</span> - the property being determined - and therefore the previously calculated value of <span class="math notranslate nohighlight">\(\tau\)</span> for the given grid point can be used to calculate the rate-of-strain tensor. The resulting shear rate <span class="math notranslate nohighlight">\(\dot{\gamma}\)</span> is then used in the selected rheological model (relationship between viscosity and shear rate) to calculate new values of <span class="math notranslate nohighlight">\(\tau\)</span>: convergence is normally obtained for steady flow systems within a small number of timesteps.</p>
+<p>High flow speeds often result in <em>turbulent</em> flows, in which the inertia of a fluid overcomes the damping of its viscosity and causes chaotic changes in pressure and velocity: these occur when the <a class="reference internal" href="DimensionlessNumbers.html#reynolds"><span class="std std-ref">Reynolds number</span></a> is particularly high. We can include the effect of turbulence using Large Eddy Simulation (LES) models to determine a additional turbulence (kinematic) viscosity <span class="math notranslate nohighlight">\(\nu_t\)</span> for the fluid that depends on the local shear rate <span class="math notranslate nohighlight">\(\dot\gamma\)</span>.</p>
+<p>The most commonly-used LES model is the Smagorinsky subfilter-stress model:</p>
+<div class="math notranslate nohighlight">
+\[\nu_t = \left(C_S \Delta\right)^2 |\overline{S}|,\]</div>
+<p>where <span class="math notranslate nohighlight">\(C_S\)</span> is the Smagorinsky constant and <span class="math notranslate nohighlight">\(\Delta\)</span> is the filter width (usually set equal to the grid spacing <span class="math notranslate nohighlight">\(\Delta x\)</span>). The time-averaged local strain intensity <span class="math notranslate nohighlight">\(|\overline{S}|\)</span> is equal to the shear rate <span class="math notranslate nohighlight">\(\dot{\gamma}\)</span>, which can be found from momentum flux tensors in a similar way to before. However, since the relaxation time is now set to a known (simple) expression involving the standard (viscous) relaxation time <span class="math notranslate nohighlight">\(\tau_0\)</span> and <span class="math notranslate nohighlight">\(\dot{\gamma}\)</span>, i.e.</p>
+<div class="math notranslate nohighlight">
+\[\tau = \tau_0 + \frac{\nu_t}{c_s^2 \Delta t} = \tau_0 + \frac{\left(C_S \Delta\right)^2 \dot{\gamma}}{c_s^2 \Delta t}\]</div>
+<p>we can readily combine this with the above expressions for <span class="math notranslate nohighlight">\(S_{\alpha \beta}\)</span> and <span class="math notranslate nohighlight">\(\dot{\gamma}\)</span>, rearrange and directly solve for <span class="math notranslate nohighlight">\(\dot{\gamma}\)</span> without iterating.</p>
 </div>
 <div class="section" id="forcing-terms">
 <span id="lbeforcing"></span><h2>Forcing terms<a class="headerlink" href="#forcing-terms" title="Permalink to this headline">¶</a></h2>
@@ -355,6 +363,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DPDTheory.html">Additional details on DPD</a></li>

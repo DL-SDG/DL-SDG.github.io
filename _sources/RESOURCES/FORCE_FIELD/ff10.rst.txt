@@ -5,30 +5,48 @@
 Lennard-Jones Mixing Rules 
 **************************
 
-The vdw parameters are normally fitted against the experimental results such as the liquid densities and enthalpy of vaporisation of pure components. It is also a standard practice to obtain parameters of similar type of atoms, of *i* = *j* as we have seen in the previous page for the methyl carbon atoms.
+vdW parameters are normally fitted against experimental results such as the liquid densities and enthalpy of vaporisation of pure components. It is also a standard practice to obtain parameters of similar types of atoms, :math:`i = j`, such as those we have seen in the :ref:`previous page <Header_ff9>` for methyl carbon atoms.
 
-However, molecular systems can consist of different types of atoms (where *i* :math:`\neq` *j*) and each different combination pairs of atom types would have a different set of parameters that are often too many to fit them all.
+However, molecular systems can consist of different types of atoms (where :math:`i \neq j`) and each different combination of pairs of atom types would have a different set of parameters. There are often too many possible pairs to fit them all experimentally.
 
-These missing vdw parameters are usually derived by using some kind of *mixing rules* involving parameters for those of atomic components (*ii* and *jj*) that made up the atom pairs (*ij*).  
+These missing vdW parameters are usually derived by using some kind of *mixing rules*, involving parameters for those of atomic components (:math:`ii` and :math:`jj`) to make up values for atom pairs (:math:`ij`).
 
-Diagram below shows some of the mixing rules for LJ 12-6 functions:
+The table below shows some of the mixing rules for LJ 12-6 functions:
 
-.. image:: ../../image/ff10_1.png
-   :scale: 65%
-   :align: center
++--------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
+|**Mixing rule no.** | **Scheme name**      | **Energy,** :math:`\epsilon_{ij}`                                                                                         | **Steric,** :math:`\sigma_{ij}`                                           |
++--------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
+| 1                  | Standard geometric   | :math:`\sqrt{\epsilon_{ii} \epsilon_{jj}}`                                                                                | :math:`\sqrt{\sigma_{ii}\sigma_{jj}}`                                     |
++--------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
+| 2                  | Standard arithmetic  | :math:`\frac{\epsilon_{ii} + \epsilon_{jj}}{2}`                                                                           | :math:`\frac{\sigma_{ii}+\sigma_{jj}}{2}`                                 |
++--------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
+| 3                  | Fender-Halsey        | :math:`\frac{2 \epsilon_{ii} \epsilon_{jj}}{\epsilon_{ii} + \epsilon_{jj}}`                                               | :math:`\frac{\sigma_{ii}+\sigma_{jj}}{2}`                                 |
++--------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
+| 4                  | Halgren HHG          | :math:`\frac{4 \epsilon_{ii} \epsilon_{jj}}{\left(\sqrt{\epsilon_{ii}} + \sqrt{\epsilon_{jj}}\right)^2}`                  | :math:`\frac{\sigma_{ii}^3+\sigma_{jj}^3}{\sigma_{ii}^2+\sigma_{jj}^2}`   |
++--------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
+| 5                  | Waldman-Hagler       | :math:`2 \sqrt{\epsilon_{ii} \epsilon_{jj}} \frac{\left(\sigma_{ii} \sigma_{jj}\right)^3}{\sigma_{ii}^6 + \sigma_{jj}^2}` | :math:`\left(\frac{\sigma_{ii}^6+\sigma_{jj}^6}{2}\right)^{\tfrac{1}{6}}` |
++--------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
+| 6                  | Slater-Kirkwood [#]_ | :math:`B_{ij} = \frac{3 \alpha_i \alpha_j}{2 \sqrt{\frac{\alpha_i}{N_i}+\frac{\alpha_j}{N_j}}}`                           | :math:`A_{ij} = \frac{1}{2} B_{ij}\left(w_i + w_j\right)^6`               |
++--------------------+----------------------+---------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------+
 
-Out of these rules, the geometric and arithmatic rules are being used the most frequently by a wide range of force field schemes. However, the rules differ from one scheme to the other. For example, OPLS uses geometric rule to determine both the :math:`\epsilon` and :math:`\sigma` for *ij* pairs. Whereas, for DREIDING FF, the arithmatic rule is used for the :math:`\sigma` and geometric for the :math:`\epsilon`.
+Out of these rules, the geometric and arithmetic rules are used the most frequently by a wide range of force field schemes. However, the rules differ from one scheme to the other. For example, OPLS uses the geometric rule to determine both :math:`\epsilon_{ij}` and :math:`\sigma_{ij}` for :math:`ij` pairs, whereas, for DREIDING FF, the arithmetic rule is used for :math:`\sigma_{ij}` and the geometric rule for :math:`\epsilon_{ij}`.
 
 .. Note::
-   Mixing rules have minimal scientific justification but appear to work 'quite well'. Also, the mixing rules should only apply to the same function type. For example, you cannot mix parameters between LJ and Buckingham functions. Neither should you mix parameters from LJ 12-6 and, say, LJ 9-6.   
+   Mixing rules have minimal scientific justification but appear to work 'quite well'. They should also only apply to the same function type. For example, you cannot mix parameters between LJ and Buckingham functions, neither should you mix parameters from LJ 12-6 and, say, LJ 9-6.   
 
 .. Note::
-   In DL_POLY, mixing rules can be defined using the *vdw mix* directive in the *CONTROL* file. For example:
+   In DL_POLY, mixing rules can be defined using the ``vdw mix`` or ``vdw_mix_method`` directive in the *CONTROL* file. For example, for Fender-Halsey mixing rules:
 
-   *vdw mix fender* 
+   ``vdw mix fender``
+
+   should be used in older versions of DL_POLY, while DL_POLY_5 would require:
+
+   ``vdw_mix_method Fender-Hasley``
    
-   for Fender-Halsey type of mixing.
+   In DL_FIELD, mixing rules can be independently set for the :math:`\epsilon_{ij}` and :math:`\sigma_{ij}` parameters. For the Slater-Kirkwood scheme, DL_FIELD will obtain the atomic data from the *dl_field.atom_data* file by matching against atom types using DL_F Notation.  
 
-   In DL_FIELD, mixing rules can be independantly set for the :math:`\epsilon` and :math:`\sigma` parameters. For the Slater-Kirkwood scheme, DL_FIELD will obtain the atomic data from the *dl_field.atom_data* file by matching against atom types in DL_F Notation..  
+.. rubric:: Footnote
+
+.. [#] This mixing rule derives the Lennard-Jones parameters from atomic data: polarisabilities :math:`\alpha_i`, effective numbers of electrons :math:`N_i` and atomic radii :math:`w_i` for both components.
 
 :ref:`^ GO TO TOP ^<Header_ff10>` 

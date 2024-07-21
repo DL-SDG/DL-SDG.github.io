@@ -1,0 +1,79 @@
+.. DL_FIELD tutorial. Setup force fields via CHARMM prm and rtf. 
+.. _Header_dlf_30:
+
+.. |br| raw:: html
+
+   <br />
+
+**********************************
+Setup FF from CHARMM's rtf and prm 
+**********************************
+
+This page shows how DL_FIELD can be used to extract FF information from rtf and prm files to
+setup FF models for DL_POLY and Gromacs.
+
+The rtf (residue topology file) and prm (parameter file) are standard CHARMM FF file formats that are produced from many third-party 
+sources for simulation and modelling using packages such as CHARMM and NAMD.
+
+For example, the *LigParGen* is an FF web server interface (http://zarbi.chem.yale.edu/ligpargen/) that can automatically generate OPLSAA models for organic molecules, such as drug molecules or ligands with proteins and DNA.
+
+DL_FIELD can transcribe these FF models into DL_POLY and Gromacs files, via the Charmm’s rtf and prm files produced by LigParGen. This is done as follows, by using ascorbic acid as an example:
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Example procedure**
+
+When reading in CHARMM's rtf and prm files, DL_FIELD will convert the FF data and create a corresponding *udff* file called *dlf_charmm.udff* file. 
+
+Steps below illustrate the possible workflow procedures to setup FF models from rtf and prm files.
+
+|
+
+**Step 1**: Visit *LigParGen* site (shown above) and use *ascorbic_acid.pdb* as the input structure for the *LigParGen* server and 
+select the 1.14*CM1A-LBCC charge model.
+
+**Step 2**: Upon successful run, you are given several Download options. Select and download PRM and RTF files for CHARMM/NAMD.
+
+**Step 3**: Rename these prm and rtf files into something sensible, such as ascorbic_acid.rtf and ascorbic_acid.prm. However, this step is optional.
+
+|
+
+At DL_FIELD side:
+
+**Step 4**: Specify the rtf and prm files in the *dl_f_path* file (see below).
+
+
+.. literalinclude:: dl_f_path2.txt 
+   :emphasize-lines: 9,10 
+
+The *COMPONENT FILE TYPEs* charmm_rtf and charmm_prm indicate the location of the rtf and prm files and the associated FF scheme, which
+is OPLS2005.
+
+.. Warning:: 
+   Although rtf and prm are the original file formats for CHARMM software, in this case, the *LigParGen* produces FF data for OPLS scheme. For this reason, the FF scheme must be specified as OPLS2005 in *dl_f_path* and not some CHARMM FF schemes.   
+
+**Step 5**: Run DL_FIELD. The following message will be shown on the screen:
+
+.. literalinclude:: output.txt
+
+As the message above shown, all control options will be ignored. The only output file would be the *dlf_charmm.udff* file, which contains all the FF information extracted from the rtf and prm files.
+
+However, file format conversions and FF model set up processes can be combined by carrying out the additional steps as follows:
+
+**Step 6**: Ensure the correct residue labels are used in the intput PDB file. From the rtf file, the ascorbic acid molecule is given the RESIdue name UNK. This would be the same label for the MOLECULE_KEY in *dlf_charmm.udff* file. This label must be included in the PDB file (at column 18-21 as shown below), so that DL_FIELD would know which MOLECULE template to use when setting up the FF.
+
+.. literalinclude:: pdb.ascorbic
+
+**Step 7**: Insert the udff filename *dlf_charmm.udff* and the input configuration file in DL_FIELD *control* file, as shown below.
+
+.. literalinclude:: dl_field.control.ascorbic2
+   :emphasize-lines: 4, 9, 11 
+
+**Step 8**: Run DL_FIELD. Once a *dlf_charmm.udff* file is created, DL_FIELD proceeds to read in the input configuration file and setup the FF model as usual.
+
+.. Note::
+   If you want to setup Gromacs FF files, remember to insert *gromacs* keyword in the *control* file.
+
+|
+
+:ref:`^ GO TO TOP ^<Header_dlf_30>`

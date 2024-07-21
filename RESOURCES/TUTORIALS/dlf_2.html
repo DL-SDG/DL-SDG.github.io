@@ -20,7 +20,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Force field data files: Structure Files" href="dlf_3.html" />
+    <link rel="next" title="The dl_f_path file" href="dlf_24.html" />
     <link rel="prev" title="What is DL_FIELD" href="dlf_1.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,7 +30,7 @@
           <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="dlf_3.html" title="Force field data files: Structure Files"
+          <a href="dlf_24.html" title="The dl_f_path file"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="dlf_1.html" title="What is DL_FIELD"
@@ -67,9 +67,10 @@
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Operations</strong></p>
 <p>Diagram below shows schematically how to run DL_FIELD.</p>
-<a class="reference internal image-reference" href="../../_images/dl_f_2_1.png"><img alt="../../_images/dl_f_2_1.png" class="align-center" src="../../_images/dl_f_2_1.png" style="width: 730.0999999999999px; height: 242.89999999999998px;" /></a>
+<a class="reference internal image-reference" href="../../_images/dl_f_2_1.jpg"><img alt="../../_images/dl_f_2_1.jpg" class="align-center" src="../../_images/dl_f_2_1.jpg" style="width: 668.4px; height: 309.59999999999997px;" /></a>
 <p>Firstly, you would need to supply an input configuration file, in PDB, mol2 or <em>xyz</em> format. Then, choose a suitable FF scheme and select other options to produce a desire FF model. These are all operated within a DL_FIELD <em>control</em> file.
-After that, run DL_FIELD and it will produce the corresponding <em>dl_field.CONFIG</em> and <em>dl_field.FIELD</em> files in the <em>output/</em> directory, which can be renamed as <em>CONFIG</em> and <em>FIELD</em> files, respectively for DL_POLY runs.</p>
+After that, run DL_FIELD and it will produce the corresponding <em>dl_poly.CONFIG</em> and <em>dl_poly.FIELD</em> files in the <em>output/</em> directory, which can be renamed as <em>CONFIG</em> and <em>FIELD</em> files, respectively for DL_POLY runs.</p>
+<p>If the option (from a DL_FIELD <em>control</em> file) to produce Gromacs FF files is also switched on, then the corresponding <em>gromacs.itp</em>, <em>gromacs.gro</em>, <em>gromacs.top</em> and <em>gromacs.mdp</em> files will also produce.</p>
 <p>DL_FIELD operates by using a set of simple directives, instead of using some kind of scripting language. These directives will be indicated in <em>CAPITAL ITALICS</em>. Optional directives will be enclosed in <em>[SQUARE BRACKETS]</em>.</p>
 <p>DL_FIELD jargons will be indicated in Capital Letters. Some DL_FIELD-specific notations will also be described in ALL CAPITAL LETTERS. A list of expressions can be found in the document <a class="reference internal" href="../dl_field_jargon.html"><span class="doc">Jargons</span></a>.</p>
 <p>If you wish to have a quick taste how DL_FIELD operates, go to this page - <a class="reference internal" href="../dl_field_howto.html"><span class="doc">Ready, get set, go</span></a>.</p>
@@ -136,8 +137,8 @@ This is carried out by searching for a matching set of ATOM_KEYs for a given int
   <p class="topless"><a href="dlf_1.html"
                         title="previous chapter">What is DL_FIELD</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="dlf_3.html"
-                        title="next chapter">Force field data files: Structure Files</a></p>
+  <p class="topless"><a href="dlf_24.html"
+                        title="next chapter">The <em>dl_f_path</em> file</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -161,7 +162,7 @@ This is carried out by searching for a matching set of ATOM_KEYs for a given int
           <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="dlf_3.html" title="Force field data files: Structure Files"
+          <a href="dlf_24.html" title="The dl_f_path file"
              >next</a> |</li>
         <li class="right" >
           <a href="dlf_1.html" title="What is DL_FIELD"

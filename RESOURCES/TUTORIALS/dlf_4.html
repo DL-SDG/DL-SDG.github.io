@@ -51,9 +51,9 @@
 <span id="header-dlf-4"></span><h1>Force field data files: Parameter Files<a class="headerlink" href="#force-field-data-files-parameter-files" title="Permalink to this headline">¶</a></h1>
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>The Parameter file (par file)</strong></p>
-<p>These files have filenames in the form of <em>DLPOLY_XX.par</em>, where <em>XX</em> is the FF scheme name. The <em>par</em> files are where all the FF parameters are stored. The files contain all types of interactions with the exception of coulombic charges, which are defined for every ATOMs in the MOLECULEs.</p>
+<p>These files have filenames in the form of <em>XX.par</em>, where <em>XX</em> is the FF scheme name. The <em>par</em> files are where all the FF parameters are stored. The files contain all types of interactions with the exception of coulombic charges, which are defined for every ATOMs in the MOLECULEs.</p>
 <p>All the parameters are enclosed within the appropriate directives according to the type of interactions. For example, for two-body bonding interactions, the parameters are listed within the <em>BOND</em> and <em>END BOND</em> directives; for three-body angle interactions, the parameters are listed within the <em>ANGLE</em> and <em>END ANGLE</em> directives, and so forth.</p>
-<p>Diagram below shows a portion of bond and dihedral parameters, extracted from the <em>DLPOLY_CHARMM36_lipid.par</em> file. Words in red were added for illustration purposes.</p>
+<p>Diagram below shows a portion of bond and dihedral parameters, extracted from the <em>CHARMM36_lipid.par</em> file. Words in red were added for illustration purposes.</p>
 <a class="reference internal image-reference" href="../../_images/dl_f_4_1.png"><img alt="../../_images/dl_f_4_1.png" class="align-center" src="../../_images/dl_f_4_1.png" style="width: 360.0px; height: 365.6px;" /></a>
 <p>The <em>POTENTIAL</em> directive indicates the FF scheme is of CHARMM36_lipid. The <em>UNIT</em> directive shows the energy unit of the parameters, which in this case, is kcal/mol. If users wish to use other energy units in the <em>dl_poly.FIELD</em> file, this can be specified in the DL_FIELD <em>control</em> file. If needed, DL_FIELD will do automatic unit conversion during the FF model setup processes.</p>
 <div class="admonition note">

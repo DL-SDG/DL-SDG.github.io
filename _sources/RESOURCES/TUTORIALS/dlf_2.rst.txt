@@ -52,12 +52,14 @@ DL_FIELD package comes with the following file components:
 
 Diagram below shows schematically how to run DL_FIELD.
 
-.. image:: ../../image/dl_f_2_1.png
-   :scale: 70%
+.. image:: ../../image/dl_f_2_1.jpg
+   :scale: 60%
    :align: center
 
 Firstly, you would need to supply an input configuration file, in PDB, mol2 or *xyz* format. Then, choose a suitable FF scheme and select other options to produce a desire FF model. These are all operated within a DL_FIELD *control* file. 
-After that, run DL_FIELD and it will produce the corresponding *dl_field.CONFIG* and *dl_field.FIELD* files in the *output/* directory, which can be renamed as *CONFIG* and *FIELD* files, respectively for DL_POLY runs.
+After that, run DL_FIELD and it will produce the corresponding *dl_poly.CONFIG* and *dl_poly.FIELD* files in the *output/* directory, which can be renamed as *CONFIG* and *FIELD* files, respectively for DL_POLY runs.
+
+If the option (from a DL_FIELD *control* file) to produce Gromacs FF files is also switched on, then the corresponding *gromacs.itp*, *gromacs.gro*, *gromacs.top* and *gromacs.mdp* files will also produce. 
 
 DL_FIELD operates by using a set of simple directives, instead of using some kind of scripting language. These directives will be indicated in *CAPITAL ITALICS*. Optional directives will be enclosed in *[SQUARE BRACKETS]*.
 

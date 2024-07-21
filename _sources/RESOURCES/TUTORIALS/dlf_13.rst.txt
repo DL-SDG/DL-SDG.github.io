@@ -9,19 +9,21 @@
 Multiple Potential Features
 ***************************
 
-One of the unique aspect of DL_FIELD is that it enables users to use more than one potential schemes in the force field model. This is particularly useful if one were to setup a bio-inorganic system, or any organic-inorganic/organic mixed component systems.
+One of the unique aspect of DL_FIELD is that it enables users to use more than one potential schemes in the force field model. This is particularly useful if one were to setup a bio-inorganic system, or any inorganic/organic mixed component systems.
 
-Each FF scheme has its own protocol to setup the FF model. The trickiest part is how to account for the vdw interactions between atoms that are assigned with different FF schemes. Normally, a FF scheme such as CHARMM and AMBER follow a certain set of predefined rule to obtain vdw parameters for atoms of different types. However, this is not well defined for vdw parameters across different FF schemes. 
+Each FF scheme has its own protocol to setup the FF model. The trickiest part is how to account for the vdw interactions between atoms that are assigned with different FF schemes. Normally, FF schemes such as CHARMM and AMBER follow certain sets of predefined rules to obtain vdw parameters for atoms of different types. However, this is not well defined for vdw parameters across different FF schemes. 
 
-In DL_FIELD this can be achieved by using one of the following approaches:
+In most cases, the Lj 12-6 forms are used for the vdw interactions and there are various mixing schemes can be used for this type of interaction forms. If atom pairs contain different functional forms, then one of the following approaches will be used:
 
-(1) Identify all possible vdw atom pairs but leave it blank for user to manually insert suitable parameters.
+(1) Automatically determine the mixed vdw parameters based on a chosen mixing scheme.
 
-(2) Automatically determine the mixed vdw parameters based on a chosen mixing scheme.
+(2) Automatic refit vdw functions to LJ 12-6 forms and then carry out vdw mixing scheme as per the options specify in the *control* file. This only applies if the vdw functions are of LJ 9-6 or Morse forms.
 
 (3) Use of :doc:`dlf_22`
 
-(4) :doc:`dlf_23`
+(4) :doc:`dlf_23`. Additional data such as atomic polarisabilities and vdw radii would be needed.
+
+(5) Identify all possible vdw atom pairs but leave it blank for user to manually insert suitable parameters. This would be the last resort if the above mention procedures fail or not applicable.
 
 .. Warning::
    While DL_FIELD allows different ways to mix the vdw interactions, it is up to the user to check the validity of parameters otained in this manner.
@@ -91,7 +93,7 @@ DL_FIELD will report the missing vdw parameters between the metal oxide and the 
 
 .. literalinclude:: field.multiple2
 
-In this case, you would need to insert manually the values for these parameters. Alternatively, you can use *VDW_FIX* directive to do this for you (consult the manual for details).
+In this case, you would need to insert manually the values for these parameters. Alternatively, you can use *VDW_FIX* directive. See :doc:`dlf_22`.
 
 |br|
 

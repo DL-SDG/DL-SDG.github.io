@@ -48,22 +48,22 @@
             
   <div class="section" id="lennard-jones-12-6-functions">
 <span id="header-ff9"></span><h1>Lennard-Jones 12-6 Functions<a class="headerlink" href="#lennard-jones-12-6-functions" title="Permalink to this headline">¶</a></h1>
-<p>The Lennard-Jone 12-6 function is the most commonly used for vdw interactions due to its simplistic form for computations. It is expressed in various equivalent forms and they can be inter-changed via algebraic operations.</p>
+<p>The Lennard-Jones 12-6 function is the most commonly used function for vdW interactions due to its simplistic form for computation. It is expressed in various equivalent forms and they can be interchanged via algebraic operations.</p>
 <div class="math notranslate nohighlight">
-\[V \left(r \right) = \epsilon \left\{ \left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6} \right\}\]</div>
+\[V \left(r \right) = 4 \epsilon \left[ \left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6} \right]\]</div>
 <div class="math notranslate nohighlight">
-\[V \left(r \right) = \epsilon \left\{ \left(\frac{R}{r}\right)^{12} - 2 \left(\frac{R}{r}\right)^{6} \right\}\]</div>
+\[V \left(r \right) = \epsilon \left[ \left(\frac{R}{r}\right)^{12} - 2 \left(\frac{R}{r}\right)^{6} \right]\]</div>
 <div class="math notranslate nohighlight">
 \[V \left(r \right) = \frac{A}{r^{12}} - \frac{B}{r^{6}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the well depth, which measures the strength of the interaction; <span class="math notranslate nohighlight">\(\sigma\)</span> is the steric parameter, which is the distance when the LJ function changes sign. <em>R</em> is the distance at which <em>V</em> is at the minimum. They are related to each other as follows:</p>
+<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the well depth measuring the strength of the interaction and <span class="math notranslate nohighlight">\(\sigma\)</span> is the steric parameter, which is the distance when the LJ function changes sign (when <span class="math notranslate nohighlight">\(V = 0\)</span>). <span class="math notranslate nohighlight">\(R\)</span> is the distance at which <span class="math notranslate nohighlight">\(V\)</span> is at its minimum value. These parameters are related to each other as follows:</p>
 <div class="math notranslate nohighlight">
 \[R = 2^{ \frac{1}{6}} \sigma\]</div>
-<p>Normally, the third form is used in the programming since it is easier to compute, with <em>A</em> and <em>B</em> having the following relationships:</p>
+<p>The third form of the function is normally used in programming since it is easier to compute, with <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> having the following relationships:</p>
 <div class="math notranslate nohighlight">
 \[A = 4 \epsilon \sigma^{12}\]</div>
 <div class="math notranslate nohighlight">
 \[B = 4 \epsilon \sigma^{6}\]</div>
-<p>Diagram below shows the vdw interactions between two methyl carbon atoms, with the parameters obtained from the CHARMM FF.</p>
+<p>The diagram below shows the vdW interactions between two methyl carbon atoms with parameters obtained from the CHARMM FF.</p>
 <a class="reference internal image-reference" href="../../_images/ff9_1.png"><img alt="../../_images/ff9_1.png" class="align-center" src="../../_images/ff9_1.png" style="width: 801.6px; height: 506.4px;" /></a>
 <p><a class="reference internal" href="#header-ff9"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
@@ -83,6 +83,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

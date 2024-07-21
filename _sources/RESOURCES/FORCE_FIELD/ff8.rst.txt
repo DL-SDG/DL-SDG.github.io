@@ -1,29 +1,29 @@
-.. Force field Introduction - nonbonded terms 
+.. Force field Introduction - non-bonded terms 
 .. _Header_ff8:
 
 ********************
 Non-bonded functions
 ********************
 
-While the bonded components mainly resposible to maintain the molecular structures, the inter-molecular functions are mainly responsible to model the overall behaviour of the system model such as densities, molar volumes, heats of vapourisation, etc.
+While the bonded components are mainly responsible for maintaining molecular structures, the inter-molecular functions are mainly responsible for modelling the overall behaviour of the system model, providing properties such as densities, molar volumes, heats of vaporisation, etc.
 
-Non-bonded functions are mainly composed of two components: the short-ranged van der Waals (vdw) interactions and the long-ranged electrostatic interactions. These energy components are calculated based on interactions between pairs of atoms and the functions depend only on the interatomic distances.
+Non-bonded functions are mainly composed of two components: the short-ranged van der Waals (vdW) interactions and the long-ranged electrostatic interactions. These energy components are calculated based on interactions between pairs of atoms and the functions depend only on interatomic distances.
 
 .. Note:: 
-   For atoms within a molecule, non-bonded interactions will apply on the 1-4 atoms (atom pairs that are seprated by three successive bonds) onwards. 
+   For atoms within a molecule, non-bonded interactions will usually only apply on the 1-4 atoms (atom pairs separated by three successive bonds) onwards. For 1-4 atoms, these interactions might be scaled by a constant factor that depends on the force field.
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
 **Electrostatic interactions**
 
-The Coulombic functions are usually used.
+Coulombic functions are usually used.
 
 .. image:: ../../image/ff5_4.png
    :scale: 65%
    :align: center
    :alt: Coulombic electrostatic
 
-As will see later in the page relates to cutoff distances, special methods would be needed to more accurately to sum them up.
+As we will see later in the page related to :ref:`cutoff distances <Header_ff11>`, special methods are needed to more accurately sum these up.
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
@@ -36,13 +36,13 @@ There are many types of functional forms, the commonest are as follows:
    :align: center
    :alt: LJ12-6 and Bickingham 
 
-As you can see, the functions consist of two components: positive terms that describe the electron repulsion due to the Pauli exclusion principle and negative dispersive terms due to electron cloud fluctuations. 
+The functions consist of two components: positive terms that describe electron repulsions due to the Pauli exclusion principle and negative dispersive terms due to electron cloud fluctuations. 
 
-Lennard-Jones 12-6 is commononly used in organic systems and condensed phase systems. There are other forms, such as the LJ 9-6, which is used by the PCFF force field scheme. On the other hand, the 9-3 form is used for adsorption of LJ walls. More about LJ function will be discussed later.
+Lennard-Jones 12-6 is commonly used in organic systems and condensed phase systems. There are other forms: LJ 9-6 is used by the PCFF force field scheme, while the 9-3 form is used for wall adsorption. More about :ref:`LJ functions <Header_ff9>` will be discussed later.
 
-The Buckingham form is normally used in inorganic systems such as ionic oxides. The Pauli repulsion is more accurately described by the exponential term. There are three constants: *A* which affects how high the energy barrier rises and both :math:`\rho` and *C* affect the size and shape of the function graph.
+The Buckingham form is normally used in inorganic systems such as ionic oxides. The Pauli repulsion is more accurately described by the exponential term. There are three constants: :math:`A` affects how high the energy barrier rises and both :math:`\rho` and :math:`C` affect the size and shape of the function graph.
 
-Due to convergence nature of the exponential term as r -> 0, an unphysical 'well collapse' can occur at small distances, and the nature of the collapse can be different depending on the combinations of the three constants. However, this can be masked by the electrostatic function for ion pairs of the like-charges.
+Due to nature of convergence of the exponential term as :math:`r \rightarrow 0`, an unphysical 'well collapse' can occur at small distances. The nature of the collapse can differ depending on the combinations of the three constants. However, this can be masked by the electrostatic function for ion pairs of like-like (same sign) charges.
 
 
 :ref:`^ GO TO TOP ^<Header_ff8>` 

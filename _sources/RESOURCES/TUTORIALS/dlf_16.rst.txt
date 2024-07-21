@@ -19,13 +19,23 @@ Upon successful in running DL_FIELD, the following files will be produced:
 
  - dl_poly.CONTROL - DL_POLY control file. It is a generic file that list a number of commonly used directives in DL_POLY. Need to change the filename to *CONTROL* for DL_POLY version 4 or below. 
 
-(2) DL_FIELD system structure file, *dlf_notation.output*.
+(2) If option to produce Gromacs files is also switched on:
+
+ - The system topology file, *gromacs.top*
+
+ - One or more include topology files, *gromacsX.itp*, where *X* = 1, 2, 3, ...
+
+ - Coordinate file, *gromacs.gro*
+
+ - A generic MD parameter file, *gromacs.mdp*
+
+(3) DL_FIELD system structure file, *dlf_notation.output*.
 
  This file is produced if the input file format is in *xyz* or mol2. The file *dlf_notation.output* contained detailed chemical information of the system, as well as the connectivities of atoms. Example below shows the system structure of zonisamide, a small drug molecule.  
 
  .. literalinclude:: dlf_notation.output
 
-(3) DL_FIELD conversion status file, *dl_field.output*
+(4) DL_FIELD conversion status file, *dl_field.output*
 
  This file reports the conversion status in details, including any warnings. It is separated into several section. 
 

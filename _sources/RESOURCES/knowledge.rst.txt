@@ -11,6 +11,8 @@ Knowledge Center
 
 This is the main portal to learn all things relate to computer modelling, including both atomistics and mesoscopic simulations and techniques. 
 
+To know what modelling is all about, see :doc:`../RST_PAGES/Intro_model` 
+
 Modelling methods
 =================
 
@@ -19,6 +21,7 @@ Modelling methods
 
    ./MOLECULAR_DYNAMICS/md0.rst
    ./FORCE_FIELD/ff0.rst
+   ./DOCUMENTS/coarse_graining.rst
    ./DOCUMENTS/thermostat_barostat.rst
 
 .. toctree::

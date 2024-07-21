@@ -5,35 +5,35 @@
 Force field schemes   
 *******************
 
-Due to the classical nature of force fields, there are a variety of ways to derive potential parameters and use different functions to model the systems. Each research group tend to stick to certain fitting procedures and functions to establish the FF models, and hence, the birth of different FF schemes.
+Due to the classical nature of force fields, there are a variety of ways to derive potential parameters: these also use different functions to model the systems. Each research group tends to stick to certain fitting procedures and functions to establish their FF models, hence the birth of different FF schemes.
 
-Diagram below shows a section of *FF family tree* how different schemes were born and evolved. 
+The diagram below shows a section of a *FF family tree* indicating how different schemes were born and evolved. 
 
 .. image:: ../../image/ff12_1.png
    :scale: 70%
    :align: center 
 
-A new scheme was usually formed by borrowing some of the characteristics from the previous schemes and sometimes this was so done to model new or different class of materials. This is the reason why sometimes two different FF schemes can share similar sets of potentials, and more often, the same functional forms.  
+A new scheme was usually formed by borrowing some of the characteristics from previous schemes; this was sometimes done to model new or different classes of materials. This is the reason why two different FF schemes can sometimes share similar sets of potentials and, more often, the same functional forms.  
 
-However, the tree has been growing steadily since the 1970's and has never stop. New branches are constantly added, and some even started from a completely new origin with different versions, to map new class of materials or to improve FF qualities to model the same class of materials.
+However, the tree has been growing steadily since the 1970s and has never stopped. New branches are constantly added and some have even started with a completely new origin and different versions to map new classes of materials or to improve upon the qualities of a previous FF when modelling the same class of materials.
 
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
 **FF types**
 
-An FF scheme is usually constructed with an aim to use it in a specific manner, which can perform better for certain materials than the others.
+An FF scheme is usually constructed with the aim to use it in a specific manner, which means it can perform better for certain materials than others.
 
-The FF qualities can generally be divided into two types:
+The qualities of a FF can generally be divided into two types:
 
-1. **Specific FF schemes**. These are better suited to model certain specific types of materials. For instance, proteins, DNA, carbohydrates, molecular cages, ionic liquids, etc. It is usually fitted with many parameters and the accuracy is generally high for the right type of materials. 
+1. **Specific FF schemes**. These are better suited to model certain specific types of materials. For instance, proteins, DNA, carbohydrates, molecular cages, ionic liquids, etc. These are usually fitted with many parameters and the accuracy is generally high for the right type of materials. 
 
-   However, transferability to model other molecules may still be acceptable as these molecules or their derivatives were often formed part of the fitting criteria during the scheme constructions.
+   However, transferability to model other molecules *may* still be acceptable as these molecules or their derivatives were often formed as part of the fitting criteria during the construction of the scheme.
 
-2. **Generic FF schemes**. These schemes can have fewer parameters applicable to a wide range of molecule types and can be used to model general class of molecules. For this reason, they have wide applicability although the accuracy may be poorer.
+2. **Generic FF schemes**. These schemes can have fewer parameters but are applicable to a wide range of molecule types and can be used to model general classes of molecules. For this reason, they have wide applicability, although the accuracy may be poorer.
 
 .. Note::
-   Some of the modern FF schemes can be pretty sophisticated compare with their predecessors and the FF applicability can be straddled across both types. Some of these schemes can be used to model general small drug molecules quite accurately with the parameters fitted to tens of thousands of test molecules.
+   Some modern FF schemes can be pretty sophisticated compared with their predecessors and the applicability of these FF schemes can straddle across both of the above types. Some of these schemes can be used to model general small drug molecules quite accurately with the parameters fitted to tens of thousands of test molecules.
 
 |
 
@@ -41,29 +41,29 @@ The FF qualities can generally be divided into two types:
 
 **Example FF schemes**
 
-Below shows some of the popular FF schemes for biomolecules and organic molecules. Note that the list and their applicabilities are by no means exhaustive. It should be used as a rough guide only.
+The list below shows some popular FF schemes for biomolecules and organic molecules. Note that the list and their applicabilities are by no means exhaustive. It should be used as a rough guide only.
 
-* CHARMM (Chemistry at HARvard using Molecular Mechanics) - biomolecules.
+* CHARMM (Chemistry at HARvard using Molecular Mechanics) - biomolecules
 
-* AMBER (Assisted Model Building with Energy Refinement) - biomolecules.
+* AMBER (Assisted Model Building with Energy Refinement) - biomolecules
 
-* OPLS (Optimized Parameters for Large-scale Simulations) - general organic molecules in condensed phase.
+* OPLS (Optimized Parameters for Large-scale Simulations) - general organic molecules in condensed phases
 
-* MMFF (Merck Molecular Foce Field) - small drug molecules.
+* MMFF (Merck Molecular Force Field) - small drug molecules
 
-* MM2, MM3, MM4 - Allinger *et. al.* - organic molecules.
+* MM2, MM3, MM4 - Allinger *et al.* - organic molecules
 
-* UFF (Universal Force Field) - general molecules, metallo molecules, most elements across the Periodic Table.
+* UFF (Universal Force Field) - general molecules, metallic molecules, most elements across the Periodic Table
 
-There are also other other variation of the above mentioned schemes. For example:
+There are also other variations of the above mentioned schemes. For example:
 
 * AMBER Glycam - for carbohydrates
 
 * CHARMM CGenFF, AMBER GAFF - for general molecules such as small drug molecules
  
-* OPLS for ionic liquids.
+* OPLS for ionic liquids
 
-* Etc.
+* etc.
 
 
 :ref:`^ GO TO TOP ^<Header_ff12>` 

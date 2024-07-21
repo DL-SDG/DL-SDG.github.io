@@ -133,7 +133,8 @@ For a DL_MESO_DPD simulation with an applied linear shear flow, the shear stress
 
 :TIP:
 
-    While the pressure tensor in the **OUTPUT** file is easiest to read as it provides averaged values and fluctuations (to estimate statistical errors), it is only likely to be representative if the system has reached a steady state before DL_MESO_DPD starts sampling the tensor (i.e. after equilibration). The **CORREL** file enables the range of values to be selected to omit those during equilibration and the establishment of shear flow.
+    While the pressure tensor in the **OUTPUT** file is easiest to read as it provides averaged values and fluctuations (to estimate statistical errors), it is only likely to be representative if the system has reached a steady state before DL_MESO_DPD starts sampling the tensor (i.e. after equilibration). If necessary, you can find more representative averages by selecting values known to correspond to a steady state in the **CORREL** file.
+
 
 To verify the correct velocity gradient has been achieved and is constant, a time-averaged velocity profile can be obtained from the DL_MESO_DPD **HISTORY** file using either:
 

@@ -7,34 +7,39 @@ Model examples
 
 For inorganic materials such as simple ionic crystals, only a few parameters are needed to accurately model the system. 
 
-For example, diagram below shows a set of potential parameters for magnesium oxide crystal. It is highly ionic and there is no covalent bond. This means the total energy of the system consists of only the non-bonded components:
+For example, the diagram below shows a set of potential parameters for a magnesium oxide crystal. It is highly ionic and there are no covalent bonds. This means the total energy of the system consists of just non-bonded components:
 
 .. image:: ../../image/ff13_1.png
    :scale: 70%
    :align: left 
 
-*V(total) = V(vdw) + V(coulombic)*
+
+.. math::
+   V_{total} = V_{vdW} + V_{Coulombic}
+
 
 with
 
-*V(bonded) = 0*
+.. math::
+   V_{bonded} = 0
 
-The corresponding FF parameters are shown below (in DL_POLY form).
+
+The corresponding FF parameters are shown below (in the form of a DL_POLY *FIELD* file).
 
 .. image:: ../../image/ff13_2.png
    :scale: 70%
    :align: center 
 
-The magnesium cation is assigned with the charge +2 and the oxide anion with the charge -2 and three vdw parameter sets for Buckingham potential were assigned to account for all three possible pair-wise combinations: Mg...Mg, Mg...O and O...O.
+The magnesium cation is assigned with a charge of +2 and the oxide anion with a charge of -2, while three vdW parameter sets using the Buckingham potential are assigned to account for all three possible pairwise combinations: Mg...Mg, Mg...O and O...O.
 
 .. Note::
-   The Mg3 and O10 as shown are just atom labels for the magnesium and oxygen, respectively. Also, there are no vdw interaction for Mg...Mg pair. The pair would repel naturally from each other due to the strong electrostatic charge. 
+   Mg3 and O10 as shown above are just atom labels for the magnesium and oxygen respectively. There are also no vdW interactions for the Mg...Mg pair (where the parameters are set to zero). The pair would repel naturally from each other due to the strong electrostatic charge. 
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
-Unlike ionic crystals, FF models for organic molecules contain a lot more parameters since *V(bonded)* is needed to maintain the structure of the molecule.
+Unlike ionic crystals, FF models for organic molecules contain many more parameters since :math:`V_{bonded}` is needed to maintain the structure of the molecule.
 
-Take for example dimethyl sulfoxide, a small organic molecule which is commonly used as a solvent.
+Take, for example, dimethyl sulfoxide, a small organic molecule which is commonly used as a solvent.
 
 .. image:: ../../image/ff13_3.png
    :scale: 70%
@@ -42,12 +47,12 @@ Take for example dimethyl sulfoxide, a small organic molecule which is commonly 
 
 In this case, all bonded interactions would need to take into account. 
 
-Below shows part of the potential parameters (shown in DL_POLY's FIELD file format) for CHARMM FF.
+A section of the potential parameters (in DL_POLY's FIELD file format) for CHARMM FF is shown below.
 
 .. image:: ../../image/ff13_4.png
    :scale: 70%
    :align: center 
 
-Note the amount of parameters needed even for a small molecule. While manual entry of parameters can be trivial for simple ionic crystals, large covalent molecules would need some utility programs, such as DL_FIELD, to help setting up the FF models correctly.
+Note the large number of parameters needed even for a small molecule. While manual entry of parameters can be trivial for simple ionic crystals, large covalent molecules need some utility programs, such as DL_FIELD, to help set up the FF models correctly.
 
 :ref:`^ GO TO TOP ^<Header_ff13>` 

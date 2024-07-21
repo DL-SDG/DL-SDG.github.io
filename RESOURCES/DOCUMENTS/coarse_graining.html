@@ -1,0 +1,233 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Coarse-graining &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Thermostats and barostats (system regulators)" href="thermostat_barostat.html" />
+    <link rel="prev" title="Parameter fitting" href="../FORCE_FIELD/ff17.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="thermostat_barostat.html" title="Thermostats and barostats (system regulators)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../FORCE_FIELD/ff17.html" title="Parameter fitting"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="coarse-graining">
+<span id="id1"></span><h1>Coarse-graining<a class="headerlink" href="#coarse-graining" title="Permalink to this headline">¶</a></h1>
+<p>This page provides an overview of coarse-graining in molecular modelling.</p>
+<p>The text makes references to DL_POLY, DL_MESO and DL_FIELD, but it is also applicable to other packages.</p>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<p>While some properties of various materials depend on the detailed make-up and structure of their molecules at atomic or even electronic scales, many other properties depend more on effects at larger scales. For instance, the structures that proteins, lipids or surfactants can form depend mainly on their quantities (concentrations) in large amounts of a <em>bulk</em> solvent (e.g. water).</p>
+<p>Coarse-graining (CG) is an approach to simplify molecular models by gathering together atoms into larger particles (‘pseudo-atoms’ or ‘beads’) and working out how these particles interact. This reduces the degrees of freedom required for a simulation but also reduces the number of particles involved, decreasing computation time and increasing the system sizes and time scales that can be obtained compared with fully atomistic methods.</p>
+<p>An example is given below of a phospholipid molecule, dioleoylphosphatidylcholine (DOPC), which has been coarse-grained into a representation with 12 beads per molecule from its original atom-based representation of 50 heavy atoms (carbon, oxygen, nitrogen and phosphorous) and 80 hydrogens. A large number of these CG molecules were subsequently used to model a bilayer.</p>
+<a class="reference internal image-reference" href="../../_images/cg_dopc.jpg"><img alt="../../_images/cg_dopc.jpg" class="align-center" src="../../_images/cg_dopc.jpg" style="width: 306.0px; height: 276.0px;" /></a>
+<p>If a CG bead is quite large, i.e. it contains a large number of atoms or molecules, it can be considered as a <em>subthermodynamic population</em>. As well as moving together <em>on average</em>, the atoms inside the bead can often move around individually and interact with each other.</p>
+<p>We can still use the same basic modelling techniques, e.g. <a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html#header-md0"><span class="std std-ref">molecular dynamics (MD)</span></a> or Monte Carlo (MC), for CG simulations as for fully atomistic (<em>all atom</em>) simulations. The main differences are the force field (FF) and that each particle in a simulation will be a bead rather than an atom, although most MD and MC codes do not need to make that distinction to be able to run a CG calculation.</p>
+<p>Hydrodynamic effects start to become more important at higher degrees of coarse-graining (numbers of atoms per bead) and larger length scales. Systems at those scales might benefit from using mesoscale modelling methods, e.g. <a class="reference internal" href="DPDIntro.html#dpd-intro"><span class="std std-ref">Dissipative Particle Dynamics (DPD)</span></a>, which can use a CG force field to represent non-hydrodynamic (conservative) interactions between beads.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The interaction model most frequently used in DPD simulations is a simplified representation of potentials found by coarse-graining polymer melts.</p>
+</div>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<p><strong>Pre-existing CG force fields</strong></p>
+<p><a class="reference internal" href="../FORCE_FIELD/ff0.html#header-ff0"><span class="std std-ref">Force fields (FFs)</span></a> have been developed for coarse-grained representations of various classes of molecules in a similar manner to atomic FFs. These are often based on similar potential functions to those used in atomic FFs, for bonded and non-bonded interactions. The FFs comprise of parameters usually fitted using a <em>top-down</em> approach, i.e. by matching properties obtained at larger scales from experiments.</p>
+<p>The simplest CG schemes are <em>united atom (UA) models</em> <a class="reference internal" href="#lustig1988" id="id2">[Lustig1988]</a>. These incorporate hydrogen atoms into the heavy atoms (e.g. carbon) to which they are bonded, removing the need to model light H atoms explicitly. UA models are often used for large hydrocarbon molecules, with beads consisting of different numbers of H atoms, e.g. CH<span class="math notranslate nohighlight">\(_{2}\)</span>, CH<span class="math notranslate nohighlight">\(_{3}\)</span>, CH<span class="math notranslate nohighlight">\(_{4}\)</span>.</p>
+<p>DL_FIELD currently has two UA models available for DL_POLY simulation setup: CHARMM19 for proteins (amino acids) and G54A7 for biomolecules (amino acids, lipids).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">Many PDB files obtained from crystallography experiments do not contain hydrogen atoms due to insufficient resolution. These can be used directly in DL_FIELD when applying its UA models.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Martini</em> is a general-purpose CG force field for biomolecular systems involving a wide variety of molecules (e.g. proteins, surfactants, peptides, polymers) <a class="reference internal" href="#marrink2007" id="id3">[Marrink2007]</a> <a class="reference internal" href="#souza2021" id="id4">[Souza2021]</a>. Each bead generally consists of four heavy atoms along with any attached hydrogens. Bonded interactions are chosen to match bond properties with those obtained from full atom models, while the beads otherwise interact with force-shifted Lennard-Jones (12-6) and Coulombic potentials.</p>
+<p>There are variants for each bead based on polarisability and/or net charges, including a polarisable water bead with embedded charges. A version of Martini with <em>implicit solvent</em> (Dry Martini) <a class="reference internal" href="#arnarez2015" id="id5">[Arnarez2015]</a> can be used to avoid modelling water beads: this can massively speed up simulations as a result.</p>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<p><strong>Constructing bespoke CG force-fields</strong></p>
+<p>The choices made in developing the above CG FFs - mappings of atoms to beads, functional forms of vdW and bonded potentials, and chosen properties for top-down parameter fitting - limit their applicability and accuracy.</p>
+<p>Alternative <em>bottom-up</em> approaches exist to derive FFs for specific systems. These use the results of smaller scale (atomistic) simulations - ranging from <em>radial distribution functions</em> (RDFs) to full MD trajectories - and derive interactions for beads to find the best fits to these data. Some of the techniques include:</p>
+<ul class="simple">
+<li><strong>Inverse Monte Carlo</strong> - Uses a Monte Carlo procedure to iterate an interaction potential to fit to required RDFs <a class="reference internal" href="#lyubartsev1995" id="id6">[Lyubartsev1995]</a></li>
+<li><strong>Iterative Boltzmann Inversion</strong> - Iterates a CG potential using deviations of <em>potentials of mean force</em> (related to RDFs) between the atomistic FF and the proposed CG FF <a class="reference internal" href="#reith2003" id="id7">[Reith2003]</a></li>
+<li><strong>Force matching</strong> - Finds interaction forces on CG beads that correspond to ensemble averages of those acting on the atoms inside the beads <a class="reference internal" href="#noid2008" id="id8">[Noid2008]</a></li>
+<li><strong>Relative entropy minimisation</strong> - Uses the <em>relative entropy</em> as a measure of discrepancies from reference data to improve a pre-existing CG force field <a class="reference internal" href="#scottshell2008" id="id9">[ScottShell2008]</a></li>
+</ul>
+<p>While these methods can be used with specific functional forms of potentials to fit their parameters, the resulting interactions are more often expressed in tabulated form, i.e. as values of potentials or forces corresponding to equally-spaced distances (or angles) which can be interpolated during MD simulations.</p>
+<p>The <a class="reference external" href="https://www.votca.org/">VOTCA</a> software package is a toolkit that can process atomic simulation data and apply the above techniques to obtain CG FFs. It includes an interface to work with DL_POLY files as inputs and outputs to coarse-grain an atomic system using one of the above methods and provide files to carry out a CG MD calculation using the derived FF (given in tabulated form) in DL_POLY_5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">The DL_POLY interface in VOTCA has only been tested for Inverse Monte Carlo and Iterative Boltzmann Inversion: it <em>might</em> also work with force matching.</td>
+</tr>
+</tbody>
+</table>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<p><strong>Obtaining dynamics at CG level</strong></p>
+<p>It is possible to parameterise a CG model to obtain dynamic properties. The most frequently used dynamic property for model fitting is <em>self-diffusivity</em>, which can be calculated from equilibrium MD (or DPD) simulations at any scale using <em>mean-squared displacements</em> (MSDs) or <em>velocity autocorrelation functions</em> (VAFs).</p>
+<p>Some care may be needed when modelling dynamic properties using a CG model, depending on the level of coarse-graining and the related reduction in degrees of freedom. For instance, if a CG model of water includes <span class="math notranslate nohighlight">\(N\)</span> molecules per bead, the self-diffusivity of the CG beads will be <span class="math notranslate nohighlight">\(\frac{1}{N}\)</span> of the value obtained from a full atom or united atom model. Notwithstanding this caveat, the same <a class="reference internal" href="thermostat_barostat.html#thermostat-barostat"><span class="std std-ref">thermostat and parameters</span></a> can often be used for both full atom and CG MD calculations of the same system.</p>
+<p>It is possible to determine the functional form and parameters for DPD dissipative forces systematically from full atom MD trajectories by calculating ensemble averages of pairwise forces and relative velocities for CG beads <a class="reference internal" href="#sokhan2021" id="id10">[Sokhan2021]</a>. The resulting tabulated functions with respect to distances between bead pairs can be used as inputs for DPD calculations with DL_MESO.</p>
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="lustig1988" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[Lustig1988]</a></td><td>R Lustig and WA Steele, On the thermodynamics of liquid propane, <em>Molecular Physics</em>, <strong>65</strong>, p. 475-486, 1988, doi: 10.1080/00268978800101181.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="marrink2007" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[Marrink2007]</a></td><td>SJ Marrink, HJ Risselada, S Yefimov, DP Tieleman and AH de Vries, The MARTINI force field: coarse grained model for biomolecular simulations, <em>Journal of Physical Chemistry B</em>, <strong>111</strong>, p. 7812–7824, 2007, doi: 10.1021/jp071097f.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="souza2021" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[Souza2021]</a></td><td>PCT Souza, R Alessandri, J Barnoud, S Thallmair, I Faustino, F Grünewald, I Patmanidis, H Abdizadeh, BMH Bruininks, TS Wassenaar, PC Kroon, J Melcr, V Nieto, V Corradi, HM Khan, J Domański, M Javanainen, H Martinez-Seara, N Reuter, RB Best, I Vattulainen, L Monticelli, X Periole, DP Tieleman, AH de Vries and SJ Marrink, Martini 3: a general purpose force field for coarse-grained molecular dynamics, <em>Nature Methods</em>, <strong>18</strong>, p. 382-388, 2021, doi: 10.1038/s41592-021-01098-3.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="arnarez2015" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[Arnarez2015]</a></td><td>C Arnarez, JJ Uusitalo, MF Masman, HI Ingólfsson, DH de Jong, MN Melo, X Periole, AH de Vries and SJ Marrink, Dry Martini, a coarse-grained force field for lipid membrane simulations with implicit solvent, <em>Journal of Chemical Theory and Computation</em>, <strong>11</strong>, 260-275, 2015. doi: 10.1021/ct500477k.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="lyubartsev1995" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[Lyubartsev1995]</a></td><td>AP Lyubartsev and A Laaksonen, Calculation of effective interaction potentials from radial distribution functions: A reverse Monte Carlo approach, <em>Physical Review E</em>, <strong>52</strong>, 3730-3737, 1995, doi: 10.1103/PhysRevE.52.3730.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="reith2003" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[Reith2003]</a></td><td>D Reith, M Pütz and F Müller-Plathe, Deriving effective mesoscale potentials from atomistic simulations, <em>Journal of Computational Chemistry</em>, <strong>24</strong>, 1624-1636, 2003, doi: 10.1002/jcc.10307.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="noid2008" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[Noid2008]</a></td><td>WG Noid, J-W Chu, GS Ayton, V Krishna, S Izvekov, GA Voth, A Das and HC Andersen, The multiscale coarse-graining method. I. A rigorous bridge between atomistic and coarse-grained models, <em>Journal of Chemical Physics</em>, <strong>128</strong>, 244114, 2008, doi: 10.1063/1.2938860.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="scottshell2008" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[ScottShell2008]</a></td><td>M Scott Shell, The relative entropy is fundamental to multiscale and inverse thermodynamic problems, <em>Journal of Chemical Physics</em>, <strong>129</strong>, 144108, 2008, doi: 10.1063/1.2992060.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="sokhan2021" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[Sokhan2021]</a></td><td>VP Sokhan and IT Todorov, Dissipative particle dynamics: dissipative forces from atomistic simulation, <em>Molecular Simulation</em>, <strong>47</strong>, 248-256, 2021, doi: 10.1080/08927022.2019.1578353.</td></tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../knowledge.html">Knowledge Center</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Coarse-graining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DPDTheory.html">Additional details on DPD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LBETheory.html">Additional details on LBE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../FORCE_FIELD/ff17.html"
+                        title="previous chapter">Parameter fitting</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="thermostat_barostat.html"
+                        title="next chapter">Thermostats and barostats (system regulators)</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="thermostat_barostat.html" title="Thermostats and barostats (system regulators)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../FORCE_FIELD/ff17.html" title="Parameter fitting"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -5,68 +5,73 @@
 Potential functions
 *******************
 
-As mentioned earlier, all interaction components are represented by some mathematical functional forms. While the precise functions and their implementations depend on the FF schemes, in general, the force field model or the total energy of the system can be expressed as follows:
+As mentioned earlier, all interaction components are represented by some mathematical functional forms. While the precise functions and their implementations depend on the FF schemes, the force field model or the total energy of the system generally can be expressed as follows:
 
-*V(total) = V(bonded) + V(cross-terms) + V(nonbonded)*
+.. math::
+   V_{total} = V_{bonded} + V_{cross-terms} + V_{non-bonded}
 
 where
 
-*V(bonded) = V(bond) + V(angle) + V(torsion) + V(improper) + V(UB)* 
+.. math::
+   V_{bonded} = V_{bond} + V_{angle} + V_{torsion} + V_{improper} + V_{UB}
 
-*V(cross-terms) = V(bond1, bond2) + V(bond, angle) + etc.*
+.. math::
+   V_{cross-terms} = V_{bond1,bond2} + V_{bond,angle} + \cdots
 
-*V(nonbonded) = V(vdw) + V(coulombic)*
+.. math::
+   V_{non-bonded} = V_{vdW} + V_{Coulombic}
+
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
-Below shows a list of typical functional forms representing a range of interaction components.
+Below is a list of typical functional forms representing a range of interaction components.
 
-(a) Bond interaction, *V(bond)*
+a. Bond interaction, :math:`V_{bond}`
 
-.. image:: ../../image/ff5_1.png
-   :scale: 65%
-   :align: center
-   :alt: harmonic bond interaction 
+   .. image:: ../../image/ff5_1.png
+      :scale: 65%
+      :align: center
+      :alt: Harmonic bond interaction.
 
-where b :subscript:`0` represents the equilibrium bond length and b is the bond distance.
+   where :math:`b_0` represents the equilibrium bond length and :math:`b` is the bond distance (at a given moment during the MD simulation).
 
-(b) Angle interaction, *V(angle)*
+b. Angle interaction, :math:`V_{angle}`
 
-.. image:: ../../image/ff5_2.png
-   :scale: 65%
-   :align: center
-   :alt: harmonic angle interaction
+   .. image:: ../../image/ff5_2.png
+      :scale: 65%
+      :align: center
+      :alt: Harmonic angle interaction.
 
-where :math:`{\theta}`:subscript:`0` represents the equilibrium angle.
+   where :math:`\theta_0` represents the equilibrium angle.
 
-(c) Dihedral interaction, *V(torsion)*
+c. Dihedral interaction, :math:`V_{torsion}`
 
-.. image:: ../../image/ff5_3.png
-   :scale: 65%
-   :align: center
-   :alt: Fourier cosine
+   .. image:: ../../image/ff5_3.png
+      :scale: 65%
+      :align: center
+      :alt: Fourier cosine dihedral interaction.
 
-where k is the dihedral constant, or torsion barrier, n is the periodicity and :math:`{\delta}` is the phase shift.
+   where :math:`k` is the dihedral constant, or torsion barrier, :math:`n` is the periodicity and :math:`\delta` is the phase shift.
 
-(d) Cross terms, for example bond-angle, *V(bond, angle)*
+d. Cross terms, for example bond-angle, :math:`V_{bond, angle}`
 
-.. image:: ../../image/ff5_6.png
-   :scale: 65%
-   :align: center
-   :alt: Fourier cosine
+   .. image:: ../../image/ff5_6.png
+      :scale: 65%
+      :align: center
+      :alt: Fourier cosine bond-angle interaction.
 
-(e) Electrostatic, *V(coulombic)*
+e. Electrostatic, :math:`V_{Coulombic}`
 
-.. image:: ../../image/ff5_4.png
-   :scale: 65%
-   :align: center
-   :alt: Coulombic electrostatic
+   .. image:: ../../image/ff5_4.png
+      :scale: 65%
+      :align: center
+      :alt: Coulombic electrostatic interaction.
 
-(f) Dispersive, *V(vdw)*
+f. Dispersive, :math:`V_{vdW}`
 
-.. image:: ../../image/ff5_5.png
-   :scale: 65%
-   :align: center
-   :alt: Coulombic electrostatic
+   .. image:: ../../image/ff5_5.png
+      :scale: 65%
+      :align: center
+      :alt: Lennard-Jones 12-6 van der Waals interaction.
 
 :ref:`^ GO TO TOP ^<Header_ff5>`

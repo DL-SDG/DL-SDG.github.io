@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Force field data files: Parameter Files" href="dlf_4.html" />
-    <link rel="prev" title="Structures and operations" href="dlf_2.html" /> 
+    <link rel="prev" title="Foce field schemes" href="dlf_25.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -33,7 +33,7 @@
           <a href="dlf_4.html" title="Force field data files: Parameter Files"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="dlf_2.html" title="Structures and operations"
+          <a href="dlf_25.html" title="Foce field schemes"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
@@ -49,35 +49,8 @@
             
   <div class="section" id="force-field-data-files-structure-files">
 <span id="header-dlf-3"></span><h1>Force field data files: Structure Files<a class="headerlink" href="#force-field-data-files-structure-files" title="Permalink to this headline">¶</a></h1>
-<p>In molecular simulations, FF parameters are usually derived by some empirical rules, either derived from some experimental observations or quantum mechanical calculations. Different research groups use different rules to obtain these parameters. Collectively, a set of rules that model a class of molecules is called a FF scheme.</p>
-<p>DL_FIELD implements some of the popular FF schemes as shown below:</p>
-<ul class="simple">
-<li>CHARMM - For protein molecules, lipids, carbohydrates and general small organic molecules (CGenFF).</li>
-<li>AMBER - For protein molecules, glycans (Glycam), and general organic molecules (GAFF).</li>
-<li>OPLS2005 - Proteins, small organic molecules and drug molecules.</li>
-<li>OPLS-DES - Deep eutectic solvents.</li>
-<li>OPLS CL&amp;P - Organic cationic and anionic species for ionic liquids.</li>
-<li>OPLS AA/M - Protein molecules.</li>
-<li>PCFF - Small organic molecules, organic polymers.</li>
-<li>CVFF - Small organic molecules.</li>
-<li>Dreiding - General FF for covalent molecules.</li>
-<li>Inorgnic - force fields for inorganic materials.</li>
-<li>CHARMM19 - United atom protein model.</li>
-<li>G54A7 - united atom Gromos FF.</li>
-<li>MISC FF - general purpose definable FF.</li>
-</ul>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
-<p><strong>FF Files</strong></p>
-<p>Each FF scheme (XX) consists of the following file components:</p>
-<ul class="simple">
-<li>Structure file (<em>.sf</em>), <em>DLPOLY_XX.sf</em>.</li>
-<li>Parameter file (<em>.par</em>), <em>DLPOLY_XX.par</em>.</li>
-<li>Miscellaneous supporting files for some FF schemes.</li>
-</ul>
-<p>These files are located in the <em>lib/</em> directory and they are all expressed in the same format for all FF schemes.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>The structure data file (sf file)</strong></p>
-<p>These files have filenames in the form of <em>DLPOLY_XX.sf</em>. For example, <em>DLPOLY_CHARMM36_lipid.sf</em> for CHARMM36 lipid data file. This file contains the <a href="dlf_3_MOLECULE.html" onclick="window.open('dlf_3_MOLECULE.html',
+<p>These files have filenames in the form of <em>XX.sf</em>. For example, <em>CHARMM36_lipid.sf</em> for CHARMM36 lipid data file. This file contains the <a href="dlf_3_MOLECULE.html" onclick="window.open('dlf_3_MOLECULE.html',
    'newwindow', 'width=700,height=400'); return false;">MOLECULE</a> templates, which define the molecular states, ATOM_TYPEs, atomic connectivity information and associated partial charges of <a href="dlf_3_ATOM.html" onclick="window.open('dlf_3_ATOM.html',
       'newwindow', 'width=500,height=300'); return false;">ATOMs</a> that made up the template.</p>
 <p>Diagram below shows a typical example of what constitute a MOLECULE template. It is extracted from the <em>CHARMM36_cgenff.sf</em> file. In this example, it is a ethanethiol MOLECULE. The name ethanethiol is called a MOLECULE_TYPE in DL_FIELD term. It is a MOLECULE name, usually in a human-redable form. This is similar in analogy to <a href="dlf_2_ATOM_TYPE.html" onclick="window.open('dlf_2_ATOM_TYPE.html',
@@ -130,8 +103,8 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="dlf_2.html"
-                        title="previous chapter">Structures and operations</a></p>
+  <p class="topless"><a href="dlf_25.html"
+                        title="previous chapter">Foce field schemes</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="dlf_4.html"
                         title="next chapter">Force field data files: Parameter Files</a></p>
@@ -161,7 +134,7 @@
           <a href="dlf_4.html" title="Force field data files: Parameter Files"
              >next</a> |</li>
         <li class="right" >
-          <a href="dlf_2.html" title="Structures and operations"
+          <a href="dlf_25.html" title="Foce field schemes"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>

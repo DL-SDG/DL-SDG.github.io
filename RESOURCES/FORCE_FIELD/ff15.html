@@ -48,21 +48,21 @@
             
   <div class="section" id="interaction-scaling-factors">
 <span id="header-ff15"></span><h1>1-4 interaction scaling Factors<a class="headerlink" href="#interaction-scaling-factors" title="Permalink to this headline">¶</a></h1>
-<p>As mentioned earlier, the non-bonded interactions apply to all pairs of non-connecting atoms between molecules. For atoms within molecules, the non-bonded interactions apply to pairs of atoms that are at least three consecutive bonds apart (1-4 interactions).</p>
-<p>However, due to the inadequacy of classical force fields, the fitted vdw interactions and coulombic interactions can be over-estimated  at the 1-4 sites. To minimise these effects, the 1-4 scaling factors would be included to reduce the over exaggeration of short-range repulsive effects and give better conformational energies of molecules.</p>
-<p>These scaling factors, called the 1-4 vdw scaling factor (<span class="math notranslate nohighlight">\(f_{vdw}\)</span>) and the 1-4 electrostatic scaling factor (<span class="math notranslate nohighlight">\(f_{e}\)</span>) are often included as some constants for the non-bonded interactions between the pairs of 1-4 atoms. Also, the actual derivation of these scaling factors is quite arbitrary and can vary from one FF schemes to the other.</p>
+<p>As mentioned earlier, the non-bonded interactions apply to all pairs of unconnected atoms between molecules. For atoms within molecules, the non-bonded interactions apply to pairs of atoms that are at least three consecutive bonds apart (1-4 interactions).</p>
+<p>However, due to the inadequacy of classical force fields, the fitted vdW interactions and Coulombic interactions can be over-estimated at the 1-4 sites. To minimise these effects, scaling factors can be included to reduce the over-exaggeration of short-range repulsive effects and give better conformational energies for the molecules.</p>
+<p>These scaling factors, called the <em>1-4 vdW scaling factor</em> (<span class="math notranslate nohighlight">\(f_{vdW}\)</span>) and the <em>1-4 electrostatic scaling factor</em> (<span class="math notranslate nohighlight">\(f_{e}\)</span>) are often included as some constants for the non-bonded interactions between the pairs of 1-4 atoms. The actual derivation of these scaling factors is quite arbitrary and can vary from one FF scheme to another.</p>
 <a class="reference internal image-reference" href="../../_images/ff15_1.png"><img alt="../../_images/ff15_1.png" class="align-center" src="../../_images/ff15_1.png" style="width: 478.09999999999997px; height: 328.29999999999995px;" /></a>
-<p>The diagram above illustrates an application of scaling factor on the 1-4 atom pair but not on the atom pair separated by four consequtive bonds (1-5 atom pair).</p>
+<p>The diagram above illustrates an application of scaling factors on the 1-4 atom pair but not on the atom pair separated by four consecutive bonds (the 1-5 atom pair).</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The 1-4 scaling factors only apply to molecules with covalent bonds. They do not involve in ionic structures which are mainly interacted via eletrostatic interactions.</p>
+<p class="last">The 1-4 scaling factors only apply to molecules with covalent bonds. They are not involved in ionic structures, which mainly interact via electrostatic (Coulombic) interactions.</p>
 </div>
-<p>The values of scaling factors can be different for different force field schemes. For example, OPLS FF uses a scaling factor of 0.5 for both <span class="math notranslate nohighlight">\(f_{vdw}\)</span> and <span class="math notranslate nohighlight">\(f_{e}\)</span>.</p>
-<p>For general AMBER FF, <span class="math notranslate nohighlight">\(f_{vdw}\)</span> = 0.5 and <span class="math notranslate nohighlight">\(f_{e}\)</span> = 1/1.2. However, AMBER FF for carbohydrates, such as Glycam, this would set <span class="math notranslate nohighlight">\(f_{vdw}\)</span> = <span class="math notranslate nohighlight">\(f_{e}\)</span> = 1.0 by default.</p>
-<p>Some FF schemes such as CHARMM, scaling factors are set to 1.0 (no scaling factor applies on 1-4 atom pairs). Instead, sets of different vdw parameters are used specifically for vdw interaction at the 1-4 atom sites.</p>
+<p>The values of scaling factors can be different for different force field schemes. For example, OPLS FF uses a scaling factor of 0.5 for both <span class="math notranslate nohighlight">\(f_{vdW}\)</span> and <span class="math notranslate nohighlight">\(f_{e}\)</span>.</p>
+<p>For general AMBER FF, <span class="math notranslate nohighlight">\(f_{vdW} = 0.5\)</span> and <span class="math notranslate nohighlight">\(f_{e} = 1/1.2\)</span>. However, AMBER FF for carbohydrates, such as Glycam, would set <span class="math notranslate nohighlight">\(f_{vdW} = f_{e} = 1.0\)</span> by default.</p>
+<p>Some FF schemes such as CHARMM set these scaling factors to 1.0 (i.e. no scaling factors are applied to 1-4 atom pairs). Instead, sets of different vdW parameters are used specifically for vdW interactions at the 1-4 atom sites.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">DL_FIELD will automatically set the correct 1-4 scalings depend on the choice of FF schemes. These scaling factors are listed under the <em>dihedral</em> directive in DL_POLY <em>FIELD</em> files.</p>
+<p class="last">DL_FIELD will automatically set the correct 1-4 scalings depend on the choice of FF scheme. These scaling factors are listed under the <em>dihedral</em> directive in DL_POLY <em>FIELD</em> files.</p>
 </div>
 <p><a class="reference internal" href="#header-ff15"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
@@ -82,6 +82,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

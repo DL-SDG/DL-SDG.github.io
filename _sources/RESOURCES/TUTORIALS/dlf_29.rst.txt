@@ -1,0 +1,62 @@
+.. DL_FIELD tutorial. Setup force fields via antechamber.. 
+.. _Header_dlf_29:
+
+.. |br| raw:: html
+
+   <br />
+
+*********************************
+Setup FF from Amber's Antechamber 
+*********************************
+
+This page shows an example of how to setup a FF model via Amber's Antechamber program and it is assumed you have an Amber program
+pre-installed in your system.
+
+The General Amber FF (GAFF) is a FF scheme specially designed for organic molecules including small drug molecules.
+The FF is implemented in DL_FIELD as *amber16_gaff*. However, what is missing is the partial charge values whcih can be obtained from Amber's *Antechamber* program.
+
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Example procedure**
+
+Let's suppose you want to setup a GAFF model for ascorbic acid (Vitamin C) in water and the initial input file for the structure is in a PDB format. This file is located in the *Examples/* folder in the DL_FIELD package (*ascorbic_acid.pdb*).
+
+**Step 1**
+
+The following command can be issued by calling *antechamber* as follows:
+
+*antechamber -if pdb -i ascorbic.pdb -fo mol2 -o ascorbic_acid.mol2 -c bcc*
+
+Which instructs the program to read in the pdb file and produce a *mol2* output file. The *bcc* is the charge model being used, which is the abbreviation for AM1-BCC. The charge model was parameterised to reproduce HF/6-31G* RESP charges. These partial charge values are shown at the last column for each atom in the mol2 file (see below) 
+
+.. literalinclude:: ascorbic_acid.mol2 
+
+**Step 2**
+
+Insert the mol2 as the input configuration and run the DL_FIELD *control* file with the following input options as follows:
+
+.. literalinclude:: dl_field.control.ascorbic 
+   :emphasize-lines: 4,11,13,21,23-26,31,42 
+
+The highlighted options instructs DL_FIELD to produce FF files for Amber GAFF force field by duplicating 80 ascorbic acid molecules in a cubic system of size 80 Å, and each molecule is separated by at least 12 Å from one another. After that, the system is solvated with the SPC water model. All H-containing bonds are also constrained. 
+
+.. Note:: 
+   The Molecular Group is called 'not_define' because it is not clearly defined in the *.mol2* file and DL_FIELD will automatically label the system with a default Molecular Group name as 'not_define'.
+
+**Step 3**
+
+Run DL_FIELD to produce a *dl_poly.FIELD* file. The top portion of the file is shown as follows:
+
+.. literalinclude:: dl_poly.FIELD.ascorbic
+
+Notice the ATOM_KEYs and charge values are extracted, as is, from the input *mol2* file.
+
+If a force field scheme other than *amber16_gaff* is used, then the ATOM_KEYs and charge values from the *mol2* file will be ignored and a new FF data will be produced. For example, consider CVFF FF scheme is used, then the *dl_poly.FIELD* produced is shown below:
+
+.. literalinclude:: dl_poly.FIELD.ascorbic2
+
+Can you see the difference?
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_29>`

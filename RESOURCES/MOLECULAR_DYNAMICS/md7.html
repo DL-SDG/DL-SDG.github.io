@@ -48,20 +48,20 @@
             
   <div class="section" id="limitation-of-md">
 <span id="header-md7"></span><h1>Limitation of MD<a class="headerlink" href="#limitation-of-md" title="Permalink to this headline">¶</a></h1>
-<p>The limitations of MD simulations include:</p>
+<p>Limitations of MD simulations include:</p>
 <ul class="simple">
 <li>Imperfect parameters, often fit to <em>particular</em> pressures, temperatures, pH etc.</li>
-<li>Use of empirical functions to evaluate atomic forces.</li>
+<li>Use of empirical functions to evaluate atomic forces</li>
 <li>Inability to exhaustively sample phase space</li>
 <li>Sampling errors when calculating system properties (e.g. free energies of solvation and binding are likely to be <span class="math notranslate nohighlight">\(\pm\)</span> 1 kJ mol<span class="math notranslate nohighlight">\(^{-1}\)</span>)</li>
 <li>Chemical bond breaking and creation not possible</li>
 <li>Limited charge polarisation effects (e.g. can only use fixed partial charges)</li>
-<li>Inability to probe long-time events.</li>
+<li>Inability to probe long-time events</li>
 </ul>
-<p>Just because you ‘see’ something in a simulation does not mean it is real. Neither does it mean if you don’t see something means it does not exist. This is because, from the practical perspective, MD is only able to probe events in the order of nanoseconds to, at most, the order of several microseconds.</p>
-<p>This is certainly the case for simulations involving carbohydrates and proteins. Rare and relaxation events may occur over long time scales and there are always questions remain that how long is long for simulations.</p>
-<p>Note also equilibrium properties are all about statistics. Systems may be subjected to trapping in certain region of phase space depending on initial conditions: the simulation may spend a lot of time probing the space due to deep potential energy surfaces. For this reason, for complex systems such as proteins, it is better to repeat the simulations several times with different initial conditions (perhaps with a different set of initial velocities).</p>
-<p>However, MD simulations are typically cheaper than experiments, being easier to set up and repeat with changes to the models, force field and/or initial conditions. Moreover, MD has the capability to provide insights to mechanisms the drive the changes at atomic scale. As such, they can serve as an invaluable testing tool for scientists and can be used to answer hypothetical and comparative questions cheaply and more quickly than real-life experiments.</p>
+<p>Just because you ‘see’ something in a simulation does not mean it is real. The opposite is also true: neither does it mean if you don’t see something means it does not exist. This is because, from a practical perspective, MD is only able to probe events in the order of nanoseconds to, at most, the order of several microseconds.</p>
+<p>This is certainly the case for simulations involving carbohydrates and proteins. Rare and relaxation events may occur over long time scales and there are always questions that remain about how long is ‘long’ for simulations.</p>
+<p>Also note that equilibrium properties are all about statistics. Systems may be subjected to trapping in certain regions of the phase space depending on initial conditions: the simulation may spend a lot of time probing the space due to deep potential energy surfaces. For this reason, for complex systems such as proteins, it is best to repeat the simulations several times with different initial conditions (perhaps with a different set of initial velocities).</p>
+<p>However, MD simulations are typically cheaper than experiments, being easier to set up and repeat with changes to the models, force field and/or initial conditions. Moreover, MD has the capability to provide insights to mechanisms that drive changes at an atomic scale. As such, they can serve as an invaluable testing tool for scientists and can be used to answer hypothetical and comparative questions cheaply and more quickly than real-life experiments.</p>
 <p><a class="reference internal" href="#header-md7"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -80,6 +80,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

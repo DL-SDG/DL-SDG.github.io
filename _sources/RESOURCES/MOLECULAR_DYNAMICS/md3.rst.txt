@@ -18,11 +18,21 @@ Since moving the particles changes the distances between them and thus their for
    :align: center
 
 .. Note::
-   In DL_POLY, system trajectories can be saved into a file called *HISTORY*. To do this, the directive *traj* must be included in the *CONTROL* file. For example, to save the positions and velocities of the system at every 100 MD steps (not timestep!):
+   In DL_POLY, system trajectories can be saved into a file called *HISTORY*. To do this, directives starting with ``traj`` must be included in the *CONTROL* file. For example, to save the positions and velocities of the system at every 100 MD steps (not timestep!) from the very beginning, the following should be included for older versions of DL_POLY:
    
-   *traj 0 100 1*
+   ``traj 0 100 1``
 
-   This will produce a time series of atomic ocnfigurations. The time interval between the configurations would be simply multiply of the MD timstep.
+   while DL_POLY_5 requires the following four directives:
+
+   ``traj_calculate ON``
+
+   ``traj_start 0 steps``
+
+   ``traj_interval 100 steps``
+
+   ``traj_key pos-vel``
+
+   These will produce a time series of atomic configurations. The time interval between the configurations would be simply a multiple of the MD timestep (in this case, :math:`100 dt`).
    
 
 :ref:`^ GO TO TOP ^<Header_md3>`

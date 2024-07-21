@@ -43,8 +43,8 @@ whose inverse can be used to later transform collided moments back into distribu
 
 A variant MRT scheme includes cascaded lattice Boltzmann (CLBE) [Geier2006]_, which uses central moments incorporating the fluid velocity and the general Maxwell-Boltzmann local equilibrium distribution function (rather than the standard approximation to quadratic velocity terms) for even greater numerical stability.
 
-Rheological models
-~~~~~~~~~~~~~~~~~~
+Rheological and turbulence models
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Most LBE simulations assume the kinematic viscosity of a fluid is constant. To relax this assumption, it is possible to calculate kinematic viscosities and relaxation times :math:`\tau` for individual grid points based on the local shear rate:
 
@@ -56,9 +56,21 @@ where :math:`S_{\alpha \beta}` is the rate-of-strain tensor for dimensions :math
 
 To avoid needing to calculate velocity gradients non-locally using grid stencils, the rate-of-strain tensors can alternatively be calculated from momentum flux tensors [Boyd2006]_:
 
-.. math:: S_{\alpha \beta} = -\frac{3}{2 \tau \rho \Delta t} \left(\Pi_{\alpha \beta} - \Pi^{eq}_{\alpha \beta} \right) = -\frac{3}{2 \tau \rho \Delta t} \sum_i \left(f_i - f_i^{eq}\right) e_{i,\alpha} e_{I,\beta}
+.. math:: S_{\alpha \beta} = -\frac{1}{2 c_s^2 \tau \rho \Delta t} \left(\Pi_{\alpha \beta} - \Pi^{eq}_{\alpha \beta} \right) = -\frac{1}{2 c_s^2 \tau \rho \Delta t} \sum_i \left(f_i - f_i^{eq}\right) e_{i,\alpha} e_{I,\beta}
 
 which can be calculated locally at each grid point from its distribution functions. (Similar expressions are available for collisions other than BGK.) This expression is implicit with :math:`\tau` - the property being determined - and therefore the previously calculated value of :math:`\tau` for the given grid point can be used to calculate the rate-of-strain tensor. The resulting shear rate :math:`\dot{\gamma}` is then used in the selected rheological model (relationship between viscosity and shear rate) to calculate new values of :math:`\tau`: convergence is normally obtained for steady flow systems within a small number of timesteps.
+
+High flow speeds often result in *turbulent* flows, in which the inertia of a fluid overcomes the damping of its viscosity and causes chaotic changes in pressure and velocity: these occur when the :ref:`Reynolds number <Reynolds>` is particularly high. We can include the effect of turbulence using Large Eddy Simulation (LES) models to determine a additional turbulence (kinematic) viscosity :math:`\nu_t` for the fluid that depends on the local shear rate :math:`\dot\gamma`.
+
+The most commonly-used LES model is the Smagorinsky subfilter-stress model:
+
+.. math:: \nu_t = \left(C_S \Delta\right)^2 |\overline{S}|,
+
+where :math:`C_S` is the Smagorinsky constant and :math:`\Delta` is the filter width (usually set equal to the grid spacing :math:`\Delta x`). The time-averaged local strain intensity :math:`|\overline{S}|` is equal to the shear rate :math:`\dot{\gamma}`, which can be found from momentum flux tensors in a similar way to before. However, since the relaxation time is now set to a known (simple) expression involving the standard (viscous) relaxation time :math:`\tau_0` and :math:`\dot{\gamma}`, i.e.
+
+.. math:: \tau = \tau_0 + \frac{\nu_t}{c_s^2 \Delta t} = \tau_0 + \frac{\left(C_S \Delta\right)^2 \dot{\gamma}}{c_s^2 \Delta t}
+
+we can readily combine this with the above expressions for :math:`S_{\alpha \beta}` and :math:`\dot{\gamma}`, rearrange and directly solve for :math:`\dot{\gamma}` without iterating.
 
 .. _LBEforcing:
 

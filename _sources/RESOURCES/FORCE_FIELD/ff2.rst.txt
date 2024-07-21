@@ -9,12 +9,13 @@ A system potential often contains (usually implicitly) a number of physical appr
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
-The FF is modelled classically as some mathematical descriptions of energies and forces between atoms in terms of atomic positions:
+The FF is modelled classically as some mathematical description of the energies and forces between atoms in terms of atomic positions:
 
-*FF = pot1 + pot2 + ... + potn*
+.. math::
+   FF = pot_1 + pot_2 + \cdots + pot_n
 
-Where *pot* is a mathematical function (or potential function) of an energy component. Each function also contains some constants, or the potential parameters, that are adjusted such that the potential functions approximately represent the chemical behaviour of the interaction components.
+Where :math:`pot` is a mathematical function (or potential function) of an energy component. Each function also contains some constants, or potential *parameters*, that are adjusted such that the potential functions approximately represent the chemical behaviour of the interacting components.
 
-The first derivative of these functions give the forces applied on each atom, from such, the velocities and positions of the atom are derived.
+The first derivative of these functions give the forces applied on each atom: from such, the velocities and positions of the atom are derived.
 
 :ref:`^ GO TO TOP ^<Header_ff2>`

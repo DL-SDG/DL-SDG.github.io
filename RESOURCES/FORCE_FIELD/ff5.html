@@ -48,41 +48,41 @@
             
   <div class="section" id="potential-functions">
 <span id="header-ff5"></span><h1>Potential functions<a class="headerlink" href="#potential-functions" title="Permalink to this headline">¶</a></h1>
-<p>As mentioned earlier, all interaction components are represented by some mathematical functional forms. While the precise functions and their implementations depend on the FF schemes, in general, the force field model or the total energy of the system can be expressed as follows:</p>
-<p><em>V(total) = V(bonded) + V(cross-terms) + V(nonbonded)</em></p>
+<p>As mentioned earlier, all interaction components are represented by some mathematical functional forms. While the precise functions and their implementations depend on the FF schemes, the force field model or the total energy of the system generally can be expressed as follows:</p>
+<div class="math notranslate nohighlight">
+\[V_{total} = V_{bonded} + V_{cross-terms} + V_{non-bonded}\]</div>
 <p>where</p>
-<p><em>V(bonded) = V(bond) + V(angle) + V(torsion) + V(improper) + V(UB)</em></p>
-<p><em>V(cross-terms) = V(bond1, bond2) + V(bond, angle) + etc.</em></p>
-<p><em>V(nonbonded) = V(vdw) + V(coulombic)</em></p>
+<div class="math notranslate nohighlight">
+\[V_{bonded} = V_{bond} + V_{angle} + V_{torsion} + V_{improper} + V_{UB}\]</div>
+<div class="math notranslate nohighlight">
+\[V_{cross-terms} = V_{bond1,bond2} + V_{bond,angle} + \cdots\]</div>
+<div class="math notranslate nohighlight">
+\[V_{non-bonded} = V_{vdW} + V_{Coulombic}\]</div>
 <img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
-<p>Below shows a list of typical functional forms representing a range of interaction components.</p>
-<ol class="loweralpha simple">
-<li>Bond interaction, <em>V(bond)</em></li>
+<p>Below is a list of typical functional forms representing a range of interaction components.</p>
+<ol class="loweralpha">
+<li><p class="first">Bond interaction, <span class="math notranslate nohighlight">\(V_{bond}\)</span></p>
+<a class="reference internal image-reference" href="../../_images/ff5_1.png"><img alt="Harmonic bond interaction." class="align-center" src="../../_images/ff5_1.png" style="width: 334.1px; height: 66.3px;" /></a>
+<p>where <span class="math notranslate nohighlight">\(b_0\)</span> represents the equilibrium bond length and <span class="math notranslate nohighlight">\(b\)</span> is the bond distance (at a given moment during the MD simulation).</p>
+</li>
+<li><p class="first">Angle interaction, <span class="math notranslate nohighlight">\(V_{angle}\)</span></p>
+<a class="reference internal image-reference" href="../../_images/ff5_2.png"><img alt="Harmonic angle interaction." class="align-center" src="../../_images/ff5_2.png" style="width: 369.2px; height: 98.15px;" /></a>
+<p>where <span class="math notranslate nohighlight">\(\theta_0\)</span> represents the equilibrium angle.</p>
+</li>
+<li><p class="first">Dihedral interaction, <span class="math notranslate nohighlight">\(V_{torsion}\)</span></p>
+<a class="reference internal image-reference" href="../../_images/ff5_3.png"><img alt="Fourier cosine dihedral interaction." class="align-center" src="../../_images/ff5_3.png" style="width: 479.05px; height: 89.05px;" /></a>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is the dihedral constant, or torsion barrier, <span class="math notranslate nohighlight">\(n\)</span> is the periodicity and <span class="math notranslate nohighlight">\(\delta\)</span> is the phase shift.</p>
+</li>
+<li><p class="first">Cross terms, for example bond-angle, <span class="math notranslate nohighlight">\(V_{bond, angle}\)</span></p>
+<a class="reference internal image-reference" href="../../_images/ff5_6.png"><img alt="Fourier cosine bond-angle interaction." class="align-center" src="../../_images/ff5_6.png" style="width: 492.05px; height: 105.3px;" /></a>
+</li>
+<li><p class="first">Electrostatic, <span class="math notranslate nohighlight">\(V_{Coulombic}\)</span></p>
+<a class="reference internal image-reference" href="../../_images/ff5_4.png"><img alt="Coulombic electrostatic interaction." class="align-center" src="../../_images/ff5_4.png" style="width: 316.55px; height: 73.45px;" /></a>
+</li>
+<li><p class="first">Dispersive, <span class="math notranslate nohighlight">\(V_{vdW}\)</span></p>
+<a class="reference internal image-reference" href="../../_images/ff5_5.png"><img alt="Lennard-Jones 12-6 van der Waals interaction." class="align-center" src="../../_images/ff5_5.png" style="width: 329.55px; height: 83.2px;" /></a>
+</li>
 </ol>
-<a class="reference internal image-reference" href="../../_images/ff5_1.png"><img alt="harmonic bond interaction" class="align-center" src="../../_images/ff5_1.png" style="width: 334.1px; height: 66.3px;" /></a>
-<p>where b <sub>0</sub> represents the equilibrium bond length and b is the bond distance.</p>
-<ol class="loweralpha simple" start="2">
-<li>Angle interaction, <em>V(angle)</em></li>
-</ol>
-<a class="reference internal image-reference" href="../../_images/ff5_2.png"><img alt="harmonic angle interaction" class="align-center" src="../../_images/ff5_2.png" style="width: 369.2px; height: 98.15px;" /></a>
-<p>where <span class="math notranslate nohighlight">\({\theta}\)</span><sub>0</sub> represents the equilibrium angle.</p>
-<ol class="loweralpha simple" start="3">
-<li>Dihedral interaction, <em>V(torsion)</em></li>
-</ol>
-<a class="reference internal image-reference" href="../../_images/ff5_3.png"><img alt="Fourier cosine" class="align-center" src="../../_images/ff5_3.png" style="width: 479.05px; height: 89.05px;" /></a>
-<p>where k is the dihedral constant, or torsion barrier, n is the periodicity and <span class="math notranslate nohighlight">\({\delta}\)</span> is the phase shift.</p>
-<ol class="loweralpha simple" start="4">
-<li>Cross terms, for example bond-angle, <em>V(bond, angle)</em></li>
-</ol>
-<a class="reference internal image-reference" href="../../_images/ff5_6.png"><img alt="Fourier cosine" class="align-center" src="../../_images/ff5_6.png" style="width: 492.05px; height: 105.3px;" /></a>
-<ol class="loweralpha simple" start="5">
-<li>Electrostatic, <em>V(coulombic)</em></li>
-</ol>
-<a class="reference internal image-reference" href="../../_images/ff5_4.png"><img alt="Coulombic electrostatic" class="align-center" src="../../_images/ff5_4.png" style="width: 316.55px; height: 73.45px;" /></a>
-<ol class="loweralpha simple" start="6">
-<li>Dispersive, <em>V(vdw)</em></li>
-</ol>
-<a class="reference internal image-reference" href="../../_images/ff5_5.png"><img alt="Coulombic electrostatic" class="align-center" src="../../_images/ff5_5.png" style="width: 329.55px; height: 83.2px;" /></a>
 <p><a class="reference internal" href="#header-ff5"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 
@@ -101,6 +101,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>

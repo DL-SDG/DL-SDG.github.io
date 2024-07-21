@@ -12,7 +12,7 @@ What is DL_FIELD
 
 **DL_FIELD program**
 
-The DL_FIELD project was initiated by Chin Yong to address the needs of CCP5 users to facilitate the construction of |pop1| models for use in DL_POLY. DL_FIELD was first released in October 2010 (version 1.0). At the time of this writing, the latest version 4.9 was released in November 2022 with over 1500 registered users.
+The DL_FIELD project was initiated by Chin Yong to address the needs of CCP5 users to facilitate the construction of |pop1| models for use in DL_POLY. DL_FIELD was first released in October 2010 (version 1.0). The latest version 4.11 is released in August 2024. For the first time, this version can also setup FF files for Gromacs simulation software.
 
 DL_FIELD is a computer program package written in C that primarily serves as a support application software tools for DL_POLY molecular dynamics (MD) simulation package. It is a useful application tool to enchance the usability of DL_POLY and to facilitate the use of a wide range of advanced features included in the DL_POLY program.
 
@@ -22,6 +22,8 @@ DL_FIELD is a computer program package written in C that primarily serves as a s
 **Functions**
 
 * Force field model convertor - converts users' system configurations into *CONFIG* and *FIELD* files that are recognisable to run in DL_POLY_2.19, DL_POLY_3 and DL_POLY_4 programs. 
+
+* Converts users' system configurations into ready-to-run Gromacs *itp*, *top*, *gro* files.
 
 * Force field model editor: allows users to edit, modify or customise force field (FF) models. 
   
@@ -34,7 +36,7 @@ DL_FIELD is a user friendly tool to automate the molecular information processin
 .. image:: ../../image/dl_f_1_1.png
    :scale: 50%
    :align: center
-   :alt: DL_FIELD concept development
+   :alt: DL_FIELD concept development  
 
 The usual approach follows the diagram on the left. Begin with a user configuration, a program script is used to convert the configuration model into FF model A for MD software A. Other program scripts would be needed to convert into FF model B, either to run in the same software or another MD software. Quite often, different program scripts were developed by third parties and conversion may involve multiple processes.
 
@@ -45,7 +47,7 @@ DL_FIELD uses a more direct approach as shown in the diagram on the right. It us
 
 **Capabilities**
 
-* Able to read user configurations in PDB, xyz and mol2 formats. 
+* Read user configurations in PDB, xyz and mol2 formats. 
 
 * Assign freeze, tether, rigid and bond constrains to atoms. 
 
@@ -63,11 +65,13 @@ DL_FIELD uses a more direct approach as shown in the diagram on the right. It us
 
 * Solution Maker - molecular duplicate feature to set up liquid and solution models.
 
-* Running DL_POLY (via *fork* process) within DL_FIELD.
+* Running DL_POLY and Gromacs within DL_FIELD.
 
 * **Universal atom typing (DL_F Notation)** - a single conversion kernel embeded within DL_FIELD that is applicable to a wide range of FF schemes, with automatic atom typing capability.
 
 * **Multiple-potential capability** - enable mixing of various FF schemes, including those of organic and inorganic components (bio-inorganic models).
+
+* Third-party force field file format (CHARMM's rtf, psf) conversions to *udff*. 
 
 Features appear in bold are unique to DL_FIELD.
 
