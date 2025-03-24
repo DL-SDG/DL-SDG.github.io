@@ -1,0 +1,22 @@
+.. D_ATA tutorial.
+.. _Header_data_4:
+
+.. |br| raw:: html
+
+   <br />
+
+***********************
+The CONTROL_FILE
+***********************
+
+D_ATA operations can be controlled through a number of selectable options defined in the CONTROL_FILE. It has a default filename *d_ata.control* and contain all possible options. Each option contains a brief description how it is used and possible input values for each option.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+Below shows an illustration how a typical CONTROL_FILE looks like.
+
+.. image:: ../../image/data_4_1.png
+   :scale: 90%
+   :align: center
+
+:ref:`^ GO TO TOP ^<Header_data_4>`

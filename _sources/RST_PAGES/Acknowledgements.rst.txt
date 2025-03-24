@@ -9,9 +9,9 @@ We would like to thank all contributors to the DL_Software Digital Guide, and ho
 
 If you have any comments, suggestions, or anything to contribute, please email me (Chin Yong).
 
-* `Chin Yong <https://www.scd.stfc.ac.uk/Pages/Chin-Yong.aspx>`_ Originator of DL_SDG concept, author and compositor of the Digital Guide and design consultant. Main contributor to DL_FIELD and DL_ANALYSER contents.
+* `Chin Yong <https://www.scd.stfc.ac.uk/Pages/Chin-Yong.aspx>`_ Originator of DL_SDG concept, author and compositor of the Digital Guide and design consultant. Main contributor to DL_FIELD, D_ATA and DL_ANALYSER contents.
   
-* `Dawn Geatches <https://www.scd.stfc.ac.uk/Pages/Dawn-Geatches.aspx>`_ Author and compositor, who had designed the original framework for DL_SDG.
+* Dawn Geatches. Author and compositor, who had designed the original framework for DL_SDG.
 
 * `Ilian Todorov <https://www.scd.stfc.ac.uk/Pages/Ilian-Todorov.aspx>`_ Originator of DL_SDG concept.
  

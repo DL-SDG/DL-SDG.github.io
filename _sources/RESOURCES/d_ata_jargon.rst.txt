@@ -1,0 +1,45 @@
+.. D_ATAS jargon. 
+
+*******
+Jargons
+*******
+
+Below shows definitions that are relevant to D_ATA.  
+
+* DANAI – Acronym for DL_ANALYSER Notation for Atomic Interactions. It is a standard expression or Chemistry-based language construct to describe nonbonded interactions at a local level. A DANAI statement contains information about the Atomic species involve, the extent of interactions and the overall topological structure of Atoms involve in these interactions.
+
+|
+
+* DL_F Notation – Acronym for DL_FIELD Notation. It is a standard notation for an atom that contains information about its chemical characteristics within a molecule. All atoms in the system are described in DL_F Notation and shown in *d_ata.csf* file.
+
+|
+
+* Exclusive atom – Atoms expressed in a DANAI statement that only participates in a non-bonded interaction with other atoms as indicated in a DANAI statement. There is no other similar type of interaction occurs with other DL_F Atoms that are not indicated in the DANAI statement. The participating atoms are expressed in capital letters. For instance: C1p, O20E, etc.
+
+|
+
+* Non-exclusive atom - an atom that participates in a type of non-bonded interaction with other atoms as indicated in a DANAI statement, and with other atoms that are not shown in the statement. The participating atoms are expressed in small letters. For instance: c1p, o20E, etc.
+
+|
+
+Diagram below shows two molecules with carboxylic acid groups. The DANAI statement [L2]o20E:H20O showns the hydrogen atom H20O forms hydrogen bond with the carbonyl oxygen, O20E. In the DANAI statment, the interacting hydrogen atom is an *exclusive atom*, that only interacts with the oxygen atom. Whereas, the oxygen atom is a *non-exclusive atom* that not only interact with the hydrogen as shown in the DANAI statement but also interact with some other hydrogen atoms (not shown but indicates as green dotted line).
+
+The solid box indicates the interaction extent as describe by the DANAI statement. The labels O20E (or o20E) and H20O are atom labels in DL_F Notation.
+
+.. image:: ../image/dla_9_3.png
+   :align: center
+   :scale: 50%
+
+|
+
+* Chemical Group (CG) - A group consists of at least one or more connecting atom members that made up the chemical characteristic behaviour that is distinguished from other atom groups. For example, *carboxylic* is a Chemical Group, which consists of four atoms: carbonyl carbon (C20), carbonyl oxygen (O20E), hydroxyl oxygen (O20L) and hydroxyl hydrogen (H20O). The value '20' is called the Chemical Group Index (CGI), which is the unique numerical value for the CG. 
+
+|
+
+* Macro-interaction – A general, overall interaction between two Chemical Groups. For example, to describe collectively hydrogen bond interactions between carboxylic and alcohol CGs is expressed as HB_15_20, where 15 is the CGI for alcohol and 20 is the CGI for carboxylic.
+
+|
+
+* Micro-interaction – A specific mode of interaction within a macro-interaction. In DANAI, a micro-interaction essentially consists of topological description and number of CGs involve in the interaction and the atomic species (expressed as DL_F Notation atom keys) involve in such interaction. The DANAI statement as shown above is one such micro-interaction, for macro-interaction between two carboxylic CGs.
+
+

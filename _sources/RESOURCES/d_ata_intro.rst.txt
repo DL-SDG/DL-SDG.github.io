@@ -1,0 +1,44 @@
+.. main portal to D_ATA 
+.. _d_ata_intro:
+
+*****
+D_ATA
+*****
+
+This section provides only a summary of D_ATA (Atom Typer and Analyser) features and capabilities. For more detailed descriptions of solftware usage, please refer to :doc:`TUTORIALS/data_0`.
+
+.. image:: ../image/6_22.jpg
+   :scale: 25%
+   :align: right
+
+**Table of Content**
+
+.. toctree::
+   :maxdepth: 2
+
+   ./d_ata_howto
+   ./d_ata_jargon
+
+|
+
+D_ATA (Atom Typer and Analyser) is the latest edition to the DL_software family and it is a software analysis tool to classify, identify, annotate and
+quantify atomic interactions.
+
+**Functions**
+
+1. Identification and annotation of the chemical nature of constituent atoms in molecular systems (Typer).
+
+2. Identification and annotation of atomic and molecular non-bonded interactions in the system (Typer and Analyser).
+
+3. Quantification of non-bonded interactions to rationalise the roles these interactions play in the molecular systems (Analyser).
+
+4. Characterisation of geometrical orientation of interactions (Analyser).
+
+
+**Unique features**
+
+1. Universal atom typing (DL_F Notation), as implemented in DL_FIELD.
+
+2. Consistent expression syntax for atomic interactions (DANAI), as partially implemented in DL_ANALYSER. 
+
+D_ATA is in fact a product combination of these unqiue features.

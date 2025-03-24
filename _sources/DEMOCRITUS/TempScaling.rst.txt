@@ -1,0 +1,13 @@
+===================
+Temperature Scaling
+===================
+
+Temperature scaling is one of the "tricks of the trade" employed in molecular dynamics to drive a simulation towards the desired system temperature.
+
+It is well known in physics that the system temperature and the system average kinetic energy are essentially the same. The connection between the two is given by the following equation:
+
+K=dkT/2
+
+In which: K is the average kinetic energy per atom; d is the system dimension (i.e. d=3 for a 3-dimensional system, d=2 for the two dimensional Democritus model); k is a conversion factor known as Boltzmann's constant; and T is the temperature in Kelvin. In a molecular dynamics simulation it is easy to calculate the atomic kinetic energy at any given time step - it is half the atom's mass times its velocity squared. The average for all atoms is trivially obtained. The allows the instantaneous temperature to be calculated with the above formula. If it turns out this temperature is not the temperature required, we can simply multiply the velocity of every atom by the square root of (To/T), where To is the required temperature. We can apply this rescaling at regular intervals during the equilibration period, and so drive the simulation consistently towards the desired temperature.
+
+This is the simplest form of temperature scaling, but it is adequate for the purpose of achieving the required temperature. There are much more subtle methods for controlling temperature in a simulation, which do not have such a drastic effect on the molecular motion. Deriving and proving such methods is an active area of research.

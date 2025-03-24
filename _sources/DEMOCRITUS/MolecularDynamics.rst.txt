@@ -1,0 +1,14 @@
+==================
+Molecular Dynamics
+==================
+
+**What is Molecular Dynamics?**
+
+Molecular dynamics is a powerful method for exploring the structure of solids, liquids and gases. Though a very modern method, requiring electronic computers, it would not have appeared strange to Isaac Newton, the founder of modern physical science. The idea is a simple one: calculate the forces acting on the atoms in a molecular system and analyse their motion. When enough information on the motion of the individual atoms has been gathered, it is possible to condense it all using the methods of statistical mechanics to deduce the bulk properties of the material. These properties include the structure (e.g. crystal structure, predicted x-ray and neutron diffraction patterns), thermodynamics (e.g. enthalpy, temperature, pressure) and transport properties (e.g. thermal conductivity, viscosity, diffusion). In addition molecular dynamics can be used to investigate the detailed atomistic mechanisms underlying these properties and compare them with theory. It is a valuable bridge between experiment and theory. 
+
+.. toctree::
+   :maxdepth: 4
+   
+   ./StatisticalMechanics
+   ./HowMD
+   ./Calculations

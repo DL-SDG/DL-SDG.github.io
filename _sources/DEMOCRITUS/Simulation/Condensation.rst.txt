@@ -1,0 +1,44 @@
+************
+Condensation
+************
+
+.. raw:: html
+
+   <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+       <script id="cdd558b2-f5fe-43cf-b738-471484f82b86">
+            (function() {
+                const xhr = new XMLHttpRequest()
+                xhr.responseType = 'blob';
+                xhr.open('GET', "http://localhost:5006/experiment2and3/autoload.js?bokeh-autoload-element=cdd558b2-f5fe-43cf-b738-471484f82b86&bokeh-app-path=/experiment2and3&bokeh-absolute-url=http://localhost:5006/experiment2and3", true);
+                xhr.onload = function (event) {
+                const script = document.createElement('script');
+                const src = URL.createObjectURL(event.target.response);
+                script.src = src;
+                document.body.appendChild(script);
+                };
+                xhr.send();
+            })();
+        </script>
+    </div>
+
+**Condensing a gas at low temperature**
+
+This fascinating experiment explores what happens when the temperature of a gas is reduced below the boiling point. As you may have gathered from previous experiments, when the temperature is low, the attractive forces between molecules dominate over their kinetic energy. We expect molecules to undergo condensation i.e. form a liquid from a gas. But how does this take place? 
+
+**Lower the density of the system to a minimum**
+
+You can do this by moving the density slider to the far left.
+We wish to start with a system that most resembles a gas.
+
+**Now decrease the temperature drastically**
+
+Move the temperature slider far to the left. Try not to take it down right to the bottom.
+The atoms slow down almost to zero motion. The system must now be left for approximately 30 minutes. Come back at 10-minute intervals and see what is happening. 
+
+**What has happened to the system?**
+
+If the experiment has worked correctly, atoms will have collected together in groups. How many groups do you have? Would the groups join together if you left it for longer? (Try it if you have time!)
+Look closely at each group and see if the atoms form ordered structures or disordered structures. What do you think these groups of atoms represent? Why have they formed? 
+If we were simulating water, what do you think the different groups would represent? 
+If all you see are ordered structures, try increasing the temperature by a very small amount. Alternatively, repeat the experiment but do not drop the temperature so far.
+ 

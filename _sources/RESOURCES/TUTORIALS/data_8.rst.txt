@@ -1,0 +1,27 @@
+.. D_ATA tutorial.
+.. _Header_data_8:
+
+.. |br| raw:: html
+
+   <br />
+
+**********************************
+Pentanoic acid liquid (output)
+**********************************
+
+During program run, analysis progress is shown at the screen output and the progress report output file, *d_ata.output*.
+
+Below shows an example of output screen.
+
+.. image:: ../../image/data_8_1.png
+   :scale: 90%
+   :align: center
+
+The output file provides general information and analysis status, including control options selected by the user. The file is located at the OUTPUT_PATH folder.
+The file also includes system information such as types of molecules identified, relevant Chemical Groups present in the system and types of interaction would be identified. An example of the output is shown below:
+
+.. image:: ../../image/data_8_2.png
+   :scale: 90%
+   :align: center
+
+:ref:`^ GO TO TOP ^<Header_data_8>`

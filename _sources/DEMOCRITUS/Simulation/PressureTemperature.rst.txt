@@ -1,0 +1,49 @@
+************************
+Pressure and Temperature
+************************
+
+.. raw:: html
+
+   <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+        <script id="f72bccfb-4b4b-427f-a764-6bcb474d1717">
+            (function() {
+                const xhr = new XMLHttpRequest()
+                xhr.responseType = 'blob';
+                xhr.open('GET', "http://localhost:5006/experiment1and8/autoload.js?bokeh-autoload-element=f72bccfb-4b4b-427f-a764-6bcb474d1717&bokeh-app-path=/experiment1and8&bokeh-absolute-url=http://localhost:5006/experiment1and8", true);
+                xhr.onload = function (event) {
+                const script = document.createElement('script');
+                const src = URL.createObjectURL(event.target.response);
+                script.src = src;
+                document.body.appendChild(script);
+                };
+                xhr.send();
+            })();
+        </script>
+    </div>
+
+**Background**
+
+The variation of pressure with temperature has been important in engineering since the advent of the steam engine. For an ideal gas, this is adequately described by the Universal Gas Law ( PV = nRT ), according to which pressure increases linearly with temperature for a sample of gas at fixed volume. However the Universal Gas Law does not apply to real gases close to liquification nor to liquids themselves. In both these circumstances intermolecular forces are very important, while the are negligible or small in most gases. In this experiment you will investigate how pressure varies with temperature in a system which includes interatomic forces. 
+
+**Set the density slider to the middle and the temperature slider to maximum**
+
+We start at maximum temperature because then we are dealing with a gas which means that the simulation should most closely resemble an ideal gas.
+
+**Leave it for a few minutes until the pressure stays reasonably constant.**
+
+The pressure is computed as a "rolling average", which is an average over time taken from the start of the experiment. So as time passes it will converge to the true average value. You want a converged value in order to keep the errors of your measurements to a minimum. Make a note of the pressure and the temperature.
+
+**Decrease the temperature a little, wait, and take another measurement.**
+
+What has happened to the pressure? Is this what you would expect from the ideal gas law?
+
+**Repeat the above, steadily decreasing the temperature to zero.**
+
+You should collect a set of data measuring pressure against temperature. Try to get at least 7 or 8 points.
+
+**Draw a plot of pressure against temperature.**
+
+According to the Universal Gas Law this plot should be a straight line. Remember the Universal Gas Law assumes there are no forces between molecules, however if intermolecular forces are present, the plot need not be straight. You should find that your plot departs from a straight line. The departure should be greatest at low temperature, but you will find that it is not completely straight even at relatively high temperatures. At low temperature is the pressure more or less than predicted by the Universal Gas Law? Can you explain your results in terms of intermolecular forces?
+Repeat the experiment at different densities and see if you get comparable results.
+At low temperatures you may find the pressure goes negative. Why do you think this is?
+ 

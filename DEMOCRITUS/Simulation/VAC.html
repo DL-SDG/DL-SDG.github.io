@@ -1,0 +1,115 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Velocity Autocorrelation Function &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="velocity-autocorrelation-function">
+<h1>Velocity Autocorrelation Function<a class="headerlink" href="#velocity-autocorrelation-function" title="Permalink to this headline">¶</a></h1>
+<div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+     <script id="a53fb2e7-baf4-4586-90e4-4b09b9aca884">
+         (function() {
+             const xhr = new XMLHttpRequest()
+             xhr.responseType = 'blob';
+             xhr.open('GET', "http://localhost:5006/experiment6/autoload.js?bokeh-autoload-element=a53fb2e7-baf4-4586-90e4-4b09b9aca884&bokeh-app-path=/experiment6&bokeh-absolute-url=http://localhost:5006/experiment6", true);
+             xhr.onload = function (event) {
+             const script = document.createElement('script');
+             const src = URL.createObjectURL(event.target.response);
+             script.src = src;
+             document.body.appendChild(script);
+             };
+             xhr.send();
+         })();
+     </script>
+ </div><p><strong>Understanding the VAC</strong></p>
+<p>The Velocity Autocorrelation Function (VACF) provides a means of investigating collision processes in molecular systems. Like the mean square displacement, it can also provide information about diffusion. It is capable of distinguishing between solids, liquids and gases from their molecular motion and it reveals the timescales on which molecular collisions occur. This experiment will show what a VACF looks like and how it is related to the molecular dynamics.</p>
+<p><strong>Try this simple experiment first</strong></p>
+<p>Click on one of the atoms in the molecular dynamics engine and watch that atom for several minutes. Watch carefully what happens to the velocity of an atom during a collision. You will find that there are many possible outcomes. We need is a way to describe what the average result of such collisions is. Think about what an average might be like and what it might tell us about the system in general.</p>
+<p>ON the right is a real-time plot of the velocity autocorrelation function will appear. The horizontal axis measures time and the vertical axis is the VAC function.</p>
+<p><strong>Leave it for a minimum of 15 minutes to “settle”.</strong></p>
+<p>Like the mean square displacement, the VAC is an average. It is averaged over many atoms (and also over time). We must let the simulation run for a period to accumulate an accurate result. You will see that at first the plot is very inaccurate, but the accuracy improves each time the plot is refreshed and eventually changes very little between refreshes.</p>
+<p><strong>What is the shape of the plot?</strong></p>
+<p>The VAC plot can take a number of forms. It always begins with a value of 1 (this is a mathematical convention) and then it falls towards zero at longer time. The rate of fall and whether or not it crosses the time axis, and how many times it crosses it, differ for solids, liquids, and gases. You should note the shape of the plot you have obtained for comparison with later experiments. Does it cross the time axis? Try and measure where this happens. Does it go to zero at long time? (The faster this happens, the faster an average molecule loses energy to the other molecules in the system through mutual interaction).</p>
+<p><strong>Try it again with a different density.</strong></p>
+<p>Changing the density will produce a different VAC function. When you go from high to low density, what happens to the position at which the VAC function first becomes zero? Does it move away from or towards the origin?
+When the VAC function first becomes zero, this is the moment where molecules (on average) start to recoil from the collision. What does the result you have obtained tell you about the time between collisions? Can you make sense of this in terms of the change in density?</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RESOURCES/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RESOURCES/SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RESOURCES/knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

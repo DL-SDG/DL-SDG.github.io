@@ -1,0 +1,36 @@
+=======================
+Lennard-Jones Potential
+=======================
+
+The Lennard-Jones function is a very famous empirical function in molecular dynamics. It is an approximate function which describes the energy of interaction between two rare gas atoms as a function of the distance between their centres. As such it is a model for all interatomic pair potentials. Its simplicity and accuracy make it highly suitable for molecular dynamics simulations. The form of the function (V(r)) is given by:
+
+*add equation*
+
+In which r is the interatomic separation, epsilon is the energy constant (or well depth) and sigma is effectively the diameter of one of the atoms. A plot of this function shows a number of important characteristics:
+
+*add image*
+
+At short range (small r) the potential energy is very large and positive, revealing that this is a very unfavourable arrangement of the atoms (it indicates that the two atoms are strongly overlapping). At long range the potential energy is small and negative. This indicates that at this range the pair of atoms experiences a stabilising influence. (In fact this corresponds to the London dispersion energy, caused by a subtle form of electrical attraction known as the instantaneous dipole-dipole interaction). At a separation slightly greater than sigma, the energy is at a minimum. This where the atom pair is stable, and will be content to remain in this position until some external influence disturbs them. The basic shape of this curve is common to almost all empirical potentials and captures the essentials of interatomic (nonbonding) forces. This type of potential was anticipated by van der Waals in his famous gas equation.
+
+We can use the potential energy function to calculate the force between the atoms. Mathematically this is given by the negative of the first derivative of the function - in other words the negative of the slope of the graph at all points. Such a derivation shows that when the atoms are close the force is repulsive, at long range it is attractive, and at the energy minimum, the force is zero - as expected! The mathematical form of the force is as follows:
+
+*add equation*
+
+Note that the force F is a vector, with components in three directions: X,Y,Z. This is quite different from the potential function, which is a scalar and has only one value for each distance r. This is one reason why it is more convenient to work with potential functions rather than force laws.
+
+The underlying potential energy function in the program Democritus is a variant of the Lennard-Jones potential called the Shifted force potential, which has special advantages in simulations where the potential energy function and associated forces are truncated at some prescribed interatomic separation (i.e. a spherical cut off is applied).
+
+The Shifted Force Lennard-Jones Potential
+-----------------------------------------
+
+The shifted force form of the Lennard-Jones potential energy function is sometimes used when a distance cut off is applied. This is because the imposition of the cut off gives rise to a break in the continuity of the function at the cut off separation - which causes a small step in the energy function as atoms move in and out of the cut off. This has two consequences:
+
+firstly the energy conservation of the simulation is affected, and the simulation shows small 'jumps' in energy as time progresses;
+secondly the force between the atoms also shows a small step at the cut off, and this can give rise to anomalous structural features when the system structure is later analysed.
+Usually these effects do not show up to a great degree, because the cut off is chosen to make the energy and force steps extremely small, but theorists concerned with extreme accuracy, prefer to eliminate them altogether by adding a truncation function.
+The concept of a truncation function is a simple one, and may be applied to any potential energy function. All that is required is that two terms are added to the potential funtion. One is a constant multiplied by r and the other is a plain constant as shown below, where alpha and beta are the constants.
+
+*add equation*
+
+These constants are easy to derive. The constant alpha is chosen firstly so that the force at the cut off separation is zero (in other words the slope of the whole function at the cutoff is zero). The constant beta is then chosen so that the whole potential function (including the alpha term) is zero at the cut off. This is the simplest form of shifted force function. Other forms can be derived which ensure other features of the potential function are retained exactly, such as the location of the equilibrium separation.
+

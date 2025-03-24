@@ -1,0 +1,43 @@
+****************************
+Radial Distribution Function
+****************************
+
+.. raw:: html
+
+   <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+        <script id="c2b24637-ea7b-48f1-8c87-45e744cf0dc3">
+            (function() {
+                const xhr = new XMLHttpRequest()
+                xhr.responseType = 'blob';
+                xhr.open('GET', "http://localhost:5006/experiment4/autoload.js?bokeh-autoload-element=c2b24637-ea7b-48f1-8c87-45e744cf0dc3&bokeh-app-path=/experiment4&bokeh-absolute-url=http://localhost:5006/experiment4", true);
+                xhr.onload = function (event) {
+                const script = document.createElement('script');
+                const src = URL.createObjectURL(event.target.response);
+                script.src = src;
+                document.body.appendChild(script);
+                };
+                xhr.send();
+            })();
+        </script>
+    </div>
+
+**Understanding the RDF**
+
+The Radial Distribution Function (RDF) is an effective way of describing the average structure of disordered molecular systems such as liquids, but it is also helpful when looking at diordered (and ordered) solids. If you look at the atoms in the MD Engine, you can see how complicated the structure appears in terms of the atom positions and how they change withtime. One way in which we can analyse such structures effectively is to imagine how the average structure looks from the point of view of a single reference atom; this average is over time and over the other atoms in the system. The reference atom is effectively regarded as being in the centre of the structure. This experiment shows how the RDF is built up over time, during the course of a molecular dynamics simulation. 
+
+On the right a real-time plot of the radial distribution function will appear. The horizontal axis represents distance i.e. the separation between the atoms, while the vertical axis is the RDF itself. At first the function will appear very rough.
+
+**Leave it for a minimum of 15 minutes to "settle".**
+
+Since the RDF is an average over time, we must let the simulation run for a period to accumulate an accurate picture. The statistical accuracy of the RDF builds up as the simulation proceeds, so the function becomes smoother with time. After a while, the structure settles down and very distinctive peaks appear.
+
+**Try and account for the shape and size of the peaks.**
+
+The peaks describe how the atoms pack around a reference atom. All the dynamic information is "washed out" and we are left with an average "static" structure. The peaks appear at different distances from the reference atom because they form "shells" around it. The position and height of the peaks is a very strong clue to the structure of the system. The RDF in crystalline solids ignores the directional properties of the structure but gives an accurate description of interatomic distances. The width of the peaks for solids and liquids depends on temperature. The peaks for crystals are sharp because crystals generally exist at lower temperatures than liquids. Why do you think the heights of the peaks vary?
+
+**Try it again with a different temperature and density.**
+
+Changing the temperature and / or density will show how the RDF reflects the new structure. You will notice that the peaks will be broader at higher temperatures, and narrower at lower temperatures. Can you explain why? Try simulating a cold, high density system and explain the shape of the RDF you obtain. 
+Have you noticed that whatever you do, the RDF is zero at small separations? Can you guess why? (Hint: look at the atoms in the MD Engine, do the centers of the atoms ever co-incide?)
+
+ 

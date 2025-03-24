@@ -1,0 +1,40 @@
+******************************
+Temperature and Kinetic Energy
+******************************
+
+.. raw:: html
+
+   <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+       <script id="e012dfaf-76a0-4a41-8621-3f477e047c1b">
+            (function() {
+                const xhr = new XMLHttpRequest()
+                xhr.responseType = 'blob';
+                xhr.open('GET', "http://localhost:5006/experiment1and8/autoload.js?bokeh-autoload-element=e012dfaf-76a0-4a41-8621-3f477e047c1b&bokeh-app-path=/experiment1and8&bokeh-absolute-url=http://localhost:5006/experiment1and8", true);
+                xhr.onload = function (event) {
+                const script = document.createElement('script');
+                const src = URL.createObjectURL(event.target.response);
+                script.src = src;
+                document.body.appendChild(script);
+                };
+                xhr.send();
+            })();
+        </script>
+    </div>
+
+**What is temperature?**
+
+In this experiment you will investigate the meaning of temperature. Temperature is a familiar property of all bulk matter, but what does this mean at the molecular level? What property do molecules possess that can be interpreted as temperature? How can we recognise when molecular systems are 'hot' or 'cold'? Find out with this simple experiment. 
+
+**Using the scrollbar on the engine, lower the temperature**
+   
+As you lower the temperature, you can see the atoms starting to lose speed.
+If you lower the temperature too much, they become almost stationary.
+
+**Now try increasing the temperature again**
+   
+The atoms pick up speed again!
+
+**What do you think is happening?**
+   
+There must be a relationship between the temperature and the speed of the atoms. When atoms are moving, they possess a form of energy which is called kinetic energy.
+It seems that the higher the temperature is, the more kinetic energy they possess. 

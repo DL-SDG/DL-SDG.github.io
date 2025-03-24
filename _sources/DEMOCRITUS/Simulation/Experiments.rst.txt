@@ -1,0 +1,49 @@
+**********
+Simulation
+**********
+
+Below this text you will find the molecular dynamics simulation engine. It is a two-dimensional simulation of 25 atoms, displayed as elastic discs.
+
+On the following pages you will be guided through several experiments that allow you to interact with the simulation in different ways and observe the effects on the system.
+
+The lighter shade of atom reflects that it is an atom that is moving across the periodic boundary condition. If you click on an atom, it changes colour, making it easier for you to track its movement in the simulation area. If you click on an atom near the edge of the area as it it exiting, you can see it appears on the other side. This illustrates the imposed periodic boundary conditions. 
+
+The simulation starts with a certain density and temperature, but you can change that by using the two horizontal sliders labelled "Den" and "Tem". Also, at any time during the simulation, you can monitor the pressure and the total energy of the molecular system, which appear in the labelled windows. 
+
+There are also three fundamental statistical functions that can be calculated and drawn in real time, activated by buttons: the radial distribution function, the mean squared displacement, and the velocity autocorrelation function. You will have an opportunity to test these in the experiment section
+
+
+.. raw:: html
+
+   <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+      <script id="p1002">
+      (function() {
+         const xhr = new XMLHttpRequest()
+         xhr.responseType = 'blob';
+         xhr.open('GET', "http://localhost:5006/noInteraction/autoload.js?bokeh-autoload-element=p1002&bokeh-app-path=/noInteraction&bokeh-absolute-url=http://localhost:5006/noInteraction", true);
+         xhr.onload = function (event) {
+            const script = document.createElement('script');
+            const src = URL.createObjectURL(event.target.response);
+            script.src = src;
+            document.body.appendChild(script);
+         };
+         xhr.send();
+      })();
+      </script>
+   </div>
+
+**Experiments**
+
+.. toctree::
+   :maxdepth: 2
+
+   Temperature
+   Crystal
+   Condensation
+   RDF
+   MSD
+   VAC
+   PressureDensity
+   PressureTemperature
+   FullSimulation
+

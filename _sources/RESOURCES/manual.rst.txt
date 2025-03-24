@@ -12,10 +12,14 @@ You do the right thing to reach here.
 |
 
 * :download:`The DL_FIELD User Manual <./DOCUMENTS/MAN_DL_FIELD_4.11.pdf>` (Version 4.11 - August 2024)
+
+|
+
+* :download:`The D_ATA User Manual <./DOCUMENTS/MAN_D_ATA_1.0.pdf>` (Version 1.0 - November 2024)
   
 |
 
-* :download:`The DL_ANALYSER User Manual <./DOCUMENTS/MAN_DL_ANALYSER_2.3.pdf>` (Version 2.3 - September 2021)
+* :download:`The DL_ANALYSER User Manual <./DOCUMENTS/MAN_DL_ANALYSER_2.4.pdf>` (Version 2.4 - December 2024)
 
 |
 

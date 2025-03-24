@@ -1,0 +1,60 @@
+.. D_ATA introduction 
+.. _Header_data_1:
+
+.. |pop1| raw:: html
+
+   <a href="dlf_1_force_field.html" onclick="window.open('dlf_1_force_field.html',
+         'newwindow', 'width=500,height=200'); return false;">force field</a>
+
+****************
+What is D_ATA
+****************
+
+**D_ATA program**
+
+In Chemistry, the non-chemical function and behaviour of all molecular materials are underpinned by the strength and directivity of the constituent inter-atomic interactions. D_ATA is developed to identify these interactions, and from such, to classify, annotate and quantify them to provide statistical and structural information of a molecular systems.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+
+**Functions**
+
+D_ATA (DL Atom Typer and Analyser) is the product combination of two unique features implemented in DL_FIELD and DL_ANALYSER respectively:
+
+(1) DL_F Notation - A standard notation to describe chemical identity of an atom.
+
+(2) DANAI - A language construct based on DL_F Notation to describe localised atomic interactions.
+
+From such, D_ATA
+
+* Identify and classify types of non-bonded interactions.
+
+* Quantify interactions and carry out analysis.
+
+* Calculate order parameters or geometrical analysis for different modes of interactions.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+
+**Capabilities**
+
+* Read user configurations in PDB, xyz and Gromacs gro (configuration) formats. 
+
+* Distinguish interactions that occur either within (intra-) or between (inter-) molecules. 
+
+* Can detect HB and HP interactions.
+
+* Investigate topological interacting structures by measuring linearity and triangular order parameters
+
+* Detect interactions involving atoms from up to two different Chemical Groups.  
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**References**
+
+* :doc:`../d_ata_jargon`
+
+* :download:`The D_ATA User Manual <../DOCUMENTS/MAN_D_ATA_1.0.pdf>` (Version 1.0 - November 2024)
+
+
+:ref:`^ GO TO TOP ^<Header_data_1>`

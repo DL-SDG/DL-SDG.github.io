@@ -1,0 +1,22 @@
+===========================
+Newtons Equations of Motion
+===========================
+
+Isaac Newton's equations of motion have been of immense importance in science since first formulated in his famous Principia in 1686. They provide the basis for a dynamical description of matter, which in principle can explain all its physical properties. Their application to molecular systems is the basis of Molecular Dynamics. The laws are as follow:
+
+A body maintains its state of rest or of uniform motion in a straight line, unless acted upon by a force.
+The applied force is equal to the rate of change of momentum of the body. (Momentum is the mass multiplied by the velocity.)
+Two isolated bodies acting upon each other experience equal and opposite forces.
+Law 1 is a definition of what a force is and indicates how we should recognise when a force is acting. Law 2 tells us how we can determine the strength of a force from observation of what it does to a body's motion; alternatively if the force is known, it can be used as a prescription for determining how the body will move (this is precisely what molecular dynamics is concerned with). Law 3 explains how the force between two bodies is to be assigned to each body. In molecular dynamics, the two bodies concerned are, of course, atoms.
+
+To apply Newton's laws to determine the motion of a molecular (or indeed any) system, we must first calculate the forces. In a molecular system, we assume the total force F acting on an atom is the sum of all the forces that the other atoms in the system exert on it. (These are assumed to be derived from an empirical interatomic potential function, such as the :doc:`Lennard-Jones potential. <LennardJones>`) The mathematical form of Law 2 is:
+
+F=ma,
+
+where m is the mass of an atom and a is the acceleration. In differential calculus, the acceleration is related to the velocity, and the velocity to the position through the mathematical process of integration. Much of what is called analytical mechanics is concerned with this integration process. In molecular dynamics it is performed numerically, using an integration algorithm.
+
+.. toctree::
+   :maxdepth: 4
+
+   ./LennardJones
+   ./IntegrationAlgorithms

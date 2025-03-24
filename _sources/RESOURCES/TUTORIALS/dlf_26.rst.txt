@@ -40,7 +40,7 @@ Upon successful FF conversions, DL_FIELD will produce the following files:
 
 (2) One or more include topology files, *gromacsX.itp*, wwhere *X* = 1, 2, 3, ...
 
-(3) A coordinate file, *gromacs.top*.
+(3) A coordinate file, *gromacs.gro*.
 
 (4) A generic MD parameter file, *gromacs.mdp*.
 

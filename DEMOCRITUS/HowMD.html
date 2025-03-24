@@ -1,0 +1,115 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>How is Molecular Dynamics Done? &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="how-is-molecular-dynamics-done">
+<h1>How is Molecular Dynamics Done?<a class="headerlink" href="#how-is-molecular-dynamics-done" title="Permalink to this headline">¶</a></h1>
+<p>In molecular dynamics, the forces between molecules are calculated explicitly and the motion of the molecules is computed with a suitable numerical integration method on a computer. This is nothing more than solving Newton’s equations of motion for the constituent atoms. The starting conditions are the positions of the atoms (taken for example, from a known crystal structure) and their velocities (generated from random numbers and scaled to the desired temperature). Following Newton’s prescription, from the initial positions, velocities and forces, it is possible to calculate the positions and velocites of the atoms at a small time interval (a time step) later. From the new positions the forces are recalculated and another step in time made. The cycle has to be repeated many times in the course of a full simulation, usually for many thousands of time steps. It is worth noting that a single time step is usually of the order of 1 femtosecond (one thousandth of a millionth of a millionth of a second!)</p>
+<p>The figure presents the molecular dynamics procedure in the form of a flow chart. The arrows track the operations that would be performed by a computer program, such as the Democritus program. The central operations which calculate forces, compute the motion of the atoms and perform statistical analysis on each new configuration of atoms, are usually repeated many times, as indicated by the backward flow of the arrows.</p>
+<p>Calculation of the atomic forces in a molecular dynamics simulation is usually the most expensive operation. It is normally assumed that the forces between atoms are pair forces; that is, they act exclusively between pairs of atoms. (Higher order forces, involving three- or four body forces are also sometimes considered -especially in complex molecular structures.) If there are N atoms in the system, there will be at most N(N-1)/2 unique atom pairs, each with an associated force to compute. The time it takes to perform a molecular dynamics simulation on a computer is thus (approximately) proportional to N2. Usually however, a cut-off is applied at a certain interatomic separation, beyond which it is assumed the force is zero. This allows more efficiency in computing the forces, since all atom pairs need no longer be considered.</p>
+<p>The mathematical formula for calculating the forces is almost always based on an empirical potential such as the Lennard-Jones potential. These empirical potentials are mostly obtained by mathematically fitting experimental bulk properties of the material to a theoretical, static model, although theoretical methods are sometimes used, based on quantum theory.</p>
+<p>An important feature of molecular dynamics is a construct known as a periodic boundary condition which makes a small system, composed of a few hundred atoms, function as though it was part of a much larger system. There is thus continuity between the small sample of the system studied and the bulk system, which makes the results representative of the bulk material and not of an isolated (and minute!) piece. Closely allied to this technique is the idea of a minimum image, under which an atom only interacts with one equivalent image of any given atom in the periodic system.</p>
+<p>After commencing a molecular dynamics simulation an equilibration period is necessary, usually lasting a few thousand time steps. During this period the system is coaxed towards the desired thermodynamic state point (defined by temperature and density) by a technique known as temperature scaling. After a sufficient equilibration period the system settles down to the desired condition. Then a production period begins in which the trajectory (or history) of the molecules is stored for later analysis. Many thousands of time steps (perhaps millions) may be needed to derive a statistically accurate description of the phenomenon of interest. The process by which properties of the bulk material are drawn out of the mass of trajectory data is known as ensemble averaging.</p>
+<p>A great advantage of the molecular dynamics method, is that it explictly describes the molecular system as a function of time, this means it can directly calculate time dependent phenomena. The principal means of analysing time dependent behaviour is based on time dependent correlation functions</p>
+<p><em>add image</em></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Newtons.html">Newtons Equations of Motion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="LennardJones.html">Lennard-Jones Potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="LennardJones.html#the-shifted-force-lennard-jones-potential">The Shifted Force Lennard-Jones Potential</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="IntegrationAlgorithms.html">Integration Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="IntegrationAlgorithms.html#the-basic-verlet-algorithm">The Basic Verlet Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IntegrationAlgorithms.html#the-verlet-leapfrog-algorithm">The Verlet Leapfrog Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IntegrationAlgorithms.html#the-velocity-verlet-algorithm">The Velocity Verlet Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pbc.html">Periodic Boundary Conition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TempScaling.html">Temperature Scaling</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES/SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES/knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

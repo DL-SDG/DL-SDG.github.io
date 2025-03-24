@@ -1,0 +1,50 @@
+*****************
+Forming a Crystal
+*****************
+
+.. raw:: html
+
+   <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+       <script id="cdd558b2-f5fe-43cf-b738-471484f82b86">
+            (function() {
+                const xhr = new XMLHttpRequest()
+                xhr.responseType = 'blob';
+                xhr.open('GET', "http://localhost:5006/experiment2and3/autoload.js?bokeh-autoload-element=cdd558b2-f5fe-43cf-b738-471484f82b86&bokeh-app-path=/experiment2and3&bokeh-absolute-url=http://localhost:5006/experiment2and3", true);
+                xhr.onload = function (event) {
+                const script = document.createElement('script');
+                const src = URL.createObjectURL(event.target.response);
+                script.src = src;
+                document.body.appendChild(script);
+                };
+                xhr.send();
+            })();
+        </script>
+    </div>
+
+**How do crystals form?**
+
+In this experiment you will see how molecular dynamics can be used to demonstrate the process of crystallisation. Crystallisation is most commonly seen when water freezes to form ice. This experiment will show how a crystal can be formed in a model system composed of idealised atoms. 
+
+**Using the scrollbar on the engine, increase the density to maximum**
+
+As the density increases, the atoms pack together more closely in the fixed volume.
+This will help speed up the crystallisation process (Why? Do you think this is strictly necessary?) 
+Make a mental note on how the atoms are arranged.
+
+**Now slowly decrease the temperature towards zero**
+
+Ice forms when it's cold! (You may have to wait a few minutes for things to settle down)
+
+**What do you think is happening?**
+
+Firstly you will notice the atoms slow down (why?).
+Pick one atom and look at how the neighbours are packed around it, then pick another atom and do the same. Do you see a pattern emerging? 
+Step back and look at the screen. Do you notice anything significantly different in how all the atoms are arranged?
+
+**Problems?**
+
+Sometimes you can see gaps in the crystal lattice you created, that don't seem to be able to close. These are lattice imperfections, and they are caused mainly by two reasons: 
+
+You froze the crystal too suddenly, and the atoms didn't have time to arrange into a regular structure, and now their kinetic energy is too low to be able to overcome the configurational energy barrier in order to go to the right place.
+
+It has to do with the fact that in this experiment we have a hexagonal structure trying to form in a square box...it can't always find a perfect way to arrange itself. 

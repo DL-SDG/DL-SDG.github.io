@@ -1,0 +1,33 @@
+*********************
+How To Use Democritus
+*********************
+
+We are tempted to say `use it as you think fit' because Democritus is not meant to be a formal, inflexible tool for learning (if there can be such a thing). It is a collection of experiments and supporting text that we hope will encourage exploration of the subject of molecular dynamics by students, teachers and the plain curious. We do not insist that you follow any particular line of study, though we have laid out experiments for you to follow, which will demonstrate the capabilities of molecular dynamics. The experiments we have designed are only a small part of what is possible and we encourage you to devise experiments of your own. Computer simulation in general (of which molecular dynamics is but a small part) is a powerful tool for modern scientists and engineers and is advancing rapidly, fuelled by the increasing power of computers and the emergence of new methods. Anyone embarking on a career in science or engineering will find it impossible to ignore what computers can do. Democritus provides a small window into the power and versatility of this new science.
+
+That said, a few pointers wouldn't go amiss! On starting up Democritus in your web browser, our recomendation is for you to proceed straight to the Experiment section. Just click on the icon. Before starting the experiments, you might wish to play with the molecular dynamics `engine' that appears, to get an idea of what it can do and familiarise yourself with the controls. There are eight experiments to try, each intending to reveal some material property accessible by simulation. These are in order of increasing difficulty and the later ones require a little more time than others. They also require you to note down some numbers, as in a real experiment. If a scientific question arises while you proceed, make a note of it, and try to devise an experiment that would shed further light on it. (Teachers may consider adding a few experiments of their own design.) The experiments have additional text, beyond the simple instructions of how to proceed. This is intended to stimulate thought rather than provide easy answers.
+
+More information about molecular dynamics may be found in the Theory section, which is also accessible from the topmost page. This is intended to describe the basic features of molecular dynamics and give some insight into how the method works. Some sections are more difficult than others, and we have used a `coloured star' system to indicate this in the various section headings:
+
+ * Green star: simple;
+ * Blue star: tricky;
+ * Red star: advanced.
+Both the Experiment and Theory sections make use of buttons to move from page to page. Buttons to take you back to the previous page are also present (see below). There is also a link to the `Contents' page, to help you relocate yourself if you get lost. You can also use the `Back' button on your browser for this purpose. The text in the Theory part uses textual hyperlinks to take you to pages where some topics are discussed in greater depth. The `Back' button is a good way of returning from these. Otherwise if you keep following the `Next' button on each page, you will be taken on a tour of related pages.
+
+One last thing. All useful suggestions and comments will be gratefully received. Send them to w.smith@dl.ac.uk. Many thanks!
+
+Atomic Theory
+~~~~~~~~~~~~~
+
+About 400 B.C. the Greek philosopher Democritus suggested that all matter was formed of different types of tiny discrete particles and that the properties of these particles also determined the properties of matter. This theory had some support from other philosophers, such as Lucretius, but the methods to verify it did not exist in that era, so it was not widely adopted for many centuries.
+
+It re-emerged in the early 19th century in order to explain many laws that had been established in the previous century, when chemists had begun to measure the mass of reactants and products.
+
+One of those laws was the law of conservation of mass, first stated by the French scientist Pierre Lavoisier, who noted that the total mass does not change with a chemical reaction.
+
+Another was the law of constant composition, which came from the observation that compounds always contain the same elements in the same proportions. Today it is known that some compounds, particularly metal oxides and sulfides, exist in ratios that vary slightly from simple whole number and they are known as nonstoichiometric compounds.
+
+Yet another was the law of multiple proportions which stated that given masses of different elements always combine in small whole number ratios.
+
+The English scientist John Dalton revived the atomic theory in order to explain these observations. In 1808 he proposed that a chemical element consisted of tiny particles (atoms), all with the same chemical properties. Also, the atoms of different elements have different properties and these atoms are not changed during ordinary chemical reactions. Compounds are formed by combining atoms of different elements in certain simple whole number ratios.
+
+It took many years for the idea to become widely accepted, but nowadays the atomic theory is fundamental to the physical sciences. As the eminient 20th Century scientist Richard Feynman succintly put it - "Everything is made of atoms!"

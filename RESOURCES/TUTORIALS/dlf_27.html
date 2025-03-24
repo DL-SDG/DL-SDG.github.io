@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Gromacs setting and restrictions &#8212; DL_Software Digital Guide (DL_SDG) 2.2 documentation</title>
+    <title>Gromacs setting and restrictions &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="dlf_26.html" title="Force field files for Gromacs"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD Tutorial</a> &#187;</li> 
@@ -69,7 +69,7 @@ In addition, not all the features implemented in DL_FIELD is applicable to Groma
 <li>Irrespective of what energy unit is specified in DL_FIELD <em>control</em> file, all energy unit will be converted to kJ/mol and nm for the unit distance in the Gromacs files.</li>
 <li>FF conversions only work for FF schemes that use LJ 12-6 and Buckingham potentials. For example, PCFF that uses LJ 9-6 form would not work. In addition, Buckingham potentials only work for older version Gromacs (before 2019 versions).</li>
 <li>Gromacs imposes a fix-format on the <em>gromacs.gro</em> coordinate files. For instance, the atom labels can only display up to five-character in length and the coordinates are specified to three decimals. An error can occur when running Gromacs if the data format is violated.However, DL_FIELD will not check for this.</li>
-<li>Because of point (3), comparison of single-point energies between DL_POLY and Gromacs are likely to be different due to differing scaling precisions and distance units being used.</li>
+<li>Because of point (4), comparison of single-point energies between DL_POLY and Gromacs are likely to be different due to differing scaling precisions and distance units being used.</li>
 <li>DL_FIELD does not include CMAP energy correction for the φ/ψ backbone dihedral angles. Therefore, it is not recommended to use DL_FIELD to setup protein force fields such as CHARMM that use CMAP for molecular simulations.</li>
 <li>For multiple-potential models, only systems based on Lennard-Jones 12-6 functions can be successfully setup. Gromacs does not support mixed-function setting. For example, a model consists of both Lennard-Jones and Buckingham potentials for the vdw interactions. DL_FIELD can still produce Gromacs files for such systems, although grompp will generate an error when trying to produce a <em>tpr</em> file.</li>
 <li>The rigid body or the [RIGID] directive in DL_FIELD, is not supported for Gromacs. The exception would be for the water models. In this case, the Gromacs directive command [ settles ] will be used.</li>
@@ -93,6 +93,7 @@ In addition, not all the features implemented in DL_FIELD is applicable to Groma
 <li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
 </ul>
@@ -143,14 +144,14 @@ In addition, not all the features implemented in DL_FIELD is applicable to Groma
         <li class="right" >
           <a href="dlf_26.html" title="Force field files for Gromacs"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD Tutorial</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, DL_SDG.
+        &#169; Copyright 2025, DL_SDG.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>

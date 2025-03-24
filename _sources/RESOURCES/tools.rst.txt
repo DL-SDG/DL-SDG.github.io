@@ -13,6 +13,7 @@ If you want to know how to use the software in more details, go to :doc:`TUTORIA
 
    ./dl_field_intro   
    ./dl_poly_intro
+   ./d_ata_intro
    ./dl_analyser_intro  
    ./dl_meso_intro
 

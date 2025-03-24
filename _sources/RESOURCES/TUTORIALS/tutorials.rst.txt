@@ -15,7 +15,8 @@ Want to learn how to use DL_Software? Want to go through a refresher course? Thi
 
    ./dlp_0
    ./dlf_0
+   ./data_0
    ./dla_0
    ./dlm_0
 
-* Simple Web Tutorial to Molecular Dynamics: `Democritus <https://www.ccp5.ac.uk/sites/www.ccp5.ac.uk/files/Democritus/index.html>`_ 
+* Simple Web Tutorial to Molecular Dynamics :doc:`../../DEMOCRITUS/Democritus` 

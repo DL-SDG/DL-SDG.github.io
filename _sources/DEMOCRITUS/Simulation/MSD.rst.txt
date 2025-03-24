@@ -1,0 +1,48 @@
+*************************
+Means Square Displacement
+*************************
+
+.. raw:: html
+
+   <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+        <script id="d3f40aa1-09d8-45a2-98dc-24b8fde16fb0">
+            (function() {
+                const xhr = new XMLHttpRequest()
+                xhr.responseType = 'blob';
+                xhr.open('GET', "http://localhost:5006/experiment5/autoload.js?bokeh-autoload-element=d3f40aa1-09d8-45a2-98dc-24b8fde16fb0&bokeh-app-path=/experiment5&bokeh-absolute-url=http://localhost:5006/experiment5", true);
+                xhr.onload = function (event) {
+                const script = document.createElement('script');
+                const src = URL.createObjectURL(event.target.response);
+                script.src = src;
+                document.body.appendChild(script);
+                };
+                xhr.send();
+            })();
+        </script>
+    </div>
+
+**Understanding the MSD**
+
+The Mean Square Displacement (MSD) is a powerful means of determining the average motion of molecules in a liquid, gas or solid. It is directly related to diffusion, which can be measured experimentally, and is easily calculated in an MD simulation. It is, for this reason, a very important link between modelling and the real world. In this experiment you will calculate the MSD and learn about diffusion. 
+
+**Try this simple experiment first**
+
+Click on one of the atoms in the molecular dynamics engine and watch that atom for several minutes. See how far it moves and see what effect the other atoms have on its motion.
+Try and think of a way to describe this kind of motion. How would you measure it?
+
+On the right is real-time plot of the mean square displacement will appear. The horizontal axis measures time and the vertical axis is the MSD. At first the function is very approximate.
+
+**Leave it for a minimum of 15 minutes to "settle".**
+
+Like the Radial Distribution Function, the MSD is an average. It is averaged over many atoms (and also over time). We must let the simulation run for a period to accumulate an accurate result. You will see that at first the plot is very inaccurate, but the accuracy improves each time the plot is refreshed and eventually changes very little between refreshes.
+
+**What is the shape of the plot?**
+
+Theory says that the MSD plot should be a straight line. Have you obtained a straight line? If it resembles a straight line very badly, try running it for twice as long. (Sometimes, however, you might find that near the origin of the plot it is obviously not a straight line. This is normal.)
+The slope of the straight portion of the plot provides a measure of the diffusion rate of the atoms. The greater the slope, the faster the atoms are diffusing. Try and measure the slope on the screen.
+
+**Try it again with a different temperature and density**
+
+Changing the temperature and / or density will show how diffusion is affected by different conditions. The diffusion rate is higher at high temperatures and also at low densities. (However, at low densities the MSD is less likely to be a straight line). 
+For a fixed density, try estimating the slope for a series of different temperatures and see what a plot of diffusion rate against temperature looks like. Try plotting the diffusion rate against 1/T, where T is temperature. This is known as an Arrhenius plot, and a straight line indicates that the diffusion process is the same over the temperature range studied.
+ 

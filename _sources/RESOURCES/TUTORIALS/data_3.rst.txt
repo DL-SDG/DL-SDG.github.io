@@ -1,0 +1,34 @@
+.. D_ATA. The INPUT_FILE. 
+.. _Header_data_3:
+
+.. |nbsp| unicode:: 0xA0
+   :trim:
+
+.. |br| raw:: html
+
+   <br />
+
+********************
+The INPUT_FILE 
+********************
+
+Also called Master Input Configuration file and it is named *d_ata.input* by default. Before D_ATA program can be operated, at
+least one input configuration file must be provided and defined in the INPUT_FILE. 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+Below shows an example of INPUT_FILE, which contains three configuration files, *conf1.xyz*, *conf2.xyz* and *conf3.xyz*. Each file can contain either
+a single atomic configuration or a collection of configurations such as atomic trajectories obtained from molecular dynamics (MD) simulations.
+
+.. literalinclude:: data_3_1.txt
+
+When D_ATA is run, it reads the first configuration in the first file entry and carry out atom typing. After that D_ATA will carry out 
+atomic interaction analysis and assumes all other configurations have the same atom sequences as the first one and there is no breaking and forming of bond (a classical, non-reactive simulation).
+
+.. Note::
+   If the Program Mode is set to 1 (Option **2** from the CONTROL_FILE), D_ATA will read input files in succession and carry out independant atom typing only and write out the atom types in different *csf* files. This means *conf1.xyz*, *conf2.xyz*, etc. do not have to be similar configurations and no interaction analysis will be carried out. 
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_data_3>`
+

@@ -1,0 +1,23 @@
+***************
+Full Simulation
+***************
+
+.. raw:: html
+
+   <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+        <script id="c7e57246-9073-481b-a384-a5ec5c4336df">
+        (function() {
+            const xhr = new XMLHttpRequest()
+            xhr.responseType = 'blob';
+            xhr.open('GET', "http://localhost:5006/fullApp/autoload.js?bokeh-autoload-element=c7e57246-9073-481b-a384-a5ec5c4336df&bokeh-app-path=/fullApp&bokeh-absolute-url=http://localhost:5006/fullApp", true);
+            xhr.onload = function (event) {
+            const script = document.createElement('script');
+            const src = URL.createObjectURL(event.target.response);
+            script.src = src;
+            document.body.appendChild(script);
+            };
+            xhr.send();
+        })();
+        </script>
+    </div>
+     

@@ -1,0 +1,53 @@
+********************
+Pressure and Density
+********************
+
+.. raw:: html
+
+   <div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+        <script id="ebea489e-0510-4662-b940-475d1801eff2">
+            (function() {
+                const xhr = new XMLHttpRequest()
+                xhr.responseType = 'blob';
+                xhr.open('GET', "http://localhost:5006/experiment7/autoload.js?bokeh-autoload-element=ebea489e-0510-4662-b940-475d1801eff2&bokeh-app-path=/experiment7&bokeh-absolute-url=http://localhost:5006/experiment7", true);
+                xhr.onload = function (event) {
+                const script = document.createElement('script');
+                const src = URL.createObjectURL(event.target.response);
+                script.src = src;
+                document.body.appendChild(script);
+                };
+                xhr.send();
+            })();
+        </script>
+    </div>
+
+**Background**
+
+Robert Boyle (1627-1691), a contemporary of Newton, experimented on gases and came to the conclusion that the volume V of a gas varies inversely with the pressure P at a fixed temperature. Thus, If we double the pressure, while holding both the temperature T and amount of substance n constant, the gas is reduced to one-half of its initial volume. The mathematical expression for this is 
+
+PV=constant (when n and T are constant).
+
+It was later shown by van der Waals (1837-1923) that this simple expression does not hold for high density gases or gases at low temperature and he was able to correct Boyle's law by assuming that the molecules of the gas interact through what are now called van der Waals forces. In extreme cases it is these forces that cause gases to liquify. 
+
+In this experiment you will investigate Boyle's law and see how system pressure depends on density (which is inversely related to the volume) at fixed temperature. 
+
+**Move the density slider as low as you can; keep the temperature in the middle.**
+
+Decreasing the density is done by increasing the simulation volume. This is represented in the MD engine by shrinking the relative size of the atoms, but you must think of this as viewing the bigger volume from a greater distance with the atoms retaining their original size.
+
+**Leave it for a few minutes until the pressure stays reasonably constant.**
+
+The pressure is computed as a "rolling average", which is an average over time taken from the start of the experiment. So as time passes it will converge to the true average value. You want a converged value in order to keep the errors of your measurements to a minimum. Make a note of the pressure and the density.
+
+**Increase the density a little, wait, and take another measurement.**
+
+By increasing the density you are decreasing the volume, (with the temperature being kept constant). Can you see what is happening to the pressure?
+
+**Repeat the above, steadily increasing the density up to maximum.**
+
+You should collect a set of data measuring pressure against density. Try to get at least 7 or 8 points.
+
+**Draw a plot of pressure against density.**
+
+According to Boyle's law this plot should be a straight line. Is this what you see? Remember Boyle's law applies to gases which have very low densities and therefore the forces between molecules are very weak. This is not the case in most of this plot, particularly when the atoms are packed closely together. Temperature also has an important effect as can be seen if this experiment is repeated at a higher temperature. 
+Beware of using too low a temperature because the molecules will aggregate (i.e. condense) and no longer fully explore the experimental volume (At least not in a reasonable time!). Thus the true reading of pressure cannot be obtained. 

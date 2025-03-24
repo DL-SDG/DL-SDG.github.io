@@ -43,7 +43,7 @@ DL_FIELD adopts the following default rules:
 
 (4) Gromacs imposes a fix-format on the *gromacs.gro* coordinate files. For instance, the atom labels can only display up to five-character in length and the coordinates are specified to three decimals. An error can occur when running Gromacs if the data format is violated.However, DL_FIELD will not check for this.
 
-(5) Because of point (3), comparison of single-point energies between DL_POLY and Gromacs are likely to be different due to differing scaling precisions and distance units being used.
+(5) Because of point (4), comparison of single-point energies between DL_POLY and Gromacs are likely to be different due to differing scaling precisions and distance units being used.
 
 (6) DL_FIELD does not include CMAP energy correction for the φ/ψ backbone dihedral angles. Therefore, it is not recommended to use DL_FIELD to setup protein force fields such as CHARMM that use CMAP for molecular simulations.
 

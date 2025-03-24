@@ -1,0 +1,117 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Means Square Displacement &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="means-square-displacement">
+<h1>Means Square Displacement<a class="headerlink" href="#means-square-displacement" title="Permalink to this headline">¶</a></h1>
+<div style="display: flex; justify-content: center; margin: 0; padding: 0;">
+     <script id="d3f40aa1-09d8-45a2-98dc-24b8fde16fb0">
+         (function() {
+             const xhr = new XMLHttpRequest()
+             xhr.responseType = 'blob';
+             xhr.open('GET', "http://localhost:5006/experiment5/autoload.js?bokeh-autoload-element=d3f40aa1-09d8-45a2-98dc-24b8fde16fb0&bokeh-app-path=/experiment5&bokeh-absolute-url=http://localhost:5006/experiment5", true);
+             xhr.onload = function (event) {
+             const script = document.createElement('script');
+             const src = URL.createObjectURL(event.target.response);
+             script.src = src;
+             document.body.appendChild(script);
+             };
+             xhr.send();
+         })();
+     </script>
+ </div><p><strong>Understanding the MSD</strong></p>
+<p>The Mean Square Displacement (MSD) is a powerful means of determining the average motion of molecules in a liquid, gas or solid. It is directly related to diffusion, which can be measured experimentally, and is easily calculated in an MD simulation. It is, for this reason, a very important link between modelling and the real world. In this experiment you will calculate the MSD and learn about diffusion.</p>
+<p><strong>Try this simple experiment first</strong></p>
+<p>Click on one of the atoms in the molecular dynamics engine and watch that atom for several minutes. See how far it moves and see what effect the other atoms have on its motion.
+Try and think of a way to describe this kind of motion. How would you measure it?</p>
+<p>On the right is real-time plot of the mean square displacement will appear. The horizontal axis measures time and the vertical axis is the MSD. At first the function is very approximate.</p>
+<p><strong>Leave it for a minimum of 15 minutes to “settle”.</strong></p>
+<p>Like the Radial Distribution Function, the MSD is an average. It is averaged over many atoms (and also over time). We must let the simulation run for a period to accumulate an accurate result. You will see that at first the plot is very inaccurate, but the accuracy improves each time the plot is refreshed and eventually changes very little between refreshes.</p>
+<p><strong>What is the shape of the plot?</strong></p>
+<p>Theory says that the MSD plot should be a straight line. Have you obtained a straight line? If it resembles a straight line very badly, try running it for twice as long. (Sometimes, however, you might find that near the origin of the plot it is obviously not a straight line. This is normal.)
+The slope of the straight portion of the plot provides a measure of the diffusion rate of the atoms. The greater the slope, the faster the atoms are diffusing. Try and measure the slope on the screen.</p>
+<p><strong>Try it again with a different temperature and density</strong></p>
+<p>Changing the temperature and / or density will show how diffusion is affected by different conditions. The diffusion rate is higher at high temperatures and also at low densities. (However, at low densities the MSD is less likely to be a straight line).
+For a fixed density, try estimating the slope for a series of different temperatures and see what a plot of diffusion rate against temperature looks like. Try plotting the diffusion rate against 1/T, where T is temperature. This is known as an Arrhenius plot, and a straight line indicates that the diffusion process is the same over the temperature range studied.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RESOURCES/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RESOURCES/SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RESOURCES/knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
