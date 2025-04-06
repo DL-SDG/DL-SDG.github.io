@@ -1,0 +1,13 @@
+.. Tutorial exercises for D_ATA:
+
+***************
+D_ATA
+***************
+
+This is the main portal to carry out D_ATA exercises. If you want to get familiarise certain program features, you can refer to :doc:`../TUTORIALS/data_0` reference guide.
+
+.. toctree::
+   :maxdepth: 2
+
+
+   ./data_solution

@@ -1,0 +1,9 @@
+.. This provides the .xyz file to be copied and pasted.
+
+*************
+Aspirin
+*************
+
+This is an aspirin (salicylic acid acetate) molecule structure expressed in the *xyz* format. To extract this structure, copy and paste into a new file that ends with the *.xyz* extension. Aspirin is a nosteroidal anti-inflammatory drug.
+
+.. literalinclude:: aspirin.xyz 

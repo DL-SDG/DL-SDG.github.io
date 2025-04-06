@@ -1,0 +1,38 @@
+.. Setup solution models using DL_FIELD:
+.. _Header_dlf_solution:
+
+********************
+Setup solutions
+********************
+
+This exercise shows how to use DL_FIELD to setup a solution model. Below lists a number of small drug molecules (solutes). They are all
+belong to nosteroidal anti-flammatory drug.
+
+* :download:`Aspirin <../Structures/aspirin.xyz>`
+
+* :download:`Ibuprofen <../Structures/ibuprofen.xyz>`
+
+* :download:`Mefenamic acid <../Structures/mefenamic_acid.xyz>`
+
+**Procedures**
+
+We are going to setup FF models for DL_POLY and we will use OPLS2005 force field scheme for this exercise.
+
+(1) Download or save one of the drug molecules as shown above into a filename that ends with .xyz, to indicate to DL_FIELD it is in *xyz* format. Save this in DL_FIELD home directory (where the *dl_field* executable file is located).
+
+(2) Edit DL_FIELD control file (for example, *dl_field.control*). Insert the correct options as highlighted below: 
+
+.. literalinclude:: dlf_control.txt 
+   :emphasize-lines: 4, 11, 13, 26, 28, 29, 30, 31, 36, 43 
+
+The options selected will instruct DL_FIELD to setup FF models using OPLS2005 FF scheme. DL_FIELD will duplicate the number of molecule to give the solute concentration of 0.4 mol/dm^2 and each solute must be at least 8 angstrom from one another.
+
+The simulation box size is 40x40x40 angstrom. The H-bond constrains are also applied for the molecules.
+
+Once the solute is duplicated, DL_FIELD will introduce ethanol (etoh) solvent molecules, which must be at least 1.3 angstrom from solutes.
+
+(3) Run DL_FIELD (*./dl_field*). Once successfully run, DL_FIELD will produce the following files: The *dl_poly.CONFIG* and *dl_poly.FIELD* files. 
+
+(4) Congratulations! You have just setup a solution model. You can now run DL_POLY using the the output files. Note that the structure needs equilibration before sampling.
+
+:ref:`^ GO TO TOP ^<Header_dlf_solution>`

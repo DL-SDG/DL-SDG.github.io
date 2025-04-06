@@ -3,7 +3,7 @@
    
 
 *****************
-DL_POLY Exercises
+DL_POLY
 *****************
 
 Below is a list of tutorial exercises that have been written for a range of users of DL_POLY. They are categorized into 3 levels of 'Difficulty': Low, Medium and High.

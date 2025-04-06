@@ -1,8 +1,8 @@
 .. This provides detailed information on how to set-up a obtain and run the DL_SOftware
 
-*****************
-DL_Software Tools
-*****************
+*******************************
+DL_Software General Information 
+*******************************
 
 This is the main portal to assess all things about DL_Software: how to obtain, compilation, running programs, general software features, general guidance, etc.
 

@@ -1,0 +1,25 @@
+************************
+Misc. Exercises
+************************
+
+General tutorial in using DL_FIELD. To carry out these exercises, please follow the following instructions:
+
+* :download:`The DL_FIELD exercise document <../DOCUMENTS/dl_f_exercise.pdf>`
+
+* :download:`The DL_FIELD data file for the exercises <./dl_f_exercise.tar.gz>`
+
+(1) download the document and files as shown above.
+
+(2) Extract the file, as shown below:
+
+    *tar -xzvf dl_f_exercise.tar.gz*
+
+(3) Move the newly created folder, *dl_f_exercise/*, into your DL_FIELD home directory.
+
+(4) Open *dl_f_exercise.pdf* and read the document. You can skip the front bits and go straight to Tutorial (1).
+
+(5) To run any structure as per the tutorial, change the control path in the *dl_f_path* file as follows:
+
+    *control = dl_f_exercise/tutorial_X.control*
+
+    where *X* corresponds to the Tutorial number.

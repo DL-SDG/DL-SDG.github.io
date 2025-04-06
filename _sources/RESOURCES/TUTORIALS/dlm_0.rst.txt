@@ -2,9 +2,9 @@
 
 
 
-****************
-DL_MESO Tutorial
-****************
+***********************
+DL_MESO  
+***********************
 
 Welcome to the DL_MESO tutorial main portal. If you are new to DL_MESO or you wish to refresh your memory, you have come to the right place. The contents have been extracted from DL_MESO lecture slides given in DL_Software training workshops, but modified for an online self-learning experience. 
 

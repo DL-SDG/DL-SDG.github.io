@@ -1,0 +1,60 @@
+.. Analyse interactions between molecules in solution.
+.. _Header_data_solution:
+
+***********************
+Solution model analysis
+***********************
+
+Below lists a number of simulation trajectories produced from DL_POLY. By using these as input structures, D_ATA can analyse and identify atomic interactions present in the systems.
+
+Note that since they are of different systems, each can only be analysed one at a time.
+
+
+(a) Acetone in water (:download:`xyz format <./acetone_water.xyz.gz>`). A system model consist of 30 acetone (propanone) molecules in water to give a total of 6408 atoms. Atom index 1 to 300 belongs to the 30 acetone molecules. Atom index 301 to 6408 belongs to water molecules.
+
+(b) Pure pentanoic acid liquid (:download:`xyz format <./pentanoic_acid.xyz.gz>`). A system model consists of 2808 pentanoic acid molecules, with a total of 47736 atoms.
+
+(c) Ethylacetate in water (:download:`DL_POLY trajectory <./HISTORY_ea_water.gz>`). Twenty ethylacetate molecules dissolve in 2040 water molecules. Atom index 1 to 280 belongs to the organic molecule and atom index 281 to 6400 belongs to water molecules.
+
+
+**Procedures**
+
+(1) Compile D_ATA program.
+
+(2) Select and download trajectory file. Save the file to your D_ATA home directory (where *d_ata* executable file is located).
+
+(3) Edit and insert the filename of the downloaded trajectory file in *d_ata.input*, as shown below:
+
+.. literalinclude:: data_solution1.txt
+
+where XXX is the filename of the downloaded trajectory. For example, *acetone_water.xyz.gz*.
+If your trajectory file is located in other folder, then remember to specify the path as well.
+
+If your D_ATA version cannot read the gzip compressed file, then use *gunzip* to uncompress it and change the filename accordingly.
+
+Save and exit *d_ata.input*.
+
+(4) Edit and view the *d_ata.control* file. Select the options as shown below:
+
+.. literalinclude:: data_solution2.txt
+
+Save and exit *d_ata.control*.
+
+(5) Run D_ATA program at the home directory by simply type *./d_ata*
+
+
+(6) Upon finish running the analysis, the following files will be produced in the OUTPUT_PATH folder:
+
+- *d_ata.output*
+
+- *d_ata.csf*
+
+- *d_ata.results*
+
+- A number of count-time profile files (*count_XXX.results*), if any. See *d_ata.results* for details.
+
+(7) Change control options such as number of atoms to analysis, analysis criteria, etc and rerun D_ATA. 
+
+Please refer to manual or :doc:`../TUTORIALS/data_0` reference guide for more information on how to interpret output results.
+
+:ref:`^ GO TO TOP ^<Header_data_solution>`

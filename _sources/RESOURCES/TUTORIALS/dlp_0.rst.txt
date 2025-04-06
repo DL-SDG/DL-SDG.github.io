@@ -2,9 +2,9 @@
 
 
 
-****************
-DL_POLY Tutorial
-****************
+***********************
+DL_POLY  
+***********************
 
 Welcome to the DL_POLY tutorial main portal. If you are new to DL_POLY or you wish to refresh your memory, you have come to the right place. The contents have been extracted from DL_POLY lecture slides given in DL_Software training workshops, but modified for an online self-learning experience. 
 

@@ -2,11 +2,11 @@
 
 
 
-*****************
-DL_FIELD Tutorial
-*****************
+************************
+DL_FIELD  
+************************
 
-Welcome to the DL_FIELD tutorial main portal. If you are new to DL_FIELD or you wish to refresh your memory, you come to the right place. The contents were extracted from DL_FIELD lecture slides given in DL_Software training workshops, but modified for online self-learning experience. 
+Welcome to the DL_FIELD reference guide main portal: more illustrations and less wordings than a user manual. If you are new to DL_FIELD or you wish to refresh your memory, you come to the right place. The contents were extracted from DL_FIELD lecture slides given in DL_Software training workshops, but modified for online self-learning experience. 
 
 .. image:: ../../image/dl_f_0_1.png
    :scale: 65%

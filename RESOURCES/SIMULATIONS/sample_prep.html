@@ -101,7 +101,7 @@ This essentially replicates the ethanol molecule (<em>ethanol.mol2</em>), then r
 The file below shows the relevant parameters highlighted in pale yellow (which is quite difficult to detect against the pale green background!)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll">Ethanoic acid
 </span>1        * Construct DL_POLY output files
-0        * Unuse slot.
+none     * Construct lammps, or gromacs files 
 opls2005 * Type of force field require (see list below for choices).
 kcal/mol  * Energy unit: kcal/mol, kJ/mol, eV, or K.
 normal  * Conversion criteria (strict, normal, loose)
@@ -134,7 +134,7 @@ default   * Sigma mixing rule (organic FF only) : default, or 1 = geometric, 2 =
 default   * 1-4 scaling for vdw (put default or x for scaling=x)
 0  300.0  * Include velocity? 1=yes, 0=no and scaling temperature.
 1         * Position solute at origin? 1 = yes, 0=no 
-none 2.0 * Solvate model? none or specify solvent (see below) and distance criteria.
+none 2.0 default * Solvate model? none or specify solvent (see below) and distance criteria.
 0  10.0   * Add counter ions? 1=yes, 0=no,  minimum distance from solute  
 0        * MM energy calculation. 1=Yes, 0=No
 20.0     * Cut off for electrostatic energy calculation (angstrom)

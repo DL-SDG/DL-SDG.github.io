@@ -3,7 +3,7 @@
    
 
 *****************
-DL_MESO Exercises
+DL_MESO
 *****************
 
 Below is a list of tutorial exercises that have been written for a range of users of DL_MESO. They are categorized according to mesoscale modelling method: Lattice Boltzmann Equation (LBE) and Dissipative Particle Dynamics (DPD). Some guidance on setting up DL_MESO for the exercises is also provided.

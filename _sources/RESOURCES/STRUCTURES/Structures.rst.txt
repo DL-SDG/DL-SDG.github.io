@@ -14,5 +14,7 @@ Below is a list of structures used in examples and exercises. The files can be c
 
 	      
    ./ethanoic_acid
-
+   ./ibuprofen
+   ./aspirin
+   ./mefenamic_acid
    

@@ -1,10 +1,10 @@
 .. This lists on-line web tutorials
 
-*********************
-DL_Software Tutorials
-*********************
+****************************
+DL_Software Reference Guides 
+****************************
 
-Want to learn how to use DL_Software? Want to go through a refresher course? This is the main portal for learning how to use the programs.
+Want to learn how to use DL_Software? Forgot how to use certain software features? Want to go through a refresher course? This is the main portal for learning how to use and understand program features: more illustrations and less wording than a user manual.
 
 .. image:: ../../image/stock/tutorial.jpg
    :scale: 35%
