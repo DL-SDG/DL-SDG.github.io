@@ -11,3 +11,4 @@ This is the main portal to carry out D_ATA exercises. If you want to get familia
 
 
    ./data_solution
+   ./data_protein

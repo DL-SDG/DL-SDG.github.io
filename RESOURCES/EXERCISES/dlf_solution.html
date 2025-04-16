@@ -49,15 +49,15 @@
             
   <div class="section" id="setup-solutions">
 <span id="header-dlf-solution"></span><h1>Setup solutions<a class="headerlink" href="#setup-solutions" title="Permalink to this headline">¶</a></h1>
-<p>This exercise shows how to use DL_FIELD to setup a solution model. Below lists a number of small drug molecules (solutes). They are all
-belong to nosteroidal anti-flammatory drug.</p>
+<p>This exercise shows how to use DL_FIELD to setup a solution model by using the <a class="reference internal" href="../TUTORIALS/dlf_6.html"><span class="doc">Solution Maker Feature</span></a>.</p>
+<p>Below lists a number of small drug molecules (solutes). They are all
+nosteroidal anti-flammatory drug molecules. For this exercise we will solvate these drug molecules with a solvent of your choice. The OPLS2005 FF scheme will be used to setup FF files for DL_POLY.</p>
 <ul class="simple">
 <li><a class="reference download internal" download="" href="../../_downloads/22849f32d29917422a810ce7f3d6376d/aspirin.xyz"><code class="xref download docutils literal notranslate"><span class="pre">Aspirin</span></code></a></li>
 <li><a class="reference download internal" download="" href="../../_downloads/1399fb3d5bf51edfb62e8b02b2a93db6/ibuprofen.xyz"><code class="xref download docutils literal notranslate"><span class="pre">Ibuprofen</span></code></a></li>
 <li><a class="reference download internal" download="" href="../../_downloads/4589557ce5fae9075489f22aadb7245b/mefenamic_acid.xyz"><code class="xref download docutils literal notranslate"><span class="pre">Mefenamic</span> <span class="pre">acid</span></code></a></li>
 </ul>
 <p><strong>Procedures</strong></p>
-<p>We are going to setup FF models for DL_POLY and we will use OPLS2005 force field scheme for this exercise.</p>
 <ol class="arabic simple">
 <li>Download or save one of the drug molecules as shown above into a filename that ends with .xyz, to indicate to DL_FIELD it is in <em>xyz</em> format. Save this in DL_FIELD home directory (where the <em>dl_field</em> executable file is located).</li>
 <li>Edit DL_FIELD control file (for example, <em>dl_field.control</em>). Insert the correct options as highlighted below:</li>
@@ -111,13 +111,17 @@ Atom state specification:  type  Molecular_Group   filter   [value]
 ...
 </pre></div>
 </div>
-<p>The options selected will instruct DL_FIELD to setup FF models using OPLS2005 FF scheme. DL_FIELD will duplicate the number of molecule to give the solute concentration of 0.4 mol/dm^2 and each solute must be at least 8 angstrom from one another.</p>
+<p>The options selected will instruct DL_FIELD to setup FF models using OPLS2005 FF scheme. DL_FIELD will duplicate the number of molecule to give the solute concentration of 0.4 mol/dm^2 and each solute must be at least 8 angstrom apart from one another.</p>
 <p>The simulation box size is 40x40x40 angstrom. The H-bond constrains are also applied for the molecules.</p>
 <p>Once the solute is duplicated, DL_FIELD will introduce ethanol (etoh) solvent molecules, which must be at least 1.3 angstrom from solutes.</p>
 <ol class="arabic simple" start="3">
 <li>Run DL_FIELD (<em>./dl_field</em>). Once successfully run, DL_FIELD will produce the following files: The <em>dl_poly.CONFIG</em> and <em>dl_poly.FIELD</em> files.</li>
-<li>Congratulations! You have just setup a solution model. You can now run DL_POLY using the the output files. Note that the structure needs equilibration before sampling.</li>
+<li>Congratulations! You have just setup a solution model. You can now run DL_POLY using the the FF files produced. Note that the structure needs equilibration before sampling.</li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can also use this exercise to set up FF models for other packages such as GROMACS or LAMMPS. All you need to do is to select either <em>gromacs</em> or <em>lammps</em> in second option of the DL_FIELD <em>control</em> file.</p>
+</div>
 <p><a class="reference internal" href="#header-dlf-solution"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
 </div>
 

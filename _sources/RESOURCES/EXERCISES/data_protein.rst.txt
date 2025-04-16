@@ -1,0 +1,74 @@
+.. Analyse interactions between two protein monomers 
+.. _Header_data_protein:
+
+****************************
+Protein-protein interactions
+****************************
+
+The human SOD1 is a bimetallic protein enzyme, functionally active as a homodimer orientated by an approximate 2-fold axis along the
+dimeric interface. The interfacial region between the subunits are stabilised by both polar and apolar contacts between the amino acids residues from both monomer units.
+
+.. figure:: images/sod1.jpg
+   :scale: 20 %
+   :align: center 
+
+   SOD1 protein molecule.
+
+However, the *apo* (metal-depleted) wild-type SOD1 can become destabilise and undergo self-aggregation into an amyloid-like fibrillar structure that may implicate a possible cause of ALS, a neuro-degenerative disease. The actual atomistic mechanisms this can occur is not clearly understood but it is possible via destabilisation or reorientation at the dimeric interface.
+
+One possible way to investigate this is to use D_ATA to track interactions between the two protein monomers from molecular simulation trajectories of SOD1 in water.
+
+Due to large trajectory file size, this exercise uses a truncated trajectory file to just 39 frames, or about 30 ps. The idea is not to derive any conclusions base the analysis, but rather to illustrate what results can be produced from D_ATA program. 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Procedures**
+
+1. Download the trajectory file (:download:`SOD1 trajectory <./HISTORY_sod1.gz>`). 
+
+This file is generated from DL_POLY simulation runs. It consists of an SOD1 protein molecule (4374 atoms) with water molecules and sodium counterions, to give a total of 51843 atoms.
+Save this in D_ATA home directory (where *d_ata* executable file is located).
+
+2. Download the PDB template file (:download:`SOD1 template <./sod1_template.pdb>`). 
+
+Since DL_POLY HISTORY file does not contain the amino acid residues information, D_ATA will use this as a template to identify the type and source of interactions.
+
+The template file contains the PDB structure with atom sequences match with those of HISTORY trajectory frames. The two protein monomers are labelled as *SOD1* and *SOD2*,
+
+Save this file in the D_ATA home directory.
+
+3. Edit and insert the filename of the downloaded trajectory file in *d_ata.input*, as shown below:
+
+.. literalinclude:: data_protein1.txt
+
+If your trajectory file is located in other folder, then remember to specify the path as well.
+If your D_ATA version cannot read the gzip compressed file, then use *gunzip* to uncompress it and change the filename accordingly.
+
+Save and exit *d_ata.input*.
+
+(4) Edit and view the *d_ata.control* file. Select the options as shown below:
+
+.. literalinclude:: data_protein2.txt
+
+Note that the PDB template is loaded and only the protein molecule will be analysed, by restricting the atom index range from 1 to 4374. The rest of the atoms and molecules, which consist of water molecules and counterions will be ignored. 
+
+The option also instructs D_ATA to identify interactions that occur *between* the molecules, or in this case, between the monomers. Interactions that occur *within* the monomers will be ignored.
+
+Save and exit *d_ata.control*.
+
+(5) Run D_ATA program at the home directory by simply type *./d_ata*
+
+At the end of analysis, D_ATA will produce the following information:
+
+.. literalinclude:: data_protein3.txt
+
+Examine each output file. Note that when a template file is provided, D_ATA will produce an additional file, *d_ata.results2*.
+This file shows type of interactions and the residues that involve in such interactions.
+
+(7) Change control options such as number of atoms to analysis, analysis criteria, etc and rerun D_ATA. 
+
+Please refer to manual or :doc:`../TUTORIALS/data_0` reference guide for more information on how to interpret output results.
+
+For guidance how to interpret results produce from *d_ata.results2*, please refer to Chapter 3.4 of the D_ATA user manual.
+
+:ref:`^ GO TO TOP ^<Header_data_protein>`

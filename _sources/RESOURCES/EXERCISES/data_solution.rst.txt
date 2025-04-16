@@ -16,6 +16,7 @@ Note that since they are of different systems, each can only be analysed one at 
 
 (c) Ethylacetate in water (:download:`DL_POLY trajectory <./HISTORY_ea_water.gz>`). Twenty ethylacetate molecules dissolve in 2040 water molecules. Atom index 1 to 280 belongs to the organic molecule and atom index 281 to 6400 belongs to water molecules.
 
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 
 **Procedures**
 
