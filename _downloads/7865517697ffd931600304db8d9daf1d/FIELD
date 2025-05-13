@@ -1,0 +1,15 @@
+DL_POLY: Potassium Chloride Test Case 
+UNITS eV
+MOLECULES 1
+Potassium Chloride
+nummols 27
+atoms 8
+K+           39.0983       0.994    4
+Cl-          35.4530      -0.994    4
+finish
+VDW 3
+K+      K+      buck      3796.9      0.2603      124.90
+Cl-     Cl-     buck      1227.2      0.3214      124.90
+K+      Cl-     buck      4117.9      0.3048      0.0000
+CLOSE
+

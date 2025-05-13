@@ -21,7 +21,7 @@ DL_POLY comes with the following file components:
 
 * Makefiles stored in the *build/* directory.
 
-  * These are not required if cmake is used to build the source code for DL_POLY_4 or DL_POLY_5.
+  * These are not required if cmake is used to build the source code for DL_POLY_5 or DL_POLY_5.
 
 * Executable and working directory in the *execute/* directory.
 

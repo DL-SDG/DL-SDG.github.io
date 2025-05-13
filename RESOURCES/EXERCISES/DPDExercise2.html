@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="DPD.html" accesskey="U">Dissipative Particle Dynamics</a> &#187;</li> 
       </ul>
     </div>  
@@ -53,7 +53,7 @@
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Following on from <a class="reference internal" href="DPDExercise1.html#dpd-exercise1"><span class="std std-ref">DPD Exercise 1</span></a>, we can extend DPD by joining beads together into molecules using e.g. harmonic springs. Since we can vary conservative force parameters between different bead species, we can therefore construct molecules that have different regions of behaviour, e.g. amphiphiles with hydrophilic (water-loving) head groups and hydrophobic (water-hating) tails. In solution, these molecules can readily assemble into large-scale structures such as micelles, vesicles, bilayers and membranes.</p>
-<p>Among others, Shillcock and Lipowsky <a class="reference internal" href="#shillcock2002" id="id1">[Shillcock2002]</a> have proposed DPD as a viable modelling method for biological molecules such as lipids and proteins. In particular, DPD is able to adequately model the essential topology of lipid molecules in terms of local hydrophobicity and bond interactions, which can also include controlling the angles formed between pairs of bonds.</p>
+<p>Among others, Shillcock and Lipowsky <a class="reference internal" href="Lipids_DPD/lipids_dpd.html#shillcock2002" id="id1">[Shillcock2002]</a> have proposed DPD as a viable modelling method for biological molecules such as lipids and proteins. In particular, DPD is able to adequately model the essential topology of lipid molecules in terms of local hydrophobicity and bond interactions, which can also include controlling the angles formed between pairs of bonds.</p>
 <p>Using atomistic or coarse-grained molecular dynamics to model how lipid structures form is possible but time-consuming due to the large number of atoms required, mostly for the solvent. This is less of a problem for DPD, since the softer potentials available allow for the use of larger timesteps to get to equilibrium structures more quickly.</p>
 </div>
 <div class="section" id="aim">
@@ -131,7 +131,7 @@
 <table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>If you are using a computer with multiple processor cores, we would strongly recommend running the simulations on at least four cores: each calculation should take about 10 minutes to complete on a four-core laptop, based on tests carried out on an available machine. Even if your computer only has two physical processor cores, it might be capable of <em>hyperthreading</em>, i.e. using each of your computer’s threads as a virtual (logical) core, and you may therefore still get some extra performance by specifying 4 cores in the <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> command. If you do need to hyperthread, depending on your MPI implementation you may need an additional command line option with <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> to use hyperthreading or to ‘oversubscribe’ tasks.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>If you are using a computer with multiple processor cores, we would strongly recommend running the simulations on at least four cores: each calculation should take about 10-20 minutes to complete on a four-core laptop, based on tests carried out on an available machine. Even if your computer has fewer than four physical processor cores, it might be capable of <em>hyperthreading</em>, i.e. using each of your computer’s threads as a virtual (logical) core, and you may therefore still get some extra performance by specifying 4 cores in the <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> command. You may need an additional command line option with <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> to use hyperthreading or to ‘oversubscribe’ tasks, e.g. <code class="docutils literal notranslate"><span class="pre">--use-hwthread-cpus</span></code> for Open-MPI.</td></tr>
 </tbody>
 </table>
 <p class="rubric">Reference</p>
@@ -155,12 +155,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
@@ -210,8 +211,8 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="DPD.html" >Dissipative Particle Dynamics</a> &#187;</li> 
       </ul>
     </div>

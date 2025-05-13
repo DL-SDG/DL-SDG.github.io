@@ -12,3 +12,6 @@ This is the main portal to carry out D_ATA exercises. If you want to get familia
 
    ./data_solution
    ./data_protein
+
+:TIP:
+   To help you to understand results output, please make sure you are familiar with :doc:`../TUTORIALS/data_6`. 

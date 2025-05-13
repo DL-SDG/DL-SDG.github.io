@@ -1,0 +1,232 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Diffusion in Zeolites &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Structure and Dynamics of Argon" href="../Argon_Dynamics/structure_dynamics_argon.html" />
+    <link rel="prev" title="The Potential of Mean Force for \(H_2O-K^+\)" href="../H2O_Kp/potential_mean_force.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../Argon_Dynamics/structure_dynamics_argon.html" title="Structure and Dynamics of Argon"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../H2O_Kp/potential_mean_force.html" title="The Potential of Mean Force for \(H_2O-K^+\)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" accesskey="U">Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="diffusion-in-zeolites">
+<h1>Diffusion in Zeolites<a class="headerlink" href="#diffusion-in-zeolites" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Zeolites, which have complex <em>cage</em> structures of silica and aluminium,
+are extremely important in industrial catalysis. In this exercise, the
+diffusion of an aromatic compound (benzene) in a model zeolite is
+studied, see . Diffusion rates are extremely slow in these systems, so a
+simple trick will be employed to attempt to improve matters.</p>
+<div class="figure" id="fig-zeo">
+<a class="reference internal image-reference" href="../../../_images/exe6-zeo.png"><img alt="Zeolite cage with a benzene molecule trapped inside" src="../../../_images/exe6-zeo.png" style="width: 75.0%;" /></a>
+<p class="caption"><span class="caption-text">Zeolite cage with a benzene molecule trapped inside</span></p>
+</div>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>In this exercise the silicalite-1 structure is used as a model for the
+zeolite ZSM-5, which has application in synthesizing stereospecific
+aromatic derivatives. The process has (at least) two aspects to it:
+firstly the aromatic species must diffuse into the zeolite and secondly
+it must undergo catalytic reaction within the confines of the zeolite
+cages. (It is believed that the confinement within the cages is
+responsible for the sterospecificity of the reactions.)</p>
+<p>Classical simulation cannot study the reaction process, but it is
+(usually) well suited to model the diffusion. The problem in this case
+however is that the diffusion is slow and it is difficult to get
+accurate estimates of the diffusion constant. There are a number of ways
+this can be overcome, perhaps the most promising of which is to use
+constraint dynamics (see exercise <a class="reference internal" href="../H2O_Kp/potential_mean_force.html#ex-pmf"><span class="std std-ref">The Potential of Mean Force for H_2O-K^+</span></a>) to obtain the
+activation energy and feed this into a numerical model of the diffusion,
+ref <a class="reference internal" href="#forester1997" id="id1">[Forester1997]</a>, this however is beyond the scope of these exercises. Instead we shall
+employ a less rigorous approach, that has been used in studies of
+diffusion in amorphous polymers, ref <a class="reference internal" href="#plathe1991" id="id2">[Plathe1991]</a>. In this it is assumed that diffusion
+is governed by Arrhenius like behaviour:</p>
+<div class="math notranslate nohighlight">
+\[D(λ)=D_0e^{-λ\frac{E_A}{RT}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(E_A\)</span> is an activation energy and <span class="math notranslate nohighlight">\(λ\)</span> is a scaling
+factor between 0 and 1. The origin of the activation energy lies in the
+intermolecular interactions, and thus the factor <span class="math notranslate nohighlight">\(λ\)</span> is a control
+parameter governing the strength of these. We hope that by reducing the
+intermolecular interaction, we may effectively increase the measured
+diffusion constant <span class="math notranslate nohighlight">\(D(λ)\)</span> and later obtain the true diffusion
+constant (which corresponds to the case where <span class="math notranslate nohighlight">\(λ = 1\)</span>) by
+extrapolation.</p>
+</div>
+<div class="section" id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
+<p>Download the files: <a class="reference download internal" download="" href="../../../_downloads/533e22522758795e932599fab09e278f/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/dd8377494e1203c736c992dce1a74caa/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/82a29662fca4cc92ffc9558abfb6a6ac/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a>.
+The <em>CONFIG</em> file contains
+a silicalite framework and a benzene molecule inserted into one of the
+cavities. The <em>FIELD</em> file contains the appropriate description of all
+the interactions (note this is a <em>stripped down</em> forcefield constructed
+for the workshop, and is <strong>not guaranteed</strong> for other uses!) Proceed as
+follows:</p>
+<ol class="arabic simple">
+<li>Visualise the original configuration using a program such as VMD. If you are not
+familiar with zeolite structures, it will be interesting for you to
+see what this one looks like! The structure is characterised by large
+inteconnecting cavities forming channels for the diffusion of
+penetrant molecules.</li>
+<li>Run a simulation for about 2000 timesteps, creating a
+<em>HISTORY</em> file. To save disc space, you should dump configurations
+only every 10 timesteps and should not dump atomic velocities at all.
+Look at the calculated diffusion coefficients in the <em>OUTPUT</em> file
+which will give you an idea of what you are up against.</li>
+<li>Edit the <em>FIELD</em> file using your favourite editor, reducing the
+strength of the interaction between the benzene and zeolite by some
+factor <span class="math notranslate nohighlight">\(λ\)</span> with <span class="math notranslate nohighlight">\(0&lt; λ &lt; 1\)</span> (this will involve Van der
+Waals terms only) and repeat the simulation to obtain the MSD and
+diffusion constant again. Do this at least two more times. (Note each
+simulation may take up to an hour.)</li>
+<li>Plot the log of the diffusion constants against the parameter
+<span class="math notranslate nohighlight">\(λ\)</span>. Can you estimate the diffusion constant at <span class="math notranslate nohighlight">\(λ=1\)</span>?
+How does it compare with your first run?</li>
+</ol>
+<p>In each simulation you should look at the <em>REVCON</em> files produced by
+the DL_POLY run and see where the benzene has ended up. If it has
+changed <em>channels</em> in the zeolite, what effect do you think this might
+have on the the study overall? Try to form an opinion on how useful this
+approach is likely to be as a general technique.</p>
+<table class="docutils citation" frame="void" id="plathe1991" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[Plathe1991]</a></td><td><ol class="first last upperalpha simple" start="6">
+<li>Müller-Plathe, Diffusion of penetrants in amorphous polymers: A molecular dynamics study, The Journal of Chemical Physics, 94(4), p. 3192, 1991, doi: <a class="reference external" href="http://dx.doi.org/10.1063/1.459788">http://dx.doi.org/10.1063/1.459788</a></li>
+</ol>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="forester1997" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Forester1997]</a></td><td><ol class="first last upperalpha simple" start="20">
+<li><ol class="first upperalpha" start="18">
+<li>Forester and W. Smith, Bluemoon simulations of benzene in silicalite-1 prediction of free energies and diffusion coefficients, J. Chem. Soc., Faraday Trans., 93, p. 3249, 1997, doi: 10.1039/A702063E</li>
+</ol>
+</li>
+</ol>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../H2O_Kp/potential_mean_force.html"
+                        title="previous chapter">The Potential of Mean Force for <span class="math notranslate nohighlight">\(H_2O-K^+\)</span></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Argon_Dynamics/structure_dynamics_argon.html"
+                        title="next chapter">Structure and Dynamics of Argon</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../Argon_Dynamics/structure_dynamics_argon.html" title="Structure and Dynamics of Argon"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../H2O_Kp/potential_mean_force.html" title="The Potential of Mean Force for \(H_2O-K^+\)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" >Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -10,11 +10,11 @@ This exercise shows how to use DL_FIELD to setup a solution model by using the :
 Below lists a number of small drug molecules (solutes). They are all
 nosteroidal anti-flammatory drug molecules. For this exercise we will solvate these drug molecules with a solvent of your choice. The OPLS2005 FF scheme will be used to setup FF files for DL_POLY. 
 
-* :download:`Aspirin <../Structures/aspirin.xyz>`
+* :download:`Aspirin <../STRUCTURES/aspirin.xyz>`
 
-* :download:`Ibuprofen <../Structures/ibuprofen.xyz>`
+* :download:`Ibuprofen <../STRUCTURES/ibuprofen.xyz>`
 
-* :download:`Mefenamic acid <../Structures/mefenamic_acid.xyz>`
+* :download:`Mefenamic acid <../STRUCTURES/mefenamic_acid.xyz>`
 
 **Procedures**
 
@@ -31,12 +31,19 @@ The simulation box size is 40x40x40 angstrom. The H-bond constrains are also app
 
 Once the solute is duplicated, DL_FIELD will introduce ethanol (etoh) solvent molecules, which must be at least 1.3 angstrom from solutes.
 
+**Remember to check dl_f_path is pointing to the right control file you are using.**
+
 (3) Run DL_FIELD (*./dl_field*). Once successfully run, DL_FIELD will produce the following files: The *dl_poly.CONFIG* and *dl_poly.FIELD* files. 
 
-(4) Congratulations! You have just setup a solution model. You can now run DL_POLY using the the FF files produced. Note that the structure needs equilibration before sampling.
+(4) Take a look at output files (dl_field.output), which provides information about the conversion. Take a look also dlf_notation.output, which shows the atom typing information, in DL_F Notation.
+
+(5) Congratulations! You have just setup a solution model.
+
+(6) If you wish, you can proceed: :doc:`dlf_run`. 
+
+(7) Otherwise, you can choose other solvents and run step (2) again. Solvent list is available in the *solvent/* folder.
 
 .. Note::
   You can also use this exercise to set up FF models for other packages such as GROMACS or LAMMPS. All you need to do is to select either *gromacs* or *lammps* in second option of the DL_FIELD *control* file. 
-
 
 :ref:`^ GO TO TOP ^<Header_dlf_solution>`

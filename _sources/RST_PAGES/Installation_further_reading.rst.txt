@@ -5,8 +5,7 @@
 Advanced Installation
 *********************
 
-For a comprehensive guide to installation of DL_POLY4.0 see
-- `DL_POLY set-up <https://ccp5.gitlab.io/dlpoly-setup/>`_ 
+For a comprehensive guide to installing DL_POLY_5 (previously DL_POLY_4), see `DL_POLY set-up <https://ccp5.gitlab.io/dlpoly-setup/>`_ 
 
 * For quick links to the following:
 
@@ -16,7 +15,7 @@ For a comprehensive guide to installation of DL_POLY4.0 see
 
   * `MacOS <https://ccp5.gitlab.io/dlpoly-setup/setup.html#windows>`_
 
-  * `[Linux] Compiling and Installing DL_POLY_4 <https://ccp5.gitlab.io/dlpoly-setup/setup.html#linux-compiling-and-installing-dl-poly-4>`_
+  * `[Linux] Compiling and Installing DL_POLY_5 <https://ccp5.gitlab.io/dlpoly-setup/setup.html#linux-compiling-and-installing-dl-poly-4>`_
 
   * `Old MPI Library <https://ccp5.gitlab.io/dlpoly-setup/setup.html#old-mpi-library>`_
 

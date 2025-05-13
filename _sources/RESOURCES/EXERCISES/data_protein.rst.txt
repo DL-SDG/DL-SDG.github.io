@@ -18,7 +18,7 @@ However, the *apo* (metal-depleted) wild-type SOD1 can become destabilise and un
 
 One possible way to investigate this is to use D_ATA to track interactions between the two protein monomers from molecular simulation trajectories of SOD1 in water.
 
-Due to large trajectory file size, this exercise uses a truncated trajectory file to just 39 frames, or about 30 ps. The idea is not to derive any conclusions base the analysis, but rather to illustrate what results can be produced from D_ATA program. 
+Due to large trajectory file size, this exercise uses a truncated trajectory file to just 39 frames, or about 30 ps. The idea is not to derive any conclusions base on the analysis, but rather to illustrate what results can be produced from D_ATA program. 
 
 .. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
 

@@ -192,7 +192,7 @@ flory_huggins.py
 
 :download:`flory_huggins.py <./scripts/flory_huggins.py>` is a simulation workflow script to carry out a series of DL_MESO_DPD simulations of two separating species. These simulations are designed to obtain a relationship between DPD conservative force parameters :math:`A_{ij}` and the Flory-Huggins :math:`\chi`-parameters (see :ref:`DPD_Exercise1` for more details). 
 
-It creates the required input files - :ref:`CONTROL <controldlmeso>`, :ref:`CONFIG <configdlmeso>` and :ref:`FIELD <fielddlmeso>` - to carry out these simulations for various values of :math:`A_{ij}^{\text{AB}}`, launches the simulations one-by-one, obtains a time-averaged local concentration profile for one bead species and adds these profiles to a text file for later analysis. It also calculates a value of :math:`\chi` for each simulation and estimates its error.
+It creates the required input files - :ref:`CONTROL <controldlmeso>`, :ref:`CONFIG <configdlmeso>` and :ref:`FIELD <fielddlmeso>` - to carry out these simulations for various values of :math:`A_{ij}^{\text{AB}}`, launches the simulations one-by-one and keeps track of their progress with dynamic progress bars, obtains a time-averaged local concentration profile for one bead species and adds these profiles to a text file for later analysis. It also calculates a value of :math:`\chi` for each simulation and estimates its error.
 
 To use the script, invoke it with your Python3 interpreter with one of the following commands (the latter if permissions on the script allow it to be executed): ::
 
@@ -207,11 +207,11 @@ You can add a number of optional command-line options at the end of the invocati
 * ``--Aijmin <Aijmin>`` sets the minimum conservative force parameter between beads of the two different species (:math:`A_{ij}^{\text{AB}}`) to ``<Aijmin>`` (equal to 33.0 by default)
 * ``--Aijmax <Aijmax>`` sets the maximum conservative force parameter between beads of the two different species (:math:`A_{ij}^{\text{AB}}`) to ``<Aijmax>`` (equal to 43.0 by default)
 * ``--dA <dA>`` sets the interval of unlike species conservative force parameter between simulations to ``<dA>`` (equal to 1.0 by default)
-* ``--dx <dx>`` sets the spacing of histogram bins for concentration profiles to ``<dx>`` (equal to 0.1 by default)
-* ``--L <L>`` sets the length of the box along the x-direction to ``<L>`` (equal to 20.0 by default)
-* ``--W <W>`` sets the width of the box in the y- and z-directions to ``<W>`` (equal to 8.0 by default)
-* ``--print-to-screen`` will redirect the summary of each simulation to the screen instead of writing to an :ref:`OUTPUT <outputdlmeso>` file
+* ``--dz <dz>`` sets the spacing of histogram bins for concentration profiles to ``<dz>`` (equal to 0.1 by default)
+* ``--L <L>`` sets the length of the box along the z-direction to ``<L>`` (equal to 20.0 by default)
+* ``--W <W>`` sets the width of the box in the x- and y-directions to ``<W>`` (equal to 8.0 by default)
 * ``--nproc <nproc>`` sets the number of processor cores to run DL_MESO_DPD (defaults to 1 core, i.e. serial running)
+* ``--dlmeso <dlmeso>`` sets the location of DL_MESO_DPD's executable, ``dpd.exe``, as ``<dlmeso>`` (defaults to current directory)
 
 The results - the :math:`\chi` value and its standard deviation, followed by the concentration profile for each simulation - will be placed in a file called floryhuggins-rho-<rho>.dat, which is designed to be read by *flory_huggins_plot.py*. Subsequent runs of *flory_huggins.py* for the same density will append data to this file if it already exists.
 

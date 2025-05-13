@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="LBE.html" accesskey="U">Lattice Boltzmann Equation</a> &#187;</li> 
       </ul>
     </div>  
@@ -57,7 +57,7 @@
 <p>The interaction forces have the effect of modifying the equation of state for the lattice fluid:</p>
 <div class="math notranslate nohighlight">
 \[p = \rho c_s^2 + \frac{1}{2} g c_s^2 \psi^2\]</div>
-<p>where <span class="math notranslate nohighlight">\(g\)</span> is the interaction strength used as a multiplier for the forces. The functional form of <span class="math notranslate nohighlight">\(\psi\)</span> can therefore be chosen to apply a chosen equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#yuan2006" id="id2">[Yuan2006]</a>:</p>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is the interaction strength used as a multiplier for the forces. The functional form of <span class="math notranslate nohighlight">\(\psi\)</span> can therefore be chosen to apply a chosen equation of state <a class="reference internal" href="#yuan2006" id="id2">[Yuan2006]</a>:</p>
 <div class="math notranslate nohighlight">
 \[\psi = \sqrt{\frac{2\left(p \left(\rho, T\right) - \rho c_s^2\right)}{g c_s^2}}\]</div>
 <p>where the interaction strength <span class="math notranslate nohighlight">\(g\)</span> is set to <span class="math notranslate nohighlight">\(\pm 1\)</span> to ensure the square root in the above expression is evaluated with a positive value.</p>
@@ -66,7 +66,7 @@
 </div>
 <div class="section" id="aim">
 <h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
-<p>We are going to take a look at how well the Shan-Chen pseudopotential method can model vapour/liquid equilibrium for a fluid behaving according to the Peng-Robinson cubic equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#peng1976" id="id4">[Peng1976]</a>:</p>
+<p>We are going to take a look at how well the Shan-Chen pseudopotential method can model vapour/liquid equilibrium for a fluid behaving according to the Peng-Robinson cubic equation of state <a class="reference internal" href="#peng1976" id="id4">[Peng1976]</a>:</p>
 <div class="math notranslate nohighlight">
 \[p = \frac{\rho RT}{1 - b \rho} - \frac{a \alpha\left(T_r, \omega\right) \rho^2}{1 + 2b \rho - b^2 \rho^2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(R\)</span> is the universal gas constant, <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are species dependent coefficients representing attraction and finite volume effects, <span class="math notranslate nohighlight">\(\alpha\)</span> is a function of reduced temperature <span class="math notranslate nohighlight">\(T_r = \frac{T}{T_c}\)</span> and acentric (non-sphericity) factor <span class="math notranslate nohighlight">\(\omega\)</span>, given as:</p>
@@ -81,8 +81,8 @@
 </div>
 <div class="section" id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
-<p>For this exercise, you will need the main DL_MESO_LBE executable <code class="docutils literal notranslate"><span class="pre">lbe.exe</span></code> - the serial (single processor core) version with or without OpenMP multithreading is preferred to keep down the number of output files. You can also use the DL_MESO GUI (see <a class="reference internal" href="DL_MESO_LBE.html#dl-meso-gui"><span class="std std-ref">Running GUI</span></a>) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed.</p>
-<p>Copy the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> input files from the directory <code class="docutils literal notranslate"><span class="pre">dl_meso/DEMO/LBE/2D_PhaseSeparation</span></code> in your copy of DL_MESO to your working directory (<code class="docutils literal notranslate"><span class="pre">dl_meso/WORK</span></code>).</p>
+<p>For this exercise, you will need the main DL_MESO_LBE executable <code class="docutils literal notranslate"><span class="pre">lbe.exe</span></code> - the serial (single processor core) version with or without OpenMP multithreading is preferred to keep down the number of output files. You can also use the DL_MESO GUI (see <a class="reference internal" href="DL_MESO_LBE.html#dl-meso-gui"><span class="std std-ref">Running GUI</span></a>) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed to visualise the results.</p>
+<p>Download the <a class="reference download internal" download="" href="../../_downloads/b094c48a5023799dfd9e336e274808fd/lbin.sys"><code class="xref download docutils literal notranslate"><span class="pre">lbin.sys</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/8e8d6306a673d371dee7fa2d5d3741f5/lbin.spa"><code class="xref download docutils literal notranslate"><span class="pre">lbin.spa</span></code></a> input files into a working directory. This could be the <code class="docutils literal notranslate"><span class="pre">dl_meso/WORK</span></code> directory that comes with your copy of DL_MESO. Note that the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file is entirely empty: this is intentional!</p>
 <p>These simulation input files represent a periodic box of a single fluid with a density (or rather, a small range of densities) that lie between the expected densities of the liquid and vapour phases. These phases should form spontaneously, with the liquid phase collecting either into a circular drop or a rectangular layer across the box (depending on how much fluid exists in the box).</p>
 <p>To modify any of the parameters in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">noise_intensity</span>
@@ -101,6 +101,11 @@
 </pre></div>
 </div>
 <p>After running DL_MESO_LBE, open the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a> files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed. To plot the properties along a straight line, you can apply the Plot Over Line filter, move the line in the display window and click Apply to display the graphs. The Information subwindow will give you the minimum and maximum values for the available properties at the currently displayed timestep.</p>
+<p>To look at any of the snapshots in more detail, download the <a class="reference download internal" download="" href="../../_downloads/be6838cb242abd38045e2d89ec4aae1c/vtk_to_twophase.py"><code class="xref download docutils literal notranslate"><span class="pre">vtk_to_twophase.py</span></code></a> script and launch it with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">vtk_to_twophase</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">vtkin</span> <span class="o">&lt;</span><span class="n">vtkin</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">threshold</span> <span class="o">&lt;</span><span class="n">threshold</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">plot</span>
+</pre></div>
+</div>
+<p>substituting <code class="docutils literal notranslate"><span class="pre">&lt;vtkin&gt;</span></code> with the name of a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a> file and <code class="docutils literal notranslate"><span class="pre">&lt;threshold&gt;</span></code> with a small non-zero value (e.g. 0.1) to help determine the width of a vapour-liquid interface, which is plotted using the <code class="docutils literal notranslate"><span class="pre">--plot</span></code> option. You will also need the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file to obtain details of the equation of state and calculate the interfacial tension between the phases. (See <a class="reference internal" href="DL_MESO_LBE.html#dl-meso-lbe"><span class="std std-ref">Using DL_MESO_LBE</span></a> for more details.)</p>
 </div>
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
@@ -114,9 +119,10 @@
 <li>What is the critical temperature? (Hint: either rearrange the above expressions for <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, or take a look at what DL_MESO_LBE prints to screen.) Try varying the system temperature towards this value:<ul>
 <li>What happens to the liquid and vapour densities as the temperature changes?</li>
 <li>What happens to the maximum fluid velocities in the system when you change the system temperature?</li>
+<li>What happens to the interfacial tension between the phases as the temperature changes? What about the width of the interface?</li>
 </ul>
 </li>
-<li>One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials <a class="reference internal" href="../SIMULATIONS/vapour_liquid_simulation_analysis_lbe.html#liu2010" id="id5">[Liu2010]</a>. For the Peng-Robinson equation of state, reducing the universal gas constant <span class="math notranslate nohighlight">\(R\)</span> and attraction parameter <span class="math notranslate nohighlight">\(a\)</span> by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.<ul>
+<li>One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials <a class="reference internal" href="#liu2010" id="id5">[Liu2010]</a>. For the Peng-Robinson equation of state, reducing the universal gas constant <span class="math notranslate nohighlight">\(R\)</span> and attraction parameter <span class="math notranslate nohighlight">\(a\)</span> by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.<ul>
 <li>What effect does this have on fluid velocities at equilibrium?</li>
 <li>How does this strategy change the width of the interface between the phases?</li>
 </ul>
@@ -167,12 +173,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
@@ -222,8 +229,8 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="LBE.html" >Lattice Boltzmann Equation</a> &#187;</li> 
       </ul>
     </div>

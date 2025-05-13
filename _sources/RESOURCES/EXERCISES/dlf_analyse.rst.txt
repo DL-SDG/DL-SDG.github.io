@@ -1,0 +1,34 @@
+.. Analysis using D_ATA: 
+.. _Header_dlf_analyse:
+
+Atomic Interaction Analysis Using D_ATA
+=======================================
+
+This page is related to the tutorial section to setup a solution model using DL_FIELD. If you have not done so, please go to
+:doc:`dlf_solution`.
+
+If you have not run the simulation to produce the HISTORY trajectory file, please go to :doc:`dlf_run`.
+
+Otherwise, continue on as follows:
+
+We are now going to determine types of hydrogen bond (HB) interactions present in the system by using D_ATA to analyse the *HISTORY* file produced from the previous tutorial.
+
+
+**Procedures**
+
+(1) Edit D_ATA input file (*d_ata.input*) and insert *HISTORY* as the input file:
+
+.. literalinclude:: dlf_analyse_control1.txt
+
+Close and save the file.
+
+(2) Use this control file (*d_ata.control*) as shown below:
+
+.. literalinclude:: dlf_analyse_control2.txt
+
+(3) Run D_ATA by typing *./d_ata* 
+
+(4) Inspect output files: *d_ata.output* and *d_ata.results*.
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_analyse>`

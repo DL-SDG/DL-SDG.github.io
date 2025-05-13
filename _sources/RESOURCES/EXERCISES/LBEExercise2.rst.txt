@@ -28,20 +28,19 @@ Instructions
 
 For this exercise, you will need the main DL_MESO_LBE executable ``lbe.exe`` - ideally either the serial version with OpenMP multithreading or the parallel version with MPI - and the utility :ref:`init.exe <lbeinitcreate>` to create different starting setups. You can also use the DL_MESO GUI (see :ref:`DL_MESO_GUI`) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed.
 
-Copy the :ref:`lbin.sys <lbin_sys>`, :ref:`lbin.spa <lbin_spa>` and :ref:`lbin.init <lbin_init>` input files from the directory ``dl_meso/DEMO/LBE/2D_DropShear`` in your copy of DL_MESO to your working directory (``dl_meso/WORK``). 
+Download the :download:`lbin.sys <./LBEExercise2/lbin.sys>`, :download:`lbin.spa <./LBEExercise2/lbin.spa>` and :download:`lbin.init <./LBEExercise2/lbin.init>` input files to your working directory (e.g. ``dl_meso/WORK``). 
 
-These simulation input files will model a rectangular box (:math:`150 \times 50` grid points) with walls at the top and bottom. While most of the box will be filled with a continuous fluid (denoted as fluid 0 by DL_MESO_LBE), an immiscible drop of a different fluid (fluid 1) will be placed close to the bottom wall. The lbin.init file was created (using the :ref:`init.exe <lbeinitcreate>` utility) to give this drop a radius of 15 lattice units and place its centre at lattice grid coordinates :math:`(40, 20)`.
+These simulation input files will model a rectangular box (:math:`150 \times 50` grid points) with walls at the top and bottom. While most of the box will be filled with a continuous fluid (denoted as fluid 0 by DL_MESO_LBE), an immiscible drop of a different fluid (fluid 1) will be placed close to the bottom wall. The *lbin.init* file was created (using the :ref:`init.exe <lbeinitcreate>` utility) to give this drop a radius of 15 lattice units and place its centre at lattice grid coordinates :math:`(40, 20)`.
 
 The first few thousand timesteps of the simulation will be used to allow the drop shape to settle: no boundary conditions will be applied during this equilibration period. During the remainder of the simulation, a bounce-back boundary condition is applied at the bottom wall, while a constant velocity boundary at the top is applied with a horizontal speed (in lattice units) of 0.005 going to the right.
 
 To modify any of the parameters in the :ref:`lbin.sys <lbin_sys>` file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are: ::
 
-  interaction_1
-  interaction_2
+  interaction_0_1
   segregation
   speed_top_0
 
-where the first two are for the interaction parameter :math:`g_{01}` between the two fluids, ``segregation`` gives the segregation parameter :math:`\beta` and ``speed_top_0`` is the :math:`x`-component of the top wall velocity applied using a constant velocity boundary condition.
+where the first one is for the interaction parameter :math:`g_{01}` between the two fluids, ``segregation`` gives the segregation parameter :math:`\beta` and ``speed_top_0`` is the :math:`x`-component of the top wall velocity applied using a constant velocity boundary condition.
 
 If you wish to use the parallel version of DL_MESO_LBE to run this simulation, you may want to add the following three lines to the :ref:`lbin.sys <lbin_sys>` file to ensure only one output file is produced per timestep: ::
 

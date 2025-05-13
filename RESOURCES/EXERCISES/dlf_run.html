@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Run Simulation (DL_POLY) &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="run-simulation-dl-poly">
+<span id="header-dlf-run"></span><h1>Run Simulation (DL_POLY)<a class="headerlink" href="#run-simulation-dl-poly" title="Permalink to this headline">¶</a></h1>
+<p>This page is related to the tutorial section to setup a solution model using DL_FIELD. If you have not done so, please go to
+<a class="reference internal" href="dlf_solution.html"><span class="doc">Setup solutions</span></a>.</p>
+<p>If you have run the simulation and produced a HISTORY trajectory file, you can proceed to <a class="reference internal" href="dlf_analyse.html"><span class="doc">Atomic Interaction Analysis Using D_ATA</span></a>.</p>
+<p>Otherwise, please continue on the tutorial as follows:</p>
+<p>The FF structure obtained from DL_FIELD would need to be equibrated before taking the sample and write to HISTORY trajectory files. For this tutorial, we will carry out sampling run at 300 K and 1 atm pressure.</p>
+<p>Below shows several runs, each using the CONFIG file from the previous run to the next.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can use up to 4 processors to run these simulations. To reduce simulation time, you can reduce total timesteps, say, from 10000 steps to 5000 steps.</p>
+</div>
+<p><strong>Procedures</strong></p>
+<ol class="arabic simple">
+<li>‘Equilibration’. Strictly speaking, this step is taken to ‘unlock’ any structures that are in highly energetic conformations. This can occur, as for instance, DL_FIELD places solvent molecules in some unfavourable orientations with respect to solutes. Use the following <em>CONTROL</em> file:</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Run</span> <span class="mi">1</span><span class="p">:</span> <span class="n">Resolve</span> <span class="nb">any</span> <span class="n">high</span><span class="o">-</span><span class="n">energy</span> <span class="n">conformation</span>
+
+<span class="n">ensemble</span> <span class="n">nve</span>
+<span class="n">zero</span>
+<span class="n">cap</span> <span class="mf">5000.0</span>
+<span class="n">densvar</span> <span class="mi">20</span>
+<span class="n">steps</span> <span class="mi">2000</span>
+<span class="n">equilibration</span> <span class="n">steps</span> <span class="mi">1000000</span>
+<span class="n">scale</span> <span class="n">every</span> <span class="mi">1</span>
+<span class="n">timestep</span> <span class="mf">0.002</span>
+
+<span class="n">cutoff</span> <span class="mf">12.000000</span>
+<span class="n">ewald</span> <span class="n">precision</span> <span class="mf">1e-6</span>
+
+<span class="n">mxshak</span> <span class="mi">100</span>
+<span class="n">shake</span> <span class="mf">1.0e-5</span>
+
+<span class="n">job</span> <span class="n">time</span> <span class="mi">100000</span>
+<span class="n">close</span> <span class="n">time</span> <span class="mi">200</span>
+<span class="n">finish</span>
+</pre></div>
+</div>
+<p>Remember to use the final configuration (<em>REVCON</em>) for the next simulation run below.</p>
+<ol class="arabic simple" start="2">
+<li>Equilibration in NVE ensemble, rescale temperature to 300 K at every timestep, for a total of 10,000 steps. The timestep is set to 0.002 ps. Use the following <em>CONTROL</em> file.</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Run2</span><span class="p">:</span> <span class="n">Equilibration</span> <span class="n">at</span> <span class="n">NVE</span>
+
+<span class="n">ensemble</span> <span class="n">nve</span>
+<span class="n">temperature</span> <span class="mf">300.0</span>
+<span class="n">densvar</span> <span class="mi">20</span>
+<span class="n">steps</span> <span class="mi">10000</span>
+<span class="n">equilibration</span> <span class="n">steps</span> <span class="mi">1000000</span>
+<span class="n">scale</span> <span class="n">every</span> <span class="mi">1</span>
+<span class="n">timestep</span> <span class="mf">0.002</span>
+
+<span class="n">cutoff</span> <span class="mf">12.000000</span>
+<span class="n">ewald</span> <span class="n">precision</span> <span class="mf">1e-6</span>
+
+<span class="n">mxshak</span> <span class="mi">100</span>
+<span class="n">shake</span> <span class="mf">1.0e-5</span>
+
+<span class="n">stats</span> <span class="n">every</span> <span class="mi">1000</span>
+<span class="nb">print</span> <span class="n">every</span> <span class="mi">1000</span>
+<span class="n">job</span> <span class="n">time</span> <span class="mi">100000</span>
+<span class="n">close</span> <span class="n">time</span> <span class="mi">200</span>
+<span class="n">finish</span>
+</pre></div>
+</div>
+<p>The use of <em>restart noscale</em> directive means reset the time to zero and use the initial velocities as defined in the CONFIG file.</p>
+<p>Remember to use the final configuration (<em>REVCON</em>) for the next simulation run below.</p>
+<ol class="arabic simple" start="3">
+<li>Equilibration in NPT ensemble, by using hoover as the thermostat and barostat and set the temperature to 300 K and 1 atm, respectively. Use the following <em>control</em> file.</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">Equilibration</span> <span class="n">at</span> <span class="n">NPT</span><span class="o">.</span> 
+
+<span class="n">ensemble</span> <span class="n">npt</span> <span class="n">hoover</span> <span class="mf">0.4</span> <span class="mf">1.0</span>
+<span class="n">pressure</span> <span class="mf">0.00101325</span>
+<span class="n">temperature</span> <span class="mf">300.0</span>
+
+<span class="n">densvar</span> <span class="mi">20</span>
+<span class="n">steps</span> <span class="mi">10000</span>
+<span class="n">equilibration</span> <span class="n">steps</span> <span class="mi">0</span>
+<span class="n">scale</span> <span class="n">every</span> <span class="mi">1</span>
+<span class="n">timestep</span> <span class="mf">0.002</span>
+
+<span class="n">cutoff</span> <span class="mf">12.000000</span>
+<span class="n">ewald</span> <span class="n">precision</span> <span class="mf">1e-6</span>
+
+<span class="n">mxshak</span> <span class="mi">100</span>
+<span class="n">shake</span> <span class="mf">1.0e-5</span>
+
+<span class="n">restart</span> <span class="n">noscale</span>
+<span class="n">stats</span> <span class="n">every</span> <span class="mi">1000</span>
+<span class="nb">print</span> <span class="n">every</span> <span class="mi">1000</span>
+<span class="n">job</span> <span class="n">time</span> <span class="mi">100000</span>
+<span class="n">close</span> <span class="n">time</span> <span class="mi">200</span>
+<span class="n">finish</span>
+</pre></div>
+</div>
+<p>Remember to use the final configuration (<em>REVCON</em>) for the next simulation run below.</p>
+<ol class="arabic simple" start="4">
+<li>Sampling run in NPT ensemble, as before. This time, a directive <em>traj 0 200 0</em> is used to instruct DL_POLY to create a <em>HISTORY</em> trajectory file and write out the atomic configuration every 200 steps. Use the following <em>CONTROL</em> file.</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Run</span> <span class="mi">4</span><span class="p">:</span> <span class="n">Sampling</span> <span class="n">run</span> <span class="n">at</span> <span class="n">NPT</span> 
+
+<span class="n">ensemble</span> <span class="n">npt</span> <span class="n">hoover</span> <span class="mf">0.4</span> <span class="mf">1.0</span>
+<span class="n">pressure</span> <span class="mf">0.00101325</span>
+<span class="n">temperature</span> <span class="mf">300.0</span>
+
+<span class="n">densvar</span> <span class="mi">20</span>
+<span class="n">steps</span> <span class="mi">10000</span>
+<span class="n">equilibration</span> <span class="n">steps</span> <span class="mi">0</span>
+<span class="n">scale</span> <span class="n">every</span> <span class="mi">1</span>
+<span class="n">timestep</span> <span class="mf">0.002</span>
+
+<span class="n">cutoff</span> <span class="mf">12.000000</span>
+<span class="n">ewald</span> <span class="n">precision</span> <span class="mf">1e-6</span>
+
+<span class="n">mxshak</span> <span class="mi">100</span>
+<span class="n">shake</span> <span class="mf">1.0e-5</span>
+
+<span class="n">restart</span> <span class="n">noscale</span>
+<span class="n">traj</span> <span class="mi">0</span> <span class="mi">200</span> <span class="mi">0</span>
+<span class="n">stats</span> <span class="n">every</span> <span class="mi">1000</span>
+<span class="nb">print</span> <span class="n">every</span> <span class="mi">1000</span>
+<span class="n">job</span> <span class="n">time</span> <span class="mi">100000</span>
+<span class="n">close</span> <span class="n">time</span> <span class="mi">200</span>
+<span class="n">finish</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>Congratulations, you have created a HISTORY trajectory file! If you want to analyse atomic interactions, you can proceed <a class="reference internal" href="dlf_analyse.html"><span class="doc">Atomic Interaction Analysis Using D_ATA</span></a>.</li>
+</ol>
+<p><a class="reference internal" href="#header-dlf-run"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Lattice Boltzmann Equation" href="LBE.html" />
-    <link rel="prev" title="DL_MESO Exercises" href="exercises_dlmeso.html" /> 
+    <link rel="prev" title="DL_MESO" href="exercises_dlmeso.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -33,12 +33,12 @@
           <a href="LBE.html" title="Lattice Boltzmann Equation"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="exercises_dlmeso.html" title="DL_MESO Exercises"
+          <a href="exercises_dlmeso.html" title="DL_MESO"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" accesskey="U">DL_MESO Exercises</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" accesskey="U">DL_MESO</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -99,16 +99,12 @@
 </div>
 <div class="section" id="optional-python-scripts">
 <h2>Optional Python scripts<a class="headerlink" href="#optional-python-scripts" title="Permalink to this headline">¶</a></h2>
-<p>Some Python3 scripts are available to carry out a simple DPD simulation workflow for one of the practical exercises and plot graphs of simulation outputs. These scripts are optional but very useful and recommended for the DPD exercises.</p>
+<p>Some Python3 scripts are available to carry out a simple DPD simulation workflow for one of the practical exercises, set up boundary conditions for one of the LBE exercises (as an alternative to using the DL_MESO GUI), and plot graphs of simulation outputs. These scripts are optional but very useful and come highly recommended.</p>
 <p>As well as Python3, the following packages need to be installed using PIP (Python’s Package Installer) <a class="footnote-reference" href="#id7" id="id4">[3]</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">docent</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">tqdm</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">PyQt5</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">matplotlib</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">docopt</span> <span class="n">tqdm</span> <span class="n">numpy</span> <span class="n">PyQt6</span> <span class="n">matplotlib</span> <span class="n">scipy</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span> <span class="n">vtk</span>
 </pre></div>
 </div>
-<p>The visualisation scripts will also need <a class="reference external" href="https://doc.qt.io/qt-5/gettingstarted.html">Qt5</a> to be installed, e.g. <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">qt5-default</span></code> in Ubuntu.</p>
+<p>The visualisation scripts will also need <a class="reference external" href="https://doc.qt.io/qt-6/gettingstarted.html">Qt6</a> to be installed, e.g. <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">qt6-default</span></code> in Ubuntu.</p>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -125,7 +121,7 @@
 <table class="docutils footnote" frame="void" id="id7" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Depending on your installation of Python3 and PIP, you might need to use <code class="docutils literal notranslate"><span class="pre">pip3</span></code> instead of <code class="docutils literal notranslate"><span class="pre">pip</span></code> in these commands to install the packages.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>Depending on your installation of Python3 and PIP, you might need to use <code class="docutils literal notranslate"><span class="pre">pip3</span></code> instead of <code class="docutils literal notranslate"><span class="pre">pip</span></code> in this command to install the packages.</td></tr>
 </tbody>
 </table>
 <p class="rubric">Reference</p>
@@ -149,12 +145,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
@@ -170,7 +167,7 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="exercises_dlmeso.html"
-                        title="previous chapter">DL_MESO Exercises</a></p>
+                        title="previous chapter">DL_MESO</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="LBE.html"
                         title="next chapter">Lattice Boltzmann Equation</a></p>
@@ -200,12 +197,12 @@
           <a href="LBE.html" title="Lattice Boltzmann Equation"
              >next</a> |</li>
         <li class="right" >
-          <a href="exercises_dlmeso.html" title="DL_MESO Exercises"
+          <a href="exercises_dlmeso.html" title="DL_MESO"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

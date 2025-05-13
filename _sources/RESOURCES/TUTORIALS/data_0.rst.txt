@@ -6,7 +6,7 @@
 D_ATA 
 *********************
 
-Welcome to the D_ATA tutorial main portal. More illustrations and less wording than a user manual. This is where you can learn unique features that are implemented in D_ATA: DL_F Notation and DANAI. In addition, examples will be given how to run and intepret results. 
+Welcome to the D_ATA Reference Guide main portal. More illustrations and less wording than a user manual. This is where you can learn unique features that are implemented in D_ATA: DL_F Notation and DANAI. In addition, examples will be given how to run and intepret results. 
 
 .. image:: ../../image/data_0_1.png
    :scale: 15%

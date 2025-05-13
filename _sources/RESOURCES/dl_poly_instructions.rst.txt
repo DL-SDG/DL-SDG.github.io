@@ -10,15 +10,15 @@ DL_POLY Specific Instructions and Tutorials
 
 |
   
-* `Building DL_POLY_4.08 with cmake gfortran (7.2.1) and openmpi (3.0.0) <https://www.youtube.com/watch?v=6SqjOzQ-mno>`_   (no sound)
+* `Building DL_POLY_5.08 with cmake gfortran (7.2.1) and openmpi (3.0.0) <https://www.youtube.com/watch?v=6SqjOzQ-mno>`_   (no sound)
 
 |
   
-* DL_POLY_4 build process gnu compilers and openmpi on opensuse `Building DL_POLY_4 with gnu compilers and openmpi on opensuse <https://www.youtube.com/watch?v=3Xfh-P681P8>`_  (no sound)
+* DL_POLY_5 build process gnu compilers and openmpi on opensuse `Building DL_POLY_5 with gnu compilers and openmpi on opensuse <https://www.youtube.com/watch?v=3Xfh-P681P8>`_  (no sound)
 
 |  
   
-* `DL_POLY_4 GUI build and start <https://www.youtube.com/watch?v=vHcF6FWBJk4>`_ (no sound)
+* `DL_POLY_5 GUI build and start <https://www.youtube.com/watch?v=vHcF6FWBJk4>`_ (no sound)
 
 |
 

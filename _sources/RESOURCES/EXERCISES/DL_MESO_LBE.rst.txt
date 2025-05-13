@@ -6,7 +6,7 @@ Using DL_MESO_LBE
 Summary
 ^^^^^^^
 
-DL_MESO_LBE uses a number of input files to read in the details of an LBE simulation and produces output files containing the results. The Java GUI and utilities supplied with DL_MESO can be used to create/modify LBE simulation inputs and work with outputs to enable users to visualise and analyse simulations.
+DL_MESO_LBE uses a number of input files to read in the details of an LBE simulation and produces output files containing the results. The Java GUI and utilities supplied with DL_MESO and the scripts supplied with these exercises can be used to create/modify LBE simulation inputs and work with outputs to enable users to visualise and analyse simulations.
 
 Input files
 ^^^^^^^^^^^
@@ -59,7 +59,7 @@ The lattice scheme is defined by the numbers of dimensions and discrete speeds: 
 
 The relaxation times (:math:`\tau`) for each fluid (numbering starting from 0) are given with ``relaxation_fluid_*`` keywords. The initial density for each fluid throughout the system is given by ``density_ini_*``, while constant densities used for incompressible fluids and some mesoscopic interactions are given by ``density_inc_*`` [#]_. 
 
-Properties for boundary conditions applying e.g. constant densities or velocities can be specified. In this case, ``speed_top_*`` indicates the velocity of all fluids at the top boundary of the box (with 0, 1 and 2 indicating :math:`x`-, :math:`y`- and :math:`z`-components respectively). These boundary conditions do not apply during any equilibration timesteps specified by ``equilibration_step``.
+Properties for boundary conditions applying e.g. constant densities or velocities can be specified in this file. In this case, ``speed_top_*`` indicates the velocity of all fluids at the top boundary of the box (with 0, 1 and 2 indicating :math:`x`-, :math:`y`- and :math:`z`-components respectively). These boundary conditions do not apply during any equilibration timesteps specified by ``equilibration_step``.
 
 There are a few options available for the ``output_format`` - snapshots of the simulation showing fluid velocities, densities etc. at all grid points - which are written every ``save_span`` timesteps either from the start or after equilibration.
 
@@ -81,7 +81,7 @@ A short extract from a :ref:`lbin.spa <lbin_spa>` file used in :ref:`LBE Exercis
   3 0 0 13
   4 0 0 13
 
-The format consists of lines with grid point coordinates followed by a code for the required boundary condition at that point. A full list of the available boundary condition codes can be found in Chapter 6 of the :download:`The DL_MESO User Manual <../DOCUMENTS/MAN_DL_MESO_2.7.pdf>`, but it is much easier to create an :ref:`lbin.spa <lbin_spa>` file using the GUI (see below).
+The format consists of lines with grid point coordinates followed by a code for the required boundary condition at that point. A full list of the available boundary condition codes can be found in Chapter 6 of the :download:`The DL_MESO User Manual <../DOCUMENTS/MAN_DL_MESO_2.7.pdf>`, but it is much easier to create an :ref:`lbin.spa <lbin_spa>` file using the GUI (see below) or a custom script (e.g. one supplied for :ref:`LBE Exercise 3 <LBE_Exercise3>`).
 
 Output files
 ^^^^^^^^^^^^
@@ -121,7 +121,7 @@ where the first will write the standard output to the file without displaying it
 Running GUI
 ^^^^^^^^^^^
 
-Some of the tasks in the practical LBE exercises can make use of the :ref:`GUI <Header_dlm_10>`. You can launch it from *dl_meso/WORK* with the command: ::
+While it is not essential, some of the tasks in the practical LBE exercises can make use of the :ref:`GUI <Header_dlm_10>`. You can launch it from *dl_meso/WORK* with the command: ::
 
    java -jar ../JAVA/GUI.jar
 
@@ -173,8 +173,60 @@ These can be launched in the working directory in a similar fashion to running D
 
 although some utilities can take command-line options to change how they work. (The utility :ref:`init.exe <lbeinitcreate>` will prompt the user to enter information.) Every utility can take ``-h`` as an option to show what the utility does and what the other available options happen to be.
 
+Python scripts
+^^^^^^^^^^^^^^
+
+To help with the LBE exercises, I have provided two Python3 scripts for you to use. These can help you set up boundary conditions, visualise and analyse the results of DL_MESO_LBE calculations. One of these is entirely optional (for :ref:`LBE_Exercise1`), while the other is particularly helpful for :ref:`LBE_Exercise3` as an alternative to using the GUI.
+
+If you would like to make use of these scripts, I suggest putting a copy of each one into your working directory with the various executables for DL_MESO_LBE.
+
+vtk_to_twophase.py
+~~~~~~~~~~~~~~~~~~
+
+:download:`vtk_to_twophase.py <./scripts/vtk_to_twophase.py>` is an analysis script that takes a :ref:`lbout\*.vts <lboutsnapshot>` simulation snapshot file from a two-phase single-fluid DL_MESO_LBE calculation and determines the bulk densities of liquid and vapour phases, as well as the location and size of a liquid drop or vapour bubble. It can also optionally determine the thickness of the interface between the two phases and work out the interfacial tension. 
+
+To use the script, invoke it with your Python3 interpreter using one of the following commands: ::
+
+   python vtk_to_twophase.py --vtkin <vtkin>
+   python3 vtk_to_twophase.py --vtkin <vtkin>
+   ./vtk_to_twophase.py.py --vtkin <vtkin>
+
+substituting ``<vtkin>`` with the same of a :ref:`lbout\*.vts <lboutsnapshot>` simulation snapshot file. (This must be supplied for the script to run!)
+
+You can add a number of optional command-line options at the end of the invocation:
+
+* ``--lbin <lbin>`` sets the location of the :ref:`lbin.sys <lbin_sys>` file to obtain interaction information used for the calculation and calculate the interfacial tension between the phases (by default, no interfacial tension is calculated)
+* ``--threshold <thres>`` sets the phase index threshold value for calculating the width of the vapour-liquid interface (by default, the interfacial width is not calculated)
+* ``--plot`` plots the contour of the phase index used to calculate the radius of the liquid drop or vapour bubble, as well as the contours used to calculate interfacial widths if the above threshold option is in use  
+
+The results of the calculations - bulk liquid and vapour densities, the location and radius of a liquid drop or vapour bubble, and optionally the interfacial width and interfacial tension - are displayed on the screen. If a plot is requested, this is generated in a separate window.  
+
+karmanbc.py
+~~~~~~~~~~~
+
+:download:`karmanbc.py <./scripts/karmanbc.py>` is a visualiser and creator of boundary conditions for DL_MESO_LBE calculations, specifically of flows past obstacles in channels as studied in :ref:`LBE_Exercise3` and as an alternative to the Java GUI. Starting with a :math:`250 \times 50` grid, the user can add walls at the top and bottom of the domain, circular and rectangular objects, before writing a :ref:`lbin.spa <lbin_spa>` boundary condition file for a DL_MESO_LBE calculation.
+
+To use the script, invoke it in your Python3 interpreter using one of the following commands: ::
+
+  python karmanbc.py
+  python3 karmanbc.py
+  ./karmanbc.py
+
+.. figure:: ./images/karmanbc.png
+    :width: 6.00000in
+    :align: center
+    :alt: Display of DL_MESO_LBE simulation boundary conditions in karmanbc.py
+    :figclass: align-center
+
+    Display of DL_MESO_LBE simulation boundary conditions shown in *karmanbc.py*
+
+The buttons can be used to load in the boundary conditions from an existing :ref:`lbin.spa <lbin_spa>` file, save any created boundary conditions to a :ref:`lbin.spa <lbin_spa>` file (overwriting any existing file after checking with the user), clear any existing boundary points, and add obstacles to the domain. Apart from adding walls at the top and bottom of the domain with the *Add walls* button, the user can add a circle by typing coordinates for its centre and its radius in the relevant text boxes before clicking the *Add circle* button [#]_. Similarly, a rectangle can be added by specifying the coordinates of its bottom-left and top-right corners before clicking the *Add rectangle* button.
+
+
 .. rubric:: Footnotes
 
 .. [#] When running DL_MESO_LBE in serial, no boundary halo is required as any periodic boundaries are implemented using modulo functions on grid positions. This value should still be specified in case the simulation is run in parallel later, but it will be ignored for serial runs.
 
 .. [#] One of the utilities (:ref:`init.exe <lbeinitcreate>`) uses the constant densities as defaults when setting up initial conditions, e.g. when including immiscible drops in the calculation.
+
+.. [#] The circle does *not* have to be placed entirely between the top and bottom walls: if the circle would otherwise extend outside of the domain, it will be wrapped across the opposite boundary (as shown in the illustration).

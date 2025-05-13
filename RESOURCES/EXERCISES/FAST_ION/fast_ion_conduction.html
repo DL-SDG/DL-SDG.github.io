@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="../Low.html" accesskey="U">Low Difficulty Exercises</a> &#187;</li> 
       </ul>
     </div>  
@@ -50,31 +50,32 @@
             
   <div class="section" id="fast-ion-conduction">
 <h1>Fast Ion Conduction<a class="headerlink" href="#fast-ion-conduction" title="Permalink to this headline">¶</a></h1>
-<p><strong>Summary</strong>
-This exercise provides an introduction to a class of materials known as fast ion or superionic conductors. The objective is to explore the properties of such materials and characterise their behaviour.</p>
-<p><strong>Background</strong>
-Many inorganic materials exhibit the phenomenon of fast ion conduction - they conduct an electric current in
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This exercise provides an introduction to a class of materials known as fast ion or superionic conductors. The objective is to explore the properties of such materials and characterise their behaviour.</p>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Many inorganic materials exhibit the phenomenon of fast ion conduction - they conduct an electric current in
 the solid sate. This happens because one or more of the ions is capable of diffusing rapidly through the system
-while it is still in the solid sate. <a class="reference external" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.40.1337">An example of such a material is silver iodide (AgI)</a> in the so-called  α -phase, which exists between 400 K and 800 K approximately. In this phase the iodine anions form a body
+while it is still in the solid sate. <a class="reference external" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.40.1337">An example of such a material is silver iodide (AgI)</a> in the so-called  α-phase, which exists between 400 K and 800 K approximately. In this phase the iodine anions form a body
 centred cubic lattice and the silver cations formally occupy pseudo-tetrahedral sites between the iodide ions.
 With increasing temperature however, the structure shows increasing disorder. The nature of this disorder is the object of this exercise -investigate and characterise it.</p>
-<p><strong>Step 1</strong>
-Copy or download the following files:  <a class="reference download internal" download="" href="../../../_downloads/163c31939de62175f51b0000980e53a7/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a>
-<a class="reference download internal" download="" href="../../../_downloads/dec817737d18923d75c926cb13df3c43/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>
-<a class="reference download internal" download="" href="../../../_downloads/7faef36553dfc87b6fc6902f0fa82396/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a></p>
-<p><strong>Step 2</strong>
-Run DLPOLY.Z, in a <em>constant volume</em> simulation at <em>high temperature</em> for about 2000 time steps and examine the <em>OUTPUT</em> file. Try to determine from the information provided what is going on. Display the <em>REVCON</em> file and examine the structure.</p>
-<dl class="docutils">
-<dt><strong>Step 3</strong></dt>
-<dd><p class="first">If you are satisfied that you are seeing the essential phenomenon, run the program again and this time generate a <em>HISTORY</em> file, sampling the data at convenient intervals (see the <a class="reference internal" href="../../manual.html"><span class="doc">DL_POLY-4 User Manual</span></a> to find out how to do this). Now you may try a number of things such as:</p>
-<blockquote class="last">
-<div><ol class="lowerroman simple">
+</div>
+<div class="section" id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Copy or download the following files:  <a class="reference download internal" download="" href="../../../_downloads/163c31939de62175f51b0000980e53a7/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/dec817737d18923d75c926cb13df3c43/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/7faef36553dfc87b6fc6902f0fa82396/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a></li>
+<li>Run DLPOLY.Z, in a <em>constant volume</em> simulation at <em>high temperature</em> for about 2000 time steps and examine the <em>OUTPUT</em> file. Try to determine from the information provided what is going on. Display the <em>REVCON</em> file and examine the structure.</li>
+<li>If you are satisfied that you are seeing the essential phenomenon, run the program again and this time generate a <em>HISTORY</em> file, sampling the data at convenient intervals (see the <a class="reference internal" href="../../manual.html"><span class="doc">DL_POLY-4 User Manual</span></a> to find out how to do this). Now you may try a number of things such as:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
 <li>Calculate the mean square displacements of the ions as accurately as possible. Repeat the procedure at some other temperature (preferably more than one) and obtain the diffusion coefficients over a range of temperatures. Determine the activation energy with an Arrhenius plot.</li>
 <li>Calculate the van Hove function (G<sub>s</sub>(r,t)) - nicely described in           <a class="reference external" href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.A405">“Correlations in the motion of atoms in liquid argon”</a>. Examine the results of this and decide if the ion diffusion is <em>solid-like</em> or <em>liquid-like</em>.</li>
-</ol>
+</ul>
 </div></blockquote>
-</dd>
-</dl>
+</div>
 </div>
 
 
@@ -88,12 +89,13 @@ Run DLPOLY.Z, in a <em>constant volume</em> simulation at <em>high temperature</
 <li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
@@ -143,8 +145,8 @@ Run DLPOLY.Z, in a <em>constant volume</em> simulation at <em>high temperature</
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="../Low.html" >Low Difficulty Exercises</a> &#187;</li> 
       </ul>
     </div>

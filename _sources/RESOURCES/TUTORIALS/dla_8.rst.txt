@@ -12,7 +12,7 @@ Atomic Interaction Analysis
 This section describes the unique feature of DL_ANALYSER to carry out atomic interaction analysis. Options to carry out these analysis are located under the Atomic Interaction Analysis Section in the *control* file.
 
 .. Note::
-   To use the Analysis Section, the system trajectory files must express atoms in DL_F Notation and it only works for atom-based analysis criteria.
+   To use the Analysis Section, the system trajectory files must express atoms in DL_F Notation and it only works for atom-based analysis criteria. However, this is no longer the case if you use the dedicated software called :doc:`../d_ata_intro`.
 
 DL_ANALYSER can carry out precise identification and quantification of atomic interactions in a molecular system. Moreover, these interactions can be annotated by using the DL_ANALYSER Notation for Aomic Interactions (DANAI).  
 

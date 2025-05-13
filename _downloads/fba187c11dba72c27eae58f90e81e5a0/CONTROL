@@ -1,0 +1,37 @@
+title DL_POLY: Potassium Chloride Test Case
+
+io_file_config CONFIG
+io_file_field FIELD
+io_file_statis STATIS
+io_file_revive REVIVE
+io_file_revcon REVCON
+io_file_history HISTORY
+io_file_rdf RDFDAT
+
+temperature  300.0 K
+print_frequency  10 steps
+stats_frequency  10 steps
+rdf_print ON
+rdf_calculate ON
+rdf_frequency  10 steps
+vdw_cutoff  7.0 ang
+padding  0.25 ang
+cutoff  7.0 ang
+coul_method spme
+spme_precision 1e-06
+ensemble nst
+ensemble_method hoover
+ensemble_thermostat_coupling  0.1 ps
+ensemble_barostat_coupling  1.0 ps
+time_run  2000 steps
+time_equilibration  500 steps
+time_job  3600.0 s
+time_close  100.0 s
+timestep  0.001 ps
+pressure_hydrostatic  40.0 katm
+restart continue
+rescale_frequency  10 steps
+traj_calculate ON
+traj_start  500 steps
+traj_interval  100 steps
+traj_key pos-vel

@@ -1,0 +1,40 @@
+DL_POLY DPD lipid bilayer example
+
+UNITS dpd
+
+MOLECULES 2
+W
+nummols 9838
+atoms 1
+W       1.0 0.0 1 0
+finish
+HC6     
+nummols 350
+atoms 7
+H       1.0 0.0 1 0
+C       1.0 0.0 6 0
+bonds 6
+-hrm  1 2 128.000 0.500000
+-hrm  2 3 128.000 0.500000
+-hrm  3 4 128.000 0.500000
+-hrm  4 5 128.000 0.500000
+-hrm  5 6 128.000 0.500000
+-hrm  6 7 128.000 0.500000
+angles 5
+-cos   1 2 3 20.0 0.0 1.0
+-cos   2 3 4 20.0 0.0 1.0
+-cos   3 4 5 20.0 0.0 1.0
+-cos   4 5 6 20.0 0.0 1.0
+-cos   5 6 7 20.0 0.0 1.0
+finish
+
+VDW 6
+H    H    dpd    25.0 1.0 4.5
+C    C    dpd    25.0 1.0 4.5
+W    W    dpd    25.0 1.0 4.5
+H    W    dpd    35.0 1.0 4.5
+H    C    dpd    50.0 1.0 9.0
+C    W    dpd    75.0 1.0 20.0
+
+close
+

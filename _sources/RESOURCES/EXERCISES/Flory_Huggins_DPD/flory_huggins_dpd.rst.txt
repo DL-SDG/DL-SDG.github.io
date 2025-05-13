@@ -1,0 +1,77 @@
+
+Parameterising DPD interactions using Flory-Huggins solution theory
+===================================================================
+
+Summary
+-------
+
+This exercise explores an approach to parameterise interactions commonly used in Dissipative Particle Dynamics (DPD) [#]_. A known connection exists between the repulsion strength between pairs of particles and a parameter used to represent the heat of mixing between two components. By carrying out simulations of two-component mixtures and varying the repulsion strngth between them, we can determine that relationship and later make use of it when parameterising DPD calculations.
+
+Background
+----------
+
+Groot and Warren [Groot1997]_ introduced the following non-bonded soft repulsive interaction potential:
+
+.. math :: V (r) = \left\{ \begin{matrix} A r_{c} \left( 1 - \frac{r}{r_{c}} \right)^2 & (r_{ij} < r_{c}) \\ 0 & (r_{ij} \geq r_{c}) \\ \end{matrix} \right.\ ,
+
+which is applied to all particle pairs within a cutoff distance :math:`r_{c}` from each other. This was chosen for mesoscopic simulations as it closely resembles the potential obtained by systematically coarse-graining polymer melts. It also leads to a linear force and a quadratic equation of state for a single-component system: see a :ref:`summary of DPD <DPD_Intro>` in our Knowledge Center for more details.
+
+The predicted *analytical* equation of state for a DPD fluid means we can readily obtain the repulsion strength :math:`A` for pairs of particles for each component by matching isothermal compressibilities, also selecting :math:`r_{c}` based on our required bead sizes. However, the more interesting use of this Groot-Warren interaction comes from varying :math:`A` between particles pairs of different components. 
+
+An approach to find repulsion strengths between components was devised by Groot and Warren: they made a connection between values of :math:`A` and the free energy of mixing between two components, represented in Flory-Huggins solution theory as a dimensionless parameter :math:`\chi`. Assuming all beads are of the same size and interact among beads of the same kind in the same way - i.e. :math:`r_{c}` is constant and :math:`A^{AA} = A^{BB}` - they determined that the excess repulsion between the two components is proportional to :math:`\chi^{AB}`, i.e.
+
+.. math :: A^{AB} - A^{AA} \propto \chi^{AB}.
+  
+The proportionality factor they originally posited does not seem to work properly and happens to be a function of overall particle density. However, they noted that it is possible to determine the proportionality factor for each density by carrying out several DPD simulations of two components separating from each other with various :math:`A^{AB}` values and determining :math:`\chi^{AB}` from volume fractions of a component away from interfaces where the two components mix slightly. If we know the volume fraction of component A (:math:`\phi_A`) in a separated region,
+
+.. math :: \chi^{\text{AB}} = \frac{\ln\lbrack(1 - \phi_{\text{A}})/\phi_{\text{A}}\rbrack}{1 - 2\phi_{\text{A}}}.
+
+The 'trick' to obtaining this relationship quickly is to set up calculations where each type of particle starts in one half of an elongated box. While some mixing will occur during each calculation, the two regions in the box will still contain mostly one particle type or the other after equilibration. 
+
+Task
+----
+
+After downloading and compiling DL_POLY, download the following simulation workflow script: :download:`flory_huggins_dlpoly.py <../scripts/flory_huggins_dlpoly.py>`. This Python script will produce an initial configuration (a *CONFIG* file) of a two-component system in a box longer in the :math:`z`-direction than the other two and a *CONTROL* file to run a DPD calculation in DL_POLY and generate a time-averaged z-density profile (localised densities along the :math:`z`-direction). The script will then loop through a range of :math:`A^{AB}` values, generating a *FIELD* file and launching DL_POLY for each value, then using the resulting *ZDNDAT* file to calculate a volume fraction (concentration) profile and work out :math:`\chi^{AB}` values.
+
+To launch the script with the default range of :math:`A^{AB}` values, type: ::
+
+  python flory_huggins_dlpoly.py --nproc <nproc> --dlpoly <DLPOLY.Z>
+
+substituting ``<nproc>`` with the number of processor cores you wish to use for each calculation (defaults to 1) and ``<DLPOLY.Z>`` with the location of your DL_POLY executable *DLPOLY.Z*. This will take a bit of time - there are 11 calculations to get through(!) - but the script will provide progress bars so you can keep track of its progress. 
+
+Once this script has finished, download :download:`flory_huggins_plot.py <../scripts/flory_huggins_plot.py>` and launch this script in the same directory as the newly-created data file *floryhuggins-rho-3.000.dat*: ::
+
+  python flory_huggins_plot.py
+
+This will launch a graphical program that can plot the volume fraction profiles obtained from each simulation, as well as the resulting values of :math:`\chi^{AB}` as a function of :math:`\Delta A = A^{AB} - A^{AA}`. This latter plot will include a best-fit line for the data and its equation, including the proportionality factor.
+
+You now have a relationship that can be used for parameterisation: if you know the value of :math:`\chi` or free energy of mixing between two components - or can even obtain one from atomistic MD calculations - you will be able to find the corresponding value of :math:`A^{AB}` for a DPD calculation. Conversely, this relationship can also help you determine the relative hydrophobicity of a given DPD particle based on its values for :math:`A`. 
+
+To look at this relationship further, you can re-run *flory_huggins_dlpoly.py* with some more command-line options to change the simulations you wish to launch.
+
+  * ``--Aii <Aii>`` sets the value of :math:`A^{AA}` (repulsion parameter between particles of the same species) to ``<Aii>`` (default: 25.0)
+  * ``--Aijmin <Aijmin>`` sets the minimum value of :math:`A^{AB}` to ``<Aijmin>`` (default: 33.0)
+  * ``--Aijmax <Aijmax>`` sets the maximum value of :math:`A^{AB}` to ``<Aijmax>`` (default: 43.0)
+  * ``--dA <dA>`` sets the spacing between subsequent :math:`A^{AB}` values to ``<dA>`` (default: 1.0)
+  * ``--dz <dz>`` sets the size of density sampling bins along the :math:`z`-direction to ``<dz>`` (default: 0.1)
+  * ``--L <L>`` sets the length of the simulation box (given in DPD length units) in the :math:`z`-direction to ``<L>`` (default: 20.0)
+  * ``--W <W>`` sets the width of the simulation box (given in DPD length units) in the other two directions to ``<W>`` (default: 8.0)
+  * ``--rho <rho>`` sets the average particle density in the simulation box to ``<rho>`` (default: 3.0 - changing this value generates a different data file)
+
+Using some or all of these options, you might want to explore the relationship between :math:`\chi^{AB}` and :math:`A^{AB}` in more detail. Note that running the *flory_huggins_dlpoly.py* script does not overwrite any previously-obtained results. The *flory_huggins_plot.py* script will use all available data from the file, and this script can also take the ``--rho <rho>`` command-line option to pick up data for a different overall particle density.
+
+#. Try adding more data points to the *floryhuggins-rho-3.dat* data file you have generated by selecting a different range of :math:`A^{AB}` values and/or changing the size of the simulation box, and see whether or not the relationship between :math:`\chi^{AB}` and :math:`A^{AB}` changes. (You might want to try changing the size of the simulation box to see if you can speed up the calculations.)
+
+#. Is there a minimum :math:`A^{AB}` value that will show reliable separation of the two particle species?
+
+#. Try a different :math:`A^{AA}` value, adjusting the range of :math:`A^{AB}` values accordingly. Given we are plotting the relationship between :math:`\chi^{AB}` and :math:`\Delta A`, do these new data points lie on the original line?
+
+#. *Optionally* vary the system particle density from the default of 3.0 to a higher value: say either 5.0 or 6.0. Do you still get the same kind of relationship between :math:`\chi^{AB}` and :math:`\Delta A` as before? How does the relationship change compared with the original particle density?
+
+.. rubric:: Footnote
+
+.. [#] This tutorial exercise is an adaptation of a similar exercise for DL_MESO's DPD code (DL_MESO_DPD): :ref:`DPD_Exercise1`. 
+   
+.. rubric:: Reference
+
+.. [Groot1997] RD Groot and PB Warren, Dissipative particle dynamics: Bridging the gap between atomistic and mesoscopic simulation, *Journal of Chemical Physics*, **107**, 4423-4435 (1997), doi: 10.1063/1.474784.

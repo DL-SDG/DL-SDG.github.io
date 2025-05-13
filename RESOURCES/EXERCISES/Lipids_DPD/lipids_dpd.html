@@ -1,0 +1,191 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Lipid bilayers and micelles with DPD &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="High Difficulty Exercises" href="../High.html" />
+    <link rel="prev" title="Parameterising DPD interactions using Flory-Huggins solution theory" href="../Flory_Huggins_DPD/flory_huggins_dpd.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../High.html" title="High Difficulty Exercises"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../Flory_Huggins_DPD/flory_huggins_dpd.html" title="Parameterising DPD interactions using Flory-Huggins solution theory"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" accesskey="U">Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lipid-bilayers-and-micelles-with-dpd">
+<h1>Lipid bilayers and micelles with DPD<a class="headerlink" href="#lipid-bilayers-and-micelles-with-dpd" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This exercise demonstrates the ability of Dissipative Particle Dynamics (DPD) to quickly determine the structures formed by lipid molecules in aqueous solutions <a class="footnote-reference" href="#id4" id="id1">[1]</a>. Each lipid molecule can be constructed by joining beads with different hydrophobicities together using bonds to make it amphiphilic and consist of a hydrophilic head group and a hydrophobic tail. Applying angle potentials between pairs of bonds will have an affect on the structures that form, as will the concentration of lipid molecules in solution.</p>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>The soft repulsive (Groot-Warren) interactions frequently used in DPD calculations can be extended by joining particles (beads) together into molecules using e.g. harmonic springs. Since we can vary the repulsion strength between pairs of different bead types, we can therefore construct molecules with different regions of behaviour, e.g. amphiphiles with hydrophilic (water-loving) head groups and hydrophobic (water-hating) tails. In solution, these molecules can readily assemble into large-scale structures such as micelles, vesicles, bilayers and membranes.</p>
+<p>Among others, Shillcock and Lipowsky <a class="reference internal" href="#shillcock2002" id="id2">[Shillcock2002]</a> have proposed DPD as a viable modelling method for biological molecules such as lipids and proteins. In particular, DPD is able to adequately model the essential topology of lipid molecules in terms of local hydrophobicity and bond interactions, which can also include controlling the angles formed between pairs of bonds. The structures that form will depend on:</p>
+<ul class="simple">
+<li>How many lipid molecules exist in the simulation box (concentration), and</li>
+<li>The angles between bonds, which affects the straightness of the molecules and the available area of hydrophobic tails.</li>
+</ul>
+<p>Using atomistic or coarse-grained molecular dynamics (MD) to model how lipid structures form is possible but time-consuming due to the large number of atoms required, mostly for the solvent. This is less of a problem for DPD, since the softer potentials available allow us to use larger timesteps to get to equilibrium structures more quickly.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Bonds in the context of DPD simulations are generally used just to hold beads together into molecules rather than being chemically relevant, given that each bead may contain several atoms that are already bonded together. As such, DPD simulations tend <em>not</em> to exclude non-bonded interactions between connected particles, which differs from the usual practice of fully atomistic MD simulations.</p>
+</div>
+<p>Task
+—</p>
+<p>After downloading and compiling DL_POLY, download the following <a class="reference download internal" download="" href="../../../_downloads/7294911a3698885d5d2a3d6e79071459/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/ee1c4267c10110e6e3b3c2ec57715267/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> and <a class="reference download internal" download="" href="../../../_downloads/dd9b21714a10d5706e8e41dd7729b11d/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> files.</p>
+<p>The <em>CONTROL</em> file provides simulation controls for our DPD simulations, which can be used for all calculations in this exercise. The <em>CONFIG</em> file holds the initial configuration for our lipid solution: 7388 solvent beads (not shown below) are laid out in a cubic lattice, while 700 lipid molecules have been inserted randomly throughout the box.</p>
+<div class="figure" id="fig-lipidinitial">
+<a class="reference internal image-reference" href="../../../_images/lipid_initial.png"><img alt="Initial configuration of lipid solution" src="../../../_images/lipid_initial.png" style="width: 75.0%;" /></a>
+<p class="caption"><span class="caption-text">Initial configuration of lipid molecules in solution (solvent not shown)</span></p>
+</div>
+<p>The <em>FIELD</em> file sets out the bead types (solvent W, head bead H and tail bead C), the bond connectivities of the lipid molecules (HC6) and the interactions between the beads: non-bonded (‘van der Waals’), bonds and angles. In this case, we are making H beads less repulsive (more hydrophilic) to solvent beads and C beads more repulsive (more hydrophobic) to the solvent by selecting appropriate values of <span class="math notranslate nohighlight">\(A\)</span> for Groot-Warren DPD interactions. We are also applying harmonic bonds between beads in each lipid molecule and cosine angle potentials between each pair of bonds.</p>
+<p>Run this simulation <a class="footnote-reference" href="#id5" id="id3">[2]</a> and open the resulting <em>HISTORY</em> file in VMD. You should see the lipid molecules gathering together and forming a bilayer across one plane of the simulation box. Check the total energy of the system in the <em>OUTPUT</em> file: does the bilayer correspond with the lowest energy state for the calculation?</p>
+<p>Now we have a bilayer, it is worth seeing what happens if the concentration of lipid molecules is reduced. Download the following <a class="reference download internal" download="" href="../../../_downloads/b25279497ccaab72cbd6ef43664111fc/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> and <a class="reference download internal" download="" href="../../../_downloads/6d9ced6e67477cd106c50b295257c0bc/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a>. These files represent a similar system to the one we have just run but with fewer lipid molecules and more solvent beads to keep the total number of particles constant. Run this system and see what structure forms as a result of reducing the lipid molecule concentration.</p>
+<p>We would also like to see the effect of the angle potential on this structure. Open the second <em>FIELD</em> file in your favourite text editor, change the first value for each angle definition from 20.0 to 0.0, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">cos</span>   <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>and then re-run the calculation. What happens to the structure?</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>This tutorial exercise is an adaptation of a similar exercise for DL_MESO’s DPD code (DL_MESO_DPD): <a class="reference internal" href="../DPDExercise2.html#dpd-exercise2"><span class="std std-ref">DPD Exercise 2: Lipid bilayers, micelles and vesicles</span></a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td><p class="first">If you are using a computer with multiple processor cores, we would strongly recommend running the simulations on at least four cores, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">-</span><span class="n">np</span> <span class="mi">4</span> <span class="o">./</span><span class="n">DLPOLY</span><span class="o">.</span><span class="n">Z</span>
+</pre></div>
+</div>
+<p class="last">Each calculation should take half an hour or so to complete on a four-core laptop, but using more cores should get through the calculation more quickly! If you have fewer than 4 <em>physical</em> cores available, you may be able to <em>hyperthread</em> the calculation (pretend each thread is a core), although this may need an additional command-line option in the above command, e.g. <code class="docutils literal notranslate"><span class="pre">--use-hwthread-cpus</span></code> for Open-MPI.</p>
+</td></tr>
+</tbody>
+</table>
+<p class="rubric">Reference</p>
+<table class="docutils citation" frame="void" id="shillcock2002" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[Shillcock2002]</a></td><td>JC Shillcock and R Lipowsky, Equilibrium structure and lateral stress distribution of amphiphilic bilayers from dissipative particle dynamics simulations, <em>Journal of Chemical Physics</em>, <strong>117</strong>, 5048-5061 (2002), doi: 10.1063/1.1498463.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../Flory_Huggins_DPD/flory_huggins_dpd.html"
+                        title="previous chapter">Parameterising DPD interactions using Flory-Huggins solution theory</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../High.html"
+                        title="next chapter">High Difficulty Exercises</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../High.html" title="High Difficulty Exercises"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../Flory_Huggins_DPD/flory_huggins_dpd.html" title="Parameterising DPD interactions using Flory-Huggins solution theory"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" >Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="LBE.html" accesskey="U">Lattice Boltzmann Equation</a> &#187;</li> 
       </ul>
     </div>  
@@ -52,7 +52,7 @@
 <span id="dl-meso-lbe"></span><h1>Using DL_MESO_LBE<a class="headerlink" href="#using-dl-meso-lbe" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>DL_MESO_LBE uses a number of input files to read in the details of an LBE simulation and produces output files containing the results. The Java GUI and utilities supplied with DL_MESO can be used to create/modify LBE simulation inputs and work with outputs to enable users to visualise and analyse simulations.</p>
+<p>DL_MESO_LBE uses a number of input files to read in the details of an LBE simulation and produces output files containing the results. The Java GUI and utilities supplied with DL_MESO and the scripts supplied with these exercises can be used to create/modify LBE simulation inputs and work with outputs to enable users to visualise and analyse simulations.</p>
 </div>
 <div class="section" id="input-files">
 <h2>Input files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h2>
@@ -96,9 +96,9 @@
 </pre></div>
 </div>
 <p>Each line consists of keywords separated by underscores to indicate a property and either a number or a word to specify the value for that property. The first ten lines shown here - specifying the numbers of dimensions, discrete speeds, fluids, solutes, temperature scalar, phase field, grid points in <span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-directions and the domain boundary width - are compulsory for all simulations, although the lines do not have to be in any particular order.</p>
-<p>The lattice scheme is defined by the numbers of dimensions and discrete speeds: the four lattices currently available in DL_MESO_LBE are D2Q9, D3Q15, D3Q19 and D3Q27, where <span class="math notranslate nohighlight">\(\textrm{D}n\textrm{Q}m\)</span> denotes <span class="math notranslate nohighlight">\(n\)</span> dimensions and <span class="math notranslate nohighlight">\(m\)</span> lattice links per grid point. The keywords <code class="docutils literal notranslate"><span class="pre">domain_boundary_width</span></code> indicates how many lattice points are needed as a boundary halo for parallel calculations <a class="footnote-reference" href="#id3" id="id1">[1]</a>. The keywords <code class="docutils literal notranslate"><span class="pre">collision_type</span></code> indicate both the collision scheme and how forces (externally applied and those arising from fluid interfaces) are included, while <code class="docutils literal notranslate"><span class="pre">interaction_type</span></code> is used to select the mesoscopic interaction scheme.</p>
-<p>The relaxation times (<span class="math notranslate nohighlight">\(\tau\)</span>) for each fluid (numbering starting from 0) are given with <code class="docutils literal notranslate"><span class="pre">relaxation_fluid_*</span></code> keywords. The initial density for each fluid throughout the system is given by <code class="docutils literal notranslate"><span class="pre">density_ini_*</span></code>, while constant densities used for incompressible fluids and some mesoscopic interactions are given by <code class="docutils literal notranslate"><span class="pre">density_inc_*</span></code> <a class="footnote-reference" href="#id4" id="id2">[2]</a>.</p>
-<p>Properties for boundary conditions applying e.g. constant densities or velocities can be specified. In this case, <code class="docutils literal notranslate"><span class="pre">speed_top_*</span></code> indicates the velocity of all fluids at the top boundary of the box (with 0, 1 and 2 indicating <span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-components respectively). These boundary conditions do not apply during any equilibration timesteps specified by <code class="docutils literal notranslate"><span class="pre">equilibration_step</span></code>.</p>
+<p>The lattice scheme is defined by the numbers of dimensions and discrete speeds: the four lattices currently available in DL_MESO_LBE are D2Q9, D3Q15, D3Q19 and D3Q27, where <span class="math notranslate nohighlight">\(\textrm{D}n\textrm{Q}m\)</span> denotes <span class="math notranslate nohighlight">\(n\)</span> dimensions and <span class="math notranslate nohighlight">\(m\)</span> lattice links per grid point. The keywords <code class="docutils literal notranslate"><span class="pre">domain_boundary_width</span></code> indicates how many lattice points are needed as a boundary halo for parallel calculations <a class="footnote-reference" href="#id4" id="id1">[1]</a>. The keywords <code class="docutils literal notranslate"><span class="pre">collision_type</span></code> indicate both the collision scheme and how forces (externally applied and those arising from fluid interfaces) are included, while <code class="docutils literal notranslate"><span class="pre">interaction_type</span></code> is used to select the mesoscopic interaction scheme.</p>
+<p>The relaxation times (<span class="math notranslate nohighlight">\(\tau\)</span>) for each fluid (numbering starting from 0) are given with <code class="docutils literal notranslate"><span class="pre">relaxation_fluid_*</span></code> keywords. The initial density for each fluid throughout the system is given by <code class="docutils literal notranslate"><span class="pre">density_ini_*</span></code>, while constant densities used for incompressible fluids and some mesoscopic interactions are given by <code class="docutils literal notranslate"><span class="pre">density_inc_*</span></code> <a class="footnote-reference" href="#id5" id="id2">[2]</a>.</p>
+<p>Properties for boundary conditions applying e.g. constant densities or velocities can be specified in this file. In this case, <code class="docutils literal notranslate"><span class="pre">speed_top_*</span></code> indicates the velocity of all fluids at the top boundary of the box (with 0, 1 and 2 indicating <span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-components respectively). These boundary conditions do not apply during any equilibration timesteps specified by <code class="docutils literal notranslate"><span class="pre">equilibration_step</span></code>.</p>
 <p>There are a few options available for the <code class="docutils literal notranslate"><span class="pre">output_format</span></code> - snapshots of the simulation showing fluid velocities, densities etc. at all grid points - which are written every <code class="docutils literal notranslate"><span class="pre">save_span</span></code> timesteps either from the start or after equilibration.</p>
 <p>Further details of available keywords in this file can be found in Chapter 6 of <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
 </div>
@@ -117,7 +117,7 @@
 <span class="mi">4</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">13</span>
 </pre></div>
 </div>
-<p>The format consists of lines with grid point coordinates followed by a code for the required boundary condition at that point. A full list of the available boundary condition codes can be found in Chapter 6 of the <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>, but it is much easier to create an <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file using the GUI (see below).</p>
+<p>The format consists of lines with grid point coordinates followed by a code for the required boundary condition at that point. A full list of the available boundary condition codes can be found in Chapter 6 of the <a class="reference download internal" download="" href="../../_downloads/8ab7ada67cf86019b89586cf7eeadc94/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>, but it is much easier to create an <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file using the GUI (see below) or a custom script (e.g. one supplied for <a class="reference internal" href="LBEExercise3.html#lbe-exercise3"><span class="std std-ref">LBE Exercise 3</span></a>).</p>
 </div>
 </div>
 <div class="section" id="output-files">
@@ -151,18 +151,18 @@
 </div>
 <div class="section" id="running-gui">
 <span id="dl-meso-gui"></span><h2>Running GUI<a class="headerlink" href="#running-gui" title="Permalink to this headline">¶</a></h2>
-<p>Some of the tasks in the practical LBE exercises can make use of the <a class="reference internal" href="../TUTORIALS/dlm_10.html#header-dlm-10"><span class="std std-ref">GUI</span></a>. You can launch it from <em>dl_meso/WORK</em> with the command:</p>
+<p>While it is not essential, some of the tasks in the practical LBE exercises can make use of the <a class="reference internal" href="../TUTORIALS/dlm_10.html#header-dlm-10"><span class="std std-ref">GUI</span></a>. You can launch it from <em>dl_meso/WORK</em> with the command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="o">../</span><span class="n">JAVA</span><span class="o">/</span><span class="n">GUI</span><span class="o">.</span><span class="n">jar</span>
 </pre></div>
 </div>
 <p>A runscript in this directory (<code class="docutils literal notranslate"><span class="pre">rungui</span></code>) can alternatively be used to launch the GUI. When the GUI launches, click on the <em>LBE</em> button at the top. A sidebar on the left hand side will appear with more buttons for LBE simulations.</p>
-<div class="align-center figure" id="id5">
+<div class="align-center figure" id="id7">
 <a class="reference internal image-reference" href="../../_images/guilbe1.png"><img alt="Define LBE System section of GUI" src="../../_images/guilbe1.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text"><em>Define LBE System</em> section of GUI to create and edit lbin.sys files for DL_MESO_LBE</span></p>
 </div>
 <p>The first button, <em>Define LBE System</em>, brings up some pulldown boxes and text fields to help you create a new <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file or edit a pre-existing one in the directory where you launched the GUI. If you wish to open the lbin.sys in your working directory, click <em>OPEN</em> to load it into the GUI.</p>
 <p>Clicking on the active buttons will open pop-up windows with further fields to specify e.g. fluid parameters, fluid interactions: any values you enter will only be included in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file if you click the <em>SAVE</em> button for that window. Once you have completed entering values for your simulation, clicking on <em>SAVE</em> in the main window will create a new <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file with those values and overwrite any existing file.</p>
-<div class="align-center figure" id="id6">
+<div class="align-center figure" id="id8">
 <a class="reference internal image-reference" href="../../_images/guilbe2.png"><img alt="Set LBE Space section of GUI" src="../../_images/guilbe2.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text"><em>Set LBE Space</em> section of GUI to create lbin.spa files for DL_MESO_LBE</span></p>
 </div>
@@ -185,19 +185,63 @@
 </pre></div>
 </div>
 <p>although some utilities can take command-line options to change how they work. (The utility <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> will prompt the user to enter information.) Every utility can take <code class="docutils literal notranslate"><span class="pre">-h</span></code> as an option to show what the utility does and what the other available options happen to be.</p>
+</div>
+<div class="section" id="python-scripts">
+<h2>Python scripts<a class="headerlink" href="#python-scripts" title="Permalink to this headline">¶</a></h2>
+<p>To help with the LBE exercises, I have provided two Python3 scripts for you to use. These can help you set up boundary conditions, visualise and analyse the results of DL_MESO_LBE calculations. One of these is entirely optional (for <a class="reference internal" href="LBEExercise1.html#lbe-exercise1"><span class="std std-ref">LBE Exercise 1: Phase separation and equations of state</span></a>), while the other is particularly helpful for <a class="reference internal" href="LBEExercise3.html#lbe-exercise3"><span class="std std-ref">LBE Exercise 3: Pressure-driven flows and Kármán vortex streets</span></a> as an alternative to using the GUI.</p>
+<p>If you would like to make use of these scripts, I suggest putting a copy of each one into your working directory with the various executables for DL_MESO_LBE.</p>
+<div class="section" id="vtk-to-twophase-py">
+<h3>vtk_to_twophase.py<a class="headerlink" href="#vtk-to-twophase-py" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference download internal" download="" href="../../_downloads/be6838cb242abd38045e2d89ec4aae1c/vtk_to_twophase.py"><code class="xref download docutils literal notranslate"><span class="pre">vtk_to_twophase.py</span></code></a> is an analysis script that takes a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a> simulation snapshot file from a two-phase single-fluid DL_MESO_LBE calculation and determines the bulk densities of liquid and vapour phases, as well as the location and size of a liquid drop or vapour bubble. It can also optionally determine the thickness of the interface between the two phases and work out the interfacial tension.</p>
+<p>To use the script, invoke it with your Python3 interpreter using one of the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">vtk_to_twophase</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">vtkin</span> <span class="o">&lt;</span><span class="n">vtkin</span><span class="o">&gt;</span>
+<span class="n">python3</span> <span class="n">vtk_to_twophase</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">vtkin</span> <span class="o">&lt;</span><span class="n">vtkin</span><span class="o">&gt;</span>
+<span class="o">./</span><span class="n">vtk_to_twophase</span><span class="o">.</span><span class="n">py</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">vtkin</span> <span class="o">&lt;</span><span class="n">vtkin</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>substituting <code class="docutils literal notranslate"><span class="pre">&lt;vtkin&gt;</span></code> with the same of a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a> simulation snapshot file. (This must be supplied for the script to run!)</p>
+<p>You can add a number of optional command-line options at the end of the invocation:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">--lbin</span> <span class="pre">&lt;lbin&gt;</span></code> sets the location of the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file to obtain interaction information used for the calculation and calculate the interfacial tension between the phases (by default, no interfacial tension is calculated)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--threshold</span> <span class="pre">&lt;thres&gt;</span></code> sets the phase index threshold value for calculating the width of the vapour-liquid interface (by default, the interfacial width is not calculated)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--plot</span></code> plots the contour of the phase index used to calculate the radius of the liquid drop or vapour bubble, as well as the contours used to calculate interfacial widths if the above threshold option is in use</li>
+</ul>
+<p>The results of the calculations - bulk liquid and vapour densities, the location and radius of a liquid drop or vapour bubble, and optionally the interfacial width and interfacial tension - are displayed on the screen. If a plot is requested, this is generated in a separate window.</p>
+</div>
+<div class="section" id="karmanbc-py">
+<h3>karmanbc.py<a class="headerlink" href="#karmanbc-py" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference download internal" download="" href="../../_downloads/7b8bdf406077b63998786820b6defec3/karmanbc.py"><code class="xref download docutils literal notranslate"><span class="pre">karmanbc.py</span></code></a> is a visualiser and creator of boundary conditions for DL_MESO_LBE calculations, specifically of flows past obstacles in channels as studied in <a class="reference internal" href="LBEExercise3.html#lbe-exercise3"><span class="std std-ref">LBE Exercise 3: Pressure-driven flows and Kármán vortex streets</span></a> and as an alternative to the Java GUI. Starting with a <span class="math notranslate nohighlight">\(250 \times 50\)</span> grid, the user can add walls at the top and bottom of the domain, circular and rectangular objects, before writing a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> boundary condition file for a DL_MESO_LBE calculation.</p>
+<p>To use the script, invoke it in your Python3 interpreter using one of the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">karmanbc</span><span class="o">.</span><span class="n">py</span>
+<span class="n">python3</span> <span class="n">karmanbc</span><span class="o">.</span><span class="n">py</span>
+<span class="o">./</span><span class="n">karmanbc</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id9">
+<a class="reference internal image-reference" href="../../_images/karmanbc.png"><img alt="Display of DL_MESO_LBE simulation boundary conditions in karmanbc.py" src="../../_images/karmanbc.png" style="width: 6.00000in;" /></a>
+<p class="caption"><span class="caption-text">Display of DL_MESO_LBE simulation boundary conditions shown in <em>karmanbc.py</em></span></p>
+</div>
+<p>The buttons can be used to load in the boundary conditions from an existing <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file, save any created boundary conditions to a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file (overwriting any existing file after checking with the user), clear any existing boundary points, and add obstacles to the domain. Apart from adding walls at the top and bottom of the domain with the <em>Add walls</em> button, the user can add a circle by typing coordinates for its centre and its radius in the relevant text boxes before clicking the <em>Add circle</em> button <a class="footnote-reference" href="#id6" id="id3">[3]</a>. Similarly, a rectangle can be added by specifying the coordinates of its bottom-left and top-right corners before clicking the <em>Add rectangle</em> button.</p>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<table class="docutils footnote" frame="void" id="id4" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>When running DL_MESO_LBE in serial, no boundary halo is required as any periodic boundaries are implemented using modulo functions on grid positions. This value should still be specified in case the simulation is run in parallel later, but it will be ignored for serial runs.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<table class="docutils footnote" frame="void" id="id5" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>One of the utilities (<a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a>) uses the constant densities as defaults when setting up initial conditions, e.g. when including immiscible drops in the calculation.</td></tr>
 </tbody>
 </table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>The circle does <em>not</em> have to be placed entirely between the top and bottom walls: if the circle would otherwise extend outside of the domain, it will be wrapped across the opposite boundary (as shown in the illustration).</td></tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 
@@ -212,12 +256,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
@@ -267,8 +312,8 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="LBE.html" >Lattice Boltzmann Equation</a> &#187;</li> 
       </ul>
     </div>

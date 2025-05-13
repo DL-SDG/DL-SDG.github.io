@@ -1,0 +1,30 @@
+title TEST CASE 9
+
+io_file_config CONFIG
+io_file_field FIELD
+io_file_statis STATIS
+io_file_revive REVIVE
+io_file_revcon REVCON
+temperature  10.0 K
+strict_checks ON
+print_frequency  50 steps
+stats_frequency  10 steps
+padding  0.25 ang
+cutoff  10.1 ang
+coul_method spme
+spme_precision 1e-06
+ensemble nvt
+ensemble_method hoover
+ensemble_thermostat_coupling  0.1 ps
+time_run  5000 steps
+time_equilibration  500 steps
+time_job  36000.0 s
+time_close  600.0 s
+timestep  0.001 ps
+pressure_hydrostatic  0.0 katm
+rescale_frequency  10 steps
+stack_size  100 steps
+traj_calculate ON
+traj_start  500 steps
+traj_interval  5 steps
+traj_key pos-vel

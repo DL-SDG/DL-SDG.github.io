@@ -62,10 +62,10 @@
 <p>while the energy unit is equal to:</p>
 <div class="math notranslate nohighlight">
 \[k_B T \approx 4.116 \times 10^{-21} \text{ J}.\]</div>
-<p>A ‘real-life’ density for water of <span class="math notranslate nohighlight">\(\rho_m = 996.95\)</span> kg m<span class="math notranslate nohighlight">\(^{-3}\)</span> gives the physical volume of this bead as:</p>
+<p>A ‘real-life’ density for water at room temperature of <span class="math notranslate nohighlight">\(\rho_m = 996.95\)</span> kg m<span class="math notranslate nohighlight">\(^{-3}\)</span> gives the physical volume of this bead as:</p>
 <div class="math notranslate nohighlight">
 \[V_{bead} = N_m V_{mol} = \frac{N_m M_r}{N_A \rho_m} \approx 3.001 \times 10^{-29} N_m \text{ m}^3.\]</div>
-<p>If we use a numerical density <span class="math notranslate nohighlight">\(\rho = 3\)</span> in our simulation <a class="footnote-reference" href="#id23" id="id1">[1]</a>, the unit volume (related to the interaction cutoff <span class="math notranslate nohighlight">\(r_c\)</span>) becomes:</p>
+<p>If we use a numerical density <span class="math notranslate nohighlight">\(\rho = 3\)</span> in our simulation <a class="footnote-reference" href="#id24" id="id1">[1]</a>, the unit volume (related to the interaction cutoff <span class="math notranslate nohighlight">\(r_c\)</span>) becomes:</p>
 <div class="math notranslate nohighlight">
 \[r_c^3 = \rho V_{bead} = \frac{\rho N_m M_r}{N_A \rho_m} \approx 9.002 \times 10^{-29} N_m \text{ m}^{3}\]</div>
 <p>and thus the length unit</p>
@@ -80,7 +80,7 @@
 </div>
 <div class="section" id="parameterising-dpd-interactions">
 <h2>Parameterising DPD interactions<a class="headerlink" href="#parameterising-dpd-interactions" title="Permalink to this headline">¶</a></h2>
-<p>Groot and Warren’s <a class="reference internal" href="../EXERCISES/DPDExercise1.html#groot1997" id="id3">[Groot1997]</a> form of conservative interaction:</p>
+<p>Groot and Warren’s <a class="reference internal" href="../EXERCISES/Flory_Huggins_DPD/flory_huggins_dpd.html#groot1997" id="id3">[Groot1997]</a> form of conservative interaction:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{F}_{ij}^{C} = \left\{ \begin{matrix} A_{ij}\left( 1 - \frac{r_{ij}}{r_{c}} \right){\widehat{\mathbf{r}}}_{ij} &amp; (r_{ij} &lt; r_{c}) \\ 0 &amp; (r_{ij} \geq r_{c}) \\ \end{matrix} \right.\ ,\end{split}\]</div>
 <p>is able to specify both an equation of state and different degrees of repulsion between particle (bead) species. The values of <span class="math notranslate nohighlight">\(A_{ij}\)</span> for different bead pairs can be chosen or fitted to give specific behaviours or simulation outcomes. An example of choosing <span class="math notranslate nohighlight">\(A_{ij}\)</span> values can include specifying degrees of hydrophobicity for different bead species, e.g. those found in amphiphilic molecules with hydrophilic and hydrophobic sections.</p>
@@ -101,13 +101,13 @@
 </div>
 <div class="section" id="flory-huggins-solution-theory">
 <span id="floryhuggins"></span><h3>Flory-Huggins solution theory<a class="headerlink" href="#flory-huggins-solution-theory" title="Permalink to this headline">¶</a></h3>
-<p>To parameterise conservative force parameters <span class="math notranslate nohighlight">\(A_{ij}^{AB}\)</span> between different particle species (A and B), we can use an approach based on the Flory-Huggins solution theory of polymers <a class="reference internal" href="../EXERCISES/DPDExercise1.html#groot1997" id="id6">[Groot1997]</a>. Assuming beads of species A and B are of equal size and molecules are made from these beads, we can express a Gibbs free energy of mixing based on the volume fractions of each species (<span class="math notranslate nohighlight">\(\phi_A\)</span>, <span class="math notranslate nohighlight">\(\phi_B\)</span>) and the number of beads per molecule (<span class="math notranslate nohighlight">\(n_A\)</span>, <span class="math notranslate nohighlight">\(n_B\)</span>):</p>
+<p>To parameterise conservative force parameters <span class="math notranslate nohighlight">\(A_{ij}^{AB}\)</span> between different particle species (A and B), we can use an approach based on the Flory-Huggins solution theory of polymers <a class="reference internal" href="../EXERCISES/Flory_Huggins_DPD/flory_huggins_dpd.html#groot1997" id="id6">[Groot1997]</a>. Assuming beads of species A and B are of equal size and molecules are made from these beads, we can express a Gibbs free energy of mixing based on the volume fractions of each species (<span class="math notranslate nohighlight">\(\phi_A\)</span>, <span class="math notranslate nohighlight">\(\phi_B\)</span>) and the number of beads per molecule (<span class="math notranslate nohighlight">\(n_A\)</span>, <span class="math notranslate nohighlight">\(n_B\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[\frac{\Delta G^{mix}}{k_B T} = \frac{\phi_A}{n_A} \ln \phi_A + \frac{\phi_B}{n_B} \ln \phi_B + \chi^{\text{AB}} \phi_A \phi_B,\]</div>
 <p>where we introduce a parameter <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> to represent the <em>non-ideal</em> part of the mixing energy: the higher the value, the more the components will repel each other. Groot and Warren found that the <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>-parameter can be given in terms of the interaction parameter between the two species by the following predicted relationship:</p>
 <div class="math notranslate nohighlight">
 \[\chi^{\text{AB}} = \left( A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}} \right) \frac{2\alpha\rho}{k_B T}.\]</div>
-<p>provided that the two species (A and B) interact among themselves in the same way (i.e. <span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}} = A_{ij}^{\text{BB}}\)</span>) <a class="footnote-reference" href="#id24" id="id7">[2]</a>. The value of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> thus determines how well the two components will mix together.</p>
+<p>provided that the two species (A and B) interact among themselves in the same way (i.e. <span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}} = A_{ij}^{\text{BB}}\)</span>) <a class="footnote-reference" href="#id25" id="id7">[2]</a>. The value of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> thus determines how well the two components will mix together.</p>
 <p>In real DPD simulations, while the linear relationship between <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(\left( A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}} \right)\)</span> holds, the proportionality constant is generally not equal to <span class="math notranslate nohighlight">\(2\alpha\rho/k_B T\)</span>. We can find the actual proportionality constant for a given particle density from series of simulations with separating beads or molecules, each with different values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>. The volume fraction of one species (e.g. <span class="math notranslate nohighlight">\(\phi_{A}\)</span> for species A) in separated regions can be used to determine <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\chi^{\text{AB}} n_A = \frac{\ln\lbrack(1 - \phi_{A})/\phi_{A}\rbrack}{1 - 2\phi_{A}}.\]</div>
@@ -145,24 +145,25 @@
 \[w^{C} = - \frac{d w^{\rho}}{dr}.\]</div>
 <p>The ‘standard’ Groot-Warren potential can be recovered by setting the excess free energy per particle to</p>
 <div class="math notranslate nohighlight">
-\[\psi^{ex} \left( \rho \right) = \frac{\pi}{30} A \rho\]</div>
+\[\psi^{ex} \left( \rho \right) = \frac{\pi r_c^4}{30} A \rho\]</div>
 <p>and the function for localised density calculations to</p>
 <div class="math notranslate nohighlight">
-\[w^{\rho} \left(r_{ij}\right)= \frac{15}{2 \pi r_d^3} \left(1 - \frac{r_{ij}}{r_d}\right)^2 ~~ \left(r_{ij} &lt; r_d\right).\]</div>
-<p>A simple many-body DPD model to give a cubic equation of state and vapour-liquid coexistence can be established by using an additional density term for the excess free energy <a class="reference internal" href="#warren2003" id="id11">[Warren2003]</a> with two different localised densities, i.e.</p>
+\[w^{\rho} \left(r_{ij}\right)= \frac{15}{2 \pi r_d^3} \left(1 - \frac{r_{ij}}{r_d}\right)^2 ~~ \left(r_{ij} &lt; r_d\right),\]</div>
+<p>which gives the localised density in units of <span class="math notranslate nohighlight">\(r_c^{-3}\)</span> <a class="footnote-reference" href="#id26" id="id11">[3]</a>. The localised density <span class="math notranslate nohighlight">\(\tilde{\rho}_i\)</span> does not necessarily equal the ‘physical’ density of the fluid <span class="math notranslate nohighlight">\(\rho\)</span>, although it is possible to find how the two properties are related to each other.</p>
+<p>A simple many-body DPD model to give a cubic equation of state and vapour-liquid coexistence can be established by using an additional density term for the excess free energy <a class="reference internal" href="#warren2003" id="id12">[Warren2003]</a> with two different localised densities, i.e.</p>
 <div class="math notranslate nohighlight">
-\[\psi^{ex} \left(\rho\right) = \frac{\pi}{30} A \overline{\rho} + \frac{\pi r_d^4}{30} B \tilde{\rho}^2\]</div>
+\[\psi^{ex} \left(\rho\right) = \frac{\pi r_c^4}{30} A \overline{\rho} + \frac{\pi r_d^4}{30} B \tilde{\rho}^2\]</div>
 <p>where <span class="math notranslate nohighlight">\(r_d = r_c\)</span> for <span class="math notranslate nohighlight">\(w^{\rho} \left(r_{ij}\right)\)</span> when calculating the first localised density <span class="math notranslate nohighlight">\(\overline{\rho}\)</span>. The resulting pairwise conservative force can be simplified to the standard Groot-Warren form with an additional density-based term:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{F}^{C}_{ij} = \left[ A_{ij} \left(1 - \frac{r_{ij}}{r_c}\right) + B \left(\tilde{\rho}_i + \tilde{\rho}_j \right) \left(1 - \frac{r_{ij}}{r_d}\right)  \right] \widehat{\mathbf{r}}_{ij},\]</div>
-<p>noting that <span class="math notranslate nohighlight">\(A_{ij} \equiv A\)</span> can be specified for different pairs of species and set to negative values to provide attractions between particles, while the repulsive parameter <span class="math notranslate nohighlight">\(B\)</span> must be kept constant for all species to ensure the forces are conservative <a class="reference internal" href="#warren2013a" id="id12">[Warren2013a]</a>. These two parameters can be chosen or fitted for e.g. both isothermal compressibility (as per standard Groot-Warren interactions) and interfacial tension.</p>
+<p>noting that <span class="math notranslate nohighlight">\(A_{ij} \equiv A\)</span> can be specified for different pairs of species and set to negative values to provide attractions between particles, while the repulsive parameter <span class="math notranslate nohighlight">\(B\)</span> (in units of <span class="math notranslate nohighlight">\(k_B T r_c^2\)</span>) must be kept constant for all species to ensure the forces are conservative <a class="reference internal" href="#warren2013a" id="id13">[Warren2013a]</a>. These two parameters can be chosen or fitted for e.g. both isothermal compressibility (as per standard Groot-Warren interactions) and interfacial tension.</p>
 </div>
 <div class="section" id="inclusion-of-electrostatics">
 <h3>Inclusion of electrostatics<a class="headerlink" href="#inclusion-of-electrostatics" title="Permalink to this headline">¶</a></h3>
 <p>The long-range nature of charge-based interactions can have an effect on systems operating at the mesoscale, and as such there are circumstances when these need to be included in DPD simulations. Techniques used to solve the Poisson equation for molecular dynamics simulations, e.g. Particle-Particle Particle-Mesh (PPPM) and Ewald summation, can be applied to DPD simulations.</p>
-<p>One important aspect to consider for DPD electrostatics is the softness of bead-bead interactions. While the hard-core interactions typically used in atomistic and coarse-grained molecular dynamics can prevent oppositely-charged point charges from collapsing on top of each other, this is not automatically guaranteed for e.g. Groot-Warren soft repulsive interactions <a class="footnote-reference" href="#id25" id="id13">[3]</a>.</p>
+<p>One important aspect to consider for DPD electrostatics is the softness of bead-bead interactions. While the hard-core interactions typically used in atomistic and coarse-grained molecular dynamics can prevent oppositely-charged point charges from collapsing on top of each other, this is not automatically guaranteed for e.g. Groot-Warren soft repulsive interactions <a class="footnote-reference" href="#id27" id="id14">[4]</a>.</p>
 <p>To avoid soft ion collapse, point charges are often replaced with charge functions to spread out each charge over a finite volume. These smearing functions are selected to act entirely at shorter ranges, with the potential reverting back to standard Coulombic for point charges at larger distances. This property enables the long-range parts of electrostatic interactions to be calculated using techniques common to molecular dynamics without modifications.</p>
-<p>Two approaches to including electostatics in DPD simulations have been applied. The first uses a form of PPPM <a class="reference internal" href="#groot2003" id="id14">[Groot2003]</a>, which starts by assigning smeared charge distributions to a grid. Each charge <span class="math notranslate nohighlight">\(q_i\)</span> is multiplied by a smearing function <span class="math notranslate nohighlight">\(f(r)\)</span>, e.g.</p>
+<p>Two approaches to including electostatics in DPD simulations have been applied. The first uses a form of PPPM <a class="reference internal" href="#groot2003" id="id15">[Groot2003]</a>, which starts by assigning smeared charge distributions to a grid. Each charge <span class="math notranslate nohighlight">\(q_i\)</span> is multiplied by a smearing function <span class="math notranslate nohighlight">\(f(r)\)</span>, e.g.</p>
 <div class="math notranslate nohighlight">
 \[f(r) = \frac{3}{\pi r_e^3}\left(1 - \frac{r}{r_e}\right) ~~~~~ (r &lt; r_e)\]</div>
 <p>where <span class="math notranslate nohighlight">\(r_e\)</span> is the electrostatic smearing radius, to give a charge concentration <span class="math notranslate nohighlight">\(\rho^{*}\)</span> of cations minus anions, before assigning values to a regular grid representing the system volume. The electrostatic field <span class="math notranslate nohighlight">\(\psi\)</span> is then calculated at all grid points to satisfy the Poisson equation:</p>
@@ -177,7 +178,7 @@
 <p>The electrostatic field can be solved either by using Fourier transforms or iteratively by real-space successive overdamped relaxation (SOR). The electrostatic force acting on an ion is then found by finding the gradient of the electrostatic field and using the smearing function over grid points within <span class="math notranslate nohighlight">\(r_e\)</span> of the particle centre:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{F}_i^{e} = -q_i \sum_j f_j \left(\mathbf{r}_c\right) \nabla \psi \left(\mathbf{r}_j\right).\]</div>
-<p>The other approach for DPD electrostatics involves a modified form of the Ewald sum <a class="reference internal" href="#gonzalezmelchor2006" id="id15">[GonzalezMelchor2006]</a>. The smearing function is now defined as a modification to the Coulombic potential:</p>
+<p>The other approach for DPD electrostatics involves a modified form of the Ewald sum <a class="reference internal" href="#gonzalezmelchor2006" id="id16">[GonzalezMelchor2006]</a>. The smearing function is now defined as a modification to the Coulombic potential:</p>
 <div class="math notranslate nohighlight">
 \[U^{e} = \frac{\Gamma}{4 \pi} \sum_{i, j \neq i} \frac{q_i q_j}{r_{ij}} \left[1 - f\left(r_{ij}\right) \right],\]</div>
 <p>where <span class="math notranslate nohighlight">\(q_i\)</span> is the charge (valence) on ion <span class="math notranslate nohighlight">\(i\)</span>. Ewald summation splits the potential into real-space (short range) and reciprocal-space (long range) parts, making use of the known Fourier transform for a Gaussian (normal) distribution. Since the charge smearing function is designed to only be applicable at shorter ranges, only the real-space terms for potential (shown below) and corresponding forces need to be modified:</p>
@@ -187,7 +188,7 @@
 <p>Several choices of smearing function for Ewald sums are possible and have been used in DPD calculations. One choice (originally proposed) is a truncated form of a Slater-type function:</p>
 <div class="math notranslate nohighlight">
 \[f(r) = \exp \left(-2 \beta\right) \left(1 + \beta r\right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\beta\)</span> is related to a charge decay length. Another choice is to use a Gaussian function <a class="reference internal" href="#warren2013b" id="id16">[Warren2013b]</a>, i.e.</p>
+<p>where <span class="math notranslate nohighlight">\(\beta\)</span> is related to a charge decay length. Another choice is to use a Gaussian function <a class="reference internal" href="#warren2013b" id="id17">[Warren2013b]</a>, i.e.</p>
 <div class="math notranslate nohighlight">
 \[f(r) = \mathrm{erfc} \left(\frac{r_{ij}}{2 \sigma_G}\right)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma_G\)</span> is the screening length. If <span class="math notranslate nohighlight">\(\sigma_G = \frac{1}{2 \alpha}\)</span>, then all real-space potentials and forces reduce to zero and the calculation can be carried out entirely in reciprocal space.</p>
@@ -206,7 +207,7 @@
 <p>where the shear stress is a result of the applied shear rate.</p>
 <p>The relationship between shear stress and shear rate can vary from fluid to fluid. The most common relationship - particularly for simple fluids - assumes the dynamic viscosity <span class="math notranslate nohighlight">\(\mu\)</span> remains constant for all shear rates, describing a <em>Newtonian fluid</em>. Other more complex fluids (e.g. polymer suspensions) might have viscosities that increase or decrease as the shear rate increases or even require a minimum shear stress to start flowing: these describe <em>shear thickening</em> (dilatant), <em>shear thinning</em> (pseudo plastic) and <em>Bingham plastic</em> fluids.</p>
 <p>To determine the viscosity of a fluid, we need to find a relationship between applied shear rates (velocity gradients) and resulting shear stresses, which we can work out by running some DPD simulations.</p>
-<p>The Lees-Edwards periodic boundary condition <a class="reference internal" href="../EXERCISES/DPDExercise3.html#lees1972" id="id17">[Lees1972]</a> can apply a linear shear flow field to a particle simulation. It works by both changing the velocities and tangential positions of particles that move through the given periodic boundary. For example, to apply wall velocities of <span class="math notranslate nohighlight">\(-\mathbf{v}_{w}\)</span> and <span class="math notranslate nohighlight">\(+\mathbf{v}_{w}\)</span> at the bottom and top boundaries of a box, any particle moving through the top boundary would be shifted by a displacement <span class="math notranslate nohighlight">\(-\mathbf{v}_{w} t\)</span> before re-entering the box - where <span class="math notranslate nohighlight">\(t\)</span> is the time since shearing started - and its velocity modified by <span class="math notranslate nohighlight">\(-2\mathbf{v}_{w}\)</span>. Similarly, a particle moving through the bottom boundary would be displaced by <span class="math notranslate nohighlight">\(+\mathbf{v}_{w} t\)</span> and its velocity modified by <span class="math notranslate nohighlight">\(+2\mathbf{v}_{w}\)</span>.</p>
+<p>The Lees-Edwards periodic boundary condition <a class="reference internal" href="../EXERCISES/DPDExercise3.html#lees1972" id="id18">[Lees1972]</a> can apply a linear shear flow field to a particle simulation. It works by both changing the velocities and tangential positions of particles that move through the given periodic boundary. For example, to apply wall velocities of <span class="math notranslate nohighlight">\(-\mathbf{v}_{w}\)</span> and <span class="math notranslate nohighlight">\(+\mathbf{v}_{w}\)</span> at the bottom and top boundaries of a box, any particle moving through the top boundary would be shifted by a displacement <span class="math notranslate nohighlight">\(-\mathbf{v}_{w} t\)</span> before re-entering the box - where <span class="math notranslate nohighlight">\(t\)</span> is the time since shearing started - and its velocity modified by <span class="math notranslate nohighlight">\(-2\mathbf{v}_{w}\)</span>. Similarly, a particle moving through the bottom boundary would be displaced by <span class="math notranslate nohighlight">\(+\mathbf{v}_{w} t\)</span> and its velocity modified by <span class="math notranslate nohighlight">\(+2\mathbf{v}_{w}\)</span>.</p>
 <p>We can calculate a stress tensor for the system at a given timestep by summing products of components of pairwise forces and vectors between particle pairs and dividing by the system volume, i.e.</p>
 <div class="math notranslate nohighlight">
 \[\sigma_{\alpha \beta} = \frac{1}{V} \sum_i \left(m_i v_{i,\alpha} v_{i,\beta} + \sum_{j&gt;i} F_{ij,\alpha} r_{ij,\beta} \right), ~~~~~ (\alpha, \beta = x, y, z)\]</div>
@@ -219,11 +220,11 @@
 <p>Assuming the random force has a similar linear dependence to that used by Groot-Warren conservative forces, i.e. for <a class="reference internal" href="DPDIntro.html#equation-dissipative">(1)</a>-<a class="reference internal" href="DPDIntro.html#equation-screen">(4)</a> in <a class="reference internal" href="DPDIntro.html#dpd-intro"><span class="std std-ref">Dissipative Particle Dynamics (DPD)</span></a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}w^R (r_{ij}) = \left\{ \begin{matrix} 1 - \frac{r_{ij}}{r_{c}} &amp; (r_{ij} &lt; r_{c}) \\ 0 &amp; (r_{ij} \geq r_{c}) \\ \end{matrix} \right.\ ,\end{split}\]</div>
-<p>and also <strong>not applying conservative forces</strong>, we can obtain the following relationship for the viscosity <a class="reference internal" href="#marsh1997" id="id18">[Marsh1997]</a>:</p>
+<p>and also <strong>not applying conservative forces</strong>, we can obtain the following relationship for the viscosity <a class="reference internal" href="#marsh1997" id="id19">[Marsh1997]</a>:</p>
 <div class="math notranslate nohighlight" id="equation-viscdpdtheory">
 <span class="eqno">(3)<a class="headerlink" href="#equation-viscdpdtheory" title="Permalink to this equation">¶</a></span>\[\mu \approx \frac{45 k_B T}{4 \pi \gamma r_c^3} + \frac{2 \pi \gamma \rho^2 r_c^5}{1575}\]</div>
-<p>which is pretty complex and might not really be suited for modelling flows of dense liquids <a class="footnote-reference" href="#id27" id="id19">[4]</a>. Adding conservative forces will change this relationship and is likely to increase the viscosity further, but it might still be difficult to obtain a realistic viscosity for a liquid with the DPD thermostat. <strong>Note</strong>: This does <em>not</em> mean the DPD thermostat cannot be used for liquid systems, particularly if you are more interested in equilibrium structures than the detailed hydrodynamics.</p>
-<p>One way around this is to use a different pairwise thermostat. Two particularly interesting choices for flow-based systems are the Lowe-Andersen <a class="reference internal" href="../EXERCISES/DPDExercise3.html#lowe1999" id="id20">[Lowe1999]</a> and Stoyanov-Groot <a class="reference internal" href="../EXERCISES/DPDExercise3.html#stoyanov2005" id="id21">[Stoyanov2005]</a> thermostats, both of which are pairwise variants of the Andersen thermostat <a class="reference internal" href="#andersen1980" id="id22">[Andersen1980]</a> and use a collision frequency <span class="math notranslate nohighlight">\(\Gamma\)</span> as their main parameter.</p>
+<p>which is pretty complex and might not really be suited for modelling flows of dense liquids <a class="footnote-reference" href="#id29" id="id20">[5]</a>. Adding conservative forces will change this relationship and is likely to increase the viscosity further, but it might still be difficult to obtain a realistic viscosity for a liquid with the DPD thermostat. <strong>Note</strong>: This does <em>not</em> mean the DPD thermostat cannot be used for liquid systems, particularly if you are more interested in equilibrium structures than the detailed hydrodynamics.</p>
+<p>One way around this is to use a different pairwise thermostat. Two particularly interesting choices for flow-based systems are the Lowe-Andersen <a class="reference internal" href="../EXERCISES/DPDExercise3.html#lowe1999" id="id21">[Lowe1999]</a> and Stoyanov-Groot <a class="reference internal" href="../EXERCISES/DPDExercise3.html#stoyanov2005" id="id22">[Stoyanov2005]</a> thermostats, both of which are pairwise variants of the Andersen thermostat <a class="reference internal" href="#andersen1980" id="id23">[Andersen1980]</a> and use a collision frequency <span class="math notranslate nohighlight">\(\Gamma\)</span> as their main parameter.</p>
 <p>For each interacting particle pair, we generate a random number <span class="math notranslate nohighlight">\(u_{ij}\)</span> between 0 and 1, and if <span class="math notranslate nohighlight">\(u_{ij} &lt; \Gamma \Delta t\)</span>, we select that pair for thermostatting after integration of conservative (interaction) forces. Going through the selected particle pairs in a randomised order and using the most up-to-date values of particle velocities, we apply the following modifications to each pair’s velocities:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{v}^{\prime}_i = \mathbf{v}_i - \frac{\mu_{ij}}{m_i} \left( -\left({\widehat{\mathbf{r}}}_{ij} \cdot \mathbf{v}_{ij} \right) + v_{ij}^{\circ} \right) {\widehat{\mathbf{r}}}_{ij}\]</div>
@@ -238,28 +239,34 @@
 \[\mathbf{F}_{ij}^{T} = -\alpha^{T} w^{T} \left( r_{ij} \right) \left(1 - \frac{k_B T^{*}}{k_B T}\right) \left( {\widehat{\mathbf{r}}}_{ij} \cdot \mathbf{v}_{ij} \right){\widehat{\mathbf{r}}}_{ij}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha^{T}\)</span> is an additional system-wide coupling parameter for the thermostat, <span class="math notranslate nohighlight">\(w^{T}\)</span> is a weighting function similar to that used for DPD random forces and <span class="math notranslate nohighlight">\(T^{*}\)</span> is an instantaneous temperature calculated using another pairwise weighting function for all interacting particle pairs. These additional pairwise Nosé-Hoover forces can ensure better temperature control, particularly when <span class="math notranslate nohighlight">\(\Gamma\)</span> is low and not many particle pairs are selected for Lowe-Andersen thermostatting.</p>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id23" rules="none">
+<table class="docutils footnote" frame="void" id="id24" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The numerical density shown here has units of <span class="math notranslate nohighlight">\(r_c^{-3}\)</span> (i.e. a number per unit volume). This particular value is frequently used in DPD simulations with Groot-Warren conservative interactions as this is close to the lowest density for which the constant (density-insensitive) equation of state applies.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id24" rules="none">
+<table class="docutils footnote" frame="void" id="id25" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id7">[2]</a></td><td>This follows from the assumption in Flory-Huggins solution theory that all particles (solvent and monomers) are equal in size.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id25" rules="none">
+<table class="docutils footnote" frame="void" id="id26" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id13">[3]</a></td><td>Higher values of <span class="math notranslate nohighlight">\(A_{ij}\)</span> can make the use of point charges in DPD simulations viable, particularly if a larger degree of coarse-graining is in use <a class="reference internal" href="#vaiwala2017" id="id26">[Vaiwala2017]</a>, but greater care is needed when starting such simulations to ensure oppositely-charged particles do not start too close together.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id11">[3]</a></td><td>The localised density <span class="math notranslate nohighlight">\(\tilde{\rho}_i\)</span> can be used arbitrarily in expressions for the excess free energy per particle <span class="math notranslate nohighlight">\(\psi^{ex}\)</span> and the resulting pairwise forces, which can cause complications particularly when setting parameters and applying many-body DPD to multiple components with different expressions of <span class="math notranslate nohighlight">\(\psi^{ex}\)</span>. In these cases, the simplest approach is to treat <span class="math notranslate nohighlight">\(\tilde{\rho}_i\)</span> as a dimensionless quantity but still scaled to <span class="math notranslate nohighlight">\(r_c^{-3}\)</span>, where <span class="math notranslate nohighlight">\(r_c\)</span> is the chosen DPD length unit.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id27" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id19">[4]</a></td><td>Dividing the dynamic viscosity by fluid density to give the <em>kinematic viscosity</em> <span class="math notranslate nohighlight">\(\nu\)</span> and dividing this property by the fluid diffusivity <span class="math notranslate nohighlight">\(D\)</span> gives the dimensionless Schmidt number <span class="math notranslate nohighlight">\(\mathrm{Sc}\)</span>. For DPD simulations with no conservative forces, this value is typically around 1: fine for gases but generally too low for liquids, whose values are typically around 1000.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id14">[4]</a></td><td>Higher values of <span class="math notranslate nohighlight">\(A_{ij}\)</span> can make the use of point charges in DPD simulations viable, particularly if a larger degree of coarse-graining is in use <a class="reference internal" href="#vaiwala2017" id="id28">[Vaiwala2017]</a>, but greater care is needed when starting such simulations to ensure oppositely-charged particles do not start too close together.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id29" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id20">[5]</a></td><td>Dividing the dynamic viscosity by fluid density to give the <em>kinematic viscosity</em> <span class="math notranslate nohighlight">\(\nu\)</span> and dividing this property by the fluid diffusivity <span class="math notranslate nohighlight">\(D\)</span> gives the dimensionless Schmidt number <span class="math notranslate nohighlight">\(\mathrm{Sc}\)</span>. For DPD simulations with no conservative forces, this value is typically around 1: fine for gases but generally too low for liquids, whose values are typically around 1000.</td></tr>
 </tbody>
 </table>
 <p class="rubric">References</p>
@@ -302,49 +309,49 @@
 <table class="docutils citation" frame="void" id="warren2003" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id11">[Warren2003]</a></td><td>PB Warren, Vapor-liquid coexistence in many-body dissipative particle dynamics, <em>Physical Review E</em>, <strong>68</strong>, 066702, 2003. doi: 10.1103/PhysRevE.68.066702.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id12">[Warren2003]</a></td><td>PB Warren, Vapor-liquid coexistence in many-body dissipative particle dynamics, <em>Physical Review E</em>, <strong>68</strong>, 066702, 2003. doi: 10.1103/PhysRevE.68.066702.</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="warren2013a" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id12">[Warren2013a]</a></td><td>PB Warren, No-go theorem in many-body dissipative particle dynamics, <em>Physical Review E</em>, <strong>87</strong>, 045303, 2013. doi: 10.1103/PhysRevE.87.045303.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id13">[Warren2013a]</a></td><td>PB Warren, No-go theorem in many-body dissipative particle dynamics, <em>Physical Review E</em>, <strong>87</strong>, 045303, 2013. doi: 10.1103/PhysRevE.87.045303.</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="groot2003" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id14">[Groot2003]</a></td><td>RD Groot, Electrostatic interactions in dissipative particle dynamics - simulation of polyelectrolytes and anionic surfactants, <em>Journal of Chemical Physics</em>, <strong>118</strong>, p. 11265-11277, 2003, doi: 10.1063/1.1574800.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id15">[Groot2003]</a></td><td>RD Groot, Electrostatic interactions in dissipative particle dynamics - simulation of polyelectrolytes and anionic surfactants, <em>Journal of Chemical Physics</em>, <strong>118</strong>, p. 11265-11277, 2003, doi: 10.1063/1.1574800.</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="gonzalezmelchor2006" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id15">[GonzalezMelchor2006]</a></td><td>M González-Melchor, E Mayoral, ME Velázquez and J Alejandre, Electorstatic interactions in dissipative particle dynamics using the Ewald sums, <em>Journal of Chemical Physics</em>, <strong>125</strong>, 224107, 2006, doi: 10.1063/1.2400223.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id16">[GonzalezMelchor2006]</a></td><td>M González-Melchor, E Mayoral, ME Velázquez and J Alejandre, Electorstatic interactions in dissipative particle dynamics using the Ewald sums, <em>Journal of Chemical Physics</em>, <strong>125</strong>, 224107, 2006, doi: 10.1063/1.2400223.</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="warren2013b" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id16">[Warren2013b]</a></td><td>PB Warren, A Vlasov, L Anton and AJ Masters, Screening properties of Gaussian electrolyte models, with application to dissipative particle dynamics, <em>Journal of Chemical Physics</em>, <strong>138</strong>, 204907, 2013, doi: 10.1063/1.4807057.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id17">[Warren2013b]</a></td><td>PB Warren, A Vlasov, L Anton and AJ Masters, Screening properties of Gaussian electrolyte models, with application to dissipative particle dynamics, <em>Journal of Chemical Physics</em>, <strong>138</strong>, 204907, 2013, doi: 10.1063/1.4807057.</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="marsh1997" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id18">[Marsh1997]</a></td><td>CA Marsh, G Backx and MH Ernst, Static and dynamic properties of dissipative particle dynamics, <em>Physical Review E</em>, <strong>56</strong>, p. 1676-1691, 1997, doi: 10.1103/PhysRevE.56.1676.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id19">[Marsh1997]</a></td><td>CA Marsh, G Backx and MH Ernst, Static and dynamic properties of dissipative particle dynamics, <em>Physical Review E</em>, <strong>56</strong>, p. 1676-1691, 1997, doi: 10.1103/PhysRevE.56.1676.</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="andersen1980" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id22">[Andersen1980]</a></td><td>HC Andersen, Molecular dynamics simulations at constant pressure and/or temperature, <em>Journal of Chemical Physics</em>, <strong>72</strong>, p. 2384-2393, 1980, doi: 10.1063/1.439486.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id23">[Andersen1980]</a></td><td>HC Andersen, Molecular dynamics simulations at constant pressure and/or temperature, <em>Journal of Chemical Physics</em>, <strong>72</strong>, p. 2384-2393, 1980, doi: 10.1063/1.439486.</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="vaiwala2017" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id26">[Vaiwala2017]</a></td><td>R Vaiwala, S Jadhav and R Thaokar, Electrostatic interactions in dissipative particle dynamics - Ewald-like formalism, error analysis, and pressure computation, <em>Journal of Chemical Physics</em>, <strong>146</strong>, 124904, 2017, doi: 10.1063/1.4978809.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id28">[Vaiwala2017]</a></td><td>R Vaiwala, S Jadhav and R Thaokar, Electrostatic interactions in dissipative particle dynamics - Ewald-like formalism, error analysis, and pressure computation, <em>Journal of Chemical Physics</em>, <strong>146</strong>, 124904, 2017, doi: 10.1063/1.4978809.</td></tr>
 </tbody>
 </table>
 </div>

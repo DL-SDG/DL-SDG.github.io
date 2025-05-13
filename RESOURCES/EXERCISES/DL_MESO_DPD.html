@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="DPD.html" accesskey="U">Dissipative Particle Dynamics</a> &#187;</li> 
       </ul>
     </div>  
@@ -219,7 +219,7 @@
 <div class="section" id="flory-huggins-py">
 <h3>flory_huggins.py<a class="headerlink" href="#flory-huggins-py" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference download internal" download="" href="../../_downloads/bde19889c28a193270a115d552bd9d76/flory_huggins.py"><code class="xref download docutils literal notranslate"><span class="pre">flory_huggins.py</span></code></a> is a simulation workflow script to carry out a series of DL_MESO_DPD simulations of two separating species. These simulations are designed to obtain a relationship between DPD conservative force parameters <span class="math notranslate nohighlight">\(A_{ij}\)</span> and the Flory-Huggins <span class="math notranslate nohighlight">\(\chi\)</span>-parameters (see <a class="reference internal" href="DPDExercise1.html#dpd-exercise1"><span class="std std-ref">DPD Exercise 1: DPD, hydrophobicity and parameterisation</span></a> for more details).</p>
-<p>It creates the required input files - <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="../TUTORIALS/dlm_4.html#configdlmeso"><span class="std std-ref">CONFIG</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> - to carry out these simulations for various values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>, launches the simulations one-by-one, obtains a time-averaged local concentration profile for one bead species and adds these profiles to a text file for later analysis. It also calculates a value of <span class="math notranslate nohighlight">\(\chi\)</span> for each simulation and estimates its error.</p>
+<p>It creates the required input files - <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a>, <a class="reference internal" href="../TUTORIALS/dlm_4.html#configdlmeso"><span class="std std-ref">CONFIG</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> - to carry out these simulations for various values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>, launches the simulations one-by-one and keeps track of their progress with dynamic progress bars, obtains a time-averaged local concentration profile for one bead species and adds these profiles to a text file for later analysis. It also calculates a value of <span class="math notranslate nohighlight">\(\chi\)</span> for each simulation and estimates its error.</p>
 <p>To use the script, invoke it with your Python3 interpreter with one of the following commands (the latter if permissions on the script allow it to be executed):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">flory_huggins</span><span class="o">.</span><span class="n">py</span>
 <span class="n">python3</span> <span class="n">flory_huggins</span><span class="o">.</span><span class="n">py</span>
@@ -233,11 +233,11 @@
 <li><code class="docutils literal notranslate"><span class="pre">--Aijmin</span> <span class="pre">&lt;Aijmin&gt;</span></code> sets the minimum conservative force parameter between beads of the two different species (<span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>) to <code class="docutils literal notranslate"><span class="pre">&lt;Aijmin&gt;</span></code> (equal to 33.0 by default)</li>
 <li><code class="docutils literal notranslate"><span class="pre">--Aijmax</span> <span class="pre">&lt;Aijmax&gt;</span></code> sets the maximum conservative force parameter between beads of the two different species (<span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>) to <code class="docutils literal notranslate"><span class="pre">&lt;Aijmax&gt;</span></code> (equal to 43.0 by default)</li>
 <li><code class="docutils literal notranslate"><span class="pre">--dA</span> <span class="pre">&lt;dA&gt;</span></code> sets the interval of unlike species conservative force parameter between simulations to <code class="docutils literal notranslate"><span class="pre">&lt;dA&gt;</span></code> (equal to 1.0 by default)</li>
-<li><code class="docutils literal notranslate"><span class="pre">--dx</span> <span class="pre">&lt;dx&gt;</span></code> sets the spacing of histogram bins for concentration profiles to <code class="docutils literal notranslate"><span class="pre">&lt;dx&gt;</span></code> (equal to 0.1 by default)</li>
-<li><code class="docutils literal notranslate"><span class="pre">--L</span> <span class="pre">&lt;L&gt;</span></code> sets the length of the box along the x-direction to <code class="docutils literal notranslate"><span class="pre">&lt;L&gt;</span></code> (equal to 20.0 by default)</li>
-<li><code class="docutils literal notranslate"><span class="pre">--W</span> <span class="pre">&lt;W&gt;</span></code> sets the width of the box in the y- and z-directions to <code class="docutils literal notranslate"><span class="pre">&lt;W&gt;</span></code> (equal to 8.0 by default)</li>
-<li><code class="docutils literal notranslate"><span class="pre">--print-to-screen</span></code> will redirect the summary of each simulation to the screen instead of writing to an <a class="reference internal" href="../TUTORIALS/dlm_4.html#outputdlmeso"><span class="std std-ref">OUTPUT</span></a> file</li>
+<li><code class="docutils literal notranslate"><span class="pre">--dz</span> <span class="pre">&lt;dz&gt;</span></code> sets the spacing of histogram bins for concentration profiles to <code class="docutils literal notranslate"><span class="pre">&lt;dz&gt;</span></code> (equal to 0.1 by default)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--L</span> <span class="pre">&lt;L&gt;</span></code> sets the length of the box along the z-direction to <code class="docutils literal notranslate"><span class="pre">&lt;L&gt;</span></code> (equal to 20.0 by default)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--W</span> <span class="pre">&lt;W&gt;</span></code> sets the width of the box in the x- and y-directions to <code class="docutils literal notranslate"><span class="pre">&lt;W&gt;</span></code> (equal to 8.0 by default)</li>
 <li><code class="docutils literal notranslate"><span class="pre">--nproc</span> <span class="pre">&lt;nproc&gt;</span></code> sets the number of processor cores to run DL_MESO_DPD (defaults to 1 core, i.e. serial running)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--dlmeso</span> <span class="pre">&lt;dlmeso&gt;</span></code> sets the location of DL_MESO_DPD’s executable, <code class="docutils literal notranslate"><span class="pre">dpd.exe</span></code>, as <code class="docutils literal notranslate"><span class="pre">&lt;dlmeso&gt;</span></code> (defaults to current directory)</li>
 </ul>
 <p>The results - the <span class="math notranslate nohighlight">\(\chi\)</span> value and its standard deviation, followed by the concentration profile for each simulation - will be placed in a file called floryhuggins-rho-&lt;rho&gt;.dat, which is designed to be read by <em>flory_huggins_plot.py</em>. Subsequent runs of <em>flory_huggins.py</em> for the same density will append data to this file if it already exists.</p>
 </div>
@@ -328,12 +328,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
@@ -383,8 +384,8 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="DPD.html" >Dissipative Particle Dynamics</a> &#187;</li> 
       </ul>
     </div>

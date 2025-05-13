@@ -37,7 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" accesskey="U">DL_POLY</a> &#187;</li> 
       </ul>
     </div>  
@@ -52,40 +52,48 @@
 <p>This page tells you how to set DL_POLY up and running.</p>
 <p><strong>How to obtain DL_POLY</strong></p>
 <ul class="simple">
-<li><a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_POLY.aspx">DL_POLY</a> – molecular dynamics simulations (version 4.09 and above).</li>
+<li><a class="reference external" href="https://gitlab.com/ccp5/dl-poly">DL_POLY</a> – molecular dynamics simulations (version 5.0.0 and above).</li>
 <li>DL_POLY User Manual (<a class="reference download internal" download="" href="../_downloads/83e502ce53f7391787c2ba5c15a2b3db/MAN_DL_POLY_5.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 5.0.0, February 2021.</li>
 </ul>
-<p>To be able to use the latest version of DL_POLY you first need to <a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/DL_POLY-Registration.aspx">register here</a>. Successful registration will lead to you receiving an email containing instructions on how to download the latest version of DL_POLY. Following the instructions in the email from CCP5-ADMIN should give you an unzipped directory (e.g. <strong>dl_poly_4.09</strong>).
-The next step is to compile a dl_poly executable. If you want to compile an executable that runs on more than one core i.e. an mpi version to run on a high performance computing (HPC) system, first transfer the dl_poly directory to the HPC and type the commands below (example given for a bash terminal) adapting if necessary for specific HPC:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: cd dl_poly_4.09
-$: mkdir build-mpi
-$: cd build-mpi
-$: module load cmake gcc7 openmpi-gcc7
-$: FFLAGS=&quot;-O3&quot; FC=gfortran cmake ../
-$: make –j8    (where 8 is the number of processes used to compile the executable)
+<p>To be able to use the latest version of DL_POLY you first need to clone its <a class="reference external" href="https://gitlab.com/ccp5/dl-poly">GitLab repository</a> using one of the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: git clone git@gitlab.com:ccp5/dl-poly.git
+$: git clone https://gitlab.com/ccp5/dl-poly.git
 </pre></div>
 </div>
-<p>Succesful compilation leads to the creation of the dl_poly executable (<strong>DLPOLY.Z</strong>), which can be found in <strong>dl_poly_4.09/build-mpi/bin/</strong>.</p>
+<p>or use the ‘Code’ button in the above-linked webpage to download the current version of its source code as a zipped folder (in .zip, .tar.gz or similar formats) and unpack it. We also strongly recommend <a class="reference external" href="https://www.ccp5.ac.uk/DL_POLY/">registering here</a>, so you can gain access to mailing lists for DL_POLY and CCP5.</p>
+<p>Building DL_POLY requires cmake and a Fortran compiler, and ideally an implementation of MPI to run DL_POLY on more than one core, e.g. if you want to run DL_POLY on a high performance computing (HPC) platform. Full details are available <a class="reference external" href="https://gitlab.com/ccp5/dl-poly/-/blob/devel/building.rst">here</a>, but to summarise - load in these (or similar) modules if required:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: module load cmake gcc7 openmpi-gcc7
+</pre></div>
+</div>
+<p>and then invoke the following commands to build, compile and install DL_POLY:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: cmake -S dl-poly -Bbuild-mpi-pure -DCMAKE_BUILD_TYPE=Release
+$: cmake --build build-mpi-pure
+$: cmake --install build-mpi-pure
+</pre></div>
+</div>
+<p>If you do not have access to MPI, you can build a serial (one-core) version of DL_POLY with the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: cmake -S dl-poly -Bbuild-serial -DCMAKE_BUILD_TYPE=Release -DWITH_MPI=OFF
+$: cmake --build build-serial
+$: cmake --install build-serial
+</pre></div>
+</div>
+<p>Succesful compilation leads to the creation of the dl_poly executable (<strong>DLPOLY.Z</strong>), which can be found in <strong>dl-poly/build-mpi/bin/</strong> (or <strong>dl-poly/build-serial/bin/</strong>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body"><p class="first">Copy the executable <em>DLPOLY.Z</em> to the directory from where you will run simulations e.g.:</p>
 <div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd DL_POLY_SIMULATION
-$ cp dl_poly_4.09/build-mpi/bin/DLPOLY.Z .
+$ cp dl-poly/build-mpi/bin/DLPOLY.Z .
 </pre></div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The exact name of the DL_POLY directory will depend on the version you have downloaded. At the time of writing this, the latest version was dl_poly_4.09.</p>
-</div>
 <p><strong>Continuation runs of simulations</strong></p>
-<p>When you need to re-run a simulation make a ‘copy script’ using a text editor that can be used to quickly copy the CONFIG, REVCON and REVIVE files as shown below (in the same order):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: emacs copy.sh  # this creates a new script file using the emacs text editor
+<p>When you need to re-run a simulation, make a ‘copy script’ using a text editor that can be used to quickly copy the CONFIG, REVCON and REVIVE files as shown below (in the same order):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: emacs copy.sh  # this creates a new script file using the emacs text editor (substitute &#39;emacs&#39; with your favourite editor)
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
@@ -124,7 +132,7 @@ $ cp dl_poly_4.09/build-mpi/bin/DLPOLY.Z .
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software Tools</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tools.html">DL_Software General Information</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="dl_field_intro.html">DL_FIELD</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="dl_poly_intro.html">DL_POLY</a></li>
 <li class="toctree-l3"><a class="reference internal" href="d_ata_intro.html">D_ATA</a></li>
@@ -132,8 +140,8 @@ $ cp dl_poly_4.09/build-mpi/bin/DLPOLY.Z .
 <li class="toctree-l3"><a class="reference internal" href="dl_meso_intro.html">DL_MESO</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
 <li class="toctree-l2"><a class="reference internal" href="video_links.html">Video Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
@@ -181,7 +189,7 @@ $ cp dl_poly_4.09/build-mpi/bin/DLPOLY.Z .
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software Tools</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" >DL_POLY</a> &#187;</li> 
       </ul>
     </div>

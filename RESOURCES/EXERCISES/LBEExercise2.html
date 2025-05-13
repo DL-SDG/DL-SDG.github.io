@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="LBE.html" accesskey="U">Lattice Boltzmann Equation</a> &#187;</li> 
       </ul>
     </div>  
@@ -66,17 +66,16 @@
 <div class="section" id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
 <p>For this exercise, you will need the main DL_MESO_LBE executable <code class="docutils literal notranslate"><span class="pre">lbe.exe</span></code> - ideally either the serial version with OpenMP multithreading or the parallel version with MPI - and the utility <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> to create different starting setups. You can also use the DL_MESO GUI (see <a class="reference internal" href="DL_MESO_LBE.html#dl-meso-gui"><span class="std std-ref">Running GUI</span></a>) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed.</p>
-<p>Copy the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a>, <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-init"><span class="std std-ref">lbin.init</span></a> input files from the directory <code class="docutils literal notranslate"><span class="pre">dl_meso/DEMO/LBE/2D_DropShear</span></code> in your copy of DL_MESO to your working directory (<code class="docutils literal notranslate"><span class="pre">dl_meso/WORK</span></code>).</p>
-<p>These simulation input files will model a rectangular box (<span class="math notranslate nohighlight">\(150 \times 50\)</span> grid points) with walls at the top and bottom. While most of the box will be filled with a continuous fluid (denoted as fluid 0 by DL_MESO_LBE), an immiscible drop of a different fluid (fluid 1) will be placed close to the bottom wall. The lbin.init file was created (using the <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> utility) to give this drop a radius of 15 lattice units and place its centre at lattice grid coordinates <span class="math notranslate nohighlight">\((40, 20)\)</span>.</p>
+<p>Download the <a class="reference download internal" download="" href="../../_downloads/54b6fcc7a76a9a5d92a7d82b6f0ade0c/lbin.sys"><code class="xref download docutils literal notranslate"><span class="pre">lbin.sys</span></code></a>, <a class="reference download internal" download="" href="../../_downloads/58b6ed23e6ccf05f56c3e35621e66516/lbin.spa"><code class="xref download docutils literal notranslate"><span class="pre">lbin.spa</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/9f2cadbd87023145f554342ec1403f68/lbin.init"><code class="xref download docutils literal notranslate"><span class="pre">lbin.init</span></code></a> input files to your working directory (e.g. <code class="docutils literal notranslate"><span class="pre">dl_meso/WORK</span></code>).</p>
+<p>These simulation input files will model a rectangular box (<span class="math notranslate nohighlight">\(150 \times 50\)</span> grid points) with walls at the top and bottom. While most of the box will be filled with a continuous fluid (denoted as fluid 0 by DL_MESO_LBE), an immiscible drop of a different fluid (fluid 1) will be placed close to the bottom wall. The <em>lbin.init</em> file was created (using the <a class="reference internal" href="../TUTORIALS/dlm_6.html#lbeinitcreate"><span class="std std-ref">init.exe</span></a> utility) to give this drop a radius of 15 lattice units and place its centre at lattice grid coordinates <span class="math notranslate nohighlight">\((40, 20)\)</span>.</p>
 <p>The first few thousand timesteps of the simulation will be used to allow the drop shape to settle: no boundary conditions will be applied during this equilibration period. During the remainder of the simulation, a bounce-back boundary condition is applied at the bottom wall, while a constant velocity boundary at the top is applied with a horizontal speed (in lattice units) of 0.005 going to the right.</p>
 <p>To modify any of the parameters in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interaction_1</span>
-<span class="n">interaction_2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interaction_0_1</span>
 <span class="n">segregation</span>
 <span class="n">speed_top_0</span>
 </pre></div>
 </div>
-<p>where the first two are for the interaction parameter <span class="math notranslate nohighlight">\(g_{01}\)</span> between the two fluids, <code class="docutils literal notranslate"><span class="pre">segregation</span></code> gives the segregation parameter <span class="math notranslate nohighlight">\(\beta\)</span> and <code class="docutils literal notranslate"><span class="pre">speed_top_0</span></code> is the <span class="math notranslate nohighlight">\(x\)</span>-component of the top wall velocity applied using a constant velocity boundary condition.</p>
+<p>where the first one is for the interaction parameter <span class="math notranslate nohighlight">\(g_{01}\)</span> between the two fluids, <code class="docutils literal notranslate"><span class="pre">segregation</span></code> gives the segregation parameter <span class="math notranslate nohighlight">\(\beta\)</span> and <code class="docutils literal notranslate"><span class="pre">speed_top_0</span></code> is the <span class="math notranslate nohighlight">\(x\)</span>-component of the top wall velocity applied using a constant velocity boundary condition.</p>
 <p>If you wish to use the parallel version of DL_MESO_LBE to run this simulation, you may want to add the following three lines to the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file to ensure only one output file is produced per timestep:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">output_combine_x</span>             <span class="mi">1</span>
 <span class="n">output_combine_y</span>             <span class="mi">1</span>
@@ -147,12 +146,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
@@ -202,8 +202,8 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="LBE.html" >Lattice Boltzmann Equation</a> &#187;</li> 
       </ul>
     </div>

@@ -41,6 +41,8 @@ Save and exit *d_ata.input*.
 
 Save and exit *d_ata.control*.
 
+**Remember to check dl_a_path is pointing to the right inout and control files you are using.**
+
 (5) Run D_ATA program at the home directory by simply type *./d_ata*
 
 

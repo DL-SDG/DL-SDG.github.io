@@ -1,0 +1,51 @@
+.. Run simulation, for models setup by DL_FIELD: 
+.. _Header_dlf_run:
+
+Run Simulation (DL_POLY)
+========================
+
+This page is related to the tutorial section to setup a solution model using DL_FIELD. If you have not done so, please go to
+:doc:`dlf_solution`.
+
+If you have run the simulation and produced a HISTORY trajectory file, you can proceed to :doc:`dlf_analyse`.
+
+Otherwise, please continue on the tutorial as follows:
+
+The FF structure obtained from DL_FIELD would need to be equibrated before taking the sample and write to HISTORY trajectory files. For this tutorial, we will carry out sampling run at 300 K and 1 atm pressure. 
+
+Below shows several runs, each using the CONFIG file from the previous run to the next. 
+
+.. Note::
+   You can use up to 4 processors to run these simulations. To reduce simulation time, you can reduce total timesteps, say, from 10000 steps to 5000 steps.
+
+**Procedures**
+
+(1) 'Equilibration'. Strictly speaking, this step is taken to 'unlock' any structures that are in highly energetic conformations. This can occur, as for instance, DL_FIELD places solvent molecules in some unfavourable orientations with respect to solutes. Use the following *CONTROL* file:
+
+.. literalinclude:: dlf_run_control1.txt
+
+Remember to use the final configuration (*REVCON*) for the next simulation run below.
+
+(2) Equilibration in NVE ensemble, rescale temperature to 300 K at every timestep, for a total of 10,000 steps. The timestep is set to 0.002 ps. Use the following *CONTROL* file.
+
+.. literalinclude:: dlf_run_control2.txt
+
+The use of *restart noscale* directive means reset the time to zero and use the initial velocities as defined in the CONFIG file.
+
+Remember to use the final configuration (*REVCON*) for the next simulation run below.
+
+(3) Equilibration in NPT ensemble, by using hoover as the thermostat and barostat and set the temperature to 300 K and 1 atm, respectively. Use the following *control* file.
+
+.. literalinclude:: dlf_run_control3.txt
+
+Remember to use the final configuration (*REVCON*) for the next simulation run below.
+
+(4) Sampling run in NPT ensemble, as before. This time, a directive *traj 0 200 0* is used to instruct DL_POLY to create a *HISTORY* trajectory file and write out the atomic configuration every 200 steps. Use the following *CONTROL* file.
+
+.. literalinclude:: dlf_run_control4.txt
+
+(5) Congratulations, you have created a HISTORY trajectory file! If you want to analyse atomic interactions, you can proceed :doc:`dlf_analyse`.
+
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_run>`

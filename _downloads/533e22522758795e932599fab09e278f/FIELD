@@ -1,0 +1,27 @@
+ZEOLITE  ZSM5 (SILICALITE) SAUER MODEL (SANS SHELL) + BENZENE
+UNITS KJ
+MOLECULES 2
+ZEOLITE  ZSM5 (SILICALITE)
+NUMMOLS 1
+ATOMS 288
+Si           28.0855       4.000   96    0
+O            15.9994      -2.000  192    0
+FINISH
+BENZENE
+NUMMOLS 1
+ATOMS 12
+C            12.0000      -0.075    6    0
+H              1.008      +0.075    6    0
+RIGID BODY  1
+   12    1    2    3    4    5    6    7    8    9   10   11   12
+FINISH
+VDW  5
+Si      Si      BUCK        0.00    0.30017
+O       O       BUCK        0.00    0.30017
+Si      O       BUCK   149643.89    0.30017
+C       O       12-6     1.335E6     1807.0
+H       O       12-6     1.599E5      510.8
+TBP  1
+O       Si      O       SHRM     17.7504 109.4666667     0.32769     0.32769        2.0
+CLOSE
+

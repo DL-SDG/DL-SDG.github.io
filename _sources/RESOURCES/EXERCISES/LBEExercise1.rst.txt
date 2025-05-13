@@ -46,9 +46,9 @@ Our simulations are going to start by setting :math:`R = 1`, :math:`a = \tfrac{2
 Instructions
 ------------
 
-For this exercise, you will need the main DL_MESO_LBE executable ``lbe.exe`` - the serial (single processor core) version with or without OpenMP multithreading is preferred to keep down the number of output files. You can also use the DL_MESO GUI (see :ref:`DL_MESO_GUI`) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed.
+For this exercise, you will need the main DL_MESO_LBE executable ``lbe.exe`` - the serial (single processor core) version with or without OpenMP multithreading is preferred to keep down the number of output files. You can also use the DL_MESO GUI (see :ref:`DL_MESO_GUI`) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed to visualise the results.
 
-Copy the :ref:`lbin.sys <lbin_sys>` and :ref:`lbin.spa <lbin_spa>` input files from the directory ``dl_meso/DEMO/LBE/2D_PhaseSeparation`` in your copy of DL_MESO to your working directory (``dl_meso/WORK``). 
+Download the :download:`lbin.sys <./LBEExercise1/lbin.sys>` and :download:`lbin.spa <./LBEExercise1/lbin.spa>` input files into a working directory. This could be the ``dl_meso/WORK`` directory that comes with your copy of DL_MESO. Note that the :ref:`lbin.spa <lbin_spa>` file is entirely empty: this is intentional!
 
 These simulation input files represent a periodic box of a single fluid with a density (or rather, a small range of densities) that lie between the expected densities of the liquid and vapour phases. These phases should form spontaneously, with the liquid phase collecting either into a circular drop or a rectangular layer across the box (depending on how much fluid exists in the box).
 
@@ -71,6 +71,12 @@ To run the simulation using the serial version of DL_MESO_LBE (with or without O
 
 After running DL_MESO_LBE, open the :ref:`lbout\*.vts <lboutsnapshot>` files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed. To plot the properties along a straight line, you can apply the Plot Over Line filter, move the line in the display window and click Apply to display the graphs. The Information subwindow will give you the minimum and maximum values for the available properties at the currently displayed timestep.
 
+To look at any of the snapshots in more detail, download the :download:`vtk_to_twophase.py <./scripts/vtk_to_twophase.py>` script and launch it with the following command: ::
+
+  python vtk_to_twophase.py --vtkin <vtkin> --threshold <threshold> --plot
+
+substituting ``<vtkin>`` with the name of a :ref:`lbout\*.vts <lboutsnapshot>` file and ``<threshold>`` with a small non-zero value (e.g. 0.1) to help determine the width of a vapour-liquid interface, which is plotted using the ``--plot`` option. You will also need the :ref:`lbin.sys <lbin_sys>` file to obtain details of the equation of state and calculate the interfacial tension between the phases. (See :ref:`DL_MESO_LBE` for more details.)
+
 Tasks
 -----
 
@@ -85,6 +91,7 @@ Tasks
 
     - What happens to the liquid and vapour densities as the temperature changes?
     - What happens to the maximum fluid velocities in the system when you change the system temperature?
+    - What happens to the interfacial tension between the phases as the temperature changes? What about the width of the interface?
 
 #.  One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials [Liu2010]_. For the Peng-Robinson equation of state, reducing the universal gas constant :math:`R` and attraction parameter :math:`a` by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.
 

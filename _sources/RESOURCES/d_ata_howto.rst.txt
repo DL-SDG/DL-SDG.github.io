@@ -11,9 +11,11 @@ This page tells you how to set D_ATA up and running.
 
 * `D_ATA web site <https://www.ccp5.ac.uk/D_ATA>`_ – Atomic interaction analysis tool. Click on REGISTRATION button.
 
-* D_ATA User Manual (:download:`PDF<./DOCUMENTS/MAN_D_ATA_1.0.pdf>`) - Version 1.0, November 2024.
+* D_ATA User Manual (:download:`PDF<./DOCUMENTS/MAN_D_ATA_1.1.pdf>`) - Version 1.1, April 2025.
 
-* :doc:`TUTORIALS/data_0` - Online learning site, useful for new users.
+* :doc:`TUTORIALS/data_0` - Online Resource Guide, useful for quick references.
+
+* :doc:`EXERCISES/exercises_data` - online tutorial exercises. Download example structures and try your own!
 
 To be able to use D_ATA you first need to register `here <https://www.ccp5.ac.uk/d_ata-registration>`_. Successful registration will lead to you receiving a .tar.gz file (e.g. d_ata_1.0.tar.gz). Unpack or untar this for example in Linux::
 

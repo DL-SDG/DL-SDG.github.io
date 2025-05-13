@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="../Low.html" accesskey="U">Low Difficulty Exercises</a> &#187;</li> 
       </ul>
     </div>  
@@ -50,9 +50,12 @@
             
   <div class="section" id="md-algorithms-and-the-properties-of-water">
 <h1>MD Algorithms and the Properties of Water<a class="headerlink" href="#md-algorithms-and-the-properties-of-water" title="Permalink to this headline">¶</a></h1>
-<p><strong>Summary</strong>
-In this exercise you will explore the behaviour of several molecular dynamics algorithms by examining their effects on the properties of a simple model for water: the SPC, or Simple Point Charge, model.</p>
-<p><strong>Background</strong></p>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this exercise you will explore the behaviour of several molecular dynamics algorithms by examining their effects on the properties of a simple model for water: the SPC, or Simple Point Charge, model.</p>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
 <p>The SPC model for water, despite its simplicity, finds use in many simulations, particularly of biological systems. It is a rigid model, with three charged sites and Lennard-Jones interactions. Its properties (and limitations) are well known. The purpose of this exercise is to determine what effects, if any, the choice of molecular dynamics algorithm has on the statistical properties of this system.
 DL_POLY offers a wide selection of MD algorithms including:</p>
 <div class="line-block">
@@ -70,18 +73,20 @@ DL_POLY offers a wide selection of MD algorithms including:</p>
 <li>Constant pressure, constant temperature (NPT-Nosé-Hoover);</li>
 <li>Constant pressure, constant temperature (NPT-Martyna-Tuckerman-Klein);</li>
 <li>Constant pressure, constant temperature (NPT-Langevin);</li>
-<li>The DL_POLY_4 manual contains the complete list.</li>
+<li>The DL_POLY_5 manual contains the complete list.</li>
 </ul>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">Notice that we have omitted the constant stress algorithms from the list - can you think why? DL_POLY_4 also offers two possible ways of handling the rigid body dynamics of the water molecules: Rigid-body quaternion dynamics and Constraint bond dynamics.</td>
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">Notice that we have omitted the constant stress algorithms from the list - can you think why? DL_POLY_5 also offers two possible ways of handling the rigid body dynamics of the water molecules: Rigid-body quaternion dynamics and Constraint bond dynamics.</td>
 </tr>
 </tbody>
 </table>
-<p>All of these algorithms are described in the DL_POLY_4 manual and in the references cited therein. Our objective in this exercise is to perform a single state point simulation of water, using as many different algorithms as possible (up to 12 in all) and see what differences are manifest in the results.</p>
-<p><strong>Task</strong></p>
+<p>All of these algorithms are described in the DL_POLY_5 manual and in the references cited therein. Our objective in this exercise is to perform a single state point simulation of water, using as many different algorithms as possible (up to 12 in all) and see what differences are manifest in the results.</p>
+</div>
+<div class="section" id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Download the files: <a class="reference download internal" download="" href="../../../_downloads/ba200e891862074059a6ca5b7a30ba18/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/bb8017d96874e432bec89f9715847921/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/abc83cd4d5572b8720a219f5ba3ea221/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a>.</li>
 <li>Using the <em>FIELD</em> file without modification, simulate the water system using the NVE ensemble. Run for at least 1000 timesteps. Examine the final results in terms of the mean thermodynamic properties (system energy and so on), structure (as revealed by the RDF) and mean-square displacement.This will be the reference system.</li>
@@ -103,6 +108,7 @@ DL_POLY offers a wide selection of MD algorithms including:</p>
 </table>
 </div></blockquote>
 </div>
+</div>
 
 
           </div>
@@ -115,12 +121,13 @@ DL_POLY offers a wide selection of MD algorithms including:</p>
 <li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
@@ -170,8 +177,8 @@ DL_POLY offers a wide selection of MD algorithms including:</p>
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="../Low.html" >Low Difficulty Exercises</a> &#187;</li> 
       </ul>
     </div>

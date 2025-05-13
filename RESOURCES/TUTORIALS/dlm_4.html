@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO Tutorial</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -62,7 +62,8 @@
 <p>where each of the above (apart from charge) are chosen for the specific simulation. The <a class="reference internal" href="../DOCUMENTS/DPDTheory.html#dpd-scale"><span class="std std-ref">time unit</span></a> can either be derived from the selected mass, length and energy units or obtained by matching up simulation and experimental self-diffusivities.</p>
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p id="controldlmeso"><strong>CONTROL</strong></p>
-<p>This file specifies the simulation properties, including the required system temperature, cutoff distances, timestep size, how long the simulation needs to run etc. Following the similarly-named file in DL_POLY, the first line of the <em>CONTROL</em> file is a description of the simulation. This is followed by lines consisting of keywords, most of which are followed with numerical values to define properties, as shown in the following example (an extract from a file for one of DL_MESO’s demonstration cases):</p>
+<p>This file specifies the simulation properties, including the required system temperature, cutoff distances, timestep size, how long the simulation needs to run etc. It is formatted in a similar manner to the original (older) form of <em>CONTROL</em> files used by DL_POLY, although there are some different keywords available specifically for DPD calculations.</p>
+<p>The first line of the <em>CONTROL</em> file is a description of the simulation. This is followed by lines consisting of keywords, most of which are followed with numerical values to define properties, as shown in the following example (an extract from a file for one of DL_MESO’s demonstration cases):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DL_MESO</span> <span class="n">lipid</span> <span class="n">bilayer</span> <span class="n">example</span>
 
 <span class="n">volume</span> <span class="mf">16384.0</span>
@@ -91,7 +92,8 @@
 <p>A full list of the available keywords in <em>CONTROL</em> and the values they take can be found in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/87dfc081efcc2bdab0e87721e2f051fa/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
 <img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p id="fielddlmeso"><strong>FIELD</strong></p>
-<p>This file specifies the contents of the simulation box and how particles interact with each other. After the first line providing a description of the simulation, the format of the <em>FIELD</em> file consists of blocks of information describing the particle species, molecule types, particle-particle interactions and external fields. The following example is a <em>FIELD</em> file for one of DL_MESO’s demonstration cases:</p>
+<p>This file specifies the contents of the simulation box and how particles interact with each other. This is formatted in a similar manner to DL_POLY <em>FIELD</em> files, albeit with some small differences to enable DL_MESO_DPD to setup calculations without needing an initial configuration.</p>
+<p>After the first line providing a description of the simulation, the format of the <em>FIELD</em> file consists of blocks of information describing the particle species, molecule types, particle-particle interactions and external fields. The following example is a <em>FIELD</em> file for one of DL_MESO’s demonstration cases:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DL_MESO</span> <span class="n">lipid</span> <span class="n">bilayer</span> <span class="n">example</span>
 
 <span class="n">SPECIES</span> <span class="mi">3</span>
@@ -171,7 +173,7 @@
    <span class="o">-</span><span class="mf">9.8333333333</span>   <span class="o">-</span><span class="mf">3.5000000000</span>    <span class="mf">1.5000000000</span>
 </pre></div>
 </div>
-<p>It follows a similar format to <em>CONFIG</em> files required for DL_POLY. The first line gives the simulation name, while the second line gives a configuration key to indicate how much information is provided per particle and a boundary condition key. The next three lines indicate the simulation box size as unit vectors: only orthorhombic boxes can be used in DL_MESO_DPD with angles of 90 degrees between the vectors (i.e. zero values not in the main diagonal).</p>
+<p>It follows a similar format to <em>CONFIG</em> files required for DL_POLY, and indeed a <em>CONFIG</em> file generated by either program can be used without modification in the other. The first line gives the simulation name, while the second line gives a configuration key to indicate how much information is provided per particle and a boundary condition key. The next three lines indicate the simulation box size as unit vectors: only orthorhombic boxes can be used in DL_MESO_DPD with angles of 90 degrees between the vectors (i.e. zero values not in the main diagonal).</p>
 <p>The data for the particles then follows as a series of multiple-line data blocks. Each block starts with a line with the particle species and its index, which is then followed by a number of lines that depends on the configuration key. The minimum data required are the particle positions, given as <span class="math notranslate nohighlight">\(x\)</span>-, <span class="math notranslate nohighlight">\(y\)</span>- and <span class="math notranslate nohighlight">\(z\)</span>-components with the box centre as the origin. If required, a particle’s velocity is included in the line immediately below its position and the force acting on the particle follows in the line after the velocity.</p>
 <p>The <em>CONFIG</em> file is optional since DL_MESO_DPD can devise a suitable initial configuration based on the box size given in the <em>CONTROL</em> file and the contents specified in the <em>FIELD</em> file. DL_MESO_DPD can also devise an appropriate set of particle velocities for the required system temperature and determine the initial forces acting on the particles (based on defined interactions) if one or both properties are missing. That said, a <em>CONFIG</em> file can be useful to provide a non-default simulation setup, e.g. if an equilibrated state has already been simulated (with or without subsequent modification) or specific boundary conditions formed from frozen particles are required.</p>
 <p>A <em>CONFIG</em> file can be created in a number of different ways:</p>
@@ -384,16 +386,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA Tutorial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
@@ -441,8 +443,8 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO Tutorial</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

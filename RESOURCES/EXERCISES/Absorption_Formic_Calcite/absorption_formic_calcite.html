@@ -1,0 +1,209 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Absorption of formic acid onto a calcite surface &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Parameterising DPD interactions using Flory-Huggins solution theory" href="../Flory_Huggins_DPD/flory_huggins_dpd.html" />
+    <link rel="prev" title="Structure and Dynamics of Argon" href="../Argon_Dynamics/structure_dynamics_argon.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../Flory_Huggins_DPD/flory_huggins_dpd.html" title="Parameterising DPD interactions using Flory-Huggins solution theory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../Argon_Dynamics/structure_dynamics_argon.html" title="Structure and Dynamics of Argon"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" accesskey="U">Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="absorption-of-formic-acid-onto-a-calcite-surface">
+<h1>Absorption of formic acid onto a calcite surface<a class="headerlink" href="#absorption-of-formic-acid-onto-a-calcite-surface" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This exercise explores the ability of simple molecules to absorb onto a
+surface. This simulation omits water entirely, which is a serious
+over-simplification since the local structure of the water near the
+surface is seriously perturbed by the presence of organic molecules and
+this has a strong effect on the absorption behaviour. However, the
+simulation illustrates the basic idea of how a simulation of this kind
+is done.</p>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<div class="figure" id="fig-formic">
+<a class="reference internal image-reference" href="../../../_images/exe9-calcite.png"><img alt="Formic acid absorption on a calcite surface" src="../../../_images/exe9-calcite.png" style="width: 49.0%;" /></a>
+<p class="caption"><span class="caption-text">Formic acid absorption on a calcite surface</span></p>
+</div>
+<p>Formic (methanoic) acid is a small molecule with COOH as the functional
+group. Arrays of such groups are readily formed when self-assembled
+monolayers are made from long alkane chains with a thiol linkage at one
+end (which readily bonds onto a gold surface) and a carboxylic acid
+group at the other. A considerable amount of experimental data is
+available to show that arrays of such molecules can control which
+surface of calcite is formed against the array and hence the orientation
+of growth of the calcite crystal, see . Molecules like this are also a
+useful test for force-fields to be used for peptides and proteins. This
+study cannot hope to address all the issues relevant even to simple
+absorption. We have already mentioned one of the most important - in
+aqueous solutions absorption requires the displacement of a water
+molecule so the ability to bind <em>in vacuo</em> is not necessarily a guide to
+whether the molecule will bind in solution. However, the simulation does
+illustrate some issues in absorption calculations.</p>
+</div>
+<div class="section" id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Copy or download the following files:  <a class="reference download internal" download="" href="../../../_downloads/76815728b4af24a2f8d639bd1ebbdc83/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/f4612337e2b3c71bfd83c8ff487b0eb1/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/7bf4ddf2cc4c03aa95001d7fc011d040/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a></li>
+<li>Display the system using the <em>CONFIG</em> file. Note
+the structural features: the COOH group of the acid which binds to
+the surface and the structure of the surface itself. This is the flat
+(10.4) surface of calcite. This is modelled as a slab. You might like
+to consider how the molecule would attach to a more complex surface
+including a step or a kink; also how you could set up a slab
+configuration for a more complex surface. Take a look at the
+<em>FIELD</em> file and see how the intramolecular terms of the formic
+acid molecule are specified: bonds, valence angle and dihedral angle
+potentials are described. (These are based on the AMBER force field.)
+It should give you some idea about how to specify more complex
+molecules.</li>
+<li>Run a simulation starting with this <em>CONFIG</em> file. What you
+are looking for is an indication that the formic acid molecule
+recognises the presence of the surface and is drawn closer to it.
+Visualise the final structure in the <em>REVCON</em> file and
+compare it with the starting structure in the <em>CONFIG</em> file.</li>
+<li>Why does a neutral molecule like formic acid have an affinity for a
+surface like calcite? What structural features are responsible? Would
+it make a difference if you turned the molecule around so that the
+carboxylate group was pointing away from the surface?
+What does this tell you about starting configurations in more complex
+problems?</li>
+<li>Replicate the molecule on the surface and make a small array of
+formic acid molecules. Note that you will need to adjust the <em>FIELD</em>
+file (by editing the <em>FIELD</em> file) to give the correct number of
+molecules. What effect does the replication have?</li>
+<li>What happens if you remove a <span class="math notranslate nohighlight">\(CaCO_3\)</span> unit from the surface to
+create a surface defect?</li>
+<li>Determine the MSD for the <span class="math notranslate nohighlight">\(C_2\)</span> and <span class="math notranslate nohighlight">\(C_1\)</span> atoms (either
+from the <em>OUPUT</em> file or by analysing the <em>HISTORY</em> file). You should
+be able to tell easily which molecules are diffusing in the system.</li>
+<li>Write a simple routine to count the number of hydrogen bonds during
+the simulation. A reasonable criterion for a hydrogen bond is when
+the <span class="math notranslate nohighlight">\(O-H\)</span> distance is less than 0.25&nbsp;nm. The data you require
+is in the <em>HISTORY</em> file. Bear in mind that <span class="math notranslate nohighlight">\(O-H\)</span> covalent
+bonds don’t count!</li>
+</ol>
+<p>A small film of the simulation can be seen on youtube at
+<a class="reference external" href="https://youtu.be/Ojw_LJNR9f8">https://youtu.be/Ojw_LJNR9f8</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../Argon_Dynamics/structure_dynamics_argon.html"
+                        title="previous chapter">Structure and Dynamics of Argon</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Flory_Huggins_DPD/flory_huggins_dpd.html"
+                        title="next chapter">Parameterising DPD interactions using Flory-Huggins solution theory</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../Flory_Huggins_DPD/flory_huggins_dpd.html" title="Parameterising DPD interactions using Flory-Huggins solution theory"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../Argon_Dynamics/structure_dynamics_argon.html" title="Structure and Dynamics of Argon"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" >Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

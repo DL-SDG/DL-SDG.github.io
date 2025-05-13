@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlp_0.html" accesskey="U">DL_POLY Tutorial</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlp_0.html" accesskey="U">DL_POLY</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -102,13 +102,13 @@
 <p>Both versions of DL_POLY - DL_POLY_5 and DL_POLY Classic - are designed for homogeneously-distributed parallel machines. Each processor core can communicate with all of the others during a calculation, but it has its own separate allocation of memory.</p>
 <p>The parallelisation strategy in DL_POLY Classic is <em>replicated data</em>. All processor cores share all the information about the entire MD simulation, including particle positions, velocities etc. The computational work to calculate particle forces and integrate the forces are shared between the available cores, but the results are synchronised and shared globally among all cores.</p>
 <p>The force calculations make use of a <em>Verlet neighbour list</em> giving possible interacting particle pairs, which is distributed equally among the available processor cores. While this approach is straightforward to implement and understand, also allowing for a comparatively large interaction cutoff distance <span class="math notranslate nohighlight">\(r_{cut} \leq \frac{L}{2}\)</span> of up to half the system size, the performance overheads and limitations increase quickly with increasing numbers of particles due to the lack of memory distribution and the extensive global communications required.</p>
-<p>DL_POLY_4 and DL_POLY_5 use <em>domain decomposition</em>, which involves dividing the system volume and particles among processor cores and each core calculating interaction forces for its own particles. To correctly calculate these forces, a boundary halo for each core’s subdomain is defined to copy in particle data from neighbouring cores using MPI core-to-core communications. The system is usually divided equally by volume, which provides good load-balancing when the particles are distributed evenly.</p>
+<p>DL_POLY_5 and DL_POLY_5 use <em>domain decomposition</em>, which involves dividing the system volume and particles among processor cores and each core calculating interaction forces for its own particles. To correctly calculate these forces, a boundary halo for each core’s subdomain is defined to copy in particle data from neighbouring cores using MPI core-to-core communications. The system is usually divided equally by volume, which provides good load-balancing when the particles are distributed evenly.</p>
 <p>Verlet neighbour lists are used to go through pairs of particles likely to be within the cutoff distance <span class="math notranslate nohighlight">\(r_{cut}\)</span>, which are constructed using <em>linked cell lists</em>. By dividing the subdomain into cells with sides of at least <span class="math notranslate nohighlight">\(r_{cut}\)</span> in size and constructing lists of particles in each cell, this reduces the number of possible particle pairs to search since all pairs relative to a given particle will exist either in its own cell or nearest neighbouring cells <em>but no further</em>. This approach works well for domain decomposition since the boundary halo size can be set to the same size as the link cells, and is equally efficient for three- and four-body interactions. Subcelling of the link cells can improve search efficiency further, particularly for systems with uneven particle distributions.</p>
-<p>Bonded interactions in both versions of DL_POLY are carried out using similar approaches to van der Waals and other two-body interactions, although these require explicit definitions of particles involved. Book-keeping arrays are used to keep track of particles in bonded interactions. All processor cores hold the full book-keeping arrays in DL_POLY Classic and divide up the calculations among themselves. In DL_POLY_4 and DL_POLY_5, the book-keeping arrays are divided up according to which processor cores the involved particles can be found: these change dynamically as the molecules move between subdomains.</p>
+<p>Bonded interactions in both versions of DL_POLY are carried out using similar approaches to van der Waals and other two-body interactions, although these require explicit definitions of particles involved. Book-keeping arrays are used to keep track of particles in bonded interactions. All processor cores hold the full book-keeping arrays in DL_POLY Classic and divide up the calculations among themselves. In DL_POLY_5 and DL_POLY_5, the book-keeping arrays are divided up according to which processor cores the involved particles can be found: these change dynamically as the molecules move between subdomains.</p>
 </div>
 <div class="section" id="ensembles-and-algorithms">
 <h2>Ensembles and algorithms<a class="headerlink" href="#ensembles-and-algorithms" title="Permalink to this headline">¶</a></h2>
-<p>Integration of particle forces can be carried out using Velocity Verlet (VV) or leapfrog Verlet (LFV) schemes. (Note that <em>only VV is available</em> from DL_POLY_4 version 4.10 and later.) The following simulation ensembles are available in DL_POLY:</p>
+<p>Integration of particle forces can be carried out using Velocity Verlet (VV) or leapfrog Verlet (LFV) schemes. (Note that <em>only VV is available</em> from DL_POLY_5 version 4.10 and later.) The following simulation ensembles are available in DL_POLY:</p>
 <ul class="simple">
 <li>NVE - constant volume and energy</li>
 <li>NVT - constant volume and temperature</li>
@@ -119,7 +119,7 @@
 </ul>
 <p>and these can have been implemented with the following thermostats and barostats:</p>
 <ul class="simple">
-<li>NVT - Evans (with additional kinetic energy constraint), DPD with 1st or 2nd order Shardlow splitting, Andersen, Langevin, Berendsen, Nosé-Hoover, Gentle Stochastic Thermostat (GST)</li>
+<li>NVT - Evans (with additional kinetic energy constraint), DPD with simple force integration (MD-VV) or 0th, 1st or 2nd order Shardlow splitting, Andersen, Langevin, Berendsen, Nosé-Hoover, Gentle Stochastic Thermostat (GST)</li>
 <li>NPT - Langevin, Berendsen, Nosé-Hoover, Martyna-Tuckerman-Klein</li>
 <li>NP<span class="math notranslate nohighlight">\(_{n}\)</span>AT, NP<span class="math notranslate nohighlight">\(_{n}\)</span><span class="math notranslate nohighlight">\(\gamma\)</span>T, N<span class="math notranslate nohighlight">\(\sigma\)</span>T - Langevin, Berendsen, Nosé-Hoover, Martyna-Tuckerman-Klein</li>
 </ul>
@@ -143,16 +143,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Tutorials</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="dlp_0.html">DL_POLY Tutorial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD Tutorial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA Tutorial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER Tutorial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
@@ -200,8 +200,8 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Tutorials</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlp_0.html" >DL_POLY Tutorial</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlp_0.html" >DL_POLY</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

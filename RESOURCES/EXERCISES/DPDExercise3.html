@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="DPD.html" accesskey="U">Dissipative Particle Dynamics</a> &#187;</li> 
       </ul>
     </div>  
@@ -71,13 +71,13 @@
 <div class="section" id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
 <p>For this exercise, you will need the main DL_MESO_DPD executable <em>dpd.exe</em> - either serial or parallel versions will do - and the <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a> utility to analyse and visualise some of the results. You will also need either graph plotting software (e.g. Gnuplot, Excel) or the <a class="reference download internal" download="" href="../../_downloads/794258a9b8c026c8e03ced11466dabaf/dlmresultviewer.py"><code class="xref download docutils literal notranslate"><span class="pre">dlmresultviewer.py</span></code></a> Python script to look at <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> files: the former might also be useful to plot some graphs of your own. The same Python script can be used to look at the outputs (VTK files) from the <a class="reference internal" href="../TUTORIALS/dlm_7.html#local"><span class="std std-ref">local.exe</span></a> utility, although if you decide not to use this, you will also need to have Paraview installed.</p>
-<p>Copy the <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> and <a class="reference internal" href="../TUTORIALS/dlm_4.html#fielddlmeso"><span class="std std-ref">FIELD</span></a> input files from the directory <em>dl_meso/DEMO/DPD/ShearFlow</em> in your copy of DL_MESO to your working directory (<em>dl_meso/WORK</em>) and take a look at them in a text editor.</p>
+<p>Download <a class="reference download internal" download="" href="../../_downloads/e1ce7146dd12ecf481fc4ee88462e917/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/a4584b5fef66d276d428e07cac741f07/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> input files to your working directory (e.g. <em>dl_meso/WORK</em>) and take a look at them in a text editor.</p>
 <p>The <a class="reference internal" href="../TUTORIALS/dlm_4.html#controldlmeso"><span class="std std-ref">CONTROL</span></a> file is fairly similar to ones you have seen before in previous exercises, although there are three directives to pay attention to.</p>
 <p>The first is the line used to specify writing trajectories to the <a class="reference internal" href="../TUTORIALS/dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trajectory</span> <span class="mi">40000</span> <span class="mi">10</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>which means DL_MESO_DPD will start writing to <a class="reference internal" href="../TUTORIALS/dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> from timestep 40,000 every 10 timesteps and include both particle positions and velocities.</p>
+<p>which means DL_MESO_DPD will start writing to the <a class="reference internal" href="../TUTORIALS/dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> file from timestep 40,000 every 10 timesteps and include both particle positions and velocities.</p>
 <p>The second directive is that for the ensemble:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ensemble</span> <span class="n">nvt</span> <span class="n">stoyanov</span> <span class="mf">0.3</span>
 </pre></div>
@@ -186,12 +186,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
@@ -241,8 +242,8 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="DPD.html" >Dissipative Particle Dynamics</a> &#187;</li> 
       </ul>
     </div>

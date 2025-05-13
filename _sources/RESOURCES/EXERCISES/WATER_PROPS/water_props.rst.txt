@@ -1,4 +1,4 @@
-.. This is one of the exercises copied from a range of tutorial exercises listed as ' low difficulty' copied directly from ftp://ftp.dl.ac.uk/ccp5/DL_POLY/DL_POLY_4.0/TUTORIAL/
+.. This is one of the exercises copied from a range of tutorial exercises listed as ' low difficulty' copied directly from ftp://ftp.dl.ac.uk/ccp5/DL_POLY/DL_POLY_5.0/TUTORIAL/
 
    
 
@@ -6,37 +6,40 @@
 MD Algorithms and the Properties of Water
 *****************************************
 
-**Summary**
+Summary
+-------
 In this exercise you will explore the behaviour of several molecular dynamics algorithms by examining their effects on the properties of a simple model for water: the SPC, or Simple Point Charge, model.
 
-**Background**
+Background
+----------
 
 The SPC model for water, despite its simplicity, finds use in many simulations, particularly of biological systems. It is a rigid model, with three charged sites and Lennard-Jones interactions. Its properties (and limitations) are well known. The purpose of this exercise is to determine what effects, if any, the choice of molecular dynamics algorithm has on the statistical properties of this system.
 DL_POLY offers a wide selection of MD algorithms including:
 
 |
 
-• Fixed volume, fixed energy (NVE);
-• Fixed volume, constant temperature (NVT-Berendsen);
-• Fixed volume, constant temperature (NVT-Andersen);
-• Fixed volume, constant temperature (NVT-Langevin);
-• Fixed volume, constant temperature (NVT-Evans);
-• Fixed volume, constant temperature (NVT-Nosé-Hoover);
-• Fixed volume, constant temperature (NVT-Gentle-Stochastic);
-• Constant pressure, constant temperature (NPT-Berendsen);
-• Constant pressure, constant temperature (NPT-Nosé-Hoover);
-• Constant pressure, constant temperature (NPT-Martyna-Tuckerman-Klein);
-• Constant pressure, constant temperature (NPT-Langevin);
-• The DL_POLY_4 manual contains the complete list.
+* Fixed volume, fixed energy (NVE);
+* Fixed volume, constant temperature (NVT-Berendsen);
+* Fixed volume, constant temperature (NVT-Andersen);
+* Fixed volume, constant temperature (NVT-Langevin);
+* Fixed volume, constant temperature (NVT-Evans);
+* Fixed volume, constant temperature (NVT-Nosé-Hoover);
+* Fixed volume, constant temperature (NVT-Gentle-Stochastic);
+* Constant pressure, constant temperature (NPT-Berendsen);
+* Constant pressure, constant temperature (NPT-Nosé-Hoover);
+* Constant pressure, constant temperature (NPT-Martyna-Tuckerman-Klein);
+* Constant pressure, constant temperature (NPT-Langevin);
+* The DL_POLY_5 manual contains the complete list.
   
 
 :Note:
-      Notice that we have omitted the constant stress algorithms from the list - can you think why? DL_POLY_4 also offers two possible ways of handling the rigid body dynamics of the water molecules: Rigid-body quaternion dynamics and Constraint bond dynamics.
+      Notice that we have omitted the constant stress algorithms from the list - can you think why? DL_POLY_5 also offers two possible ways of handling the rigid body dynamics of the water molecules: Rigid-body quaternion dynamics and Constraint bond dynamics.
   
-All of these algorithms are described in the DL_POLY_4 manual and in the references cited therein. Our objective in this exercise is to perform a single state point simulation of water, using as many different algorithms as possible (up to 12 in all) and see what differences are manifest in the results.
+All of these algorithms are described in the DL_POLY_5 manual and in the references cited therein. Our objective in this exercise is to perform a single state point simulation of water, using as many different algorithms as possible (up to 12 in all) and see what differences are manifest in the results.
 
 
-**Task**
+Task
+----
 
 1. Download the files: :download:`FIELD <./FIELD>`, :download:`CONTROL <./CONTROL>`, :download:`CONFIG <./CONFIG>`.
 

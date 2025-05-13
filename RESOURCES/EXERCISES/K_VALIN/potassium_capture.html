@@ -37,8 +37,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="../Low.html" accesskey="U">Low Difficulty Exercises</a> &#187;</li> 
       </ul>
     </div>  
@@ -50,22 +50,26 @@
             
   <div class="section" id="potassium-capture-by-valinomycin">
 <h1>Potassium Capture by Valinomycin<a class="headerlink" href="#potassium-capture-by-valinomycin" title="Permalink to this headline">¶</a></h1>
-<p><strong>Summary</strong>
-This exercise explores the ability of a naturally occuring molecule to chelate the potassium ion and is an example of the application of molecular simulation to the study of biological activity. The study demonstrates the use of simulation to reveal the relationship between the structural properties of a molecule and its biological function.</p>
-<p><strong>Background</strong></p>
-<div class="figure align-center" id="id2">
-<a class="reference internal image-reference" href="../../../_images/K_Valinomycin.png"><img alt="../../../_images/K_Valinomycin.png" src="../../../_images/K_Valinomycin.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Valinomycin and a potassium ion (purple)</span></p>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This exercise explores the ability of a naturally occurring molecule to chelate the potassium ion and is an example of the application of molecular simulation to the study of biological activity. The study demonstrates the use of simulation to reveal the relationship between the structural properties of a molecule and its biological function.</p>
 </div>
-<p>Valinomycin is a relatively small, naturally occuring, cyclic molecule comprised of 168 atoms. It strongly
-resembles a peptide with 12 α −amino acids, except that half of the amide bonds, NH − CO, are replaced by ester linkages, O − CO, and there are changes in optical sterochemistry at some of the α -carbons (technically it is a cyclic dodecapsipeptide), see the above figure. The molecule demonstrates a remarkable flexibility, but its most significant property is its abilty to wrap around a potassium ion, thus giving the ion a hydrophobic coat which permits its transfer through the hydrophobic membranes of living cells. Valinomycin is thus a molecule essential to life.</p>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../../../_images/K_Valinomycin.png"><img alt="../../../_images/K_Valinomycin.png" src="../../../_images/K_Valinomycin.png" style="width: 400px;" /></a>
+</div>
+<p>Valinomycin is a relatively small, naturally occurring, cyclic molecule comprised of 168 atoms. It strongly
+resembles a peptide with 12 α −amino acids, except that half of the amide bonds, NH − CO, are replaced by ester linkages, O − CO, and there are changes in optical stereochemistry at some of the α -carbons (technically it is a cyclic dodecapsipeptide), see the above figure. The molecule demonstrates a remarkable flexibility, but its most significant property is its ability to wrap around a potassium ion (shown in purple), thus giving the ion a hydrophobic coat which permits its transfer through the hydrophobic membranes of living cells. Valinomycin is thus a molecule essential to life.</p>
 <p>This study cannot hope to address all the properties of this remarkable molecule, and the student is warned
 against reading too much into the results of the experiments, which neglect many of the contributing factors to the full biological processes, but it will hopefully give some clues as to how the molecule functions in the way it does. The simulations will attempt the capture of a potassium ion by a valinomycin molecule in vacuo, ref. <a class="reference external" href="https://pubs.acs.org/doi/abs/10.1021/j100039a033">Capture of potassium ions by valinomycin: a molecular dynamics simulation study</a></p>
 <p>If successful, the simulations should reveal some of the molecular features that facilitate the capture of potassium in real life.</p>
-<p><strong>Task</strong></p>
+</div>
+<div class="section" id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Download the files:  <a class="reference download internal" download="" href="../../../_downloads/65f3642f63cb1afcc81d8d880897cc29/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/82334289075b22146562586d54bf5fa5/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/962def1753923fa5339cb067c81f5ada/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> and display the system using <em>CONFIG</em>. Note the structural features: the CO groups of the ester and amide links, which have a rôle in the chelation of the potassium; the methyl and isopropyl groups, which form the hydrophobic coat; and features that may give rise to hydrogen bonding within the molecule itself and help stabilise its various conformational forms.</li>
-<li>Take a look at the <em>FIELD</em> file and see how the intramolecular terms of the Valinomycin are specified: bonds, valence angle and dihedral angle potentials are descibed. These are based on the AMBER forcefield. It should give you some idea about how to specify more complex molecules.</li>
+<li>Download the files:  <a class="reference download internal" download="" href="../../../_downloads/65f3642f63cb1afcc81d8d880897cc29/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/82334289075b22146562586d54bf5fa5/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/962def1753923fa5339cb067c81f5ada/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> and display the system using <em>CONFIG</em>. Note the structural features: the CO groups of the ester and amide links, which have a role in the chelation of the potassium; the methyl and isopropyl groups, which form the hydrophobic coat; and features that may give rise to hydrogen bonding within the molecule itself and help stabilise its various conformational forms.</li>
+<li>Take a look at the <em>FIELD</em> file and see how the intramolecular terms of the Valinomycin are specified: bonds, valence angle and dihedral angle potentials are described. These are based on the AMBER forcefield. It should give you some idea about how to specify more complex molecules.</li>
 <li>At the bottom of the <em>CONFIG</em> file the position of the potassium ion is defined. It is some distance away from the valinomycin, the centre of mass of which is close to the origin. Run a simulation starting with this <em>CONFIG</em> file. What you are looking for is an indication that the valinomycin recognises the presence of the potassium ion and draws it closer.</li>
 <li>Consider why a neutral molecule like valinomycin should have an affinity for a charged species like potassium. What structural features are responsible? Is the molecule responding in the way you expect (for example conformationally)?</li>
 <li>If things are happening too slowly, you may consider changing the formal charge on the potassium, just to see how the system responds.</li>
@@ -73,6 +77,7 @@ against reading too much into the results of the experiments, which neglect many
 <li>Run a simulation and create a <em>HISTORY</em> file. Write a simple routine to calculate the dipole moment of the valinomycin at intervals and see if this correlates with the potassium position.</li>
 </ol>
 <p>A sample video of the simulation can be seen on youtube at: <a class="reference external" href="https://youtu.be/Ec0wpSPfBlk">Potassium Capture by Valinomycin</a></p>
+</div>
 </div>
 
 
@@ -86,12 +91,13 @@ against reading too much into the results of the experiments, which neglect many
 <li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../Resources.html">Resources</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../manual.html">DL_Software Manuals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Exercises</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD Exercises</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
@@ -141,8 +147,8 @@ against reading too much into the results of the experiments, which neglect many
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
           <li class="nav-item nav-item-4"><a href="../Low.html" >Low Difficulty Exercises</a> &#187;</li> 
       </ul>
     </div>

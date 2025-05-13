@@ -64,18 +64,14 @@ To visualise DPD trajectories, you can either install `VMD <http://www.ks.uiuc.e
 Optional Python scripts
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Some Python3 scripts are available to carry out a simple DPD simulation workflow for one of the practical exercises and plot graphs of simulation outputs. These scripts are optional but very useful and recommended for the DPD exercises.
+Some Python3 scripts are available to carry out a simple DPD simulation workflow for one of the practical exercises, set up boundary conditions for one of the LBE exercises (as an alternative to using the DL_MESO GUI), and plot graphs of simulation outputs. These scripts are optional but very useful and come highly recommended.
 
 As well as Python3, the following packages need to be installed using PIP (Python's Package Installer) [#]_: ::
 
-   pip install docent
-   pip install tqdm
-   pip install numpy
-   pip install PyQt5
-   pip install matplotlib 
+   pip install docopt tqdm numpy PyQt6 matplotlib scipy scikit-image vtk
 
 
-The visualisation scripts will also need `Qt5 <https://doc.qt.io/qt-5/gettingstarted.html>`_ to be installed, e.g. ``sudo apt-get install qt5-default`` in Ubuntu.
+The visualisation scripts will also need `Qt6 <https://doc.qt.io/qt-6/gettingstarted.html>`_ to be installed, e.g. ``sudo apt-get install qt6-default`` in Ubuntu.
 
 
 .. rubric:: Footnotes
@@ -84,7 +80,7 @@ The visualisation scripts will also need `Qt5 <https://doc.qt.io/qt-5/gettingsta
 
 .. [#] At the time of writing (September 2021), only OVITO is currently available as a stable release for Macs since the removal of 32-bit application support in macOS. There are test builds available for macOS Catalina (10.15) and Big Sur (11) of `alpha releases of VMD 1.9.4 <https://www.ks.uiuc.edu/Research/vmd/alpha/>`_, but these are not guaranteed to work: download and install them *at your own risk*!
 
-.. [#] Depending on your installation of Python3 and PIP, you might need to use ``pip3`` instead of ``pip`` in these commands to install the packages.
+.. [#] Depending on your installation of Python3 and PIP, you might need to use ``pip3`` instead of ``pip`` in this command to install the packages.
 
 .. rubric:: Reference
 

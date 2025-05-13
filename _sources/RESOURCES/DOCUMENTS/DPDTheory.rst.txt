@@ -24,7 +24,7 @@ while the energy unit is equal to:
 
 .. math:: k_B T \approx 4.116 \times 10^{-21} \text{ J}.
 
-A 'real-life' density for water of :math:`\rho_m = 996.95` kg m\ :math:`^{-3}` gives the physical volume of this bead as:
+A 'real-life' density for water at room temperature of :math:`\rho_m = 996.95` kg m\ :math:`^{-3}` gives the physical volume of this bead as:
 
 .. math:: V_{bead} = N_m V_{mol} = \frac{N_m M_r}{N_A \rho_m} \approx 3.001 \times 10^{-29} N_m \text{ m}^3.
 
@@ -143,21 +143,23 @@ which can be restricted to another cutoff distance, i.e. :math:`r_{ij} < r_d`. T
 
 The 'standard' Groot-Warren potential can be recovered by setting the excess free energy per particle to
 
-.. math:: \psi^{ex} \left( \rho \right) = \frac{\pi}{30} A \rho
+.. math:: \psi^{ex} \left( \rho \right) = \frac{\pi r_c^4}{30} A \rho
 
 and the function for localised density calculations to
 
-.. math:: w^{\rho} \left(r_{ij}\right)= \frac{15}{2 \pi r_d^3} \left(1 - \frac{r_{ij}}{r_d}\right)^2 ~~ \left(r_{ij} < r_d\right).
+.. math:: w^{\rho} \left(r_{ij}\right)= \frac{15}{2 \pi r_d^3} \left(1 - \frac{r_{ij}}{r_d}\right)^2 ~~ \left(r_{ij} < r_d\right),
+
+which gives the localised density in units of :math:`r_c^{-3}` [#]_. The localised density :math:`\tilde{\rho}_i` does not necessarily equal the 'physical' density of the fluid :math:`\rho`, although it is possible to find how the two properties are related to each other.
 
 A simple many-body DPD model to give a cubic equation of state and vapour-liquid coexistence can be established by using an additional density term for the excess free energy [Warren2003]_ with two different localised densities, i.e.
 
-.. math:: \psi^{ex} \left(\rho\right) = \frac{\pi}{30} A \overline{\rho} + \frac{\pi r_d^4}{30} B \tilde{\rho}^2
+.. math:: \psi^{ex} \left(\rho\right) = \frac{\pi r_c^4}{30} A \overline{\rho} + \frac{\pi r_d^4}{30} B \tilde{\rho}^2
 
 where :math:`r_d = r_c` for :math:`w^{\rho} \left(r_{ij}\right)` when calculating the first localised density :math:`\overline{\rho}`. The resulting pairwise conservative force can be simplified to the standard Groot-Warren form with an additional density-based term:
 
 .. math:: \mathbf{F}^{C}_{ij} = \left[ A_{ij} \left(1 - \frac{r_{ij}}{r_c}\right) + B \left(\tilde{\rho}_i + \tilde{\rho}_j \right) \left(1 - \frac{r_{ij}}{r_d}\right)  \right] \widehat{\mathbf{r}}_{ij},
 
-noting that :math:`A_{ij} \equiv A` can be specified for different pairs of species and set to negative values to provide attractions between particles, while the repulsive parameter :math:`B` must be kept constant for all species to ensure the forces are conservative [Warren2013a]_. These two parameters can be chosen or fitted for e.g. both isothermal compressibility (as per standard Groot-Warren interactions) and interfacial tension.
+noting that :math:`A_{ij} \equiv A` can be specified for different pairs of species and set to negative values to provide attractions between particles, while the repulsive parameter :math:`B` (in units of :math:`k_B T r_c^2`) must be kept constant for all species to ensure the forces are conservative [Warren2013a]_. These two parameters can be chosen or fitted for e.g. both isothermal compressibility (as per standard Groot-Warren interactions) and interfacial tension.
 
 Inclusion of electrostatics
 ---------------------------
@@ -291,9 +293,11 @@ where :math:`\alpha^{T}` is an additional system-wide coupling parameter for the
 
 .. [#] This follows from the assumption in Flory-Huggins solution theory that all particles (solvent and monomers) are equal in size.
 
+.. [#] The localised density :math:`\tilde{\rho}_i` can be used arbitrarily in expressions for the excess free energy per particle :math:`\psi^{ex}` and the resulting pairwise forces, which can cause complications particularly when setting parameters and applying many-body DPD to multiple components with different expressions of :math:`\psi^{ex}`. In these cases, the simplest approach is to treat :math:`\tilde{\rho}_i` as a dimensionless quantity but still scaled to :math:`r_c^{-3}`, where :math:`r_c` is the chosen DPD length unit.
+
 .. [#] Higher values of :math:`A_{ij}` can make the use of point charges in DPD simulations viable, particularly if a larger degree of coarse-graining is in use [Vaiwala2017]_, but greater care is needed when starting such simulations to ensure oppositely-charged particles do not start too close together.
 
-.. [#] Dividing the dynamic viscosity by fluid density to give the *kinematic viscosity* :math:`\nu` and dividing this property by the fluid diffusivity :math:`D` gives the dimensionless Schmidt number :math:`\mathrm{Sc}`. For DPD simulations with no conservative forces, this value is typically around 1: fine for gases but generally too low for liquids, whose values are typically around 1000. 
+.. [#] Dividing the dynamic viscosity by fluid density to give the *kinematic viscosity* :math:`\nu` and dividing this property by the fluid diffusivity :math:`D` gives the dimensionless Schmidt number :math:`\mathrm{Sc}`. For DPD simulations with no conservative forces, this value is typically around 1: fine for gases but generally too low for liquids, whose values are typically around 1000.
 
 .. rubric:: References
 

@@ -1,0 +1,65 @@
+Lipid bilayers and micelles with DPD
+====================================
+
+Summary
+-------
+
+This exercise demonstrates the ability of Dissipative Particle Dynamics (DPD) to quickly determine the structures formed by lipid molecules in aqueous solutions [#]_. Each lipid molecule can be constructed by joining beads with different hydrophobicities together using bonds to make it amphiphilic and consist of a hydrophilic head group and a hydrophobic tail. Applying angle potentials between pairs of bonds will have an affect on the structures that form, as will the concentration of lipid molecules in solution.
+
+Background
+----------
+
+The soft repulsive (Groot-Warren) interactions frequently used in DPD calculations can be extended by joining particles (beads) together into molecules using e.g. harmonic springs. Since we can vary the repulsion strength between pairs of different bead types, we can therefore construct molecules with different regions of behaviour, e.g. amphiphiles with hydrophilic (water-loving) head groups and hydrophobic (water-hating) tails. In solution, these molecules can readily assemble into large-scale structures such as micelles, vesicles, bilayers and membranes.
+
+Among others, Shillcock and Lipowsky [Shillcock2002]_ have proposed DPD as a viable modelling method for biological molecules such as lipids and proteins. In particular, DPD is able to adequately model the essential topology of lipid molecules in terms of local hydrophobicity and bond interactions, which can also include controlling the angles formed between pairs of bonds. The structures that form will depend on:
+
+* How many lipid molecules exist in the simulation box (concentration), and
+* The angles between bonds, which affects the straightness of the molecules and the available area of hydrophobic tails.
+
+Using atomistic or coarse-grained molecular dynamics (MD) to model how lipid structures form is possible but time-consuming due to the large number of atoms required, mostly for the solvent. This is less of a problem for DPD, since the softer potentials available allow us to use larger timesteps to get to equilibrium structures more quickly.
+
+.. note::
+
+  Bonds in the context of DPD simulations are generally used just to hold beads together into molecules rather than being chemically relevant, given that each bead may contain several atoms that are already bonded together. As such, DPD simulations tend *not* to exclude non-bonded interactions between connected particles, which differs from the usual practice of fully atomistic MD simulations.
+
+Task
+---
+
+After downloading and compiling DL_POLY, download the following :download:`CONTROL <./CONTROL>`, :download:`FIELD <bilayer/FIELD>` and :download:`CONFIG <bilayer/CONFIG>` files. 
+
+The *CONTROL* file provides simulation controls for our DPD simulations, which can be used for all calculations in this exercise. The *CONFIG* file holds the initial configuration for our lipid solution: 7388 solvent beads (not shown below) are laid out in a cubic lattice, while 700 lipid molecules have been inserted randomly throughout the box.
+
+.. figure:: ./lipid_initial.png
+   :alt: Initial configuration of lipid solution
+   :name: fig:lipidinitial
+   :width: 75.0%
+
+   Initial configuration of lipid molecules in solution (solvent not shown)
+
+
+The *FIELD* file sets out the bead types (solvent W, head bead H and tail bead C), the bond connectivities of the lipid molecules (HC6) and the interactions between the beads: non-bonded ('van der Waals'), bonds and angles. In this case, we are making H beads less repulsive (more hydrophilic) to solvent beads and C beads more repulsive (more hydrophobic) to the solvent by selecting appropriate values of :math:`A` for Groot-Warren DPD interactions. We are also applying harmonic bonds between beads in each lipid molecule and cosine angle potentials between each pair of bonds.
+
+Run this simulation [#]_ and open the resulting *HISTORY* file in VMD. You should see the lipid molecules gathering together and forming a bilayer across one plane of the simulation box. Check the total energy of the system in the *OUTPUT* file: does the bilayer correspond with the lowest energy state for the calculation?
+
+Now we have a bilayer, it is worth seeing what happens if the concentration of lipid molecules is reduced. Download the following :download:`FIELD <micelle/FIELD>` and :download:`CONFIG <micelle/CONFIG>`. These files represent a similar system to the one we have just run but with fewer lipid molecules and more solvent beads to keep the total number of particles constant. Run this system and see what structure forms as a result of reducing the lipid molecule concentration. 
+
+We would also like to see the effect of the angle potential on this structure. Open the second *FIELD* file in your favourite text editor, change the first value for each angle definition from 20.0 to 0.0, e.g. ::
+
+    -cos   1 2 3 0.0 0.0 1.0
+
+and then re-run the calculation. What happens to the structure?
+
+.. rubric:: Footnotes
+
+.. [#] This tutorial exercise is an adaptation of a similar exercise for DL_MESO's DPD code (DL_MESO_DPD): :ref:`DPD_Exercise2`.
+
+.. [#] If you are using a computer with multiple processor cores, we would strongly recommend running the simulations on at least four cores, e.g. :: 
+  
+       mpirun -np 4 ./DLPOLY.Z
+
+    Each calculation should take half an hour or so to complete on a four-core laptop, but using more cores should get through the calculation more quickly! If you have fewer than 4 *physical* cores available, you may be able to *hyperthread* the calculation (pretend each thread is a core), although this may need an additional command-line option in the above command, e.g. ``--use-hwthread-cpus`` for Open-MPI.
+
+.. rubric:: Reference
+
+.. [Shillcock2002] JC Shillcock and R Lipowsky, Equilibrium structure and lateral stress distribution of amphiphilic bilayers from dissipative particle dynamics simulations, *Journal of Chemical Physics*, **117**, 5048-5061 (2002), doi: 10.1063/1.1498463.
+

@@ -1,0 +1,193 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Anisotropic constant pressure MD &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="The Potential of Mean Force for \(H_2O-K^+\)" href="../H2O_Kp/potential_mean_force.html" />
+    <link rel="prev" title="Medium Difficulty Exercises" href="../Medium.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../H2O_Kp/potential_mean_force.html" title="The Potential of Mean Force for \(H_2O-K^+\)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../Medium.html" title="Medium Difficulty Exercises"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" accesskey="U">Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="anisotropic-constant-pressure-md">
+<h1>Anisotropic constant pressure MD<a class="headerlink" href="#anisotropic-constant-pressure-md" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This exercise studies a well-known phase transition in potassium chloride, see ref. <a class="reference internal" href="#parrinello1981" id="id1">[Parrinello1981]</a>, using constant pressure
+molecular dynamics. The objective is to develop the best practice in using such algorithms and to learn how
+phase transitions can be induced, detected and monitored in a simulation.</p>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Potassium chloride at ambient temperature and pressure adopts the cubic rocksalt structure, in which each ion
+is surrounded by six ions of opposite charge in an octahedral arrangement. Under high pressure this structure
+transforms to something more close packed - the so-called caesium chloride structure, where the nearest
+neighbour coordination rises to eight ions. (Using the model potential adopted here, this occurs at about 1.4
+GPa.)
+In this exercise the student will have the opportunity to see this phase transition using the method of anisotropic
+constant pressure molecular dynamics. Commencing with the rocksalt crystal structure and applying a fixed
+external pressure it is possible to induce the phase transition in a simulation. Similarly it is possible to see
+the reverse transition back to rocksalt. However it is not necessarily trivial to make these transitions happen
+in any given simulation (though you may be lucky the first time!) Your task will be to find the conditions
+under which the phase transition occurs. This will not be entirely a matter of finding the right conditions of
+temperature and pressure, but will also involve setting up the control parameters for the simulation so as to
+encourage the phase transition to occur. (Even if the transformation is thermodynamically permitted, it does
+not follow that it will happen in the lifetime of a simulation.)</p>
+</div>
+<div class="section" id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
+<p>First download the <a class="reference download internal" download="" href="../../../_downloads/7865517697ffd931600304db8d9daf1d/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/fba187c11dba72c27eae58f90e81e5a0/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/6575fc53bbde54aa9adf0f35ed10a43f/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> files.
+The last of these is a crystal of potassium chloride at ambient temperature and pressure (i.e. in the
+rocksalt structure). You should proceed as follows:</p>
+<ol class="arabic simple">
+<li>Load the <em>CONTROL</em> file in your favourite text editor. Select the constant stress barostat – see ensemble,
+and set appropriate relaxation times for the thermostat and barostat. Choose an appropriate starting
+temperature and pressure and run a reference simulation of the system at ambient
+temperature and pressure (i.e. set DLPOLY.Z running - 2000 time steps is quite sufficient). Examine the
+resulting <em>OUTPUT</em> file and display the final <em>REVCON</em> file and simulation RDFs to see what structure you
+have.</li>
+<li>Repeat the simulation at a different state point, where you might expect a phase transition to occur.
+Examine the result graphically once again (using the <em>REVCON</em> file and a visualiser such as VMD) and try to
+deduce how the phase transition occurred. Look at the RDF plots (which can be generated from the <em>RDFDAT</em> output file) and try to determine what phase the
+structure is now in.</li>
+<li>If you do not see a phase transition, experiment with the control parameters (e.g. change the relaxation
+times, temperature or pressure, as you think fit) until you see one. Be as systematic as you can, using
+whatever insight you gain to rationalise what’s going on.</li>
+<li>If you believe that you have obtained the phase transition, a number of other options are open to you:<ul>
+<li>Look in the <em>STATIS</em> or <em>OUTPUT</em> files (details in the manual) and see if the variables catalogued there
+can provide an independent ‘signature’ of the phase transition.</li>
+<li>Continue to experiment with the control parameters and see how the system responds, thereby
+strengthening your understanding about how to ‘drive’ the program. Try some of the other ensembles available.</li>
+<li>Explore the phase diagram at little more (change T and P). Try and obtain the reverse transition.</li>
+</ul>
+</li>
+</ol>
+<table class="docutils citation" frame="void" id="parrinello1981" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Parrinello1981]</a></td><td><ol class="first last upperalpha simple" start="13">
+<li>Parrinello and A. Rahman, Polymorphic transitions in alkali halides. A molecular dynamics study, Journal de Physique Colloques, 42 C6, p. C6, 1981, doi: 10.1051/jphyscol:19816149, URL https://hal.archives-ouvertes.fr/jpa-00221214.</li>
+</ol>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../Medium.html"
+                        title="previous chapter">Medium Difficulty Exercises</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../H2O_Kp/potential_mean_force.html"
+                        title="next chapter">The Potential of Mean Force for <span class="math notranslate nohighlight">\(H_2O-K^+\)</span></a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../H2O_Kp/potential_mean_force.html" title="The Potential of Mean Force for \(H_2O-K^+\)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../Medium.html" title="Medium Difficulty Exercises"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" >Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

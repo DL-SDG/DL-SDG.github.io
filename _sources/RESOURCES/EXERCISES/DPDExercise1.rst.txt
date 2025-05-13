@@ -36,66 +36,28 @@ To do this, we can follow the procedure given above to calculate :math:`\chi^{\t
 Instructions
 ------------
 
-If you have not yet done so, follow the instructions in :ref:`dlmeso_setup` to download DL_MESO and compile its DPD code (DL_MESO_DPD) and associated utilities. In particular for this exercise, you will need the main executable *dpd.exe* (either serial or parallel) as well as the utilities :ref:`local.exe <local>` and either :ref:`traject_vtf.exe <trajectvtf>` or :ref:`traject_xml.exe <trajectxml>`. Optionally, you can also make use of the :download:`flory_huggins.py <./scripts/flory_huggins.py>` and :download:`flory_huggins_plot.py <./scripts/flory_huggins_plot.py>` Python scripts. You will also need to have Paraview and either VMD or OVITO installed.
+If you have not yet done so, follow the instructions in :ref:`dlmeso_setup` to download DL_MESO and compile its DPD code (DL_MESO_DPD) and associated utilities. In particular for this exercise, you will need the main executable *dpd.exe* (either serial or parallel) as well as the :download:`flory_huggins.py <./scripts/flory_huggins.py>` and :download:`flory_huggins_plot.py <./scripts/flory_huggins_plot.py>` Python scripts.
 
-Copy the :ref:`CONTROL <controldlmeso>`, :ref:`CONFIG <configdlmeso>` and :ref:`FIELD <fielddlmeso>` input files from the directory *dl_meso/DEMO/DPD/FloryHuggins* in your copy of DL_MESO to your working directory (*dl_meso/WORK*). You might like to take a look at these files in a text editor and see how they are set out: :ref:`DL_MESO_DPD` has some more details on how :ref:`CONTROL <controldlmeso>` and :ref:`FIELD <fielddlmeso>` are formatted. 
+To get started, launch the *flory_huggins.py* script using one of the following commands: ::
 
-In summary, these files represent a DPD simulation of a periodic cuboidal box with :math:`20 \times 8 \times 8` and 3840 beads, half of which are of species A and the other half species B. We are using the CONFIG file to override DL_MESO_DPD's default randomised setup and initially place the beads of species A in one half of the box and the beads for species B in the other half. We will be running DL_MESO_DPD for 120,000 timesteps, using the first 20,000 to let the system equilibrate before collecting trajectory data in a HISTORY file every 100 timesteps. The FIELD file specifies the interactions between beads: in this case, :math:`A_{ij}^{\text{AA}} = A_{ij}^{\text{BB}} = 25` and :math:`A_{ij}^{\text{AB}} = 37`. (We are also setting :math:`r_c = 1` for the interactions and :math:`\gamma = 1` for all species pairs.)
+  python flory_huggins.py --dlmeso <dlmeso>
+  python3  flory_huggins.py --dlmeso <dlmeso>
+  ./flory_huggins.py --dlmeso <dlmeso>
 
-To run the simulation, either type in: ::
+replacing ``<dlmeso>`` with the location of your DL_MESO_DPD executable, ``dpd.exe``. With all other default settings, this script will launch 11 DL_MESO_DPD calculations with different :math:`A_{ij}^{\text{AB}}` values and generate a data file (*floryhuggins-rho-3.000.dat*) with concentration profiles and :math:`\chi^{\text{AB}}` values for each :math:`A_{ij}^{\text{AB}}` value.
 
-  ./dpd.exe
-
-if you have compiled the serial version of DL_MESO_DPD (with or without OpenMP), or if you want to run the parallel version on X processor cores, type: ::
-
-  mpirun -np X ./dpd.exe
-
-Once the simulation has finished, type in either one of the following two commands: ::
-
-  ./traject_vtf.exe
-  ./traject_xml.exe
-
-Both utilities will convert the contents of the :ref:`HISTORY <historydpd>` file into a format that can be read using visualisation software: :ref:`traject_vtf.exe <trajectvtf>` will generate a *traject.vtf* file to open in VMD, while :ref:`traject_xml.exe <trajectxml>` will generate a series of files (*traject\_\*.xml*) that can be read by OVITO. (Which one to use will depend on what you have installed!)
-
-A useful analysis we can carry out for this simulation is to slice the simulation box into a number of sections along the longest dimension (in this case, :math:`x`), count the numbers of particles for each species and divide by the volume of each slice to get local particle densities. We can get these by running the :ref:`local.exe <local>` utility using the following command: ::
-
-  ./local.exe -nx 200 -ny 1 -nz 1 -av
-
-This utility requires information about the number of slices in each dimension, which can be provided by the ``-nx``, ``-ny`` and ``-nz`` command line options. (The above will split the box into 200 slices along the :math:`x`-direction, but not split it in the :math:`y`- or :math:`z`-directions.) The ``-av`` command line option also asks :ref:`local.exe <local>` to only provide a time-averaged profile in a file called averages.vtk: omitting this will also produce instantaneous profiles, although these will be statistically very noisy!
-
-Once you have obtained the averages.vtk file, you can open it using Paraview. Note that once you have loaded the file, you then need to click Apply in the Properties subwindow to create the visualisation, and use the pull-down boxes near the top to select the different properties and the type of plot. To calculate new properties from the data, you can apply the Calculation filter: this allows you to create a new property from a mathematical expression based on those provided in the file. For instance, the total particle densities can be calculated using: ::
-
-  density_A+density_B
-
-while the volume fraction of species A can be obtained with: ::
-
-  density_A/(density_A+density_B)
-
-(Again, you will need to click Apply in the Properties subwindow to carry out the calculation.) There is also a Plot Over Line filter to produce a graph of the available properties along a given line, which can go along a particular axis.
-
-The later tasks can be carried out using all of the above, but you might find it easier and quicker to use the Python3 scripts. 
-
-The *flory_huggins.py* script will automatically run a series of DL_MESO_DPD calculations to find values of :math:`\chi^{\text{AB}}` for different values of :math:`A_{ij}^{\text{AB}}`. Full details of what it does and its defaults are given in :ref:`DL_MESO_DPD`, although for this exercise there are a few things you can do to speed up the simulations it runs (with the corresponding command line flags):
+Full details of what this script does and its defaults are given in :ref:`DL_MESO_DPD`, although for this exercise there are a few things you can do to speed up the simulations it runs (with the corresponding command line flags):
 
 * Decrease the dimensions of the simulation box: ``--L 10.0 --W 4.0``
 * Increase the change in :math:`A_{ij}^{\text{AB}}` between simulations: ``--dA 2.0``
-* Run DL_MESO_DPD on multiple processor cores: ``--nproc 4``
+* Run each DL_MESO_DPD calculation on multiple processor cores: ``--nproc 4``
 
 The *flory_huggins_plot.py* script uses the results from the previous script and can plot the concentration profiles, recalculate values of :math:`\chi^{\text{AB}}`, plot the values of :math:`\chi^{\text{AB}}` against :math:`A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}` and find the relationship between these quantities.
 
 Tasks
 -----
 
-#. Run DL_MESO_DPD in your working directory with the supplied input files. Use either :ref:`traject_vtf.exe <trajectvtf>` or :ref:`traject_xml.exe <trajectxml>` to convert the HISTORY file data into the format to load into VMD or OVITO respectively. Take a look at the results: what happens to the different species?
-
-#. If the two bead species have separated, run the :ref:`local.exe <local>` utility, then open Paraview and load in the *averages.vtk* file.
-
-   - Take a look at the density of one of the two species and produce a Surface plot. Can you see two distinct regions in the box?
-   - Apply the Calculation filter to work out and visualise the total particle densities in each slice. Is the total density constant throughout the box? If there are any regions that are different to most of the box, what do you think is happening in those regions?
-   - Apply the Calculation filter again to calculate the volume fraction of one species and then use the Plot Over Line filter along the :math:`x`-axis to get a graph of this property.
-   - Use the plot of volume fraction to work out a representative value of :math:`\phi_A` for one of the bulk regions, then use :eq:`chiphi` to calculate :math:`\chi^{\text{AB}}`.
-
-#. Either by hand or by using the *flory_huggins.py* Python script, run through a series of DL_MESO_DPD simulations, varying :math:`A_{ij}^{\text{AB}}` from 33 to 43, obtain concentration profiles for each simulation, calculate :math:`\chi^{\text{AB}}` values from those profiles and plot :math:`\chi^{\text{AB}}` against :math:`\Delta A_{ij} = \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)`. 
+#. Using the *flory_huggins.py* Python script, run through a series of DL_MESO_DPD simulations, varying :math:`A_{ij}^{\text{AB}}` from 33 to 43, obtain concentration profiles for each simulation, calculate :math:`\chi^{\text{AB}}` values from those profiles and plot :math:`\chi^{\text{AB}}` against :math:`\Delta A_{ij} = \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)`. (The script will do this by default.)
 
    - Do all of the simulations produce clearly separated regions for each particle species? Which ones do not manage this? (Why might that be?)
    - Would you agree there is a proportional relationship between :math:`\Delta A_{ij} = \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)` and :math:`\chi^{\text{AB}}`? If so, what is the proportionality constant?
@@ -103,7 +65,7 @@ Tasks
 
 #. Run some more simulations to calculate values of :math:`\chi^{\text{AB}}`, only this time try a different value of :math:`A_{ij}^{\text{AA}}`, adjusting the range of values for :math:`A_{ij}^{\text{AB}}` to produce some more data points for the previous plots. Do these additional points still lie on more-or-less the same line as before? 
 
-#. *Optionally* vary the system particle density from the default of 3.0 to a higher value: say either 5.0 or 6.0. (You will need the *flory_huggins.py* script to at least obtain the necessary :ref:`CONFIG <configdlmeso>` file.) Do you still get the same kind of relationship between :math:`\chi^{\text{AB}}` and :math:`\Delta A_{ij}` as before? How does the relationship change compared with the original particle density?
+#. *Optionally* vary the system particle density from the default of 3.0 to a higher value: say either 5.0 or 6.0. Do you still get the same kind of relationship between :math:`\chi^{\text{AB}}` and :math:`\Delta A_{ij}` as before? How does the relationship change compared with the original particle density?
 
 .. rubric:: Reference
 

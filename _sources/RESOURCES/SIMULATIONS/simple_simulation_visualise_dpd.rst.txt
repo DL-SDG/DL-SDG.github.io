@@ -10,7 +10,7 @@ The results from a DL_MESO_DPD simulation can include particle trajectories in t
 * `VMD <https://www.ks.uiuc.edu/Research/vmd/>`_ (Visual Molecular Dynamics)
 * `OVITO <https://www.ovito.org/>`_
 
-The trajectory data in the **HISTORY** file needs to be converted to file formats that either package can read. Utilities included with DL_MESO can be used, which can be compiled according to the instructions in the :ref:`Ready, get set, go guide <dl_meso_howto>`. Alternatively, Python scripts are available to convert the **HISTORY** file into a variety of formats, all of which require a module to read in **HISTORY** files (:download:`dlmhistoryread.py </RESOURCES/SIMULATIONS/SCRIPTS/dlmhistoryread.py>`). These scripts also require the Python modules ``docent`` and ``tqdm`` to be installed using a command such as: ::
+The trajectory data in the **HISTORY** file needs to be converted to file formats that either package can read. Utilities included with DL_MESO can be used, which can be compiled according to the instructions in the :ref:`Ready, get set, go guide <dl_meso_howto>`. Alternatively, Python scripts are available to convert the **HISTORY** file into a variety of formats, all of which require a module to read in **HISTORY** files (:download:`dlmhistoryread.py </RESOURCES/SIMULATIONS/SCRIPTS/dlmhistoryread.py>`). These scripts also require the Python modules ``docopt`` and ``tqdm`` to be installed using a command such as: ::
 
   pip install docopt tqdm
 

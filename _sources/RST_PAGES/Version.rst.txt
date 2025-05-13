@@ -19,6 +19,8 @@ DL_SDG Versions
 - Resources and Tutorials: D_ATA software including tutorial.
 
 - DL_Software Tutorial: Democritus MD visualiser and learning materials.
+
+- DL_Software Tutorial: New and update for DL_FIELD, DL_POLY and DL_MESO
  
 - Misc. editing, improvements.
 

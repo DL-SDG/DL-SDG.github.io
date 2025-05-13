@@ -1,0 +1,83 @@
+.. _ex:argon:
+
+Structure and Dynamics of Argon
+===============================
+
+Summary
+-------
+
+In this the structural and dynamical properties of liquid argon are
+studied. The radial distribution function (RDF) and structure factor,
+:math:`S(k)`, are used to extract the mean or static structure, and the
+mean squared displacement (MSD), van Hove self correlation function,
+:math:`G_s(r,t)`, see ref [Hove1954]_, and dynamic structure factor, :math:`S(k,ω)` are
+used to examine dynamical properties.
+
+Background
+----------
+
+Liquid argon was one of the first liquids to be studied by molecular
+dynamics, ref [Rahman1964]_, on account of its alleged simplicity. As this exercise will
+show however, even simple liquids have complex properties. In this
+exercise we shall use some fairly typical ways of investigating the
+properties of liquids, beginning with probably the simplest: the radial
+distribution function. Next we shall look at diffusion by computing the
+mean squared displacement and seek to explain the mechanism of this
+using the van Hove self correlation function. Finally we shall calculate
+the dynamic structure factor and determine the velocity of sound in the
+liquid and from that estimate the elastic modulus.
+
+Task
+----
+
+Copy or download the following files:  :download:`CONFIG <./CONFIG>` :download:`FIELD <./FIELD>` :download:`CONTROL <./CONTROL>`
+The *CONFIG* file contains
+a typical argon liquid configuration simulated at 85 K. Proceed as
+follows:
+
+#. Take a look at the DL_POLY input data files *CONTROL*, *FIELD*
+   and *CONFIG*. Make sure you understand what these files do. 
+   Run the simulation, when complete DL_POLY will have generated a 
+   large *HISTORY*.
+
+#. Use the generated *RDFDAT* file to plot the RDF for the system.
+   Study the RDF and try to relate it to the force field specification
+   in the *FIELD* file. You should understand the meaning of the
+   features of the RDF, for instance: is the RDF liquid-like? The
+   structure factor is obtained in a similar way using the :math:`S(k)`
+   option and works by calculating a Fourier transform of the RDF data.
+   This function is of course related to the experimental determination
+   of the RDF by x-ray or neutron scattering. An interesting question is
+   how much can you believe the results at low k vector. Can you think
+   of a way to investigate this?
+
+#. Write a script to calculate and plot the MSD
+   directly from the *HISTORY* file (set it to run over 2800
+   configurations). From this estimate the
+   diffusion constant. Note the MSD at short time is not linear, why is
+   this?
+
+#. The next issue is the nature of the diffusion. Two mechanisms suggest
+   themselves: are the atoms are hopping from place to place or they are
+   following a continuous random walk without ‘resting’ in any
+   particular place. We all know it is the latter, but how? Use the Van Hove self
+   correlation function to see how the
+   self correlation varies with time. How does this show that the
+   diffusion is a continuous random walk?
+
+#. Finally calculate the dynamic structure factor :math:`S(k,ω)` with :math:`kmax=2`. 
+   Plot the various functions :math:`S(k,ω)` in which :math:`k` is fixed and
+   :math:`ω` is the ordinate. Locate the Brillouin peak (if any)
+   appearing in some of these functions. From the (approximate) position
+   of this peak determine the velocity of sound in the liquid. Next
+   attempt to determine the elastic modulus associated with this using
+   the Newtonian rule that the velocity of sound (c) is equal to the
+   square root of the ratio of the elastic modulus (:math:`γ`) to the
+   density (:math:`ρ`) i.e.
+
+    .. math:: c=\sqrt{\frac{γ}{ρ}}
+
+Check the result for more than one :math:`k` vector. Do the results agree? What
+does the result mean in terms of the bulk properties of the liquid?
+
+.. [Hove1954] L. Van Hove, Correlations in space and time and born approximation scattering in systems of interacting particles, Phys. Rev., 95, p. 249, Jul 1954, doi: 10.1103/PhysRev.95.249

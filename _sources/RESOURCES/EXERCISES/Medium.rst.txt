@@ -1,4 +1,4 @@
-.. This  lists a range of tutorial exercises listed as ' low difficulty' copied directly from ftp://ftp.dl.ac.uk/ccp5/DL_POLY/DL_POLY_4.0/TUTORIAL/
+.. This  lists a range of tutorial exercises listed as ' low difficulty' copied directly from ftp://ftp.dl.ac.uk/ccp5/DL_POLY/DL_POLY_5.0/TUTORIAL/
 
    
 
@@ -14,8 +14,10 @@ Medium Difficulty Exercises
    :maxdepth: 1
 
 	      
-   ./anisotropic_const_P
-   ./potential_mean_force
-   ./diffusion_zeolites
-   ./structure_dynamics_argon
-   ./absorption_formic_calcite
+   ./Anisotropic_Constant_P/anisotropic_constant_pressure
+   ./H2O_Kp/potential_mean_force
+   ./Diffusion_In_Zeolites/diffusion_in_zeolites
+   ./Argon_Dynamics/structure_dynamics_argon
+   ./Absorption_Formic_Calcite/absorption_formic_calcite
+   ./Flory_Huggins_DPD/flory_huggins_dpd
+   ./Lipids_DPD/lipids_dpd

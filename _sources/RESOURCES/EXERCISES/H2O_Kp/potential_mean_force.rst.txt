@@ -1,0 +1,69 @@
+.. _ex:pmf:
+
+The Potential of Mean Force for :math:`H_2O-K^+`
+================================================
+
+
+Summary
+-------
+
+Constraint dynamics can be used to calculate the potential of mean force along a particular coordinate (often
+referred to as the reaction coordinate) in systems of high complexity. This exercise shows how the technique
+works in a relatively simple system: the solvation of a potassium ion in water.
+
+
+Background
+----------
+
+The force between two molecules in a complex system comprised of many molecules, is a function of a very
+large number of degrees of freedom and if we wanted to describe the force accurately, a very complicated
+model would be required. In reality however, we are often interested in something much more simple: an
+effective force that would describe the interaction reasonably accurately as a function of a single coordinate
+(the reaction coordinate), with all the other degrees of freedom integrated out.
+
+The integration over these irrelevant degrees of freedom is done thermodynamically, with the reaction coordinate fixed at some finite value, while the rest of the system explores all the remaining degrees of freedom.
+An average of their combined contributions to the force along the reaction coordinate is then obtained. The
+resulting mean force and its corresponding potential (which is obtainable by integration along the reaction
+coordinate) is a valuable description of the intermolecular interaction in situ. For example it is relevant to
+reaction kinetics and the transition state theory.
+
+Constraint dynamics can be used to obtain the mean force relatively simply in certain cases, as in the the
+solvation of an ion by water. The ion-water distance is constrained using the usual SHAKE algorithm and the
+mean constraint force, averaged over the entire duration of the simulation is computed. It is clear from the
+constraint dynamics algorithm that the constraint force is the (negative) sum of all the intermolecular forces
+acting along the constraint bond, and thus its average (as obtained by the simulation) is the thermodynamic
+mean force. Repeating this procedure for different ion-water separations, yields the mean constraint force as
+a function of the ion-water separation. Integration of the mean force along the reaction coordinate yields the
+potential of mean force and also the activation energy of the ion-water dissociation.
+
+Two cautions however. Firstly, constraining the ion-water distance reduces the degrees of freedom of the
+system by one, and this must be allowed for when the constrained system is thermodynamically compared
+with the original, unconstrained system, ref. [Frenkel2001]_, Chapter 10, part 2, or ref. [Tuckerman2010]_ . Secondly, if a constraint is
+applied between two atoms, it is usual (if not universal) to exclude the corresponding pair interaction from
+the energetics of the system. Clearly, if this has been done, the missing contribution must be added to the
+mean force computed.
+
+Tasks
+-----
+
+The *CONFIG* file contains four :math:`H_2O - K^+` complexes, with the :math:`O - K` distances constrained.
+Proceed as follows:
+
+#. Simulate the system at ambient temperature under NVE conditions. Run for a minimum
+   of 1000 timesteps. Note the average value of the constraint force obtained. You will find this under the
+   result for the constraint virial in the DL_POLY *OUTPUT* file. Divide the number there by the constraint
+   distance.
+#. Edit the *FIELD* file: locate the specification of the PMF constraint (see the manual if you don’t know how
+   to do this!) and change the constraint bondlength by a small amount (why do you think this restriction
+   necessary?). Repeat step 1.
+#. Repeat step 2 until you have enough data to span a reasonable range of constraint distances. You
+   should then be able to plot the mean force as a function of this. Provided you are able to plot this out
+   to a point where the force becomes negligible, you should be able to integrate this for an approximate
+   potential of mean force.
+#. If you have enough time, repeat the exercise at a different temperature and see if the mean force func-
+   tion changes significantly.
+
+
+
+.. [Frenkel2001] D. Frenkel and B. Smit, Understanding Molecular Simulation: From Algorithms to Applications, Computational science, Elsevier Science, Amsterdam, 2001.
+.. [Tuckerman2010] M. E. Tuckerman, Statistical Mechanics: Theory and Molecular Simulation, Oxford Graduate Texts, Oxford University Press, Oxford, 2010. 

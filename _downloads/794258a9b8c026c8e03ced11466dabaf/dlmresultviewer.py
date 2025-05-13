@@ -1,27 +1,33 @@
 #!/usr/bin/env python3 
 # -*- coding: UTF-8 -*-
 """Usage:
-    dlmresultviewer.py [--cor <correl>] [--rdf <rdfdat>] [--msd <msddat>] [--loc <local>]
+    dlmresultviewer.py [--cor <correl>] [--rdf <rdfdat>] [--msd <msddat>]
+                       [--zden <zdndat>] [--loc <local>]
 
 Plots and processes various outputs from DL_MESO_DPD (both generated during 
 simulations and calculated afterwards in post-processing), including CORREL 
 files with system-wide statistical properties, RDFDAT files with radial 
-distribution functions, MSDDAT files with mean squared displacements, and 
-structured grid VTK files (both legacy and XML-style formats) with localised 
-properties calculated in voxels
+distribution functions, MSDDAT files with mean squared displacements, 
+ZDNDAT files with localised densities along z-axes, and structured grid VTK 
+files (both legacy and XML-style formats) with localised properties calculated 
+in voxels
 
 Options:
     -h, --help          Show this screen
-    --cor <correl>      Name of CORREL file with statistical properties [default: CORREL]
+    --cor <correl>      Name of CORREL file with statistical properties 
+                        [default: CORREL]
     --rdf <rdfdat>      Name of RDFDAT file with radial distribution functions
                         [default: RDFDAT]
     --msd <msddat>      Name of MSDDAT file with mean squared displacements 
                         [default: MSDDAT]
-    --loc <localvtk>    Name of structured grid VTK file with localised properties 
-                        (filename extension can either be .vtk for legacy format or .vts
-                        for XML-style format) [default: averages.vtk]
+    --zden <zdndat>     Name of ZDNDAT file with z-density profile
+                        [default: ZDNDAT]
+    --loc <localvtk>    Name of structured grid VTK file with localised
+                        properties (filename extension can either be .vtk for 
+                        legacy format or .vts for XML-style format) 
+                        [default: averages.vtk]
 
-michael.seaton@stfc.ac.uk, 23/06/23
+michael.seaton@stfc.ac.uk, 06/04/25
 """
 
 import sys
@@ -154,6 +160,7 @@ class MyTabs(QWidget):
     correl = args["--cor"]
     rdfdat = args["--rdf"]
     msddat = args["--msd"]
+    zdndat = args["--zden"]
     localvtk = args["--loc"]
 
     if localvtk[-4:]==".vtk" or localvtk[-4:]==".vts":
@@ -167,6 +174,7 @@ class MyTabs(QWidget):
     self.tab_correl = QWidget()
     self.tab_rdf = QWidget()
     self.tab_msd = QWidget()
+    self.tab_zden = QWidget()
     self.tab_local = QWidget()
     #self.tab_advanced = QWidget()
 
@@ -243,6 +251,31 @@ class MyTabs(QWidget):
       self.tab_msd.setLayout(self.tab_msd.layout)
       numtab += 1
 
+    self.nzden,self.npzden,self.zden_data,self.zden_labels=readZDEN(zdndat)
+    #print(self.nzden,self.zden_data,self.zden_labels)
+    if self.nzden>0:
+      self.tabs.addTab(self.tab_zden,"ZDNDAT")
+      self.tab_zden.layout = QVBoxLayout(self)
+      self.zden_plot = FigureCanvas(Figure(figsize=(16,12)))
+      self.tab_zden.layout.addWidget(NavigationToolbar(self.zden_plot, self))
+      self.tab_zden.layout.addWidget(self.zden_plot)
+      self.tab_zden.layout.addStretch(1)
+      self.axz = self.zden_plot.figure.add_subplot(111)
+      self.tab_zden.setLayout(self.tab_zden.layout)
+      self.createZDENS(self.zden_labels)
+      self.createZDENAnalysis()
+      self.tab_zden.layout.addWidget(self.rzden)
+      self.tab_zden.layout.addWidget(self.zdenan)
+      self.tab_zden.layout.addStretch(1)
+      self.zdens.currentIndexChanged.connect(self.load_zden)
+      self.tab_zden.setLayout(self.tab_zden.layout)
+      self.zden_ana.currentIndexChanged.connect(self.do_zden_analysis)
+      self.zden_zmin.editingFinished.connect(self.do_zden_ave)
+      self.zden_zmax.editingFinished.connect(self.do_zden_ave)
+      self.zden_nmol.editingFinished.connect(self.do_zden_chi)
+      self.update_zden(self.zdens.currentIndex())
+      numtab += 1
+    
     self.nxlocal,self.nylocal,self.nzlocal,self.ndlocal,self.local_data,self.local_labels,self.local_shortlabels,self.local_datumAxes=readLocal(filename="averages")
     if self.ndlocal>0:
       self.tabs.addTab(self.tab_local,"Localised data")
@@ -343,7 +376,34 @@ class MyTabs(QWidget):
       self.do_msd_options()
       layout.addWidget(self.msd_tool_options)
       self.msdan.setLayout(layout)
-    
+
+  def createZDENS(self,zdennames):
+    layout=QHBoxLayout()
+    self.rzden=QGroupBox("Data")
+    self.zdens = QComboBox()
+    self.zdens.addItems(zdennames)
+    self.zdens.setCurrentIndex(0)
+    label=QLabel("Data set")
+    layout.addWidget(label)
+    layout.addWidget(self.zdens)
+    layout.addStretch(1)
+    self.rzden.setLayout(layout)
+
+  def createZDENAnalysis(self):
+      self.zdenan = QGroupBox("Toolbox")
+      layout = QHBoxLayout()
+      self.zden_ana = QComboBox()
+      self.zden_ana.addItems(['Z-density'])
+      self.zden_ana.addItems(['Concentration'])
+      self.zden_ana.setCurrentIndex(0)
+      label = QLabel("Analysis:")
+      layout.addWidget(label)
+      layout.addWidget(self.zden_ana)
+      self.do_zden_options()
+      layout.addWidget(self.zden_tool_options)
+      self.zdenan.setLayout(layout)
+
+
   def createLocalS(self,localnames,line,nx,ny,nz):
     layout=QVBoxLayout()
     self.rlocal=QGroupBox("Data")
@@ -481,7 +541,7 @@ class MyTabs(QWidget):
     d=self.rdf_data[c,1,0]-self.rdf_data[c,0,0]
     freq = np.linspace(1.0,float(f),f)
     ft = dst(d*(freq-0.5)*ft)
-    self.axr.set_xlabel('Reciprocal distance, $r^{-1}$ [$\ell_0^{-1}$]')
+    self.axr.set_xlabel('Reciprocal distance, '+r'$r^{-1}$ [$\ell_0^{-1}$]')
     self.axr.set_ylabel('FT of g(r), '+r'$S \left(r^{-1}\right)$')
     self.axr.set_title("Structure factor of "+self.rdf_labels[c])
     self.axr.plot(math.pi/(d*float(f))*freq,1.0+2.0*float(f)*d*d*ft/freq,'g-')
@@ -505,6 +565,45 @@ class MyTabs(QWidget):
     self.axm.set_ylabel('MSD(t) ['+r'$\ell_0^2 \tau_0^{-1}$'+']')
     self.axm.set_xlim(left=0.0,right=max(self.msd_data[c,:,0]))
     self.msd_plot.draw()
+
+  def do_zden_analysis(self,c):
+      self.toggle_zden_ana_options(c)
+      if c == 0:
+          self.update_zden(self.zdens.currentIndex())
+      elif c == 1:
+          self.do_concentration(self.zdens.currentIndex())
+
+  def load_zden(self,c):
+    self.do_zden_analysis(self.zden_ana.currentIndex())
+
+  def update_zden(self,c):
+    self.axz.clear()
+    self.axz.plot(self.zden_data[c,:,0],self.zden_data[c,:,1], 'r-')
+    self.axz.set_title(self.zden_labels[c])
+    self.axz.set_xlabel(r'Distance, $z$ ['+r'$\ell_0$'+']')
+    self.axz.set_ylabel(r'Density, $\rho (z)$ ['+r'$\ell_0^{-3}$'+']')
+    zmin = 0.5*(self.zden_data[c,0,0]+self.zden_data[c,1,0])
+    zmax = 0.5*(self.zden_data[c,self.npzden,0]+self.zden_data[c,self.npzden+1,0])
+    self.axz.set_xlim(left=zmin,right=zmax)
+    self.zden_plot.draw()
+
+  def do_concentration(self,c=-1):
+    if c == -1 :
+        c= self.zdens.currentIndex()
+    self.axz.clear()
+    self.axz.set_title(self.zden_labels[c])
+    self.axz.set_xlabel(r'Distance, $z$ ['+r'$\ell_0$'+']')
+    self.axz.set_ylabel(r'Concentration, $\phi (z)$')
+    zmin = 0.5*(self.zden_data[c,0,0]+self.zden_data[c,1,0])
+    zmax = 0.5*(self.zden_data[c,self.npzden,0]+self.zden_data[c,self.npzden+1,0])
+    self.axz.set_xlim(left=zmin,right=zmax)
+    if self.zden_labels[self.nzden-1] != 'all species':
+        allrho = np.sum(self.zden_data[0:self.nzden-1,:,1])
+        conc = self.zden_data[c,:,1] / allrho
+    else:
+        conc = self.zden_data[c,:,1] / self.zden_data[self.nzden-1,:,1]
+    self.axz.plot(self.zden_data[c,:,0],conc, 'r-')
+    self.zden_plot.draw()
 
   def load_local(self,c):
       self.do_local_analysis(self.local_ana.currentIndex())
@@ -849,6 +948,114 @@ class MyTabs(QWidget):
     self.msd_tool_options.setLayout(lt)
 
 
+  def do_zden_options(self):
+    self.zden_tool_options = QGroupBox('Options')
+    lt = QHBoxLayout()
+    
+    self.zden_ave_options = QGroupBox("Average")
+    layout = QFormLayout()
+    self.zden_zmin = QLineEdit()
+    self.zden_zmin.setValidator(QDoubleValidator())
+    zmin = 0.5*(self.zden_data[0,0,0]+self.zden_data[0,1,0])
+    zmax = 0.5*(self.zden_data[0,self.npzden,0]+self.zden_data[0,self.npzden+1,0])
+    self.zden_zmin.setText(str(zmin))
+    self.zden_zmax = QLineEdit()
+    self.zden_zmax.setValidator(QDoubleValidator())
+    self.zden_zmax.setText(str(zmax))
+    layout.addRow(QLabel('Minimum z for averaging: '),self.zden_zmin)
+    layout.addRow(QLabel('Maximum z for averaging: '),self.zden_zmax)
+    self.zden_ave = QLabel()
+    self.zden_ave.setText("{0:.8E} ± {1:.8E}".format(0.0,0.0))
+    layout.addRow(QLabel('Average:  '),self.zden_ave)
+    self.zden_ave_options.setLayout(layout)
+    
+    self.zden_chi_options = QGroupBox(r'Flory-Huggins chi-parameter')
+    layout = QFormLayout()
+    self.zden_nmol = QLineEdit()
+    self.zden_nmol.setValidator(QIntValidator())
+    self.zden_nmol.setText("1")
+    layout.addRow(QLabel('Number of particles per molecule: '),self.zden_nmol)
+    self.zden_chi = QLabel()
+    self.zden_chi.setText("{0:.8E} ± {1:.8E}".format(0.0,0.0))
+    layout.addRow(QLabel(r'Value of chi:  '),self.zden_chi)
+    self.zden_chi_options.setLayout(layout)
+    
+    self.toggle_zden_ana_options(0)
+    lt.addWidget(self.zden_ave_options)
+    lt.addWidget(self.zden_chi_options)
+    self.zden_tool_options.setLayout(lt)
+
+  def do_zden_ave(self,c=-1):
+    self.axz.clear()
+    c= self.zdens.currentIndex()
+    s=self.zden_ana.currentIndex()
+    zmin=float(self.zden_zmin.text())
+    zmax=float(self.zden_zmax.text())
+    self.axz.set_xlabel(r'Distance, $z$ ['+r'$\ell_0$'+']')
+    if s==0:
+        x = self.zden_data[c,:,0]
+        y = self.zden_data[c,:,1]
+        self.axz.set_ylabel(r'Density, $\rho (z)$ ['+r'$\ell_0^{-3}$'+']')
+    elif s==1:
+        x = self.zden_data[c,:,0]
+        if self.zden_labels[self.nzden-1] != 'all species':
+            allrho = np.sum(self.zden_data[0:self.nzden-1,:,1])
+            y = self.zden_data[c,0:self.npzden+2,1] / allrho
+        else:
+            y = self.zden_data[c,0:self.npzden+2,1] / self.zden_data[self.nzden-1,0:self.npzden+2,1]
+        self.axz.set_ylabel(r'Concentration, $\phi (z)$')
+    xind = np.intersect1d(np.where(x>=zmin),np.where(x<=zmax))
+    xfirst = xind[0]
+    xlast = xind[-1]
+    avey = np.mean(y[xfirst:xlast+1])
+    stdy = np.std(y[xfirst:xlast+1])
+    zmin_all = 0.5*(self.zden_data[c,0,0]+self.zden_data[c,1,0])
+    zmax_all = 0.5*(self.zden_data[c,self.npzden,0]+self.zden_data[c,self.npzden+1,0])
+    self.zden_ave.setText("{0:.8E} ± {1:.8E}".format(avey,stdy))
+    self.axz.plot(x,y,'r-')
+    self.axz.axhline(avey,xmin=(zmin-zmin_all)/(zmax_all-zmin_all),xmax=(zmax-zmin_all)/(zmax_all-zmin_all),color='b', linestyle='--')
+    if s==0:
+        self.axz.set_title(self.zden_labels[c]+r': $\langle \rho \rangle =$ {0:.6f} $\pm$ {1:.6f} '.format(avey,stdy)+r'$\ell_0^{-3}$')
+    elif s==1:
+        self.axz.set_title(self.zden_labels[c]+r': $\langle \phi \rangle =$ {0:.6f} $\pm$ {1:.6f}'.format(avey,stdy))
+    self.axz.set_xlim(left=zmin_all,right=zmax_all)
+    self.zden_plot.draw()
+
+  def do_zden_chi(self,c=-1):
+    c= self.zdens.currentIndex()
+    zmin=float(self.zden_zmin.text())
+    zmax=float(self.zden_zmax.text())
+    self.axz.set_xlabel(r'Distance, $z$ ['+r'$\ell_0$'+']')
+    x = self.zden_data[c,:,0]
+    if self.zden_labels[self.nzden-1] != 'all species':
+        allrho = np.sum(self.zden_data[0:self.nzden-1,:,1])
+        conc = self.zden_data[c,0:self.npzden+2,1] / allrho
+    else:
+        conc = self.zden_data[c,0:self.npzden+2,1] / self.zden_data[self.nzden-1,0:self.npzden+2,1]
+    self.axz.set_ylabel(r'Concentration, $\phi (z)$')
+    self.axz.plot(x,conc,'r-')
+    xind = np.intersect1d(np.where(x>=zmin),np.where(x<=zmax))
+    xfirst = xind[0]
+    xlast = xind[-1]
+    nmol = float(self.zden_nmol.text())
+    concselect = conc[xfirst:xlast+1]
+    indsel = np.where(concselect<=0.0)
+    concselect = np.delete(concselect, indsel)
+    indsel = np.where(concselect>=1.0)
+    concselect = np.delete(concselect, indsel)
+    chi = np.log((1.0-concselect)/concselect)/(nmol*(1.0-2.0*concselect)) if len(concselect>0) else np.zeros(1)
+    avechi = np.mean(chi)
+    stdchi = np.std(chi)
+    aveconc = np.mean(conc[xfirst:xlast+1])
+    stdconc = np.std(conc[xfirst:xlast+1])
+    zmin_all = 0.5*(self.zden_data[c,0,0]+self.zden_data[c,1,0])
+    zmax_all = 0.5*(self.zden_data[c,self.npzden,0]+self.zden_data[c,self.npzden+1,0])
+    self.zden_chi.setText("{0:.8E} ± {1:.8E}".format(avechi,stdchi))
+    self.axz.axhline(aveconc,xmin=(zmin-zmin_all)/(zmax_all-zmin_all),xmax=(zmax-zmin_all)/(zmax_all-zmin_all),color='b', linestyle='--')
+    self.axz.set_title(self.zden_labels[c]+r': $\langle \phi \rangle =$ {0:.6f} $\pm$ {1:.6f}, $\chi =$ {2:.6f} $\pm$ {3:.6f}'.format(aveconc,stdconc,avechi,stdchi))
+    self.axz.set_xlim(left=zmin_all,right=zmax_all)
+    self.zden_plot.draw()
+
   def do_local_options(self):
     self.local_tool_options = QGroupBox('Options')
     lt = QHBoxLayout()
@@ -1012,13 +1219,19 @@ class MyTabs(QWidget):
         self.msd_grad_options.setEnabled(True)
         self.msd_hist_options.setEnabled(True)
 
+  def toggle_zden_ana_options(self,c):
+    self.zden_ave_options.setEnabled(True)
+    self.zden_chi_options.setEnabled(False)
+    if c == 1:
+        self.zden_chi_options.setEnabled(True)
+
 
 def readRDF(filename):
     try:
       title, header, rdfall = open(filename).read().split('\n',2)
     except IOError:
         return 0,0,0,[]
-    ndata,npoints=map(int, header.split())
+    ndata,npoints,nsamp=map(int, header.split())
     b=3*npoints+2
     s=rdfall.split()
     nrdf=len(s)//b
@@ -1033,17 +1246,17 @@ def readRDF(filename):
         labels.append("all")
       else:
         labels.append(x[0]+" ... "+x[1])
-    return nrdf+1,npoints,d,labels
+    return nrdf,npoints,d,labels
 
 def readMSD(filename):
     try:
       title, header, msdall = open(filename).read().split('\n',2)
     except IOError:
         return 0,0,0,[]
-    npoints,ndata = map(int, header.split())
-    b=3*npoints+1
+    ndata,npoints = map(int, header.split())
+    b=2*npoints+1
     s=msdall.split()
-    nmsd=ndata+1
+    nmsd=len(s)//b
     d=np.zeros((nmsd,npoints,3),dtype=float)
     labels=[]
     for i in range(nmsd):
@@ -1056,7 +1269,37 @@ def readMSD(filename):
       y=np.array(x,dtype=float)
       y.shape= npoints,3
       d[i,:,:]=y
-    return nmsd+1,npoints,d,labels
+    return nmsd,npoints,d,labels
+
+def readZDEN(filename):
+    try:
+      title, header, zdenall = open(filename).read().split('\n',2)
+    except IOError:
+        return 0,0,0,[]
+    ndata,npoints,nsamp = map(int, header.split())
+    b=2*npoints+1
+    s=zdenall.split()
+    nzden=len(s)//b
+    d=np.zeros((nzden,npoints+2,2),dtype=float)
+    labels=[]
+    for i in range(nzden):
+      if(s[b*i]=='all'):
+        labels.append("all species")
+        x=s[b*i+2:]
+      else:
+        labels.append(s[b*i])
+        x=s[b*i+1:b*(i+1)]
+      y=np.array(x,dtype=float)
+      y.shape= npoints,2
+      d[i,1:npoints+1,:]=y
+      # add values at each end for periodic boundary wrapping
+      dz = d[i,3,0]-d[i,2,0]
+      d[i,0,0] = d[i,1,0]-dz
+      d[i,0,1] = d[i,npoints,1]
+      d[i,npoints+1,0] = d[i,npoints,0]+dz
+      d[i,npoints+1,1] = d[i,1,1]
+    return nzden,npoints,d,labels
+
 
 def readLocal(filename):
     if not os.path.isfile(filename+".vts") and not os.path.isfile(filename+".vtk"):
@@ -1125,9 +1368,9 @@ def readLocal(filename):
         dataset = VN.vtk_to_numpy(data.GetCellData().GetArray(i))
         if namedata == 'velocity':
             dataset = np.hsplit(dataset, 3)
-            vx = dataset[0].reshape(numX, numY, numZ)
-            vy = dataset[1].reshape(numX, numY, numZ)
-            vz = dataset[2].reshape(numX, numY, numZ)
+            vx = dataset[0].reshape(numZ, numY, numX).transpose(2, 1, 0)
+            vy = dataset[1].reshape(numZ, numY, numX).transpose(2, 1, 0)
+            vz = dataset[2].reshape(numZ, numY, numX).transpose(2, 1, 0)
             d.append(vx)
             d.append(vy)
             d.append(vz)
@@ -1137,45 +1380,45 @@ def readLocal(filename):
             datumShortNames.append('velocity_x')
             datumShortNames.append('velocity_y')
             datumShortNames.append('velocity_z')
-            datumAxes.append('Velocity (x-component), $v_x$')
-            datumAxes.append('Velocity (y-component), $v_y$')
-            datumAxes.append('Velocity (z-component), $v_z$')
+            datumAxes.append('Velocity (x-component), '+r'$v_x$')
+            datumAxes.append('Velocity (y-component), '+r'$v_y$')
+            datumAxes.append('Velocity (z-component), '+r'$v_z$')
         elif namedata.startswith('density'):
-            d.append(dataset.reshape(numX,numY,numZ))
+            d.append(dataset.reshape(numZ,numY,numX).transpose(2, 1, 0))
             comp = namedata[8:]
             datumNames.append("Particle density ("+comp+")")
             datumShortNames.append(namedata)
             datumAxes.append('Particle density, '+r'$\rho $')
         elif namedata.startswith('bead_numbers'):
-            d.append(dataset.reshape(numX,numY,numZ))
+            d.append(dataset.reshape(numZ,numY,numX).transpose(2, 1, 0))
             datumNames.append("Number of particles")
             datumShortNames.append(namedata)
-            datumAxes.append('Number of particles, $N$')
+            datumAxes.append('Number of particles, '+r'$N$')
         elif namedata == 'temperature':
-            d.append(dataset.reshape(numX,numY,numZ))
+            d.append(dataset.reshape(numZ,numY,numX).transpose(2, 1, 0))
             datumNames.append("Temperature")
             datumShortNames.append(namedata)
-            datumAxes.append('Temperature, $T$')
+            datumAxes.append('Temperature, '+r'$T$')
         elif namedata.startswith('temperature_'):
-            d.append(dataset.reshape(numX,numY,numZ))
+            d.append(dataset.reshape(numZ,numY,numX).transpose(2, 1, 0))
             comp = namedata[-1:]
             datumNames.append("Partial temperature ("+comp+"-component)")
             datumShortNames.append(namedata)
-            datumAxes.append('Partial temperature ('+comp+'-component), $T_'+comp+'$')
+            datumAxes.append('Partial temperature ('+comp+'-component), '+r'$T_'+comp+'$')
         elif namedata.startswith('pressure'):
-            d.append(dataset.reshape(numX,numY,numZ))
+            d.append(dataset.reshape(numZ,numY,numX).transpose(2, 1, 0))
             comp = namedata[-2:]
             datumNames.append("Pressure tensor ("+comp+"-component)")
             datumShortNames.append(namedata)
-            datumAxes.append('Pressure tensor ('+comp+'-component), $P_{'+comp+'}')
+            datumAxes.append('Pressure tensor ('+comp+'-component), '+r'$P_{'+comp+'}')
         elif namedata.startswith('species'):
-            d.append(dataset.reshape(numX,numY,numZ))
+            d.append(dataset.reshape(numZ,numY,numX).transpose(2, 1, 0))
             comp = namedata[8:]
             datumNames.append("Volume fraction of species "+comp)
             datumShortNames.append(namedata)
             datumAxes.append('Volume fraction, '+r'$\phi$')
         elif namedata.startswith('molecule'):
-            d.append(dataset.reshape(numX,numY,numZ))
+            d.append(dataset.reshape(numZ,numY,numX).transpose(2, 1, 0))
             comp = namedata[9:]
             datumNames.append("Volume fraction of molecule "+comp)
             datumShortNames.append(namedata)
@@ -1198,97 +1441,109 @@ def readCorrel(filename):
   for i in range(len(names)):
     if(names[i]=='en-total'):
         datumNames.append("total system energy per particle")
-        datumAxes.append('$E_{tot}$ [$k_B T$]')
+        datumAxes.append(r'$E_{tot}$ [$k_B T$]')
     elif(names[i]=='pe-total'):
         datumNames.append("total potential energy per particle")
-        datumAxes.append('$E_{pot}$ [$k_B T$]')
+        datumAxes.append(r'$E_{pot}$ [$k_B T$]')
     elif(names[i]=='ee-total'):
         datumNames.append("electrostatic energy per particle")
-        datumAxes.append('$E_{elec}$ [$k_B T$]')
+        datumAxes.append(r'$E_{elec}$ [$k_B T$]')
     elif(names[i]=='se-total'):
         datumNames.append("surface energy per particle")
-        datumAxes.append('$E_{surf}$ [$k_B T$]')
+        datumAxes.append(r'$E_{surf}$ [$k_B T$]')
     elif(names[i]=='be-total'):
         datumNames.append("bond energy per particle")
-        datumAxes.append('$E_{bond}$ [$k_B T$]')
+        datumAxes.append(r'$E_{bond}$ [$k_B T$]')
     elif(names[i]=='ae-total'):
         datumNames.append("angle energy per particle")
-        datumAxes.append('$E_{ang}$ [$k_B T$]')
+        datumAxes.append(r'$E_{ang}$ [$k_B T$]')
     elif(names[i]=='de-total'):
         datumNames.append("dihedral energy per particle")
-        datumAxes.append('$E_{dihed}$ [$k_B T$]')
+        datumAxes.append(r'$E_{dihed}$ [$k_B T$]')
+    elif(names[i]=='the-total'):
+        datumNames.append("tether energy per particle")
+        datumAxes.append(r'$E_{teth}$ [$k_B T$]')
     elif(names[i]=='pressure'):
         datumNames.append("pressure")
-        datumAxes.append('$P$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$P$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_xx' or names[i]=='p_xx'):
         datumNames.append("stress tensor xx-component")
-        datumAxes.append('$\sigma_{xx}$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$\sigma_{xx}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_xy' or names[i]=='p_xy'):
         datumNames.append("stress tensor xy-component")
-        datumAxes.append('$\sigma_{xy}$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$\sigma_{xy}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_xz' or names[i]=='p_xz'):
         datumNames.append("stress tensor xz-component")
-        datumAxes.append('$\sigma_{xz}$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$\sigma_{xz}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_yx' or names[i]=='p_yx'):
         datumNames.append("stress tensor yx-component")
-        datumAxes.append('$\sigma_{yx}$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$\sigma_{yx}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_yy' or names[i]=='p_yy'):
         datumNames.append("stress tensor yy-component")
-        datumAxes.append('$\sigma_{yy}$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$\sigma_{yy}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_yz' or names[i]=='p_yz'):
         datumNames.append("stress tensor yz-component")
-        datumAxes.append('$\sigma_{yz}$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$\sigma_{yz}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_zx' or names[i]=='p_zx'):
         datumNames.append("stress tensor zx-component")
-        datumAxes.append('$\sigma_{zx}$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$\sigma_{zx}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_zy' or names[i]=='p_zy'):
         datumNames.append("stress tensor zy-component")
-        datumAxes.append('$\sigma_{zy}$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$\sigma_{zy}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='s_zz' or names[i]=='p_zz'):
         datumNames.append("stress tensor zz-component")
-        datumAxes.append('$\sigma_{zz}$ [$k_B T \ell_0^{-3}$]')
+        datumAxes.append(r'$\sigma_{zz}$ [$k_B T \ell_0^{-3}$]')
     elif(names[i]=='volume'):
         datumNames.append("volume")
-        datumAxes.append('$V$ [$\ell_0^3$]')
+        datumAxes.append(r'$V$ [$\ell_0^3$]')
     elif(names[i]=='L_x'):
         datumNames.append("box size x-component")
-        datumAxes.append('$L_x$ [$\ell_0$]')
+        datumAxes.append(r'$L_x$ [$\ell_0$]')
     elif(names[i]=='L_y'):
         datumNames.append("box size y-component")
-        datumAxes.append('$L_y$ [$\ell_0$]')
+        datumAxes.append(r'$L_y$ [$\ell_0$]')
     elif(names[i]=='L_z'):
         datumNames.append("box size z-component")
-        datumAxes.append('$L_z$ [$\ell_0$]')
+        datumAxes.append(r'$L_z$ [$\ell_0$]')
     elif(names[i]=='tension'):
         datumNames.append("z-component interfacial tension")
-        datumAxes.append(r'$\gamma_z$'+' [$k_B T \ell_0^{-2}$]')
+        datumAxes.append(r'$\gamma_z$'+r' [$k_B T \ell_0^{-2}$]')
     elif(names[i]=='temperature'):
         datumNames.append("system temperature")
-        datumAxes.append('$T$ [$k_B T$]')
+        datumAxes.append(r'$T$ [$k_B T$]')
     elif(names[i]=='temp-x'):
         datumNames.append("partial temperature x-component")
-        datumAxes.append('$T_x$ [$k_B T$]')
+        datumAxes.append(r'$T_x$ [$k_B T$]')
     elif(names[i]=='temp-y'):
         datumNames.append("partial temperature y-component")
-        datumAxes.append('$T_y$ [$k_B T$]')
+        datumAxes.append(r'$T_y$ [$k_B T$]')
     elif(names[i]=='temp-z'):
         datumNames.append("partial temperature z-component")
-        datumAxes.append('$T_z$ [$k_B T$]')
+        datumAxes.append(r'$T_z$ [$k_B T$]')
     elif(names[i]=='bndlen-av'):
         datumNames.append("mean bond length")
-        datumAxes.append(r'$\langle r_{ij} \rangle$'+' [$\ell_0$]')
+        datumAxes.append(r'$\langle r_{ij} \rangle$'+r' [$\ell_0$]')
     elif(names[i]=='bndlen-max'):
         datumNames.append("maximum bond length")
-        datumAxes.append('$r_{ij,max}$ [$\ell_0$]')
+        datumAxes.append(r'$r_{ij,max}$ [$\ell_0$]')
     elif(names[i]=='bndlen-min'):
         datumNames.append("minimum bond length")
-        datumAxes.append('$r_{ij,min}$ [$\ell_0$]')
+        datumAxes.append(r'$r_{ij,min}$ [$\ell_0$]')
     elif(names[i]=='angle-av'):
         datumNames.append("mean bond angle")
-        datumAxes.append(r'$\langle \theta_{ijk} \rangle$'+' [°]')
+        datumAxes.append(r'$\langle \theta_{ijk} \rangle$'+r' [°]')
     elif(names[i]=='dihed-av'):
         datumNames.append("mean bond dihedral")
         datumAxes.append(r'$\langle \phi_{ijkm} \rangle$'+' [°]')
+    elif(names[i]=='tethlen-av'):
+        datumNames.append("mean tether length")
+        datumAxes.append(r'$\langle r_{i0} \rangle$'+r' [$\ell_0$]')
+    elif(names[i]=='tethlen-max'):
+        datumNames.append("maximum tether length")
+        datumAxes.append(r'$r_{i0,max}$ [$\ell_0$]')
+    elif(names[i]=='tethlen-min'):
+        datumNames.append("minimum tether length")
+        datumAxes.append(r'$r_{i0,min}$ [$\ell_0$]')
   d = np.array(s.split(), dtype=float)
   n = d.size//(nd+1)
   d.shape = n, nd+1

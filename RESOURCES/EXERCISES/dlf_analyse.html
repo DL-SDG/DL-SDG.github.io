@@ -1,0 +1,132 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Atomic Interaction Analysis Using D_ATA &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="atomic-interaction-analysis-using-d-ata">
+<span id="header-dlf-analyse"></span><h1>Atomic Interaction Analysis Using D_ATA<a class="headerlink" href="#atomic-interaction-analysis-using-d-ata" title="Permalink to this headline">¶</a></h1>
+<p>This page is related to the tutorial section to setup a solution model using DL_FIELD. If you have not done so, please go to
+<a class="reference internal" href="dlf_solution.html"><span class="doc">Setup solutions</span></a>.</p>
+<p>If you have not run the simulation to produce the HISTORY trajectory file, please go to <a class="reference internal" href="dlf_run.html"><span class="doc">Run Simulation (DL_POLY)</span></a>.</p>
+<p>Otherwise, continue on as follows:</p>
+<p>We are now going to determine types of hydrogen bond (HB) interactions present in the system by using D_ATA to analyse the <em>HISTORY</em> file produced from the previous tutorial.</p>
+<p><strong>Procedures</strong></p>
+<ol class="arabic simple">
+<li>Edit D_ATA input file (<em>d_ata.input</em>) and insert <em>HISTORY</em> as the input file:</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="n">HISTORY</span>
+<span class="o">..</span>
+<span class="o">..</span>
+</pre></div>
+</div>
+<p>Close and save the file.</p>
+<ol class="arabic simple" start="2">
+<li>Use this control file (<em>d_ata.control</em>) as shown below:</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Title</span> <span class="k">for</span> <span class="n">control</span> <span class="n">file</span><span class="o">.</span>
+<span class="mi">2</span>              <span class="o">*</span> <span class="n">Program</span> <span class="n">mode</span><span class="p">:</span> <span class="mi">1</span><span class="o">=</span><span class="n">typer</span><span class="p">,</span> <span class="mi">2</span><span class="o">=</span><span class="n">typer</span> <span class="ow">and</span> <span class="n">analyser</span><span class="o">.</span>
+<span class="mi">1</span>              <span class="o">*</span> <span class="n">All</span><span class="o">-</span><span class="n">inclusive</span> <span class="n">interaction</span> <span class="n">mode</span> <span class="p">(</span><span class="mi">1</span><span class="o">=</span><span class="n">yes</span><span class="p">,</span> <span class="mi">0</span><span class="o">=</span><span class="n">no</span><span class="p">)</span><span class="o">.</span>
+<span class="n">none</span>           <span class="o">*</span> <span class="n">PDB</span><span class="p">,</span> <span class="n">gro</span><span class="p">,</span> <span class="n">d_ata</span><span class="o">.</span><span class="n">template</span> <span class="ow">or</span> <span class="s1">&#39;none&#39;</span>
+<span class="n">auto</span>           <span class="o">*</span> <span class="n">Periodic</span> <span class="n">boundary</span> <span class="n">condition</span> <span class="nb">type</span>
+<span class="mf">40.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>   <span class="o">*</span> <span class="n">Cell</span> <span class="n">vector</span> <span class="n">a</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="mf">0.0</span> <span class="mf">40.0</span> <span class="mf">0.0</span>   <span class="o">*</span> <span class="n">Cell</span> <span class="n">vector</span> <span class="n">b</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">40.0</span>   <span class="o">*</span> <span class="n">Cell</span> <span class="n">vector</span> <span class="n">c</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="nb">all</span>            <span class="o">*</span> <span class="n">Group</span> <span class="n">A</span><span class="p">:</span> <span class="n">Atom</span> <span class="nb">range</span><span class="o">.</span> <span class="n">Min</span> <span class="n">Max</span> <span class="ow">or</span> <span class="s1">&#39;all&#39;</span>
+<span class="mi">1</span>              <span class="o">*</span> <span class="n">Molecule</span><span class="o">-</span><span class="n">based</span> <span class="n">analysis</span> <span class="p">(</span><span class="mi">0</span> <span class="o">=</span> <span class="n">off</span><span class="p">,</span> <span class="mi">1</span><span class="o">=</span><span class="n">betwen</span> <span class="n">molecule</span><span class="p">,</span> <span class="mi">2</span><span class="o">=</span><span class="n">within</span> <span class="n">molecule</span><span class="p">)</span><span class="o">.</span>
+<span class="mi">1</span>              <span class="o">*</span> <span class="n">No</span> <span class="n">of</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">skip</span>
+<span class="mi">1</span>              <span class="o">*</span> <span class="n">DANAI</span> <span class="n">tier</span> <span class="n">level</span><span class="o">.</span>
+<span class="mf">0.002</span>          <span class="o">*</span> <span class="n">Average</span> <span class="n">count</span> <span class="n">fraction</span> <span class="n">threshold</span>
+<span class="mf">2.5</span>            <span class="o">*</span> <span class="n">Distance</span> <span class="n">threshold</span> <span class="k">for</span> <span class="n">H</span><span class="o">...</span><span class="n">D</span> <span class="ow">in</span> <span class="n">HB</span> <span class="n">interactions</span>
+<span class="mf">120.0</span>          <span class="o">*</span> <span class="n">Angle</span> <span class="n">threhold</span> <span class="k">for</span> <span class="n">HB</span> <span class="n">interactions</span>
+<span class="mf">4.5</span>            <span class="o">*</span> <span class="n">Distance</span> <span class="n">threshold</span> <span class="k">for</span> <span class="n">C</span><span class="o">...</span><span class="n">C</span> <span class="ow">in</span> <span class="n">HP</span> <span class="n">interactions</span>
+<span class="mi">1</span>              <span class="o">*</span> <span class="n">HB</span> <span class="n">analysis</span>
+<span class="mi">1</span>              <span class="o">*</span> <span class="n">HP</span> <span class="n">analysis</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Run D_ATA by typing <em>./d_ata</em></li>
+<li>Inspect output files: <em>d_ata.output</em> and <em>d_ata.results</em>.</li>
+</ol>
+<p><a class="reference internal" href="#header-dlf-analyse"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

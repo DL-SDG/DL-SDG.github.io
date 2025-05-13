@@ -1,0 +1,59 @@
+Anisotropic constant pressure MD
+================================
+
+Summary
+-------
+
+This exercise studies a well-known phase transition in potassium chloride, see ref. [Parrinello1981]_, using constant pressure
+molecular dynamics. The objective is to develop the best practice in using such algorithms and to learn how
+phase transitions can be induced, detected and monitored in a simulation.
+
+Background
+----------
+
+Potassium chloride at ambient temperature and pressure adopts the cubic rocksalt structure, in which each ion
+is surrounded by six ions of opposite charge in an octahedral arrangement. Under high pressure this structure
+transforms to something more close packed - the so-called caesium chloride structure, where the nearest
+neighbour coordination rises to eight ions. (Using the model potential adopted here, this occurs at about 1.4
+GPa.)
+In this exercise the student will have the opportunity to see this phase transition using the method of anisotropic
+constant pressure molecular dynamics. Commencing with the rocksalt crystal structure and applying a fixed
+external pressure it is possible to induce the phase transition in a simulation. Similarly it is possible to see
+the reverse transition back to rocksalt. However it is not necessarily trivial to make these transitions happen
+in any given simulation (though you may be lucky the first time!) Your task will be to find the conditions
+under which the phase transition occurs. This will not be entirely a matter of finding the right conditions of
+temperature and pressure, but will also involve setting up the control parameters for the simulation so as to
+encourage the phase transition to occur. (Even if the transformation is thermodynamically permitted, it does
+not follow that it will happen in the lifetime of a simulation.)
+
+Task
+-----
+
+First download the :download:`FIELD <./FIELD>`, :download:`CONTROL <./CONTROL>`, :download:`CONFIG <./CONFIG>` files. 
+The last of these is a crystal of potassium chloride at ambient temperature and pressure (i.e. in the 
+rocksalt structure). You should proceed as follows:
+
+#. Load the *CONTROL* file in your favourite text editor. Select the constant stress barostat – see ensemble,
+   and set appropriate relaxation times for the thermostat and barostat. Choose an appropriate starting
+   temperature and pressure and run a reference simulation of the system at ambient
+   temperature and pressure (i.e. set DLPOLY.Z running - 2000 time steps is quite sufficient). Examine the
+   resulting *OUTPUT* file and display the final *REVCON* file and simulation RDFs to see what structure you
+   have.
+#. Repeat the simulation at a different state point, where you might expect a phase transition to occur.
+   Examine the result graphically once again (using the *REVCON* file and a visualiser such as VMD) and try to 
+   deduce how the phase transition occurred. Look at the RDF plots (which can be generated from the *RDFDAT* output file) and try to determine what phase the 
+   structure is now in.
+#. If you do not see a phase transition, experiment with the control parameters (e.g. change the relaxation
+   times, temperature or pressure, as you think fit) until you see one. Be as systematic as you can, using
+   whatever insight you gain to rationalise what’s going on.
+#. If you believe that you have obtained the phase transition, a number of other options are open to you:
+
+   * Look in the *STATIS* or *OUTPUT* files (details in the manual) and see if the variables catalogued there
+     can provide an independent ‘signature’ of the phase transition.
+   * Continue to experiment with the control parameters and see how the system responds, thereby
+     strengthening your understanding about how to ‘drive’ the program. Try some of the other ensembles available.
+   * Explore the phase diagram at little more (change T and P). Try and obtain the reverse transition.
+
+
+
+.. [Parrinello1981]  M. Parrinello and A. Rahman, Polymorphic transitions in alkali halides. A molecular dynamics study, Journal de Physique Colloques, 42 C6, p. C6, 1981, doi: 10.1051/jphyscol:19816149, URL https://hal.archives-ouvertes.fr/jpa-00221214. 

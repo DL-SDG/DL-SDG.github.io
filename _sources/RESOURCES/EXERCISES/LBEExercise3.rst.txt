@@ -26,13 +26,16 @@ After this, we can add solid objects in the path of the flow and see what effect
 Instructions
 ------------
 
-For this exercise, you will need the main DL_MESO_LBE executable ``lbe.exe`` - ideally the serial version with OpenMP multithreading - and the DL_MESO GUI (see :ref:`DL_MESO_GUI`) to create and modify input files. You will also need to have Paraview installed.
+For this exercise, you will need the main DL_MESO_LBE executable ``lbe.exe`` - ideally the serial version with OpenMP multithreading - and either the DL_MESO GUI (see :ref:`DL_MESO_GUI`) or the :download:`karmanbc.py <./scripts/karmanbc.py>` script to create and modify input files. You will also need to have Paraview installed.
 
-Copy the :ref:`lbin.sys <lbin_sys>` file from the directory ``dl_meso/DEMO/LBE/2D_KarmanVortex`` in your copy of DL_MESO to your working directory (``dl_meso/WORK``). 
+Download the :download:`lbin.sys <LBEExercise3/lbin.sys>` file into your working directory (e.g. ``dl_meso/WORK``). This simulation input file will model one fluid in a lattice grid of :math:`250 \times 50` lattice units with a relaxation time :math:`\tau = 0.5072` and apply a body force to the right of :math:`F_x = 1.0 \times 10^{-6}`. 
 
-This simulation input file will model one fluid in a lattice grid of :math:`250 \times 50` lattice units with a relaxation time :math:`\tau = 0.5072` and apply a body force to the right of :math:`F_x = 1.0 \times 10^{-6}`. 
+Before we can run the simulation, we will need to create an :ref:`lbin.spa <lbin_spa>` file. To do this, either:
 
-Before we can run the simulation, we will need to create an :ref:`lbin.spa <lbin_spa>` file. To do this, open the GUI, click the *LBE* button at the top and then *Define LBE System* on the left hand side. Click the *OPEN* button and then select *Set LBE Space*. In this window, select *top mid-grid bounce back* and *bottom mid-grid bounce back* in the pulldown boxes, and then click *Create*. This will create an :ref:`lbin.spa <lbin_spa>` file with bounce-back boundaries at the top and bottom of the box.
+  * Open the GUI, click the *LBE* button at the top and then *Define LBE System* on the left hand side. Click the *OPEN* button and then select *Set LBE Space*. In this window, select *top mid-grid bounce back* and *bottom mid-grid bounce back* in the pulldown boxes, and then click *Create*. 
+  * Launch the *karmanbc.py* script, click the *Add walls* button and then click the *Save lbin.spa* button.
+  
+This will create an :ref:`lbin.spa <lbin_spa>` file with bounce-back boundaries at the top and bottom of the box, representing a channel for the fluid.
 
 To run the simulation, type in: ::
 
@@ -85,19 +88,20 @@ Tasks
  
 #.   Change the body force in the :ref:`lbin.sys <lbin_sys>` file. Does the basic shape of the velocity profile change? How about the maximum velocity?
 
-#.   Now try modifying the fluid's kinematic viscosity by changing the relaxation time [#]_. How does the maximum velocity depend on relaxation time/viscosity?
+#.   Now try modifying the fluid's kinematic viscosity by changing the relaxation time. How does the maximum velocity depend on relaxation time/viscosity?
 
      - If you have changed both the body force and the relaxation time but the Reynolds number remains the same, do you obtain identical velocity profiles?
 
-#.   Add an obstacle in your channel flow simulation by reloading the :ref:`lbin.sys <lbin_sys>` file in the GUI (under *Define LBE System*) and then select *Set LBE Space*. You will need to re-specify the boundary conditions at the top and bottom of the box, but you can also now add a rectangle or a circle with mid-grid bounceback.
+#.   Add an obstacle in your channel flow simulation, either by reloading the :ref:`lbin.sys <lbin_sys>` file in the GUI to re-create the :ref:`lbin.spa <lbin_spa>` file from scratch, or by loading the :ref:`lbin.spa <lbin_spa>` file into the *karmanbc.py* script. 
 
-     - Try a circle of radius 8 along the flow centreline not too far from the flow 'entrance', say at :math:`(49, 24)`. (The lbin.spa file in ``dl_meso/DENO/LBE/2D_KarmanVortex`` does just this.)
+     - Try a circle of radius 8 along the flow centreline not too far from the flow 'entrance', say at :math:`(49, 24)`. (The :ref:`lbin.spa <lbin_spa>` file in the ``dl_meso/DENO/LBE/2D_KarmanVortex`` folder does just this.)
      - See how the obstacle affects the flow field, then try varying the force and relaxation time until you can achieve vortex shedding.
 
-#.   Try the same again but add a vertical baffle instead of a circle (a e.g rectangle of width 1 and height 16). Can you still get a Kármán vortex street?
+#.   Try the same again but add a vertical baffle instead of a circle (a e.g rectangle of width 1 and height 16), or add a circle to 'cross' the top and bottom boundaries and form a constriction. Can you still get a Kármán vortex street?
+
+#.   Try adding a circle so it 'crosses' the top and bottom boundaries and forms a constriction in the flow. Can this also cause a Kármán vortex street to form?
 
 #.   To reduce vortex shedding and its destructive effects, we can reduce the area in which eddies can interact. Try adding an additional rectangle of height 1 and width 16 to the right of a circular object as a baffle. Does it suppress the vortex street?
 
 .. rubric:: Footnote
 
-.. [#] Note that the kinematic viscosity is :math:`\nu = \frac{1}{3} \left(\tau - \frac{1}{2} \right)` in lattice units. 

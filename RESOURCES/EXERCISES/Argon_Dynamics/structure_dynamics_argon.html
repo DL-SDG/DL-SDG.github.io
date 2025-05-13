@@ -1,0 +1,218 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Structure and Dynamics of Argon &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Absorption of formic acid onto a calcite surface" href="../Absorption_Formic_Calcite/absorption_formic_calcite.html" />
+    <link rel="prev" title="Diffusion in Zeolites" href="../Diffusion_In_Zeolites/diffusion_in_zeolites.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../Absorption_Formic_Calcite/absorption_formic_calcite.html" title="Absorption of formic acid onto a calcite surface"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../Diffusion_In_Zeolites/diffusion_in_zeolites.html" title="Diffusion in Zeolites"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" accesskey="U">Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="structure-and-dynamics-of-argon">
+<span id="ex-argon"></span><h1>Structure and Dynamics of Argon<a class="headerlink" href="#structure-and-dynamics-of-argon" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this the structural and dynamical properties of liquid argon are
+studied. The radial distribution function (RDF) and structure factor,
+<span class="math notranslate nohighlight">\(S(k)\)</span>, are used to extract the mean or static structure, and the
+mean squared displacement (MSD), van Hove self correlation function,
+<span class="math notranslate nohighlight">\(G_s(r,t)\)</span>, see ref <a class="reference internal" href="#hove1954" id="id1">[Hove1954]</a>, and dynamic structure factor, <span class="math notranslate nohighlight">\(S(k,ω)\)</span> are
+used to examine dynamical properties.</p>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Liquid argon was one of the first liquids to be studied by molecular
+dynamics, ref [Rahman1964], on account of its alleged simplicity. As this exercise will
+show however, even simple liquids have complex properties. In this
+exercise we shall use some fairly typical ways of investigating the
+properties of liquids, beginning with probably the simplest: the radial
+distribution function. Next we shall look at diffusion by computing the
+mean squared displacement and seek to explain the mechanism of this
+using the van Hove self correlation function. Finally we shall calculate
+the dynamic structure factor and determine the velocity of sound in the
+liquid and from that estimate the elastic modulus.</p>
+</div>
+<div class="section" id="task">
+<h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
+<p>Copy or download the following files:  <a class="reference download internal" download="" href="../../../_downloads/0ba09977e498806dde567728f63ef2ee/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/b1598298df95585be5812bceee2b4226/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/6e50676e19c91cd6c23357876cbd0dd3/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>
+The <em>CONFIG</em> file contains
+a typical argon liquid configuration simulated at 85&nbsp;K. Proceed as
+follows:</p>
+<ol class="arabic">
+<li><p class="first">Take a look at the DL_POLY input data files <em>CONTROL</em>, <em>FIELD</em>
+and <em>CONFIG</em>. Make sure you understand what these files do.
+Run the simulation, when complete DL_POLY will have generated a
+large <em>HISTORY</em>.</p>
+</li>
+<li><p class="first">Use the generated <em>RDFDAT</em> file to plot the RDF for the system.
+Study the RDF and try to relate it to the force field specification
+in the <em>FIELD</em> file. You should understand the meaning of the
+features of the RDF, for instance: is the RDF liquid-like? The
+structure factor is obtained in a similar way using the <span class="math notranslate nohighlight">\(S(k)\)</span>
+option and works by calculating a Fourier transform of the RDF data.
+This function is of course related to the experimental determination
+of the RDF by x-ray or neutron scattering. An interesting question is
+how much can you believe the results at low k vector. Can you think
+of a way to investigate this?</p>
+</li>
+<li><p class="first">Write a script to calculate and plot the MSD
+directly from the <em>HISTORY</em> file (set it to run over 2800
+configurations). From this estimate the
+diffusion constant. Note the MSD at short time is not linear, why is
+this?</p>
+</li>
+<li><p class="first">The next issue is the nature of the diffusion. Two mechanisms suggest
+themselves: are the atoms are hopping from place to place or they are
+following a continuous random walk without ‘resting’ in any
+particular place. We all know it is the latter, but how? Use the Van Hove self
+correlation function to see how the
+self correlation varies with time. How does this show that the
+diffusion is a continuous random walk?</p>
+</li>
+<li><p class="first">Finally calculate the dynamic structure factor <span class="math notranslate nohighlight">\(S(k,ω)\)</span> with <span class="math notranslate nohighlight">\(kmax=2\)</span>.
+Plot the various functions <span class="math notranslate nohighlight">\(S(k,ω)\)</span> in which <span class="math notranslate nohighlight">\(k\)</span> is fixed and
+<span class="math notranslate nohighlight">\(ω\)</span> is the ordinate. Locate the Brillouin peak (if any)
+appearing in some of these functions. From the (approximate) position
+of this peak determine the velocity of sound in the liquid. Next
+attempt to determine the elastic modulus associated with this using
+the Newtonian rule that the velocity of sound (c) is equal to the
+square root of the ratio of the elastic modulus (<span class="math notranslate nohighlight">\(γ\)</span>) to the
+density (<span class="math notranslate nohighlight">\(ρ\)</span>) i.e.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[c=\sqrt{\frac{γ}{ρ}}\]</div>
+</div></blockquote>
+</li>
+</ol>
+<p>Check the result for more than one <span class="math notranslate nohighlight">\(k\)</span> vector. Do the results agree? What
+does the result mean in terms of the bulk properties of the liquid?</p>
+<table class="docutils citation" frame="void" id="hove1954" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Hove1954]</a></td><td><ol class="first last upperalpha simple" start="12">
+<li>Van Hove, Correlations in space and time and born approximation scattering in systems of interacting particles, Phys. Rev., 95, p. 249, Jul 1954, doi: 10.1103/PhysRev.95.249</li>
+</ol>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TUTORIALS/tutorials.html">DL_Software Reference Guides</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../Exercises.html">DL_Software Tutorial Exercises</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../exercises_dlpoly.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../Diffusion_In_Zeolites/diffusion_in_zeolites.html"
+                        title="previous chapter">Diffusion in Zeolites</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Absorption_Formic_Calcite/absorption_formic_calcite.html"
+                        title="next chapter">Absorption of formic acid onto a calcite surface</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../Absorption_Formic_Calcite/absorption_formic_calcite.html" title="Absorption of formic acid onto a calcite surface"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../Diffusion_In_Zeolites/diffusion_in_zeolites.html" title="Diffusion in Zeolites"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../Medium.html" >Medium Difficulty Exercises</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

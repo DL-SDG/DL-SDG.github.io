@@ -37,7 +37,7 @@ Instructions
 
 For this exercise, you will need the main DL_MESO_DPD executable *dpd.exe* - either serial or parallel versions will do - and the :ref:`local.exe <local>` utility to analyse and visualise some of the results. You will also need either graph plotting software (e.g. Gnuplot, Excel) or the :download:`dlmresultviewer.py <./scripts/dlmresultviewer.py>` Python script to look at :ref:`CORREL <correl>` files: the former might also be useful to plot some graphs of your own. The same Python script can be used to look at the outputs (VTK files) from the :ref:`local.exe <local>` utility, although if you decide not to use this, you will also need to have Paraview installed.
 
-Copy the :ref:`CONTROL <controldlmeso>` and :ref:`FIELD <fielddlmeso>` input files from the directory *dl_meso/DEMO/DPD/ShearFlow* in your copy of DL_MESO to your working directory (*dl_meso/WORK*) and take a look at them in a text editor. 
+Download :download:`CONTROL <./DPDExercise3/CONTROL>` and :download:`FIELD <./DPDExercise3/FIELD>` input files to your working directory (e.g. *dl_meso/WORK*) and take a look at them in a text editor. 
 
 The :ref:`CONTROL <controldlmeso>` file is fairly similar to ones you have seen before in previous exercises, although there are three directives to pay attention to. 
 
@@ -45,7 +45,7 @@ The first is the line used to specify writing trajectories to the :ref:`HISTORY 
 
   trajectory 40000 10 1
 
-which means DL_MESO_DPD will start writing to :ref:`HISTORY <historydpd>` from timestep 40,000 every 10 timesteps and include both particle positions and velocities. 
+which means DL_MESO_DPD will start writing to the :ref:`HISTORY <historydpd>` file from timestep 40,000 every 10 timesteps and include both particle positions and velocities. 
 
 The second directive is that for the ensemble: ::
 
