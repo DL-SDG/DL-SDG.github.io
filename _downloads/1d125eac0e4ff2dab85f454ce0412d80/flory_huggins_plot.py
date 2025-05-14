@@ -3,24 +3,25 @@
 """Usage:
     flory_huggins_plot.py [--rho <rho>]
 
-Plots data file for Flory-Huggins chi parameter determination, both concentration profiles obtained from simulations and chi parameters determined from profiles
+Plots data file for Flory-Huggins chi parameter determination, 
+both concentration profiles obtained from simulations and chi parameters 
+determined from profiles
 
 Options:
     -h, --help          Display this message
     --rho <rho>         Particle density [default: 3.0]
 
-michael.seaton@stfc.ac.uk, 22/07/22
+michael.seaton@stfc.ac.uk, 08/05/25
 """
 
 from docopt import docopt
 import sys
-from PyQt5.QtWidgets import QWidget,QApplication,QMainWindow,QLineEdit,\
-        QPushButton,QLabel,QAction,QTableWidget,QTableWidgetItem,QVBoxLayout,\
-        QHBoxLayout,QTabWidget,QGroupBox,QFormLayout,QComboBox,QSpinBox,\
-        QDoubleSpinBox,QRadioButton,QSizePolicy,QCheckBox,QGridLayout,QMessageBox
+from PyQt6.QtWidgets import QWidget,QApplication,QMainWindow,QLineEdit,\
+        QPushButton,QLabel,QVBoxLayout,QHBoxLayout,QTabWidget,QGroupBox,\
+        QFormLayout,QComboBox
 
-from PyQt5.QtGui import QIcon,QIntValidator,QDoubleValidator
-from PyQt5.QtCore import pyqtSlot, Qt
+from PyQt6.QtGui import QIcon,QDoubleValidator,QAction
+from PyQt6.QtCore import Qt
 if hasattr(Qt, 'AA_EnableHighDpiScaling'):
   QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
     
@@ -32,7 +33,7 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 
 from matplotlib.figure import Figure
 import numpy as np
-import matplotlib.cm as cm
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import statistics
 import math
@@ -81,7 +82,7 @@ class MyTabs(QWidget):
     
     args = docopt(__doc__)
     filename = 'floryhuggins-rho-{0:.3f}.dat'.format(float(args["--rho"]))
-    self.n,self.lx,self.data,self.datumNames,self.chi,self.chi_legend = readDensity(filename)
+    self.n,self.lz,self.data,self.datumNames,self.chi,self.chi_legend = readDensity(filename)
 
     self.tabs.addTab(self.tab_density,"Concentration")
     self.tab_density.layout = QVBoxLayout(self)
@@ -133,20 +134,20 @@ class MyTabs(QWidget):
       layout = QFormLayout()
       self.chileftmin = QLineEdit()
       self.chileftmin.setValidator(QDoubleValidator())
-      self.chileftmin.setText('{0:f}'.format(self.lx[0]*0.15))
-      layout.addRow(QLabel('xmin for left sample:'),self.chileftmin)
+      self.chileftmin.setText('{0:f}'.format(self.lz[0]*0.15))
+      layout.addRow(QLabel('zmin for left sample:'),self.chileftmin)
       self.chileftmax = QLineEdit()
       self.chileftmax.setValidator(QDoubleValidator())
-      self.chileftmax.setText('{0:f}'.format(self.lx[0]*0.35))
-      layout.addRow(QLabel('xmax for left sample:'),self.chileftmax)
+      self.chileftmax.setText('{0:f}'.format(self.lz[0]*0.35))
+      layout.addRow(QLabel('zmax for left sample:'),self.chileftmax)
       self.chirightmin = QLineEdit()
       self.chirightmin.setValidator(QDoubleValidator())
-      self.chirightmin.setText('{0:f}'.format(self.lx[0]*0.65))
-      layout.addRow(QLabel('xmin for right sample:'),self.chirightmin)
+      self.chirightmin.setText('{0:f}'.format(self.lz[0]*0.65))
+      layout.addRow(QLabel('zmin for right sample:'),self.chirightmin)
       self.chirightmax = QLineEdit()
       self.chirightmax.setValidator(QDoubleValidator())
-      self.chirightmax.setText('{0:f}'.format(self.lx[0]*0.85))
-      layout.addRow(QLabel('xmax for right sample:'),self.chirightmax)
+      self.chirightmax.setText('{0:f}'.format(self.lz[0]*0.85))
+      layout.addRow(QLabel('zmax for right sample:'),self.chirightmax)
       self.ds_chirecalc.setLayout(layout)
       self.chirecalc = QPushButton('recalculate', self)
       self.chireset = QPushButton('reset', self)
@@ -165,22 +166,22 @@ class MyTabs(QWidget):
 
   def load_data(self,c):
       cc = self.dsb.currentIndex()
-      self.chileftmin.setText('{0:f}'.format(self.lx[cc]*0.15))
-      self.chileftmax.setText('{0:f}'.format(self.lx[cc]*0.35))
-      self.chirightmin.setText('{0:f}'.format(self.lx[cc]*0.65))
-      self.chirightmax.setText('{0:f}'.format(self.lx[cc]*0.85))
+      self.chileftmin.setText('{0:f}'.format(self.lz[cc]*0.15))
+      self.chileftmax.setText('{0:f}'.format(self.lz[cc]*0.35))
+      self.chirightmin.setText('{0:f}'.format(self.lz[cc]*0.65))
+      self.chirightmax.setText('{0:f}'.format(self.lz[cc]*0.85))
       self.update_plot(self.dsb.currentIndex())
 
   
   def reset_chi(self,c):
       args = docopt(__doc__)
       filename = 'floryhuggins-rho-{0:.3f}.dat'.format(float(args["--rho"]))
-      self.n,self.lx,self.data,self.datumNames,self.chi,self.chi_legend = readDensity(filename)
+      self.n,self.lz,self.data,self.datumNames,self.chi,self.chi_legend = readDensity(filename)
       cc = self.dsb.currentIndex()
-      self.chileftmin.setText('{0:f}'.format(self.lx[cc]*0.15))
-      self.chileftmax.setText('{0:f}'.format(self.lx[cc]*0.35))
-      self.chirightmin.setText('{0:f}'.format(self.lx[cc]*0.65))
-      self.chirightmax.setText('{0:f}'.format(self.lx[cc]*0.85))
+      self.chileftmin.setText('{0:f}'.format(self.lz[cc]*0.15))
+      self.chileftmax.setText('{0:f}'.format(self.lz[cc]*0.35))
+      self.chirightmin.setText('{0:f}'.format(self.lz[cc]*0.65))
+      self.chirightmax.setText('{0:f}'.format(self.lz[cc]*0.85))
       self.update_plot(cc)
       self.update_chi()
 
@@ -192,20 +193,20 @@ class MyTabs(QWidget):
 
   def recalculate_chi(self):
       c=self.dsb.currentIndex()
-      xmin1=float(self.chileftmin.text())
-      xmax1=float(self.chileftmax.text())
-      xmin2=float(self.chirightmin.text())
-      xmax2=float(self.chirightmax.text())
-      minchi = int(xmin1*len(self.data[2*c])/self.lx[c])
-      maxchi = int(xmax1*len(self.data[2*c])/self.lx[c])
+      zmin1=float(self.chileftmin.text())
+      zmax1=float(self.chileftmax.text())
+      zmin2=float(self.chirightmin.text())
+      zmax2=float(self.chirightmax.text())
+      minchi = int(zmin1*len(self.data[2*c])/self.lz[c])
+      maxchi = int(zmax1*len(self.data[2*c])/self.lz[c])
       meanvolfrac = statistics.mean(self.data[2*c+1][minchi:maxchi])
       stdvolfrac = statistics.stdev(self.data[2*c+1][minchi:maxchi])
       chi1 = math.log((1.0-meanvolfrac)/meanvolfrac)/(1.0-2.0*meanvolfrac)
       chimax1 = math.log((1.0-meanvolfrac-stdvolfrac)/(meanvolfrac+stdvolfrac))/(1.0-2.0*(meanvolfrac+stdvolfrac))
       chimin1 = math.log((1.0-meanvolfrac+stdvolfrac)/(meanvolfrac-stdvolfrac))/(1.0-2.0*(meanvolfrac-stdvolfrac))
       chierr1 = max(abs(chimax1-chi1), abs(chi1-chimin1))
-      minchi = int(xmin2*len(self.data[2*c])/self.lx[c])
-      maxchi = int(xmax2*len(self.data[2*c])/self.lx[c])
+      minchi = int(zmin2*len(self.data[2*c])/self.lz[c])
+      maxchi = int(zmax2*len(self.data[2*c])/self.lz[c])
       meanvolfrac = statistics.mean(self.data[2*c+1][minchi:maxchi])
       stdvolfrac = statistics.stdev(self.data[2*c+1][minchi:maxchi])
       chi2 = math.log((1.0-meanvolfrac)/meanvolfrac)/(1.0-2.0*meanvolfrac)
@@ -223,7 +224,7 @@ class MyTabs(QWidget):
 
   def update_chi(self):
     self.axr.clear()
-    colourmap = cm.get_cmap('jet')
+    colourmap = mpl.colormaps['jet']
     nAii = len(self.chi_legend)
     fullset = []
     for i in range(nAii):
@@ -232,14 +233,14 @@ class MyTabs(QWidget):
         tmpx = [(x[1]-x[0]) for x in fullset[i]]
         tmpy = [x[2] for x in fullset[i]]
         tmpe = [x[3] for x in fullset[i]]
-        self.axr.scatter(tmpx, tmpy, 25, cmap=colourmap, marker='s', label='Aii = {0:s}'.format(str(self.chi_legend[i])), zorder=1)
+        self.axr.scatter(tmpx, tmpy, c=[self.chi_legend[i]]*len(tmpx), cmap=colourmap, marker='s', label='Aii = {0:s}'.format(str(self.chi_legend[i])), zorder=1)
         self.axr.errorbar(tmpx, tmpy, yerr=tmpe, linestyle='None', fmt='None', ecolor='gray', capsize=5, zorder=-1)
     xchi = [(x[1]-x[0]) for x in self.chi]
     chi = [x[2] for x in self.chi]
     dAmin = float(self.chi_minA.text())
     dAmax = float(self.chi_maxA.text())
-    self.axr.set_xlabel('$\Delta$A')
-    self.axr.set_ylabel('$\chi$')
+    self.axr.set_xlabel(r'$\Delta$A')
+    self.axr.set_ylabel(r'$\chi$')
     self.axr.set_xlim(left=0.0)
     self.axr.set_ylim(bottom=0.0)
     plotx = [0.0]
@@ -262,7 +263,7 @@ class MyTabs(QWidget):
     raerr = max(ramax-ra, ra-ramin)
     fit_fn = np.poly1d([a, 0.0])
     self.axr.plot(plotx, fit_fn(plotx), '--k')
-    self.axr.set_title('$\chi$ = ({0:f}$\pm${1:f})$\Delta$A\n$\Delta$A = ({2:f}$\pm${3:f})$\chi$'.format(a, aerr, ra, raerr))
+    self.axr.set_title(r'$\chi$ = ({0:f}$\pm${1:f})$\Delta$A'.format(a, aerr)+'\n'+r'$\Delta$A = ({0:f}$\pm${1:f})$\chi$'.format(ra, raerr))
     self.axr.legend()
     self.chi_plot.draw()
 
@@ -271,14 +272,14 @@ class MyTabs(QWidget):
     self.ax.clear()
     self.ax.plot(self.data[2*c],self.data[2*c+1], 'r-')
     self.ax.set_title(self.datumNames[c])
-    self.ax.set_xlabel('x [DPD length units]')
-    self.ax.set_ylabel('Bead concentration, $\phi$')
+    self.ax.set_xlabel('z [DPD length units]')
+    self.ax.set_ylabel(r'Bead concentration, $\phi$')
     self.ax.set_xlim(left=min(self.data[2*c]),right=max(self.data[2*c]))
     self.ax.set_ylim(bottom=0.0, top=1.0)
     chilines=[float(self.chileftmin.text()), float(self.chileftmax.text()), float(self.chirightmin.text()), float(self.chirightmax.text())]
     for xc in chilines:
         self.ax.axvline(x=xc, color='k', linestyle='--')
-    self.ax.legend(['$\chi$ = {0:f}$\pm${1:f}'.format(self.chi[c][2], self.chi[c][3])], loc='upper right')
+    self.ax.legend([r'$\chi$ = {0:f}$\pm${1:f}'.format(self.chi[c][2], self.chi[c][3])], loc='upper right')
     self.plot.draw()
 
   def do_chi_options(self):
@@ -330,13 +331,13 @@ def readDensity(filename):
   legend = list(sorted(set(Aiiset)))
   n = len(datumNames)
   for i in range(n):
-    dx = d[2*i][1]-d[2*i][0]
-    maxlx = max(d[2*i][:])
-    l.append(maxlx+0.5*dx)
+    dz = d[2*i][1]-d[2*i][0]
+    maxlz = max(d[2*i][:])
+    l.append(maxlz+0.5*dz)
   
   return n,l,d,datumNames,chidata,legend
 
 if __name__ == '__main__':
   app = QApplication(sys.argv)
   exe = App()
-  sys.exit(app.exec_())
+  sys.exit(app.exec())

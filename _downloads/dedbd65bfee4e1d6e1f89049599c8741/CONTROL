@@ -1,24 +1,27 @@
-DL_POLY: Silver Iodide Test Case
+title DL_POLY: Silver Iodide Test Case
 
-no strict
-delr               1.0
-
-temperature      700.0
-pressure           0.0
-steps             2000
-equilibration      500  
-scale               10
-timestep         0.005
-multiple             1
-print               10
-stats               10
-cutoff             8.0
-rvdw               8.0
-rdf                 10
-print rdf
-ewald precision  1.e-6
-ensemble nve
-job time          3600
-close time         100
-finish
-
+io_file_config        CONFIG
+io_file_field         FIELD
+io_file_statis        STATIS
+io_file_revive        REVIVE
+io_file_revcon        REVCON
+io_file_tabvdw        TABLE
+temperature           700.0 K
+print_frequency       10 steps
+stats_frequency       10 steps
+rdf_print             ON
+rdf_calculate         ON
+rdf_frequency         10 steps
+vdw_cutoff            8.0 ang
+padding               0.25 ang
+cutoff                8.0 ang
+coul_method           spme
+spme_precision        1e-06
+ensemble              nve
+time_run              2000 steps
+time_equilibration    500 steps
+time_job              3600.0 s
+time_close            100.0 s
+timestep              0.001 ps
+pressure_hydrostatic  0.0 katm
+rescale_frequency     10 steps

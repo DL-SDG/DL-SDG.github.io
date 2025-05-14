@@ -1,0 +1,28 @@
+title DL_POLY DPD lipid bilayer example
+
+io_units_scheme dpd
+
+temperature 1.0 dpd_temp
+cutoff 2.0 dpd_l
+
+density_variance 100.0 %
+
+timestep 0.03 dpd_t
+time_run 100000 steps
+time_equilibration 0 steps
+
+traj_calculate ON
+traj_start 0 steps
+traj_interval 2000 steps
+traj_key pos
+
+stats_frequency 2000 steps
+stack_size 100 steps
+
+print_frequency 1000 steps
+time_job 10800.0 s
+time_close 100.0 s
+
+ensemble nvt
+ensemble_method dpd
+ensemble_dpd_order first

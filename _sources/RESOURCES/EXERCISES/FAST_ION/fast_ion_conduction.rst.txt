@@ -22,11 +22,11 @@ With increasing temperature however, the structure shows increasing disorder. Th
 Task
 ----
 
-#. Copy or download the following files:  :download:`CONFIG <./CONFIG>` :download:`FIELD <./FIELD>` :download:`CONTROL <./CONTROL>`
+#. Copy or download the following files:  :download:`CONFIG <./CONFIG>`, :download:`FIELD <./FIELD>`, :download:`CONTROL <./CONTROL>`, :download:`TABLE <./TABLE>`
 
 #. Run DLPOLY.Z, in a *constant volume* simulation at *high temperature* for about 2000 time steps and examine the *OUTPUT* file. Try to determine from the information provided what is going on. Display the *REVCON* file and examine the structure.
 
-#. If you are satisfied that you are seeing the essential phenomenon, run the program again and this time generate a *HISTORY* file, sampling the data at convenient intervals (see the :doc:`DL_POLY-4 User Manual </RESOURCES/manual>` to find out how to do this). Now you may try a number of things such as:
+#. If you are satisfied that you are seeing the essential phenomenon, run the program again and this time generate a *HISTORY* file, sampling the data at convenient intervals (see the :doc:`DL_POLY_5 User Manual </RESOURCES/manual>` to find out how to do this). Now you may try a number of things such as:
 
   * Calculate the mean square displacements of the ions as accurately as possible. Repeat the procedure at some other temperature (preferably more than one) and obtain the diffusion coefficients over a range of temperatures. Determine the activation energy with an Arrhenius plot.
   * Calculate the van Hove function (G\ :sub:`s`\(r,t)) - nicely described in           `"Correlations in the motion of atoms in liquid argon" <https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.A405>`_. Examine the results of this and decide if the ion diffusion is *solid-like* or *liquid-like*.

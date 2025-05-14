@@ -57,7 +57,7 @@
 <p>The interaction forces have the effect of modifying the equation of state for the lattice fluid:</p>
 <div class="math notranslate nohighlight">
 \[p = \rho c_s^2 + \frac{1}{2} g c_s^2 \psi^2\]</div>
-<p>where <span class="math notranslate nohighlight">\(g\)</span> is the interaction strength used as a multiplier for the forces. The functional form of <span class="math notranslate nohighlight">\(\psi\)</span> can therefore be chosen to apply a chosen equation of state <a class="reference internal" href="#yuan2006" id="id2">[Yuan2006]</a>:</p>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is the interaction strength used as a multiplier for the forces. The functional form of <span class="math notranslate nohighlight">\(\psi\)</span> can therefore be chosen to apply a chosen equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#yuan2006" id="id2">[Yuan2006]</a>:</p>
 <div class="math notranslate nohighlight">
 \[\psi = \sqrt{\frac{2\left(p \left(\rho, T\right) - \rho c_s^2\right)}{g c_s^2}}\]</div>
 <p>where the interaction strength <span class="math notranslate nohighlight">\(g\)</span> is set to <span class="math notranslate nohighlight">\(\pm 1\)</span> to ensure the square root in the above expression is evaluated with a positive value.</p>
@@ -66,7 +66,7 @@
 </div>
 <div class="section" id="aim">
 <h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
-<p>We are going to take a look at how well the Shan-Chen pseudopotential method can model vapour/liquid equilibrium for a fluid behaving according to the Peng-Robinson cubic equation of state <a class="reference internal" href="#peng1976" id="id4">[Peng1976]</a>:</p>
+<p>We are going to take a look at how well the Shan-Chen pseudopotential method can model vapour/liquid equilibrium for a fluid behaving according to the Peng-Robinson cubic equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#peng1976" id="id4">[Peng1976]</a>:</p>
 <div class="math notranslate nohighlight">
 \[p = \frac{\rho RT}{1 - b \rho} - \frac{a \alpha\left(T_r, \omega\right) \rho^2}{1 + 2b \rho - b^2 \rho^2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(R\)</span> is the universal gas constant, <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are species dependent coefficients representing attraction and finite volume effects, <span class="math notranslate nohighlight">\(\alpha\)</span> is a function of reduced temperature <span class="math notranslate nohighlight">\(T_r = \frac{T}{T_c}\)</span> and acentric (non-sphericity) factor <span class="math notranslate nohighlight">\(\omega\)</span>, given as:</p>
@@ -122,7 +122,7 @@
 <li>What happens to the interfacial tension between the phases as the temperature changes? What about the width of the interface?</li>
 </ul>
 </li>
-<li>One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials <a class="reference internal" href="#liu2010" id="id5">[Liu2010]</a>. For the Peng-Robinson equation of state, reducing the universal gas constant <span class="math notranslate nohighlight">\(R\)</span> and attraction parameter <span class="math notranslate nohighlight">\(a\)</span> by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.<ul>
+<li>One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials <a class="reference internal" href="../SIMULATIONS/vapour_liquid_simulation_analysis_lbe.html#liu2010" id="id5">[Liu2010]</a>. For the Peng-Robinson equation of state, reducing the universal gas constant <span class="math notranslate nohighlight">\(R\)</span> and attraction parameter <span class="math notranslate nohighlight">\(a\)</span> by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.<ul>
 <li>What effect does this have on fluid velocities at equilibrium?</li>
 <li>How does this strategy change the width of the interface between the phases?</li>
 </ul>

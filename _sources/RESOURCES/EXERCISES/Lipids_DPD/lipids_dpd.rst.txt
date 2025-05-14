@@ -23,7 +23,7 @@ Using atomistic or coarse-grained molecular dynamics (MD) to model how lipid str
   Bonds in the context of DPD simulations are generally used just to hold beads together into molecules rather than being chemically relevant, given that each bead may contain several atoms that are already bonded together. As such, DPD simulations tend *not* to exclude non-bonded interactions between connected particles, which differs from the usual practice of fully atomistic MD simulations.
 
 Task
----
+----
 
 After downloading and compiling DL_POLY, download the following :download:`CONTROL <./CONTROL>`, :download:`FIELD <bilayer/FIELD>` and :download:`CONFIG <bilayer/CONFIG>` files. 
 
