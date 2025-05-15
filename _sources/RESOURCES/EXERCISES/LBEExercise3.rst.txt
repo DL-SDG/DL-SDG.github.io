@@ -97,11 +97,11 @@ Tasks
      - Try a circle of radius 8 along the flow centreline not too far from the flow 'entrance', say at :math:`(49, 24)`. (The :ref:`lbin.spa <lbin_spa>` file in the ``dl_meso/DENO/LBE/2D_KarmanVortex`` folder does just this.)
      - See how the obstacle affects the flow field, then try varying the force and relaxation time until you can achieve vortex shedding.
 
-#.   Try the same again but add a vertical baffle instead of a circle (a e.g rectangle of width 1 and height 16), or add a circle to 'cross' the top and bottom boundaries and form a constriction. Can you still get a Kármán vortex street?
+#.   Try the same again but add a vertical baffle instead of a circle (a e.g rectangle of width 1 and height 16). Can you still get a Kármán vortex street?
 
-#.   Try adding a circle so it 'crosses' the top and bottom boundaries and forms a constriction in the flow. Can this also cause a Kármán vortex street to form?
+#.   Instead of an obstacle in the centre of the channel, try adding a circle so it 'crosses' the top and bottom boundaries and constricts the flow at the centre. Can this also cause a Kármán vortex street to form?
 
-#.   To reduce vortex shedding and its destructive effects, we can reduce the area in which eddies can interact. Try adding an additional rectangle of height 1 and width 16 to the right of a circular object as a baffle. Does it suppress the vortex street?
+#.   To reduce vortex shedding and its destructive effects, we can reduce the area in which eddies can interact. Try adding an additional rectangle of height 1 and width 16 to the right of a circular object, so it can act as a baffle. Does it suppress the vortex street?
 
 .. rubric:: Footnote
 

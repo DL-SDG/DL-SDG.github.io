@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>DL_MESO_DPD files &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -38,7 +37,8 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">DL_MESO_DPD files</a></li> 
       </ul>
     </div>  
 
@@ -47,20 +47,20 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="dl-meso-dpd-files">
-<span id="header-dlm-4"></span><h1>DL_MESO_DPD files<a class="headerlink" href="#dl-meso-dpd-files" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="header-dlm-4"></span><section id="dl-meso-dpd-files">
+<h1>DL_MESO_DPD files<a class="headerlink" href="#dl-meso-dpd-files" title="Permalink to this headline">¶</a></h1>
 <p>The DPD code in DL_MESO, DL_MESO_DPD, makes use of various input files to describe the simulation, including its initial state and interactions between particles, and creates output files indicating how the system has evolved over time. A summary description of the files, what they do and how they can be used are given in the diagram below.</p>
 <a class="reference internal image-reference" href="../../_images/dlm_4_1.png"><img alt="../../_images/dlm_4_1.png" class="align-center" src="../../_images/dlm_4_1.png" style="width: 781.8000000000001px; height: 391.40000000000003px;" /></a>
 <p>It should be noted that not all the input files shown here are required for a DL_MESO_DPD simulation run.</p>
 <p>The internal units used by DL_MESO_DPD include:</p>
 <ul class="simple">
-<li>Mass: mass of a selected particle type</li>
-<li>Length: interaction cutoff distance for a selected pair of particle species</li>
-<li>Energy: product of Boltzmann constant and temperature, <span class="math notranslate nohighlight">\(k_B T\)</span></li>
-<li>Charge: absolute charge on a proton or electron, <span class="math notranslate nohighlight">\(|e|\)</span></li>
+<li><p>Mass: mass of a selected particle type</p></li>
+<li><p>Length: interaction cutoff distance for a selected pair of particle species</p></li>
+<li><p>Energy: product of Boltzmann constant and temperature, <span class="math notranslate nohighlight">\(k_B T\)</span></p></li>
+<li><p>Charge: absolute charge on a proton or electron, <span class="math notranslate nohighlight">\(|e|\)</span></p></li>
 </ul>
 <p>where each of the above (apart from charge) are chosen for the specific simulation. The <a class="reference internal" href="../DOCUMENTS/DPDTheory.html#dpd-scale"><span class="std std-ref">time unit</span></a> can either be derived from the selected mass, length and energy units or obtained by matching up simulation and experimental self-diffusivities.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p id="controldlmeso"><strong>CONTROL</strong></p>
 <p>This file specifies the simulation properties, including the required system temperature, cutoff distances, timestep size, how long the simulation needs to run etc. It is formatted in a similar manner to the original (older) form of <em>CONTROL</em> files used by DL_POLY, although there are some different keywords available specifically for DPD calculations.</p>
 <p>The first line of the <em>CONTROL</em> file is a description of the simulation. This is followed by lines consisting of keywords, most of which are followed with numerical values to define properties, as shown in the following example (an extract from a file for one of DL_MESO’s demonstration cases):</p>
@@ -89,8 +89,8 @@
 </div>
 <p>Apart from the first line and the last line with <code class="docutils literal notranslate"><span class="pre">finish</span></code> (indicating the end of the <em>CONTROL</em> file), the order of keywords does not matter. The keywords that <strong>must</strong> be included are <code class="docutils literal notranslate"><span class="pre">temperature</span></code> and <code class="docutils literal notranslate"><span class="pre">timestep</span></code>, as both properties are essential for specifying a DPD simulation. The keyword <code class="docutils literal notranslate"><span class="pre">volume</span></code> is also required to specify the (initial) volume of the simulation box if this information is not supplied in a <em>CONFIG</em> file.</p>
 <p>It should be noted that if a particular keyword is used more than once, the value from the <strong>last</strong> line with that keyword will be used. If any numbers for a given keyword are omitted, these are assumed to be zero.</p>
-<p>A full list of the available keywords in <em>CONTROL</em> and the values they take can be found in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/87dfc081efcc2bdab0e87721e2f051fa/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p>A full list of the available keywords in <em>CONTROL</em> and the values they take can be found in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/d85d4aa3dfb5c3d1d91ccfbe1fd2d413/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>.</p>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p id="fielddlmeso"><strong>FIELD</strong></p>
 <p>This file specifies the contents of the simulation box and how particles interact with each other. This is formatted in a similar manner to DL_POLY <em>FIELD</em> files, albeit with some small differences to enable DL_MESO_DPD to setup calculations without needing an initial configuration.</p>
 <p>After the first line providing a description of the simulation, the format of the <em>FIELD</em> file consists of blocks of information describing the particle species, molecule types, particle-particle interactions and external fields. The following example is a <em>FIELD</em> file for one of DL_MESO’s demonstration cases:</p>
@@ -142,16 +142,16 @@
 <p>For species, interactions and surface interactions, the number of definitions given the keyword line is equal to the number of lines that should immediate follow. The information for each particle species includes its name, mass, charge, population in solvent (i.e. not included in molecules) and (optionally) whether or not its particles are frozen in place. Non-molecular interactions are defined based on pairs of particle species and require the names of the species, the type of interaction and the various parameters. Surface interactions between particles and planar surfaces at the edges of the simulation box are based on particle species and each require the name of the species, the interaction type and the parameters.</p>
 <p>Molecule definitions are set out in sub-blocks after the <code class="docutils literal notranslate"><span class="pre">molecule</span></code> keyword, where each keyword within the sub-block can be in any order, apart from the molecule’s name (the first line for a molecule’s definition) and the <code class="docutils literal notranslate"><span class="pre">finish</span></code> directive (the last line). These keywords include:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">nummols</span></code>: specifies the number of molecules of this type in the simulation</li>
-<li><code class="docutils literal notranslate"><span class="pre">beads</span></code>: specifies the number of particles per molecule; this is followed by a line for each particle with its species and relative coordinates for that bead when it is inserted into a system started without a <em>CONFIG</em> file</li>
-<li><code class="docutils literal notranslate"><span class="pre">bonds</span></code>: specifies the number of bonds per molecule; this is followed by a line for each bond, giving the type of bond interaction, indices for the two particles bonded together and interaction parameters</li>
-<li><code class="docutils literal notranslate"><span class="pre">angles</span></code>: specifies the number of bond angles per molecule; this is followed by a line for each angle, giving the type of angle interaction, indices for the three particles involved in the bond angle and interaction parameters</li>
-<li><code class="docutils literal notranslate"><span class="pre">dihedrals</span></code>: specifies the number of bond dihedrals per molecule; this is followed by a line for each dihedral, giving the type of angle interaction, indices for the four particles involved in the bond dihedral and interaction parameters</li>
-<li><code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">isomer</span></code>: indicates that the molecule structure cannot be reflected or similarly modified when it is inserted into a simulation box</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nummols</span></code>: specifies the number of molecules of this type in the simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beads</span></code>: specifies the number of particles per molecule; this is followed by a line for each particle with its species and relative coordinates for that bead when it is inserted into a system started without a <em>CONFIG</em> file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bonds</span></code>: specifies the number of bonds per molecule; this is followed by a line for each bond, giving the type of bond interaction, indices for the two particles bonded together and interaction parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">angles</span></code>: specifies the number of bond angles per molecule; this is followed by a line for each angle, giving the type of angle interaction, indices for the three particles involved in the bond angle and interaction parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dihedrals</span></code>: specifies the number of bond dihedrals per molecule; this is followed by a line for each dihedral, giving the type of angle interaction, indices for the four particles involved in the bond dihedral and interaction parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">isomer</span></code>: indicates that the molecule structure cannot be reflected or similarly modified when it is inserted into a simulation box</p></li>
 </ul>
 <p>and - like the main keywords in the <em>FIELD</em> file - any keyword not required for a molecule definition can be left out, although <code class="docutils literal notranslate"><span class="pre">nummols</span></code> and <code class="docutils literal notranslate"><span class="pre">beads</span></code> are the bare minimum required.</p>
-<p>The keywords and definitions in the <em>FIELD</em> file are given in further detail in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/87dfc081efcc2bdab0e87721e2f051fa/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>. The file can be created by hand in a text editor, although the <a class="reference internal" href="dlm_7.html#moleculegenerate"><span class="std std-ref">molecule.exe</span></a> utility can be used to create simple definitions for chain-based molecules.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p>The keywords and definitions in the <em>FIELD</em> file are given in further detail in Chapter 10 of <a class="reference download internal" download="" href="../../_downloads/d85d4aa3dfb5c3d1d91ccfbe1fd2d413/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>. The file can be created by hand in a text editor, although the <a class="reference internal" href="dlm_7.html#moleculegenerate"><span class="std std-ref">molecule.exe</span></a> utility can be used to create simple definitions for chain-based molecules.</p>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p id="configdlmeso"><strong>CONFIG</strong></p>
 <p>This file is used by DL_MESO_DPD to specify the initial conditions for a DPD simulation by providing the starting configuration: the positions of all particles in the simulation box are the minimum information required for this purpose. A short extract from an example <em>CONFIG</em> file is given here:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DL_MESO</span> <span class="n">phase</span> <span class="n">separation</span> <span class="n">example</span>
@@ -178,35 +178,35 @@
 <p>The <em>CONFIG</em> file is optional since DL_MESO_DPD can devise a suitable initial configuration based on the box size given in the <em>CONTROL</em> file and the contents specified in the <em>FIELD</em> file. DL_MESO_DPD can also devise an appropriate set of particle velocities for the required system temperature and determine the initial forces acting on the particles (based on defined interactions) if one or both properties are missing. That said, a <em>CONFIG</em> file can be useful to provide a non-default simulation setup, e.g. if an equilibrated state has already been simulated (with or without subsequent modification) or specific boundary conditions formed from frozen particles are required.</p>
 <p>A <em>CONFIG</em> file can be created in a number of different ways:</p>
 <ul class="simple">
-<li>The <a class="reference internal" href="dlm_7.html#exportconfig"><span class="std std-ref">export_config.exe</span></a> utility can convert the simulation restart state given in an <em>export</em> file</li>
-<li>The <a class="reference internal" href="dlm_7.html#historyconfig"><span class="std std-ref">history_config.exe</span></a> utility can produce a <em>CONFIG</em> file from a selected trajectory frame in a <em>HISTORY</em> file, although the amount of data available per particle in this file limits the possible configuration key for the <em>CONFIG</em> file</li>
-<li>The <code class="docutils literal notranslate"><span class="pre">l_init</span></code> directive in the <em>CONTROL</em> file can be used to generate a <em>CFGINI</em> file (in the same <em>CONFIG</em> format) based on an initial state devised by DL_MESO_DPD from the contents of the <em>FIELD</em> file.</li>
+<li><p>The <a class="reference internal" href="dlm_7.html#exportconfig"><span class="std std-ref">export_config.exe</span></a> utility can convert the simulation restart state given in an <em>export</em> file</p></li>
+<li><p>The <a class="reference internal" href="dlm_7.html#historyconfig"><span class="std std-ref">history_config.exe</span></a> utility can produce a <em>CONFIG</em> file from a selected trajectory frame in a <em>HISTORY</em> file, although the amount of data available per particle in this file limits the possible configuration key for the <em>CONFIG</em> file</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">l_init</span></code> directive in the <em>CONTROL</em> file can be used to generate a <em>CFGINI</em> file (in the same <em>CONFIG</em> format) based on an initial state devised by DL_MESO_DPD from the contents of the <em>FIELD</em> file.</p></li>
 </ul>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p id="exportrestart"><strong>export</strong></p>
 <p>This binary file is one created by DL_MESO_DPD at regular intervals to provide a simulation restart capability alongside the <em>REVIVE</em> file. It primarily consists of the positions, velocities and forces, species and molecule properties for all particles in the simulation at the time the file was created, which happens at regular intervals and overwrites the previous version of the file each time. These values can be directly read from the file into memory by DL_MESO_DPD when it is used to restart an interrupted simulation, extend a previously completed one or start a new simulation using the given particle data as the initial state.</p>
 <p>The frequency of writing the <em>export</em> file can be specified in the <em>CONTROL</em> file with the keyword <code class="docutils literal notranslate"><span class="pre">ndump</span></code>, although a default of 1000 timesteps is used if this is not specified. Including the keyword <code class="docutils literal notranslate"><span class="pre">restart</span></code> in the <em>CONTROL</em> file will tell DL_MESO_DPD to use this file to restart or resume a previous simulation, which will only work if:</p>
 <ul class="simple">
-<li>the specified particles (and molecules) match those in the <em>FIELD</em> file</li>
-<li>the total number of timesteps specified in the <em>CONTROL</em> file is greater than the timestep number when the <em>export</em> file was created</li>
-<li>a <em>REVIVE</em> file (see below) is also supplied</li>
+<li><p>the specified particles (and molecules) match those in the <em>FIELD</em> file</p></li>
+<li><p>the total number of timesteps specified in the <em>CONTROL</em> file is greater than the timestep number when the <em>export</em> file was created</p></li>
+<li><p>a <em>REVIVE</em> file (see below) is also supplied</p></li>
 </ul>
 <p>A new simulation based on the state given in the <em>export</em> file can be started by including <code class="docutils literal notranslate"><span class="pre">restart</span> <span class="pre">noscale</span></code> in the <em>CONTROL</em> file. The option <code class="docutils literal notranslate"><span class="pre">restart</span> <span class="pre">scale</span></code> will do the same but rescale the particle velocities to give the correct system temperature.</p>
 <p>In all of the above restart or new simulation cases, no restriction is applied to the number of processor cores or threads used compared with the numbers originally used to create the <em>export</em> file.</p>
 <p>The <em>export</em> file can be used to create a <em>CONFIG</em> file for a new simulation using the <a class="reference internal" href="dlm_7.html#exportconfig"><span class="std std-ref">export_config.exe</span></a> utility supplied with DL_MESO. The corresponding simulation state can also be visualised using the <a class="reference internal" href="dlm_7.html#exportimage"><span class="std std-ref">export_image_vtf.exe</span></a> or <a class="reference internal" href="dlm_7.html#exportimage"><span class="std std-ref">export_image_xml.exe</span></a> utility: these generate files of the simulation state in the <em>export</em> file that can be opened in <a class="reference external" href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a> or <a class="reference external" href="https://www.ovito.org/">OVITO</a> respectively.</p>
-<p>Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/fb6054199bf602cdf3d593e0449640ea/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p>Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/ab292b7f7779df4e6fd23c51633a77e9/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.</p>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p id="revivedlmeso"><strong>REVIVE</strong></p>
 <p>This binary file is one created by DL_MESO_DPD at regular intervals to provide a simulation restart capability alongside the <em>export</em> file. It primarily consists of the accumulators for statistical properties and the random number generator states for the simulation at the time the the file was created, which happens at regular intervals and overwrites the previous version of the file each time. These values can be directly read from the file into memory by DL_MESO_DPD when it is used to restart an interrupted simulation or extend a previously completed one.</p>
 <p>The frequency of writing the <em>REVIVE</em> file can be specified in the <em>CONTROL</em> file with the keyword <code class="docutils literal notranslate"><span class="pre">ndump</span></code>, although a default of 1000 timesteps is used if this is not specified. Including the keyword <code class="docutils literal notranslate"><span class="pre">restart</span></code> in the <em>CONTROL</em> file will tell DL_MESO_DPD to use this file to restart or resume a previous simulation, which will only work if:</p>
 <ul class="simple">
-<li>the total number of timesteps specified in the <em>CONTROL</em> file is greater than the timestep number when the <em>REVIVE</em> file was created</li>
-<li>a <em>export</em> file (see above) is also supplied</li>
+<li><p>the total number of timesteps specified in the <em>CONTROL</em> file is greater than the timestep number when the <em>REVIVE</em> file was created</p></li>
+<li><p>a <em>export</em> file (see above) is also supplied</p></li>
 </ul>
 <p>DL_MESO_DPD can still restart a simulation without a <em>REVIVE</em> file, although its progression will evidently differ due to effective resets in statistical accumulators and random number generator states. A warning message is printed if the <code class="docutils literal notranslate"><span class="pre">restart</span></code> option is given in the <em>CONTROL</em> file and no <em>REVIVE</em> file can be found.</p>
 <p>The <em>REVIVE</em> file is not required if a new simulation is started using the particle data given in the <em>export</em> file as the starting state (i.e. if the <code class="docutils literal notranslate"><span class="pre">restart</span> <span class="pre">noscale</span></code> or  <code class="docutils literal notranslate"><span class="pre">restart</span> <span class="pre">scale</span></code> options in the <em>CONTROL</em> file are used).</p>
-<p>Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/fb6054199bf602cdf3d593e0449640ea/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p>Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/ab292b7f7779df4e6fd23c51633a77e9/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.</p>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p id="outputdlmeso"><strong>OUTPUT</strong></p>
 <p>As DL_MESO_DPD runs, messages about the simulation are printed to a file called <em>OUTPUT</em>. This provides a summary of the information included in the supplied input files and how the calculation is carried out, summaries of the simulation state at regular intervals, and performance/timing data for the calculation. All warning messages and (wherever possible) all error messages due to problems arising from the contents of input files or running the simulation will also appear in this file: if the simulation cannot continue, these messages will be printed before DL_MESO_DPD terminates early.</p>
 <p>The first messages include a header about DL_MESO_DPD, the simulation name as given in the <em>CONTROL</em> file, a table showing how the simulation volume is divided among available processor cores (if using the parallel version of DL_MESO_DPD), a summary of the simulation based on information provided in the input files - including the simulation controls, interaction types and parameters, molecule definitions - and a small sample of the starting configuration (given as selected particle positions and velocities).</p>
@@ -323,7 +323,7 @@
  <span class="o">*</span>                                                                      <span class="o">*</span>
  <span class="o">*</span> <span class="n">M</span><span class="o">.</span> <span class="n">A</span><span class="o">.</span> <span class="n">Seaton</span><span class="p">,</span> <span class="n">R</span><span class="o">.</span> <span class="n">L</span><span class="o">.</span> <span class="n">Anderson</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span> <span class="n">Metz</span> <span class="ow">and</span> <span class="n">W</span><span class="o">.</span> <span class="n">Smith</span><span class="p">,</span> <span class="s2">&quot;DL_MESO:        *</span>
  <span class="o">*</span> <span class="n">highly</span> <span class="n">scalable</span> <span class="n">mesoscale</span> <span class="n">simulations</span><span class="s2">&quot;, Mol. Sim. 39 (10), 796-821   *</span>
- <span class="o">*</span> <span class="p">(</span><span class="mi">2013</span><span class="p">),</span> <span class="n">doi</span><span class="p">:</span><span class="mf">10.1080</span><span class="o">/</span><span class="mf">08927022.2013</span><span class="o">.</span><span class="mi">772297</span>                             <span class="o">*</span>
+ <span class="o">*</span> <span class="p">(</span><span class="mi">2013</span><span class="p">),</span> <span class="n">doi</span><span class="p">:</span><span class="mf">10.1080</span><span class="o">/</span><span class="mf">08927022.2013.772297</span>                             <span class="o">*</span>
  <span class="o">*</span>                                                                      <span class="o">*</span>
  <span class="o">*</span> <span class="n">M</span><span class="o">.</span> <span class="n">A</span><span class="o">.</span> <span class="n">Seaton</span><span class="p">,</span> <span class="s2">&quot;The DL_MESO Mesoscale Simulation Package&quot;</span><span class="p">,</span> <span class="n">STFC</span>       <span class="o">*</span>
  <span class="o">*</span> <span class="n">Scientific</span> <span class="n">Computing</span> <span class="n">Department</span> <span class="p">(</span><span class="mi">2019</span><span class="p">),</span> <span class="n">www</span><span class="o">.</span><span class="n">ccp5</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">DL_MESO</span>       <span class="o">*</span>
@@ -332,7 +332,7 @@
 </div>
 <p>At the end of the calculation, DL_MESO_DPD prints the total elapsed calculation time in seconds (compared with the maximum times provided in the <em>CONTROL</em> file) and a summary of the properties calculated during the simulation. The energies and system-wide properties are summarised in a table with time-averaged values in the first line and standard deviations in the second, while small tables are provided for the mean and standard deviation pressure tensors separated out into conservative, dissipative, random and kinetic contributions (which can be used to assess rheological behaviour). A measure of the calculation efficiency - average times taken per timestep and per force calculation cycle - and a small sample of the final configuration are printed. The final message reminds the user to cite DL_MESO (either using its <a class="reference external" href="https://www.ccp5.ac.uk/DL_MESO">website</a> or its <a class="reference external" href="https://www.tandfonline.com/doi/abs/10.1080/08927022.2013.772297">article in Molecular Simulation</a>) if the calculation results are published.</p>
 <p>The contents of the <em>OUTPUT</em> file can be redirected to the screen or standard output by adding the <code class="docutils literal notranslate"><span class="pre">l_scr</span></code> directive to the <em>CONTROL</em> file. This option can be useful for troubleshooting a DPD simulation: while the majority of possible error messages normally appear in the <em>OUTPUT</em> file, some more detailed error messages may get printed directly to the screen or standard output.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p id="correl"><strong>CORREL</strong></p>
 <p>This optionally-produced output file gives instantaneous values of system properties calculated during the simulation at regular intervals starting from the end of equilibration. Its format consists of tabulated data in columns with values separated by spaces and a first line indicating the property in each column (as shown in the example below).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#         time      en-total      pe-total      be-total      ae-total      pressure          p_xx          p_xy          p_xz          p_yx          p_yy          p_yz          p_zx          p_zy          p_zz   temperature     bndlen-av    bndlen-max    bndlen-min      angle-av</span>
@@ -346,36 +346,37 @@
 </div>
 <p>The number of columns and the included properties will depend upon the simulation carried out by DL_MESO_DPD, but these will always include the time (given in DPD time units: product of timestep size and number of timesteps after equilibration), energies per particle, pressure, all nine components of the pressure tensor (with all contributions combined) and the system temperature. Properties that may be printed in the <em>CORREL</em> file but not in the <em>OUTPUT</em> file include the box dimensions when using a barostat, bond lengths (mean, maximum and minimum) and mean bond angles and dihedrals.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">stats</span></code> keyword in the <em>CONTROL</em> file is used to specify the frequency of writing to the <em>CORREL</em> file. The <em>CORREL</em> file format with space-delimited data allows the file to be opened and used by a wide range of spreadsheet programs and graph plotting software.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p id="historydpd"><strong>HISTORY</strong></p>
 <p>This optionally-produced output file provides DPD simulation trajectories (a series of snapshots) that can be visualised or analysed after the calculation has completed. It comprises of a header containing information about the simulation that does not change - e.g. particle species, bond connectivity - and a series of frames with the positions of all particles in the simulation box (and optionally their velocities and forces) at a given point in time.</p>
 <p>The <em>HISTORY</em> file generated by DL_MESO_DPD is created in a program-specific binary format. The selected file format enables DL_MESO_DPD to write to it as efficiently as possible, with parallel calculations using a small number of processor cores for file writing with MPI-IO and gathering of particle data among groups of cores. The <code class="docutils literal notranslate"><span class="pre">trajectory</span></code> keyword in the <em>CONTROL</em> file indicates from which timestep DL_MESO_DPD should start writing trajectory frames to the <em>HISTORY</em> file, how often frames should be written to the file and how much data per particle should be written (positions only, positions and velocities, or positions, velocities and forces).</p>
 <p>Visualising or analysing a DL_MESO_DPD <em>HISTORY</em> file requires the use of utilities supplied with DL_MESO that can read this file, process the trajectory data and write the results to another file in a different format. The utilities that can work with <em>HISTORY</em> files are:</p>
 <ul class="simple">
-<li><a class="reference internal" href="dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a>: converts <em>HISTORY</em> file trajectory into a VTF-format file</li>
-<li><a class="reference internal" href="dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a>: converts <em>HISTORY</em> file trajectory into GALAMOST XML-formatted files</li>
-<li><a class="reference internal" href="dlm_7.html#local"><span class="std std-ref">local.exe</span></a>: divides simulation box into cuboidal sections and calculates localised properties (densities, velocities etc.) in those sections</li>
-<li><a class="reference internal" href="dlm_7.html#radius"><span class="std std-ref">radius.exe</span></a>: calculates end-to-end distances and radii of gyration for molecules in <em>HISTORY</em> file</li>
-<li><a class="reference internal" href="dlm_7.html#dipole"><span class="std std-ref">dipole.exe</span></a>: calculates dipole moments for charged molecules in <em>HISTORY</em> file</li>
-<li><a class="reference internal" href="dlm_7.html#rdfdpd"><span class="std std-ref">rdf.exe</span></a> (<a class="reference internal" href="dlm_7.html#rdfdpd"><span class="std std-ref">rdfmol.exe</span></a>): calculates radial distribution functions (RDFs) between pairs of particle species (molecule types) based on available <em>HISTORY</em> trajectories</li>
-<li><a class="reference internal" href="dlm_7.html#isosurfaces"><span class="std std-ref">isosurfaces.exe</span></a>: calculates density maps for a user-specified species and an order parameter to identify mesophases for <em>HISTORY</em> trajectory frames</li>
-<li><a class="reference internal" href="dlm_7.html#widominsertion"><span class="std std-ref">widom.exe</span></a>: carries out Widom insertions (trial insertions) of a particle or molecule into <em>HISTORY</em> file trajectory frames to determine excess chemical potentials</li>
-<li><a class="reference internal" href="dlm_7.html#historyconfig"><span class="std std-ref">history_config.exe</span></a>: creates a <em>CONFIG</em> file for a subsequent simulation based on a selected trajectory frame in a <em>HISTORY</em> file</li>
+<li><p><a class="reference internal" href="dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a>: converts <em>HISTORY</em> file trajectory into a VTF-format file</p></li>
+<li><p><a class="reference internal" href="dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a>: converts <em>HISTORY</em> file trajectory into GALAMOST XML-formatted files</p></li>
+<li><p><a class="reference internal" href="dlm_7.html#local"><span class="std std-ref">local.exe</span></a>: divides simulation box into cuboidal sections and calculates localised properties (densities, velocities etc.) in those sections</p></li>
+<li><p><a class="reference internal" href="dlm_7.html#radius"><span class="std std-ref">radius.exe</span></a>: calculates end-to-end distances and radii of gyration for molecules in <em>HISTORY</em> file</p></li>
+<li><p><a class="reference internal" href="dlm_7.html#dipole"><span class="std std-ref">dipole.exe</span></a>: calculates dipole moments for charged molecules in <em>HISTORY</em> file</p></li>
+<li><p><a class="reference internal" href="dlm_7.html#rdfdpd"><span class="std std-ref">rdf.exe</span></a> (<a class="reference internal" href="dlm_7.html#rdfdpd"><span class="std std-ref">rdfmol.exe</span></a>): calculates radial distribution functions (RDFs) between pairs of particle species (molecule types) based on available <em>HISTORY</em> trajectories</p></li>
+<li><p><a class="reference internal" href="dlm_7.html#isosurfaces"><span class="std std-ref">isosurfaces.exe</span></a>: calculates density maps for a user-specified species and an order parameter to identify mesophases for <em>HISTORY</em> trajectory frames</p></li>
+<li><p><a class="reference internal" href="dlm_7.html#widominsertion"><span class="std std-ref">widom.exe</span></a>: carries out Widom insertions (trial insertions) of a particle or molecule into <em>HISTORY</em> file trajectory frames to determine excess chemical potentials</p></li>
+<li><p><a class="reference internal" href="dlm_7.html#historyconfig"><span class="std std-ref">history_config.exe</span></a>: creates a <em>CONFIG</em> file for a subsequent simulation based on a selected trajectory frame in a <em>HISTORY</em> file</p></li>
 </ul>
 <p>The results file produced by <a class="reference internal" href="dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a> can be opened in <a class="reference external" href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a> to visualise the trajectory resulting from the DL_MESO_DPD simulation and carry out some analyses.</p>
 <a class="reference internal image-reference" href="../../_images/dlm_4_2.png"><img alt="../../_images/dlm_4_2.png" class="align-center" src="../../_images/dlm_4_2.png" style="width: 674.4000000000001px; height: 773.6px;" /></a>
 <p>Similarly, the result files from <a class="reference internal" href="dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a> can be opened in <a class="reference external" href="https://www.ovito.org/">OVITO</a>, which can also visualise the trajectory and carry out analyses.</p>
 <a class="reference internal image-reference" href="../../_images/dlm_4_3.png"><img alt="../../_images/dlm_4_3.png" class="align-center" src="../../_images/dlm_4_3.png" style="width: 609.6px; height: 363.9px;" /></a>
 <p>The files produced by <a class="reference internal" href="dlm_7.html#local"><span class="std std-ref">local.exe</span></a> and <a class="reference internal" href="dlm_7.html#isosurfaces"><span class="std std-ref">isosurfaces.exe</span></a> are in a VTK format, which can be opened in <a class="reference external" href="https://www.paraview.org">Paraview</a> to visualise and analyse the results.</p>
-<p>The other files generated by the utilities are text-based tabulated data formats, all of which can be opened using spreadsheet or graph plotting programs. Further details of these files and their corresponding utilities can be found in Appendix C of the <a class="reference download internal" download="" href="../../_downloads/87dfc081efcc2bdab0e87721e2f051fa/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>. Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/fb6054199bf602cdf3d593e0449640ea/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p>The other files generated by the utilities are text-based tabulated data formats, all of which can be opened using spreadsheet or graph plotting programs. Further details of these files and their corresponding utilities can be found in Appendix C of the <a class="reference download internal" download="" href="../../_downloads/d85d4aa3dfb5c3d1d91ccfbe1fd2d413/MAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">User</span> <span class="pre">Manual</span></code></a>. Further details about the formatting in this file - primarily for creation of new utilities or processing scripts - can be found in Chapter 11 of <a class="reference download internal" download="" href="../../_downloads/ab292b7f7779df4e6fd23c51633a77e9/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">The</span> <span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a>.</p>
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Stress_*.d</strong></p>
 <p>These optionally-produced four files (<em>Stress_pot.d</em>, <em>Stress_diss.d</em>, <em>Stress_rn.d</em> and <em>Stress_kin.d</em>) consist of instantaneous values of the pressure tensor divided into conservative (potential), dissipative, random and kinetic contributions respectively. Their file format is similar to that for the <em>CORREL</em> file and these files can be also opened using spreadsheet and graph-plotting software: they are intended for more detailed rheological analyses of DPD systems.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">stress</span></code> keyword in <em>CONTROL</em> enables the user to indicate which files should be written, the starting timestep and the frequency of writing the pressure tensors to these files.</p>
 <p><a class="reference internal" href="#header-dlm-4"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -414,17 +415,15 @@
   <p class="topless"><a href="dlm_7.html"
                         title="next chapter">DL_MESO_DPD utilities</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -444,12 +443,13 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">DL_MESO_DPD files</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

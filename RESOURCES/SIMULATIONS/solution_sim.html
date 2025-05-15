@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Simulating a solution (DL_FIELD, DL_POLY, DL_ANALYSER) &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,7 +34,8 @@
           <a href="analysis.html" title="Analysing Results"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="Simulations.html" accesskey="U">Simulations</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="Simulations.html" accesskey="U">Simulations</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simulating a solution (DL_FIELD, DL_POLY, DL_ANALYSER)</a></li> 
       </ul>
     </div>  
 
@@ -45,7 +44,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="simulating-a-solution-dl-field-dl-poly-dl-analyser">
+  <section id="simulating-a-solution-dl-field-dl-poly-dl-analyser">
 <h1>Simulating a solution (DL_FIELD, DL_POLY, DL_ANALYSER)<a class="headerlink" href="#simulating-a-solution-dl-field-dl-poly-dl-analyser" title="Permalink to this headline">¶</a></h1>
 <p>Version 1.0, last update: April 2020
 Chin Yong, Computation Chemistry Group, Daresbury Laboratory</p>
@@ -53,18 +52,18 @@ Chin Yong, Computation Chemistry Group, Daresbury Laboratory</p>
 <p>This exercise will show you how to set up a solution model. If you are not familiar how to run DL_FIELD and DL_ANALYSER, see the general guidance of running the program.</p>
 <p><em>Aims</em></p>
 <ul class="simple">
-<li>To simulate a solution of ethanoic acid (0.2 M concentration in water) at 300 K in a cubic box of size 60x60x60 angstroms. It’s a fully atomistic model with flexible bonds.</li>
-<li>Ethanoic acid is the solute and water is the solvent. We intend to determine the packing of water molecules around ethanoic acid using radial distribution functions.</li>
+<li><p>To simulate a solution of ethanoic acid (0.2 M concentration in water) at 300 K in a cubic box of size 60x60x60 angstroms. It’s a fully atomistic model with flexible bonds.</p></li>
+<li><p>Ethanoic acid is the solute and water is the solvent. We intend to determine the packing of water molecules around ethanoic acid using radial distribution functions.</p></li>
 </ul>
 <p><em>Tools</em></p>
 <ul class="simple">
-<li>DL_FIELD – force field model set up (version 4.6 and above).</li>
-<li>DL_POLY – molecular dynamics simulations (version 3 and above).</li>
-<li>DL_ANALYSER – results analysis (version 2.1 and above).</li>
+<li><p>DL_FIELD – force field model set up (version 4.6 and above).</p></li>
+<li><p>DL_POLY – molecular dynamics simulations (version 3 and above).</p></li>
+<li><p>DL_ANALYSER – results analysis (version 2.1 and above).</p></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If you are interested only in using DL_ANALYSER,  go straight to Section 3. A HISTORY trajectory file is supplied for your convenience.</p>
+<p class="admonition-title">Note</p>
+<p>If you are interested only in using DL_ANALYSER,  go straight to Section 3. A HISTORY trajectory file is supplied for your convenience.</p>
 </div>
 <p>This is an exercise in simulating a box of liquid ethanoic acid from preparing the model and system set-up parameters, through running a molecular dynamics simulation, to analysing the results.</p>
 <img alt="../../_images/ethanoic_acid_and_water.png" src="../../_images/ethanoic_acid_and_water.png" />
@@ -76,9 +75,10 @@ Chin Yong, Computation Chemistry Group, Daresbury Laboratory</p>
 <li class="toctree-l1"><a class="reference internal" href="solution_analysis.html">Analysing Results</a></li>
 </ul>
 </div>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -113,17 +113,15 @@ Chin Yong, Computation Chemistry Group, Daresbury Laboratory</p>
   <p class="topless"><a href="solution_sample_prep.html"
                         title="next chapter">Sample Preparation</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -141,12 +139,13 @@ Chin Yong, Computation Chemistry Group, Daresbury Laboratory</p>
           <a href="analysis.html" title="Analysing Results"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simulating a solution (DL_FIELD, DL_POLY, DL_ANALYSER)</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

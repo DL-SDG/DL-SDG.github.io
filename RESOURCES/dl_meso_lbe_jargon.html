@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>DL_MESO_LBE Jargon &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -38,7 +37,8 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" accesskey="U">DL_MESO</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" accesskey="U">DL_MESO</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">DL_MESO_LBE Jargon</a></li> 
       </ul>
     </div>  
 
@@ -47,54 +47,55 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="dl-meso-lbe-jargon">
+  <section id="dl-meso-lbe-jargon">
 <h1>DL_MESO_LBE Jargon<a class="headerlink" href="#dl-meso-lbe-jargon" title="Permalink to this headline">¶</a></h1>
 <p>Below shows definitions that are related to DL_MESO_LBE, or indeed, generally to Lattice Boltzmann Equation (LBE) simulations.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>lbin.init - An (optional) DL_MESO_LBE file that stores initial conditions for fluids (solutes and temperature fields) at specified grid points, including velocities, densities etc.</li>
+<li><p>lbin.init - An (optional) DL_MESO_LBE file that stores initial conditions for fluids (solutes and temperature fields) at specified grid points, including velocities, densities etc.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>lbin.spa - A DL_MESO_LBE file that specifies boundary conditions (types and directions) at grid points.</li>
+<li><p>lbin.spa - A DL_MESO_LBE file that specifies boundary conditions (types and directions) at grid points.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>lbin.sys - A DL_MESO_LBE file that contains a set of directives to drive the LBE simulation process.</li>
+<li><p>lbin.sys - A DL_MESO_LBE file that contains a set of directives to drive the LBE simulation process.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>distribution function - The probability of finding particles at a specific time and location with a given momentum. In LBE simulations, the possible range of momenta is restricted to ensure particles exist solely on a regular grid (see lattice scheme), and each momentum has an associated distribution function, i.e. <span class="math notranslate nohighlight">\(f_i \left(\mathbf{x}, t\right) = f \left(\mathbf{x}, t, \mathbf{\hat{e}}_i\right)\)</span></li>
+<li><p>distribution function - The probability of finding particles at a specific time and location with a given momentum. In LBE simulations, the possible range of momenta is restricted to ensure particles exist solely on a regular grid (see lattice scheme), and each momentum has an associated distribution function, i.e. <span class="math notranslate nohighlight">\(f_i \left(\mathbf{x}, t\right) = f \left(\mathbf{x}, t, \mathbf{\hat{e}}_i\right)\)</span></p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>lattice scheme  - The selected range of particle momenta or lattice link vectors between grid points. This is often described as D<em>n</em>Q<em>m</em>, where <em>n</em> is the number of spatial dimensions and <em>m</em> is the number of link vectors for each grid point.</li>
+<li><p>lattice scheme  - The selected range of particle momenta or lattice link vectors between grid points. This is often described as D<em>n</em>Q<em>m</em>, where <em>n</em> is the number of spatial dimensions and <em>m</em> is the number of link vectors for each grid point.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>collisions - Interactions between particles when they come into contact at grid points. These can incorporate the effects of fluid viscosity (or diffusion for solutes and temperature fields) and the application of body and interaction forces acting on fluids.</li>
+<li><p>collisions - Interactions between particles when they come into contact at grid points. These can incorporate the effects of fluid viscosity (or diffusion for solutes and temperature fields) and the application of body and interaction forces acting on fluids.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>propagation - Free-streaming of particles along lattice links to neighbouring grid points.</li>
+<li><p>propagation - Free-streaming of particles along lattice links to neighbouring grid points.</p></li>
 </ul>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -133,17 +134,15 @@
   <p class="topless"><a href="dl_meso_dpd_jargon.html"
                         title="next chapter">DL_MESO_DPD Jargon</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -163,12 +162,13 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" >DL_MESO</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" >DL_MESO</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">DL_MESO_LBE Jargon</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

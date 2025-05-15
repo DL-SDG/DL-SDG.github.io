@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>The Potential of Mean Force for \(H_2O-K^+\) &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -39,7 +38,8 @@
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="../Medium.html" accesskey="U">Medium Difficulty Exercises</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="../Medium.html" accesskey="U">Medium Difficulty Exercises</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Potential of Mean Force for <span class="math notranslate nohighlight">\(H_2O-K^+\)</span></a></li> 
       </ul>
     </div>  
 
@@ -48,15 +48,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="the-potential-of-mean-force-for-h-2o-k">
+  <section id="the-potential-of-mean-force-for-h-2o-k">
 <span id="ex-pmf"></span><h1>The Potential of Mean Force for <span class="math notranslate nohighlight">\(H_2O-K^+\)</span><a class="headerlink" href="#the-potential-of-mean-force-for-h-2o-k" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="summary">
+<section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Constraint dynamics can be used to calculate the potential of mean force along a particular coordinate (often
 referred to as the reaction coordinate) in systems of high complexity. This exercise shows how the technique
 works in a relatively simple system: the solvation of a potassium ion in water.</p>
-</div>
-<div class="section" id="background">
+</section>
+<section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
 <p>The force between two molecules in a complex system comprised of many molecules, is a function of a very
 large number of degrees of freedom and if we wanted to describe the force accurately, a very complicated
@@ -78,55 +78,50 @@ a function of the ion-water separation. Integration of the mean force along the 
 potential of mean force and also the activation energy of the ion-water dissociation.</p>
 <p>Two cautions however. Firstly, constraining the ion-water distance reduces the degrees of freedom of the
 system by one, and this must be allowed for when the constrained system is thermodynamically compared
-with the original, unconstrained system, ref. <a class="reference internal" href="#frenkel2001" id="id1">[Frenkel2001]</a>, Chapter 10, part 2, or ref. <a class="reference internal" href="#tuckerman2010" id="id2">[Tuckerman2010]</a> . Secondly, if a constraint is
+with the original, unconstrained system, ref. <a class="reference internal" href="#frenkel2001" id="id1"><span>[Frenkel2001]</span></a>, Chapter 10, part 2, or ref. <a class="reference internal" href="#tuckerman2010" id="id2"><span>[Tuckerman2010]</span></a> . Secondly, if a constraint is
 applied between two atoms, it is usual (if not universal) to exclude the corresponding pair interaction from
 the energetics of the system. Clearly, if this has been done, the missing contribution must be added to the
 mean force computed.</p>
-</div>
-<div class="section" id="tasks">
+</section>
+<section id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <p>The <em>CONFIG</em> file contains four <span class="math notranslate nohighlight">\(H_2O - K^+\)</span> complexes, with the <span class="math notranslate nohighlight">\(O - K\)</span> distances constrained.
 Proceed as follows:</p>
 <ol class="arabic simple">
-<li>Simulate the system at ambient temperature under NVE conditions. Run for a minimum
+<li><p>Simulate the system at ambient temperature under NVE conditions. Run for a minimum
 of 1000 timesteps. Note the average value of the constraint force obtained. You will find this under the
 result for the constraint virial in the DL_POLY <em>OUTPUT</em> file. Divide the number there by the constraint
-distance.</li>
-<li>Edit the <em>FIELD</em> file: locate the specification of the PMF constraint (see the manual if you don’t know how
+distance.</p></li>
+<li><p>Edit the <em>FIELD</em> file: locate the specification of the PMF constraint (see the manual if you don’t know how
 to do this!) and change the constraint bondlength by a small amount (why do you think this restriction
-necessary?). Repeat step 1.</li>
-<li>Repeat step 2 until you have enough data to span a reasonable range of constraint distances. You
+necessary?). Repeat step 1.</p></li>
+<li><p>Repeat step 2 until you have enough data to span a reasonable range of constraint distances. You
 should then be able to plot the mean force as a function of this. Provided you are able to plot this out
 to a point where the force becomes negligible, you should be able to integrate this for an approximate
-potential of mean force.</li>
-<li>If you have enough time, repeat the exercise at a different temperature and see if the mean force func-
-tion changes significantly.</li>
+potential of mean force.</p></li>
+<li><p>If you have enough time, repeat the exercise at a different temperature and see if the mean force func-
+tion changes significantly.</p></li>
 </ol>
-<table class="docutils citation" frame="void" id="frenkel2001" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[Frenkel2001]</a></td><td><ol class="first last upperalpha simple" start="4">
-<li>Frenkel and B. Smit, Understanding Molecular Simulation: From Algorithms to Applications, Computational science, Elsevier Science, Amsterdam, 2001.</li>
+<dl class="citation">
+<dt class="label" id="frenkel2001"><span class="brackets"><a class="fn-backref" href="#id1">Frenkel2001</a></span></dt>
+<dd><ol class="upperalpha simple" start="4">
+<li><p>Frenkel and B. Smit, Understanding Molecular Simulation: From Algorithms to Applications, Computational science, Elsevier Science, Amsterdam, 2001.</p></li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="tuckerman2010" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[Tuckerman2010]</a></td><td><ol class="first last upperalpha simple" start="13">
-<li><ol class="first upperalpha" start="5">
-<li>Tuckerman, Statistical Mechanics: Theory and Molecular Simulation, Oxford Graduate Texts, Oxford University Press, Oxford, 2010.</li>
+</dd>
+<dt class="label" id="tuckerman2010"><span class="brackets"><a class="fn-backref" href="#id2">Tuckerman2010</a></span></dt>
+<dd><ol class="upperalpha simple" start="13">
+<li><ol class="upperalpha simple" start="5">
+<li><p>Tuckerman, Statistical Mechanics: Theory and Molecular Simulation, Oxford Graduate Texts, Oxford University Press, Oxford, 2010.</p></li>
 </ol>
 </li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+</dd>
+</dl>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -164,17 +159,15 @@ tion changes significantly.</li>
   <p class="topless"><a href="../Diffusion_In_Zeolites/diffusion_in_zeolites.html"
                         title="next chapter">Diffusion in Zeolites</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -195,12 +188,13 @@ tion changes significantly.</li>
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="../Medium.html" >Medium Difficulty Exercises</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="../Medium.html" >Medium Difficulty Exercises</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Potential of Mean Force for <span class="math notranslate nohighlight">\(H_2O-K^+\)</span></a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

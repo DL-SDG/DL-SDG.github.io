@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Advanced Installation &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -38,7 +36,8 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" accesskey="U">DL_MESO</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" accesskey="U">DL_MESO</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Advanced Installation</a></li> 
       </ul>
     </div>  
 
@@ -47,17 +46,17 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="advanced-installation">
+  <section id="advanced-installation">
 <h1>Advanced Installation<a class="headerlink" href="#advanced-installation" title="Permalink to this headline">¶</a></h1>
 <p>This page provides even more details on how to compile DL_MESO, including more advanced options than the defaults given in the <a class="reference internal" href="dl_meso_howto.html#dl-meso-howto"><span class="std std-ref">Ready, get set, go</span></a> guide, and how to modify the codes to implement your own features.</p>
 <p><strong>Requirements</strong></p>
 <p>To build the codes, you will need a PC running either a form of Linux, macOS or Windows and the following packages installed:</p>
 <ul class="simple">
-<li>GNU Make</li>
-<li>(Optional) MPI implementation, supporting at least version 2 of the standard (e.g. openMPI)</li>
-<li>A Fortran compiler supporting at least the Fortran 2003 standard (e.g. gfortran)</li>
-<li>A C++ compiler supporting at least the C++14 standard (e.g. g++)</li>
-<li>(Optional) An up-to-date Java Runtime Environment (JRE), version 1.7 or later</li>
+<li><p>GNU Make</p></li>
+<li><p>(Optional) MPI implementation, supporting at least version 2 of the standard (e.g. openMPI)</p></li>
+<li><p>A Fortran compiler supporting at least the Fortran 2003 standard (e.g. gfortran)</p></li>
+<li><p>A C++ compiler supporting at least the C++14 standard (e.g. g++)</p></li>
+<li><p>(Optional) An up-to-date Java Runtime Environment (JRE), version 1.7 or later</p></li>
 </ul>
 <p>If you are running Linux, you will probably have all of the preceding requirements pre-installed, although it is worth checking you have a Fortrran compiler (e.g. gfortran), an MPI library (including wrappers for compilers) and, if you want to compile the GUI, an up-to-date Java Software Development Kit (SDK). If the compilers, MPI implementation etc. are available as pre-installed modules, you may need to load them in first to enable the invocations to work; these may vary from machine to machine, but the command to load them in might be similar to the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: module load gcc7 openmpi-gcc7
@@ -82,12 +81,12 @@ $: WORK
 </pre></div>
 </div>
 <ol class="arabic simple">
-<li>The <strong>DEMO</strong> directory contains input files and sample results from test cases for both DPD and LBE codes (with subfolders for the two methods and each test case).</li>
-<li>The <strong>DPD</strong> directory contains the Fortran source files for the DPD code (DL_MESO_DPD) and subfolders with makefiles and source files for utilities.</li>
-<li>The <strong>JAVA</strong> directory contains the Java source files for the Graphical User Interface (GUI).</li>
-<li>The <strong>LBE</strong> directory contains the C++ source files for the LBE code (DL_MESO_LBE) and source files for utilities.</li>
-<li>The <strong>MAN</strong> directory includes the DL_MESO User Manual and Technical Manual.</li>
-<li>The <strong>WORK</strong> directory is a sample working directory for compiling and running DL_MESO, and contains a makefile for compiling the utilities and a unscript to launch the GUI.</li>
+<li><p>The <strong>DEMO</strong> directory contains input files and sample results from test cases for both DPD and LBE codes (with subfolders for the two methods and each test case).</p></li>
+<li><p>The <strong>DPD</strong> directory contains the Fortran source files for the DPD code (DL_MESO_DPD) and subfolders with makefiles and source files for utilities.</p></li>
+<li><p>The <strong>JAVA</strong> directory contains the Java source files for the Graphical User Interface (GUI).</p></li>
+<li><p>The <strong>LBE</strong> directory contains the C++ source files for the LBE code (DL_MESO_LBE) and source files for utilities.</p></li>
+<li><p>The <strong>MAN</strong> directory includes the DL_MESO User Manual and Technical Manual.</p></li>
+<li><p>The <strong>WORK</strong> directory is a sample working directory for compiling and running DL_MESO, and contains a makefile for compiling the utilities and a unscript to launch the GUI.</p></li>
 </ol>
 <p><strong>Compiling DL_MESO_LBE</strong></p>
 <p>To compile the single-core (serial) version of DL_MESO_LBE with OpenMP multi-threading, starting from the <strong>dl_meso</strong> folder in a e.g. bash terminal, type the following commands (assuming g++ is the C++ compiler: adapt the compiler invocation and flag for Openmp if necessary):</p>
@@ -102,47 +101,47 @@ $: mpicxx -O3 -fopenmp -o lbe.exe ../LBE/plbe.cpp
 </div>
 <p>Successful compilation leads to the creation of the dl_meso_lbe executable (<strong>lbe.exe</strong>) in <strong>dl_meso/WORK/</strong>. No residual object or module files are created in this folder as a result.</p>
 <p>Two additional compile-time options can be added to the commands used to compile DL_MESO_LBE:</p>
-<table border="1" class="colwidths-given docutils">
+<table class="colwidths-given docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="67%" />
+<col style="width: 33%" />
+<col style="width: 67%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Compile-time option</th>
-<th class="head">Description</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Compile-time option</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">-DPackbuf</span></code></td>
-<td>Carries out core-to-core communications (of distribution functions, interaction forces etc.) by packing data into arrays before sending and unpacking received arrays as an alternative to default MPI derived data types. (Can be used with OpenMP to speed up packing and unpacking of data.)</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-DPackbuf</span></code></p></td>
+<td><p>Carries out core-to-core communications (of distribution functions, interaction forces etc.) by packing data into arrays before sending and unpacking received arrays as an alternative to default MPI derived data types. (Can be used with OpenMP to speed up packing and unpacking of data.)</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">-DMPIold</span></code></td>
-<td>Uses MPI-1 commands to set up MPI derived data types, which differ from those used in MPI-2 and later</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-DMPIold</span></code></p></td>
+<td><p>Uses MPI-1 commands to set up MPI derived data types, which differ from those used in MPI-2 and later</p></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Compiling DL_MESO_DPD</strong></p>
 <p>All available versions of DL_MESO_DPD require a makefile, which can be invoked to compile the required code modules and put the executable (<strong>dpd.exe</strong>) together. Five makefiles are available in the <strong>dl_meso/DPD/makefiles</strong> folder:</p>
-<table border="1" class="colwidths-given docutils">
+<table class="colwidths-given docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="67%" />
+<col style="width: 33%" />
+<col style="width: 67%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Makefile-serial</span></code></td>
-<td>Compiles serial (single core), single thread version</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Makefile-serial</span></code></p></td>
+<td><p>Compiles serial (single core), single thread version</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Makefile-OMP</span></code></td>
-<td>Compiles serial (single core), OpenMP multithreaded version</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Makefile-OMP</span></code></p></td>
+<td><p>Compiles serial (single core), OpenMP multithreaded version</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Makefile-MPI</span></code></td>
-<td>Compiles parallel (multiple core), single thread per core version</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Makefile-MPI</span></code></p></td>
+<td><p>Compiles parallel (multiple core), single thread per core version</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Makefile-MPIOMP</span></code></td>
-<td>Compiles parallel (multiple core), OpenMP multithreaded version</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Makefile-MPIOMP</span></code></p></td>
+<td><p>Compiles parallel (multiple core), OpenMP multithreaded version</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Makefile-ARCHER</span></code></td>
-<td>Compiles parallel (multiple core), single thread per core version for ARCHER2 (UK national supercomputer)</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Makefile-ARCHER</span></code></p></td>
+<td><p>Compiles parallel (multiple core), single thread per core version for ARCHER2 (UK national supercomputer)</p></td>
 </tr>
 </tbody>
 </table>
@@ -154,45 +153,41 @@ $: make
 </pre></div>
 </div>
 <p>Successful compilation leads to the creation of the dl_meso_lbe executable (<strong>lbe.exe</strong>) in <strong>dl_meso/WORK/</strong>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body"><p class="first">The object (<strong>.o</strong>) and module (<strong>.mod</strong>) files resulting from compiling DL_MESO_DPD are not required to run the code and can be safely deleted:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$: rm *.o *.mod
+<dl class="field-list">
+<dt class="field-odd">TIP</dt>
+<dd class="field-odd"><p>The object (<strong>.o</strong>) and module (<strong>.mod</strong>) files resulting from compiling DL_MESO_DPD are not required to run the code and can be safely deleted:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: rm *.o *.mod
 </pre></div>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>If you need to use a different Fortran compiler and/or MPI implementation, copy the appropriate makefile for the required combination of single/multiple cores and single/multiple OpenMP threads, and then edit the makefile to change the invocation for the compiler, which can be found in the line starting <code class="docutils literal notranslate"><span class="pre">FC</span></code>.  The line starting with <code class="docutils literal notranslate"><span class="pre">FFLAGS</span></code> gives the compiler flags, which may need to be altered for an OpenMP multithread version.</p>
 <p>Two additional compile-time options can be added to the makefile compiler flags:</p>
-<table border="1" class="colwidths-given docutils">
+<table class="colwidths-given docutils align-default">
 <colgroup>
-<col width="33%" />
-<col width="67%" />
+<col style="width: 33%" />
+<col style="width: 67%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Compile-time option</th>
-<th class="head">Description</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Compile-time option</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">-DESSL</span></code></td>
-<td>Replaces internal Fast Fourier Transform (FFT) solver and Quicksort routine with subroutines from the IBM Engineering and Scientific Subroutine Library (ESSL)</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-DESSL</span></code></p></td>
+<td><p>Replaces internal Fast Fourier Transform (FFT) solver and Quicksort routine with subroutines from the IBM Engineering and Scientific Subroutine Library (ESSL)</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">-DFFTW</span></code></td>
-<td>Replaces internal Fast Fourier Transform (FFT) solver with the Fastest Fourier Transform in the West (FFTW) version 3.x or later</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-DFFTW</span></code></p></td>
+<td><p>Replaces internal Fast Fourier Transform (FFT) solver with the Fastest Fourier Transform in the West (FFTW) version 3.x or later</p></td>
 </tr>
 </tbody>
 </table>
 <p>If you wish to use the <code class="docutils literal notranslate"><span class="pre">-DFFTW</span></code> option, you will also need to tell the makefile to link the FFTW libraries to the DL_MESO_DPD executable file and, if FFTW is not installed in the default location, the locations of the include and library files for FFTW. These can be added to the makefile, e.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fftw</span><span class="o">/</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">10</span><span class="o">/</span><span class="n">include</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fftw</span><span class="o">/</span><span class="mf">3.3.10</span><span class="o">/</span><span class="n">include</span>
 </pre></div>
 </div>
 <p>to the end of the line starting <code class="docutils literal notranslate"><span class="pre">FFLAGS</span></code>, and</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fftw</span><span class="o">/</span><span class="mf">3.3</span><span class="o">.</span><span class="mi">10</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">lfftw3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">fftw</span><span class="o">/</span><span class="mf">3.3.10</span><span class="o">/</span><span class="n">lib</span> <span class="o">-</span><span class="n">lfftw3</span>
 </pre></div>
 </div>
 <p>to the end of the line starting <code class="docutils literal notranslate"><span class="pre">LFLAGS</span></code>.</p>
@@ -212,23 +207,20 @@ $: make -f Makefile-utils
 </pre></div>
 </div>
 <p>This makefile is set up to use gfortran as the Fortran compiler and g++ as the C++ compiler: these can be modified in the lines starting with <code class="docutils literal notranslate"><span class="pre">FC</span></code> and <code class="docutils literal notranslate"><span class="pre">CC</span></code> if other compilers are required.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body"><p class="first">The object (<strong>.o</strong>) and module (<strong>.mod</strong>) files resulting from compiling the utilities are not required to run the code and can be safely deleted:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$: rm *.o *.mod
+<dl class="field-list">
+<dt class="field-odd">TIP</dt>
+<dd class="field-odd"><p>The object (<strong>.o</strong>) and module (<strong>.mod</strong>) files resulting from compiling the utilities are not required to run the code and can be safely deleted:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: rm *.o *.mod
 </pre></div>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p><strong>Modifying DL_MESO</strong></p>
-<p>Each of the codes in DL_MESO can be modified by advanced users (user-developers) to e.g. modify or add interaction types, boundary conditions, output files etc. The <a class="reference download internal" download="" href="../_downloads/3ed7070390f4871de335301b933975c4/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a> gives details of how DL_MESO_LBE, DL_MESO_DPD and the DL_MESO GUI have been written and suggestions on how modifications can be made to the codes.</p>
-</div>
+<p>Each of the codes in DL_MESO can be modified by advanced users (user-developers) to e.g. modify or add interaction types, boundary conditions, output files etc. The <a class="reference download internal" download="" href="../_downloads/ab292b7f7779df4e6fd23c51633a77e9/TECMAN_DL_MESO_2.7.pdf"><code class="xref download docutils literal notranslate"><span class="pre">DL_MESO</span> <span class="pre">Technical</span> <span class="pre">Manual</span></code></a> gives details of how DL_MESO_LBE, DL_MESO_DPD and the DL_MESO GUI have been written and suggestions on how modifications can be made to the codes.</p>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -267,17 +259,15 @@ $: make -f Makefile-utils
   <p class="topless"><a href="dl_meso_lbe_jargon.html"
                         title="next chapter">DL_MESO_LBE Jargon</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -297,12 +287,13 @@ $: make -f Makefile-utils
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" >DL_MESO</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" >DL_MESO</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Advanced Installation</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

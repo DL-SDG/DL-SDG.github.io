@@ -43,3 +43,4 @@ speed_fro_2               0.0
 speed_bac_0               0.0
 speed_bac_1               0.0
 speed_bac_2               0.0
+output_type               ANSI

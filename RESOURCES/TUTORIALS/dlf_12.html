@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Define Atom States &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -38,7 +36,8 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Define Atom States</a></li> 
       </ul>
     </div>  
 
@@ -47,18 +46,18 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="define-atom-states">
-<span id="header-dlf-12"></span><h1>Define Atom States<a class="headerlink" href="#define-atom-states" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="header-dlf-12"></span><section id="define-atom-states">
+<h1>Define Atom States<a class="headerlink" href="#define-atom-states" title="Permalink to this headline">¶</a></h1>
 <p>This page describes how you can redefine the ways atoms would behave in a molecular system.</p>
 <p>In molecular dynamics, the velocities and virials of atoms are updated according to the forces exert on them, often rescaled with some sort of pressure and temperature regulators called the barostat and thermostat, respectively. From such, the positions of the atoms are updated accordingly. These are called <em>free atoms</em> since their motions are not constrained.</p>
 <p>By default, all atoms are considered <em>free</em> in DL_POLY. However, you can redefine the states of atoms to <em>constrain</em>, <em>tether</em>, <em>rigid</em>, or <em>freeze</em>. To find out more details about these atom states, please consult DL_POLY User Manual. Here, you will be shown how to define these states in DL_FIELD.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Bond Constraints</strong></p>
 <p>The chemical bonds between two atoms are usually represented by some functional forms such as harmonic, to mimic the bond vibrations. Classically, this would be the fastest mode of motion and small MD timestep would be needed to account for this, especially the bonds that contained the H atoms.</p>
 <p>However, the timestep can be increased if the bond length is fixed. This is achieved by applying an additional force to restrict the position of atoms relative to the other.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Typically, systems with unconstrain bonds would need a timestep in the order of 0.5 fs. If bond constrains are applied to bonds contained hydrogen atoms, the MD timestep can be increased to around 2 fs.</p>
+<p class="admonition-title">Note</p>
+<p>Typically, systems with unconstrain bonds would need a timestep in the order of 0.5 fs. If bond constrains are applied to bonds contained hydrogen atoms, the MD timestep can be increased to around 2 fs.</p>
 </div>
 <p>To apply bond constrains in DL_FIELD, firstly, the feature must be switched on in the DL_FIELD <em>control</em> file as highlighted below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>...
@@ -107,11 +106,11 @@
 <p>In this example, SOD1 is the Molecular Group defined in the user’s input file and the filter-key, <em>h-bond</em>, means the bond constrains are only applied to atoms that are connected to H atoms and belong to the Molecular Group <em>SOD1</em>. There are other filter keys as shown below. For their usages, please consult DL_FIELD User Manual.</p>
 <a class="reference internal image-reference" href="../../_images/dlf_12_1.png"><img alt="../../_images/dlf_12_1.png" class="align-center" src="../../_images/dlf_12_1.png" style="width: 171.60000000000002px; height: 176.4px;" /></a>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If the constrain switch is turned off (0), then the <em>CONSTRAIN</em> directive will be ignored. Also, only one <em>CONSTRAIN</em> directive is allowed for each Molecular Group.</p>
+<p class="admonition-title">Note</p>
+<p>If the constrain switch is turned off (0), then the <em>CONSTRAIN</em> directive will be ignored. Also, only one <em>CONSTRAIN</em> directive is allowed for each Molecular Group.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Freeze atom</strong></p>
 <p>Atoms can be assigned in a frozen state, which means the atom remain static in space as if there is no forces apply on them. However, the positions of these atoms will be rescaled if the simulation box sizes change, as in the NPT ensembles.</p>
 <p>Similar to the <em>CONSTRAIN</em> state, the freeze option must be switched on (1) for DL_FIELD to read the <em>FREEZE</em> directive in the <em>control</em> file:</p>
@@ -149,11 +148,11 @@ CONSTRAIN  SOD1    h-bond
 <p>Here, DL_FIELD will freeze atoms with the label ‘cp’ from Molecular Group <em>ORG1</em> and will also freeze the atoms with the label ‘CT’ from the Molecular Group <em>ORG2</em>.</p>
 <p>In this example, the atom labels are the filter-keys. There are other filter-keys such as <em>all_backbone</em>, <em>c-alpha</em> and <em>all</em>. For more information how to use them, please consult DL_FIELD User Manual.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If the freeze switch is turned off (0), then the <em>FREEZE</em> directive will be ignored. Also, only one <em>FREEZE</em> directive is allowed for each Molecular Group.</p>
+<p class="admonition-title">Note</p>
+<p>If the freeze switch is turned off (0), then the <em>FREEZE</em> directive will be ignored. Also, only one <em>FREEZE</em> directive is allowed for each Molecular Group.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Tether atom</strong></p>
 <p>Unlike freeze atoms, restricted movements are allowed for tether atoms. A tethered atom is pegged to its initial position but is allowed to move about the initial position a if it is tethered to a spring.</p>
 <p>Once again, as before, to assign tether atoms, the tether option must be switched on (1) for DL_FIELD to read the <em>TETHER</em> directive in the <em>control</em> file:</p>
@@ -192,11 +191,11 @@ CONSTRAIN  SOD1    h-bond
 <p>The same set of filter-keys as the <em>FREEZE</em> directive ca be used for the tether atoms, as shown below:</p>
 <a class="reference internal image-reference" href="../../_images/dlf_12_2.png"><img alt="../../_images/dlf_12_2.png" class="align-center" src="../../_images/dlf_12_2.png" style="width: 205.20000000000002px; height: 184.0px;" /></a>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If the tether switch is turned off (0), then the <em>TETHER</em> directive will be ignored. Also, only one <em>TETHER</em> directive is allowed for each Molecular Group.</p>
+<p class="admonition-title">Note</p>
+<p>If the tether switch is turned off (0), then the <em>TETHER</em> directive will be ignored. Also, only one <em>TETHER</em> directive is allowed for each Molecular Group.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Rigid atom</strong></p>
 <p>So far, all atom states can be assigned individually to atoms. However, a number of atoms can be defined collectively and form a single rigid body where the positions of each rigid atom are fixed relative to one another. This effectively reduces the degrees of freedom and only the body translational and rotational motions are considered.</p>
 <p>For this reason, more than one atoms must be defined to form a rigid body. Once again, similar to other atom states mentioned above, the rigid option must be switched on for DL_FIELD to read the accompanied <em>RIGID</em> directive in the <em>control</em> file:</p>
@@ -264,18 +263,19 @@ CONSTRAIN  SOD1    h-bond
 </div>
 <p>Here, the <em>RIGID</em> statement defines a rigid benzene ring. Of note is that the H atoms are still flexible relative to the ring.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The <em>RIGID</em> directive in the DL_FIELD <em>control</em> file specifies the Molecular Group to which the rigid body would be setup. However, a <em>RIGID</em> statement in the MOLECULE template defines which atoms would form a rigid body.</p>
+<p class="admonition-title">Note</p>
+<p>The <em>RIGID</em> directive in the DL_FIELD <em>control</em> file specifies the Molecular Group to which the rigid body would be setup. However, a <em>RIGID</em> statement in the MOLECULE template defines which atoms would form a rigid body.</p>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">While DL_FIELD allows you to set up a range of different states, no check will be made for any clashes. For instance, imposing <em>FREEZE</em> and <em>TETHER</em> to same atoms.</p>
+<p class="admonition-title">Warning</p>
+<p>While DL_FIELD allows you to set up a range of different states, no check will be made for any clashes. For instance, imposing <em>FREEZE</em> and <em>TETHER</em> to same atoms.</p>
 </div>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dlf-12"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -314,17 +314,15 @@ CONSTRAIN  SOD1    h-bond
   <p class="topless"><a href="dlf_14.html"
                         title="next chapter">Core-shell model</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -344,12 +342,13 @@ CONSTRAIN  SOD1    h-bond
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Define Atom States</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

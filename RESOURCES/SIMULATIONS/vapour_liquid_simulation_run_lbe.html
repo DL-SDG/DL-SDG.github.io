@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Simulation Run &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -37,7 +35,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" accesskey="U">Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" accesskey="U">Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simulation Run</a></li> 
       </ul>
     </div>  
 
@@ -46,27 +45,21 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="simulation-run">
+  <section id="simulation-run">
 <h1>Simulation Run<a class="headerlink" href="#simulation-run" title="Permalink to this headline">¶</a></h1>
 <p><strong>Step 1</strong>: If you have not yet done so, <a class="reference internal" href="../dl_meso_howto.html#dl-meso-howto"><span class="std std-ref">obtain and compile DL_MESO</span></a>, specifically DL_MESO_LBE and the utilities. If you have an implementation of MPI on your machine, the parallel version of DL_MESO_LBE is highly recommended; otherwise compile the serial version with OpenMP.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">If you are using a high-performance computing (HPC) facility, it <em>might</em> have a pre-compiled DL_MESO module that you can load in and use, which should make the required executable files available to you when submitting a job. If it does not, you can still compile DL_MESO_LBE yourself using the instructions linked above, although you may need to consult the HPC facility’s documentation to find out how to load in compilers and MPI.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">TIP</dt>
+<dd class="field-odd"><p>If you are using a high-performance computing (HPC) facility, it <em>might</em> have a pre-compiled DL_MESO module that you can load in and use, which should make the required executable files available to you when submitting a job. If it does not, you can still compile DL_MESO_LBE yourself using the instructions linked above, although you may need to consult the HPC facility’s documentation to find out how to load in compilers and MPI.</p>
+</dd>
+</dl>
 <p><strong>Step 2</strong>: Select your working folder, which can either be the <strong>dl_meso/WORK</strong> folder - where the DL_MESO and utility executables were created - or another folder of your choosing. If the latter, either copy the <strong>lbe.exe</strong> and other executable files (ending <strong>.exe</strong>) into that folder or work out the path to the <strong>dl_meso/WORK</strong> folder from that folder (e.g. use the command <code class="docutils literal notranslate"><span class="pre">pwd</span></code> to provide the absolute path).</p>
 <p>Copy the <strong>lbin.sys</strong> and <strong>lbin.spa</strong> files into your working folder.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">The DL_MESO_LBE executable (<strong>lbe.exe</strong>) expects the <strong>lbin.sys</strong> and <strong>lbin.spa</strong> input files to be in the same directory where it is launched, and needs to find these files to run a simulation successfully.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">TIP</dt>
+<dd class="field-odd"><p>The DL_MESO_LBE executable (<strong>lbe.exe</strong>) expects the <strong>lbin.sys</strong> and <strong>lbin.spa</strong> input files to be in the same directory where it is launched, and needs to find these files to run a simulation successfully.</p>
+</dd>
+</dl>
 <p><strong>Step 3</strong>: Navigate a terminal (command line) window into the working folder and either type</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">lbe</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
@@ -87,22 +80,19 @@
 </div>
 <p>or add a similar command to your job script (which may again depend on the HPC service in use), which normally sets the <em>number of threads used per processor core</em>.</p>
 <p>DL_MESO_LBE will print messages about the simulation to either the screen or a file representing the standard output. It will also generate a number of files ending <strong>.vts</strong> (<strong>lbout000000.vts</strong> etc.) as simulation snapshots and an <strong>lbout.dump</strong> file to enable simulation restart.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">If you want to redirect what is written to the screen or standard output to a file of your choosing (e.g. <strong>lboutput</strong>), you can add <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span> <span class="pre">lboutput</span></code> to the end of the command launching DL_MESO_LBE.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">TIP</dt>
+<dd class="field-odd"><p>If you want to redirect what is written to the screen or standard output to a file of your choosing (e.g. <strong>lboutput</strong>), you can add <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span> <span class="pre">lboutput</span></code> to the end of the command launching DL_MESO_LBE.</p>
+</dd>
+</dl>
 <p>The images below show the contents of the screen/standard output for the vapour-liquid example using Shan-Chen interactions.</p>
-<div class="figure">
+<figure class="align-default">
 <img alt="../../_images/output_vapour_liquid_lbe1.png" src="../../_images/output_vapour_liquid_lbe1.png" />
-</div>
+</figure>
 <p>This first image shows a summary of the upcoming calculation, based on available numbers of cores and threads and the contents of the <strong>lbin.sys</strong> file, and the first few sample points. For each sampling timestep, the total mass of all fluids and the mass of each fluid (first line), the time taken to reach that point in seconds and the overall momentum of the system (second line).</p>
-<div class="figure">
+<figure class="align-default">
 <img alt="../../_images/output_vapour_liquid_lbe2.png" src="../../_images/output_vapour_liquid_lbe2.png" />
-</div>
+</figure>
 <p>The second image shows the end of the calculation, including the time taken to complete the calculation and a measure of calculation efficiency: Millions of Lattice Updates Per Second (MLUPS). A message is also included asking the user to cite DL_MESO if it is used for published research.</p>
 <p><strong>Step 4</strong>: Take a look at the values of fluid masses and momentum, and check the calculation is numerically stable and/or settled to a steady state.</p>
 <p>The overall mass for the majority of LBE calculations should remain constant throughout within available computational accuracy: very small changes to the overall mass or to the masses of individual fluids might happen over very large numbers of timesteps. Rapid changes of masses and/or values of ‘NaN’ (not a number) indicate that the calculation is numerically unstable and will need adjusting to alleviate this.</p>
@@ -119,9 +109,10 @@
 </pre></div>
 </div>
 <p>This creates an initial state file <strong>lbin.init</strong> from the <strong>lbout.dump</strong> file, which DL_MESO_LBE can use to work out the starting point for the new simulation.</p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -157,17 +148,15 @@
   <p class="topless"><a href="vapour_liquid_simulation_visualise_lbe.html"
                         title="next chapter">Visualising Simulation</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -186,12 +175,13 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" >Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" >Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simulation Run</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

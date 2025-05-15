@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>DPD Exercise 2: Lipid bilayers, micelles and vesicles &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -39,7 +38,8 @@
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="DPD.html" accesskey="U">Dissipative Particle Dynamics</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="DPD.html" accesskey="U">Dissipative Particle Dynamics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">DPD Exercise 2: Lipid bilayers, micelles and vesicles</a></li> 
       </ul>
     </div>  
 
@@ -48,15 +48,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="dpd-exercise-2-lipid-bilayers-micelles-and-vesicles">
+  <section id="dpd-exercise-2-lipid-bilayers-micelles-and-vesicles">
 <span id="dpd-exercise2"></span><h1>DPD Exercise 2: Lipid bilayers, micelles and vesicles<a class="headerlink" href="#dpd-exercise-2-lipid-bilayers-micelles-and-vesicles" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Following on from <a class="reference internal" href="DPDExercise1.html#dpd-exercise1"><span class="std std-ref">DPD Exercise 1</span></a>, we can extend DPD by joining beads together into molecules using e.g. harmonic springs. Since we can vary conservative force parameters between different bead species, we can therefore construct molecules that have different regions of behaviour, e.g. amphiphiles with hydrophilic (water-loving) head groups and hydrophobic (water-hating) tails. In solution, these molecules can readily assemble into large-scale structures such as micelles, vesicles, bilayers and membranes.</p>
-<p>Among others, Shillcock and Lipowsky <a class="reference internal" href="Lipids_DPD/lipids_dpd.html#shillcock2002" id="id1">[Shillcock2002]</a> have proposed DPD as a viable modelling method for biological molecules such as lipids and proteins. In particular, DPD is able to adequately model the essential topology of lipid molecules in terms of local hydrophobicity and bond interactions, which can also include controlling the angles formed between pairs of bonds.</p>
+<p>Among others, Shillcock and Lipowsky <a class="reference internal" href="Lipids_DPD/lipids_dpd.html#shillcock2002" id="id1"><span>[Shillcock2002]</span></a> have proposed DPD as a viable modelling method for biological molecules such as lipids and proteins. In particular, DPD is able to adequately model the essential topology of lipid molecules in terms of local hydrophobicity and bond interactions, which can also include controlling the angles formed between pairs of bonds.</p>
 <p>Using atomistic or coarse-grained molecular dynamics to model how lipid structures form is possible but time-consuming due to the large number of atoms required, mostly for the solvent. This is less of a problem for DPD, since the softer potentials available allow for the use of larger timesteps to get to equilibrium structures more quickly.</p>
-</div>
-<div class="section" id="aim">
+</section>
+<section id="aim">
 <h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will start with a simple DPD-based model for an amphiphilic lipid molecule. This consists of a single hydrophilic bead as a head group and 6 hydrophobic beads as a tail, all joined together with bonds. The solvent (water) is represented by unbonded beads.</p>
 <p>Our model for the lipid molecule includes harmonic bonds between the beads:</p>
@@ -68,11 +68,11 @@
 <p>where <span class="math notranslate nohighlight">\(\theta_{ijk}\)</span> is the angle between particles <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(A\)</span> is the energy level, <span class="math notranslate nohighlight">\(m\)</span> is a multiplier and <span class="math notranslate nohighlight">\(\theta_0\)</span> is an equilibrium angle.</p>
 <p>The straightness of bonds and the concentration of lipid molecules will determine the mesoscopic structures that they form. The two most likely kinds of structures for these molecules are micelles – generally spherical structures with hydrophobic tail groups pointing inwards towards the centre – and bilayers consisting of two planar layers of lipids with the tail groups pointing towards each other. Vesicles (or liposomes, if they are artificially created) are spherical bilayers that include some of the solvent, which is accommodated by the existence of hydrophilic head groups inside the structures.</p>
 <p>Any initial configuration for the lipids and solvent can be used in a DPD simulation, as they will eventually arrange themselves into the lowest potential energy configuration, i.e. an equilibrium state.</p>
-</div>
-<div class="section" id="instructions">
+</section>
+<section id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
-<p>For this exercise, you will need the main DL_MESO_DPD executable <em>dpd.exe</em> - ideally the parallel version with MPI - and either <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a> or <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a> to visualise the simulations along with VMD or OVITO respectively. Optionally, you can also make use of the <a class="reference download internal" download="" href="../../_downloads/794258a9b8c026c8e03ced11466dabaf/dlmresultviewer.py"><code class="xref download docutils literal notranslate"><span class="pre">dlmresultviewer.py</span></code></a> Python script to look at calculated system properties, although you can also use graph plotting software that can read tabulated text files (e.g. Gnuplot, Excel).</p>
-<p>Download <a class="reference download internal" download="" href="../../_downloads/4cdc3cf28e76dc75f3a78bec9bea9ff8/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/7280f1d5860957c8602aee49f5abf0ea/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> into your working directory: these are input files for a smaller version of one of the test cases supplied with DL_MESO, which you can find in <em>dl_meso/DEMO/DPD/LipidBilayer</em> <a class="footnote-reference" href="#id4" id="id2">[1]</a>. Both versions include three species of bead - solvent beads W, head beads H and tail beads C - and defines molecules (HC6), each consisting of one H bead and 6 C beads. The harmonic bonds between the beads - described by <a class="reference internal" href="#equation-harmbond">(1)</a> - use a spring force constant <span class="math notranslate nohighlight">\(\kappa = 128 k_B T / r_c\)</span> and equilibrium bond length <span class="math notranslate nohighlight">\(r_0 = 0.5 r_c\)</span>, while the bond angles described by the cosine potential in <a class="reference internal" href="#equation-cosineangle">(2)</a> use an energy level <span class="math notranslate nohighlight">\(A = 20 k_B T\)</span>, multiplier <span class="math notranslate nohighlight">\(m = 1\)</span> and equilibrium angle <span class="math notranslate nohighlight">\(\theta_{0} = 0{^\circ}\)</span>.</p>
+<p>For this exercise, you will need the main DL_MESO_DPD executable <em>dpd.exe</em> - ideally the parallel version with MPI - and either <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a> or <a class="reference internal" href="../TUTORIALS/dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a> to visualise the simulations along with VMD or OVITO respectively. Optionally, you can also make use of the <a class="reference download internal" download="" href="../../_downloads/0fa706e22ce8b3ea6cc4d6eae5599918/dlmresultviewer.py"><code class="xref download docutils literal notranslate"><span class="pre">dlmresultviewer.py</span></code></a> Python script to look at calculated system properties, although you can also use graph plotting software that can read tabulated text files (e.g. Gnuplot, Excel).</p>
+<p>Download <a class="reference download internal" download="" href="../../_downloads/78eec87a86a17ff35bf0e5ee92a77fa2/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/d39a3507816843db23221e7b546f89ac/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> into your working directory: these are input files for a smaller version of one of the test cases supplied with DL_MESO, which you can find in <em>dl_meso/DEMO/DPD/LipidBilayer</em> <a class="footnote-reference brackets" href="#id4" id="id2">1</a>. Both versions include three species of bead - solvent beads W, head beads H and tail beads C - and defines molecules (HC6), each consisting of one H bead and 6 C beads. The harmonic bonds between the beads - described by <a class="reference internal" href="#equation-harmbond">(1)</a> - use a spring force constant <span class="math notranslate nohighlight">\(\kappa = 128 k_B T / r_c\)</span> and equilibrium bond length <span class="math notranslate nohighlight">\(r_0 = 0.5 r_c\)</span>, while the bond angles described by the cosine potential in <a class="reference internal" href="#equation-cosineangle">(2)</a> use an energy level <span class="math notranslate nohighlight">\(A = 20 k_B T\)</span>, multiplier <span class="math notranslate nohighlight">\(m = 1\)</span> and equilibrium angle <span class="math notranslate nohighlight">\(\theta_{0} = 0{^\circ}\)</span>.</p>
 <p>Since we want to run some variants of this simulation, create four directories inside your working directory, one for each simulation you are about to run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">LIPID1</span>
 <span class="n">mkdir</span> <span class="n">LIPID2</span>
@@ -90,61 +90,61 @@
 <span class="n">mpirun</span> <span class="o">-</span><span class="n">np</span> <span class="mi">4</span> <span class="o">../</span><span class="n">dpd</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
-<p>to launch the executable found in the parent directory <a class="footnote-reference" href="#id5" id="id3">[2]</a>.</p>
+<p>to launch the executable found in the parent directory <a class="footnote-reference brackets" href="#id5" id="id3">2</a>.</p>
 <p>When each calculation has finished, run the required trajectory conversion utility to produce your file(s) to launch in VMD or OVITO from the trajectories in the <a class="reference internal" href="../TUTORIALS/dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> files. Again you can run the utility (located in your working directory) in each sub-directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../</span><span class="n">traject_vtf</span><span class="o">.</span><span class="n">exe</span>
 <span class="o">../</span><span class="n">traject_xml</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="analysis">
+</section>
+<section id="analysis">
 <h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Take a look at the first simulation: visualise it with VMD or OVITO, and also take a look at the total and/or potential energies stated in <a class="reference internal" href="../TUTORIALS/dlm_4.html#outputdlmeso"><span class="std std-ref">OUTPUT</span></a> or <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a>, using either <em>dlmresultviewer.py</em> or graphing software for the latter.<ul>
-<li>Does a lipid bilayer eventually form? If so, does its formation coincide with the lowest energy levels for the system?</li>
-<li>The final column in <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> gives averaged bond angles in degrees: how close are they to the desired 180°?</li>
+<li><p>Take a look at the first simulation: visualise it with VMD or OVITO, and also take a look at the total and/or potential energies stated in <a class="reference internal" href="../TUTORIALS/dlm_4.html#outputdlmeso"><span class="std std-ref">OUTPUT</span></a> or <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a>, using either <em>dlmresultviewer.py</em> or graphing software for the latter.</p>
+<ul class="simple">
+<li><p>Does a lipid bilayer eventually form? If so, does its formation coincide with the lowest energy levels for the system?</p></li>
+<li><p>The final column in <a class="reference internal" href="../TUTORIALS/dlm_4.html#correl"><span class="std std-ref">CORREL</span></a> gives averaged bond angles in degrees: how close are they to the desired 180°?</p></li>
 </ul>
 </li>
-<li>Now take a look at the second simulation.<ul>
-<li>What effect does removing the angle interactions have on the structure that forms, compared with the first simulation? Can you think of a reason why it makes a difference?</li>
-<li>What are the averaged bond angles in this case?</li>
+<li><p>Now take a look at the second simulation.</p>
+<ul class="simple">
+<li><p>What effect does removing the angle interactions have on the structure that forms, compared with the first simulation? Can you think of a reason why it makes a difference?</p></li>
+<li><p>What are the averaged bond angles in this case?</p></li>
 </ul>
 </li>
-<li>Take a look at the third and fourth simulations with reduced molecular concentrations.<ul>
-<li>What structures do the lipid molecules form? Does either structure include water inside, i.e. does a vesicle form?</li>
+<li><p>Take a look at the third and fourth simulations with reduced molecular concentrations.</p>
+<ul class="simple">
+<li><p>What structures do the lipid molecules form? Does either structure include water inside, i.e. does a vesicle form?</p></li>
 </ul>
 </li>
-<li>You might be interested to see <em>how</em> each of these structures forms: do you observe any intermediate (metastable) structures before the system reaches an equilibrated state?</li>
-<li><em>Optionally</em>, take a look at the original input files supplied with DL_MESO in <em>DEMO/DPD/LipidBilayer</em> and compare them with those you have been using.<ul>
-<li>If you have time, try a simulation with an intermediate volume and total number of particles, i.e. try doubling the system you have been running so far, and try different numbers of lipid molecules (but keep the total number of beads the same). How many molecules do you need to form a complete bilayer (without any holes)?</li>
-<li>Given the differences in cubic volumes between these three simulations, all of which produce complete bilayers, can you devise some kind of relationship between the simulation box size and the number of amphiphilic molecules needed to form a bilayer?</li>
+<li><p>You might be interested to see <em>how</em> each of these structures forms: do you observe any intermediate (metastable) structures before the system reaches an equilibrated state?</p></li>
+<li><p><em>Optionally</em>, take a look at the original input files supplied with DL_MESO in <em>DEMO/DPD/LipidBilayer</em> and compare them with those you have been using.</p>
+<ul class="simple">
+<li><p>If you have time, try a simulation with an intermediate volume and total number of particles, i.e. try doubling the system you have been running so far, and try different numbers of lipid molecules (but keep the total number of beads the same). How many molecules do you need to form a complete bilayer (without any holes)?</p></li>
+<li><p>Given the differences in cubic volumes between these three simulations, all of which produce complete bilayers, can you devise some kind of relationship between the simulation box size and the number of amphiphilic molecules needed to form a bilayer?</p></li>
 </ul>
 </li>
 </ol>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>You could use the original input files from the <em>LipidBilayer</em> test case for this exercise if you have access to a more powerful computer, e.g. a high-performance computing (HPC) platform. Exactly how to log onto the machine, transfer the DL_MESO source code onto it, compile DL_MESO_DPD and launch calculations will depend on how it is set up: you may need to consult the available documentation and/or the system administrator to find out this information.</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>If you are using a computer with multiple processor cores, we would strongly recommend running the simulations on at least four cores: each calculation should take about 10-20 minutes to complete on a four-core laptop, based on tests carried out on an available machine. Even if your computer has fewer than four physical processor cores, it might be capable of <em>hyperthreading</em>, i.e. using each of your computer’s threads as a virtual (logical) core, and you may therefore still get some extra performance by specifying 4 cores in the <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> command. You may need an additional command line option with <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> to use hyperthreading or to ‘oversubscribe’ tasks, e.g. <code class="docutils literal notranslate"><span class="pre">--use-hwthread-cpus</span></code> for Open-MPI.</td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>You could use the original input files from the <em>LipidBilayer</em> test case for this exercise if you have access to a more powerful computer, e.g. a high-performance computing (HPC) platform. Exactly how to log onto the machine, transfer the DL_MESO source code onto it, compile DL_MESO_DPD and launch calculations will depend on how it is set up: you may need to consult the available documentation and/or the system administrator to find out this information.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>If you are using a computer with multiple processor cores, we would strongly recommend running the simulations on at least four cores: each calculation should take about 10-20 minutes to complete on a four-core laptop, based on tests carried out on an available machine. Even if your computer has fewer than four physical processor cores, it might be capable of <em>hyperthreading</em>, i.e. using each of your computer’s threads as a virtual (logical) core, and you may therefore still get some extra performance by specifying 4 cores in the <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> command. You may need an additional command line option with <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> to use hyperthreading or to ‘oversubscribe’ tasks, e.g. <code class="docutils literal notranslate"><span class="pre">--use-hwthread-cpus</span></code> for Open-MPI.</p>
+</dd>
+</dl>
 <p class="rubric">Reference</p>
-<table class="docutils citation" frame="void" id="shillcock2002" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[Shillcock2002]</a></td><td>JC Shillcock and R Lipowsky, Equilibrium structure and lateral stress distribution of amphiphilic bilayers from dissipative particle dynamics simulations, <em>Journal of Chemical Physics</em>, <strong>117</strong>, 5048-5061 (2002), doi: 10.1063/1.1498463.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="citation">
+<dt class="label" id="shillcock2002"><span class="brackets"><a class="fn-backref" href="#id1">Shillcock2002</a></span></dt>
+<dd><p>JC Shillcock and R Lipowsky, Equilibrium structure and lateral stress distribution of amphiphilic bilayers from dissipative particle dynamics simulations, <em>Journal of Chemical Physics</em>, <strong>117</strong>, 5048-5061 (2002), doi: 10.1063/1.1498463.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -182,17 +182,15 @@
   <p class="topless"><a href="DPDExercise3.html"
                         title="next chapter">DPD Exercise 3: Transport properties of DPD fluids</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -213,12 +211,13 @@
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="DPD.html" >Dissipative Particle Dynamics</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="DPD.html" >Dissipative Particle Dynamics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">DPD Exercise 2: Lipid bilayers, micelles and vesicles</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

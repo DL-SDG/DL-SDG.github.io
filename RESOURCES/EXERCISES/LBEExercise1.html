@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>LBE Exercise 1: Phase separation and equations of state &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -39,7 +38,8 @@
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="LBE.html" accesskey="U">Lattice Boltzmann Equation</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="LBE.html" accesskey="U">Lattice Boltzmann Equation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LBE Exercise 1: Phase separation and equations of state</a></li> 
       </ul>
     </div>  
 
@@ -48,25 +48,25 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lbe-exercise-1-phase-separation-and-equations-of-state">
+  <section id="lbe-exercise-1-phase-separation-and-equations-of-state">
 <span id="lbe-exercise1"></span><h1>LBE Exercise 1: Phase separation and equations of state<a class="headerlink" href="#lbe-exercise-1-phase-separation-and-equations-of-state" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>A major feature of LBE is its ability to model multiple fluids and/or phases by calculating and applying interfacial forces locally at each lattice site. Any interfaces between fluids or phases are <em>emergent</em> and do not need to be explicitly tracked, which makes modelling multiple fluids or phases in LBE just as computationally efficient as modelling one fluid.</p>
-<p>One frequently used form of mesoscopic fluid interactions in LBE simulation is the Shan-Chen pseudopotential method <a class="reference internal" href="#shan1993" id="id1">[Shan1993]</a>. This method works by defining a pseudopotential <span class="math notranslate nohighlight">\(\psi\)</span> - a function of fluid density - and calculating forces that are related to gradients of the pseudopotential that can be applied during the collision step. The gradients can be calculated easily and accurately using a stencil, i.e. using pseudopotential values at neighbouring grid points.</p>
+<p>One frequently used form of mesoscopic fluid interactions in LBE simulation is the Shan-Chen pseudopotential method <a class="reference internal" href="#shan1993" id="id1"><span>[Shan1993]</span></a>. This method works by defining a pseudopotential <span class="math notranslate nohighlight">\(\psi\)</span> - a function of fluid density - and calculating forces that are related to gradients of the pseudopotential that can be applied during the collision step. The gradients can be calculated easily and accurately using a stencil, i.e. using pseudopotential values at neighbouring grid points.</p>
 <p>The interaction forces have the effect of modifying the equation of state for the lattice fluid:</p>
 <div class="math notranslate nohighlight">
 \[p = \rho c_s^2 + \frac{1}{2} g c_s^2 \psi^2\]</div>
-<p>where <span class="math notranslate nohighlight">\(g\)</span> is the interaction strength used as a multiplier for the forces. The functional form of <span class="math notranslate nohighlight">\(\psi\)</span> can therefore be chosen to apply a chosen equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#yuan2006" id="id2">[Yuan2006]</a>:</p>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is the interaction strength used as a multiplier for the forces. The functional form of <span class="math notranslate nohighlight">\(\psi\)</span> can therefore be chosen to apply a chosen equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#yuan2006" id="id2"><span>[Yuan2006]</span></a>:</p>
 <div class="math notranslate nohighlight">
 \[\psi = \sqrt{\frac{2\left(p \left(\rho, T\right) - \rho c_s^2\right)}{g c_s^2}}\]</div>
 <p>where the interaction strength <span class="math notranslate nohighlight">\(g\)</span> is set to <span class="math notranslate nohighlight">\(\pm 1\)</span> to ensure the square root in the above expression is evaluated with a positive value.</p>
-<p>There are some limitations with this method - most notably, it is not always thermodynamically consistent and the interfacial tension between phases is an emergent property (i.e. it cannot be controlled directly and depends on the relaxation time <span class="math notranslate nohighlight">\(\tau\)</span>). Other methods to model multiple phases such as free-energy LBE <a class="reference internal" href="#swift1996" id="id3">[Swift1996]</a> can alleviate these problems, although they can be more complicated to apply.</p>
+<p>There are some limitations with this method - most notably, it is not always thermodynamically consistent and the interfacial tension between phases is an emergent property (i.e. it cannot be controlled directly and depends on the relaxation time <span class="math notranslate nohighlight">\(\tau\)</span>). Other methods to model multiple phases such as free-energy LBE <a class="reference internal" href="#swift1996" id="id3"><span>[Swift1996]</span></a> can alleviate these problems, although they can be more complicated to apply.</p>
 <p>More theoretical details about the <a class="reference internal" href="../DOCUMENTS/LBETheory.html#shanchen"><span class="std std-ref">Shan-Chen pseudopotential method</span></a> used in this exercise are available.</p>
-</div>
-<div class="section" id="aim">
+</section>
+<section id="aim">
 <h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
-<p>We are going to take a look at how well the Shan-Chen pseudopotential method can model vapour/liquid equilibrium for a fluid behaving according to the Peng-Robinson cubic equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#peng1976" id="id4">[Peng1976]</a>:</p>
+<p>We are going to take a look at how well the Shan-Chen pseudopotential method can model vapour/liquid equilibrium for a fluid behaving according to the Peng-Robinson cubic equation of state <a class="reference internal" href="../SIMULATIONS/inputs_prep_lbe.html#peng1976" id="id4"><span>[Peng1976]</span></a>:</p>
 <div class="math notranslate nohighlight">
 \[p = \frac{\rho RT}{1 - b \rho} - \frac{a \alpha\left(T_r, \omega\right) \rho^2}{1 + 2b \rho - b^2 \rho^2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(R\)</span> is the universal gas constant, <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are species dependent coefficients representing attraction and finite volume effects, <span class="math notranslate nohighlight">\(\alpha\)</span> is a function of reduced temperature <span class="math notranslate nohighlight">\(T_r = \frac{T}{T_c}\)</span> and acentric (non-sphericity) factor <span class="math notranslate nohighlight">\(\omega\)</span>, given as:</p>
@@ -78,11 +78,11 @@
 <div class="math notranslate nohighlight">
 \[b \approx 0.07780 \frac{R T_c}{p_c}.\]</div>
 <p>Our simulations are going to start by setting <span class="math notranslate nohighlight">\(R = 1\)</span>, <span class="math notranslate nohighlight">\(a = \tfrac{2}{49}\)</span>, <span class="math notranslate nohighlight">\(b = \tfrac{2}{21}\)</span>, <span class="math notranslate nohighlight">\(\omega = 0.344\)</span> and the system temperature <span class="math notranslate nohighlight">\(T = 0.055\)</span>, which is below the critical value. The initial density of the fluid will be somewhere between the densities for the liquid and vapour phases: to encourage the fluid to separate into these two phases, we can set a random ‘noise’ to produce density gradients.</p>
-</div>
-<div class="section" id="instructions">
+</section>
+<section id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
 <p>For this exercise, you will need the main DL_MESO_LBE executable <code class="docutils literal notranslate"><span class="pre">lbe.exe</span></code> - the serial (single processor core) version with or without OpenMP multithreading is preferred to keep down the number of output files. You can also use the DL_MESO GUI (see <a class="reference internal" href="DL_MESO_LBE.html#dl-meso-gui"><span class="std std-ref">Running GUI</span></a>) to modify one of the input files, although a text editor will be sufficient. You will also need to have Paraview installed to visualise the results.</p>
-<p>Download the <a class="reference download internal" download="" href="../../_downloads/b094c48a5023799dfd9e336e274808fd/lbin.sys"><code class="xref download docutils literal notranslate"><span class="pre">lbin.sys</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/8e8d6306a673d371dee7fa2d5d3741f5/lbin.spa"><code class="xref download docutils literal notranslate"><span class="pre">lbin.spa</span></code></a> input files into a working directory. This could be the <code class="docutils literal notranslate"><span class="pre">dl_meso/WORK</span></code> directory that comes with your copy of DL_MESO. Note that the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file is entirely empty: this is intentional!</p>
+<p>Download the <a class="reference download internal" download="" href="../../_downloads/53f84a8b008be726e073991a98145918/lbin.sys"><code class="xref download docutils literal notranslate"><span class="pre">lbin.sys</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/2a4e42fea3386ffa152e0cd33a15132d/lbin.spa"><code class="xref download docutils literal notranslate"><span class="pre">lbin.spa</span></code></a> input files into a working directory. This could be the <code class="docutils literal notranslate"><span class="pre">dl_meso/WORK</span></code> directory that comes with your copy of DL_MESO. Note that the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file is entirely empty: this is intentional!</p>
 <p>These simulation input files represent a periodic box of a single fluid with a density (or rather, a small range of densities) that lie between the expected densities of the liquid and vapour phases. These phases should form spontaneously, with the liquid phase collecting either into a circular drop or a rectangular layer across the box (depending on how much fluid exists in the box).</p>
 <p>To modify any of the parameters in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file, you can either open the file in the GUI or use a text editor. The keywords to pay particular attention to for this exercise are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">noise_intensity</span>
@@ -101,68 +101,59 @@
 </pre></div>
 </div>
 <p>After running DL_MESO_LBE, open the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a> files in Paraview - all of them can be opened at once - and click Apply in the Properties subwindow to create the visualisation. You can use the pulldown boxes near the top to select different properties and the type of plot, and play through the snapshots to see how the simulation progressed. To plot the properties along a straight line, you can apply the Plot Over Line filter, move the line in the display window and click Apply to display the graphs. The Information subwindow will give you the minimum and maximum values for the available properties at the currently displayed timestep.</p>
-<p>To look at any of the snapshots in more detail, download the <a class="reference download internal" download="" href="../../_downloads/be6838cb242abd38045e2d89ec4aae1c/vtk_to_twophase.py"><code class="xref download docutils literal notranslate"><span class="pre">vtk_to_twophase.py</span></code></a> script and launch it with the following command:</p>
+<p>To look at any of the snapshots in more detail, download the <a class="reference download internal" download="" href="../../_downloads/5c2b1594a12941899ea3ff1a773b2e32/vtk_to_twophase.py"><code class="xref download docutils literal notranslate"><span class="pre">vtk_to_twophase.py</span></code></a> script and launch it with the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">vtk_to_twophase</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">vtkin</span> <span class="o">&lt;</span><span class="n">vtkin</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">threshold</span> <span class="o">&lt;</span><span class="n">threshold</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">plot</span>
 </pre></div>
 </div>
 <p>substituting <code class="docutils literal notranslate"><span class="pre">&lt;vtkin&gt;</span></code> with the name of a <a class="reference internal" href="../TUTORIALS/dlm_3.html#lboutsnapshot"><span class="std std-ref">lbout*.vts</span></a> file and <code class="docutils literal notranslate"><span class="pre">&lt;threshold&gt;</span></code> with a small non-zero value (e.g. 0.1) to help determine the width of a vapour-liquid interface, which is plotted using the <code class="docutils literal notranslate"><span class="pre">--plot</span></code> option. You will also need the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file to obtain details of the equation of state and calculate the interfacial tension between the phases. (See <a class="reference internal" href="DL_MESO_LBE.html#dl-meso-lbe"><span class="std std-ref">Using DL_MESO_LBE</span></a> for more details.)</p>
-</div>
-<div class="section" id="tasks">
+</section>
+<section id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Run DL_MESO_LBE in your working directory with the supplied input files for 5000 timesteps and visualise with Paraview. You should see the fluid separate into two static phases: the high-density fluid can be considered liquid, while the low-density fluid is vapour.<ul>
-<li>Try editing the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file to vary the noise intensity, initial density and/or fluid relaxation time before re-running the simulation: does this change the obtained liquid and vapour densities?</li>
-<li>Apply the Plot Over Line filter in Paraview to a region with a boundary between the phases: how does the fluid density vary as it goes from phase to phase?</li>
+<li><p>Run DL_MESO_LBE in your working directory with the supplied input files for 5000 timesteps and visualise with Paraview. You should see the fluid separate into two static phases: the high-density fluid can be considered liquid, while the low-density fluid is vapour.</p>
+<ul class="simple">
+<li><p>Try editing the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file to vary the noise intensity, initial density and/or fluid relaxation time before re-running the simulation: does this change the obtained liquid and vapour densities?</p></li>
+<li><p>Apply the Plot Over Line filter in Paraview to a region with a boundary between the phases: how does the fluid density vary as it goes from phase to phase?</p></li>
 </ul>
 </li>
-<li>Take a look at the fluid velocities in the system at the end of the simulation. Where are the highest velocities situated (relative to the two phases)? Given the speed of sound in lattice units is <span class="math notranslate nohighlight">\(c_s = \frac{1}{\sqrt{3}} \approx 0.577\)</span>, are the velocity magnitudes reasonable?</li>
-<li>What is the critical temperature? (Hint: either rearrange the above expressions for <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, or take a look at what DL_MESO_LBE prints to screen.) Try varying the system temperature towards this value:<ul>
-<li>What happens to the liquid and vapour densities as the temperature changes?</li>
-<li>What happens to the maximum fluid velocities in the system when you change the system temperature?</li>
-<li>What happens to the interfacial tension between the phases as the temperature changes? What about the width of the interface?</li>
+<li><p>Take a look at the fluid velocities in the system at the end of the simulation. Where are the highest velocities situated (relative to the two phases)? Given the speed of sound in lattice units is <span class="math notranslate nohighlight">\(c_s = \frac{1}{\sqrt{3}} \approx 0.577\)</span>, are the velocity magnitudes reasonable?</p></li>
+<li><p>What is the critical temperature? (Hint: either rearrange the above expressions for <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, or take a look at what DL_MESO_LBE prints to screen.) Try varying the system temperature towards this value:</p>
+<ul class="simple">
+<li><p>What happens to the liquid and vapour densities as the temperature changes?</p></li>
+<li><p>What happens to the maximum fluid velocities in the system when you change the system temperature?</p></li>
+<li><p>What happens to the interfacial tension between the phases as the temperature changes? What about the width of the interface?</p></li>
 </ul>
 </li>
-<li>One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials <a class="reference internal" href="../SIMULATIONS/vapour_liquid_simulation_analysis_lbe.html#liu2010" id="id5">[Liu2010]</a>. For the Peng-Robinson equation of state, reducing the universal gas constant <span class="math notranslate nohighlight">\(R\)</span> and attraction parameter <span class="math notranslate nohighlight">\(a\)</span> by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.<ul>
-<li>What effect does this have on fluid velocities at equilibrium?</li>
-<li>How does this strategy change the width of the interface between the phases?</li>
+<li><p>One possible way to reduce fluid velocities is to reduce the forces acting on the fluid by rescaling the pressure used to calculate the pseudopotentials <a class="reference internal" href="../SIMULATIONS/vapour_liquid_simulation_analysis_lbe.html#liu2010" id="id5"><span>[Liu2010]</span></a>. For the Peng-Robinson equation of state, reducing the universal gas constant <span class="math notranslate nohighlight">\(R\)</span> and attraction parameter <span class="math notranslate nohighlight">\(a\)</span> by the same factor should preserve the density ratio of the two phases (if not the actual values). Try reducing these two coefficients to half or quarter of their original values.</p>
+<ul class="simple">
+<li><p>What effect does this have on fluid velocities at equilibrium?</p></li>
+<li><p>How does this strategy change the width of the interface between the phases?</p></li>
 </ul>
 </li>
 </ol>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="shan1993" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[Shan1993]</a></td><td>X Shan and H Chen, Lattice Boltzmann model for simulating flows with multiple phases and components, <em>Physical Review E</em>, <strong>47</strong> 1815-1819, 1993, doi: 10.1103/PhysRevE.47.1815.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="yuan2006" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[Yuan2006]</a></td><td>P Yuan and L Schaefer, Equations of state in a lattice Boltzmann model, <em>Physics of Fluids</em>, <strong>18</strong> 042101, 2006, doi: 10.1063/1.2187070.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="swift1996" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[Swift1996]</a></td><td>MR Swift, E Orlandini, WR Osborn and JM Yeomans, Lattice Boltzmann simulations of liquid-gas and binary fluid systems, <em>Physical Review E</em>, <strong>54</strong>, 5041-5052, 1996, doi: 10.1103/PhysRevE.54.5041.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="peng1976" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[Peng1976]</a></td><td>DY Peng and DB Robinson, A new two-constant equation of state, <em>Industrial &amp; Engineering Chemistry Fundamentals</em>, <strong>15</strong>, 59-64, 1976, doi: 10.1021/i160057a011.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="liu2010" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[Liu2010]</a></td><td>M Liu, Z Yu, T Wang, J Wang and LS Fan, A modified pseudopotential for a lattice Boltzmann simulation of bubbly flow, <em>Chemical Engineering Science</em>, <strong>65</strong>, 5615-5623, 2010, doi: 10.1016/j.ces.2010.08.014.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="citation">
+<dt class="label" id="shan1993"><span class="brackets"><a class="fn-backref" href="#id1">Shan1993</a></span></dt>
+<dd><p>X Shan and H Chen, Lattice Boltzmann model for simulating flows with multiple phases and components, <em>Physical Review E</em>, <strong>47</strong> 1815-1819, 1993, doi: 10.1103/PhysRevE.47.1815.</p>
+</dd>
+<dt class="label" id="yuan2006"><span class="brackets"><a class="fn-backref" href="#id2">Yuan2006</a></span></dt>
+<dd><p>P Yuan and L Schaefer, Equations of state in a lattice Boltzmann model, <em>Physics of Fluids</em>, <strong>18</strong> 042101, 2006, doi: 10.1063/1.2187070.</p>
+</dd>
+<dt class="label" id="swift1996"><span class="brackets"><a class="fn-backref" href="#id3">Swift1996</a></span></dt>
+<dd><p>MR Swift, E Orlandini, WR Osborn and JM Yeomans, Lattice Boltzmann simulations of liquid-gas and binary fluid systems, <em>Physical Review E</em>, <strong>54</strong>, 5041-5052, 1996, doi: 10.1103/PhysRevE.54.5041.</p>
+</dd>
+<dt class="label" id="peng1976"><span class="brackets"><a class="fn-backref" href="#id4">Peng1976</a></span></dt>
+<dd><p>DY Peng and DB Robinson, A new two-constant equation of state, <em>Industrial &amp; Engineering Chemistry Fundamentals</em>, <strong>15</strong>, 59-64, 1976, doi: 10.1021/i160057a011.</p>
+</dd>
+<dt class="label" id="liu2010"><span class="brackets"><a class="fn-backref" href="#id5">Liu2010</a></span></dt>
+<dd><p>M Liu, Z Yu, T Wang, J Wang and LS Fan, A modified pseudopotential for a lattice Boltzmann simulation of bubbly flow, <em>Chemical Engineering Science</em>, <strong>65</strong>, 5615-5623, 2010, doi: 10.1016/j.ces.2010.08.014.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -200,17 +191,15 @@
   <p class="topless"><a href="LBEExercise2.html"
                         title="next chapter">LBE Exercise 2: Drop flows</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -231,12 +220,13 @@
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="LBE.html" >Lattice Boltzmann Equation</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="LBE.html" >Lattice Boltzmann Equation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LBE Exercise 1: Phase separation and equations of state</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

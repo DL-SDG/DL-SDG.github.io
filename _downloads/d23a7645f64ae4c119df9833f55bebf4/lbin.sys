@@ -42,6 +42,7 @@ collision_type               BGKGuo
 interaction_type             Lishchuk
 segregation                  1.4
 output_format                VTK
+output_type                  ANSI
 grid_number_x                150
 grid_number_y                50
 grid_number_z                1

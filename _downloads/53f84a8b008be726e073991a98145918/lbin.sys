@@ -8,7 +8,7 @@ incompressible_fluids        0
 collision_type               BGK
 interaction_type             ShanChen
 output_format                VTK
-output_type                  Binary
+output_type                  ANSI
 grid_number_x                50
 grid_number_y                50
 grid_number_z                1

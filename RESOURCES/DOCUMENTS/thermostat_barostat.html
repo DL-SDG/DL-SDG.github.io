@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Thermostats and barostats (system regulators) &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,7 +35,8 @@
           <a href="coarse_graining.html" title="Coarse-graining"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Thermostats and barostats (system regulators)</a></li> 
       </ul>
     </div>  
 
@@ -45,7 +45,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="thermostats-and-barostats-system-regulators">
+  <section id="thermostats-and-barostats-system-regulators">
 <span id="thermostat-barostat"></span><h1>Thermostats and barostats (system regulators)<a class="headerlink" href="#thermostats-and-barostats-system-regulators" title="Permalink to this headline">¶</a></h1>
 <p>This page illustrates characteristics feature of various types of regulators used in molecular simulations to maintain the temperature and pressure of the system.</p>
 <p>The text will make references to DL_POLY but it is also applicable to other packages.</p>
@@ -79,8 +79,8 @@ system parameter too vigorously and it may not allow the system to relax
 properly or even lead to large uncontrolled fluctuations of the system
 regulators around their targeted values.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">There are no unique ‘ideal values’ for the relaxation times: their
+<p class="admonition-title">Note</p>
+<p>There are no unique ‘ideal values’ for the relaxation times: their
 choice is dependent on the type of system being modelled and the nature
 of the regulators (equation of motions). However, for many atomistic
 systems a typical value for a thermostat relaxation time is within the
@@ -95,7 +95,7 @@ and hence not all of them can sample correctly the equilibrium or be
 used correctly for non-equilibrium simulations. However, all of them
 have their own uses and it is generally a matter of preference which one
 should be used, especially for equilibration.</p>
-<div class="section" id="temperature-rescale">
+<section id="temperature-rescale">
 <h2>Temperature rescale<a class="headerlink" href="#temperature-rescale" title="Permalink to this headline">¶</a></h2>
 <p>Another way to maintain the temperature of the system is by using
 brute-force rescaling of the particle velocities to maintain precisely
@@ -112,16 +112,16 @@ steps in the <em>CONTROL</em> file. Once the timestep number exceeds the number
 of <em>equilibration</em> steps (i.e. when the number of <em>steps</em> is larger),
 only then are the system regulators from the selected integrator applied.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>Example below shows an example how to apply brute-force temperature rescale
 effect in the DL_POLY <em>CONTROL</em> file:</p>
 <p><em>steps 80000</em></p>
 <p><em>equilibration steps 50000</em></p>
-<p class="last">This means brute-force scaling temperature applies for the first 50,000 steps.
+<p>This means brute-force scaling temperature applies for the first 50,000 steps.
 After that, the selected system regulators apply for the remaining 30,000 steps.</p>
 </div>
-</div>
-<div class="section" id="types-of-system-regulators">
+</section>
+<section id="types-of-system-regulators">
 <h2>Types of system regulators<a class="headerlink" href="#types-of-system-regulators" title="Permalink to this headline">¶</a></h2>
 <p>Different types of system regulators have different characteristics that
 perform suitably depending on the system types. There is a vague
@@ -142,10 +142,10 @@ said, (i) generators and their initial states can be selected to give
 consistent results for different runs, and (ii) regulators with
 correctly defined dynamics should give statistically similar results
 even for runs with different generator setups.</p>
-</div>
-<div class="section" id="coupling-methods">
+</section>
+<section id="coupling-methods">
 <h2>Coupling methods<a class="headerlink" href="#coupling-methods" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="evans-thermostat">
+<section id="evans-thermostat">
 <h3>Evans thermostat<a class="headerlink" href="#evans-thermostat" title="Permalink to this headline">¶</a></h3>
 <p>It couples the particles in the system to a heat
 ‘bath’ via a kinetic temperature constraint that generates a
@@ -153,8 +153,8 @@ self-adjusting velocity (kinetic) friction. It generates a proper
 <em>NVEkin</em> ensemble and can be used for systems with a steady flow. It
 can be used for equilibration. It is suitable for soft condensed matter
 systems such as liquids.</p>
-</div>
-<div class="section" id="langevin-thermostat">
+</section>
+<section id="langevin-thermostat">
 <h3>Langevin thermostat<a class="headerlink" href="#langevin-thermostat" title="Permalink to this headline">¶</a></h3>
 <p>It couples the system to a coupled viscous
 background (with a user-defined kinetic friction) and a <strong>stochastic</strong>
@@ -169,8 +169,8 @@ The thermostat adds a random centre of mass motion that has zero mean,
 i.e. there will not be a long-term drift of the centre of mass.</p>
 <p>The damping effects apply on the particles means there is a lost of momentum transfer.
 Therefore, diffusion coefficients cannot be determined when applying the Langevin thermostat.</p>
-</div>
-<div class="section" id="andersen-thermostat">
+</section>
+<section id="andersen-thermostat">
 <h3>Andersen thermostat<a class="headerlink" href="#andersen-thermostat" title="Permalink to this headline">¶</a></h3>
 <p>It randomly selects particles and replaces
 their velocities with values <strong>randomly</strong> chosen from a
@@ -182,8 +182,8 @@ matter systems such as fluids and biological, provide it is not used for
 the calculation of exact dynamical properties. If no care is taken the
 original algorithm may lead to centre of mass drift. However, this is
 counteracted in all modern versions of the algorithm.</p>
-</div>
-<div class="section" id="berendsen-thermostat">
+</section>
+<section id="berendsen-thermostat">
 <h3>Berendsen thermostat<a class="headerlink" href="#berendsen-thermostat" title="Permalink to this headline">¶</a></h3>
 <p>It couples the system to a virtual heat ‘bath’
 via a brute force velocity rescaling, only moderated by the relaxation
@@ -197,8 +197,8 @@ purposes (e.g. a steep descent to <span class="math notranslate nohighlight">\(T
 sampling. Although, if a system is well defined by a model and in
 equilibrium, all integrators should generate the same energies and
 virials.</p>
-</div>
-<div class="section" id="nose-hoover-thermostat">
+</section>
+<section id="nose-hoover-thermostat">
 <h3>Nosé-Hoover thermostat<a class="headerlink" href="#nose-hoover-thermostat" title="Permalink to this headline">¶</a></h3>
 <p>It defines a mass for the heat ‘bath’
 governed by the relaxation parameter. It results in slow, decreasing
@@ -206,8 +206,8 @@ fluctuations of the system kinetic energy towards the desired
 <span class="math notranslate nohighlight">\(T_{target}\)</span>. It samples the <em>NVT</em> (canonical ensemble) and is
 considered the gold standard by many communities. It is suitable for all
 condensed matter systems (liquids, solutions, biological systems).</p>
-</div>
-<div class="section" id="gst-thermostat">
+</section>
+<section id="gst-thermostat">
 <h3>GST thermostat<a class="headerlink" href="#gst-thermostat" title="Permalink to this headline">¶</a></h3>
 <p>The Gentle Stochastic Thermostat (GST) is an
 extension on the Nosé-Hoover thermostat in which the Nosé-Hoover
@@ -215,8 +215,8 @@ thermostat friction has its own Brownian dynamics, governed by a
 Langevin friction. The GST samples the <em>NVT</em> (canonical ensemble) and is
 considered the new gold standard. It is the only ensemble that warrants
 ergodicity by construction and thus is suitable for all model systems.</p>
-</div>
-<div class="section" id="dpd-thermostat">
+</section>
+<section id="dpd-thermostat">
 <h3>DPD thermostat<a class="headerlink" href="#dpd-thermostat" title="Permalink to this headline">¶</a></h3>
 <p>Dissipative Particle Dynamics (DPD) is a pairwise
 generalised form of the Langevin thermostat. It applies random (‘heat
@@ -231,11 +231,11 @@ use larger time steps than other thermostats. It is suitable for soft
 condensed matter systems (including those with flow fields) at coarse
 grain length scales, intended for mesoscopic (DPD) simulations.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">To obtain equilibration as quickly as possible in DPD simulations, the dissipative force parameter <span class="math notranslate nohighlight">\(\gamma\)</span> is often set to <span class="math notranslate nohighlight">\(4.5 \frac{k_B T \tau}{r_c^2}\)</span> (where <span class="math notranslate nohighlight">\(k_B T\)</span>, <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(r_c\)</span> are the selected energy, time and length scales for the simulation). This value corresponds to a minimum fluid viscosity and maximum diffusivity when no interaction forces are in use.</p>
+<p class="admonition-title">Note</p>
+<p>To obtain equilibration as quickly as possible in DPD simulations, the dissipative force parameter <span class="math notranslate nohighlight">\(\gamma\)</span> is often set to <span class="math notranslate nohighlight">\(4.5 \frac{k_B T \tau}{r_c^2}\)</span> (where <span class="math notranslate nohighlight">\(k_B T\)</span>, <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(r_c\)</span> are the selected energy, time and length scales for the simulation). This value corresponds to a minimum fluid viscosity and maximum diffusivity when no interaction forces are in use.</p>
 </div>
-</div>
-<div class="section" id="berendsen-barostat">
+</section>
+<section id="berendsen-barostat">
 <h3>Berendsen barostat<a class="headerlink" href="#berendsen-barostat" title="Permalink to this headline">¶</a></h3>
 <p>It couples the system to a virtual external
 pressure ‘bath’ by rescaling the simulation volume and particle
@@ -250,8 +250,8 @@ although it can be coupled with other thermostats (e.g. with DPD in DL_MESO).
 In general, it is thought the Berendsen approach is quite suitable for
 equilibration purposes (e.g. a steep ascent or descent to <span class="math notranslate nohighlight">\(P_{target}\)</span>)
 but not recommended for sampling.</p>
-</div>
-<div class="section" id="langevin-barostat">
+</section>
+<section id="langevin-barostat">
 <h3>Langevin barostat<a class="headerlink" href="#langevin-barostat" title="Permalink to this headline">¶</a></h3>
 <p>It couples the system to a virtual piston, which
 moves according to how far instantaneous pressure is from the target
@@ -268,11 +268,11 @@ can frequently obtain the target pressure more quickly than other
 barostats and reduce correlation times for sampling of system
 properties.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Care needs to be taken when selecting the Langevin barostat relaxation time parameter, particularly for the choice of piston mass. Overly large values can decouple the barostat and particle dynamics (leading to inefficient sampling), while too small values can disturb the particle dynamics. The optimum value normally has to be chosen by trial-and-error, although a rule of thumb suggests the resulting frequency of volume fluctuations should be around ten times smaller than the thermostat frequency (related to its kinetic friction parameter). In turn, a good choice for barostat kinetic friction is between half and one tenth of the volume fluctuation frequency.</p>
+<p class="admonition-title">Note</p>
+<p>Care needs to be taken when selecting the Langevin barostat relaxation time parameter, particularly for the choice of piston mass. Overly large values can decouple the barostat and particle dynamics (leading to inefficient sampling), while too small values can disturb the particle dynamics. The optimum value normally has to be chosen by trial-and-error, although a rule of thumb suggests the resulting frequency of volume fluctuations should be around ten times smaller than the thermostat frequency (related to its kinetic friction parameter). In turn, a good choice for barostat kinetic friction is between half and one tenth of the volume fluctuation frequency.</p>
 </div>
-</div>
-<div class="section" id="nose-hoover-barostat">
+</section>
+<section id="nose-hoover-barostat">
 <h3>Nosé-Hoover barostat<a class="headerlink" href="#nose-hoover-barostat" title="Permalink to this headline">¶</a></h3>
 <p>It couples the system to a virtual external
 pressure ‘bath’, whose mass is governed by the relaxation parameter. It
@@ -285,11 +285,12 @@ systems), although it only acts correctly for larger simulations. An
 extended form of this barostat with further connections to the
 thermostat – the <strong>Martyna-Tuckerman-Klein barostat</strong> – overcomes this
 restriction.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -325,17 +326,15 @@ restriction.</p>
   <p class="topless"><a href="DPDIntro.html"
                         title="next chapter">Dissipative Particle Dynamics (DPD)</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -353,12 +352,13 @@ restriction.</p>
           <a href="coarse_graining.html" title="Coarse-graining"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Thermostats and barostats (system regulators)</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>
