@@ -1,21 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Inputs Preparation &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" accesskey="U">Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Inputs Preparation</a></li> 
+          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" accesskey="U">Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,26 +46,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="inputs-preparation">
+  <div class="section" id="inputs-preparation">
 <h1>Inputs Preparation<a class="headerlink" href="#inputs-preparation" title="Permalink to this headline">¶</a></h1>
 <p>The aim of these instructions is to show you how to simulate coexisting vapour and liquid at the mesoscale using the Lattice Boltzmann Equation (LBE).</p>
 <p>We will prepare two sets of DL_MESO_LBE input files for different mesoscopic interaction models. One of these uses Shan-Chen pseudopotentials to calculate interaction forces on the fluid. The other is based on a free-energy LBE method that incorporates the required equation of state into the local equilibrium.</p>
 <p>In both cases, the main input file required is used to specify the interaction model, the equation of state (EOS) and its parameters, and other simulation controls (<strong>lbin.sys</strong>).</p>
-<dl class="field-list simple">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>DL_MESO_LBE can read <strong>lbin.spa</strong> files specifying boundary conditions and <strong>lbin.init</strong> files specifying the initial conditions at specific grid points, although the latter is entirely optional. Initial conditions that apply across the entire calculation grid can be specified in the <strong>lbin.sys</strong> file.</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">DL_MESO_LBE can read <strong>lbin.spa</strong> files specifying boundary conditions and <strong>lbin.init</strong> files specifying the initial conditions at specific grid points, although the latter is entirely optional. Initial conditions that apply across the entire calculation grid can be specified in the <strong>lbin.sys</strong> file.</td>
+</tr>
+</tbody>
+</table>
 <p>Both simulations will make use of <a class="reference internal" href="../DOCUMENTS/LBETheory.html#lbe-scale"><span class="std std-ref">internal LBE simulation units</span></a>, which are normally:</p>
 <ul class="simple">
-<li><p>the grid spacing (length scale), <span class="math notranslate nohighlight">\(\Delta x\)</span></p></li>
-<li><p>the timestep size (time scale), <span class="math notranslate nohighlight">\(\Delta t\)</span></p></li>
+<li>the grid spacing (length scale), <span class="math notranslate nohighlight">\(\Delta x\)</span></li>
+<li>the timestep size (time scale), <span class="math notranslate nohighlight">\(\Delta t\)</span></li>
 </ul>
 <p>and both usually set to 1 internally in the calculation. Fluid densities are free parameters and can be selected arbitrarily, although most LBE simulations try to keep their values around 1 to maximise available computational precision. An important parameter to choose is the relaxation time <span class="math notranslate nohighlight">\(\tau\)</span> for the fluid, which is related to kinematic viscosity <span class="math notranslate nohighlight">\(\nu\)</span> (ratio of dynamic viscosity to density) as well as the grid spacing and timestep size.</p>
 <p>The calculation will take place inside a two-dimensional periodic box, whose size we will specify in the <strong>lbin.sys</strong> file.</p>
-<section id="background-theory-and-information">
+<div class="section" id="background-theory-and-information">
 <h2>Background theory and information<a class="headerlink" href="#background-theory-and-information" title="Permalink to this headline">¶</a></h2>
-<p>Equations of state can be used to represent how a fluid behaves thermodynamically. One type of equation of state commonly used to describe fluids capable of separating into vapour and liquid phases below a critical point are <em>cubic equations of state</em>, i.e. they express pressure as a cubic function of density. One particularly useful cubic equation of state is the Peng-Robinson equation <a class="reference internal" href="#peng1976" id="id1"><span>[Peng1976]</span></a>:</p>
+<p>Equations of state can be used to represent how a fluid behaves thermodynamically. One type of equation of state commonly used to describe fluids capable of separating into vapour and liquid phases below a critical point are <em>cubic equations of state</em>, i.e. they express pressure as a cubic function of density. One particularly useful cubic equation of state is the Peng-Robinson equation <a class="reference internal" href="#peng1976" id="id1">[Peng1976]</a>:</p>
 <div class="math notranslate nohighlight">
 \[p = \frac{\rho RT}{1 - b \rho} - \frac{a \alpha\left(T_r, \omega\right) \rho^2}{1 + 2b \rho - b^2 \rho^2}\]</div>
 <p>which is especially good at predicting the densities of coexisting liquid and vapour phases for a wide variety of materials.</p>
@@ -75,31 +78,35 @@
 <div class="math notranslate nohighlight">
 \[b \approx 0.07780 \frac{R T_c}{p_c}.\]</div>
 <p>where <span class="math notranslate nohighlight">\(R\)</span> is the universal gas constant, equivalent to the product of the Boltzmann constant and Avogadro number, <span class="math notranslate nohighlight">\(k_B N_A\)</span>. The function <span class="math notranslate nohighlight">\(\alpha\)</span> depends on reduced temperature <span class="math notranslate nohighlight">\(T_r = T/T_c\)</span> and a species-dependent acentric factor <span class="math notranslate nohighlight">\(\omega\)</span> related to molecular non-sphericity.</p>
-<p>We can exploit the <em>theorem of corresponding states</em> in our simulation and use any values for <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(R\)</span> that result in numerically stable calculations. If we model our fluid at the required reduced temperature <span class="math notranslate nohighlight">\(T_r\)</span>, the ratio between liquid (higher) and vapour (lower) densities should be correct regardless of the values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. The acentric factor <span class="math notranslate nohighlight">\(\omega\)</span> will provide the chemical specificity for our system through the function <span class="math notranslate nohighlight">\(\alpha\)</span> <a class="footnote-reference brackets" href="#id7" id="id2">1</a>.</p>
+<p>We can exploit the <em>theorem of corresponding states</em> in our simulation and use any values for <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(R\)</span> that result in numerically stable calculations. If we model our fluid at the required reduced temperature <span class="math notranslate nohighlight">\(T_r\)</span>, the ratio between liquid (higher) and vapour (lower) densities should be correct regardless of the values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. The acentric factor <span class="math notranslate nohighlight">\(\omega\)</span> will provide the chemical specificity for our system through the function <span class="math notranslate nohighlight">\(\alpha\)</span> <a class="footnote-reference" href="#id7" id="id2">[1]</a>.</p>
 <p>We will model hydrogen chloride (HCl) at 0ºC (273.15 K), which has the following properties:</p>
 <ul class="simple">
-<li><p>Critical temperature <span class="math notranslate nohighlight">\(T_c = 324.7\)</span> K</p></li>
-<li><p>Acentric factor <span class="math notranslate nohighlight">\(\omega = 0.133\)</span></p></li>
-<li><p>Kinematic viscosity <span class="math notranslate nohighlight">\(\nu = 1.9 \times 10^{-6}\)</span> m<sup>2</sup> s<sup>-1</sup></p></li>
-<li><p>Speed of sound <span class="math notranslate nohighlight">\(c_s = 294\)</span> m s<sup>-1</sup></p></li>
+<li>Critical temperature <span class="math notranslate nohighlight">\(T_c = 324.7\)</span> K</li>
+<li>Acentric factor <span class="math notranslate nohighlight">\(\omega = 0.133\)</span></li>
+<li>Kinematic viscosity <span class="math notranslate nohighlight">\(\nu = 1.9 \times 10^{-6}\)</span> m<sup>2</sup> s<sup>-1</sup></li>
+<li>Speed of sound <span class="math notranslate nohighlight">\(c_s = 294\)</span> m s<sup>-1</sup></li>
 </ul>
 <p>If we set the relaxation time (<span class="math notranslate nohighlight">\(\tau\)</span>) for our calculations to 1, this gives a grid spacing of <span class="math notranslate nohighlight">\(\Delta x \approx 2.2387 \times 10^{-8}\)</span> m and a timestep of <span class="math notranslate nohighlight">\(\Delta t \approx 4.3963 \times 10^{-11}\)</span> s.</p>
-<p>Using the values for <span class="math notranslate nohighlight">\(a = \frac{2}{49}\)</span>, <span class="math notranslate nohighlight">\(b = \frac{2}{21}\)</span> and <span class="math notranslate nohighlight">\(R = 1\)</span> suggested by Yuan and Schaefer <a class="reference internal" href="#yuan2006" id="id3"><span>[Yuan2006]</span></a> and rearranging the above equations, we get a lattice-scaled critical temperature of <span class="math notranslate nohighlight">\(T_c \approx 0.072919\)</span>. The target reduced temperature is <span class="math notranslate nohighlight">\(T_r \approx 0.84124\)</span>, so we can set the temperature for the simuation to <span class="math notranslate nohighlight">\(T = T_c T_r \approx 0.061342\)</span>.</p>
+<p>Using the values for <span class="math notranslate nohighlight">\(a = \frac{2}{49}\)</span>, <span class="math notranslate nohighlight">\(b = \frac{2}{21}\)</span> and <span class="math notranslate nohighlight">\(R = 1\)</span> suggested by Yuan and Schaefer <a class="reference internal" href="#yuan2006" id="id3">[Yuan2006]</a> and rearranging the above equations, we get a lattice-scaled critical temperature of <span class="math notranslate nohighlight">\(T_c \approx 0.072919\)</span>. The target reduced temperature is <span class="math notranslate nohighlight">\(T_r \approx 0.84124\)</span>, so we can set the temperature for the simuation to <span class="math notranslate nohighlight">\(T = T_c T_r \approx 0.061342\)</span>.</p>
 <p>We want to model the hydrogen chloride with an initial density between expected values for the vapour and liquid phases, but also vary the density randomly by a small amount to provide some initial gradients and encourage separation.</p>
 <p>It is possible to work out the expected liquid and vapour densities - which we can compare to the values obtained in simulations - by carrying out a <a class="reference external" href="https://en.wikipedia.org/wiki/Maxwell_construction">Maxwell construction</a> on our equation of state at the required temperature. For the given equation of state, parameters and temperature, we would expect liquid and vapour densities of <span class="math notranslate nohighlight">\(\rho_l \approx 6.4471\)</span> and <span class="math notranslate nohighlight">\(\rho_v \approx 0.3955\)</span>.</p>
-<dl class="field-list">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>We have supplied a Python script that can carry out a Maxwell construction for a given equation of state, reduced temperature and acentric factor: <a class="reference download internal" download="" href="../../_downloads/42b8114bef26b2ab97c08866a1bc1669/maxwell.py"><code class="xref download docutils literal notranslate"><span class="pre">maxwell.py</span></code></a>. The above values for the densities can be obtained using this script by typing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">maxwell</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">PR</span> <span class="o">--</span><span class="n">Tr</span> <span class="mf">0.84124</span> <span class="o">--</span><span class="n">omega</span> <span class="mf">0.133</span> <span class="o">--</span><span class="n">a</span> <span class="mf">2.0</span><span class="o">/</span><span class="mf">49.0</span> <span class="o">--</span><span class="n">b</span> <span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span> <span class="o">--</span><span class="n">R</span> <span class="mf">1.0</span>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body"><p class="first">We have supplied a Python script that can carry out a Maxwell construction for a given equation of state, reduced temperature and acentric factor: <a class="reference download internal" download="" href="../../_downloads/42b8114bef26b2ab97c08866a1bc1669/maxwell.py"><code class="xref download docutils literal notranslate"><span class="pre">maxwell.py</span></code></a>. The above values for the densities can be obtained using this script by typing:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">maxwell</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">PR</span> <span class="o">--</span><span class="n">Tr</span> <span class="mf">0.84124</span> <span class="o">--</span><span class="n">omega</span> <span class="mf">0.133</span> <span class="o">--</span><span class="n">a</span> <span class="mf">2.0</span><span class="o">/</span><span class="mf">49.0</span> <span class="o">--</span><span class="n">b</span> <span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span> <span class="o">--</span><span class="n">R</span> <span class="mf">1.0</span>
 </pre></div>
 </div>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <p>There are two approaches available to impose an equation of state onto a fluid in LBE simulations: the <a class="reference internal" href="../DOCUMENTS/LBETheory.html#shanchen"><span class="std std-ref">Shan-Chen pseudopotential method</span></a> and <a class="reference internal" href="../DOCUMENTS/LBETheory.html#freeenergylbe"><span class="std std-ref">free-energy LBE</span></a>.</p>
-</section>
-<section id="shan-chen-pseudopotential-approach">
+</div>
+<div class="section" id="shan-chen-pseudopotential-approach">
 <h2>Shan-Chen pseudopotential approach<a class="headerlink" href="#shan-chen-pseudopotential-approach" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="../DOCUMENTS/LBETheory.html#shanchen"><span class="std std-ref">Shan-Chen pseudopotential method</span></a> defines a function of density <span class="math notranslate nohighlight">\(\rho\)</span> known as a <em>pseudopotential</em>, <span class="math notranslate nohighlight">\(\psi (\rho)\)</span> <a class="footnote-reference brackets" href="#id8" id="id4">2</a>, and calculates gradients of  <span class="math notranslate nohighlight">\(\psi\)</span> to find the interaction force acting on the fluid at a given lattice point. This force is then applied during the LBE collision step using a <a class="reference internal" href="../DOCUMENTS/LBETheory.html#lbeforcing"><span class="std std-ref">forcing term</span></a>. The function <span class="math notranslate nohighlight">\(\psi\)</span> can be selected to give the required equation of state <a class="reference internal" href="#yuan2006" id="id5"><span>[Yuan2006]</span></a>. The interfacial tension between coexisting phases is an <em>emergent</em> property rather than one that can be imposed and, as such, this method is not always thermodynamically consistent: the resulting densities therefore might not be quite correct.</p>
+<p>The <a class="reference internal" href="../DOCUMENTS/LBETheory.html#shanchen"><span class="std std-ref">Shan-Chen pseudopotential method</span></a> defines a function of density <span class="math notranslate nohighlight">\(\rho\)</span> known as a <em>pseudopotential</em>, <span class="math notranslate nohighlight">\(\psi (\rho)\)</span> <a class="footnote-reference" href="#id8" id="id4">[2]</a>, and calculates gradients of  <span class="math notranslate nohighlight">\(\psi\)</span> to find the interaction force acting on the fluid at a given lattice point. This force is then applied during the LBE collision step using a <a class="reference internal" href="../DOCUMENTS/LBETheory.html#lbeforcing"><span class="std std-ref">forcing term</span></a>. The function <span class="math notranslate nohighlight">\(\psi\)</span> can be selected to give the required equation of state <a class="reference internal" href="#yuan2006" id="id5">[Yuan2006]</a>. The interfacial tension between coexisting phases is an <em>emergent</em> property rather than one that can be imposed and, as such, this method is not always thermodynamically consistent: the resulting densities therefore might not be quite correct.</p>
 <p>Open a text editor, then copy and paste the following into it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">space_dimension</span>              <span class="mi">2</span>
 <span class="n">discrete_speed</span>               <span class="mi">9</span>
@@ -140,27 +147,30 @@
 <p>and save as a file called <strong>lbin.sys</strong>.</p>
 <p>This file allows us to specify important properties of our LBE simulation. The first 10 lines here include keywords that are essential for a DL_MESO_LBE calculation and <strong>must</strong> be included in the file. They specify the numbers of:</p>
 <ul class="simple">
-<li><p>Spatial dimensions (2 or 3)</p></li>
-<li><p>Discrete speeds (lattice links per grid point)</p></li>
-<li><p>Fluids</p></li>
-<li><p>Solutes</p></li>
-<li><p>Temperature scalars</p></li>
-<li><p>Phase fields</p></li>
-<li><p>Grid points in each Cartesian direction</p></li>
-<li><p>Grid points to use as a boundary halo for parallel (multiple-core) calculations</p></li>
+<li>Spatial dimensions (2 or 3)</li>
+<li>Discrete speeds (lattice links per grid point)</li>
+<li>Fluids</li>
+<li>Solutes</li>
+<li>Temperature scalars</li>
+<li>Phase fields</li>
+<li>Grid points in each Cartesian direction</li>
+<li>Grid points to use as a boundary halo for parallel (multiple-core) calculations</li>
 </ul>
-<dl class="field-list simple">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>The number of spatial dimensions <span class="math notranslate nohighlight">\(n\)</span> and discrete speeds per grid point <span class="math notranslate nohighlight">\(m\)</span> indicate the <em>lattice model</em> to be used, which is often denoted as D<span class="math notranslate nohighlight">\(n\)</span>Q<span class="math notranslate nohighlight">\(m\)</span>. Only a few are currently available in DL_MESO_LBE: D2Q9 for two-dimensional calculations, D3Q15, D3Q19 and D3Q27 for three-dimensional calculations.</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">The number of spatial dimensions <span class="math notranslate nohighlight">\(n\)</span> and discrete speeds per grid point <span class="math notranslate nohighlight">\(m\)</span> indicate the <em>lattice model</em> to be used, which is often denoted as D<span class="math notranslate nohighlight">\(n\)</span>Q<span class="math notranslate nohighlight">\(m\)</span>. Only a few are currently available in DL_MESO_LBE: D2Q9 for two-dimensional calculations, D3Q15, D3Q19 and D3Q27 for three-dimensional calculations.</td>
+</tr>
+</tbody>
+</table>
 <p>We are using a <span class="math notranslate nohighlight">\(50 \times 50\)</span> grid for our calculation and running it over 20 000 timesteps (without equilibration), saving snapshots every 100 timesteps to binary VTK-formatted files. The last four lines in the file (<code class="docutils literal notranslate"><span class="pre">output_combine_x</span></code> etc.) are only needed for multiple-core parallel calculation runs to ensure one file per snapshot is generated and DL_MESO_LBE can close down safely after a set time (given in seconds) if the calculation needs to be submitted to a job queue.</p>
-<p>We are modelling one fluid <a class="footnote-reference brackets" href="#id9" id="id6">3</a> and setting its initial density to <span class="math notranslate nohighlight">\(\rho_0 = 2.0 (1 \pm 0.1 \xi)\)</span>, where <span class="math notranslate nohighlight">\(\xi\)</span> is a random number between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(+1\)</span> chosen for each grid point. Its relaxation time <span class="math notranslate nohighlight">\(\tau = 1\)</span> (as chosen above) and we are applying the Peng-Robinson equation of state (<code class="docutils literal notranslate"><span class="pre">potential_type_0</span></code>) with the values of <span class="math notranslate nohighlight">\(a\)</span> (<code class="docutils literal notranslate"><span class="pre">eos_parameter_a_0</span></code>), <span class="math notranslate nohighlight">\(b\)</span> (<code class="docutils literal notranslate"><span class="pre">eos_parameter_a_0</span></code>), acentric factor <span class="math notranslate nohighlight">\(\omega\)</span> (<code class="docutils literal notranslate"><span class="pre">acentric_factor_0</span></code>) and <span class="math notranslate nohighlight">\(R\)</span> (<code class="docutils literal notranslate"><span class="pre">gas_constant</span></code>) given above.</p>
+<p>We are modelling one fluid <a class="footnote-reference" href="#id9" id="id6">[3]</a> and setting its initial density to <span class="math notranslate nohighlight">\(\rho_0 = 2.0 (1 \pm 0.1 \xi)\)</span>, where <span class="math notranslate nohighlight">\(\xi\)</span> is a random number between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(+1\)</span> chosen for each grid point. Its relaxation time <span class="math notranslate nohighlight">\(\tau = 1\)</span> (as chosen above) and we are applying the Peng-Robinson equation of state (<code class="docutils literal notranslate"><span class="pre">potential_type_0</span></code>) with the values of <span class="math notranslate nohighlight">\(a\)</span> (<code class="docutils literal notranslate"><span class="pre">eos_parameter_a_0</span></code>), <span class="math notranslate nohighlight">\(b\)</span> (<code class="docutils literal notranslate"><span class="pre">eos_parameter_a_0</span></code>), acentric factor <span class="math notranslate nohighlight">\(\omega\)</span> (<code class="docutils literal notranslate"><span class="pre">acentric_factor_0</span></code>) and <span class="math notranslate nohighlight">\(R\)</span> (<code class="docutils literal notranslate"><span class="pre">gas_constant</span></code>) given above.</p>
 <p>We are assuming the system is isothermal (constant temperature throughout) and are therefore fixing its temperature (<code class="docutils literal notranslate"><span class="pre">temperature_system</span></code>) to a value that should give the correct reduced temperature for diethyl ether at 298 K. Since there are no heat transfers involved, we do not need to model a temperature field.</p>
 <p>The speed of sound (<code class="docutils literal notranslate"><span class="pre">sound_speed</span></code>) and kinematic viscosity (<code class="docutils literal notranslate"><span class="pre">kinetic_viscosity</span></code>) can be used to scale the grid in the snapshot files. To keep the scaling in lattice units, we are using the lattice values for these properties: <span class="math notranslate nohighlight">\(c_s = \frac{1}{\sqrt{3}}\)</span> and <span class="math notranslate nohighlight">\(\nu = \frac{2 \tau - 1}{6}\)</span>.</p>
 <p>The keyword <code class="docutils literal notranslate"><span class="pre">collision_type</span></code> indicates how collisions between particles on the lattice will be determined, including how forces are applied: we have chosen the simplest form of collisions (BGK) and forcing terms. The <code class="docutils literal notranslate"><span class="pre">interaction_type</span></code> keyword indicates how we are calculating interaction forces for the fluid.</p>
-</section>
-<section id="free-energy-approach">
+</div>
+<div class="section" id="free-energy-approach">
 <h2>Free-energy approach<a class="headerlink" href="#free-energy-approach" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="../DOCUMENTS/LBETheory.html#freeenergylbe"><span class="std std-ref">Free-energy LBE</span></a> modifies the local equilibrium distribution function used in collisions to include the bulk pressure on the fluid (calculated from the equation of state) and various density gradient terms to apply a user-specified interfacial tension between the phases. No additional forces need to be applied to the fluid and thermodynamic consistency is guaranteed using this approach.</p>
 <p>Open a text editor, then copy and paste the following into it:</p>
@@ -202,39 +212,50 @@
 </div>
 <p>and save as a file called <strong>lbin.sys</strong>.</p>
 <p>You will note this is similar to the file used for the Shan-Chen approach, but there are some notable differences. These include the fact that free-energy LBE calculations can only apply a single equation of state for one or two fluids, which affects the specification of the equation of state (<code class="docutils literal notranslate"><span class="pre">equation_of_state</span></code>) and the parameters. There is also an additional parameter for the surface tension between phases, <span class="math notranslate nohighlight">\(\kappa\)</span> (<code class="docutils literal notranslate"><span class="pre">surface_tension_parameter</span></code>), that needs to be a non-zero value and controls the size of the interface between phases.</p>
-</section>
-<section id="boundary-conditions">
+</div>
+<div class="section" id="boundary-conditions">
 <h2>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h2>
 <p>Open a text editor and save an empty file as <strong>lbin.spa</strong>.</p>
 <p>This file will supply the boundary conditions for a DL_MESO_LBE calculation. If not otherwise specified, every grid point will contain fluid and opposite sides of the grid will have periodic boundary conditions. Since this is what we want for this calculation but DL_MESO_LBE still requires an <strong>lbin.spa</strong> file to run, we therefore need to supply an empty <strong>lbin.spa</strong> file.</p>
 <p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="peng1976"><span class="brackets"><a class="fn-backref" href="#id1">Peng1976</a></span></dt>
-<dd><p>DY Peng and DB Robinson, A new two-constant equation of state, <em>Industrial &amp; Engineering Chemistry Fundamentals</em>, <strong>15</strong>, 59-64, 1976, doi: 10.1021/i160057a011.</p>
-</dd>
-<dt class="label" id="yuan2006"><span class="brackets">Yuan2006</span><span class="fn-backref">(<a href="#id3">1</a>,<a href="#id5">2</a>)</span></dt>
-<dd><p>P Yuan and L Schaefer, Equations of state in a lattice Boltzmann model, <em>Physics of Fluids</em>, <strong>18</strong> 042101, 2006, doi: 10.1063/1.2187070.</p>
-</dd>
-</dl>
+<table class="docutils citation" frame="void" id="peng1976" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Peng1976]</a></td><td>DY Peng and DB Robinson, A new two-constant equation of state, <em>Industrial &amp; Engineering Chemistry Fundamentals</em>, <strong>15</strong>, 59-64, 1976, doi: 10.1021/i160057a011.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="yuan2006" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[Yuan2006]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id5">2</a>)</em> P Yuan and L Schaefer, Equations of state in a lattice Boltzmann model, <em>Physics of Fluids</em>, <strong>18</strong> 042101, 2006, doi: 10.1063/1.2187070.</td></tr>
+</tbody>
+</table>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
-<dd><p>This function can be chosen to represent particular molecular forms, e.g. polar fluids, although we are going to stick with the original equation proposed by Peng and Robinson:</p>
-<div class="math notranslate nohighlight">
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td><p class="first">This function can be chosen to represent particular molecular forms, e.g. polar fluids, although we are going to stick with the original equation proposed by Peng and Robinson:</p>
+<div class="last math notranslate nohighlight">
 \[\alpha \left(T_r, \omega\right) = \left[1 + \left(0.37464 + 1.54226 \omega - 0.26992 \omega^2 \right) \left(1 - \sqrt{T_r} \right) \right]^2.\]</div>
-</dd>
-<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
-<dd><p>The pseudopotential can also be a function of temperature, just as the equation of state it represents can be, although this dependence disappears when modelling an isothermal (constant temperature) system.</p>
-</dd>
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id6">3</a></span></dt>
-<dd><p>DL_MESO_LBE counts fluids and solutes from 0 to <span class="math notranslate nohighlight">\(N-1\)</span>, in the style of C/C++.</p>
-</dd>
-</dl>
-</section>
-</section>
+</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>The pseudopotential can also be a function of temperature, just as the equation of state it represents can be, although this dependence disappears when modelling an isothermal (constant temperature) system.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[3]</a></td><td>DL_MESO_LBE counts fluids and solutes from 0 to <span class="math notranslate nohighlight">\(N-1\)</span>, in the style of C/C++.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -270,15 +291,17 @@
   <p class="topless"><a href="vapour_liquid_simulation_run_lbe.html"
                         title="next chapter">Simulation Run</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -297,13 +320,12 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" >Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Inputs Preparation</a></li> 
+          <li class="nav-item nav-item-2"><a href="vapour_liquid_sim_lbe.html" >Simulating vapour-liquid coexistence using LBE (DL_MESO)</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

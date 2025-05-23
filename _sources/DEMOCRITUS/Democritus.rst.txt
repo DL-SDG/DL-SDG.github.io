@@ -6,6 +6,8 @@ Democritus is a Molecular Dynamics simulation program. It is named after the Gre
 
 The program uses Molecular Dynamics to control the motion of a group of atoms. You have the ability to change the temperature and the density, and study the effects this has to the system. The system displayed on the screen represents the element Argon (Ar), but the same things happen in all molecular systems, so you can discover a lot from this!
 
+Visit the visualiser through this link: :doc:`./visualiser`
+
 .. toctree::
    :maxdepth: 5
 

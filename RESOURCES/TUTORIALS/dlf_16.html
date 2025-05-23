@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>The Output files &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">The Output files</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,32 +47,32 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dlf-16"></span><section id="the-output-files">
-<h1>The Output files<a class="headerlink" href="#the-output-files" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="the-output-files">
+<span id="header-dlf-16"></span><h1>The Output files<a class="headerlink" href="#the-output-files" title="Permalink to this headline">¶</a></h1>
 <p>Upon successful in running DL_FIELD, the following files will be produced:</p>
 <ol class="arabic simple">
-<li><p>Input files for DL_POLY simulations. They are:</p></li>
+<li>Input files for DL_POLY simulations. They are:</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><p>dl_poly.CONFIG - DL_POLY configuration file. For DL_POLY version 4 or below, need to change the filename to <em>CONFIG</em>.</p></li>
-<li><p>dl_poly.FIELD - DL_POLY force field file. For DL_POLY version 4 or below, need to change the filename to <em>FIELD</em>.</p></li>
-<li><p>dl_poly.CONTROL - DL_POLY control file. It is a generic file that list a number of commonly used directives in DL_POLY. Need to change the filename to <em>CONTROL</em> for DL_POLY version 4 or below.</p></li>
+<li>dl_poly.CONFIG - DL_POLY configuration file. For DL_POLY version 4 or below, need to change the filename to <em>CONFIG</em>.</li>
+<li>dl_poly.FIELD - DL_POLY force field file. For DL_POLY version 4 or below, need to change the filename to <em>FIELD</em>.</li>
+<li>dl_poly.CONTROL - DL_POLY control file. It is a generic file that list a number of commonly used directives in DL_POLY. Need to change the filename to <em>CONTROL</em> for DL_POLY version 4 or below.</li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="2">
-<li><p>If option to produce Gromacs files is also switched on:</p></li>
+<li>If option to produce Gromacs files is also switched on:</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><p>The system topology file, <em>gromacs.top</em></p></li>
-<li><p>One or more include topology files, <em>gromacsX.itp</em>, where <em>X</em> = 1, 2, 3, …</p></li>
-<li><p>Coordinate file, <em>gromacs.gro</em></p></li>
-<li><p>A generic MD parameter file, <em>gromacs.mdp</em></p></li>
+<li>The system topology file, <em>gromacs.top</em></li>
+<li>One or more include topology files, <em>gromacsX.itp</em>, where <em>X</em> = 1, 2, 3, …</li>
+<li>Coordinate file, <em>gromacs.gro</em></li>
+<li>A generic MD parameter file, <em>gromacs.mdp</em></li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="3">
-<li><p>DL_FIELD system structure file, <em>dlf_notation.output</em>.</p></li>
+<li>DL_FIELD system structure file, <em>dlf_notation.output</em>.</li>
 </ol>
 <blockquote>
 <div><p>This file is produced if the input file format is in <em>xyz</em> or mol2. The file <em>dlf_notation.output</em> contained detailed chemical information of the system, as well as the connectivities of atoms. Example below shows the system structure of zonisamide, a small drug molecule.</p>
@@ -104,16 +105,19 @@
 </div>
 </div></blockquote>
 <ol class="arabic simple" start="4">
-<li><p>DL_FIELD conversion status file, <em>dl_field.output</em></p></li>
+<li>DL_FIELD conversion status file, <em>dl_field.output</em></li>
 </ol>
 <blockquote>
 <div><p>This file reports the conversion status in details, including any warnings. It is separated into several section.</p>
 <blockquote>
 <div><ul>
-<li><p>CONTROL STATUS REPORT. This section shows options that have been selected in the DL_FIELD <em>control</em> file.</p></li>
-<li><p>FORCE FIELD INITIALISATION. This section reports the reading status of the <em>sf</em>, <em>par</em> and <em>udff</em> files. DL_FIELD will pick suitable parameters for the user model and computer memory is allocated to set up model structure databases.</p></li>
-<li><p>CONVERSION STATUS REPORT. This is the main section of <em>dl_field.output</em>, which reports the conversion process of user configuration into suitable FF models for DL_POLY.</p></li>
-<li><p>LINKAGE INFORMATION BETWEEN RESIDUES. This section is especially useful for protein structures in the PDB format. For instance, DL_FIELD determines the linkage information between two neighbouring residues to check for any undiscovered/undesirable bonds between two atoms from different residues.</p>
+<li><p class="first">CONTROL STATUS REPORT. This section shows options that have been selected in the DL_FIELD <em>control</em> file.</p>
+</li>
+<li><p class="first">FORCE FIELD INITIALISATION. This section reports the reading status of the <em>sf</em>, <em>par</em> and <em>udff</em> files. DL_FIELD will pick suitable parameters for the user model and computer memory is allocated to set up model structure databases.</p>
+</li>
+<li><p class="first">CONVERSION STATUS REPORT. This is the main section of <em>dl_field.output</em>, which reports the conversion process of user configuration into suitable FF models for DL_POLY.</p>
+</li>
+<li><p class="first">LINKAGE INFORMATION BETWEEN RESIDUES. This section is especially useful for protein structures in the PDB format. For instance, DL_FIELD determines the linkage information between two neighbouring residues to check for any undiscovered/undesirable bonds between two atoms from different residues.</p>
 <p>Below shows a section of the output data for a protein molecule. Note that the C-N amide linkages are the most common ones but DL_FIELD can also pick up any possible S-S linkages, which may require user’s action whether to delete any thiolate hydrogen for the S-S disulphide linkages.</p>
 </li>
 </ul>
@@ -134,10 +138,9 @@
 </div></blockquote>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dlf-16"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -176,15 +179,17 @@
   <p class="topless"><a href="dlf_5.html"
                         title="next chapter">DL_FIELD <em>control</em> file</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -204,13 +209,12 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">The Output files</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

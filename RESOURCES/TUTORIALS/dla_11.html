@@ -1,21 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Cluster characterisation - Lindemann (Berry) Parameter &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -37,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dla_0.html" accesskey="U">DL_ANALYSER</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Cluster characterisation - Lindemann (Berry) Parameter</a></li> 
+          <li class="nav-item nav-item-3"><a href="dla_0.html" accesskey="U">DL_ANALYSER</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -47,11 +47,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dla-11"></span><section id="cluster-characterisation-lindemann-berry-parameter">
-<h1>Cluster characterisation - Lindemann (Berry) Parameter<a class="headerlink" href="#cluster-characterisation-lindemann-berry-parameter" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="cluster-characterisation-lindemann-berry-parameter">
+<span id="header-dla-11"></span><h1>Cluster characterisation - Lindemann (Berry) Parameter<a class="headerlink" href="#cluster-characterisation-lindemann-berry-parameter" title="Permalink to this headline">¶</a></h1>
 <p>This page describes how you can characterise a cluster, for instance, whether it is solid-like or in the molten state.
 It can be characterised in three different ways:</p>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>1. Cluster characterisation: Berry parameter</strong></p>
 <p>Clusters are characterised in terms of inter-particle distance fluctuations among the member particles that made up a cluster.</p>
 <p>This is defined as follows:</p>
@@ -62,8 +62,8 @@ It can be characterised in three different ways:</p>
 \[A = \frac{N(N-1)}{2}\]</div>
 <p>The parameter is obtained by averaging over all the configurations. So, Berry parameter is actually a measure of fractional deviation of the average distance per particle pair. A simple solid cluster would have a value <span class="math notranslate nohighlight">\({\Delta}_B\)</span> of ~0.10-0.15. The smaller the value, the more rigid the cluster.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Cluster characterisation is more suited for well-defined clusters in the system. If there are several clusters and they are constantly forming and destroying, then <span class="math notranslate nohighlight">\({\Delta}_B\)</span> may only reflect the everage effects, depending on the stability of clusters.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Cluster characterisation is more suited for well-defined clusters in the system. If there are several clusters and they are constantly forming and destroying, then <span class="math notranslate nohighlight">\({\Delta}_B\)</span> may only reflect the everage effects, depending on the stability of clusters.</p>
 </div>
 <p>The cluster characterisation option takes three values: the on/off switch, <em>atom_label</em> and <em>Molecule_label</em>.
 For example, consider MD simulations of a silver nanocluster in gas phase, which consists of 4000 atoms, the relevant options in the <em>control</em> file are shown below:</p>
@@ -106,32 +106,32 @@ none           * Template file for matching (if &#39;none&#39;, first config in 
 </div>
 <p>Note that, we switch off the priodic boundary (0), to prevent counting of image distances, especially for particles that move too far away from the main cluster body.</p>
 <p>The ‘AG’ is the <em>atom_label</em> as in the <em>CONFIG</em> file. Since atom-based analysis is selected with ‘all-atom’ (1) as the analysis criteria, therfore, the <em>Molecule_label</em> is ignored. Below lists the values of <span class="math notranslate nohighlight">\({\Delta}_B\)</span> over different temperatures. These values were obtain from reading the <em>HISTORY</em> files generated for each temperature in MD simulations.</p>
-<table class="colwidths-given docutils align-center" id="id1">
+<table border="1" class="colwidths-given docutils align-center" id="id1">
 <caption><span class="caption-text">Berry Parameters for Ag nanoparticle</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col width="50%" />
+<col width="50%" />
 </colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Temperature/K</p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\({\Delta}_B\)</span></p></th>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Temperature/K</th>
+<th class="head"><span class="math notranslate nohighlight">\({\Delta}_B\)</span></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>400</p></td>
-<td><p>0.007554</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>400</td>
+<td>0.007554</td>
 </tr>
-<tr class="row-odd"><td><p>1000</p></td>
-<td><p>0.033418</p></td>
+<tr class="row-odd"><td>1000</td>
+<td>0.033418</td>
 </tr>
-<tr class="row-even"><td><p>1100</p></td>
-<td><p>0.047785</p></td>
+<tr class="row-even"><td>1100</td>
+<td>0.047785</td>
 </tr>
-<tr class="row-odd"><td><p>1200</p></td>
-<td><p>0.077138</p></td>
+<tr class="row-odd"><td>1200</td>
+<td>0.077138</td>
 </tr>
-<tr class="row-even"><td><p>1300</p></td>
-<td><p>0.112668</p></td>
+<tr class="row-even"><td>1300</td>
+<td>0.112668</td>
 </tr>
 </tbody>
 </table>
@@ -150,10 +150,9 @@ none           * Template file for matching (if &#39;none&#39;, first config in 
 <p>Note that, at 400 K, the distribution profile maintains a steady small value throughout the cluster region, indicating the solid nature of the material. At higher temepratures, increased fluctuations at outer regions are due to increased agitation of atoms while some atoms practically ‘fly out’, indicated by wild profile variations beyond the cluster region.</p>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dla-11"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -192,15 +191,17 @@ none           * Template file for matching (if &#39;none&#39;, first config in 
   <p class="topless"><a href="dlm_0.html"
                         title="next chapter">DL_MESO</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -220,13 +221,12 @@ none           * Template file for matching (if &#39;none&#39;, first config in 
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dla_0.html" >DL_ANALYSER</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Cluster characterisation - Lindemann (Berry) Parameter</a></li> 
+          <li class="nav-item nav-item-3"><a href="dla_0.html" >DL_ANALYSER</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

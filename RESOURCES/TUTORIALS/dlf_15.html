@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Pseudo points &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Pseudo points</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,23 +47,23 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dlf-15"></span><section id="pseudo-points">
-<h1>Pseudo points<a class="headerlink" href="#pseudo-points" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pseudo-points">
+<span id="header-dlf-15"></span><h1>Pseudo points<a class="headerlink" href="#pseudo-points" title="Permalink to this headline">¶</a></h1>
 <p>In DL_FIELD, a pseudo point is an imaginary particle, either charged or uncharged, and can take any mass value or even the vdw interactions. Its position must be fixed relative to other atom or group of atoms within a MOLECULE. In other words, the <em>RIGID</em> statement must be used within the <em>MOLECULE</em> template.</p>
 <p>Pseudo points are distinguished from normal atoms by using a two-character format in the form of QX, where X = 0 to 9 and A to V (case-sensitive). For example, Q1, Q2, QD are pseudo points.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The symbols QW, QX, QY and QZ are pre-defined for DL_FIELD internal use only.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">The symbols QW, QX, QY and QZ are pre-defined for DL_FIELD internal use only.</p>
 </div>
 <p>Pseudo point can be used in a number of scenerio. For example: change the polar behaviour of atoms and bonds, or presence of lone pairs.</p>
 <p>Please take note of the following when using pseudo points:</p>
 <ul class="simple">
-<li><p>The pseudo ATOM_TYPEs is unique within a MOLECULE. This means if there are more than one pseudo points in a MOLECULE, each pseudo point must be assigned to a different ATOM_TYPE and ATOM_KEY. However, similar pseudo points can be used across different MOLECULEs.</p></li>
-<li><p>A <em>RIGID</em> statement must be used for pseudo points that contained at least one normal ATOM.</p></li>
-<li><p>Pseudo points must not be connected to any other ATOMs within the MOLECULE. A self-CONNECT directive must be used for a pseudo point.</p></li>
+<li>The pseudo ATOM_TYPEs is unique within a MOLECULE. This means if there are more than one pseudo points in a MOLECULE, each pseudo point must be assigned to a different ATOM_TYPE and ATOM_KEY. However, similar pseudo points can be used across different MOLECULEs.</li>
+<li>A <em>RIGID</em> statement must be used for pseudo points that contained at least one normal ATOM.</li>
+<li>Pseudo points must not be connected to any other ATOMs within the MOLECULE. A self-CONNECT directive must be used for a pseudo point.</li>
 </ul>
 <p><br /></p>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p>For example, a pseudo point is used in the TIP4P model to improve dipole moment of the water molecule, by shifting the charge slightly away from the oxygen atom (an off-center point charge model):</p>
 <a class="reference internal image-reference" href="../../_images/dlf_15_1.png"><img alt="../../_images/dlf_15_1.png" class="align-center" src="../../_images/dlf_15_1.png" style="width: 231.0px; height: 116.5px;" /></a>
 <p>Below shows how to insert pseudo points into the model, extracted from a <em>sf</em> and  <em>par</em> files in the library:</p>
@@ -78,10 +79,9 @@
 </div>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dlf-15"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -120,15 +120,17 @@
   <p class="topless"><a href="dlf_22.html"
                         title="next chapter">Customise VDW interactions (VDW_FIX directive)</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -148,13 +150,12 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Pseudo points</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

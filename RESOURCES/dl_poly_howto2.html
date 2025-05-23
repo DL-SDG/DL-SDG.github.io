@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>How to do something &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" accesskey="U">DL_POLY</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">How to do something</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" accesskey="U">DL_POLY</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,24 +47,22 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dlp-howto2"></span><section id="how-to-do-something">
-<h1>How to do something<a class="headerlink" href="#how-to-do-something" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="how-to-do-something">
+<span id="header-dlp-howto2"></span><h1>How to do something<a class="headerlink" href="#how-to-do-something" title="Permalink to this headline">¶</a></h1>
 <p>This page shows you how to use DL_POLY to acheive specific tasks. Please note that there may be many other alternative ways to achieve certain tasks, depending on the system states and types of systems. We only show a general guide below.</p>
 <p><strong>Content</strong> <br />
 <a class="reference internal" href="#header-howto-equilibrate"><span class="std std-ref">How to equilibrate a system</span></a> <br />
 <a class="reference internal" href="#header-howto-step"><span class="std std-ref">Choice of MD timestep</span></a> <br /></p>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
 <p id="header-howto-equilibrate"><strong>How to equilibrate a system</strong></p>
 <p>The initial system that you set up, either by DL_FIELD or some other means, is likely to be far from an equilibrium state. Almost all systems need to be equilibrated before a sampling run can be carried out.</p>
 <ol class="arabic simple">
-<li><p>Tame down a ‘drastic’ intial configuration.</p></li>
+<li>Tame down a ‘drastic’ intial configuration.</li>
 </ol>
-<figure class="align-right" id="id1">
+<div class="figure align-right" id="id1">
 <a class="reference internal image-reference" href="../_images/clashed_ethanoic_acid.png"><img alt="Clashed ethanoic acid" src="../_images/clashed_ethanoic_acid.png" style="width: 207.20000000000002px; height: 188.0px;" /></a>
-<figcaption>
-<p><span class="caption-text">Two clashed ethanoic acid molecules</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-text">Two clashed ethanoic acid molecules</span></p>
+</div>
 <p>The example <em>CONTROL</em> files below can be used to relax high-energy molecular systems: for example, atoms that are too close to each other.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">title</span> <span class="n">Hard</span> <span class="n">equilibration</span> <span class="n">control</span> <span class="n">file</span>
 
@@ -131,27 +130,27 @@
 <p><em>rescale_frequency 1 steps</em> (<em>scale every 1</em>) - the temperature will be rescaled at every MD step: you will not want any uncontrollable temperature spikes.</p>
 <p><em>timestep_variable</em> (<em>variable timestep</em>) - DL_POLY will choose the optimum timestep while ensuring system stability. The timestep value provided (0.000001 ps) is the minimum permissible timestep: reduce this number if required.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Take a note of the system energy to obtain a good indication that the <em>CONTROL</em> file is doing its job properly. For systems containing polar molecules, the energy can drastically reduce from large positive values to negative values within a few MD steps. However, if the energy is reducing continously, you are in good hands.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Take a note of the system energy to obtain a good indication that the <em>CONTROL</em> file is doing its job properly. For systems containing polar molecules, the energy can drastically reduce from large positive values to negative values within a few MD steps. However, if the energy is reducing continously, you are in good hands.</p>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>A less drastic, controlled equilibration</p></li>
+<li>A less drastic, controlled equilibration</li>
 </ol>
 <p>The above <em>CONTROL</em> file only permits very small movements of atoms. To speed up the dynamics, the parameters can be changed to allow faster dynamics, yet still in a controlled manner. The below changes to the above CONTROL file are recommended:</p>
 <ul class="simple">
-<li><p>Gradually increase the value of capping forces (<em>equilibration_force_cap</em> or <em>cap</em>) to, say, 3000.0 or 5000.0, or even remove it entirely.</p></li>
-<li><p>Remove the <em>reset_temperature_interval</em> (<em>zero</em>) directive. When this is done, DL_POLY will continue to rescale the temperature of the system to the value specified by the directive <em>temperature</em> in the <em>CONTROL</em> file. It is best to start with a value close to 10 K, e.g. 50 K, before gradually increasing the temeprature to the desired temperature (normally 300.0 K).</p></li>
+<li>Gradually increase the value of capping forces (<em>equilibration_force_cap</em> or <em>cap</em>) to, say, 3000.0 or 5000.0, or even remove it entirely.</li>
+<li>Remove the <em>reset_temperature_interval</em> (<em>zero</em>) directive. When this is done, DL_POLY will continue to rescale the temperature of the system to the value specified by the directive <em>temperature</em> in the <em>CONTROL</em> file. It is best to start with a value close to 10 K, e.g. 50 K, before gradually increasing the temeprature to the desired temperature (normally 300.0 K).</li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>There is no rule to say what is an ideal heating rate for the system. Typically, you can increase 50.0 K every 50,000 MD steps or so.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">There is no rule to say what is an ideal heating rate for the system. Typically, you can increase 50.0 K every 50,000 MD steps or so.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Remember to make a <em>copy</em> of the <em>CONFIG</em> file after each run from its <em>REVCON</em> file to ensure the latest <em>CONFIG</em> file is used for the next run. To continue the simulation after changing the above-mentioned values, remember to use the <em>restart</em> directive in the <em>CONTROL</em> file and increase the <em>time_run</em> (<em>step</em>) value.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Remember to make a <em>copy</em> of the <em>CONFIG</em> file after each run from its <em>REVCON</em> file to ensure the latest <em>CONFIG</em> file is used for the next run. To continue the simulation after changing the above-mentioned values, remember to use the <em>restart</em> directive in the <em>CONTROL</em> file and increase the <em>time_run</em> (<em>step</em>) value.</p>
 </div>
 <ol class="arabic simple" start="3">
-<li><p>Carry out a normal equilibration</p></li>
+<li>Carry out a normal equilibration</li>
 </ol>
 <p>Once the configuration energy has settled down or if your intial configuration is now in a low energy state, you can carry out a normal equilibration procedure in the NVE ensemble, using the example <em>CONTROL</em> files shown below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">title</span> <span class="n">Hard</span> <span class="n">equilibration</span> <span class="n">control</span> <span class="n">file</span>
@@ -204,11 +203,11 @@
 </div>
 <p>Since the total number of MD steps (<em>time_run</em> or <em>steps</em>) is now larger than the number of equilibration steps, DL_POLY will no longer enforce temperature rescaling on the system. A stable system should be able to remain at more or less the same temperature as before, even without temperature rescaling.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Whenever you change the <em>timestep</em> value, do not use the <em>restart continue</em> (<em>restart</em>) directive, but use <em>restart noscale</em> instead. In other words, you can only change your <em>timestep</em> once for each simulation. Whenever you change the timestep value, you will need to start the simulation afresh. The <em>restart noscale</em> directive ensures the simulation starts from the beginning with the initial velocities of the system derived from the <em>CONFIG</em> file. Once the simulation is complete, it can continue on as usual by using <em>restart continue</em> (<em>restart</em>).</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">Whenever you change the <em>timestep</em> value, do not use the <em>restart continue</em> (<em>restart</em>) directive, but use <em>restart noscale</em> instead. In other words, you can only change your <em>timestep</em> once for each simulation. Whenever you change the timestep value, you will need to start the simulation afresh. The <em>restart noscale</em> directive ensures the simulation starts from the beginning with the initial velocities of the system derived from the <em>CONFIG</em> file. Once the simulation is complete, it can continue on as usual by using <em>restart continue</em> (<em>restart</em>).</p>
 </div>
 <ol class="arabic simple" start="4">
-<li><p>Running NVT equilibration</p></li>
+<li>Running NVT equilibration</li>
 </ol>
 <p>In the <em>CONTROL</em> file, you can change the ensemble to an NVT one with a Berendsen thermostat. For newer DL_POLY versions, replace the <em>ensemble nve</em> line in <em>CONTROL</em> with:</p>
 <div class="line-block">
@@ -222,7 +221,7 @@
 </div>
 <p>Remember to use <em>restart noscale</em> to restart the simulation and set the MD time back to zero. You can continue the simuation until the energy of the system fluctuates around some contant value over a period of time.</p>
 <ol class="arabic simple" start="5">
-<li><p>Running NPT equilibration (equilibrate system box)</p></li>
+<li>Running NPT equilibration (equilibrate system box)</li>
 </ol>
 <p>At this stage, the molecular configuration is properly equilibrated but the system box might not be. In the <em>CONTROL</em> file, you can change the ensemble to NPT (constant pressure) and specify a target system pressure to automatically rescale the box size. For newer versions of DL_POLY, change the <em>ensemble</em> directives to:</p>
 <div class="line-block">
@@ -244,20 +243,26 @@
 <div class="line"><em>pressure 0.001</em></div>
 </div>
 <p>for older versions. In both cases, the pressure is set to standard atomspheric pressure (101,325 Pa, equal to 0.001 kilo-atomspheres). Remember to use <em>restart noscale</em> to restart the simulation and set the MD time back to zero.</p>
-<dl class="field-list simple">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>If you get an error messages stating that bond separations or diameters of angles, dihedrals or inversions exceed the cutoff distance, this may be due to large changes in the system box size. You can use force-capping or variable timestep directives (see above) to control box size changes.</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">If you get an error messages stating that bond separations or diameters of angles, dihedrals or inversions exceed the cutoff distance, this may be due to large changes in the system box size. You can use force-capping or variable timestep directives (see above) to control box size changes.</td>
+</tr>
+</tbody>
+</table>
 <p><a class="reference internal" href="#header-dlp-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
 <p id="header-howto-step"><strong>Choice of MD timestep</strong></p>
 <p>Small timeteps result in slower dynamics but overly large timesteps can lead to system instability. Ideally, the timestep must be small enough to be able to track the fastest motion in the system. Classically, this would involve bonds with the lightest atoms, such as the bonds that contain hydrogen atoms.</p>
-<dl class="field-list simple">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>Using the variable timestep directive can provide a clue what is the suitable value for your system: this can be found from the reported timestep in the <em>CONFIG</em> file (the fifth value after its title).</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">Using the variable timestep directive can provide a clue what is the suitable value for your system: this can be found from the reported timestep in the <em>CONFIG</em> file (the fifth value after its title).</td>
+</tr>
+</tbody>
+</table>
 <p>If these fastest modes of motion can be removed, then larger timesteps can be used. For molecular systems, typical <em>timestep</em> values are shown below:</p>
 <div class="line-block">
 <div class="line">All-harmonic bond systems: ~0.5 fs.</div>
@@ -271,11 +276,10 @@
 <p>For more details about timestep, please see:
 J-I Choe and Byungchul Kim, ‘Proper Time Step for Molecular Dynamics’, <em>Bull. Korean Chem. Soc.</em>, <strong>21</strong>, p419 (2000)</p>
 <p><a class="reference internal" href="#header-dlp-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
-</section>
+<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -314,15 +318,17 @@ J-I Choe and Byungchul Kim, ‘Proper Time Step for Molecular Dynamics’, <em>B
   <p class="topless"><a href="d_ata_intro.html"
                         title="next chapter">D_ATA</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -342,13 +348,12 @@ J-I Choe and Byungchul Kim, ‘Proper Time Step for Molecular Dynamics’, <em>B
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" >DL_POLY</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">How to do something</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" >DL_POLY</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

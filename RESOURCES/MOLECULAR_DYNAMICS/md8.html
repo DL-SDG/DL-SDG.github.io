@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Constrained bonds &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -35,8 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="md0.html" accesskey="U">Molecular Dynamics</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Constrained bonds</a></li> 
+          <li class="nav-item nav-item-2"><a href="md0.html" accesskey="U">Molecular Dynamics</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -45,34 +46,33 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-md8"></span><section id="constrained-bonds">
-<h1>Constrained bonds<a class="headerlink" href="#constrained-bonds" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="constrained-bonds">
+<span id="header-md8"></span><h1>Constrained bonds<a class="headerlink" href="#constrained-bonds" title="Permalink to this headline">¶</a></h1>
 <p>A typical molecular system often contains different modes of motion at very different timescales. Of all these motions, bond vibrations are some of the fastest, compared with, say, the rotational motion of the molecules.</p>
 <p>Molecular dynamics calculations must therefore use a timestep that is small enough in order to adequately track the fastest mode of motion in the system. Otherwise, too large a timestep can lead to instability and inaccuracy of motion.</p>
 <a class="reference internal image-reference" href="../../_images/md8_1.png"><img alt="../../_images/md8_1.png" class="align-center" src="../../_images/md8_1.png" style="width: 446.55px; height: 90.35000000000001px;" /></a>
 <p>Bonds that are connected to lighter atoms tend to vibrate faster, especially those that contained the hydrogen atoms. For instance, consider a typical C-H vibrational bond, which has a typical frequency of 4000 cm<sup>-1</sup> . This corresponds to a period of ~8 fs (femtoseconds). It means the timestep used to update the atomic positions must be much less than the period of the bond vibration and this is usually in the range of 0.5-1.0 fs.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can see why it might not be feasible to use MD simulations to look at long timescale phenomena. For example, to model atomic motions spanning across 1 ns by using a 1 fs timestep would require 1,000,000 MD iterations.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">You can see why it might not be feasible to use MD simulations to look at long timescale phenomena. For example, to model atomic motions spanning across 1 ns by using a 1 fs timestep would require 1,000,000 MD iterations.</p>
 </div>
 <p>However, the timestep can be increased provided the MD simulation does not need to track bond vibration. If you do not need very accurate thermodynamic values, removing bond vibrations does not contribute significantly to the overall results. This can be achieved by constraining bonds to a fixed equilibrium length by using a constraint algorithm, e.g. SHAKE.</p>
 <p>The SHAKE algorithm basically involves two stages: (1) determining the positions of atoms in the absence of bond constraints, and (2) determining the deviation in the length of a given rigid bond, to calculate retrospectively the constraint force (directed along the bond) needed to conserve the bond length. This process will be repeated if the largest deviation is found to exceed the desire tolerance with respect to the fixed bond length.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="first admonition-title">Note</p>
 <p>There is a trade off in terms of computational time, depending on how precisely you want to fix the bond lengths. The higher precision you require, the more SHAKE iteration steps would be needed, which will take up more computational resources.</p>
 <p>In DL_POLY, the tolerence limit is set to 10<sup>-6</sup> and the maximum SHAKE iteration step is set to 250 by default. These values can be changed in the DL_POLY <em>CONTROL</em> file. For example, to reduce the tolerance to 10<sup>-7</sup> and the maximum number of iterations per timestep to 100, older versions of DL_POLY can use the following directives:</p>
 <p><code class="docutils literal notranslate"><span class="pre">mxshak</span> <span class="pre">100</span></code> <br />
 <code class="docutils literal notranslate"><span class="pre">tolerance</span> <span class="pre">1.0e-7</span></code></p>
 <p>while DL_POLY_5 uses the following:</p>
-<p><code class="docutils literal notranslate"><span class="pre">shake_max_iter</span> <span class="pre">100</span></code> <br />
+<p class="last"><code class="docutils literal notranslate"><span class="pre">shake_max_iter</span> <span class="pre">100</span></code> <br />
 <code class="docutils literal notranslate"><span class="pre">shake_tolerance</span> <span class="pre">1.0e-7</span></code></p>
 </div>
 <p>If bonds that contain the hydrogen atoms are constrained, then the timestep can be increased to 2 fs. For soft matters and biological molecules such as proteins, the tolerance can be reduced to around 10<sup>-4</sup> .</p>
 <p><a class="reference internal" href="#header-md8"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -108,15 +108,17 @@
   <p class="topless"><a href="md6.html"
                         title="next chapter">Boundary Conditions</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -135,13 +137,12 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="md0.html" >Molecular Dynamics</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Constrained bonds</a></li> 
+          <li class="nav-item nav-item-2"><a href="md0.html" >Molecular Dynamics</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Selective interactions &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Selective interactions</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,11 +47,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dlf-18"></span><section id="selective-interactions">
-<h1>Selective interactions<a class="headerlink" href="#selective-interactions" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="selective-interactions">
+<span id="header-dlf-18"></span><h1>Selective interactions<a class="headerlink" href="#selective-interactions" title="Permalink to this headline">¶</a></h1>
 <p>By default, DL_FIELD will look for all possible two-body (bond), three-body (angle), and four-body (dihedral) interactions, based on the bond connections. However, DL_FIELD allows a selection of these interactions to be excluded and will not be considered in the DL_POLY simulation runs.</p>
 <p>These optional directives are always defined after the <em>CONNECT</em> statements in MOLECULE templates.</p>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>REMOVE, ONLY and OFF directives</strong></p>
 <p>These directives must always be used in conjunction with the body interaction directives: <em>BOND</em>, <em>ANGLE</em> and <em>DIHEDRAL</em>. They are used to selectively include or exclude certain types of interactions. Diagram below illustrates the use of these directives.</p>
 <a class="reference internal image-reference" href="../../_images/dlf_18_1.png"><img alt="../../_images/dlf_18_1.png" class="align-center" src="../../_images/dlf_18_1.png" style="width: 568.4px; height: 292.0px;" /></a>
@@ -78,25 +79,24 @@
 <p><em>DIHEDRAL OFF</em></p>
 <p>Will remove all dihedral terms.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Avoid conflicting statements such as <em>ANGLE OFF</em> and <em>ANGLE ONLY</em> directives appeared within a same MOLECULE template.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">Avoid conflicting statements such as <em>ANGLE OFF</em> and <em>ANGLE ONLY</em> directives appeared within a same MOLECULE template.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Remove 1-4 non-bonded interactions</strong></p>
 <p>An atom pair that is separated by three bonds will usually be treated with vdw and coulombic interactions, called the 1-4 non-bonded interactions, and often scaled with some scaling factors. Such interaction can be switched off selectively within a MOLECULE. The syntax is as follows:</p>
 <p><em>EXCLUSION_14</em> label_1 label_2 …</p>
 <p>Each of such statement includes a group of ATOM_LABELs and exclusions will apply if any 1-4 atom pairs are identified within the atom group. Up to a number of 15 ATOMs can be specified in a statement.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>More than one <em>EXCLUSION_14</em> statements can be defined within a MOLECULE and they are independant from each other. The 1-4 exclusions only apply to the respective group of atoms defined in each statement.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">More than one <em>EXCLUSION_14</em> statements can be defined within a MOLECULE and they are independant from each other. The 1-4 exclusions only apply to the respective group of atoms defined in each statement.</p>
 </div>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dlf-18"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -135,15 +135,17 @@
   <p class="topless"><a href="dlf_13.html"
                         title="next chapter">Multiple Potential Features</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -163,13 +165,12 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Selective interactions</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

@@ -1,21 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lennard-Jones Mixing Rules &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Lennard-Jones Mixing Rules</a></li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,81 +46,81 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="lennard-jones-mixing-rules">
+  <div class="section" id="lennard-jones-mixing-rules">
 <span id="header-ff10"></span><h1>Lennard-Jones Mixing Rules<a class="headerlink" href="#lennard-jones-mixing-rules" title="Permalink to this headline">¶</a></h1>
 <p>vdW parameters are normally fitted against experimental results such as the liquid densities and enthalpy of vaporisation of pure components. It is also a standard practice to obtain parameters of similar types of atoms, <span class="math notranslate nohighlight">\(i = j\)</span>, such as those we have seen in the <a class="reference internal" href="ff9.html#header-ff9"><span class="std std-ref">previous page</span></a> for methyl carbon atoms.</p>
 <p>However, molecular systems can consist of different types of atoms (where <span class="math notranslate nohighlight">\(i \neq j\)</span>) and each different combination of pairs of atom types would have a different set of parameters. There are often too many possible pairs to fit them all experimentally.</p>
 <p>These missing vdW parameters are usually derived by using some kind of <em>mixing rules</em>, involving parameters for those of atomic components (<span class="math notranslate nohighlight">\(ii\)</span> and <span class="math notranslate nohighlight">\(jj\)</span>) to make up values for atom pairs (<span class="math notranslate nohighlight">\(ij\)</span>).</p>
 <p>The table below shows some of the mixing rules for LJ 12-6 functions:</p>
-<table class="docutils align-default">
+<table border="1" class="docutils">
 <colgroup>
-<col style="width: 8%" />
-<col style="width: 9%" />
-<col style="width: 51%" />
-<col style="width: 31%" />
+<col width="8%" />
+<col width="9%" />
+<col width="51%" />
+<col width="31%" />
 </colgroup>
-<tbody>
-<tr class="row-odd"><td><p><strong>Mixing rule no.</strong></p></td>
-<td><p><strong>Scheme name</strong></p></td>
-<td><p><strong>Energy,</strong> <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span></p></td>
-<td><p><strong>Steric,</strong> <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span></p></td>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Mixing rule no.</strong></td>
+<td><strong>Scheme name</strong></td>
+<td><strong>Energy,</strong> <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span></td>
+<td><strong>Steric,</strong> <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span></td>
 </tr>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>Standard geometric</p></td>
-<td><p><span class="math notranslate nohighlight">\(\sqrt{\epsilon_{ii} \epsilon_{jj}}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\sqrt{\sigma_{ii}\sigma_{jj}}\)</span></p></td>
+<tr class="row-even"><td>1</td>
+<td>Standard geometric</td>
+<td><span class="math notranslate nohighlight">\(\sqrt{\epsilon_{ii} \epsilon_{jj}}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\sqrt{\sigma_{ii}\sigma_{jj}}\)</span></td>
 </tr>
-<tr class="row-odd"><td><p>2</p></td>
-<td><p>Standard arithmetic</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{\epsilon_{ii} + \epsilon_{jj}}{2}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{\sigma_{ii}+\sigma_{jj}}{2}\)</span></p></td>
+<tr class="row-odd"><td>2</td>
+<td>Standard arithmetic</td>
+<td><span class="math notranslate nohighlight">\(\frac{\epsilon_{ii} + \epsilon_{jj}}{2}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\frac{\sigma_{ii}+\sigma_{jj}}{2}\)</span></td>
 </tr>
-<tr class="row-even"><td><p>3</p></td>
-<td><p>Fender-Halsey</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{2 \epsilon_{ii} \epsilon_{jj}}{\epsilon_{ii} + \epsilon_{jj}}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{\sigma_{ii}+\sigma_{jj}}{2}\)</span></p></td>
+<tr class="row-even"><td>3</td>
+<td>Fender-Halsey</td>
+<td><span class="math notranslate nohighlight">\(\frac{2 \epsilon_{ii} \epsilon_{jj}}{\epsilon_{ii} + \epsilon_{jj}}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\frac{\sigma_{ii}+\sigma_{jj}}{2}\)</span></td>
 </tr>
-<tr class="row-odd"><td><p>4</p></td>
-<td><p>Halgren HHG</p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{4 \epsilon_{ii} \epsilon_{jj}}{\left(\sqrt{\epsilon_{ii}} + \sqrt{\epsilon_{jj}}\right)^2}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\frac{\sigma_{ii}^3+\sigma_{jj}^3}{\sigma_{ii}^2+\sigma_{jj}^2}\)</span></p></td>
+<tr class="row-odd"><td>4</td>
+<td>Halgren HHG</td>
+<td><span class="math notranslate nohighlight">\(\frac{4 \epsilon_{ii} \epsilon_{jj}}{\left(\sqrt{\epsilon_{ii}} + \sqrt{\epsilon_{jj}}\right)^2}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\frac{\sigma_{ii}^3+\sigma_{jj}^3}{\sigma_{ii}^2+\sigma_{jj}^2}\)</span></td>
 </tr>
-<tr class="row-even"><td><p>5</p></td>
-<td><p>Waldman-Hagler</p></td>
-<td><p><span class="math notranslate nohighlight">\(2 \sqrt{\epsilon_{ii} \epsilon_{jj}} \frac{\left(\sigma_{ii} \sigma_{jj}\right)^3}{\sigma_{ii}^6 + \sigma_{jj}^2}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(\left(\frac{\sigma_{ii}^6+\sigma_{jj}^6}{2}\right)^{\tfrac{1}{6}}\)</span></p></td>
+<tr class="row-even"><td>5</td>
+<td>Waldman-Hagler</td>
+<td><span class="math notranslate nohighlight">\(2 \sqrt{\epsilon_{ii} \epsilon_{jj}} \frac{\left(\sigma_{ii} \sigma_{jj}\right)^3}{\sigma_{ii}^6 + \sigma_{jj}^2}\)</span></td>
+<td><span class="math notranslate nohighlight">\(\left(\frac{\sigma_{ii}^6+\sigma_{jj}^6}{2}\right)^{\tfrac{1}{6}}\)</span></td>
 </tr>
-<tr class="row-odd"><td><p>6</p></td>
-<td><p>Slater-Kirkwood <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p></td>
-<td><p><span class="math notranslate nohighlight">\(B_{ij} = \frac{3 \alpha_i \alpha_j}{2 \sqrt{\frac{\alpha_i}{N_i}+\frac{\alpha_j}{N_j}}}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(A_{ij} = \frac{1}{2} B_{ij}\left(w_i + w_j\right)^6\)</span></p></td>
+<tr class="row-odd"><td>6</td>
+<td>Slater-Kirkwood <a class="footnote-reference" href="#id2" id="id1">[1]</a></td>
+<td><span class="math notranslate nohighlight">\(B_{ij} = \frac{3 \alpha_i \alpha_j}{2 \sqrt{\frac{\alpha_i}{N_i}+\frac{\alpha_j}{N_j}}}\)</span></td>
+<td><span class="math notranslate nohighlight">\(A_{ij} = \frac{1}{2} B_{ij}\left(w_i + w_j\right)^6\)</span></td>
 </tr>
 </tbody>
 </table>
 <p>Out of these rules, the geometric and arithmetic rules are used the most frequently by a wide range of force field schemes. However, the rules differ from one scheme to the other. For example, OPLS uses the geometric rule to determine both <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span> for <span class="math notranslate nohighlight">\(ij\)</span> pairs, whereas, for DREIDING FF, the arithmetic rule is used for <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span> and the geometric rule for <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span>.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Mixing rules have minimal scientific justification but appear to work ‘quite well’. They should also only apply to the same function type. For example, you cannot mix parameters between LJ and Buckingham functions, neither should you mix parameters from LJ 12-6 and, say, LJ 9-6.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Mixing rules have minimal scientific justification but appear to work ‘quite well’. They should also only apply to the same function type. For example, you cannot mix parameters between LJ and Buckingham functions, neither should you mix parameters from LJ 12-6 and, say, LJ 9-6.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="first admonition-title">Note</p>
 <p>In DL_POLY, mixing rules can be defined using the <code class="docutils literal notranslate"><span class="pre">vdw</span> <span class="pre">mix</span></code> or <code class="docutils literal notranslate"><span class="pre">vdw_mix_method</span></code> directive in the <em>CONTROL</em> file. For example, for Fender-Halsey mixing rules:</p>
 <p><code class="docutils literal notranslate"><span class="pre">vdw</span> <span class="pre">mix</span> <span class="pre">fender</span></code></p>
 <p>should be used in older versions of DL_POLY, while DL_POLY_5 would require:</p>
 <p><code class="docutils literal notranslate"><span class="pre">vdw_mix_method</span> <span class="pre">Fender-Hasley</span></code></p>
-<p>In DL_FIELD, mixing rules can be independently set for the <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span> parameters. For the Slater-Kirkwood scheme, DL_FIELD will obtain the atomic data from the <em>dl_field.atom_data</em> file by matching against atom types using DL_F Notation.</p>
+<p class="last">In DL_FIELD, mixing rules can be independently set for the <span class="math notranslate nohighlight">\(\epsilon_{ij}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span> parameters. For the Slater-Kirkwood scheme, DL_FIELD will obtain the atomic data from the <em>dl_field.atom_data</em> file by matching against atom types using DL_F Notation.</p>
 </div>
 <p class="rubric">Footnote</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>This mixing rule derives the Lennard-Jones parameters from atomic data: polarisabilities <span class="math notranslate nohighlight">\(\alpha_i\)</span>, effective numbers of electrons <span class="math notranslate nohighlight">\(N_i\)</span> and atomic radii <span class="math notranslate nohighlight">\(w_i\)</span> for both components.</p>
-</dd>
-</dl>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>This mixing rule derives the Lennard-Jones parameters from atomic data: polarisabilities <span class="math notranslate nohighlight">\(\alpha_i\)</span>, effective numbers of electrons <span class="math notranslate nohighlight">\(N_i\)</span> and atomic radii <span class="math notranslate nohighlight">\(w_i\)</span> for both components.</td></tr>
+</tbody>
+</table>
 <p><a class="reference internal" href="#header-ff10"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -156,15 +156,17 @@
   <p class="topless"><a href="ff11.html"
                         title="next chapter">Distance cutoffs and Ewald sums</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -183,13 +185,12 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Lennard-Jones Mixing Rules</a></li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

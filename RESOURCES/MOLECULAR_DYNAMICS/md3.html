@@ -1,21 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Simulation Procedures &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="md0.html" accesskey="U">Molecular Dynamics</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Simulation Procedures</a></li> 
+          <li class="nav-item nav-item-2"><a href="md0.html" accesskey="U">Molecular Dynamics</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,19 +46,19 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="simulation-procedures">
+  <div class="section" id="simulation-procedures">
 <span id="header-md3"></span><h1>Simulation Procedures<a class="headerlink" href="#simulation-procedures" title="Permalink to this headline">¶</a></h1>
 <p>Since moving the particles changes the distances between them and thus their forces, molecular dynamics involves continuously integrating these equations of motion to obtain trajectories numerically. This leads to the overall scheme for MD simulations, shown in the diagram below and consisting of the following stages:</p>
 <ul class="simple">
-<li><p>Set up initial system - obtain initial positions and velocities of atoms</p></li>
-<li><p>Calculate atomic forces based on potential model</p></li>
-<li><p>Calculate particle motion from force integration</p></li>
-<li><p>Calculate physical properties - collect instantaneous data for statistical purposes</p></li>
-<li><p>Repeat until done</p></li>
+<li>Set up initial system - obtain initial positions and velocities of atoms</li>
+<li>Calculate atomic forces based on potential model</li>
+<li>Calculate particle motion from force integration</li>
+<li>Calculate physical properties - collect instantaneous data for statistical purposes</li>
+<li>Repeat until done</li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/dlp_2_4.png"><img alt="../../_images/dlp_2_4.png" class="align-center" src="../../_images/dlp_2_4.png" style="width: 272.25px; height: 408.0px;" /></a>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="first admonition-title">Note</p>
 <p>In DL_POLY, system trajectories can be saved into a file called <em>HISTORY</em>. To do this, directives starting with <code class="docutils literal notranslate"><span class="pre">traj</span></code> must be included in the <em>CONTROL</em> file. For example, to save the positions and velocities of the system at every 100 MD steps (not timestep!) from the very beginning, the following should be included for older versions of DL_POLY:</p>
 <p><code class="docutils literal notranslate"><span class="pre">traj</span> <span class="pre">0</span> <span class="pre">100</span> <span class="pre">1</span></code></p>
 <p>while DL_POLY_5 requires the following four directives:</p>
@@ -66,13 +66,12 @@
 <p><code class="docutils literal notranslate"><span class="pre">traj_start</span> <span class="pre">0</span> <span class="pre">steps</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">traj_interval</span> <span class="pre">100</span> <span class="pre">steps</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">traj_key</span> <span class="pre">pos-vel</span></code></p>
-<p>These will produce a time series of atomic configurations. The time interval between the configurations would be simply a multiple of the MD timestep (in this case, <span class="math notranslate nohighlight">\(100 dt\)</span>).</p>
+<p class="last">These will produce a time series of atomic configurations. The time interval between the configurations would be simply a multiple of the MD timestep (in this case, <span class="math notranslate nohighlight">\(100 dt\)</span>).</p>
 </div>
 <p><a class="reference internal" href="#header-md3"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -108,15 +107,17 @@
   <p class="topless"><a href="md8.html"
                         title="next chapter">Constrained bonds</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -135,13 +136,12 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="md0.html" >Molecular Dynamics</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Simulation Procedures</a></li> 
+          <li class="nav-item nav-item-2"><a href="md0.html" >Molecular Dynamics</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

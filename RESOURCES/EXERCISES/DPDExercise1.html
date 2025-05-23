@@ -1,21 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>DPD Exercise 1: DPD, hydrophobicity and parameterisation &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -38,8 +39,7 @@
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="DPD.html" accesskey="U">Dissipative Particle Dynamics</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">DPD Exercise 1: DPD, hydrophobicity and parameterisation</a></li> 
+          <li class="nav-item nav-item-4"><a href="DPD.html" accesskey="U">Dissipative Particle Dynamics</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -48,12 +48,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="dpd-exercise-1-dpd-hydrophobicity-and-parameterisation">
+  <div class="section" id="dpd-exercise-1-dpd-hydrophobicity-and-parameterisation">
 <span id="dpd-exercise1"></span><h1>DPD Exercise 1: DPD, hydrophobicity and parameterisation<a class="headerlink" href="#dpd-exercise-1-dpd-hydrophobicity-and-parameterisation" title="Permalink to this headline">¶</a></h1>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>As a mesoscale modelling method, DPD is particularly useful for looking at phase and structural behaviour of multiple-component systems due to the method’s ability to step quickly in time. Large-scale changes such as phase separation and self-assembly can emerge more rapidly than they normally can with molecular dynamics, both in terms of available timescales and computational time.</p>
-<p>A large part of this comes down to the choice of interaction potential. Groot and Warren’s <a class="reference internal" href="Flory_Huggins_DPD/flory_huggins_dpd.html#groot1997" id="id1"><span>[Groot1997]</span></a> form of conservative interaction provides a quadratic potential and a quadratic equation of state. For single component systems, while this interaction limits us to a single fluid phase, it does incorporate some non-ideality and we can parameterise it by considering the fluid’s isothermal compressibility.</p>
+<p>A large part of this comes down to the choice of interaction potential. Groot and Warren’s <a class="reference internal" href="Flory_Huggins_DPD/flory_huggins_dpd.html#groot1997" id="id1">[Groot1997]</a> form of conservative interaction provides a quadratic potential and a quadratic equation of state. For single component systems, while this interaction limits us to a single fluid phase, it does incorporate some non-ideality and we can parameterise it by considering the fluid’s isothermal compressibility.</p>
 <p>To extend DPD and Groot-Warren interactions to multiple components, we need to find some way to obtain conservative force parameters between pairs of different species. To that end, one approach available to us is to map these parameters to the Flory-Huggins solution theory of polymers.</p>
 <p>If we assume particle species A and B interact among themselves in the same way (i.e. <span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}} = A_{ij}^{\text{BB}}\)</span>), we can define a parameter for the non-ideal part of the mixing Gibbs free energy between A and B, <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>. This parameter can be shown to be proportional to an increase in conservative force parameter from the value for like-like interactions, i.e.</p>
 <div class="math notranslate nohighlight" id="equation-chia">
@@ -63,15 +63,15 @@
 <span class="eqno">(2)<a class="headerlink" href="#equation-chiphi" title="Permalink to this equation">¶</a></span>\[\chi^{\text{AB}} = \frac{\ln\lbrack(1 - \phi_{\text{A}})/\phi_{\text{A}}\rbrack}{1 - 2\phi_{\text{A}}}.\]</div>
 <p>Once we have the actual relationship between <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>, we can then calculate conservative force parameters between pairs of species for which we know lory-Huggins <span class="math notranslate nohighlight">\(\chi\)</span>-parameters. If we do not have experimental values of <span class="math notranslate nohighlight">\(\chi\)</span>-parameters available, it is possible to calculate them from energies of mixing determined from e.g. atomistic molecular dynamics simulations.</p>
 <p>More theoretical details on parameterising DPD simulations using <a class="reference internal" href="../DOCUMENTS/DPDTheory.html#floryhuggins"><span class="std std-ref">Flory-Huggins solution theory</span></a> are available as additional background for this Exercise.</p>
-</section>
-<section id="aim">
+</div>
+<div class="section" id="aim">
 <h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
 <p>We want to find the actual relationship between <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> for DPD systems with a commonly-used particle density, <span class="math notranslate nohighlight">\(\rho=3\)</span>.</p>
 <p>To do this, we can follow the procedure given above to calculate <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> from simulations of separating beads with different values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span>, holding both the overall bead density and the like-like conservative force parameters (<span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}}\)</span> and <span class="math notranslate nohighlight">\(A_{ij}^{\text{BB}}\)</span>) constant. Using several data points, we can plot <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> as a function of <span class="math notranslate nohighlight">\(\left( A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}} \right)\)</span> and get a best-fit line to find the proportionality constant for the overall bead density.</p>
-</section>
-<section id="instructions">
+</div>
+<div class="section" id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
-<p>If you have not yet done so, follow the instructions in <a class="reference internal" href="dlmeso_setup.html#dlmeso-setup"><span class="std std-ref">Setting up DL_MESO</span></a> to download DL_MESO and compile its DPD code (DL_MESO_DPD) and associated utilities. In particular for this exercise, you will need the main executable <em>dpd.exe</em> (either serial or parallel) as well as the <a class="reference download internal" download="" href="../../_downloads/671c3b0e78c5af3831286809c220aa7c/flory_huggins.py"><code class="xref download docutils literal notranslate"><span class="pre">flory_huggins.py</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/1d125eac0e4ff2dab85f454ce0412d80/flory_huggins_plot.py"><code class="xref download docutils literal notranslate"><span class="pre">flory_huggins_plot.py</span></code></a> Python scripts.</p>
+<p>If you have not yet done so, follow the instructions in <a class="reference internal" href="dlmeso_setup.html#dlmeso-setup"><span class="std std-ref">Setting up DL_MESO</span></a> to download DL_MESO and compile its DPD code (DL_MESO_DPD) and associated utilities. In particular for this exercise, you will need the main executable <em>dpd.exe</em> (either serial or parallel) as well as the <a class="reference download internal" download="" href="../../_downloads/bde19889c28a193270a115d552bd9d76/flory_huggins.py"><code class="xref download docutils literal notranslate"><span class="pre">flory_huggins.py</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/6cb83a4f2ab2e1b00388df7079a21426/flory_huggins_plot.py"><code class="xref download docutils literal notranslate"><span class="pre">flory_huggins_plot.py</span></code></a> Python scripts.</p>
 <p>To get started, launch the <em>flory_huggins.py</em> script using one of the following commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">flory_huggins</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dlmeso</span> <span class="o">&lt;</span><span class="n">dlmeso</span><span class="o">&gt;</span>
 <span class="n">python3</span>  <span class="n">flory_huggins</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">dlmeso</span> <span class="o">&lt;</span><span class="n">dlmeso</span><span class="o">&gt;</span>
@@ -81,36 +81,35 @@
 <p>replacing <code class="docutils literal notranslate"><span class="pre">&lt;dlmeso&gt;</span></code> with the location of your DL_MESO_DPD executable, <code class="docutils literal notranslate"><span class="pre">dpd.exe</span></code>. With all other default settings, this script will launch 11 DL_MESO_DPD calculations with different <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> values and generate a data file (<em>floryhuggins-rho-3.000.dat</em>) with concentration profiles and <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> values for each <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> value.</p>
 <p>Full details of what this script does and its defaults are given in <a class="reference internal" href="DL_MESO_DPD.html#dl-meso-dpd"><span class="std std-ref">Using DL_MESO_DPD</span></a>, although for this exercise there are a few things you can do to speed up the simulations it runs (with the corresponding command line flags):</p>
 <ul class="simple">
-<li><p>Decrease the dimensions of the simulation box: <code class="docutils literal notranslate"><span class="pre">--L</span> <span class="pre">10.0</span> <span class="pre">--W</span> <span class="pre">4.0</span></code></p></li>
-<li><p>Increase the change in <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> between simulations: <code class="docutils literal notranslate"><span class="pre">--dA</span> <span class="pre">2.0</span></code></p></li>
-<li><p>Run each DL_MESO_DPD calculation on multiple processor cores: <code class="docutils literal notranslate"><span class="pre">--nproc</span> <span class="pre">4</span></code></p></li>
+<li>Decrease the dimensions of the simulation box: <code class="docutils literal notranslate"><span class="pre">--L</span> <span class="pre">10.0</span> <span class="pre">--W</span> <span class="pre">4.0</span></code></li>
+<li>Increase the change in <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> between simulations: <code class="docutils literal notranslate"><span class="pre">--dA</span> <span class="pre">2.0</span></code></li>
+<li>Run each DL_MESO_DPD calculation on multiple processor cores: <code class="docutils literal notranslate"><span class="pre">--nproc</span> <span class="pre">4</span></code></li>
 </ul>
 <p>The <em>flory_huggins_plot.py</em> script uses the results from the previous script and can plot the concentration profiles, recalculate values of <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>, plot the values of <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> against <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\)</span> and find the relationship between these quantities.</p>
-</section>
-<section id="tasks">
+</div>
+<div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p>Using the <em>flory_huggins.py</em> Python script, run through a series of DL_MESO_DPD simulations, varying <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> from 33 to 43, obtain concentration profiles for each simulation, calculate <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> values from those profiles and plot <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> against <span class="math notranslate nohighlight">\(\Delta A_{ij} = \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)\)</span>. (The script will do this by default.)</p>
-<ul class="simple">
-<li><p>Do all of the simulations produce clearly separated regions for each particle species? Which ones do not manage this? (Why might that be?)</p></li>
-<li><p>Would you agree there is a proportional relationship between <span class="math notranslate nohighlight">\(\Delta A_{ij} = \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)\)</span> and <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>? If so, what is the proportionality constant?</p></li>
-<li><p>Is there a minimum value of <span class="math notranslate nohighlight">\(\Delta A_{ij}\)</span> that gives separation of the two species?</p></li>
+<li>Using the <em>flory_huggins.py</em> Python script, run through a series of DL_MESO_DPD simulations, varying <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> from 33 to 43, obtain concentration profiles for each simulation, calculate <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> values from those profiles and plot <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> against <span class="math notranslate nohighlight">\(\Delta A_{ij} = \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)\)</span>. (The script will do this by default.)<ul>
+<li>Do all of the simulations produce clearly separated regions for each particle species? Which ones do not manage this? (Why might that be?)</li>
+<li>Would you agree there is a proportional relationship between <span class="math notranslate nohighlight">\(\Delta A_{ij} = \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)\)</span> and <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>? If so, what is the proportionality constant?</li>
+<li>Is there a minimum value of <span class="math notranslate nohighlight">\(\Delta A_{ij}\)</span> that gives separation of the two species?</li>
 </ul>
 </li>
-<li><p>Run some more simulations to calculate values of <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>, only this time try a different value of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}}\)</span>, adjusting the range of values for <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> to produce some more data points for the previous plots. Do these additional points still lie on more-or-less the same line as before?</p></li>
-<li><p><em>Optionally</em> vary the system particle density from the default of 3.0 to a higher value: say either 5.0 or 6.0. Do you still get the same kind of relationship between <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(\Delta A_{ij}\)</span> as before? How does the relationship change compared with the original particle density?</p></li>
+<li>Run some more simulations to calculate values of <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>, only this time try a different value of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}}\)</span>, adjusting the range of values for <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> to produce some more data points for the previous plots. Do these additional points still lie on more-or-less the same line as before?</li>
+<li><em>Optionally</em> vary the system particle density from the default of 3.0 to a higher value: say either 5.0 or 6.0. Do you still get the same kind of relationship between <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span> and <span class="math notranslate nohighlight">\(\Delta A_{ij}\)</span> as before? How does the relationship change compared with the original particle density?</li>
 </ol>
 <p class="rubric">Reference</p>
-<dl class="citation">
-<dt class="label" id="groot1997"><span class="brackets"><a class="fn-backref" href="#id1">Groot1997</a></span></dt>
-<dd><p>RD Groot and PB Warren, Dissipative particle dynamics: Bridging the gap between atomistic and mesoscopic simulation, <em>Journal of Chemical Physics</em>, <strong>107</strong>, 4423-4435 (1997), doi: 10.1063/1.474784.</p>
-</dd>
-</dl>
-</section>
-</section>
+<table class="docutils citation" frame="void" id="groot1997" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Groot1997]</a></td><td>RD Groot and PB Warren, Dissipative particle dynamics: Bridging the gap between atomistic and mesoscopic simulation, <em>Journal of Chemical Physics</em>, <strong>107</strong>, 4423-4435 (1997), doi: 10.1063/1.474784.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -148,15 +147,17 @@
   <p class="topless"><a href="DPDExercise2.html"
                         title="next chapter">DPD Exercise 2: Lipid bilayers, micelles and vesicles</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -177,13 +178,12 @@
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="DPD.html" >Dissipative Particle Dynamics</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">DPD Exercise 1: DPD, hydrophobicity and parameterisation</a></li> 
+          <li class="nav-item nav-item-4"><a href="DPD.html" >Dissipative Particle Dynamics</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

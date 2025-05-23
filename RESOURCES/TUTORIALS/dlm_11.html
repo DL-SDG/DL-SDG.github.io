@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Usability with other programs &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Usability with other programs</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,49 +47,48 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dlm-11"></span><section id="usability-with-other-programs">
-<h1>Usability with other programs<a class="headerlink" href="#usability-with-other-programs" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="usability-with-other-programs">
+<span id="header-dlm-11"></span><h1>Usability with other programs<a class="headerlink" href="#usability-with-other-programs" title="Permalink to this headline">¶</a></h1>
 <p>DL_MESO can be used in conjunction with several other programs developed by others to aid in simulation setup, visualise configurations and trajectories, and analyse results. (Note: this is not an exhaustive list!)</p>
-<section id="vmd">
+<div class="section" id="vmd">
 <h2>VMD<a class="headerlink" href="#vmd" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a> is a free open-source software package for visualising and analysing MD and DPD data, capable of rendering single snapshots and generating movies of particle simulations. It can read in DL_MESO_DPD/DL_POLY <a class="reference internal" href="dlm_4.html#configdlmeso"><span class="std std-ref">CONFIG</span></a> and VTF trajectory files: the former using VMD’s DL_POLY <em>CONFIG</em> file plug-in, while the latter can be generated from DL_MESO_DPD <a class="reference internal" href="dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> files using the <a class="reference internal" href="dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a> utility.</p>
 <a class="reference internal image-reference" href="../../_images/dlp_4_2.png"><img alt="../../_images/dlp_4_2.png" class="align-center" src="../../_images/dlp_4_2.png" style="width: 361.0px; height: 263.0px;" /></a>
-</section>
-<section id="ovito">
+</div>
+<div class="section" id="ovito">
 <h2>OVITO<a class="headerlink" href="#ovito" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://www.ovito.org/">OVITO</a> is a software package for visualising and analysing MD and DPD data, capable of rendering single snapshots and generating movies of particle simulations. Both the free open-source (OVITO Basic) and the commercial (OVITO Pro) versions can read DL_MESO_DPD/DL_POLY <a class="reference internal" href="dlm_4.html#configdlmeso"><span class="std std-ref">CONFIG</span></a> and GALAMOST XML files, the latter of which can be generated from DL_MESO_DPD <a class="reference internal" href="dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> files using the <a class="reference internal" href="dlm_7.html#trajectxml"><span class="std std-ref">traject_xml.exe</span></a> utility.</p>
 <a class="reference internal image-reference" href="../../_images/dlm_4_3.png"><img alt="../../_images/dlm_4_3.png" class="align-center" src="../../_images/dlm_4_3.png" style="width: 609.6px; height: 363.9px;" /></a>
-</section>
-<section id="paraview">
+</div>
+<div class="section" id="paraview">
 <h2>Paraview<a class="headerlink" href="#paraview" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://www.paraview.org/">Paraview</a> is a free open-source software package for visualising and analysing grid-based data, capable of rendering single snapshots and generating movies of LBE simulations and from processed trajectory data from DPD simulations. VTK file formats (including those written by the DPD utilities <a class="reference internal" href="dlm_7.html#local"><span class="std std-ref">local.exe</span></a> and <a class="reference internal" href="dlm_7.html#isosurfaces"><span class="std std-ref">isosurfaces.exe</span></a>) are native for this program, although it can also read Plot3D files generated by DL_MESO_LBE.</p>
 <a class="reference internal image-reference" href="../../_images/dlm_3_2.png"><img alt="../../_images/dlm_3_2.png" class="align-center" src="../../_images/dlm_3_2.png" style="width: 746.0px; height: 505.0px;" /></a>
-</section>
-<section id="ummap">
+</div>
+<div class="section" id="ummap">
 <h2>UMMAP<a class="headerlink" href="#ummap" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://www.scd.stfc.ac.uk/Pages/UMMAP.aspx">UMMAP</a> is a trajectory frame analysis tool for particle-based simulations, primarily those for soft matter, which can produce a range of statistics and graphical output. It can read in MD and DPD trajectories, including those in DL_MESO_DPD <a class="reference internal" href="dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> files, and generates anotated snapshots that can be visualised with <a class="reference external" href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a>.</p>
-</section>
-<section id="kagisi">
+</div>
+<div class="section" id="kagisi">
 <h2>KaGiSi<a class="headerlink" href="#kagisi" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/KaGaSi/AnalysisTools">KaGiSi AnalysisTools</a> are a bundle of programs designed to analyse particle trajectories, primarily those involving aggregation of molecules. The trajectories need to be provided in VMD trajectory files (or separated structure and coordinate files), which can be produced from DL_MESO_DPD <a class="reference internal" href="dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> files using the <a class="reference internal" href="dlm_7.html#trajectvtf"><span class="std std-ref">traject_vtf.exe</span></a> utility.</p>
-</section>
-<section id="e-cam-modules">
+</div>
+<div class="section" id="e-cam-modules">
 <h2>E-CAM modules<a class="headerlink" href="#e-cam-modules" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://www.e-cam2020.eu/">E-CAM</a>, the Horizon 2020 European Centre of Excellence for HPC simulations and modelling, has a number of <a class="reference external" href="https://www.e-cam2020.eu/software-library/">GitLab repositories</a> with open source software for various forms of computational modelling. The <a class="reference external" href="https://e-cam.readthedocs.io/en/latest/Meso-Multi-Scale-Modelling-Modules/index.html">Meso- and Multi-scale Modelling</a> modules include several specifically designed for DL_MESO_DPD, including:</p>
 <ul class="simple">
-<li><p>Consistency checks for DL_MESO_DPD input files</p></li>
-<li><p>Converting binary <a class="reference internal" href="dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> files into a human-readable form</p></li>
-<li><p>Analysis of charge dipole moments</p></li>
-<li><p>Autocorrelation functions of system and individual charge dipole moments</p></li>
-<li><p>Analysis of local tetrahedral ordering</p></li>
-<li><p>Port of DL_MESO_DPD to CUDA for CPU-hosted NVIDIA GPUs</p></li>
+<li>Consistency checks for DL_MESO_DPD input files</li>
+<li>Converting binary <a class="reference internal" href="dlm_4.html#historydpd"><span class="std std-ref">HISTORY</span></a> files into a human-readable form</li>
+<li>Analysis of charge dipole moments</li>
+<li>Autocorrelation functions of system and individual charge dipole moments</li>
+<li>Analysis of local tetrahedral ordering</li>
+<li>Port of DL_MESO_DPD to CUDA for CPU-hosted NVIDIA GPUs</li>
 </ul>
 <p><a class="reference internal" href="dlp_5.html#header-dlp-5"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
-</section>
+</div>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -127,15 +127,17 @@
   <p class="topless"><a href="../EXERCISES/Exercises.html"
                         title="next chapter">DL_Software Tutorial Exercises</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -155,13 +157,12 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Usability with other programs</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

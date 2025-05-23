@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>The Mean Square Displacement &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -25,8 +27,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">The Mean Square Displacement</a></li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -35,7 +36,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="the-mean-square-displacement">
+  <div class="section" id="the-mean-square-displacement">
 <h1>The Mean Square Displacement<a class="headerlink" href="#the-mean-square-displacement" title="Permalink to this headline">¶</a></h1>
 <p>Molecules in liquids and gases do not stay in the same place, but move about constantly. It is in fact essential that they do so, otherwise they would not possess the property of fluidity. The phenomenon is apparent if you place a drop of ink into water - after a while the colour is evenly distributed through the liquid. It is obvious that the molecules of the ink have moved through the bulk of the water. This process is called diffusion and it happens quite naturally in fluids at equilibrium. (The water molecules themselves are also undergoing diffusion, though this is not so obvious.)</p>
 <p>The motion of an individual molecule in a dense fluid does not follow a simple path. As it travels, the molecule is jostled by collisions with other molecules which prevent it from following a straight line. If the path is examined in close detail, it will be seen to be a good approximation to a random walk. Mathematically, a random walk is a series of steps, one after another, where each step is taken in a completely random direction from the one before. This kind of path was famously analysed by Albert Einstein in a study of Brownian motion and he showed that the mean square of the distance travelled by particle following a random walk is proportional to the time elapsed. This relationship can be written as</p>
@@ -49,10 +50,9 @@
 <p><em>add Image</em></p>
 <p>The linear (i.e. straight line) dependence of the MSD plot is apparent. If the slope of this plot is taken, the diffusion coefficient D may be readily obtained.</p>
 <p>At very short times however, the plot is not linear. This is because the the path a molecule takes will be an approximate straight line until it collides with its neighbour. Only when it starts the collision process will its path start to resemble a random walk. Until it makes that first collision, we may say it moves with approximately constant velocity, which means the distance it travels is proportional to time, and its MSD is therefore proportional to the time squared. Thus at very short time, the MSD resembles a parabola. This is of course a simplification - the collision between molecules is not like the collision between two pebbles, it is not instantaneous in space or time, but is <a href="#id1"><span class="problematic" id="id2">`</span></a>spread out’ a little in both. This means that the behaviour of the MSD at short time is sometimes more complicated than this MSD plot shows.</p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -68,15 +68,17 @@
 </ul>
 
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -87,13 +89,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">The Mean Square Displacement</a></li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

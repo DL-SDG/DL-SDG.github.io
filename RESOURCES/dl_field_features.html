@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Main features &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Main features</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,45 +47,44 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="main-features">
+  <div class="section" id="main-features">
 <h1>Main features<a class="headerlink" href="#main-features" title="Permalink to this headline">¶</a></h1>
 <p><strong>Last update: July 2024 (DL_FIELD version 4.11)</strong></p>
 <p>Below shows the some of the main DL_FIELD capabilities.</p>
 <ul class="simple">
-<li><p>Accept input configuration files in the following formats: <em>PDB</em>, <em>xyz</em> and <em>mol2</em></p></li>
-<li><p>Model customisation: define rigid bodies, assign freeze, tether and bond constrain atoms.</p></li>
-<li><p>Force field customisation in a user-define force field (<em>udff</em>) file: define or override potential parameters and FF models</p></li>
-<li><p>Solvation with auto-insertion of counter ions.</p></li>
-<li><p>Auto setup solution and liquid systems (Solution Maker feature).</p></li>
-<li><p>Fully automatic universal atom typing scheme for a number of FF schemes (applicable to <em>xyz</em> and <em>mol2</em> only).</p></li>
-<li><p>Definition of more than one FF scheme within a molecular model (multiple potential capability).</p></li>
-<li><p>Run DL_POLY and Gromacs programs after conversion (in a same device).</p></li>
+<li>Accept input configuration files in the following formats: <em>PDB</em>, <em>xyz</em> and <em>mol2</em></li>
+<li>Model customisation: define rigid bodies, assign freeze, tether and bond constrain atoms.</li>
+<li>Force field customisation in a user-define force field (<em>udff</em>) file: define or override potential parameters and FF models</li>
+<li>Solvation with auto-insertion of counter ions.</li>
+<li>Auto setup solution and liquid systems (Solution Maker feature).</li>
+<li>Fully automatic universal atom typing scheme for a number of FF schemes (applicable to <em>xyz</em> and <em>mol2</em> only).</li>
+<li>Definition of more than one FF scheme within a molecular model (multiple potential capability).</li>
+<li>Run DL_POLY and Gromacs programs after conversion (in a same device).</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
+<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
 <p><strong>Available force field (FF) schemes</strong></p>
 <ul class="simple">
-<li><p>CHARMM - CHARMM22, CHARMM36 for proteins, nuclei acids, lipids and carbohydrates, CGenFF general FF.</p></li>
-<li><p>AMBER - proteins, Glycam for glycans and GAFF general FF.</p></li>
-<li><p>OPLS2005 - for proteins and organic molecules including drug molecules.</p></li>
-<li><p>OPLS-CL&amp;P - OPLS FF for ionic liquids.</p></li>
-<li><p>OPLS-DES - OPLS FF for deep eutectic solvents</p></li>
-<li><p>OPLS-AA/M - New OPLS protein FF.</p></li>
-<li><p>PCFF - Small organic molecules including organic polymers.</p></li>
-<li><p>CVFF - Small organic molecules, proteins.</p></li>
-<li><p>TraPPE_EH - Transferable force field for phase equilibria studies - small organic molecules.</p></li>
-<li><p>DREIDING - General FF for covalent molecules.</p></li>
-<li><p>INORGANIC - a collective FF term for inorganic oxides, glass, clay, zeolites, etc.</p></li>
-<li><p>MISC_FF - miscellaneous general FF scheme - for FF models that do not fit with any standard schemes.</p></li>
-<li><p>G54A7 - united atom Gromos FF.</p></li>
+<li>CHARMM - CHARMM22, CHARMM36 for proteins, nuclei acids, lipids and carbohydrates, CGenFF general FF.</li>
+<li>AMBER - proteins, Glycam for glycans and GAFF general FF.</li>
+<li>OPLS2005 - for proteins and organic molecules including drug molecules.</li>
+<li>OPLS-CL&amp;P - OPLS FF for ionic liquids.</li>
+<li>OPLS-DES - OPLS FF for deep eutectic solvents</li>
+<li>OPLS-AA/M - New OPLS protein FF.</li>
+<li>PCFF - Small organic molecules including organic polymers.</li>
+<li>CVFF - Small organic molecules, proteins.</li>
+<li>TraPPE_EH - Transferable force field for phase equilibria studies - small organic molecules.</li>
+<li>DREIDING - General FF for covalent molecules.</li>
+<li>INORGANIC - a collective FF term for inorganic oxides, glass, clay, zeolites, etc.</li>
+<li>MISC_FF - miscellaneous general FF scheme - for FF models that do not fit with any standard schemes.</li>
+<li>G54A7 - united atom Gromos FF.</li>
 </ul>
 <p>All FF schemes expressed in the same DL_FIELD format and the library files are located in the <em>lib</em> directory.</p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -123,15 +123,17 @@
   <p class="topless"><a href="dl_field_jargon.html"
                         title="next chapter">Jargons</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -151,13 +153,12 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Main features</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

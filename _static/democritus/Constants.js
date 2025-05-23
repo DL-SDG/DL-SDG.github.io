@@ -1,0 +1,1 @@
+export const BOLTZMAN_CONSTANT = 0.004
