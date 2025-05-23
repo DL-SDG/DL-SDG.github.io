@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Ionic Liquids &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -35,8 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../parameter_examples.html" accesskey="U">Example Simulation Models and Procedures</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Ionic Liquids</a></li> 
+          <li class="nav-item nav-item-2"><a href="../parameter_examples.html" accesskey="U">Example Simulation Models and Procedures</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -45,10 +46,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="ionic-liquids">
+  <div class="section" id="ionic-liquids">
 <span id="header-il"></span><h1>Ionic Liquids<a class="headerlink" href="#ionic-liquids" title="Permalink to this headline">¶</a></h1>
 <p>This section provides a few example of control parameters and simulation procedures for a number of system materials. It can be used as a guidance for your system model.</p>
-<img alt="../../../_images/Orange_bar.png" src="../../../_images/Orange_bar.png" />
+<img alt="../../../_images/Orange_bar5.png" src="../../../_images/Orange_bar5.png" />
 <p><strong>Example 1</strong>: Ionic liquid droplets interaction with silicon surface</p>
 <p>Reference: Y. Guan, Q. Shao, W. Chen, S. Liu, X. Zhang, and Y. Deng, <em>J. Phys. Chem. C</em> <strong>121</strong> 23716–23726 (2017)</p>
 <p>Simulation box size: 80 Å × 160 Å × 130 Å</p>
@@ -58,8 +59,8 @@
 <p>Protocols: Equilibrated silicon and ionic liquids separately.</p>
 <p>For combined silicon and IL [Emim][BF4] systems:</p>
 <ol class="arabic simple">
-<li><p>Equilibrated for 20 ns at 300 K.</p></li>
-<li><p>Sampling taken every 1000 steps (2 ps) for 10 ns.</p></li>
+<li>Equilibrated for 20 ns at 300 K.</li>
+<li>Sampling taken every 1000 steps (2 ps) for 10 ns.</li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span> <span class="mi">1</span> <span class="n">DL_POLY</span> <span class="n">CONTROL</span> <span class="n">file</span><span class="p">:</span>
 
@@ -79,12 +80,11 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../../_images/Orange_bar.png" src="../../../_images/Orange_bar.png" />
+<img alt="../../../_images/Orange_bar5.png" src="../../../_images/Orange_bar5.png" />
 <p><a class="reference internal" href="#header-il"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -118,15 +118,17 @@
   <p class="topless"><a href="../liquid_sim.html"
                         title="next chapter">Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -145,13 +147,12 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../parameter_examples.html" >Example Simulation Models and Procedures</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Ionic Liquids</a></li> 
+          <li class="nav-item nav-item-2"><a href="../parameter_examples.html" >Example Simulation Models and Procedures</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

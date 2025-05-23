@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Force field data files: Parameter Files &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Force field data files: Parameter Files</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,9 +47,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dlf-4"></span><section id="force-field-data-files-parameter-files">
-<h1>Force field data files: Parameter Files<a class="headerlink" href="#force-field-data-files-parameter-files" title="Permalink to this headline">¶</a></h1>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+  <div class="section" id="force-field-data-files-parameter-files">
+<span id="header-dlf-4"></span><h1>Force field data files: Parameter Files<a class="headerlink" href="#force-field-data-files-parameter-files" title="Permalink to this headline">¶</a></h1>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>The Parameter file (par file)</strong></p>
 <p>These files have filenames in the form of <em>XX.par</em>, where <em>XX</em> is the FF scheme name. The <em>par</em> files are where all the FF parameters are stored. The files contain all types of interactions with the exception of coulombic charges, which are defined for every ATOMs in the MOLECULEs.</p>
 <p>All the parameters are enclosed within the appropriate directives according to the type of interactions. For example, for two-body bonding interactions, the parameters are listed within the <em>BOND</em> and <em>END BOND</em> directives; for three-body angle interactions, the parameters are listed within the <em>ANGLE</em> and <em>END ANGLE</em> directives, and so forth.</p>
@@ -56,8 +57,8 @@
 <a class="reference internal image-reference" href="../../_images/dl_f_4_1.png"><img alt="../../_images/dl_f_4_1.png" class="align-center" src="../../_images/dl_f_4_1.png" style="width: 360.0px; height: 365.6px;" /></a>
 <p>The <em>POTENTIAL</em> directive indicates the FF scheme is of CHARMM36_lipid. The <em>UNIT</em> directive shows the energy unit of the parameters, which in this case, is kcal/mol. If users wish to use other energy units in the <em>dl_poly.FIELD</em> file, this can be specified in the DL_FIELD <em>control</em> file. If needed, DL_FIELD will do automatic unit conversion during the FF model setup processes.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The order how the parameters were shown in columns can be different from one FF scheme to the other. This depends on the potential functional forms used, and the way how the parameters were displayed in the original data files.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">The order how the parameters were shown in columns can be different from one FF scheme to the other. This depends on the potential functional forms used, and the way how the parameters were displayed in the original data files.</p>
 </div>
 <p>Lists of available directive that is applicable to the <em>par</em> files are shown below:</p>
 <p><em>BOND</em>, with <em>END BOND</em> <br />
@@ -72,10 +73,9 @@
 <em>EQUIVALENCE</em>, with <em>END EQUIVALENCE</em> <br /></p>
 <p>For more details how they are used, please refer to DL_FIELD user manual.</p>
 <p><a class="reference internal" href="#header-dlf-4"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -114,15 +114,17 @@
   <p class="topless"><a href="dlf_21.html"
                         title="next chapter">ATOM_KEY equivalence</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -142,13 +144,12 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Force field data files: Parameter Files</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

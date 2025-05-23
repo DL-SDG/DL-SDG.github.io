@@ -1,21 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Dimensionless numbers &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -35,8 +36,7 @@
           <a href="../../MONTE_CARLO_POLYMER/mc_polymer.html" title="Monte Carlo Polymer"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Dimensionless numbers</a></li> 
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -45,10 +45,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="dimensionless-numbers">
+  <div class="section" id="dimensionless-numbers">
 <span id="id1"></span><h1>Dimensionless numbers<a class="headerlink" href="#dimensionless-numbers" title="Permalink to this headline">¶</a></h1>
 <p>Dimensionless numbers are quantities to which no physical dimension is assigned and are widely used in scientific and engineering fields. These can be used to characterise various situations and describe behaviours that can exist at various length and time scales.</p>
-<section id="reynolds-number">
+<div class="section" id="reynolds-number">
 <span id="reynolds"></span><h2>Reynolds number<a class="headerlink" href="#reynolds-number" title="Permalink to this headline">¶</a></h2>
 <p>The Reynolds number (<span class="math notranslate nohighlight">\(Re\)</span>) is an important dimensionless quantity in fluid mechanics that can be used to predict flow patterns in different situations. Two flow systems with the same Reynolds number are regarded as behaving similarly, even if their system dimensions and fluid properties are different. This allows experimentation with smaller scale systems in preparation of larger systems with confidence that the latter will behave in an expected manner.</p>
 <p>The definition of the Reynolds number is:</p>
@@ -56,15 +56,15 @@
 \[Re = \frac{u L}{\nu} = \frac{\rho u L}{\mu}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u\)</span> is the (average) fluid speed with respect to a given object (system or obstacle size), <span class="math notranslate nohighlight">\(\rho\)</span> is the fluid density, <span class="math notranslate nohighlight">\(L\)</span> is a characteristic length scale (e.g. pipe diameter), <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\nu\)</span> are respectively the dynamic and kinematic viscosities of the fluid.</p>
 <p>One major use of the Reynolds number - which can also be regarded as the ratio of inertial to viscous forces - is to characterise flow types. For instance, for fully-developed flows in cylindrical pipes, <span class="math notranslate nohighlight">\(Re\)</span> values of less than 2300 typically indicate laminar (sheet-like, viscosity-dominated) flows, while values greater than 2900 indicate turbulent (chaotic, inertially-driven) flows.</p>
-</section>
-<section id="capillary-number">
+</div>
+<div class="section" id="capillary-number">
 <h2>Capillary number<a class="headerlink" href="#capillary-number" title="Permalink to this headline">¶</a></h2>
 <p>The capillary number (<span class="math notranslate nohighlight">\(Ca\)</span>) describes the relative effects of viscosity and surface tension on a fluid drop surrounded by a continuous fluid. Based on the ratio of viscous to surface tension forces, it is given by the following formula:</p>
 <div class="math notranslate nohighlight">
 \[Ca = \frac{\mu u}{\sigma} = \frac{\rho \nu u}{\sigma}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\rho\)</span> is the density of the fluid drop, <span class="math notranslate nohighlight">\(u\)</span> is a representative (average) fluid speed  and <span class="math notranslate nohighlight">\(\sigma\)</span> is the interfacial tension between the two fluids. For drops with small capillary numbers (less than <span class="math notranslate nohighlight">\(10^{-5}\)</span>), we can assume flows in porous materials or capillaries will be dominated by interfacial tension.</p>
-</section>
-<section id="schmidt-and-prandtl-numbers">
+</div>
+<div class="section" id="schmidt-and-prandtl-numbers">
 <h2>Schmidt and Prandtl numbers<a class="headerlink" href="#schmidt-and-prandtl-numbers" title="Permalink to this headline">¶</a></h2>
 <p>Schmidt (<span class="math notranslate nohighlight">\(Sc\)</span>) and Prandtl (<span class="math notranslate nohighlight">\(Pr\)</span>) numbers describe fluid flows that include mass and heat diffusion convection processes respectively. They are ratios of viscous to mass or heat diffusion rates.</p>
 <p>The Schmidt number is the ratio of kinematic viscosity to diffusivity:</p>
@@ -75,8 +75,8 @@
 <div class="math notranslate nohighlight">
 \[Pr = \frac{\nu}{\frac{k}{c_p \rho}} = \frac{\mu c_p}{k}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is the thermal conductivity and <span class="math notranslate nohighlight">\(c_p\)</span> is the specific heat capacity. Values of the Prandtl number greater than 1 indicate momentum diffusion dominates over heat diffusion (conduction), which can be observed as convection of heat. Values of the Prandtl number are typically around 1 for gases, lower for liquid metals and higher for oils and polymers.</p>
-</section>
-<section id="rayleigh-number">
+</div>
+<div class="section" id="rayleigh-number">
 <h2>Rayleigh number<a class="headerlink" href="#rayleigh-number" title="Permalink to this headline">¶</a></h2>
 <p>The Rayleigh number (<span class="math notranslate nohighlight">\(Ra\)</span>) describes buoyancy-driven flow, also known as free or natural convection. It is effectively the ratio of time scales between diffusive and convective thermal transport:</p>
 <div class="math notranslate nohighlight">
@@ -85,11 +85,10 @@
 <div class="math notranslate nohighlight">
 \[Ra = \frac{c_p L^3 g \rho \kappa_T}{\nu k} \left(T_s - T_{\infty}\right)\]</div>
 <p>where <span class="math notranslate nohighlight">\(T_{\infty}\)</span> is the fluid temperature far from the wall.</p>
-</section>
-</section>
+</div>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -119,15 +118,17 @@
   <p class="topless"><a href="../misc_documents.html"
                         title="next chapter">Miscellaneous Articles</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -145,13 +146,12 @@
           <a href="../../MONTE_CARLO_POLYMER/mc_polymer.html" title="Monte Carlo Polymer"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Dimensionless numbers</a></li> 
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

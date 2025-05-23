@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>DL_MESO_DPD Jargon &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" accesskey="U">DL_MESO</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">DL_MESO_DPD Jargon</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" accesskey="U">DL_MESO</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,49 +47,48 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="dl-meso-dpd-jargon">
+  <div class="section" id="dl-meso-dpd-jargon">
 <h1>DL_MESO_DPD Jargon<a class="headerlink" href="#dl-meso-dpd-jargon" title="Permalink to this headline">¶</a></h1>
 <p>Below shows definitions that are related to DL_MESO_DPD, or indeed, generally to dissipative particle dynamics (DPD) simulations.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>CONFIG - An (optional) DL_MESO_DPD file that stores the location state of particles in a system model, including positions, forces and velocities.</p></li>
+<li>CONFIG - An (optional) DL_MESO_DPD file that stores the location state of particles in a system model, including positions, forces and velocities.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>FIELD - A DL_MESO_DPD file that describes the force field (interaction) model of a system, including particle content, molecular topology and applied external fields.</p></li>
+<li>FIELD - A DL_MESO_DPD file that describes the force field (interaction) model of a system, including particle content, molecular topology and applied external fields.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>CONTROL - A DL_MESO_DPD file that contains a set of directives to drive the DPD simulation process.</p></li>
+<li>CONTROL - A DL_MESO_DPD file that contains a set of directives to drive the DPD simulation process.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>particle or bead - Any entity occupying a unique entry in the <em>CONFIG</em> and <em>FIELD</em> files. It is a countable object and has a global ID index. In the case of DPD, it can be either a coarse-grained representation of selected atoms or a mesoscopic representation of a continuum fluid (a ‘carrier of momentum’).</p></li>
+<li>particle or bead - Any entity occupying a unique entry in the <em>CONFIG</em> and <em>FIELD</em> files. It is a countable object and has a global ID index. In the case of DPD, it can be either a coarse-grained representation of selected atoms or a mesoscopic representation of a continuum fluid (a ‘carrier of momentum’).</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>intra-molecular interactions - Interaction components that involve connectivity of particles within a molecule. For example, chemical (stretching) bonds, angles involving three particles, dihedrals and impropers involving four particles.</p></li>
+<li>intra-molecular interactions - Interaction components that involve connectivity of particles within a molecule. For example, chemical (stretching) bonds, angles involving three particles, dihedrals and impropers involving four particles.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>inter-molecular interactions - Interaction components that do not directly involve covalent bonds, acting between individual beads or molecules. For example: conservative (van-der-Waals) interactions, many-body DPD potentials, electrostatic interactions.</p></li>
+<li>inter-molecular interactions - Interaction components that do not directly involve covalent bonds, acting between individual beads or molecules. For example: conservative (van-der-Waals) interactions, many-body DPD potentials, electrostatic interactions.</li>
 </ul>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -127,15 +127,17 @@
   <p class="topless"><a href="TUTORIALS/tutorials.html"
                         title="next chapter">DL_Software Reference Guides</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -155,13 +157,12 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" >DL_MESO</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">DL_MESO_DPD Jargon</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_meso_intro.html" >DL_MESO</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

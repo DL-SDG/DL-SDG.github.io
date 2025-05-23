@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Analysis Criteria - Molecular Groups &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dla_0.html" accesskey="U">DL_ANALYSER</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Analysis Criteria - Molecular Groups</a></li> 
+          <li class="nav-item nav-item-3"><a href="dla_0.html" accesskey="U">DL_ANALYSER</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,14 +47,17 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dla-5"></span><section id="analysis-criteria-molecular-groups">
-<h1>Analysis Criteria - Molecular Groups<a class="headerlink" href="#analysis-criteria-molecular-groups" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="analysis-criteria-molecular-groups">
+<span id="header-dla-5"></span><h1>Analysis Criteria - Molecular Groups<a class="headerlink" href="#analysis-criteria-molecular-groups" title="Permalink to this headline">¶</a></h1>
 <p>The <em>Atom Range Definition Section</em> contains a set of criteria to selectively pick atoms for analysis according to needs. For example, it is sometimes needful to pick certain portion or class of atoms for analysis, or even to carry out analysis based on molecules, rather than the individual atoms that made up a molecule.</p>
-<dl class="field-list simple">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>Before carry out analysis on your system models, think how you would want to do it, and what do you intend to achieve. Then, select the appropriate parameters in the <em>Atom Range Definition Section</em>.</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">Before carry out analysis on your system models, think how you would want to do it, and what do you intend to achieve. Then, select the appropriate parameters in the <em>Atom Range Definition Section</em>.</td>
+</tr>
+</tbody>
+</table>
 <p>Below shows an example of the <em>Section</em>. Note the number in brackets are added for illustration purposes that should not include in the actual <em>inpout</em> files.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--- Atom Range Definition and overall conditions for analysis as below.
 (1) 1 8 * Range of atom index (Group A). This must always define.
@@ -78,13 +82,13 @@ EXCLUDE 5050 to 5070
 …
 </pre></div>
 </div>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Molecule Groups</strong></p>
 <p>Before carry out any analysis, DL_ANALYSER needs to know how would you want to group your atoms. For an atomic system, you can generally divide your atoms into two groups - Molecular Group A and Molecular Group B. The ranges of atom index for each Group can be defined in Option (1) and Option (2), respectively.</p>
 <p>Depends on which analysis options you have chosen, sometimes analysis is made between the Groups. Otherwise, the analysis is carried out within the Groups, respectively.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Group A atoms must always be defined but Group B definition is optional.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">Group A atoms must always be defined but Group B definition is optional.</p>
 </div>
 <p>For example, diagram below shows a system consists of some ethanol molecules with water. The ethanol molecules were assigned to Group A, while water molecules were assigned to Group B.</p>
 <a class="reference internal image-reference" href="../../_images/dla_5_1.png"><img alt="../../_images/dla_5_1.png" class="align-center" src="../../_images/dla_5_1.png" style="width: 512.4px; height: 325.2px;" /></a>
@@ -92,17 +96,19 @@ EXCLUDE 5050 to 5070
 <p>Sometimes, even if the system consists only one type of atom, it is still needful to arrange the atoms into groups. For instance, consider a system consists of two silver nanoparticles, each consists of a thousand silver atoms as shown below.</p>
 <a class="reference internal image-reference" href="../../_images/dla_5_2.png"><img alt="../../_images/dla_5_2.png" class="align-center" src="../../_images/dla_5_2.png" style="width: 512.0px; height: 242.0px;" /></a>
 <p>If the atoms are arranged correctly, then Group A can be assigned with atom range from 1 to 1000, while Group B is assigned with atom range from 1001 to 2000. Obviously, depending on your needs, you can simply assign a full range of 1 to 2000 for Group A only.</p>
-<dl class="field-list simple">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>Think carefully what you intend to measure before setting up your force field model.</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">Think carefully what you intend to measure before setting up your force field model.</td>
+</tr>
+</tbody>
+</table>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dla-5"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -141,15 +147,17 @@ EXCLUDE 5050 to 5070
   <p class="topless"><a href="dla_6.html"
                         title="next chapter">Analysis Criteria - Molecule-based and Atom-based</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -169,13 +177,12 @@ EXCLUDE 5050 to 5070
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dla_0.html" >DL_ANALYSER</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Analysis Criteria - Molecular Groups</a></li> 
+          <li class="nav-item nav-item-3"><a href="dla_0.html" >DL_ANALYSER</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

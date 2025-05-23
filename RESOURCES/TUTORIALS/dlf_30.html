@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Setup FF from CHARMM’s rtf and prm &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Setup FF from CHARMM’s rtf and prm</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,15 +47,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dlf-30"></span><section id="setup-ff-from-charmm-s-rtf-and-prm">
-<h1>Setup FF from CHARMM’s rtf and prm<a class="headerlink" href="#setup-ff-from-charmm-s-rtf-and-prm" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="setup-ff-from-charmm-s-rtf-and-prm">
+<span id="header-dlf-30"></span><h1>Setup FF from CHARMM’s rtf and prm<a class="headerlink" href="#setup-ff-from-charmm-s-rtf-and-prm" title="Permalink to this headline">¶</a></h1>
 <p>This page shows how DL_FIELD can be used to extract FF information from rtf and prm files to
 setup FF models for DL_POLY and Gromacs.</p>
 <p>The rtf (residue topology file) and prm (parameter file) are standard CHARMM FF file formats that are produced from many third-party
 sources for simulation and modelling using packages such as CHARMM and NAMD.</p>
 <p>For example, the <em>LigParGen</em> is an FF web server interface (<a class="reference external" href="http://zarbi.chem.yale.edu/ligpargen/">http://zarbi.chem.yale.edu/ligpargen/</a>) that can automatically generate OPLSAA models for organic molecules, such as drug molecules or ligands with proteins and DNA.</p>
 <p>DL_FIELD can transcribe these FF models into DL_POLY and Gromacs files, via the Charmm’s rtf and prm files produced by LigParGen. This is done as follows, by using ascorbic acid as an example:</p>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Example procedure</strong></p>
 <p>When reading in CHARMM’s rtf and prm files, DL_FIELD will convert the FF data and create a corresponding <em>udff</em> file called <em>dlf_charmm.udff</em> file.</p>
 <p>Steps below illustrate the possible workflow procedures to setup FF models from rtf and prm files.</p>
@@ -86,8 +87,8 @@ select the 1.14*CM1A-LBCC charge model.</p>
 <p>The <em>COMPONENT FILE TYPEs</em> charmm_rtf and charmm_prm indicate the location of the rtf and prm files and the associated FF scheme, which
 is OPLS2005.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Although rtf and prm are the original file formats for CHARMM software, in this case, the <em>LigParGen</em> produces FF data for OPLS scheme. For this reason, the FF scheme must be specified as OPLS2005 in <em>dl_f_path</em> and not some CHARMM FF schemes.</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">Although rtf and prm are the original file formats for CHARMM software, in this case, the <em>LigParGen</em> produces FF data for OPLS scheme. For this reason, the FF scheme must be specified as OPLS2005 in <em>dl_f_path</em> and not some CHARMM FF schemes.</p>
 </div>
 <p><strong>Step 5</strong>: Run DL_FIELD. The following message will be shown on the screen:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
@@ -146,17 +147,16 @@ HETATM    7  OH  UNK     1       0.426  -1.459  -0.512  1.00  0.00           O
 </div>
 <p><strong>Step 8</strong>: Run DL_FIELD. Once a <em>dlf_charmm.udff</em> file is created, DL_FIELD proceeds to read in the input configuration file and setup the FF model as usual.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you want to setup Gromacs FF files, remember to insert <em>gromacs</em> keyword in the <em>control</em> file.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to setup Gromacs FF files, remember to insert <em>gromacs</em> keyword in the <em>control</em> file.</p>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p><a class="reference internal" href="#header-dlf-30"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -195,15 +195,17 @@ HETATM    7  OH  UNK     1       0.426  -1.459  -0.512  1.00  0.00           O
   <p class="topless"><a href="data_0.html"
                         title="next chapter">D_ATA</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -223,13 +225,12 @@ HETATM    7  OH  UNK     1       0.426  -1.459  -0.512  1.00  0.00           O
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Setup FF from CHARMM’s rtf and prm</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

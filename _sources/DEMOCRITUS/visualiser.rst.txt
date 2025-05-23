@@ -51,5 +51,358 @@ Democritus
     </div>
   </div>
 
-  <script type="module" src="_static/democritus/chart.umd.min.js"></script>
-  <script type="module" src="_static/democritus/Test.js"></script>
+  <script src="/_static/democritus/chart.umd.min.js"></script>
+  <script type="module">
+    const Chart = window.Chart
+
+    import { Vector2 } from "/_static/democritus/Vector2.js"
+    import { Atom } from "/_static/democritus/Atom.js"
+    import { Simulation } from "/_static/democritus/Simulation.js"
+    import { Visualiser } from "/_static/democritus/Visualiser.js"
+    import { RollingBuffer } from "/_static/democritus/RollingBuffer.js"
+    import { ReactiveSlider } from "/_static/democritus/ReactiveSlider.js"
+    import { useStepsPerSecond } from "/_static/democritus/useStepsPerSecond.js"
+    import { Countdown } from "/_static/democritus/Countdown.js"
+
+    function computeRadialDistributionFunction(simulation, dr) {
+      const maximum_r = Math.min(simulation.boundary.x, simulation.boundary.y) / 2
+      const bin_count = Math.floor(maximum_r / dr)
+      const g = new Array(bin_count).fill(0)
+
+      for (let i = 0; i < simulation.atoms.length; i++) {
+        const first = simulation.atoms.at(i)
+        for (let j = i + 1; j < simulation.atoms.length; j++) {
+          const second = simulation.atoms.at(j)
+
+          const { r } = first.position.getDistanceWithPBC(second.position, simulation.boundary)
+
+          if (r < maximum_r) {
+            const bin = Math.floor(r / dr)
+
+            if (bin < g.length) g[bin] += 2
+          }
+        }
+      }
+
+      for (let i = 0; i < bin_count; i++) {
+        const r1 = i * dr
+        const r2 = r1 + dr
+        const shell_area = Math.PI * (r2 * r2 - r1 * r1)
+
+        const ideal_count = simulation.density * shell_area * simulation.atoms.length
+        g[i] /= ideal_count
+      }
+
+      return g
+    }
+
+    function computeVelocityAutocorrelation(velocities) {
+      const numSteps = velocities.length
+      const numParticles = velocities[0].length
+      const maxLag = numSteps - 1
+      const vacf = []
+
+      for (let tau = 0; tau <= maxLag; tau++) {
+        let sum = 0
+        let count = 0
+
+        for (let t = 0; t < numSteps - tau; t++) {
+          for (let i = 0; i < numParticles; i++) {
+            const v0 = velocities[t][i]
+            const vTau = velocities[t + tau][i]
+
+            sum += v0.dot(vTau)
+            count++
+          }
+        }
+
+        vacf.push(sum / count)
+      }
+
+      return vacf
+    }
+
+    window.onload = () => {
+      // get HTML elements to be updated with data
+      const steps_element = document.getElementById("steps")
+      const steps_per_second_element = document.getElementById("sps")
+      const field_elements = Object.fromEntries([
+        "density",
+        "temperature",
+        "pressure",
+        "energy"
+      ].map(heading => [heading, document.getElementById(heading)]))
+
+      const canvas_element = document.getElementById("canvas")
+
+      const chart_elements = Object.fromEntries([
+        "radial_distribution_function",
+        "velocity_autocorrelation",
+        "mean_squared_displacement"
+      ].map(heading => [heading, document.getElementById(heading)]))
+
+      // initialise charts
+      const CHART_DEFAULTS = {
+        data: [],
+        borderColor: "rgba(0, 0, 255, 1)",
+        backgroundColor: "rgba(0, 0, 255, 0.2)",
+        tension: 0.1,
+        pointRadius: 2,
+        fill: false
+      }
+
+      function options(title, xLabel, yLabel, beginAtZero) {
+        return {
+          options: {
+            responsive: true,
+            interaction: {
+              mode: null
+            },
+            plugins: {
+              tooltip: {
+                enabled: false
+              },
+              title: {
+                display: true,
+                text: title
+              }
+            },
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: xLabel
+                }
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: yLabel
+                },
+                beginAtZero
+              }
+            }
+          }
+        }
+      }
+
+      const radial_distribution_function_buffer = new RollingBuffer(1000)
+      const radial_distribution_function_chart = new Chart(chart_elements.radial_distribution_function.getContext("2d"), {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [
+            {
+              ...CHART_DEFAULTS,
+              label: `RDF ${radial_distribution_function_buffer.size} step rolling average`,
+            },
+            {
+              ...CHART_DEFAULTS,
+              label: `instantaneous RDF`,
+              borderColor: "rgba(255, 0, 0, 1)",
+              backgroundColor: "rgba(255, 0, 0, 0.2)",
+            }
+          ]
+        },
+        ...options(
+          "Radial Distribution Function",
+          "radius",
+          "g(r)",
+          true
+        )
+      })
+
+      const velocity_autocorrelation_buffer = new RollingBuffer(500)
+      const velocity_autocorrelation_chart = new Chart(chart_elements.velocity_autocorrelation.getContext("2d"), {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [{
+            ...CHART_DEFAULTS,
+            label: "VAC",
+            pointRadius: 0,
+            tension: 0.3
+          }]
+        },
+        ...options(
+          "Velocity Auto-Correlation",
+          "Time Lag",
+          "VAC",
+          true
+        )
+      })
+
+      const mean_squared_displacement_buffer = new RollingBuffer(50)
+      const mean_squared_displacement_chart = new Chart(chart_elements.mean_squared_displacement.getContext("2d"), {
+        type: "line",
+        data: {
+          labels: [],
+          datasets: [{
+            ...CHART_DEFAULTS,
+            label: "MSD"
+          }]
+        },
+        ...options(
+          "Mean Squared Displacement",
+          "time",
+          "r^2",
+          false
+        )
+      })
+
+      // handle sliders
+      const boundary_slider = new ReactiveSlider(
+        "boundary",
+        7,
+        value => `${value}x${value}`,
+        value => {
+          // update the boundary
+          const new_boundary = new Vector2(value, value)
+          visualiser.onBoundaryUpdate(new_boundary)
+          simulation.setBoundary(new_boundary)
+
+          // reset rollling buffers
+          radial_distribution_function_buffer.reset()
+          velocity_autocorrelation_buffer.reset()
+
+          // clear VAC table
+          velocity_autocorrelation_chart.data.datasets[0].data = []
+          velocity_autocorrelation_chart.data.labels = []
+        }
+      )
+
+      const temperature_slider = new ReactiveSlider(
+        "temperature",
+        500,
+        value => value.toString(),
+        value => {
+          // update the desired temperature
+          simulation.desired_temperature = value
+
+          // reset rollling buffer
+          velocity_autocorrelation_buffer.reset()
+        }
+      )
+
+      // size of the simulation
+      const boundary = new Vector2(boundary_slider.getValue(), boundary_slider.getValue())
+
+      // create a set of random atoms
+      const atoms = []
+      const side = 5
+      for (let x = 0; x < side; x++) {
+        for (let y = 0; y < side; y++) {
+          const atom = new Atom(boundary.x * x / side, boundary.y * y / side, 1 / 2 * 0.8)
+          atom.force = new Vector2(Math.random(), Math.random())
+          atoms.push(atom)
+        }
+      }
+
+      const mean_squared_displacement_original_positions = atoms.map(atom => atom.position.clone())
+
+      // create the simulation
+      const simulation = new Simulation(atoms, boundary)
+      simulation.desired_temperature = temperature_slider.getValue()
+      const visualiser = new Visualiser(simulation, canvas)
+
+      // handle clicking on an atom
+      canvas_element.addEventListener("click", event => {
+        const rect = canvas_element.getBoundingClientRect()
+
+        const rect_position = new Vector2(rect.left, rect.top)
+        const client_position = new Vector2(event.clientX, event.clientY)
+
+        // Position of the click relative to the canvas in CSS pixels
+        const css_position = client_position.subtract(rect_position)
+
+        // Convert to simulation coordinates
+        const simulation_position = css_position.divide(visualiser.scale)
+
+        const target = simulation.atoms.filter(atom => {
+          return atom.position.getDistanceWithPBC(simulation_position, simulation.boundary).r < atom.radius
+        }).at(0)
+
+        if (target === undefined) {
+          simulation.atoms.forEach(atom => atom.selected = false)
+        } else if (target.selected) {
+          target.selected = false
+        } else {
+          simulation.atoms.forEach(atom => atom.selected = false)
+          target.selected = true
+        }
+      })
+
+      const countdowns = [
+        // updates the steps per second readout
+        new Countdown(0.5, ({ sps }) => {
+          steps_per_second_element.innerText = sps.toFixed(1)
+        }),
+        // updates the table data
+        new Countdown(0.25, () => {
+          field_elements.density.innerHTML = simulation.density.toFixed(3)
+          field_elements.temperature.innerHTML = simulation.temperature.toFixed(3)
+          field_elements.pressure.innerHTML = simulation.pressure.toFixed(3)
+          field_elements.energy.innerHTML = simulation.total_energy.toFixed(3)
+        }),
+        // update the RDF graph
+        new Countdown(0.1, () => {
+          const radial_distribution_function_dr = (Math.min(simulation.boundary.x, simulation.boundary.y) / 2) / 50
+          const radial_distribution_function_result = computeRadialDistributionFunction(simulation, radial_distribution_function_dr)
+          radial_distribution_function_buffer.scoot(radial_distribution_function_result)
+          const radial_distribution_function_data = radial_distribution_function_buffer.data
+            .reduce((accumulator, current) => accumulator.map((value, i) => value + current.at(i)))
+            .map(value => value / radial_distribution_function_buffer.data.length)
+
+          radial_distribution_function_chart.data.datasets[0].data = radial_distribution_function_data
+          radial_distribution_function_chart.data.labels = radial_distribution_function_data.map((_, i) => (i * radial_distribution_function_dr).toFixed(3))
+
+          radial_distribution_function_chart.data.datasets[1].data = radial_distribution_function_result
+          radial_distribution_function_chart.data.labels = radial_distribution_function_result.map((_, i) => (i * radial_distribution_function_dr).toFixed(3))
+
+          radial_distribution_function_chart.update()
+        })
+      ]
+
+      const mean_squared_displacement_step_countdown = new Countdown(10, () => {
+        mean_squared_displacement_buffer.scoot({
+          data: simulation.atoms.reduce((acc, atom, i) => {
+            const current = atom.position
+            const initial = mean_squared_displacement_original_positions.at(i)
+            const { r: displacement } = current.getDistanceWithPBC(initial, simulation.boundary)
+            return Math.pow(displacement, 2) + acc
+          }, 0) / simulation.atoms.length, step: simulation.step
+        })
+
+        mean_squared_displacement_chart.data.datasets[0].data = mean_squared_displacement_buffer.data.map(({ data }) => data)
+        mean_squared_displacement_chart.data.labels = mean_squared_displacement_buffer.data.map(({ step }) => step)
+
+        mean_squared_displacement_chart.update()
+      })
+
+      useStepsPerSecond(60, ({ sps, dt }) => {
+        // update the step readout
+        steps_element.innerText = simulation.step
+
+        // update the simulation
+        simulation.update()
+        visualiser.update()
+
+        // update velocity autocorrelation
+        velocity_autocorrelation_buffer.scoot(simulation.atoms.map(atom => atom.velocity.clone()))
+        if (velocity_autocorrelation_buffer.data.length === velocity_autocorrelation_buffer.size) {
+          const velocity_autocorrelation_result = computeVelocityAutocorrelation(velocity_autocorrelation_buffer.data)
+
+          velocity_autocorrelation_chart.data.datasets[0].data = velocity_autocorrelation_result
+          velocity_autocorrelation_chart.data.labels = velocity_autocorrelation_result.map((_, i) => i)
+        }
+
+        velocity_autocorrelation_chart.update()
+
+        // update countdowns
+        mean_squared_displacement_step_countdown.update(1)
+
+        const context = { sps }
+        countdowns.forEach(countdown => countdown.update(dt, context))
+      })
+    }
+  </script>

@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Analysis Criteria - Molecule-based and Atom-based &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dla_0.html" accesskey="U">DL_ANALYSER</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Analysis Criteria - Molecule-based and Atom-based</a></li> 
+          <li class="nav-item nav-item-3"><a href="dla_0.html" accesskey="U">DL_ANALYSER</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,36 +47,39 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dla-6"></span><section id="analysis-criteria-molecule-based-and-atom-based">
-<h1>Analysis Criteria - Molecule-based and Atom-based<a class="headerlink" href="#analysis-criteria-molecule-based-and-atom-based" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="analysis-criteria-molecule-based-and-atom-based">
+<span id="header-dla-6"></span><h1>Analysis Criteria - Molecule-based and Atom-based<a class="headerlink" href="#analysis-criteria-molecule-based-and-atom-based" title="Permalink to this headline">¶</a></h1>
 <p>Once the atoms are assigned to Groups, you would then need to decide the analysis type, of whether it would be based on atoms or molecules - the <strong>atom-based</strong> or <strong>molecule-based</strong> analysis.  This can be selected in Option (3) in the <em>Atom Range Section</em>.</p>
 <p>Diagram below shows a system consists of some ethanoic acid molecules, and iilustrates the way how DL_ANALYSER perceive the difference between the atom-based and the molecule-based analysis.</p>
 <a class="reference internal image-reference" href="../../_images/dla_6_1.png"><img alt="../../_images/dla_6_1.png" class="align-center" src="../../_images/dla_6_1.png" style="width: 495.20000000000005px; height: 259.2px;" /></a>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Atom-based</strong></p>
 <p>As the name suggests, this analysis type means all analysis will be carried on the basis of individual atoms. For instance, to carry out radial distribution functions (RDF) between any pairs of atoms, atom labels can be defined explicitly. The graph below shows the RDF between the hydroxyl hydrogen (H20O) and the carbonyl oxygen (O20E).</p>
 <a class="reference internal image-reference" href="../../_images/dla_6_2.png"><img alt="../../_images/dla_6_2.png" class="align-center" src="../../_images/dla_6_2.png" style="width: 432.0px; height: 432.0px;" /></a>
 <p>The first peak refers to the hydrogen bond between H20O and O20E. The second peak refers to the intra-distance between the atom pair <em>within</em> the carboxylic groups of ethanoic acid molecules.</p>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Molecule-based</strong></p>
 <p>For this type of analysis, DL_ANALYSER will carry out the following procedures:</p>
 <ol class="arabic simple">
-<li><p>Identify molecules within a Group.</p></li>
-<li><p>Calculate the center of gravity of the molecules.</p></li>
-<li><p>Carry out analysis.</p></li>
+<li>Identify molecules within a Group.</li>
+<li>Calculate the center of gravity of the molecules.</li>
+<li>Carry out analysis.</li>
 </ol>
 <p>As the diagram shown above, this means the system is now reduced to points of centers of gravity, represent as green dots.</p>
 <p>To determine the type of molecules present in the system, DL_ANALYSER would need additional information. This is given in Options (5) - (8). These options provide information to DL_ANALYSER which molecules to look for, by giving a name and the number of atoms that made up a molecule.</p>
 <p>Up to two different molecules can be identified for each Group: Options (5) and (6) for Group A and Options (7) and (8) for Group B. They are designated with special molecule labels, which are Molecule A1 and A2 for Group A; Molecule B1 and B2 for Group B.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A Molecular Group may consist of other molecules. However, DL_ANALYSER will ignore molecules that do not match with the difinition given in the Options (5)-(8).</p>
+<p class="first admonition-title">Note</p>
+<p class="last">A Molecular Group may consist of other molecules. However, DL_ANALYSER will ignore molecules that do not match with the difinition given in the Options (5)-(8).</p>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>At the moment, DL_ANALYSER can only distinguish molecules in terms of number of atoms. Should your system contained different molecules with the same number of atoms, separate the molecules into Group A and Group B, respectively.</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">At the moment, DL_ANALYSER can only distinguish molecules in terms of number of atoms. Should your system contained different molecules with the same number of atoms, separate the molecules into Group A and Group B, respectively.</td>
+</tr>
+</tbody>
+</table>
 <p>Example below shows how to define a molecule-based analysis for a system that contain ethanoic acid molecules.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--- Atom Range Definition and overall conditions for analysis as below.
 (1) 1 5382 * Range of atom index (Group A). This must always define.
@@ -93,8 +97,8 @@
 </div>
 <p>Option (5) defines the molecule to look for: it must consist of eight atoms (which what made up an ethanoic acid molecule) and is given the name ‘acid’.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The name ‘acid’ is arbitrary and does not affect the results analysis. However, it is internally recognise as the Molecule A1.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">The name ‘acid’ is arbitrary and does not affect the results analysis. However, it is internally recognise as the Molecule A1.</p>
 </div>
 <p>Running DL_ANALYSER will give the following information in the <em>dl_analyser.output</em> file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
@@ -111,10 +115,9 @@
 <a class="reference internal image-reference" href="../../_images/dla_6_3.png"><img alt="../../_images/dla_6_3.png" class="align-center" src="../../_images/dla_6_3.png" style="width: 432.0px; height: 432.0px;" /></a>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dla-6"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -153,15 +156,17 @@
   <p class="topless"><a href="dla_7.html"
                         title="next chapter">Analysis Criteria - Atom-based analysis criteria</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -181,13 +186,12 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dla_0.html" >DL_ANALYSER</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Analysis Criteria - Molecule-based and Atom-based</a></li> 
+          <li class="nav-item nav-item-3"><a href="dla_0.html" >DL_ANALYSER</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

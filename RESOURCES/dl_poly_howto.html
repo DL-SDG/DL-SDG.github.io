@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Ready, get set, go &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" accesskey="U">DL_POLY</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Ready, get set, go</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" accesskey="U">DL_POLY</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,13 +47,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="ready-get-set-go">
+  <div class="section" id="ready-get-set-go">
 <h1>Ready, get set, go<a class="headerlink" href="#ready-get-set-go" title="Permalink to this headline">¶</a></h1>
 <p>This page tells you how to set DL_POLY up and running.</p>
 <p><strong>How to obtain DL_POLY</strong></p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://gitlab.com/ccp5/dl-poly">DL_POLY</a> – molecular dynamics simulations (version 5.0.0 and above).</p></li>
-<li><p>DL_POLY User Manual (<a class="reference download internal" download="" href="../_downloads/e7247241f4aa2df3ffd87a73709f280f/MAN_DL_POLY_5.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 5.0.0, February 2021.</p></li>
+<li><a class="reference external" href="https://gitlab.com/ccp5/dl-poly">DL_POLY</a> – molecular dynamics simulations (version 5.0.0 and above).</li>
+<li>DL_POLY User Manual (<a class="reference download internal" download="" href="../_downloads/83e502ce53f7391787c2ba5c15a2b3db/MAN_DL_POLY_5.0.0.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 5.0.0, February 2021.</li>
 </ul>
 <p>To be able to use the latest version of DL_POLY you first need to clone its <a class="reference external" href="https://gitlab.com/ccp5/dl-poly">GitLab repository</a> using one of the following commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: git clone git@gitlab.com:ccp5/dl-poly.git
@@ -77,15 +78,19 @@ $: cmake --install build-serial
 </pre></div>
 </div>
 <p>Succesful compilation leads to the creation of the dl_poly executable (<strong>DLPOLY.Z</strong>), which can be found in <strong>dl-poly/build-mpi/bin/</strong> (or <strong>dl-poly/build-serial/bin/</strong>).</p>
-<dl class="field-list">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>Copy the executable <em>DLPOLY.Z</em> to the directory from where you will run simulations e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd DL_POLY_SIMULATION
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body"><p class="first">Copy the executable <em>DLPOLY.Z</em> to the directory from where you will run simulations e.g.:</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd DL_POLY_SIMULATION
 $ cp dl-poly/build-mpi/bin/DLPOLY.Z .
 </pre></div>
 </div>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Continuation runs of simulations</strong></p>
 <p>When you need to re-run a simulation, make a ‘copy script’ using a text editor that can be used to quickly copy the CONFIG, REVCON and REVIVE files as shown below (in the same order):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: emacs copy.sh  # this creates a new script file using the emacs text editor (substitute &#39;emacs&#39; with your favourite editor)
@@ -114,10 +119,9 @@ $ cp dl-poly/build-mpi/bin/DLPOLY.Z .
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: ./copy.sh
 </pre></div>
 </div>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -156,15 +160,17 @@ $ cp dl-poly/build-mpi/bin/DLPOLY.Z .
   <p class="topless"><a href="../RST_PAGES/Installation_further_reading.html"
                         title="next chapter">Advanced Installation</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -184,13 +190,12 @@ $ cp dl-poly/build-mpi/bin/DLPOLY.Z .
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" >DL_POLY</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Ready, get set, go</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_poly_intro.html" >DL_POLY</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Glass Materials &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -35,8 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../parameter_examples.html" accesskey="U">Example Simulation Models and Procedures</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Glass Materials</a></li> 
+          <li class="nav-item nav-item-2"><a href="../parameter_examples.html" accesskey="U">Example Simulation Models and Procedures</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -45,18 +46,18 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="glass-materials">
+  <div class="section" id="glass-materials">
 <span id="header-glass"></span><h1>Glass Materials<a class="headerlink" href="#glass-materials" title="Permalink to this headline">¶</a></h1>
 <p>This section provides a few example of control parameters and simulation procedures for a number of system materials. It can be used as a guidance for your system model.</p>
-<img alt="../../../_images/Orange_bar.png" src="../../../_images/Orange_bar.png" />
+<img alt="../../../_images/Orange_bar4.png" src="../../../_images/Orange_bar4.png" />
 <p><strong>Example 1</strong>: Rare-earth (La, Y, Lu, Sc) aluminosilicate</p>
 <p>Reference: K. Okhotnikov, B. Stevensson and M. Edén, <em>Phys. Chem. Chem. Phys.</em> <strong>15</strong>, 15041 (2013)</p>
 <p>Model size: 35Å x 35Å x 35Å, ~3300 atoms.</p>
 <p>Procedures: Run at a high temperature to melt the system. Then, quenched (lower) it to a desired temperature:</p>
 <ol class="arabic simple">
-<li><p>Melt to equilibrate the structure at 3500 K for 100 ps</p></li>
-<li><p>Stepwise decrease temperature every 10 ps at a rate of 10 K ps <sup>-1</sup> to 300 K</p></li>
-<li><p>Run for 200 ps at 300 K and simulation extracted for analysis for the last 150 ps.</p></li>
+<li>Melt to equilibrate the structure at 3500 K for 100 ps</li>
+<li>Stepwise decrease temperature every 10 ps at a rate of 10 K ps <sup>-1</sup> to 300 K</li>
+<li>Run for 200 ps at 300 K and simulation extracted for analysis for the last 150 ps.</li>
 </ol>
 <p>Repeat the procedures 12 times, each starts with a different initial configurations to obtain average results.</p>
 <p>DL_FIELD FF scheme: inorganic_glass.</p>
@@ -80,7 +81,7 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../../_images/Orange_bar.png" src="../../../_images/Orange_bar.png" />
+<img alt="../../../_images/Orange_bar4.png" src="../../../_images/Orange_bar4.png" />
 <p><strong>Example 2</strong>: Silicate glasses</p>
 <p>Reference: A. Tilocca, N.H. de Leeuw, and A.N. Cormack, <em>Phys. Rev. B</em> <strong>73</strong>, 104209 (2006)</p>
 <p>Model: Use of core-shell model (adiabatic) with small mass assigned to shell parts. Use smaller timestep than usual, to correctly keep track of the shell with a much faster motion due to small mass.</p>
@@ -103,17 +104,17 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../../_images/Orange_bar.png" src="../../../_images/Orange_bar.png" />
+<img alt="../../../_images/Orange_bar4.png" src="../../../_images/Orange_bar4.png" />
 <p><strong>Example 3</strong>: Oxide glasses</p>
 <p>Reference: B.W.M. Thomas, R.N. Mead and G. Mountjoy, <em>J. Phys.: Condens. Matter</em> <strong>18</strong> 4697 (2006)</p>
 <p>Model: 23.7Å x 23.7Å x 23.7Å, 1000 atoms.</p>
 <p>Protocols: Run at a high temperature to melt the system, and then quenched (lower) it to a desired temperature. Investigate ion migration in glass structure.</p>
 <ol class="arabic simple">
-<li><p>At 6000K for 40,000 MD steps.</p></li>
-<li><p>Change to 4000 K for 40,000 MD steps.</p></li>
-<li><p>Change to 2000 K for 40,000 MD steps.</p></li>
-<li><p>Quench from 2000 K to 300 K over 85,000 steps. (10 <sup>13</sup> K s <sup>-1</sup>)</p></li>
-<li><p>Sample structure at 300 K for 40,000 steps (without further equilibration), sampled every 200 steps.</p></li>
+<li>At 6000K for 40,000 MD steps.</li>
+<li>Change to 4000 K for 40,000 MD steps.</li>
+<li>Change to 2000 K for 40,000 MD steps.</li>
+<li>Quench from 2000 K to 300 K over 85,000 steps. (10 <sup>13</sup> K s <sup>-1</sup>)</li>
+<li>Sample structure at 300 K for 40,000 steps (without further equilibration), sampled every 200 steps.</li>
 </ol>
 <p>Use Berendsen temperature bath to maintain temperature at NVT for all stages.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span> <span class="mi">3</span> <span class="n">DL_POLY</span> <span class="n">CONTROL</span> <span class="n">file</span><span class="p">:</span>
@@ -136,28 +137,27 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../../_images/Orange_bar.png" src="../../../_images/Orange_bar.png" />
+<img alt="../../../_images/Orange_bar4.png" src="../../../_images/Orange_bar4.png" />
 <p><strong>Example 4</strong> Silica Yttrium Aluminosilicate glass</p>
 <p>Reference: J. Du, <em>J. Am. Ceram. Soc.</em> <strong>92</strong>, 87 (2009)</p>
 <p>System size: about 2900 atoms</p>
 <p>Protocols: Run at a high temperature to melt the system, and then quenched (lower) it to a desired temperature.</p>
 <ol class="arabic simple">
-<li><p>Run NVT ensemble at 6000 K to randomise the structure for 80 ps.</p></li>
-<li><p>Run NVE ensemble at 6000 K for a further 80 ps.</p></li>
-<li><p>Temperature is changed (lowered) to 4000 K and run for 80 ps at NVT.</p></li>
-<li><p>Run NVE ensemble at 4000 K for a further 80 ps.</p></li>
-<li><p>Temperature linearly scaled down to 300 K at the rate 10 K/ps.</p></li>
-<li><p>Run NVT at 300 K for 80 ps.</p></li>
-<li><p>Run NVE at 300 K for a further 80 ps. Collect data for analysis for the final 40 ps.</p></li>
+<li>Run NVT ensemble at 6000 K to randomise the structure for 80 ps.</li>
+<li>Run NVE ensemble at 6000 K for a further 80 ps.</li>
+<li>Temperature is changed (lowered) to 4000 K and run for 80 ps at NVT.</li>
+<li>Run NVE ensemble at 4000 K for a further 80 ps.</li>
+<li>Temperature linearly scaled down to 300 K at the rate 10 K/ps.</li>
+<li>Run NVT at 300 K for 80 ps.</li>
+<li>Run NVE at 300 K for a further 80 ps. Collect data for analysis for the final 40 ps.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p><a class="reference internal" href="#header-glass"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -191,15 +191,17 @@
   <p class="topless"><a href="../parameter_il/il_materials.html"
                         title="next chapter">Ionic Liquids</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -218,13 +220,12 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="../parameter_examples.html" >Example Simulation Models and Procedures</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Glass Materials</a></li> 
+          <li class="nav-item nav-item-2"><a href="../parameter_examples.html" >Example Simulation Models and Procedures</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

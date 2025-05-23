@@ -1,21 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>DL_POLY basics and algorithms &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -37,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlp_0.html" accesskey="U">DL_POLY</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">DL_POLY basics and algorithms</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlp_0.html" accesskey="U">DL_POLY</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -47,19 +47,19 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dlp-5"></span><section id="dl-poly-basics-and-algorithms">
-<h1>DL_POLY basics and algorithms<a class="headerlink" href="#dl-poly-basics-and-algorithms" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="dl-poly-basics-and-algorithms">
+<span id="header-dlp-5"></span><h1>DL_POLY basics and algorithms<a class="headerlink" href="#dl-poly-basics-and-algorithms" title="Permalink to this headline">¶</a></h1>
 <p>DL_POLY distinguishes between bonded and non-bonded interactions among particles in its simulations. Bonded or <em>intramolecular</em> interactions can include bond vibrations, angle vibrations (between pairs of bonds) and torsion potentials acting between planes formed by bonds. Non-bonded or <em>intermolecular</em> interactions include short-ranged van der Waals interactions (described by potentials such as Lennard-Jones) and long-range electrostatics with Coulombic potentials between charged particles.</p>
 <p>The molecular entities supported by DL_POLY include:</p>
 <ul class="simple">
-<li><p>Point ions and atoms (or coarse-grained ‘beads’)</p></li>
-<li><p>Polarisable ions (core and shell)</p></li>
-<li><p>Molecules with flexible bonds between atoms</p></li>
-<li><p>Molecules with fixed-length constraints between atoms</p></li>
-<li><p>Rigid molecules, including those linked together with flexible bonds</p></li>
-<li><p>Rigid molecules linked together with rigid bonds (only available in DL_POLY Classic)</p></li>
+<li>Point ions and atoms (or coarse-grained ‘beads’)</li>
+<li>Polarisable ions (core and shell)</li>
+<li>Molecules with flexible bonds between atoms</li>
+<li>Molecules with fixed-length constraints between atoms</li>
+<li>Rigid molecules, including those linked together with flexible bonds</li>
+<li>Rigid molecules linked together with rigid bonds (only available in DL_POLY Classic)</li>
 </ul>
-<section id="force-field-definitions">
+<div class="section" id="force-field-definitions">
 <h2>Force field definitions<a class="headerlink" href="#force-field-definitions" title="Permalink to this headline">¶</a></h2>
 <p>DL_POLY uses the following definitions to describe the force fields it applies in molecular dynamics (MD) simulations:</p>
 <p>A <em>particle</em> is a rigid ion or an atom (with or without charge), a core or a shell of a polarisable ion (with or without associated degrees of freedom), or a massless charged site. It is a <em>countable object</em> and has a <em>unique global identity index</em>.</p>
@@ -69,35 +69,35 @@
 <p><em>Electrostatics</em> are interactions between charged particles. In DL_POLY, methods to calculate electrostatic interactions include:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Standard Ewald sums (DL_POLY Classic only)</p></li>
-<li><p>Hautman-Klein two-dimensional Ewald sums for slab geometries (DL_POLY Classic only)</p></li>
-<li><p>Smooth Particle Mesh Ewald (SPME) with three-dimensional Fast Fourier Transforms (FFTs)</p></li>
-<li><p>Force-shifted Coulomb potential</p></li>
-<li><p>Reaction field method</p></li>
-<li><p>Fennell-damped force-shifted Coulomb potential with reaction field</p></li>
-<li><p>Distance-dependent dielectric constant</p></li>
-<li><p>Fuchs correction for non-charge neutral MD cells</p></li>
+<li>Standard Ewald sums (DL_POLY Classic only)</li>
+<li>Hautman-Klein two-dimensional Ewald sums for slab geometries (DL_POLY Classic only)</li>
+<li>Smooth Particle Mesh Ewald (SPME) with three-dimensional Fast Fourier Transforms (FFTs)</li>
+<li>Force-shifted Coulomb potential</li>
+<li>Reaction field method</li>
+<li>Fennell-damped force-shifted Coulomb potential with reaction field</li>
+<li>Distance-dependent dielectric constant</li>
+<li>Fuchs correction for non-charge neutral MD cells</li>
 </ul>
 </div></blockquote>
 <p><em>Ion polarisation</em> effects can be modelled in DL_POLY using dynamic (adiabatic) or relaxed shell models.</p>
 <p><em>External fields</em> include electric fields and magnetic fields acting on charged particles, gravity fields with constant mass-dependent forces on particles, sinusoidally-oscillating and continuous linear shear, application of a containing sphere and repulsive walls.</p>
 <p><em>Intramolecular-like interactions</em> can be applied to particles, including tethers, core-shell units, constraint and potential-mean-force (PMF) units, and rigid body units. These are also defined by <em>site</em>.</p>
 <p><em>Potentials</em> are interactions that are typically parameterised analytically (but can also be described in tabulated form). These are always spherically symmetric, i.e. they do not vary with the orientation of particles encountering each other.</p>
-</section>
-<section id="boundary-conditions">
+</div>
+<div class="section" id="boundary-conditions">
 <h2>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h2>
 <p>DL_POLY can apply a range of different boundary conditions for simulations. These include</p>
 <ul class="simple">
-<li><p>No periodic boundaries (e.g. for isolated macromolecules <em>in vacuuo</em>)</p></li>
-<li><p>Cubic periodic boundaries</p></li>
-<li><p>Orthorhombic (cuboidal) periodic boundaries</p></li>
-<li><p>Parallelepiped (triclinic) periodic boundaries</p></li>
-<li><p>Truncated octahedral periodic boundaries (DL_POLY Classic only)</p></li>
-<li><p>Rhombic dodecahedral periodic boundaries (DL_POLY Classic only)</p></li>
-<li><p>Slabs with periodic boundaries in <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>-dimensions and a non-periodic boundary in the <span class="math notranslate nohighlight">\(z\)</span>-dimension</p></li>
+<li>No periodic boundaries (e.g. for isolated macromolecules <em>in vacuuo</em>)</li>
+<li>Cubic periodic boundaries</li>
+<li>Orthorhombic (cuboidal) periodic boundaries</li>
+<li>Parallelepiped (triclinic) periodic boundaries</li>
+<li>Truncated octahedral periodic boundaries (DL_POLY Classic only)</li>
+<li>Rhombic dodecahedral periodic boundaries (DL_POLY Classic only)</li>
+<li>Slabs with periodic boundaries in <span class="math notranslate nohighlight">\(x\)</span>- and <span class="math notranslate nohighlight">\(y\)</span>-dimensions and a non-periodic boundary in the <span class="math notranslate nohighlight">\(z\)</span>-dimension</li>
 </ul>
-</section>
-<section id="parallelisations-of-dl-poly">
+</div>
+<div class="section" id="parallelisations-of-dl-poly">
 <h2>Parallelisations of DL_POLY<a class="headerlink" href="#parallelisations-of-dl-poly" title="Permalink to this headline">¶</a></h2>
 <p>Both versions of DL_POLY - DL_POLY_5 and DL_POLY Classic - are designed for homogeneously-distributed parallel machines. Each processor core can communicate with all of the others during a calculation, but it has its own separate allocation of memory.</p>
 <p>The parallelisation strategy in DL_POLY Classic is <em>replicated data</em>. All processor cores share all the information about the entire MD simulation, including particle positions, velocities etc. The computational work to calculate particle forces and integrate the forces are shared between the available cores, but the results are synchronised and shared globally among all cores.</p>
@@ -105,23 +105,23 @@
 <p>DL_POLY_5 and DL_POLY_5 use <em>domain decomposition</em>, which involves dividing the system volume and particles among processor cores and each core calculating interaction forces for its own particles. To correctly calculate these forces, a boundary halo for each core’s subdomain is defined to copy in particle data from neighbouring cores using MPI core-to-core communications. The system is usually divided equally by volume, which provides good load-balancing when the particles are distributed evenly.</p>
 <p>Verlet neighbour lists are used to go through pairs of particles likely to be within the cutoff distance <span class="math notranslate nohighlight">\(r_{cut}\)</span>, which are constructed using <em>linked cell lists</em>. By dividing the subdomain into cells with sides of at least <span class="math notranslate nohighlight">\(r_{cut}\)</span> in size and constructing lists of particles in each cell, this reduces the number of possible particle pairs to search since all pairs relative to a given particle will exist either in its own cell or nearest neighbouring cells <em>but no further</em>. This approach works well for domain decomposition since the boundary halo size can be set to the same size as the link cells, and is equally efficient for three- and four-body interactions. Subcelling of the link cells can improve search efficiency further, particularly for systems with uneven particle distributions.</p>
 <p>Bonded interactions in both versions of DL_POLY are carried out using similar approaches to van der Waals and other two-body interactions, although these require explicit definitions of particles involved. Book-keeping arrays are used to keep track of particles in bonded interactions. All processor cores hold the full book-keeping arrays in DL_POLY Classic and divide up the calculations among themselves. In DL_POLY_5 and DL_POLY_5, the book-keeping arrays are divided up according to which processor cores the involved particles can be found: these change dynamically as the molecules move between subdomains.</p>
-</section>
-<section id="ensembles-and-algorithms">
+</div>
+<div class="section" id="ensembles-and-algorithms">
 <h2>Ensembles and algorithms<a class="headerlink" href="#ensembles-and-algorithms" title="Permalink to this headline">¶</a></h2>
 <p>Integration of particle forces can be carried out using Velocity Verlet (VV) or leapfrog Verlet (LFV) schemes. (Note that <em>only VV is available</em> from DL_POLY_5 version 4.10 and later.) The following simulation ensembles are available in DL_POLY:</p>
 <ul class="simple">
-<li><p>NVE - constant volume and energy</p></li>
-<li><p>NVT - constant volume and temperature</p></li>
-<li><p>NPT - constant volume and pressure</p></li>
-<li><p>NP<span class="math notranslate nohighlight">\(_{n}\)</span>AT - constant normal pressure, surface area and temperature</p></li>
-<li><p>NP<span class="math notranslate nohighlight">\(_{n}\)</span><span class="math notranslate nohighlight">\(\gamma\)</span>T - constant normal pressure, surface tension and temperature</p></li>
-<li><p>N<span class="math notranslate nohighlight">\(\sigma\)</span>T - constant pressure tensor and temperature</p></li>
+<li>NVE - constant volume and energy</li>
+<li>NVT - constant volume and temperature</li>
+<li>NPT - constant volume and pressure</li>
+<li>NP<span class="math notranslate nohighlight">\(_{n}\)</span>AT - constant normal pressure, surface area and temperature</li>
+<li>NP<span class="math notranslate nohighlight">\(_{n}\)</span><span class="math notranslate nohighlight">\(\gamma\)</span>T - constant normal pressure, surface tension and temperature</li>
+<li>N<span class="math notranslate nohighlight">\(\sigma\)</span>T - constant pressure tensor and temperature</li>
 </ul>
 <p>and these can have been implemented with the following thermostats and barostats:</p>
 <ul class="simple">
-<li><p>NVT - Evans (with additional kinetic energy constraint), DPD with simple force integration (MD-VV) or 0th, 1st or 2nd order Shardlow splitting, Andersen, Langevin, Berendsen, Nosé-Hoover, Gentle Stochastic Thermostat (GST)</p></li>
-<li><p>NPT - Langevin, Berendsen, Nosé-Hoover, Martyna-Tuckerman-Klein</p></li>
-<li><p>NP<span class="math notranslate nohighlight">\(_{n}\)</span>AT, NP<span class="math notranslate nohighlight">\(_{n}\)</span><span class="math notranslate nohighlight">\(\gamma\)</span>T, N<span class="math notranslate nohighlight">\(\sigma\)</span>T - Langevin, Berendsen, Nosé-Hoover, Martyna-Tuckerman-Klein</p></li>
+<li>NVT - Evans (with additional kinetic energy constraint), DPD with simple force integration (MD-VV) or 0th, 1st or 2nd order Shardlow splitting, Andersen, Langevin, Berendsen, Nosé-Hoover, Gentle Stochastic Thermostat (GST)</li>
+<li>NPT - Langevin, Berendsen, Nosé-Hoover, Martyna-Tuckerman-Klein</li>
+<li>NP<span class="math notranslate nohighlight">\(_{n}\)</span>AT, NP<span class="math notranslate nohighlight">\(_{n}\)</span><span class="math notranslate nohighlight">\(\gamma\)</span>T, N<span class="math notranslate nohighlight">\(\sigma\)</span>T - Langevin, Berendsen, Nosé-Hoover, Martyna-Tuckerman-Klein</li>
 </ul>
 <p>with centre-of-mass motion removed from integrators that do not directly conserve momentum. (Note that only Berendsen, Nosé-Hooever and GST thermostats/barostats are available in DL_POLY Classic.)</p>
 <p>The coupling time constants used for thermostats and barostats control exchange of energy between the system and the reference baths. System-dependent compromises are usually needed to avoid slow equilibration with long time constants and interference with statistical properties with short constants.</p>
@@ -129,11 +129,10 @@
 <p><em>Constraint bonds</em> can be used to increase the simulation timestep size by removing chemical bond vibrations. Solvers such as SHAKE and RATTLE introduce additional retrospective forces (iteratively) to push the bond length to the required value (within a tolerance).</p>
 <p><em>Rigid bodies</em> provide a smarter way to move whole molecular fragments as single entities while keeping their internal distances constant with time. Their rotational motion needs to be solved numerically to satisfy the Eulerian equations of motion.</p>
 <p><a class="reference internal" href="#header-dlp-5"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
-</section>
+</div>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -172,15 +171,17 @@
   <p class="topless"><a href="dlp_4.html"
                         title="next chapter">DL_POLY files</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -200,13 +201,12 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlp_0.html" >DL_POLY</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">DL_POLY basics and algorithms</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlp_0.html" >DL_POLY</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

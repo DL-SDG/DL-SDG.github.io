@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Jargons &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Jargons</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,76 +47,75 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="jargons">
+  <div class="section" id="jargons">
 <h1>Jargons<a class="headerlink" href="#jargons" title="Permalink to this headline">¶</a></h1>
 <p>Below shows definitions that are specific to DL_FIELD. Take some time to read them. This will make it easier for you to understand how DL_FIELD works.</p>
 <ul class="simple">
-<li><p>MOLECULE - also refers as the MOLECULE template, it is a pre-defined entity consists of a collection of particles which can be normal atoms, pseudo-points, atoms with core-shell components, or even united atoms and coarse-grain particles. It is usually defined in the library files using the <em>MOLECULE</em> and <em>END MOLECULE</em> directive.</p></li>
+<li>MOLECULE - also refers as the MOLECULE template, it is a pre-defined entity consists of a collection of particles which can be normal atoms, pseudo-points, atoms with core-shell components, or even united atoms and coarse-grain particles. It is usually defined in the library files using the <em>MOLECULE</em> and <em>END MOLECULE</em> directive.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>MOLECULE_TYPE - The name of a MOLECULE, often in a human-readable form.</p></li>
+<li>MOLECULE_TYPE - The name of a MOLECULE, often in a human-readable form.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>MOLECULE_KEY - The corresponding unique code (up to four characters) for a MOLECULE_TYPE. This is equivalent to the amino acid residue code. For example, ALA refers to alanine residue and this is alanine MOLECULE_KEY within the DL_FIELD context.</p></li>
+<li>MOLECULE_KEY - The corresponding unique code (up to four characters) for a MOLECULE_TYPE. This is equivalent to the amino acid residue code. For example, ALA refers to alanine residue and this is alanine MOLECULE_KEY within the DL_FIELD context.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>ATOM_TYPE - The name of an atom, often in a human-readable form. An element can have different ATOM_TYPEs, which depend on its chemical environment within a molecule.</p></li>
+<li>ATOM_TYPE - The name of an atom, often in a human-readable form. An element can have different ATOM_TYPEs, which depend on its chemical environment within a molecule.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>ATOM_KEY - The corresponding code or symbol for an ATOM_TYPE. It is used within DL_FIELD to choose the appropirate potential parameters. ATOM_KEYs are also the labels used in the DL_POLY’s <em>CONFIG</em> and <em>FIELD</em> files.</p></li>
+<li>ATOM_KEY - The corresponding code or symbol for an ATOM_TYPE. It is used within DL_FIELD to choose the appropirate potential parameters. ATOM_KEYs are also the labels used in the DL_POLY’s <em>CONFIG</em> and <em>FIELD</em> files.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>ATOM_LABEL - The unique label of a particle, use only to define a MOLECULE template. In other words, ATOM_LABELs are only visible within the <em>MOLECULE</em> and <em>END MOLECULE</em> directive.</p></li>
+<li>ATOM_LABEL - The unique label of a particle, use only to define a MOLECULE template. In other words, ATOM_LABELs are only visible within the <em>MOLECULE</em> and <em>END MOLECULE</em> directive.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>Potential scheme - also called the force field (FF) scheme. It refers to a force field data set in the <em>lib/</em> directory. The data sets are given names to identify them. For example CHARMM, AMBER, etc.</p></li>
+<li>Potential scheme - also called the force field (FF) scheme. It refers to a force field data set in the <em>lib/</em> directory. The data sets are given names to identify them. For example CHARMM, AMBER, etc.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>DL_F Notation - The DL_FIELD standard ATOM_TYPE notation for a number of FF schemes implemented within DL_FIELD. It is the universal ATOM_TYPEs of which the FF schemes share the common ATOM_TYPEs and ATOM_KEYs and the Notation directly indicates the chemical nature of the atoms in a molecular system.</p></li>
+<li>DL_F Notation - The DL_FIELD standard ATOM_TYPE notation for a number of FF schemes implemented within DL_FIELD. It is the universal ATOM_TYPEs of which the FF schemes share the common ATOM_TYPEs and ATOM_KEYs and the Notation directly indicates the chemical nature of the atoms in a molecular system.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>The <em>.sf</em> and <em>.par</em> files - These are called the structure file and parameter file, respectively. They are FF library files located in the <em>lib/</em> directory. Each potential scheme consists of a <em>.sf</em> and a <em>.par</em> file and possibly some other supplementary files. MOLECULE template and ATOM_TYPEs definitions with the corresponding ATOM_KEYs are located in the <em>.sf</em> file. The <em>.par</em> file stores all the parameters of various interaction components such as bond interactions, angle interactions, etc.</p></li>
+<li>The <em>.sf</em> and <em>.par</em> files - These are called the structure file and parameter file, respectively. They are FF library files located in the <em>lib/</em> directory. Each potential scheme consists of a <em>.sf</em> and a <em>.par</em> file and possibly some other supplementary files. MOLECULE template and ATOM_TYPEs definitions with the corresponding ATOM_KEYs are located in the <em>.sf</em> file. The <em>.par</em> file stores all the parameters of various interaction components such as bond interactions, angle interactions, etc.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>User-defined force field (udff) file - a user-created file that contain user-define force field information such as MOLECULE templates and FF parameters. If any of such information is also contained in the corresponding <em>.sf</em> or the <em>.par</em> files, it will be overrided and DL_FIELD will choose the information in the udff file, rather than in the library files.</p></li>
+<li>User-defined force field (udff) file - a user-created file that contain user-define force field information such as MOLECULE templates and FF parameters. If any of such information is also contained in the corresponding <em>.sf</em> or the <em>.par</em> files, it will be overrided and DL_FIELD will choose the information in the udff file, rather than in the library files.</li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li><p>Molecular Group - also called the Molecule Group, it is a name or label given to a group of atoms or molecules in a molecular system. This is a convenient way to differentiate different class of molecules. For instance, solute molecules can be grouped in a different Molecular Group from that of solvent molecules. The Molecular Group names will appear as the <em>molecules</em> directive in DL_POLY’s FIELD file.</p></li>
+<li>Molecular Group - also called the Molecule Group, it is a name or label given to a group of atoms or molecules in a molecular system. This is a convenient way to differentiate different class of molecules. For instance, solute molecules can be grouped in a different Molecular Group from that of solvent molecules. The Molecular Group names will appear as the <em>molecules</em> directive in DL_POLY’s FIELD file.</li>
 </ul>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -154,15 +154,17 @@
   <p class="topless"><a href="dl_field_conversion.html"
                         title="next chapter">Force field conversion</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -182,13 +184,12 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Jargons</a></li> 
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

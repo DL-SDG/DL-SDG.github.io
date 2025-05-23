@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>The Input Configuration Files &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +38,7 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">The Input Configuration Files</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,54 +47,54 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="header-dlf-11"></span><section id="the-input-configuration-files">
-<h1>The Input Configuration Files<a class="headerlink" href="#the-input-configuration-files" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="the-input-configuration-files">
+<span id="header-dlf-11"></span><h1>The Input Configuration Files<a class="headerlink" href="#the-input-configuration-files" title="Permalink to this headline">¶</a></h1>
 <p>This page describes the use of input files, or users’ system configuration files in DL_FIELD.</p>
 <p>DL_FIELD can only recognise three file formats: PDB, mol2 and xyz. They are described in more details as follows:</p>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>PDB Format</strong></p>
 <p>The PDB files are used for structures in the Protein Data Bank, and hence, the name. The most popular strutures being the proteins, RNA and DNA macromolecules. Below is an example of a PDB protein file, showing various components relavant to DL_FIELD.</p>
 <a class="reference internal image-reference" href="../../_images/dlf_11_1.png"><img alt="../../_images/dlf_11_1.png" class="align-center" src="../../_images/dlf_11_1.png" style="width: 571.8px; height: 365.4px;" /></a>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>DL_FIELD follows strict PDB format where the various data items must fall within the appropriate range of column numbers. A common error is a poorly setup PDB file, where the items such as MOLECULE_KEYs and residue numbers located outside the permitted range of columns.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">DL_FIELD follows strict PDB format where the various data items must fall within the appropriate range of column numbers. A common error is a poorly setup PDB file, where the items such as MOLECULE_KEYs and residue numbers located outside the permitted range of columns.</p>
 </div>
 <p>DL_FIELD uses PDB file to carry out FF model setup using the template matching procedures.</p>
 <ul class="simple">
-<li><p>MOLECULE_KEY, also called the residue label, must be specified. This information is crucial for DL_FIELD to locate the correct MOLECULE template.</p></li>
-<li><p>Residue number - this is the molecule index number, which indicates the extent of atoms that made up a MOLECULE.</p></li>
-<li><p>PDB atom labels - these are not related to the ATOM_LABELs in MOLECULE templates. If the element smbol is not specified in column 77-79, then DL_FIELD will look for the element symbols in the PDB atom label columns. DL_FIELD will attempt an ‘educated guess’ if labels are not element symbols. For example, if DL_FIELD detects this is a protein structure, DL_FIELD will extract the elements from the first character of the atom labels.</p></li>
+<li>MOLECULE_KEY, also called the residue label, must be specified. This information is crucial for DL_FIELD to locate the correct MOLECULE template.</li>
+<li>Residue number - this is the molecule index number, which indicates the extent of atoms that made up a MOLECULE.</li>
+<li>PDB atom labels - these are not related to the ATOM_LABELs in MOLECULE templates. If the element smbol is not specified in column 77-79, then DL_FIELD will look for the element symbols in the PDB atom label columns. DL_FIELD will attempt an ‘educated guess’ if labels are not element symbols. For example, if DL_FIELD detects this is a protein structure, DL_FIELD will extract the elements from the first character of the atom labels.</li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For organic systems: PDB atom labels can either be element symbols or some artibrary labels, as mentioned above.
+<p class="first admonition-title">Note</p>
+<p class="last">For organic systems: PDB atom labels can either be element symbols or some artibrary labels, as mentioned above.
 For inorganic systems: PDB atom labels must be specified as ATOM_KEYs, that matched with the residue labels or MOLECULE_KEYS.</p>
 </div>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>xyz Format</strong></p>
 <p>This is the simplest format that contains a minimum amount of atomic information: the element symbols and the corresponding three coordinates. It is suitable for general organic molecules and inorganic materials. Below shows an example of a xyz structure.</p>
 <a class="reference internal image-reference" href="../../_images/dlf_11_2.png"><img alt="../../_images/dlf_11_2.png" class="align-center" src="../../_images/dlf_11_2.png" style="width: 512.4px; height: 291.2px;" /></a>
 <p>DL_FIELD uses xyz file to carry out molecular topology analysis for all FF schemes.</p>
 <ul class="simple">
-<li><p>The title always appear at the second line. Alternatively, this is where user can also specify the cell parameters information. DL_FIELD will use this information to define the simulation box size.</p></li>
-<li><p>Normally, element symbols must be used, especially for organic systems. However, for inorganic systems, users can also insert ATOM_KEYs, instead of element symbols.</p></li>
-<li><p>For template-based FF scheme such as CHARMM and AMBER, DL_FIELD will, firstly, identify the molecules from the file and then look for the suitable MOLECULE templates in the library and udff files. DL_FIELD will will report an error if there is no suitable template. Secondly, a normal template matching procedure will be used to set up the FF models.</p></li>
-<li><p>DL_FIELD will create a <em>dlf_notation.output</em> file in the <em>output/</em> directory, showing the ATOM_TYPEs in DL_F Notation.</p></li>
+<li>The title always appear at the second line. Alternatively, this is where user can also specify the cell parameters information. DL_FIELD will use this information to define the simulation box size.</li>
+<li>Normally, element symbols must be used, especially for organic systems. However, for inorganic systems, users can also insert ATOM_KEYs, instead of element symbols.</li>
+<li>For template-based FF scheme such as CHARMM and AMBER, DL_FIELD will, firstly, identify the molecules from the file and then look for the suitable MOLECULE templates in the library and udff files. DL_FIELD will will report an error if there is no suitable template. Secondly, a normal template matching procedure will be used to set up the FF models.</li>
+<li>DL_FIELD will create a <em>dlf_notation.output</em> file in the <em>output/</em> directory, showing the ATOM_TYPEs in DL_F Notation.</li>
 </ul>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To use the cell parameter information in the xyz file, remember to specify the word ‘auto’ for the Periodic Condition in the <strong>control</strong> file. Otherwise, DL_FIELD will take the cell vectors information in the <strong>control</strong> file as the simulation box.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">To use the cell parameter information in the xyz file, remember to specify the word ‘auto’ for the Periodic Condition in the <strong>control</strong> file. Otherwise, DL_FIELD will take the cell vectors information in the <strong>control</strong> file as the simulation box.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A common error is to use some arbitrary symbols in the file. For organic systems, standard element symbols must be used, even for charged molecules, such as ammonium and ionic liquids. If there are isolated cations and anions present, then the charge symbols must also be specified. For example, Mg2+, Cl-, as shown in the example above.</p>
+<p class="first admonition-title">Note</p>
+<p class="last">A common error is to use some arbitrary symbols in the file. For organic systems, standard element symbols must be used, even for charged molecules, such as ammonium and ionic liquids. If there are isolated cations and anions present, then the charge symbols must also be specified. For example, Mg2+, Cl-, as shown in the example above.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For organic systems: Element symbols must be used.
+<p class="first admonition-title">Note</p>
+<p class="last">For organic systems: Element symbols must be used.
 For inorganic systems: Either ATOM_KEYs or element symbols must be used. The <em>MOLECULE_KEY</em> directive must also be specified.</p>
 </div>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
 <p><strong>Tripos mol2 format</strong></p>
 <p>The mol2 file is a complete, portable representation of a SYBYL molecule, which is a notation to describe the structure of chemical molecules. Unlike the PDB format, mol2 files are free format and can contain detailed information of molecular structures.</p>
 <p>In DL_FIELD, mol2 files are only applicable to the following FF schemes: OPLS2005, CVFF, PCFF and AMBER16_GAFF.</p>
@@ -103,10 +104,9 @@ For inorganic systems: Either ATOM_KEYs or element symbols must be used. The <em
 The mol2 is a popular file format which can be produced in many modelling packages. For more details, please consult DL_FIELD manual, Section 6.3.</p>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dlf-11"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -145,15 +145,17 @@ The mol2 is a popular file format which can be produced in many modelling packag
   <p class="topless"><a href="dlf_16.html"
                         title="next chapter">The Output files</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -173,13 +175,12 @@ The mol2 is a popular file format which can be produced in many modelling packag
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">The Input Configuration Files</a></li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

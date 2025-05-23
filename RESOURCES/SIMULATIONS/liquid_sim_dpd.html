@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Simulating a liquid using DPD (DL_MESO) &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -34,8 +36,7 @@
           <a href="solution_analysis.html" title="Analysing Results"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="Simulations.html" accesskey="U">Simulations</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Simulating a liquid using DPD (DL_MESO)</a></li> 
+          <li class="nav-item nav-item-1"><a href="Simulations.html" accesskey="U">Simulations</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -44,12 +45,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="simulating-a-liquid-using-dpd-dl-meso">
+  <div class="section" id="simulating-a-liquid-using-dpd-dl-meso">
 <h1>Simulating a liquid using DPD (DL_MESO)<a class="headerlink" href="#simulating-a-liquid-using-dpd-dl-meso" title="Permalink to this headline">¶</a></h1>
 <p>This is an exercise in simulating a box of liquid at the mesoscale using Dissipative Particle Dynamics (DPD). The liquid can be represented in DPD simulations in one of two forms:</p>
 <ol class="arabic simple">
-<li><p>Individual particles (beads), each containing at least one (small) molecule; or</p></li>
-<li><p>Chains of particles connected by bonds, each chain representing one (larger) molecule and providing its basic topology.</p></li>
+<li>Individual particles (beads), each containing at least one (small) molecule; or</li>
+<li>Chains of particles connected by bonds, each chain representing one (larger) molecule and providing its basic topology.</li>
 </ol>
 <p>This exercise goes from preparing the input files with the required representation of the fluid, its interactions and system set-up parameters, to running a DPD simulation using DL_MESO and analysing the results.</p>
 <div class="toctree-wrapper compound">
@@ -65,10 +66,9 @@
 <li class="toctree-l1"><a class="reference internal" href="simple_simulation_analysis_dpd.html">Analysing Results</a></li>
 </ul>
 </div>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -104,15 +104,17 @@
   <p class="topless"><a href="inputs_prep_dpd.html"
                         title="next chapter">Inputs Preparation</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -130,13 +132,12 @@
           <a href="solution_analysis.html" title="Analysing Results"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Simulating a liquid using DPD (DL_MESO)</a></li> 
+          <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

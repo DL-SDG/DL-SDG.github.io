@@ -1,21 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Potential functions &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,8 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Potential functions</a></li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -46,7 +46,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="potential-functions">
+  <div class="section" id="potential-functions">
 <span id="header-ff5"></span><h1>Potential functions<a class="headerlink" href="#potential-functions" title="Permalink to this headline">¶</a></h1>
 <p>As mentioned earlier, all interaction components are represented by some mathematical functional forms. While the precise functions and their implementations depend on the FF schemes, the force field model or the total energy of the system generally can be expressed as follows:</p>
 <div class="math notranslate nohighlight">
@@ -58,36 +58,35 @@
 \[V_{cross-terms} = V_{bond1,bond2} + V_{bond,angle} + \cdots\]</div>
 <div class="math notranslate nohighlight">
 \[V_{non-bonded} = V_{vdW} + V_{Coulombic}\]</div>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p>Below is a list of typical functional forms representing a range of interaction components.</p>
 <ol class="loweralpha">
-<li><p>Bond interaction, <span class="math notranslate nohighlight">\(V_{bond}\)</span></p>
+<li><p class="first">Bond interaction, <span class="math notranslate nohighlight">\(V_{bond}\)</span></p>
 <a class="reference internal image-reference" href="../../_images/ff5_1.png"><img alt="Harmonic bond interaction." class="align-center" src="../../_images/ff5_1.png" style="width: 334.1px; height: 66.3px;" /></a>
 <p>where <span class="math notranslate nohighlight">\(b_0\)</span> represents the equilibrium bond length and <span class="math notranslate nohighlight">\(b\)</span> is the bond distance (at a given moment during the MD simulation).</p>
 </li>
-<li><p>Angle interaction, <span class="math notranslate nohighlight">\(V_{angle}\)</span></p>
+<li><p class="first">Angle interaction, <span class="math notranslate nohighlight">\(V_{angle}\)</span></p>
 <a class="reference internal image-reference" href="../../_images/ff5_2.png"><img alt="Harmonic angle interaction." class="align-center" src="../../_images/ff5_2.png" style="width: 369.2px; height: 98.15px;" /></a>
 <p>where <span class="math notranslate nohighlight">\(\theta_0\)</span> represents the equilibrium angle.</p>
 </li>
-<li><p>Dihedral interaction, <span class="math notranslate nohighlight">\(V_{torsion}\)</span></p>
+<li><p class="first">Dihedral interaction, <span class="math notranslate nohighlight">\(V_{torsion}\)</span></p>
 <a class="reference internal image-reference" href="../../_images/ff5_3.png"><img alt="Fourier cosine dihedral interaction." class="align-center" src="../../_images/ff5_3.png" style="width: 479.05px; height: 89.05px;" /></a>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is the dihedral constant, or torsion barrier, <span class="math notranslate nohighlight">\(n\)</span> is the periodicity and <span class="math notranslate nohighlight">\(\delta\)</span> is the phase shift.</p>
 </li>
-<li><p>Cross terms, for example bond-angle, <span class="math notranslate nohighlight">\(V_{bond, angle}\)</span></p>
+<li><p class="first">Cross terms, for example bond-angle, <span class="math notranslate nohighlight">\(V_{bond, angle}\)</span></p>
 <a class="reference internal image-reference" href="../../_images/ff5_6.png"><img alt="Fourier cosine bond-angle interaction." class="align-center" src="../../_images/ff5_6.png" style="width: 492.05px; height: 105.3px;" /></a>
 </li>
-<li><p>Electrostatic, <span class="math notranslate nohighlight">\(V_{Coulombic}\)</span></p>
+<li><p class="first">Electrostatic, <span class="math notranslate nohighlight">\(V_{Coulombic}\)</span></p>
 <a class="reference internal image-reference" href="../../_images/ff5_4.png"><img alt="Coulombic electrostatic interaction." class="align-center" src="../../_images/ff5_4.png" style="width: 316.55px; height: 73.45px;" /></a>
 </li>
-<li><p>Dispersive, <span class="math notranslate nohighlight">\(V_{vdW}\)</span></p>
+<li><p class="first">Dispersive, <span class="math notranslate nohighlight">\(V_{vdW}\)</span></p>
 <a class="reference internal image-reference" href="../../_images/ff5_5.png"><img alt="Lennard-Jones 12-6 van der Waals interaction." class="align-center" src="../../_images/ff5_5.png" style="width: 329.55px; height: 83.2px;" /></a>
 </li>
 </ol>
 <p><a class="reference internal" href="#header-ff5"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -125,15 +124,17 @@
   <p class="topless"><a href="ff6.html"
                         title="next chapter">Model approximation</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -152,13 +153,12 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Potential functions</a></li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

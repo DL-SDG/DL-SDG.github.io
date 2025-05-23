@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Simulation Run &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -35,8 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="liquid_sim.html" accesskey="U">Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Simulation Run</a></li> 
+          <li class="nav-item nav-item-2"><a href="liquid_sim.html" accesskey="U">Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -45,21 +46,21 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="simulation-run">
+  <div class="section" id="simulation-run">
 <h1>Simulation Run<a class="headerlink" href="#simulation-run" title="Permalink to this headline">¶</a></h1>
 <p><strong>Step 1</strong>: It is important to rename the files output by DL_FIELD:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Rename <em>dl_poly.CONFIG</em> to <strong>CONFIG</strong></p></li>
-<li><p>Rename <em>dl_poly.FIELD</em> to <strong>FIELD</strong></p></li>
-<li><p>Rename <em>dl_poly.CONTROL</em> to <strong>CONTROL</strong></p></li>
+<li>Rename <em>dl_poly.CONFIG</em> to <strong>CONFIG</strong></li>
+<li>Rename <em>dl_poly.FIELD</em> to <strong>FIELD</strong></li>
+<li>Rename <em>dl_poly.CONTROL</em> to <strong>CONTROL</strong></li>
 </ul>
 </div></blockquote>
 <p><strong>Step 2</strong>: <em>Equilibration in DL_POLY</em></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Edit the <strong>CONTROL</strong> file, making the necessary changes (see CONTROL1).
-This <strong>CONTROL</strong> file instructs DL_POLY to run 200,000 MD steps at NVE ensemble, rescale the temperature to exactly 300K at every MD step. Using the variable timestep directive, enables  DL_POLY to adjust the suitable timestep accordingly, especially at the early stage of simulation.  This ensures the system dynamics are in control for high-energy conformations.</p></li>
+<li>Edit the <strong>CONTROL</strong> file, making the necessary changes (see CONTROL1).
+This <strong>CONTROL</strong> file instructs DL_POLY to run 200,000 MD steps at NVE ensemble, rescale the temperature to exactly 300K at every MD step. Using the variable timestep directive, enables  DL_POLY to adjust the suitable timestep accordingly, especially at the early stage of simulation.  This ensures the system dynamics are in control for high-energy conformations.</li>
 </ul>
 </div></blockquote>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Title</span><span class="p">:</span> <span class="n">Generic</span> <span class="n">control</span> <span class="n">file</span><span class="p">:</span> <span class="n">CONTROL1</span>
@@ -112,17 +113,16 @@ This <strong>CONTROL</strong> file instructs DL_POLY to run 200,000 MD steps at 
 </pre></div>
 </div>
 <p>Repeat step 2 if necessary, by increasing the number of MD steps.</p>
-<figure class="align-default" id="id1">
+<div class="figure" id="id1">
 <img alt="../../_images/STATIS_CONT1.png" src="../../_images/STATIS_CONT1.png" />
-<figcaption>
-<p><span class="caption-text">The figure above shows samples from the start (<strong>LHS</strong>) and end (<strong>RHS</strong>) of the STATIS file output from using the parameters as detailed in CONTROL1. The highlighted numbers show the total energy of the system -see how it fluctuates hugely at the beginning of the simulation and becomes more stable towards the end of the 200,000 steps.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-text">The figure above shows samples from the start (<strong>LHS</strong>) and end (<strong>RHS</strong>) of the STATIS file output from using the parameters as detailed in CONTROL1. The highlighted numbers show the total energy of the system -see how it fluctuates hugely at the beginning of the simulation and becomes more stable towards the end of the 200,000 steps.</span></p>
+</div>
 <p><strong>Step 3</strong>: <em>Checking your system is equilibrated</em></p>
 <blockquote>
 <div><ul>
-<li><p>Check that the configurational energy values fluctuate around a mean value, when this has occurred equilibration has been reached. You can check this in the top entry of the LHS column of the <strong>STATIS</strong> file as shown above where the total energies are highlighted.</p></li>
-<li><p>When you are satisfied a mean total energy value has been reached, reset the directive equilibration steps in the <strong>CONTROL</strong> file to zero. (See CONTROL2). Check if the energy values are steady without  rescaling the temperature at approximately 300 K.</p>
+<li><p class="first">Check that the configurational energy values fluctuate around a mean value, when this has occurred equilibration has been reached. You can check this in the top entry of the LHS column of the <strong>STATIS</strong> file as shown above where the total energies are highlighted.</p>
+</li>
+<li><p class="first">When you are satisfied a mean total energy value has been reached, reset the directive equilibration steps in the <strong>CONTROL</strong> file to zero. (See CONTROL2). Check if the energy values are steady without  rescaling the temperature at approximately 300 K.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Title</span><span class="p">:</span> <span class="n">Generic</span> <span class="n">control</span> <span class="n">file</span><span class="p">:</span> <span class="n">CONTROL2</span>
 <span class="c1"># This is a generic CONTROL file. Please adjust to your requirement.</span>
 <span class="c1"># Directives which are commented are some useful options.</span>
@@ -171,17 +171,14 @@ This <strong>CONTROL</strong> file instructs DL_POLY to run 200,000 MD steps at 
 </li>
 </ul>
 <blockquote>
-<div><p>Check if the energy values are steady without  rescaling the temperature at approximately 300 K.</p>
+<div>Check if the energy values are steady without  rescaling the temperature at approximately 300 K.</div></blockquote>
 </div></blockquote>
-</div></blockquote>
-<figure class="align-default" id="id2">
+<div class="figure" id="id2">
 <img alt="../../_images/STATIS_CONT2.png" src="../../_images/STATIS_CONT2.png" />
-<figcaption>
-<p><span class="caption-text">The figure above shows the temperature at the beginning of the re-run (<strong>LHS</strong>) - which for the first run was fixed at 300 K - and at the end (<strong>RHS</strong>), where the temperature decreases from ~310 K to ~304 K during the last three of the 400,000 MD steps. It is up to the user to decide if the temperature is sufficiently stable for their simulation.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-text">The figure above shows the temperature at the beginning of the re-run (<strong>LHS</strong>) - which for the first run was fixed at 300 K - and at the end (<strong>RHS</strong>), where the temperature decreases from ~310 K to ~304 K during the last three of the 400,000 MD steps. It is up to the user to decide if the temperature is sufficiently stable for their simulation.</span></p>
+</div>
 <ul>
-<li><p>Change to ensemble NPT to equilibrate the simulation box size (see CONTROL3), using <em>restart noscale</em>. If a further run is needed, restart the simulation and increase the MD steps in the <strong>CONTROL</strong> file.</p>
+<li><p class="first">Change to ensemble NPT to equilibrate the simulation box size (see CONTROL3), using <em>restart noscale</em>. If a further run is needed, restart the simulation and increase the MD steps in the <strong>CONTROL</strong> file.</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Title</span><span class="p">:</span> <span class="n">Generic</span> <span class="n">control</span> <span class="n">file</span><span class="p">:</span> <span class="n">CONTROL3</span>
 <span class="c1"># This is a generic CONTROL file. Please adjust to your requirement.</span>
@@ -232,25 +229,23 @@ This <strong>CONTROL</strong> file instructs DL_POLY to run 200,000 MD steps at 
 </div></blockquote>
 </li>
 </ul>
-<figure class="align-default" id="id3">
+<div class="figure" id="id3">
 <img alt="../../_images/STATIS_CONT3.png" src="../../_images/STATIS_CONT3.png" />
-<figcaption>
-<p><span class="caption-text">The figure above shows the simulation box lengths x, y, z (highlighted) at the beginning of the simulation (<strong>LHS</strong>) and at the end (<strong>RHS</strong>). After 100,000 steps of MD simulation the cell lengths remain at ~ 40 angstrom</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-text">The figure above shows the simulation box lengths x, y, z (highlighted) at the beginning of the simulation (<strong>LHS</strong>) and at the end (<strong>RHS</strong>). After 100,000 steps of MD simulation the cell lengths remain at ~ 40 angstrom</span></p>
+</div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Remember to run the copy script (e.g. <em>copy.sh</em> in the Resources/Molecular Simulations- Tools section)  after each MD run, before carrying on for the next run. THEN edit the CONTROL file to increase the number of timesteps (which is cumulative).</p>
+<p class="first admonition-title">Warning</p>
+<p class="last">Remember to run the copy script (e.g. <em>copy.sh</em> in the Resources/Molecular Simulations- Tools section)  after each MD run, before carrying on for the next run. THEN edit the CONTROL file to increase the number of timesteps (which is cumulative).</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Changing the timestep value, or changing from variable to fixed timestep, or changing the ensemble necessitates using the <em>restart noscale</em> directive in the <strong>CONTROL</strong> for the first run.
+<p class="first admonition-title">Note</p>
+<p class="last">Changing the timestep value, or changing from variable to fixed timestep, or changing the ensemble necessitates using the <em>restart noscale</em> directive in the <strong>CONTROL</strong> for the first run.
 This instructs DL_POLY to restart a fresh MD run, which starts at 0 MD time and where the initial velocities of the system are derived from the <strong>CONFIG</strong> file. After that, ‘noscale’ needs to be removed if you want to run more MD steps. The directive <em>noscale</em> instructs DL_POLY to start a fresh simulation where the MD time starts from zero, and the initial velocity information  is taken from the <strong>CONFIG</strong> file, rather than generated randomly.</p>
 </div>
 <p><strong>Step 4</strong>: <em>Sampling Run in DL_POLY (CONTROL4)</em></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Using the final <strong>CONFIG</strong> file from step 3, do the sampling run by producing the <strong>HISTORY</strong> trajectory files (see <strong>CONTROL4</strong>). Again, the directive <em>restart noscale</em> is used, to ensure the MD time starts from zero as the <strong>HISTORY</strong> file is produced. A fixed timestep of 0.0005 ps (0.5 fs) is also used.The directive <em>traj 1 200 0</em> means the system configuration will be written out every 200 MD steps and contains only the positions of the atoms (this excludes velocities and forces).</p></li>
+<li>Using the final <strong>CONFIG</strong> file from step 3, do the sampling run by producing the <strong>HISTORY</strong> trajectory files (see <strong>CONTROL4</strong>). Again, the directive <em>restart noscale</em> is used, to ensure the MD time starts from zero as the <strong>HISTORY</strong> file is produced. A fixed timestep of 0.0005 ps (0.5 fs) is also used.The directive <em>traj 1 200 0</em> means the system configuration will be written out every 200 MD steps and contains only the positions of the atoms (this excludes velocities and forces).</li>
 </ul>
 </div></blockquote>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Title</span><span class="p">:</span> <span class="n">Generic</span> <span class="n">control</span> <span class="n">file</span><span class="p">:</span> <span class="n">CONTROL4</span>
@@ -300,17 +295,18 @@ This instructs DL_POLY to restart a fresh MD run, which starts at 0 MD time and 
 </pre></div>
 </div>
 <p>After the first sampling run, remember to remove the ‘noscale’ directive in the <strong>CONTROL</strong> before doing a further run. For each successive run, the trajectory will append onto the existing <strong>HISTORY</strong> file.</p>
-<figure class="align-default" id="id4">
+<div class="figure" id="id4">
 <img alt="../../_images/HISTORY1.png" src="../../_images/HISTORY1.png" />
-<figcaption>
-<p><span class="caption-text">The figure above shows the <strong>HISTORY</strong> output at the beginning (<strong>LHS</strong>) and end (<strong>RHS</strong>) of the first sampling run of 100,000 MD steps. It’s up to the user to decide the length of the required simulation sampling run.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<dl class="field-list simple">
-<dt class="field-odd">TIP</dt>
-<dd class="field-odd"><p>Rather  than producing one large <strong>HISTORY</strong> file, after each run, the <strong>HISTORY</strong> file can be renamed serially (for instance <strong>HISTORY1</strong>, <strong>HISTORY2</strong>, etc). In this way, the next simulation run will produce a new <strong>HISTORY</strong> file.</p>
-</dd>
-</dl>
+<p class="caption"><span class="caption-text">The figure above shows the <strong>HISTORY</strong> output at the beginning (<strong>LHS</strong>) and end (<strong>RHS</strong>) of the first sampling run of 100,000 MD steps. It’s up to the user to decide the length of the required simulation sampling run.</span></p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">Rather  than producing one large <strong>HISTORY</strong> file, after each run, the <strong>HISTORY</strong> file can be renamed serially (for instance <strong>HISTORY1</strong>, <strong>HISTORY2</strong>, etc). In this way, the next simulation run will produce a new <strong>HISTORY</strong> file.</td>
+</tr>
+</tbody>
+</table>
 <p>Finally, when you are satisfied the simulation sampling run is complete, copy the REVCON file to CONFIG (or use the latest HISTORY file) and view it in VMD e.g.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: cp REVCON CONFIG
 $: vmd &amp;
@@ -318,10 +314,9 @@ $: vmd &amp;
 </div>
 <a class="reference internal image-reference" href="../../_images/liquid_box_final.png"><img alt="../../_images/liquid_box_final.png" src="../../_images/liquid_box_final.png" style="width: 593.0px; height: 426.0px;" /></a>
 <p>Note how there is a complete lack of order in the output configuration (contrast this with the output from DL_FIELD in the Section <em>Sample Preparation</em>.</p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -356,15 +351,17 @@ $: vmd &amp;
   <p class="topless"><a href="analysis.html"
                         title="next chapter">Analysing Results</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -383,13 +380,12 @@ $: vmd &amp;
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="liquid_sim.html" >Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Simulation Run</a></li> 
+          <li class="nav-item nav-item-2"><a href="liquid_sim.html" >Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

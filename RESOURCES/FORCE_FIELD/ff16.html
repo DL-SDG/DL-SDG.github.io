@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Atom typing &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -35,8 +37,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Atom typing</a></li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -45,10 +46,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="atom-typing">
+  <div class="section" id="atom-typing">
 <span id="header-ff16"></span><h1>Atom typing<a class="headerlink" href="#atom-typing" title="Permalink to this headline">¶</a></h1>
 <p>Atom typing is a set of procedures to determine the chemical type of an atom. By doing this, appropriate FF parameters for the atom can be determined to ensure the FF model is correctly set up for a given set of interactions.</p>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Atom types</strong></p>
 <p>Consider a propanol molecule such as the one shown below. It consists of three different types of elements: carbon, hydrogen and oxygen. However, in molecular simulations, atom typing would identify more than three atom types. This is because the same elemental atoms can behave differently depending on their chemical environment.</p>
 <a class="reference internal image-reference" href="../../_images/ff16_1.png"><img alt="../../_images/ff16_1.png" class="align-center" src="../../_images/ff16_1.png" style="width: 471.0px; height: 243.0px;" /></a>
@@ -57,16 +58,16 @@
 <p>Example 1:  <code class="docutils literal notranslate"><span class="pre">[CX4](CO)(F)(F)(F)</span></code></p>
 <p>Example 2:  <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">=</span> <span class="pre">C</span> <span class="pre">&amp;</span> <span class="pre">count(bonded_atoms(type</span> <span class="pre">=</span> <span class="pre">F))</span> <span class="pre">=</span> <span class="pre">3</span> <span class="pre">&amp;</span> <span class="pre">count(bonded_atoms(type</span> <span class="pre">=</span> <span class="pre">C))</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
 <p>The above examples show two different typing procedures that were used by different software packages to determine (specifically) a trifluoro alkyl carbon atom.</p>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Atom keys</strong></p>
 <p>Atom keys are the labels for atom types. By referring to the two examples above, one software assigns the atom key for the trifluoro alkyl carbon as <em>CT</em> and the other as <em>C791</em>. They use different labels but in fact refer to the same atom type.</p>
 <p>It should be noted that these labels are arbitrary and do not follow any standard protocol when they are named, simply because such a protocol does not exist. Furthermore, some FF schemes use different atom keys for different types of interactions. The most common approach is to use one atom key for all bonded interactions and another one for non-bonded vdW interactions.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
+<p class="first admonition-title">Note</p>
 <p>Most FF schemes refer to atom keys and atom types as the same thing. Usually, only the atom labels are shown in library files, with the typing procedures hidden within the program.</p>
-<p>However, DL_FIELD can distinguish both atom keys and atom types; these are explicitly listed in its library files. Each of these are referred to as <code class="docutils literal notranslate"><span class="pre">ATOM_KEY</span></code> and <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code> respectively within the DL_FIELD framework. An <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code> is a human-readable label that uniquely refers to an <code class="docutils literal notranslate"><span class="pre">ATOM_KEY</span></code>. Different <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code>s can refer to the same <code class="docutils literal notranslate"><span class="pre">ATOM_KEY</span></code> but not the other way around.</p>
+<p class="last">However, DL_FIELD can distinguish both atom keys and atom types; these are explicitly listed in its library files. Each of these are referred to as <code class="docutils literal notranslate"><span class="pre">ATOM_KEY</span></code> and <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code> respectively within the DL_FIELD framework. An <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code> is a human-readable label that uniquely refers to an <code class="docutils literal notranslate"><span class="pre">ATOM_KEY</span></code>. Different <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code>s can refer to the same <code class="docutils literal notranslate"><span class="pre">ATOM_KEY</span></code> but not the other way around.</p>
 </div>
-<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
+<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
 <p><strong>Atom typing challenges</strong></p>
 <p>Different FF schemes (or different software) use different atom typing procedures and assign atoms with different atom keys. Situations also become more complicated because different FF schemes can also classify atoms differently.</p>
 <p>For example, referring to the propanol structure shown above: some FF schemes will assign an additional atom type for the secondary carbon atom (C3) that is connected to the oxygen atom. However, some FF schemes may even reduce the number of atom types, for instance, by collectively treating all alkyl carbons (C1, C2 and C3) as a single atom type.</p>
@@ -74,10 +75,9 @@
 <p>To reduce these non-standard barriers, DL_FIELD expresses <code class="docutils literal notranslate"><span class="pre">ATOM_TYPE</span></code>s in DL_F Notation syntax, which is universal across different FF schemes. The Notation ensures smooth data transformation within DL_FIELD when setting up a molecular system with different FF schemes.</p>
 <p>For more information about how DL_F Notation works, please refer to the <a class="reference internal" href="../TUTORIALS/dlf_0.html"><span class="doc">DL_FIELD</span></a>.</p>
 <p><a class="reference internal" href="#header-ff16"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</section>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -115,15 +115,17 @@
   <p class="topless"><a href="ff17.html"
                         title="next chapter">Parameter fitting</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -142,13 +144,12 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Atom typing</a></li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>

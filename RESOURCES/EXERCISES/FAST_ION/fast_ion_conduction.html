@@ -1,20 +1,22 @@
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Fast Ion Conduction &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
     
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -37,8 +39,7 @@
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="../Low.html" accesskey="U">Low Difficulty Exercises</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Fast Ion Conduction</a></li> 
+          <li class="nav-item nav-item-4"><a href="../Low.html" accesskey="U">Low Difficulty Exercises</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -47,38 +48,37 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="fast-ion-conduction">
+  <div class="section" id="fast-ion-conduction">
 <h1>Fast Ion Conduction<a class="headerlink" href="#fast-ion-conduction" title="Permalink to this headline">¶</a></h1>
-<section id="summary">
+<div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>This exercise provides an introduction to a class of materials known as fast ion or superionic conductors. The objective is to explore the properties of such materials and characterise their behaviour.</p>
-</section>
-<section id="background">
+</div>
+<div class="section" id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
 <p>Many inorganic materials exhibit the phenomenon of fast ion conduction - they conduct an electric current in
 the solid sate. This happens because one or more of the ions is capable of diffusing rapidly through the system
 while it is still in the solid sate. <a class="reference external" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.40.1337">An example of such a material is silver iodide (AgI)</a> in the so-called  α-phase, which exists between 400 K and 800 K approximately. In this phase the iodine anions form a body
 centred cubic lattice and the silver cations formally occupy pseudo-tetrahedral sites between the iodide ions.
 With increasing temperature however, the structure shows increasing disorder. The nature of this disorder is the object of this exercise -investigate and characterise it.</p>
-</section>
-<section id="task">
+</div>
+<div class="section" id="task">
 <h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p>Copy or download the following files:  <a class="reference download internal" download="" href="../../../_downloads/f6a43d4420bccc44c59910b33a89cb48/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/7574ba156f942dc79f36436ef2af0c44/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/dedbd65bfee4e1d6e1f89049599c8741/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/e59291fd787a9def187c4ee0437c0c84/TABLE"><code class="xref download docutils literal notranslate"><span class="pre">TABLE</span></code></a></p></li>
-<li><p>Run DLPOLY.Z, in a <em>constant volume</em> simulation at <em>high temperature</em> for about 2000 time steps and examine the <em>OUTPUT</em> file. Try to determine from the information provided what is going on. Display the <em>REVCON</em> file and examine the structure.</p></li>
-<li><p>If you are satisfied that you are seeing the essential phenomenon, run the program again and this time generate a <em>HISTORY</em> file, sampling the data at convenient intervals (see the <a class="reference internal" href="../../manual.html"><span class="doc">DL_POLY_5 User Manual</span></a> to find out how to do this). Now you may try a number of things such as:</p></li>
+<li>Copy or download the following files:  <a class="reference download internal" download="" href="../../../_downloads/163c31939de62175f51b0000980e53a7/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/dec817737d18923d75c926cb13df3c43/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/7faef36553dfc87b6fc6902f0fa82396/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/f0f5da09bacb5ce52f5987a83e7ee47e/TABLE"><code class="xref download docutils literal notranslate"><span class="pre">TABLE</span></code></a></li>
+<li>Run DLPOLY.Z, in a <em>constant volume</em> simulation at <em>high temperature</em> for about 2000 time steps and examine the <em>OUTPUT</em> file. Try to determine from the information provided what is going on. Display the <em>REVCON</em> file and examine the structure.</li>
+<li>If you are satisfied that you are seeing the essential phenomenon, run the program again and this time generate a <em>HISTORY</em> file, sampling the data at convenient intervals (see the <a class="reference internal" href="../../manual.html"><span class="doc">DL_POLY_5 User Manual</span></a> to find out how to do this). Now you may try a number of things such as:</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><p>Calculate the mean square displacements of the ions as accurately as possible. Repeat the procedure at some other temperature (preferably more than one) and obtain the diffusion coefficients over a range of temperatures. Determine the activation energy with an Arrhenius plot.</p></li>
-<li><p>Calculate the van Hove function (G<sub>s</sub>(r,t)) - nicely described in           <a class="reference external" href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.A405">“Correlations in the motion of atoms in liquid argon”</a>. Examine the results of this and decide if the ion diffusion is <em>solid-like</em> or <em>liquid-like</em>.</p></li>
+<li>Calculate the mean square displacements of the ions as accurately as possible. Repeat the procedure at some other temperature (preferably more than one) and obtain the diffusion coefficients over a range of temperatures. Determine the activation energy with an Arrhenius plot.</li>
+<li>Calculate the van Hove function (G<sub>s</sub>(r,t)) - nicely described in           <a class="reference external" href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.136.A405">“Correlations in the motion of atoms in liquid argon”</a>. Examine the results of this and decide if the ion diffusion is <em>solid-like</em> or <em>liquid-like</em>.</li>
 </ul>
 </div></blockquote>
-</section>
-</section>
+</div>
+</div>
 
 
-            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -117,15 +117,17 @@ With increasing temperature however, the structure shows increasing disorder. Th
   <p class="topless"><a href="../K_VALIN/potassium_capture.html"
                         title="next chapter">Potassium Capture by Valinomycin</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
+  <h3>Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -146,13 +148,12 @@ With increasing temperature however, the structure shows increasing disorder. Th
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="../Low.html" >Low Difficulty Exercises</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Fast Ion Conduction</a></li> 
+          <li class="nav-item nav-item-4"><a href="../Low.html" >Low Difficulty Exercises</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
     </div>
   </body>
 </html>
