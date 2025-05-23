@@ -17,3 +17,12 @@ This is the main portal for the DL_Software tutorial exercises.
    ./exercises_dlfield
    ./exercises_data
    ./exercises_dlmeso
+
+Simple interactive learning of molecular modellings.
+
+.. toctree::
+   :maxdepth: 1
+
+   ../../DEMOCRITUS/Democritus
+ 
+

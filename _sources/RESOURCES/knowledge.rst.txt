@@ -32,6 +32,14 @@ Modelling methods
    ./DOCUMENTS/LBEIntro
    ./DOCUMENTS/LBETheory
 
+Interactive learning. Democritus, is a simple interactive molecular dynamics simulation in 2D.
+
+.. toctree::
+   :maxdepth: 1
+   
+   ../DEMOCRITUS/Democritus
+   
+
 Miscellaneous Articles 
 ======================
 
