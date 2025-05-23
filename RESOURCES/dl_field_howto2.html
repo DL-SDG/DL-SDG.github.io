@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>How to do something &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -38,7 +36,8 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" accesskey="U">DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to do something</a></li> 
       </ul>
     </div>  
 
@@ -47,8 +46,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="how-to-do-something">
-<span id="header-dlf-howto2"></span><h1>How to do something<a class="headerlink" href="#how-to-do-something" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="header-dlf-howto2"></span><section id="how-to-do-something">
+<h1>How to do something<a class="headerlink" href="#how-to-do-something" title="Permalink to this headline">¶</a></h1>
 <p>This page shows you how to use DL_FIELD to acheive a specific task.</p>
 <p><strong>Content</strong> <br />
 <a class="reference internal" href="#header-howto-liquid"><span class="std std-ref">How to setup a liquid model</span></a> <br />
@@ -56,11 +55,11 @@
 <a class="reference internal" href="#header-howto-bond-constrain"><span class="std std-ref">Setup constrained bond model</span></a> <br />
 <a class="reference internal" href="#header-howto-xyz"><span class="std std-ref">Using xyz input files</span></a> <br />
 <a class="reference internal" href="#header-howto-multiple"><span class="std std-ref">How to setup a multiple potential model</span></a> <br /></p>
-<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
 <p id="header-howto-liquid"><strong>How to set up a liquid model</strong></p>
 <ol class="arabic simple">
-<li>Create a single-molecule configuration file. This would be the liquid molecule, or the solute molecule if you were to setup a solution. Let’s call this file <em>molecule.xyz</em></li>
-<li>Edit your DL_FIELD <em>control</em> file as follows:</li>
+<li><p>Create a single-molecule configuration file. This would be the liquid molecule, or the solute molecule if you were to setup a solution. Let’s call this file <em>molecule.xyz</em></p></li>
+<li><p>Edit your DL_FIELD <em>control</em> file as follows:</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Example file of setting up liquid
 1        * Construct DL_POLY output files
@@ -108,14 +107,14 @@ none 2.0 default * Solvate model? none or specify solvent (see below) and distan
 <p>This means: ‘Switch on (1) the feature, duplicate structure in the <em>molecule.xyz</em> file, to create a density of 1.05 g/cm^3, with each molecule at least 1.6 angstrom apart.</p>
 <p>The number of molecules duplicated will depend on the cell vectors defined, which is 40 angstrom in x,y and z directions.</p>
 <ol class="arabic simple" start="3">
-<li>Run DL_FIELD</li>
+<li><p>Run DL_FIELD</p></li>
 </ol>
 <div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p class="last">Once the system is setup, it is recommended to view your <em>dl_poly.CONFIG</em> structure in a graphical display software to make sure the structure is evenly distributed. You can adjust the distance accordingly and rerun DL_FIELD. A smaller distance means molecules will be tightly packed against each other. Whereas, large distance means the molecules are more widely apart.</p>
+<p class="admonition-title">Tip</p>
+<p>Once the system is setup, it is recommended to view your <em>dl_poly.CONFIG</em> structure in a graphical display software to make sure the structure is evenly distributed. You can adjust the distance accordingly and rerun DL_FIELD. A smaller distance means molecules will be tightly packed against each other. Whereas, large distance means the molecules are more widely apart.</p>
 </div>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
 <p id="header-howto-solution"><strong>How to setup a solution model</strong></p>
 <p>Use the same procedures for setting up liquid as described above. However, use the Solvation feature in the DL_FIELD <em>control</em> file as shown below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>..
@@ -147,21 +146,21 @@ default   * 1-4 scaling for vdw (put default or x for scaling=x)
 </div>
 <p>In this example, the Solution Maker feature will, firstly, duplicate your solute molecules in the simulation box to give a concentration of 1.5 mol/dm^3 and each molecule is at least 4 angstrom apart. Secondly, the simulation box is solvated with the TIP4P water model. The solvent molecules must not be located less than 2.0 angstrom from the solute molecules.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You can only solvate your system if it is a cubic or orthorhombic.</p>
+<p class="admonition-title">Note</p>
+<p>You can only solvate your system if it is a cubic or orthorhombic.</p>
 </div>
 <p>Of course, you can also solvate your system with other types of solvent. There is a (growing) list of solvent you can choose, which is found in the file call <em>solvent_list</em> in the <em>solvent/</em> directory.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Depending on the FF schemes, you may get an error in DL_FIELD if there is no MOLECULE template or potential parameters available for some solvent molecules. In addition, you cannot solvate your system if an inorganic FF scheme is used.</p>
+<p class="admonition-title">Warning</p>
+<p>Depending on the FF schemes, you may get an error in DL_FIELD if there is no MOLECULE template or potential parameters available for some solvent molecules. In addition, you cannot solvate your system if an inorganic FF scheme is used.</p>
 </div>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
 <p id="header-howto-bond-constrain"><strong>How to setup a constraint bond model</strong></p>
 <p>Constraining bonds are one of the effective way to remove fastest mode of motion in your system, that is, the bond vibration, especially bonds that contain the hydrogen atoms.</p>
 <ol class="arabic simple">
-<li>Provide a Molecular Group name to your molecules, if you are using xyz of PDB file. If you don’t know how to do that, consult this <a class="reference internal" href="dl_field_format.html#header-dlf-format"><span class="std std-ref">page</span></a>. If you don’t do that, DL_FIELD will assign a default name called <em>not_define</em>.</li>
-<li>Edit your DL_FIELD <em>control</em> file.</li>
+<li><p>Provide a Molecular Group name to your molecules, if you are using xyz of PDB file. If you don’t know how to do that, consult this <a class="reference internal" href="dl_field_format.html#header-dlf-format"><span class="std std-ref">page</span></a>. If you don’t do that, DL_FIELD will assign a default name called <em>not_define</em>.</p></li>
+<li><p>Edit your DL_FIELD <em>control</em> file.</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>..
 ..
@@ -210,23 +209,23 @@ RIGID  A
 CONSTRAIN  ORG2  all <br /></p>
 <p>These directive statements instruct DL_FIELD to constrain only bonds that contain hydrogen atoms on molecules belong to the Molecular Group ORG1. Whereas, all bonds will be constrained for molecules belong to Molecular Group ORG2.</p>
 <ol class="arabic simple" start="3">
-<li>Run DL_FIELD</li>
+<li><p>Run DL_FIELD</p></li>
 </ol>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Only one type of bond constrain can be applied in each Molecular Group.</p>
+<p class="admonition-title">Note</p>
+<p>Only one type of bond constrain can be applied in each Molecular Group.</p>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">If the Molecular Group names in the configuration file do not match with any of the CONSTRAIN directive statements, no bond constrain will be applied. DL_FIELD does not consider this as an error.</p>
+<p class="admonition-title">Warning</p>
+<p>If the Molecular Group names in the configuration file do not match with any of the CONSTRAIN directive statements, no bond constrain will be applied. DL_FIELD does not consider this as an error.</p>
 </div>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
 <p id="header-howto-xyz"><strong>How to use xyz file structure</strong></p>
 <p>The xyz file format is the simplest format one could use in DL_FIELD to setup force field models. In general, atoms must be expressed in standard element symbols together with the corresponding xyz coordinates.</p>
 <p>For organic systems, this is a must. DL_FIELD will attempt to determine the ATOM_KEYs depending on the FF scheme chosen. For inorganic systems, you can use either the element symbols or ATOM_KEYs. Below show a few examples for different types of systems.</p>
 <ol class="arabic simple">
-<li>A typical organic system, with optional directives <em>CRYST1</em>, which defines the simulation box size, and <em>MOLECULAR_GROUP</em> directive, which gives a name to a group of atoms and molecules.</li>
+<li><p>A typical organic system, with optional directives <em>CRYST1</em>, which defines the simulation box size, and <em>MOLECULAR_GROUP</em> directive, which gives a name to a group of atoms and molecules.</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">5303</span> 
 <span class="n">CRYST1</span>   <span class="mf">30.000</span>   <span class="mf">40.000</span>   <span class="mf">30.000</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>
@@ -250,7 +249,7 @@ CONSTRAIN  ORG2  all <br /></p>
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li>For inorganic systems, the additional directive <em>MOLECULE_KEY</em> must always be specified. Example below shows a small sample of illite clay, expressed in element symbols. The <em>MOLECULE_KEY CLYF</em> indicate the structure can be matched with the MOLECULE general_CLAYFF template. To set up the force field, the inorganic_clay FF scheme must be used in the DL_FIELD <em>control</em> file.</li>
+<li><p>For inorganic systems, the additional directive <em>MOLECULE_KEY</em> must always be specified. Example below shows a small sample of illite clay, expressed in element symbols. The <em>MOLECULE_KEY CLYF</em> indicate the structure can be matched with the MOLECULE general_CLAYFF template. To set up the force field, the inorganic_clay FF scheme must be used in the DL_FIELD <em>control</em> file.</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">984</span>
 <span class="n">CRYST1</span>  <span class="mf">20.9320</span>   <span class="mf">27.1146</span>   <span class="mf">37.9124</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>
@@ -296,7 +295,7 @@ CONSTRAIN  ORG2  all <br /></p>
 </pre></div>
 </div>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-<img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
+<img alt="../_images/Orange_bar.png" src="../_images/Orange_bar.png" />
 <p id="header-howto-multiple"><strong>How to setup a multiple potential model</strong></p>
 <p>The multiple potential feature is only applied to PDB and <em>xyz</em> input files.</p>
 <p>DL_FIELD provides simple procedures to setup models that use more than one potential scheme. First of all, the keyword <em>multiple</em> must be used instead of any specific FF scheme in the DL_FIELD <em>control</em> file. Then specify the potential schemes in the input configuration file.</p>
@@ -333,8 +332,8 @@ CONSTRAIN  ORG2  all <br /></p>
 <p>The system contains two different potential schemes: CHARMM36_prot and OPLS2005. The positions of the POTENTIAL directives define the extent of the FF applications. CHARMM36 applies to the ethanol molecule, whereas, OPLS2005 applies to sulphur hexafluoride molecules. The residue labels ETOH and SHEX are the residue labels, of which the MOLECULE templates were predefined in the respective FF library files.</p>
 <p>The labels ALC and SF6 are called the Molecular Group names and DL_FIELD will show this as the <em>molecule</em> directives in the <em>dl_poly.FIELD</em> file during the FF conversion.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">It is not common to setup simulation models that contain different FF schemes, unless the different FF schemes are of the same type. For instance, CHARMM36_prot can be mixed with CHARMM36_lipid. Otherwise, user’s discretion is needed. However, multiple potential models are more commonly used for systems containing organic or biological and inorganic elements.</p>
+<p class="admonition-title">Warning</p>
+<p>It is not common to setup simulation models that contain different FF schemes, unless the different FF schemes are of the same type. For instance, CHARMM36_prot can be mixed with CHARMM36_lipid. Otherwise, user’s discretion is needed. However, multiple potential models are more commonly used for systems containing organic or biological and inorganic elements.</p>
 </div>
 <p>Example below shows how to use the multiple potential scheme in the <em>xyz</em> format for a system contains the organic and inorganic components. It is a system consists of a montemorillonite clay mineral with a benzene molecule. The organic molecule is assigned to the CHARMM22 force field, whereas, the CLAYFF force field is used for the mineral.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">338</span>
@@ -375,9 +374,10 @@ CONSTRAIN  ORG2  all <br /></p>
 </div>
 <p>Note that by using inorganic force field scheme would need an additional directive, which in this case, is <em>MOLECULE_KEY CLYF</em>. This provides additional information for DL_FIELD to look for the specific MOLECULE template as defined in the corresponding library file for inorganic_clay FF, or the <em>DLPOLY_INORGANIC_CLAY.sf</em> file.</p>
 <p><a class="reference internal" href="#header-dlf-howto2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -416,17 +416,15 @@ CONSTRAIN  ORG2  all <br /></p>
   <p class="topless"><a href="dl_poly_intro.html"
                         title="next chapter">DL_POLY</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -446,12 +444,13 @@ CONSTRAIN  ORG2  all <br /></p>
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dl_field_intro.html" >DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to do something</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

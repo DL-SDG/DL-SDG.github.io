@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Sample Preparation &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -37,7 +35,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="liquid_sim.html" accesskey="U">Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="liquid_sim.html" accesskey="U">Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Sample Preparation</a></li> 
       </ul>
     </div>  
 
@@ -46,14 +45,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="sample-preparation">
+  <section id="sample-preparation">
 <h1>Sample Preparation<a class="headerlink" href="#sample-preparation" title="Permalink to this headline">¶</a></h1>
 <p>Version 1.0, last update: October 2019
 Chin Yong, Computation Chemistry Group, DL.</p>
 <p>The aim of these instructions is to show you how to simulate a pure ethanoic acid liquid at 300 K. We will build a fully atomistic model with flexible bonds.
 There are several possible ways to achieve the same purpose, and we will work through the simplest approach.</p>
 <ol class="arabic simple">
-<li><em>Create a user configuration</em></li>
+<li><p><em>Create a user configuration</em></p></li>
 </ol>
 <p>Use a standard third party modelling software to build a single ethanoic acid molecule (CH<sub>3</sub>COOH). For example, Chem3D, MS.</p>
 <img alt="../../_images/build_mol.png" src="../../_images/build_mol.png" />
@@ -68,8 +67,8 @@ There are several possible ways to achieve the same purpose, and we will work th
 
 
 <span class="o">@&lt;</span><span class="n">TRIPOS</span><span class="o">&gt;</span><span class="n">ATOM</span>
-<span class="mi">1</span> <span class="n">C</span> <span class="o">-</span><span class="mf">1.78117</span> <span class="mf">0.275305</span> <span class="mf">0.284335</span> <span class="n">C</span><span class="o">.</span><span class="mi">3</span> <span class="mi">0</span> <span class="o">****</span> <span class="mi">0</span>
-<span class="mi">2</span> <span class="n">C</span> <span class="o">-</span><span class="mf">1.09347</span> <span class="mf">0.556234</span> <span class="mf">1.63341</span> <span class="n">C</span><span class="o">.</span><span class="mi">2</span> <span class="mi">0</span> <span class="o">****</span> <span class="mi">0</span>
+<span class="mi">1</span> <span class="n">C</span> <span class="o">-</span><span class="mf">1.78117</span> <span class="mf">0.275305</span> <span class="mf">0.284335</span> <span class="n">C</span><span class="mf">.3</span> <span class="mi">0</span> <span class="o">****</span> <span class="mi">0</span>
+<span class="mi">2</span> <span class="n">C</span> <span class="o">-</span><span class="mf">1.09347</span> <span class="mf">0.556234</span> <span class="mf">1.63341</span> <span class="n">C</span><span class="mf">.2</span> <span class="mi">0</span> <span class="o">****</span> <span class="mi">0</span>
 <span class="mi">3</span> <span class="n">O</span> <span class="o">-</span><span class="mf">1.41304</span> <span class="mf">1.82081</span> <span class="mf">2.39444</span> <span class="n">O</span><span class="o">.</span><span class="n">co2</span> <span class="mi">0</span> <span class="o">****</span> <span class="mi">0</span>
 <span class="mi">4</span> <span class="n">O</span> <span class="o">-</span><span class="mf">0.0370616</span> <span class="o">-</span><span class="mf">0.389677</span> <span class="mf">2.15247</span> <span class="n">O</span><span class="o">.</span><span class="n">co2</span> <span class="mi">0</span> <span class="o">****</span> <span class="mi">0</span>
 <span class="mi">5</span> <span class="n">H</span> <span class="mf">0.0215376</span> <span class="o">-</span><span class="mf">0.312594</span> <span class="mf">3.25837</span> <span class="n">H</span> <span class="mi">0</span> <span class="o">****</span> <span class="mi">0</span>
@@ -87,11 +86,11 @@ There are several possible ways to achieve the same purpose, and we will work th
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Importing structures from within Materials Studio’s (MS) database, then modifying elements and exporting as a .mol2 file could lead to labelling of elements that  <em>dl_field</em> cannot use, which will lead to an error when running <em>dl_field</em>.</p>
+<p class="admonition-title">Warning</p>
+<p>Importing structures from within Materials Studio’s (MS) database, then modifying elements and exporting as a .mol2 file could lead to labelling of elements that  <em>dl_field</em> cannot use, which will lead to an error when running <em>dl_field</em>.</p>
 </div>
 <ol class="arabic simple" start="2">
-<li><em>Force field (FF) model setup using DL_FIELD</em></li>
+<li><p><em>Force field (FF) model setup using DL_FIELD</em></p></li>
 </ol>
 <p><strong>Step 1</strong>: Open and edit a DL_FIELD control file</p>
 <p>Alternatively, edit the generic <em>dl_field.control</em> file already in the DL_FIELD directory.</p>
@@ -141,18 +140,15 @@ none 2.0 default * Solvate model? none or specify solvent (see below) and distan
 20.0      * Cut off for vdw energy calculation (angstrom) 
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIPS:</th><td class="field-body">In the Solution Maker section, the cut-off: 1.6 angstroms indicates the minimum distance between the molecules. The smaller the value, the easier it is for DL_FIELD to pack the molecule in the simulation box. Hand-waving experience shows that a value of less than 2.0 angstrom will be required to create a liquid system, depending on the density and initial structure of the molecule.
-If DL_FIELD reports a failure to pack the molecule, reduce the cut-off value and run DL_FIELD again.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">TIPS</dt>
+<dd class="field-odd"><p>In the Solution Maker section, the cut-off: 1.6 angstroms indicates the minimum distance between the molecules. The smaller the value, the easier it is for DL_FIELD to pack the molecule in the simulation box. Hand-waving experience shows that a value of less than 2.0 angstrom will be required to create a liquid system, depending on the density and initial structure of the molecule.
+If DL_FIELD reports a failure to pack the molecule, reduce the cut-off value and run DL_FIELD again.</p>
+</dd>
+</dl>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Notice that the control file indicates all atom labels will be generated in DL_FIELD format (DL_F Notation). This is essential for carrying out atomic interaction analysis in DL_ANALYSER.</p>
+<p class="admonition-title">Note</p>
+<p>Notice that the control file indicates all atom labels will be generated in DL_FIELD format (DL_F Notation). This is essential for carrying out atomic interaction analysis in DL_ANALYSER.</p>
 </div>
 <p><strong>Step 2</strong>: Using a text editor open and edit the file dl_f_path (shown below) in the DL_FIELD home directory, if necessary. Make sure the path for the DL_FIELD control file is correct.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>library = lib/
@@ -168,14 +164,11 @@ output  = output/
 …
 </pre></div>
 </div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">If the DL_FIELD control file is not located in the same directory as the dl_field executable (e.g. dl_field.control above) then remember to specify the correct path to the file.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">TIP</dt>
+<dd class="field-odd"><p>If the DL_FIELD control file is not located in the same directory as the dl_field executable (e.g. dl_field.control above) then remember to specify the correct path to the file.</p>
+</dd>
+</dl>
 <p><strong>Step 3</strong>: Run <em>dl_field</em> for example type the following from within the <strong>dl_f_4.5</strong> directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$: ./dl_field
 </pre></div>
@@ -254,14 +247,11 @@ H1C               7
 </pre></div>
 </div>
 <p>The molecular system can be viewed in <a class="reference external" href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a> . To do this, make sure the total number of atoms is inserted into <em>dl_poly.CONFIG</em> as follows, before it’s opened within the visualizer program:</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">The total number of atoms can be found by looking at the LHS entry at the bottom of the <em>dl_poly.CONFIG</em> file. Then, insert the same value into the top RHS of the <em>dl_poly.CONFIG</em> file as shown (highlighted) below.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">TIP</dt>
+<dd class="field-odd"><p>The total number of atoms can be found by looking at the LHS entry at the bottom of the <em>dl_poly.CONFIG</em> file. Then, insert the same value into the top RHS of the <em>dl_poly.CONFIG</em> file as shown (highlighted) below.</p>
+</dd>
+</dl>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Ethanoic acid (this is a title)
 <span class="hll">         0         1     5392
 </span>       40.0000000000        0.0000000000        0.0000000000
@@ -287,9 +277,10 @@ O20L              4
 <p>and then load the <em>dl_poly.CONFIG</em> file using the VMD ‘File’ tab.</p>
 <p>Notice  that the molecules below look a ‘little bit’ ordered in their packing. This ordered liquid needs to be equilibrated before being sampled. Equilibration is the first part of the molecular dynamics simulation, and is covered in the next section.</p>
 <img alt="../../_images/box_of_mols.png" src="../../_images/box_of_mols.png" />
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -324,17 +315,15 @@ O20L              4
   <p class="topless"><a href="simulation_run.html"
                         title="next chapter">Simulation Run</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -353,12 +342,13 @@ O20L              4
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Simulations.html" >Simulations</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="liquid_sim.html" >Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="liquid_sim.html" >Simulating a liquid (DL_FIELD, DL_POLY, DL_ANALYSER)</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Sample Preparation</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

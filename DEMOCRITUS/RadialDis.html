@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>The Radial Distribution Function &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,10 +34,12 @@
           <a href="Calculations.html" title="Calculations using Molecular Dynamics"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../RESOURCES/knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Democritus.html" >Democritus</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="MolecularDynamics.html" >Molecular Dynamics</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="Calculations.html" accesskey="U">Calculations using Molecular Dynamics</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../RESOURCES/Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../RESOURCES/EXERCISES/Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="Democritus.html" >Democritus</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="MolecularDynamics.html" >Molecular Dynamics</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="Calculations.html" accesskey="U">Calculations using Molecular Dynamics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Radial Distribution Function</a></li> 
       </ul>
     </div>  
 
@@ -48,7 +48,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="the-radial-distribution-function">
+  <section id="the-radial-distribution-function">
 <h1>The Radial Distribution Function<a class="headerlink" href="#the-radial-distribution-function" title="Permalink to this headline">¶</a></h1>
 <p>The radial distribution function (or RDF) is an example of a pair correlation function, which describes how, on average, the atoms in a system are radially packed around each other. This proves to be a particularly effective way of describing the average structure of disordered molecular systems such as liquids. Also in systems like liquids, where there is continual movement of the atoms and a single snapshot of the system shows only the instantaneous disorder, it is extremely useful to be able to deal with the average structure.</p>
 <p>The RDF is useful in other ways. For example, it is something that can be deduced experimentally from x-ray or neutron diffraction studies, thus providing a direct comparison between experiment and simulation. It can also be used in conjunction with the interatomic pair potential function to calculate the internal energy of the system, usually quite accurately.</p>
@@ -58,20 +58,37 @@
 <p>In which g(r) is the RDF, n(r) is the mean number of atoms in a shell of width Δr at distance r, ρ is the mean atom density. The method need not be restricted to one atom. All the atoms in the system can be treated in this way, leading to an improved determination of the RDF as an average over many atoms.</p>
 <p>The RDF is usually plotted as a function of the interatomic separation r. A typical RDF plot (below) shows a number of important features. Firstly, at short separations (small r) the RDF is zero. This indicates the effective width of the atoms, since they cannot approach any more closely. Secondly, a number of obvious peaks appear, which indicate that the atoms pack around each other in <a href="#id1"><span class="problematic" id="id2">`</span></a>shells’ of neighbours. The occurrence of peaks at long range indicates a high degree of ordering. Usually, at high temperature the peaks are broad, indicating thermal motion, while at low temperature they are sharp. They are particularly sharp in crystalline materials, where atoms are strongly confined in their positions. At very long range every RDF tends to a value of 1, which happens because the RDF describes the average density at this range.</p>
 <p><em>add image</em></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h3><a href="../index.html">Table of Contents</a></h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RESOURCES/Resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RESOURCES/SIMULATIONS/Simulations.html">Simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../RESOURCES/knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../RESOURCES/knowledge.html">Knowledge Center</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../RESOURCES/knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="Democritus.html">Democritus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MONTE_CARLO_POLYMER/mc_polymer.html">Monte Carlo Polymer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../RESOURCES/knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
@@ -82,17 +99,15 @@
   <p class="topless"><a href="MeanSquare.html"
                         title="next chapter">The Mean Square Displacement</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -110,15 +125,17 @@
           <a href="Calculations.html" title="Calculations using Molecular Dynamics"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../RESOURCES/knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Democritus.html" >Democritus</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="MolecularDynamics.html" >Molecular Dynamics</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="Calculations.html" >Calculations using Molecular Dynamics</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../RESOURCES/Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../RESOURCES/EXERCISES/Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="Democritus.html" >Democritus</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="MolecularDynamics.html" >Molecular Dynamics</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="Calculations.html" >Calculations using Molecular Dynamics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">The Radial Distribution Function</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

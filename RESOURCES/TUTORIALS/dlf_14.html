@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Core-shell model &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -38,7 +37,8 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Core-shell model</a></li> 
       </ul>
     </div>  
 
@@ -47,15 +47,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="core-shell-model">
-<span id="header-dlf-14"></span><h1>Core-shell model<a class="headerlink" href="#core-shell-model" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="header-dlf-14"></span><section id="core-shell-model">
+<h1>Core-shell model<a class="headerlink" href="#core-shell-model" title="Permalink to this headline">¶</a></h1>
 <p>Force field models normally assigned fixed partial charges centered at atoms, called the rigid ion model. This method cannot fully account for the polarisation effect, which arises due to local electric effect and will induce a dipole moment, <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <p>One way to introduce polarisation effect is to use core-shell model. The model splits an atom into two particle components: positively charged core and negatively charged shell and they are connected by a harmonic spring with the force constant relates to the atomic polarisability, <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 <a class="reference internal image-reference" href="../../_images/dlf_14_1.png"><img alt="../../_images/dlf_14_1.png" class="align-center" src="../../_images/dlf_14_1.png" style="width: 318.5px; height: 123.0px;" /></a>
 <p>Charges are then redistributed to both components, while the vdw interactions apply only to the shell component of the atom. There is no electrostatic interaction between the components within the same atom.</p>
 <p>DL_FIELD can define two types of core-shell model: (1) the dynamical (adiabatic) shell model, where a small fraction of mass is assigned to the shell, or (2) the relaxed (massless) shell model where shell components have no mass. Please consult DL_POLY manual for more details about the characteristics of these different models.</p>
 <p><br /></p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Core-shell model for organic systems</strong></p>
 <p>Core-shell models are usually implemented for inorganic models, for instance, on the oxygen atom of a mineral oxide. However, DL_FIELD uses a standard set of protocol on all FF schemes. All core-shell models must be implemented by using MOLECULE templates.</p>
 <p>Example below shows a modified ethanol MOLECULE with core-shell model applied on the hydroxyl oxygen. This MOLECULE can be found in the <em>ethanol.udff</em> file in the <em>Examples/</em> folder.</p>
@@ -110,11 +110,11 @@ END SHELL
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Atoms can have arbitrary labels, or just element symbols. However, the shell part of an atom must always be described as the ATOM_KEY, which in this case, is the <em>OZ</em>.</p>
+<p class="admonition-title">Note</p>
+<p>Atoms can have arbitrary labels, or just element symbols. However, the shell part of an atom must always be described as the ATOM_KEY, which in this case, is the <em>OZ</em>.</p>
 </div>
 <p><br /></p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Core-shell model for inorganic systems</strong></p>
 <p>Unlike the organic systems, DL_FIELD has the capability to automatically insert the shell part of an atom if this is available, depending on the MOLECULE template used.</p>
 <p>For example, consider a simple <em>xyz</em> file consists of magnesium oxide (MgO), a binary oxide species:</p>
@@ -137,9 +137,10 @@ END SHELL
 <p>If the MOLECULE_KEY is changed to ‘MO2’, which is a core-shall version for MgO, DL_FIELD will automatically insert the missing shells (or cores) if they are not available from the input file.</p>
 <p><br /></p>
 <p><a class="reference internal" href="#header-dlf-14"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -178,17 +179,15 @@ END SHELL
   <p class="topless"><a href="dlf_15.html"
                         title="next chapter">Pseudo points</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -208,12 +207,13 @@ END SHELL
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Core-shell model</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

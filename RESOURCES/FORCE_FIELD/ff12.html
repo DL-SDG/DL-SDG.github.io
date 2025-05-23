@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Force field schemes &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -37,7 +35,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Force field schemes</a></li> 
       </ul>
     </div>  
 
@@ -46,53 +45,53 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="force-field-schemes">
+  <section id="force-field-schemes">
 <span id="header-ff12"></span><h1>Force field schemes<a class="headerlink" href="#force-field-schemes" title="Permalink to this headline">¶</a></h1>
 <p>Due to the classical nature of force fields, there are a variety of ways to derive potential parameters: these also use different functions to model the systems. Each research group tends to stick to certain fitting procedures and functions to establish their FF models, hence the birth of different FF schemes.</p>
 <p>The diagram below shows a section of a <em>FF family tree</em> indicating how different schemes were born and evolved.</p>
 <a class="reference internal image-reference" href="../../_images/ff12_1.png"><img alt="../../_images/ff12_1.png" class="align-center" src="../../_images/ff12_1.png" style="width: 469.7px; height: 286.29999999999995px;" /></a>
 <p>A new scheme was usually formed by borrowing some of the characteristics from previous schemes; this was sometimes done to model new or different classes of materials. This is the reason why two different FF schemes can sometimes share similar sets of potentials and, more often, the same functional forms.</p>
 <p>However, the tree has been growing steadily since the 1970s and has never stopped. New branches are constantly added and some have even started with a completely new origin and different versions to map new classes of materials or to improve upon the qualities of a previous FF when modelling the same class of materials.</p>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>FF types</strong></p>
 <p>An FF scheme is usually constructed with the aim to use it in a specific manner, which means it can perform better for certain materials than others.</p>
 <p>The qualities of a FF can generally be divided into two types:</p>
 <ol class="arabic">
-<li><p class="first"><strong>Specific FF schemes</strong>. These are better suited to model certain specific types of materials. For instance, proteins, DNA, carbohydrates, molecular cages, ionic liquids, etc. These are usually fitted with many parameters and the accuracy is generally high for the right type of materials.</p>
+<li><p><strong>Specific FF schemes</strong>. These are better suited to model certain specific types of materials. For instance, proteins, DNA, carbohydrates, molecular cages, ionic liquids, etc. These are usually fitted with many parameters and the accuracy is generally high for the right type of materials.</p>
 <p>However, transferability to model other molecules <em>may</em> still be acceptable as these molecules or their derivatives were often formed as part of the fitting criteria during the construction of the scheme.</p>
 </li>
-<li><p class="first"><strong>Generic FF schemes</strong>. These schemes can have fewer parameters but are applicable to a wide range of molecule types and can be used to model general classes of molecules. For this reason, they have wide applicability, although the accuracy may be poorer.</p>
-</li>
+<li><p><strong>Generic FF schemes</strong>. These schemes can have fewer parameters but are applicable to a wide range of molecule types and can be used to model general classes of molecules. For this reason, they have wide applicability, although the accuracy may be poorer.</p></li>
 </ol>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Some modern FF schemes can be pretty sophisticated compared with their predecessors and the applicability of these FF schemes can straddle across both of the above types. Some of these schemes can be used to model general small drug molecules quite accurately with the parameters fitted to tens of thousands of test molecules.</p>
+<p class="admonition-title">Note</p>
+<p>Some modern FF schemes can be pretty sophisticated compared with their predecessors and the applicability of these FF schemes can straddle across both of the above types. Some of these schemes can be used to model general small drug molecules quite accurately with the parameters fitted to tens of thousands of test molecules.</p>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Example FF schemes</strong></p>
 <p>The list below shows some popular FF schemes for biomolecules and organic molecules. Note that the list and their applicabilities are by no means exhaustive. It should be used as a rough guide only.</p>
 <ul class="simple">
-<li>CHARMM (Chemistry at HARvard using Molecular Mechanics) - biomolecules</li>
-<li>AMBER (Assisted Model Building with Energy Refinement) - biomolecules</li>
-<li>OPLS (Optimized Parameters for Large-scale Simulations) - general organic molecules in condensed phases</li>
-<li>MMFF (Merck Molecular Force Field) - small drug molecules</li>
-<li>MM2, MM3, MM4 - Allinger <em>et al.</em> - organic molecules</li>
-<li>UFF (Universal Force Field) - general molecules, metallic molecules, most elements across the Periodic Table</li>
+<li><p>CHARMM (Chemistry at HARvard using Molecular Mechanics) - biomolecules</p></li>
+<li><p>AMBER (Assisted Model Building with Energy Refinement) - biomolecules</p></li>
+<li><p>OPLS (Optimized Parameters for Large-scale Simulations) - general organic molecules in condensed phases</p></li>
+<li><p>MMFF (Merck Molecular Force Field) - small drug molecules</p></li>
+<li><p>MM2, MM3, MM4 - Allinger <em>et al.</em> - organic molecules</p></li>
+<li><p>UFF (Universal Force Field) - general molecules, metallic molecules, most elements across the Periodic Table</p></li>
 </ul>
 <p>There are also other variations of the above mentioned schemes. For example:</p>
 <ul class="simple">
-<li>AMBER Glycam - for carbohydrates</li>
-<li>CHARMM CGenFF, AMBER GAFF - for general molecules such as small drug molecules</li>
-<li>OPLS for ionic liquids</li>
-<li>etc.</li>
+<li><p>AMBER Glycam - for carbohydrates</p></li>
+<li><p>CHARMM CGenFF, AMBER GAFF - for general molecules such as small drug molecules</p></li>
+<li><p>OPLS for ionic liquids</p></li>
+<li><p>etc.</p></li>
 </ul>
 <p><a class="reference internal" href="#header-ff12"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -113,6 +112,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../DEMOCRITUS/Democritus.html">Democritus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../MONTE_CARLO_POLYMER/mc_polymer.html">Monte Carlo Polymer</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
@@ -128,17 +129,15 @@
   <p class="topless"><a href="ff13.html"
                         title="next chapter">Model examples</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -157,12 +156,13 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Force field schemes</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

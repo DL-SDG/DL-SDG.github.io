@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>MD Algorithms and the Properties of Water &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -39,7 +37,8 @@
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="../Low.html" accesskey="U">Low Difficulty Exercises</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="../Low.html" accesskey="U">Low Difficulty Exercises</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MD Algorithms and the Properties of Water</a></li> 
       </ul>
     </div>  
 
@@ -48,13 +47,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="md-algorithms-and-the-properties-of-water">
+  <section id="md-algorithms-and-the-properties-of-water">
 <h1>MD Algorithms and the Properties of Water<a class="headerlink" href="#md-algorithms-and-the-properties-of-water" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="summary">
+<section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will explore the behaviour of several molecular dynamics algorithms by examining their effects on the properties of a simple model for water: the SPC, or Simple Point Charge, model.</p>
-</div>
-<div class="section" id="background">
+</section>
+<section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
 <p>The SPC model for water, despite its simplicity, finds use in many simulations, particularly of biological systems. It is a rigid model, with three charged sites and Lennard-Jones interactions. Its properties (and limitations) are well known. The purpose of this exercise is to determine what effects, if any, the choice of molecular dynamics algorithm has on the statistical properties of this system.
 DL_POLY offers a wide selection of MD algorithms including:</p>
@@ -62,55 +61,49 @@ DL_POLY offers a wide selection of MD algorithms including:</p>
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>Fixed volume, fixed energy (NVE);</li>
-<li>Fixed volume, constant temperature (NVT-Berendsen);</li>
-<li>Fixed volume, constant temperature (NVT-Andersen);</li>
-<li>Fixed volume, constant temperature (NVT-Langevin);</li>
-<li>Fixed volume, constant temperature (NVT-Evans);</li>
-<li>Fixed volume, constant temperature (NVT-Nosé-Hoover);</li>
-<li>Fixed volume, constant temperature (NVT-Gentle-Stochastic);</li>
-<li>Constant pressure, constant temperature (NPT-Berendsen);</li>
-<li>Constant pressure, constant temperature (NPT-Nosé-Hoover);</li>
-<li>Constant pressure, constant temperature (NPT-Martyna-Tuckerman-Klein);</li>
-<li>Constant pressure, constant temperature (NPT-Langevin);</li>
-<li>The DL_POLY_5 manual contains the complete list.</li>
+<li><p>Fixed volume, fixed energy (NVE);</p></li>
+<li><p>Fixed volume, constant temperature (NVT-Berendsen);</p></li>
+<li><p>Fixed volume, constant temperature (NVT-Andersen);</p></li>
+<li><p>Fixed volume, constant temperature (NVT-Langevin);</p></li>
+<li><p>Fixed volume, constant temperature (NVT-Evans);</p></li>
+<li><p>Fixed volume, constant temperature (NVT-Nosé-Hoover);</p></li>
+<li><p>Fixed volume, constant temperature (NVT-Gentle-Stochastic);</p></li>
+<li><p>Constant pressure, constant temperature (NPT-Berendsen);</p></li>
+<li><p>Constant pressure, constant temperature (NPT-Nosé-Hoover);</p></li>
+<li><p>Constant pressure, constant temperature (NPT-Martyna-Tuckerman-Klein);</p></li>
+<li><p>Constant pressure, constant temperature (NPT-Langevin);</p></li>
+<li><p>The DL_POLY_5 manual contains the complete list.</p></li>
 </ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">Notice that we have omitted the constant stress algorithms from the list - can you think why? DL_POLY_5 also offers two possible ways of handling the rigid body dynamics of the water molecules: Rigid-body quaternion dynamics and Constraint bond dynamics.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Note</dt>
+<dd class="field-odd"><p>Notice that we have omitted the constant stress algorithms from the list - can you think why? DL_POLY_5 also offers two possible ways of handling the rigid body dynamics of the water molecules: Rigid-body quaternion dynamics and Constraint bond dynamics.</p>
+</dd>
+</dl>
 <p>All of these algorithms are described in the DL_POLY_5 manual and in the references cited therein. Our objective in this exercise is to perform a single state point simulation of water, using as many different algorithms as possible (up to 12 in all) and see what differences are manifest in the results.</p>
-</div>
-<div class="section" id="task">
+</section>
+<section id="task">
 <h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Download the files: <a class="reference download internal" download="" href="../../../_downloads/ba200e891862074059a6ca5b7a30ba18/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/bb8017d96874e432bec89f9715847921/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/abc83cd4d5572b8720a219f5ba3ea221/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a>.</li>
-<li>Using the <em>FIELD</em> file without modification, simulate the water system using the NVE ensemble. Run for at least 1000 timesteps. Examine the final results in terms of the mean thermodynamic properties (system energy and so on), structure (as revealed by the RDF) and mean-square displacement.This will be the reference system.</li>
-<li>Repeat the study under fixed volume, constant temperature conditions, using one of the thermostated algorithms mentioned above. Set the system temperature to equal the mean temperature obtained from <strong>step 1</strong>.</li>
-<li>Repeat the study under constant pressure, constant temperature conditions using one (or more) of the above mentioned algorithms. Set the system temperature and pressure to correspond to the mean values obtained in <strong>step 1</strong>.</li>
-<li>Compare closely the results you obtain. Note any differences you think are significant and try to work out what may have caused them. Broadly speaking, the results should be similar, but we are attempting to gain a feel for systematic differences between the methods.</li>
-<li>If you have the stamina, you may edit the <em>FIELD</em> file and switch the quaternion and constraint algorithms and repeat the study!</li>
+<li><p>Download the files: <a class="reference download internal" download="" href="../../../_downloads/e53967216370fa4d73dd725ddd008d64/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/bd7627373cb257d6e0c22caa2301350a/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a>, <a class="reference download internal" download="" href="../../../_downloads/9b187dfa130d971ae52c203a264479e3/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a>.</p></li>
+<li><p>Using the <em>FIELD</em> file without modification, simulate the water system using the NVE ensemble. Run for at least 1000 timesteps. Examine the final results in terms of the mean thermodynamic properties (system energy and so on), structure (as revealed by the RDF) and mean-square displacement.This will be the reference system.</p></li>
+<li><p>Repeat the study under fixed volume, constant temperature conditions, using one of the thermostated algorithms mentioned above. Set the system temperature to equal the mean temperature obtained from <strong>step 1</strong>.</p></li>
+<li><p>Repeat the study under constant pressure, constant temperature conditions using one (or more) of the above mentioned algorithms. Set the system temperature and pressure to correspond to the mean values obtained in <strong>step 1</strong>.</p></li>
+<li><p>Compare closely the results you obtain. Note any differences you think are significant and try to work out what may have caused them. Broadly speaking, the results should be similar, but we are attempting to gain a feel for systematic differences between the methods.</p></li>
+<li><p>If you have the stamina, you may edit the <em>FIELD</em> file and switch the quaternion and constraint algorithms and repeat the study!</p></li>
 </ol>
 <blockquote>
-<div><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"><p class="first">In performing this exercise, you will need to find adequate values for the ‘relaxation parameters’ of the thermostat and barostat. Clearly the choice of these represents additional degrees of freedom in the model, which may or may not also have an impact on the results. What do you think?</p>
-<p class="last">If all this is too boring for you, you may consider picking one particular algorithm and making a study of Hydrogen bonding in this system. First of all, decide for yourself how H-bonding may be identified and how you may quantify the degree of H-bonding as a function of temperature (say).</p>
-</td>
-</tr>
-</tbody>
-</table>
+<div><dl class="field-list">
+<dt class="field-odd">Note</dt>
+<dd class="field-odd"><p>In performing this exercise, you will need to find adequate values for the ‘relaxation parameters’ of the thermostat and barostat. Clearly the choice of these represents additional degrees of freedom in the model, which may or may not also have an impact on the results. What do you think?</p>
+<p>If all this is too boring for you, you may consider picking one particular algorithm and making a study of Hydrogen bonding in this system. First of all, decide for yourself how H-bonding may be identified and how you may quantify the degree of H-bonding as a function of temperature (say).</p>
+</dd>
+</dl>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -128,6 +121,7 @@ DL_POLY offers a wide selection of MD algorithms including:</p>
 <li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../DEMOCRITUS/Democritus.html">Democritus</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
@@ -148,17 +142,15 @@ DL_POLY offers a wide selection of MD algorithms including:</p>
   <p class="topless"><a href="../Medium.html"
                         title="next chapter">Medium Difficulty Exercises</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -179,12 +171,13 @@ DL_POLY offers a wide selection of MD algorithms including:</p>
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="../Low.html" >Low Difficulty Exercises</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="../Low.html" >Low Difficulty Exercises</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MD Algorithms and the Properties of Water</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

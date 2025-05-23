@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>LBE Exercise 3: Pressure-driven flows and Kármán vortex streets &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -39,7 +38,8 @@
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="LBE.html" accesskey="U">Lattice Boltzmann Equation</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="LBE.html" accesskey="U">Lattice Boltzmann Equation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LBE Exercise 3: Pressure-driven flows and Kármán vortex streets</a></li> 
       </ul>
     </div>  
 
@@ -48,30 +48,30 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lbe-exercise-3-pressure-driven-flows-and-karman-vortex-streets">
+  <section id="lbe-exercise-3-pressure-driven-flows-and-karman-vortex-streets">
 <span id="lbe-exercise3"></span><h1>LBE Exercise 3: Pressure-driven flows and Kármán vortex streets<a class="headerlink" href="#lbe-exercise-3-pressure-driven-flows-and-karman-vortex-streets" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Another major feature of LBE is its ability to model simulations with geometrically complex boundaries, including porous media and obstacle-laden flows, using very simple and computationally inexpensive boundary conditions. No-slip boundary conditions can be implemented by simple bounce-back boundary conditions, which can applied at <em>any</em> lattice point in a simulation.</p>
 <p>A simple example of a system that exploits this feature is pressure-driven flow between two plates. Applying bounce-back conditions at the top and bottom of a simulation box and also a constant horizontal force on the fluid will generate a flow not unlike one that results from pumping a fluid through a pipe, which creates a drop in pressure along its length. Varying the force in our simulations will modify the flow field.</p>
 <p>If we place an object in the path of a flowing fluid to disrupt its flow, at certain conditions we can observe eddies being shed from each side of the object in turn, forming rows of vortices in its wake. This is referred to as a <em>(von) Kármán vortex street</em> and produces a distinctive, regular but unsteady flow pattern.</p>
 <p>A Kármán vortex street also changes the pressure distribution in the fluid and can create periodic forces that act sideways on the object. If these forces correspond to the object’s natural resonating frequency, this can enhance the vibration and can even cause structural damage. (One example of this happening was the collapse of three cooling towers at Ferrybridge Power Station in 1965 during high winds.)</p>
-</div>
-<div class="section" id="aim">
+</section>
+<section id="aim">
 <h2>Aim<a class="headerlink" href="#aim" title="Permalink to this headline">¶</a></h2>
 <p>We are going to see how LBE models pressure-driven flows, both unobstructed and with obstacles. In the case of flows with obstacles, we want to see what conditions will produce Kármán vortex streets.</p>
 <p>To do this, we will start with a simple two-dimensional system with two walls representing a channel and apply a constant force on the fluid. This will simulate a pressure drop across the length of the channel and generate a flow field. We can vary the force acting on the fluid and the fluid viscosity (via the relaxation time) to see what effect these properties have on the resulting velocity profile.</p>
 <p>After this, we can add solid objects in the path of the flow and see what effect they have, including finding flow conditions which cause Kármán vortex streets. We can also try ways to suppress the vortex streets by changing the shape of the obstacle.</p>
-</div>
-<div class="section" id="instructions">
+</section>
+<section id="instructions">
 <h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
-<p>For this exercise, you will need the main DL_MESO_LBE executable <code class="docutils literal notranslate"><span class="pre">lbe.exe</span></code> - ideally the serial version with OpenMP multithreading - and either the DL_MESO GUI (see <a class="reference internal" href="DL_MESO_LBE.html#dl-meso-gui"><span class="std std-ref">Running GUI</span></a>) or the <a class="reference download internal" download="" href="../../_downloads/7b8bdf406077b63998786820b6defec3/karmanbc.py"><code class="xref download docutils literal notranslate"><span class="pre">karmanbc.py</span></code></a> script to create and modify input files. You will also need to have Paraview installed.</p>
+<p>For this exercise, you will need the main DL_MESO_LBE executable <code class="docutils literal notranslate"><span class="pre">lbe.exe</span></code> - ideally the serial version with OpenMP multithreading - and either the DL_MESO GUI (see <a class="reference internal" href="DL_MESO_LBE.html#dl-meso-gui"><span class="std std-ref">Running GUI</span></a>) or the <a class="reference download internal" download="" href="../../_downloads/0425330661eb9565fb4f0f1d4a22f4d3/karmanbc.py"><code class="xref download docutils literal notranslate"><span class="pre">karmanbc.py</span></code></a> script to create and modify input files. You will also need to have Paraview installed.</p>
 <p>Download the <a class="reference download internal" download="" href="../../_downloads/bd19838f6132ca908bfcc86ffdc50963/lbin.sys"><code class="xref download docutils literal notranslate"><span class="pre">lbin.sys</span></code></a> file into your working directory (e.g. <code class="docutils literal notranslate"><span class="pre">dl_meso/WORK</span></code>). This simulation input file will model one fluid in a lattice grid of <span class="math notranslate nohighlight">\(250 \times 50\)</span> lattice units with a relaxation time <span class="math notranslate nohighlight">\(\tau = 0.5072\)</span> and apply a body force to the right of <span class="math notranslate nohighlight">\(F_x = 1.0 \times 10^{-6}\)</span>.</p>
 <p>Before we can run the simulation, we will need to create an <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file. To do this, either:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Open the GUI, click the <em>LBE</em> button at the top and then <em>Define LBE System</em> on the left hand side. Click the <em>OPEN</em> button and then select <em>Set LBE Space</em>. In this window, select <em>top mid-grid bounce back</em> and <em>bottom mid-grid bounce back</em> in the pulldown boxes, and then click <em>Create</em>.</li>
-<li>Launch the <em>karmanbc.py</em> script, click the <em>Add walls</em> button and then click the <em>Save lbin.spa</em> button.</li>
+<li><p>Open the GUI, click the <em>LBE</em> button at the top and then <em>Define LBE System</em> on the left hand side. Click the <em>OPEN</em> button and then select <em>Set LBE Space</em>. In this window, select <em>top mid-grid bounce back</em> and <em>bottom mid-grid bounce back</em> in the pulldown boxes, and then click <em>Create</em>.</p></li>
+<li><p>Launch the <em>karmanbc.py</em> script, click the <em>Add walls</em> button and then click the <em>Save lbin.spa</em> button.</p></li>
 </ul>
 </div></blockquote>
 <p>This will create an <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file with bounce-back boundaries at the top and bottom of the box, representing a channel for the fluid.</p>
@@ -87,8 +87,8 @@
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file cannot be modified with the GUI but can only be replaced. The <em>ADD OBSTACLES</em> section can be used to add additional shapes - points, cylinders (circles) and rectangular blocks - before clicking <em>Create</em> to write a new <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file, although the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file needs to be loaded into the <em>Define LBE System</em> window beforehand.</p>
-</div>
-<div class="section" id="additional-theory">
+</section>
+<section id="additional-theory">
 <h2>Additional theory<a class="headerlink" href="#additional-theory" title="Permalink to this headline">¶</a></h2>
 <p>We can describe the behaviour of a flow-based system using <a class="reference internal" href="../DOCUMENTS/DimensionlessNumbers.html#dimensionless-numbers"><span class="std std-ref">dimensionless numbers</span></a>. A common dimensionless number for flow behaviour is the <a class="reference internal" href="../DOCUMENTS/DimensionlessNumbers.html#reynolds"><span class="std std-ref">Reynolds number</span></a>:</p>
 <div class="math notranslate nohighlight">
@@ -107,33 +107,37 @@
 <p>In a two-dimensional lattice Boltzmann simulation, the pressure drop can be applied either by using constant density boundary conditions at each end of the simulation domain or by applying a constant body force to the fluid:</p>
 <div class="math notranslate nohighlight">
 \[\Delta p = c_s^2 \left(\rho_{in} - \rho_{out}\right) = \frac{F_x}{2H}.\]</div>
-</div>
-<div class="section" id="tasks">
+</section>
+<section id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Run DL_MESO_LBE in your working directory with the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file copied over from the <code class="docutils literal notranslate"><span class="pre">dl_meso/DEMO/LBE/2D_KarmanVortex</span></code> folder and the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file you created. Open the output files in Paraview and take a look at the velocity profile: use the Plot Over Line filter, specifying the Y Axis, to get a graph plot of the x-component of velocity.<ul>
-<li>Take a look at the velocity profile: what shape does it take? Where is its maximum velocity and what is it? What is the average (mean) velocity of the flow?</li>
+<li><p>Run DL_MESO_LBE in your working directory with the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file copied over from the <code class="docutils literal notranslate"><span class="pre">dl_meso/DEMO/LBE/2D_KarmanVortex</span></code> folder and the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file you created. Open the output files in Paraview and take a look at the velocity profile: use the Plot Over Line filter, specifying the Y Axis, to get a graph plot of the x-component of velocity.</p>
+<ul class="simple">
+<li><p>Take a look at the velocity profile: what shape does it take? Where is its maximum velocity and what is it? What is the average (mean) velocity of the flow?</p></li>
 </ul>
 </li>
-<li>Change the body force in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file. Does the basic shape of the velocity profile change? How about the maximum velocity?</li>
-<li>Now try modifying the fluid’s kinematic viscosity by changing the relaxation time. How does the maximum velocity depend on relaxation time/viscosity?<ul>
-<li>If you have changed both the body force and the relaxation time but the Reynolds number remains the same, do you obtain identical velocity profiles?</li>
+<li><p>Change the body force in the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file. Does the basic shape of the velocity profile change? How about the maximum velocity?</p></li>
+<li><p>Now try modifying the fluid’s kinematic viscosity by changing the relaxation time. How does the maximum velocity depend on relaxation time/viscosity?</p>
+<ul class="simple">
+<li><p>If you have changed both the body force and the relaxation time but the Reynolds number remains the same, do you obtain identical velocity profiles?</p></li>
 </ul>
 </li>
-<li>Add an obstacle in your channel flow simulation, either by reloading the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file in the GUI to re-create the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file from scratch, or by loading the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file into the <em>karmanbc.py</em> script.<ul>
-<li>Try a circle of radius 8 along the flow centreline not too far from the flow ‘entrance’, say at <span class="math notranslate nohighlight">\((49, 24)\)</span>. (The <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file in the <code class="docutils literal notranslate"><span class="pre">dl_meso/DENO/LBE/2D_KarmanVortex</span></code> folder does just this.)</li>
-<li>See how the obstacle affects the flow field, then try varying the force and relaxation time until you can achieve vortex shedding.</li>
+<li><p>Add an obstacle in your channel flow simulation, either by reloading the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-sys"><span class="std std-ref">lbin.sys</span></a> file in the GUI to re-create the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file from scratch, or by loading the <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file into the <em>karmanbc.py</em> script.</p>
+<ul class="simple">
+<li><p>Try a circle of radius 8 along the flow centreline not too far from the flow ‘entrance’, say at <span class="math notranslate nohighlight">\((49, 24)\)</span>. (The <a class="reference internal" href="../TUTORIALS/dlm_3.html#lbin-spa"><span class="std std-ref">lbin.spa</span></a> file in the <code class="docutils literal notranslate"><span class="pre">dl_meso/DENO/LBE/2D_KarmanVortex</span></code> folder does just this.)</p></li>
+<li><p>See how the obstacle affects the flow field, then try varying the force and relaxation time until you can achieve vortex shedding.</p></li>
 </ul>
 </li>
-<li>Try the same again but add a vertical baffle instead of a circle (a e.g rectangle of width 1 and height 16). Can you still get a Kármán vortex street?</li>
-<li>Instead of an obstacle in the centre of the channel, try adding a circle so it ‘crosses’ the top and bottom boundaries and constricts the flow at the centre. Can this also cause a Kármán vortex street to form?</li>
-<li>To reduce vortex shedding and its destructive effects, we can reduce the area in which eddies can interact. Try adding an additional rectangle of height 1 and width 16 to the right of a circular object, so it can act as a baffle. Does it suppress the vortex street?</li>
+<li><p>Try the same again but add a vertical baffle instead of a circle (a e.g rectangle of width 1 and height 16). Can you still get a Kármán vortex street?</p></li>
+<li><p>Instead of an obstacle in the centre of the channel, try adding a circle so it ‘crosses’ the top and bottom boundaries and constricts the flow at the centre. Can this also cause a Kármán vortex street to form?</p></li>
+<li><p>To reduce vortex shedding and its destructive effects, we can reduce the area in which eddies can interact. Try adding an additional rectangle of height 1 and width 16 to the right of a circular object, so it can act as a baffle. Does it suppress the vortex street?</p></li>
 </ol>
 <p class="rubric">Footnote</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -151,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exercises_data.html">D_ATA</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../DEMOCRITUS/Democritus.html">Democritus</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
@@ -171,17 +176,15 @@
   <p class="topless"><a href="DPD.html"
                         title="next chapter">Dissipative Particle Dynamics</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -202,12 +205,13 @@
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="exercises_dlmeso.html" >DL_MESO</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="LBE.html" >Lattice Boltzmann Equation</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="LBE.html" >Lattice Boltzmann Equation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">LBE Exercise 3: Pressure-driven flows and Kármán vortex streets</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

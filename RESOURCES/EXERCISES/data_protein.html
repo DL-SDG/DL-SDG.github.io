@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Protein-protein interactions &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -38,7 +36,8 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_data.html" accesskey="U">D_ATA</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="exercises_data.html" accesskey="U">D_ATA</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Protein-protein interactions</a></li> 
       </ul>
     </div>  
 
@@ -47,32 +46,34 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="protein-protein-interactions">
+  <section id="protein-protein-interactions">
 <span id="header-data-protein"></span><h1>Protein-protein interactions<a class="headerlink" href="#protein-protein-interactions" title="Permalink to this headline">¶</a></h1>
 <p>The human SOD1 is a bimetallic protein enzyme, functionally active as a homodimer orientated by an approximate 2-fold axis along the
 dimeric interface. The interfacial region between the subunits are stabilised by both polar and apolar contacts between the amino acids residues from both monomer units.</p>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../../_images/sod1.jpg"><img alt="../../_images/sod1.jpg" src="../../_images/sod1.jpg" style="width: 400.0px; height: 292.6px;" /></a>
-<p class="caption"><span class="caption-text">SOD1 protein molecule.</span></p>
-</div>
+<figcaption>
+<p><span class="caption-text">SOD1 protein molecule.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>However, the <em>apo</em> (metal-depleted) wild-type SOD1 can become destabilise and undergo self-aggregation into an amyloid-like fibrillar structure that may implicate a possible cause of ALS, a neuro-degenerative disease. The actual atomistic mechanisms this can occur is not clearly understood but it is possible via destabilisation or reorientation at the dimeric interface.</p>
 <p>One possible way to investigate this is to use D_ATA to track interactions between the two protein monomers from molecular simulation trajectories of SOD1 in water.</p>
 <p>Due to large trajectory file size, this exercise uses a truncated trajectory file to just 39 frames, or about 30 ps. The idea is not to derive any conclusions base on the analysis, but rather to illustrate what results can be produced from D_ATA program.</p>
-<img alt="../../_images/Orange_bar1.png" src="../../_images/Orange_bar1.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Procedures</strong></p>
 <ol class="arabic simple">
-<li>Download the trajectory file (<a class="reference download internal" download="" href="../../_downloads/78a9c8e15b3dbd26ef88729b07e52741/HISTORY_sod1.gz"><code class="xref download docutils literal notranslate"><span class="pre">SOD1</span> <span class="pre">trajectory</span></code></a>).</li>
+<li><p>Download the trajectory file (<a class="reference download internal" download="" href="../../_downloads/da30e9adeb24b938ddf7b47af623202f/HISTORY_sod1.gz"><code class="xref download docutils literal notranslate"><span class="pre">SOD1</span> <span class="pre">trajectory</span></code></a>).</p></li>
 </ol>
 <p>This file is generated from DL_POLY simulation runs. It consists of an SOD1 protein molecule (4374 atoms) with water molecules and sodium counterions, to give a total of 51843 atoms.
 Save this in D_ATA home directory (where <em>d_ata</em> executable file is located).</p>
 <ol class="arabic simple" start="2">
-<li>Download the PDB template file (<a class="reference download internal" download="" href="../../_downloads/5999261d9e089386020f85638b41599b/sod1_template.pdb"><code class="xref download docutils literal notranslate"><span class="pre">SOD1</span> <span class="pre">template</span></code></a>).</li>
+<li><p>Download the PDB template file (<a class="reference download internal" download="" href="../../_downloads/6ecd2058f6d2a1d360fb2614c0357ff5/sod1_template.pdb"><code class="xref download docutils literal notranslate"><span class="pre">SOD1</span> <span class="pre">template</span></code></a>).</p></li>
 </ol>
 <p>Since DL_POLY HISTORY file does not contain the amino acid residues information, D_ATA will use this as a template to identify the type and source of interactions.</p>
 <p>The template file contains the PDB structure with atom sequences match with those of HISTORY trajectory frames. The two protein monomers are labelled as <em>SOD1</em> and <em>SOD2</em>,</p>
 <p>Save this file in the D_ATA home directory.</p>
 <ol class="arabic simple" start="3">
-<li>Edit and insert the filename of the downloaded trajectory file in <em>d_ata.input</em>, as shown below:</li>
+<li><p>Edit and insert the filename of the downloaded trajectory file in <em>d_ata.input</em>, as shown below:</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Since there is only one file and hence the number 1.</span>
 <span class="mi">1</span>
@@ -83,7 +84,7 @@ Save this in D_ATA home directory (where <em>d_ata</em> executable file is locat
 If your D_ATA version cannot read the gzip compressed file, then use <em>gunzip</em> to uncompress it and change the filename accordingly.</p>
 <p>Save and exit <em>d_ata.input</em>.</p>
 <ol class="arabic simple" start="4">
-<li>Edit and view the <em>d_ata.control</em> file. Select the options as shown below:</li>
+<li><p>Edit and view the <em>d_ata.control</em> file. Select the options as shown below:</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Title</span> <span class="k">for</span> <span class="n">control</span> <span class="n">file</span><span class="o">.</span>
 <span class="mi">2</span>              <span class="o">*</span> <span class="n">Program</span> <span class="n">mode</span><span class="p">:</span> <span class="mi">1</span><span class="o">=</span><span class="n">typer</span><span class="p">,</span> <span class="mi">2</span><span class="o">=</span><span class="n">typer</span> <span class="ow">and</span> <span class="n">analyser</span><span class="o">.</span>
@@ -109,7 +110,7 @@ If your D_ATA version cannot read the gzip compressed file, then use <em>gunzip<
 <p>The option also instructs D_ATA to identify interactions that occur <em>between</em> the molecules, or in this case, between the monomers. Interactions that occur <em>within</em> the monomers will be ignored.</p>
 <p>Save and exit <em>d_ata.control</em>.</p>
 <ol class="arabic simple" start="5">
-<li>Run D_ATA program at the home directory by simply type <em>./d_ata</em></li>
+<li><p>Run D_ATA program at the home directory by simply type <em>./d_ata</em></p></li>
 </ol>
 <p>At the end of analysis, D_ATA will produce the following information:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span>
@@ -135,14 +136,15 @@ If your D_ATA version cannot read the gzip compressed file, then use <em>gunzip<
 <p>Examine each output file. Note that when a template file is provided, D_ATA will produce an additional file, <em>d_ata.results2</em>.
 This file shows type of interactions and the residues that involve in such interactions.</p>
 <ol class="arabic simple" start="7">
-<li>Change control options such as number of atoms to analysis, analysis criteria, etc and rerun D_ATA.</li>
+<li><p>Change control options such as number of atoms to analysis, analysis criteria, etc and rerun D_ATA.</p></li>
 </ol>
 <p>Please refer to manual or <a class="reference internal" href="../TUTORIALS/data_0.html"><span class="doc">D_ATA</span></a> reference guide for more information on how to interpret output results.</p>
 <p>For guidance how to interpret results produce from <em>d_ata.results2</em>, please refer to Chapter 3.4 of the D_ATA user manual.</p>
 <p><a class="reference internal" href="#header-data-protein"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -160,6 +162,7 @@ This file shows type of interactions and the residues that involve in such inter
 <li class="toctree-l3"><a class="reference internal" href="exercises_dlfield.html">DL_FIELD</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="exercises_data.html">D_ATA</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exercises_dlmeso.html">DL_MESO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../DEMOCRITUS/Democritus.html">Democritus</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
@@ -180,17 +183,15 @@ This file shows type of interactions and the residues that involve in such inter
   <p class="topless"><a href="exercises_dlmeso.html"
                         title="next chapter">DL_MESO</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -210,12 +211,13 @@ This file shows type of interactions and the residues that involve in such inter
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="exercises_data.html" >D_ATA</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="exercises_data.html" >D_ATA</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Protein-protein interactions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Dissipative Particle Dynamics (DPD) &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,7 +35,8 @@
           <a href="thermostat_barostat.html" title="Thermostats and barostats (system regulators)"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Dissipative Particle Dynamics (DPD)</a></li> 
       </ul>
     </div>  
 
@@ -45,27 +45,27 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="dissipative-particle-dynamics-dpd">
+  <section id="dissipative-particle-dynamics-dpd">
 <span id="dpd-intro"></span><h1>Dissipative Particle Dynamics (DPD)<a class="headerlink" href="#dissipative-particle-dynamics-dpd" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="summary">
+<section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Dissipative Particle Dynamics (DPD) is a mesoscale modelling method with many similarities to molecular dynamics, i.e. calculating and integrating forces over a discrete time step to evolve the positions and velocities of particles. DPD features a special pairwise thermostat to control the system temperature while maintaining momentum conservation to ensure correct hydrodynamics. A broad definition of a DPD particle (or ‘bead’) at length scales larger than those for atoms allows the use of soft interaction potentials, allowing longer times to be achieved with fewer time steps than ordinarily available for molecular dynamics (MD). This makes DPD an appealing method to model biomolecular and other biological systems at larger scales than are usually available with atomistic and coarse-grained MD.</p>
-</div>
-<div class="section" id="background">
+</section>
+<section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
-<p>DPD was originally conceived as an off-lattice form of gas automata <a class="reference internal" href="#hoogerbrugge1992" id="id1">[Hoogerbrugge1992]</a> to describe complex fluid flows at larger length scales than those available with molecular dynamics. This algorithm introduced dissipative and random forces between pairs of particles:</p>
+<p>DPD was originally conceived as an off-lattice form of gas automata <a class="reference internal" href="#hoogerbrugge1992" id="id1"><span>[Hoogerbrugge1992]</span></a> to describe complex fluid flows at larger length scales than those available with molecular dynamics. This algorithm introduced dissipative and random forces between pairs of particles:</p>
 <div class="math notranslate nohighlight" id="equation-dissipative">
 <span class="eqno">(1)<a class="headerlink" href="#equation-dissipative" title="Permalink to this equation">¶</a></span>\[\mathbf{F}_{ij}^{D} = - \gamma w^{D}\left( r_{ij} \right) \left( {\widehat{\mathbf{r}}}_{ij} \cdot \mathbf{v}_{ij} \right){\widehat{\mathbf{r}}}_{ij}\]</div>
 <div class="math notranslate nohighlight" id="equation-random">
 <span class="eqno">(2)<a class="headerlink" href="#equation-random" title="Permalink to this equation">¶</a></span>\[\mathbf{F}_{ij}^{R} = \sigma w^{R}\left( r_{ij} \right)\zeta_{ij}\Delta t^{- \frac{1}{2}\ }\ {\widehat{\mathbf{r}}}_{ij},\]</div>
 <p>which control the particles’ kinetic energy while ensuring local and system momenta are conserved. In the above equations, <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are the dissipative and random force parameters, <span class="math notranslate nohighlight">\(w^{D}\)</span> and <span class="math notranslate nohighlight">\(w^{R}\)</span> are functions of distance for dissipative and random forces respectively, <span class="math notranslate nohighlight">\(\mathbf{r}_{ij} = \mathbf{r}_{j} - \mathbf{r}_{i}\)</span> is the vector between particles <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\({\widehat{\mathbf{r}}}_{ij} = \frac{\mathbf{r}_{ij}}{r_{ij}}\)</span> is the unit vector between the same particles, <span class="math notranslate nohighlight">\(\mathbf{v}_{ij} = \mathbf{v}_{j} - \mathbf{v}_{i}\)</span> is the relative velocity between the two particles, <span class="math notranslate nohighlight">\(\zeta_{ij}\)</span> is a Gaussian random number with zero mean value and unity variance, and <span class="math notranslate nohighlight">\(\Delta t\)</span> is the simulation timestep.</p>
-<p>Español and Warren <a class="reference internal" href="#espanol1995" id="id2">[Español1995]</a> later made the connection between the dissipative and random forces to allow them to act as a Galilean-invariant thermostat. They used the Fokker-Planck equation for fluctuation-dissipation to find the following required conditions for the dissipative and random forces to ensure any equilibrium structure is not affected:</p>
+<p>Español and Warren <a class="reference internal" href="#espanol1995" id="id2"><span>[Español1995]</span></a> later made the connection between the dissipative and random forces to allow them to act as a Galilean-invariant thermostat. They used the Fokker-Planck equation for fluctuation-dissipation to find the following required conditions for the dissipative and random forces to ensure any equilibrium structure is not affected:</p>
 <div class="math notranslate nohighlight" id="equation-sigmagamma">
 <span class="eqno">(3)<a class="headerlink" href="#equation-sigmagamma" title="Permalink to this equation">¶</a></span>\[\sigma^{2} = 2\gamma k_B T\]</div>
 <div class="math notranslate nohighlight" id="equation-screen">
 <span class="eqno">(4)<a class="headerlink" href="#equation-screen" title="Permalink to this equation">¶</a></span>\[w^{D}\left( r_{ij} \right) = \left\lbrack w^{R}\left( r_{ij} \right) \right\rbrack^{2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k_B\)</span> is the Boltzmann constant and <span class="math notranslate nohighlight">\(T\)</span> is the required system temperature. With these conditions, the dissipative and random forces make up the DPD thermostat, which can be seen as essentially a pairwise form of the Langevin thermostat. Any flow field applied to a DPD system will thus be treated correctly and the correct hydrodynamics may be observed.</p>
-<p>There are no restrictions on how particles otherwise interact in a DPD simulation: indeed, we could use the DPD thermostat for atomistic or coarse-grained MD simulations. That said, if we want to model at the mesoscale, the particles should ideally be larger and softer - compared with those used for atomistic MD - to allow larger timesteps to be used. One very common form of conservative interaction between DPD particles (or ‘beads’) is that proposed by Groot and Warren <a class="reference internal" href="../EXERCISES/Flory_Huggins_DPD/flory_huggins_dpd.html#groot1997" id="id3">[Groot1997]</a>, which takes the form of a pairwise force that is linear with distance:</p>
+<p>There are no restrictions on how particles otherwise interact in a DPD simulation: indeed, we could use the DPD thermostat for atomistic or coarse-grained MD simulations. That said, if we want to model at the mesoscale, the particles should ideally be larger and softer - compared with those used for atomistic MD - to allow larger timesteps to be used. One very common form of conservative interaction between DPD particles (or ‘beads’) is that proposed by Groot and Warren <a class="reference internal" href="../EXERCISES/Flory_Huggins_DPD/flory_huggins_dpd.html#groot1997" id="id3"><span>[Groot1997]</span></a>, which takes the form of a pairwise force that is linear with distance:</p>
 <div class="math notranslate nohighlight" id="equation-grootwarren">
 <span class="eqno">(5)<a class="headerlink" href="#equation-grootwarren" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathbf{F}_{ij}^{C} = \left\{ \begin{matrix} A_{ij}\left( 1 - \frac{r_{ij}}{r_{c}} \right){\widehat{\mathbf{r}}}_{ij} &amp; (r_{ij} &lt; r_{c}) \\ 0 &amp; (r_{ij} \geq r_{c}) \\ \end{matrix} \right.\ ,\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(r_c\)</span> is an interaction cutoff distance and <span class="math notranslate nohighlight">\(A_{ij}\)</span> is a conservative force parameter. This results in a quadratic potential <span class="math notranslate nohighlight">\(U_{ij} = \frac{1}{2} A_{ij} r_c \left(1 - \frac{r_{ij}}{r_c} \right)^2\)</span> (for <span class="math notranslate nohighlight">\(r_{ij} &lt; r_c\)</span>) and also, for systems with a single particle species, a quadratic equation of state:</p>
@@ -75,65 +75,53 @@
 <p>There are several methods available to obtain <span class="math notranslate nohighlight">\(A_{ij}\)</span> values between bead pairs of different species. The simplest was devised by Groot and Warren, who made a connection between DPD conservative force parameters and Flory-Huggins solution theory, which specifies <span class="math notranslate nohighlight">\(\chi\)</span> as a measure of free energy of mixing and indicates degree of hydrophobicity. Assuming that like-like interactions - those between pairs of beads of the same species - are the same for all species (<span class="math notranslate nohighlight">\(A_{ij}^{\text{AA}} = A_{ij}^{\text{BB}}\)</span>), the following proportionality applies for a given bead density:</p>
 <div class="math notranslate nohighlight">
 \[\chi^{\text{AB}} \propto \left(A_{ij}^{\text{AB}} - A_{ij}^{\text{AA}}\right)\]</div>
-<p>This allows us to find values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> if we happen to know <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>, which can be experimentally determined or estimated from atomistic MD simulations. Other parameterisation strategies exist that make use of infinite dilution activity coefficients <a class="reference internal" href="DPDTheory.html#vishnyakov2013" id="id4">[Vishnyakov2013]</a> and water/octanol partition coefficients <a class="reference internal" href="DPDTheory.html#anderson2017" id="id5">[Anderson2017]</a>.</p>
+<p>This allows us to find values of <span class="math notranslate nohighlight">\(A_{ij}^{\text{AB}}\)</span> if we happen to know <span class="math notranslate nohighlight">\(\chi^{\text{AB}}\)</span>, which can be experimentally determined or estimated from atomistic MD simulations. Other parameterisation strategies exist that make use of infinite dilution activity coefficients <a class="reference internal" href="DPDTheory.html#vishnyakov2013" id="id4"><span>[Vishnyakov2013]</span></a> and water/octanol partition coefficients <a class="reference internal" href="DPDTheory.html#anderson2017" id="id5"><span>[Anderson2017]</span></a>.</p>
 <p>In spite of the simplicity of this interaction, it has been shown to provide enough detail for many complex systems, particularly when used in conjunction with bonded interactions (harmonic springs etc.) between beads to represent amphiphilic molecules with hydrophobic (water-hating) and hydrophilic (water-loving) parts. The softness of the potential makes it possible to attain equilibrium structures in a relatively short time thanks to the use of larger timesteps. As such, it can readily model systems of scientific interest - e.g. vesicles, bilayers, proteins - at length and time scales close to those used in engineering applications.</p>
-<div class="align-center figure" id="id10">
+<figure class="align-center" id="id10">
 <a class="reference internal image-reference" href="../../_images/lipidbilayer.png"><img alt="DPD simulation of lipid bilayer" src="../../_images/lipidbilayer.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">DPD simulation of bilayer formed from amphiphilic lipid molecules in water <a class="reference internal" href="../EXERCISES/Lipids_DPD/lipids_dpd.html#shillcock2002" id="id6">[Shillcock2002]</a>.</span></p>
-</div>
-<div class="align-center figure" id="id11">
+<figcaption>
+<p><span class="caption-text">DPD simulation of bilayer formed from amphiphilic lipid molecules in water <a class="reference internal" href="../EXERCISES/Lipids_DPD/lipids_dpd.html#shillcock2002" id="id6"><span>[Shillcock2002]</span></a>.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id11">
 <a class="reference internal image-reference" href="../../_images/drugloading.png"><img alt="DPD simulation of lipid bilayer" src="../../_images/drugloading.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">DPD simulation of anti-cancer drug (camptothecin) loading into copolymer vesicles for medical delivery <a class="reference internal" href="#luo2012" id="id7">[Luo2012]</a>.</span></p>
-</div>
-<p>Further extensions to the basic Groot-Warren ‘DPD’ interaction have included density-dependent (many-body DPD) potentials to give more realistic equations of state, electrostatic interactions with short-range charge smearing <a class="footnote-reference" href="#id9" id="id8">[1]</a> etc. There have additionally been developments to improve the pairwise thermostat, including smarter force integration and alternative pairwise thermostats that can boost fluid viscosity, and it is also possible to couple barostats to the DPD or other pairwise thermostats for constant pressure ensembles.</p>
+<figcaption>
+<p><span class="caption-text">DPD simulation of anti-cancer drug (camptothecin) loading into copolymer vesicles for medical delivery <a class="reference internal" href="#luo2012" id="id7"><span>[Luo2012]</span></a>.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Further extensions to the basic Groot-Warren ‘DPD’ interaction have included density-dependent (many-body DPD) potentials to give more realistic equations of state, electrostatic interactions with short-range charge smearing <a class="footnote-reference brackets" href="#id9" id="id8">1</a> etc. There have additionally been developments to improve the pairwise thermostat, including smarter force integration and alternative pairwise thermostats that can boost fluid viscosity, and it is also possible to couple barostats to the DPD or other pairwise thermostats for constant pressure ensembles.</p>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[1]</a></td><td>Smearing of charges is generally required for DPD simulations due to the softness of conservative interactions, which may not be sufficiently repulsive to prevent opposite-sign charges from collapsing on top of each other.</td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id8">1</a></span></dt>
+<dd><p>Smearing of charges is generally required for DPD simulations due to the softness of conservative interactions, which may not be sufficiently repulsive to prevent opposite-sign charges from collapsing on top of each other.</p>
+</dd>
+</dl>
 <p class="rubric">References</p>
-<table class="docutils citation" frame="void" id="hoogerbrugge1992" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[Hoogerbrugge1992]</a></td><td>PJ Hoogerbrugge and JMVA Koelman, Simulating microscopic hydrodynamic phenomena with dissipative particle dynamics, <em>EPL</em>, <strong>19</strong>, p. 155-160, 1992, doi: 10.1209/0295-5075/19/3/001.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="espanol1995" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[Español1995]</a></td><td>P Español and P Warren, Statistical mechanics of dissipative particle dynamics, <em>EPL</em>, <strong>30</strong>, p. 191-196, 1995, doi: 10.1209/0295-5075/30/4/001.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="groot1997" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[Groot1997]</a></td><td>RD Groot and PB Warren, Dissipative particle dynamics: Bridging the gap between atomistic and mesoscopic simulation, <em>Journal of Chemical Physics</em>, <strong>107</strong>, p. 4423–4435, 1997, doi: 10.1063/1.474784.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="vishnyakov2013" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[Vishnyakov2013]</a></td><td>A Vishnyakov, M-T Lee and AV Neimark, Prediction of the critical micelle concentration of nonionic surfactants by dissipative particle dynamics simulations, <em>Journal of Physical Chemistry Letters</em>, <strong>4</strong>, p. 797-802, 2013, doi: 10.1021/jz400066k.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="anderson2017" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[Anderson2017]</a></td><td>RL Anderson, DJ Bray, AS Ferrante, MG Noro, IP Stott and PB Warren, Dissipative particle dynamics: systematic parametrization using water-octanol partition coefficients, <em>Journal of Chemical Physics</em>, <strong>147</strong>, 094503, 2017. doi: 10.1063/1.4992111.</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="luo2012" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[Luo2012]</a></td><td>Z Luo and J Jiang, pH-sensitive drug loading/releasing in amphiphilic copolymer PAE–PEG: Integrating molecular dynamics and dissipative particle dynamics simulations, <em>Journal of Controlled Release</em>, <strong>162</strong>, p. 185-193, 2012, doi: 10.1016/j.jconrel.2012.06.027.</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<dl class="citation">
+<dt class="label" id="hoogerbrugge1992"><span class="brackets"><a class="fn-backref" href="#id1">Hoogerbrugge1992</a></span></dt>
+<dd><p>PJ Hoogerbrugge and JMVA Koelman, Simulating microscopic hydrodynamic phenomena with dissipative particle dynamics, <em>EPL</em>, <strong>19</strong>, p. 155-160, 1992, doi: 10.1209/0295-5075/19/3/001.</p>
+</dd>
+<dt class="label" id="espanol1995"><span class="brackets"><a class="fn-backref" href="#id2">Español1995</a></span></dt>
+<dd><p>P Español and P Warren, Statistical mechanics of dissipative particle dynamics, <em>EPL</em>, <strong>30</strong>, p. 191-196, 1995, doi: 10.1209/0295-5075/30/4/001.</p>
+</dd>
+<dt class="label" id="groot1997"><span class="brackets"><a class="fn-backref" href="#id3">Groot1997</a></span></dt>
+<dd><p>RD Groot and PB Warren, Dissipative particle dynamics: Bridging the gap between atomistic and mesoscopic simulation, <em>Journal of Chemical Physics</em>, <strong>107</strong>, p. 4423–4435, 1997, doi: 10.1063/1.474784.</p>
+</dd>
+<dt class="label" id="vishnyakov2013"><span class="brackets"><a class="fn-backref" href="#id4">Vishnyakov2013</a></span></dt>
+<dd><p>A Vishnyakov, M-T Lee and AV Neimark, Prediction of the critical micelle concentration of nonionic surfactants by dissipative particle dynamics simulations, <em>Journal of Physical Chemistry Letters</em>, <strong>4</strong>, p. 797-802, 2013, doi: 10.1021/jz400066k.</p>
+</dd>
+<dt class="label" id="anderson2017"><span class="brackets"><a class="fn-backref" href="#id5">Anderson2017</a></span></dt>
+<dd><p>RL Anderson, DJ Bray, AS Ferrante, MG Noro, IP Stott and PB Warren, Dissipative particle dynamics: systematic parametrization using water-octanol partition coefficients, <em>Journal of Chemical Physics</em>, <strong>147</strong>, 094503, 2017. doi: 10.1063/1.4992111.</p>
+</dd>
+<dt class="label" id="luo2012"><span class="brackets"><a class="fn-backref" href="#id7">Luo2012</a></span></dt>
+<dd><p>Z Luo and J Jiang, pH-sensitive drug loading/releasing in amphiphilic copolymer PAE–PEG: Integrating molecular dynamics and dissipative particle dynamics simulations, <em>Journal of Controlled Release</em>, <strong>162</strong>, p. 185-193, 2012, doi: 10.1016/j.jconrel.2012.06.027.</p>
+</dd>
+</dl>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -154,6 +142,8 @@
 <li class="toctree-l3"><a class="reference internal" href="DPDTheory.html">Additional details on DPD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="LBETheory.html">Additional details on LBE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../DEMOCRITUS/Democritus.html">Democritus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../MONTE_CARLO_POLYMER/mc_polymer.html">Monte Carlo Polymer</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
@@ -169,17 +159,15 @@
   <p class="topless"><a href="DPDTheory.html"
                         title="next chapter">Additional details on DPD</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -197,12 +185,13 @@
           <a href="thermostat_barostat.html" title="Thermostats and barostats (system regulators)"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Dissipative Particle Dynamics (DPD)</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

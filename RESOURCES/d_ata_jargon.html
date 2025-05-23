@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Jargons &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -38,7 +36,8 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="d_ata_intro.html" accesskey="U">D_ATA</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="d_ata_intro.html" accesskey="U">D_ATA</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Jargons</a></li> 
       </ul>
     </div>  
 
@@ -47,57 +46,58 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="jargons">
+  <section id="jargons">
 <h1>Jargons<a class="headerlink" href="#jargons" title="Permalink to this headline">¶</a></h1>
 <p>Below shows definitions that are relevant to D_ATA.</p>
 <ul class="simple">
-<li>DANAI – Acronym for DL_ANALYSER Notation for Atomic Interactions. It is a standard expression or Chemistry-based language construct to describe nonbonded interactions at a local level. A DANAI statement contains information about the Atomic species involve, the extent of interactions and the overall topological structure of Atoms involve in these interactions.</li>
+<li><p>DANAI – Acronym for DL_ANALYSER Notation for Atomic Interactions. It is a standard expression or Chemistry-based language construct to describe nonbonded interactions at a local level. A DANAI statement contains information about the Atomic species involve, the extent of interactions and the overall topological structure of Atoms involve in these interactions.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>DL_F Notation – Acronym for DL_FIELD Notation. It is a standard notation for an atom that contains information about its chemical characteristics within a molecule. All atoms in the system are described in DL_F Notation and shown in <em>d_ata.csf</em> file.</li>
+<li><p>DL_F Notation – Acronym for DL_FIELD Notation. It is a standard notation for an atom that contains information about its chemical characteristics within a molecule. All atoms in the system are described in DL_F Notation and shown in <em>d_ata.csf</em> file.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>Exclusive atom – Atoms expressed in a DANAI statement that only participates in a non-bonded interaction with other atoms as indicated in a DANAI statement. There is no other similar type of interaction occurs with other DL_F Atoms that are not indicated in the DANAI statement. The participating atoms are expressed in capital letters. For instance: C1p, O20E, etc.</li>
+<li><p>Exclusive atom – Atoms expressed in a DANAI statement that only participates in a non-bonded interaction with other atoms as indicated in a DANAI statement. There is no other similar type of interaction occurs with other DL_F Atoms that are not indicated in the DANAI statement. The participating atoms are expressed in capital letters. For instance: C1p, O20E, etc.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>Non-exclusive atom - an atom that participates in a type of non-bonded interaction with other atoms as indicated in a DANAI statement, and with other atoms that are not shown in the statement. The participating atoms are expressed in small letters. For instance: c1p, o20E, etc.</li>
+<li><p>Non-exclusive atom - an atom that participates in a type of non-bonded interaction with other atoms as indicated in a DANAI statement, and with other atoms that are not shown in the statement. The participating atoms are expressed in small letters. For instance: c1p, o20E, etc.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>Diagram below shows two molecules with carboxylic acid groups. The DANAI statement [L2]o20E:H20O showns the hydrogen atom H20O forms hydrogen bond with the carbonyl oxygen, O20E. In the DANAI statment, the interacting hydrogen atom is an <em>exclusive atom</em>, that only interacts with the oxygen atom. Whereas, the oxygen atom is a <em>non-exclusive atom</em> that not only interact with the hydrogen as shown in the DANAI statement but also interact with some other hydrogen atoms (not shown but indicates as green dotted line).</p>
 <p>The solid box indicates the interaction extent as describe by the DANAI statement. The labels O20E (or o20E) and H20O are atom labels in DL_F Notation.</p>
-<a class="reference internal image-reference" href="../_images/dla_9_31.png"><img alt="../_images/dla_9_31.png" class="align-center" src="../_images/dla_9_31.png" style="width: 281.5px; height: 223.0px;" /></a>
+<a class="reference internal image-reference" href="../_images/dla_9_3.png"><img alt="../_images/dla_9_3.png" class="align-center" src="../_images/dla_9_3.png" style="width: 281.5px; height: 223.0px;" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>Chemical Group (CG) - A group consists of at least one or more connecting atom members that made up the chemical characteristic behaviour that is distinguished from other atom groups. For example, <em>carboxylic</em> is a Chemical Group, which consists of four atoms: carbonyl carbon (C20), carbonyl oxygen (O20E), hydroxyl oxygen (O20L) and hydroxyl hydrogen (H20O). The value ‘20’ is called the Chemical Group Index (CGI), which is the unique numerical value for the CG.</li>
+<li><p>Chemical Group (CG) - A group consists of at least one or more connecting atom members that made up the chemical characteristic behaviour that is distinguished from other atom groups. For example, <em>carboxylic</em> is a Chemical Group, which consists of four atoms: carbonyl carbon (C20), carbonyl oxygen (O20E), hydroxyl oxygen (O20L) and hydroxyl hydrogen (H20O). The value ‘20’ is called the Chemical Group Index (CGI), which is the unique numerical value for the CG.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>Macro-interaction – A general, overall interaction between two Chemical Groups. For example, to describe collectively hydrogen bond interactions between carboxylic and alcohol CGs is expressed as HB_15_20, where 15 is the CGI for alcohol and 20 is the CGI for carboxylic.</li>
+<li><p>Macro-interaction – A general, overall interaction between two Chemical Groups. For example, to describe collectively hydrogen bond interactions between carboxylic and alcohol CGs is expressed as HB_15_20, where 15 is the CGI for alcohol and 20 is the CGI for carboxylic.</p></li>
 </ul>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <ul class="simple">
-<li>Micro-interaction – A specific mode of interaction within a macro-interaction. In DANAI, a micro-interaction essentially consists of topological description and number of CGs involve in the interaction and the atomic species (expressed as DL_F Notation atom keys) involve in such interaction. The DANAI statement as shown above is one such micro-interaction, for macro-interaction between two carboxylic CGs.</li>
+<li><p>Micro-interaction – A specific mode of interaction within a macro-interaction. In DANAI, a micro-interaction essentially consists of topological description and number of CGs involve in the interaction and the atomic species (expressed as DL_F Notation atom keys) involve in such interaction. The DANAI statement as shown above is one such micro-interaction, for macro-interaction between two carboxylic CGs.</p></li>
 </ul>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -136,17 +136,15 @@
   <p class="topless"><a href="dl_analyser_intro.html"
                         title="next chapter">DL_ANALYSER</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -166,12 +164,13 @@
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tools.html" >DL_Software General Information</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="d_ata_intro.html" >D_ATA</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="d_ata_intro.html" >D_ATA</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Jargons</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

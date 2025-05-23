@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Structures and Operations &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -38,7 +36,8 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dla_0.html" accesskey="U">DL_ANALYSER</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dla_0.html" accesskey="U">DL_ANALYSER</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Structures and Operations</a></li> 
       </ul>
     </div>  
 
@@ -47,23 +46,23 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="structures-and-operations">
+  <section id="structures-and-operations">
 <span id="header-dla-2"></span><h1>Structures and Operations<a class="headerlink" href="#structures-and-operations" title="Permalink to this headline">¶</a></h1>
 <p>This page illustrates the software structural aspects and provide brief summary how it works.</p>
 <p>If you need a quick summary how to setup and run DL_ANALYSER, go to this page:
 <a class="reference internal" href="../dl_analyser_howto.html"><span class="doc">Ready, get set, go</span></a> - how to compile and run DL_ANALYSER.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>File structures</strong></p>
 <p>DL_ANALYSER program suite comes with the following file componnents:</p>
 <ul class="simple">
-<li>DL_ANALYSER program source files, in the <em>source/</em> folder.</li>
-<li>DL_ANALYSER control file, by default, in the <em>workspace/</em> folder.</li>
-<li>DL_ANALYSER input file, by default, in the <em>workspace/</em> folder.</li>
-<li>Atom list files, <em>atom_list_A</em> and <em>atom_list_B</em>. Two special files that list explicitly atoms to be included in analysis.</li>
-<li>The <em>dl_a_path</em> file, that specifies the directory paths of control and input files relative to DL_ANALYSER home directory. The home directory is the directory path where the DL_ANALYSER executable file, <em>dl_analyser.exe</em>, is located. The <em>dl_a_path</em> and <em>dl_field.exe</em> must always locate in the same directory path.</li>
-<li>The <em>run_dla</em> file. This is a simple script file, that when run, will execute the <em>dl_analyser.exe</em> file. The number of threads can also be specified for the OpenMP parallel run.</li>
+<li><p>DL_ANALYSER program source files, in the <em>source/</em> folder.</p></li>
+<li><p>DL_ANALYSER control file, by default, in the <em>workspace/</em> folder.</p></li>
+<li><p>DL_ANALYSER input file, by default, in the <em>workspace/</em> folder.</p></li>
+<li><p>Atom list files, <em>atom_list_A</em> and <em>atom_list_B</em>. Two special files that list explicitly atoms to be included in analysis.</p></li>
+<li><p>The <em>dl_a_path</em> file, that specifies the directory paths of control and input files relative to DL_ANALYSER home directory. The home directory is the directory path where the DL_ANALYSER executable file, <em>dl_analyser.exe</em>, is located. The <em>dl_a_path</em> and <em>dl_field.exe</em> must always locate in the same directory path.</p></li>
+<li><p>The <em>run_dla</em> file. This is a simple script file, that when run, will execute the <em>dl_analyser.exe</em> file. The number of threads can also be specified for the OpenMP parallel run.</p></li>
 </ul>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Operations</strong></p>
 <p>Diagram below shows schematically how DL_ANALYSER runs.</p>
 <a class="reference internal image-reference" href="../../_images/dl_a_2.png"><img alt="../../_images/dl_a_2.png" class="align-center" src="../../_images/dl_a_2.png" style="width: 698.75px; height: 429.65000000000003px;" /></a>
@@ -79,18 +78,15 @@
 </pre></div>
 </div>
 <p>Besides the HISTORY file, DL_ANALYSER can also recognise other file formats such as the PDB, <em>xyz</em>, and DL_POLY <em>CONFIG</em> files. DL_ANALYSER can also read and extract data produced by the DL_POLY <em>STATIS</em> file. In addition, DL_ANALYSER can also read files that are compressed, such as those that are produced by using the <em>gzip</em> (as shown above).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body">In order to produce a contiguous and sensible results, it is highly recommend the listed trajectory files were from the same molecular system and they are listed in the correct sequence.</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">TIP</dt>
+<dd class="field-odd"><p>In order to produce a contiguous and sensible results, it is highly recommend the listed trajectory files were from the same molecular system and they are listed in the correct sequence.</p>
+</dd>
+</dl>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Program execution</strong></p>
 <p>To run dl_analyser just type</p>
 <p><em>./dl_analyser</em></p>
@@ -98,24 +94,25 @@
 <p><em>./run_dla</em></p>
 <p>The steps below show what happens when the program is run:</p>
 <ol class="arabic simple">
-<li>Read <em>dl_a_path</em>.</li>
-<li>Read DL_ANALYSER <em>control</em> file.</li>
-<li>Read files specified in the DL_ANALYSER <em>input</em> file.</li>
-<li>Select and compile groups of atoms according to the options specified in the <em>control</em> file, to which analysis will be carried out.</li>
-<li>Select analysis modules according to the options specified in the <em>control</em> file and carry out analysis calculations.</li>
-<li>Produce results in output files specified in the <em>control</em> file.</li>
+<li><p>Read <em>dl_a_path</em>.</p></li>
+<li><p>Read DL_ANALYSER <em>control</em> file.</p></li>
+<li><p>Read files specified in the DL_ANALYSER <em>input</em> file.</p></li>
+<li><p>Select and compile groups of atoms according to the options specified in the <em>control</em> file, to which analysis will be carried out.</p></li>
+<li><p>Select analysis modules according to the options specified in the <em>control</em> file and carry out analysis calculations.</p></li>
+<li><p>Produce results in output files specified in the <em>control</em> file.</p></li>
 </ol>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">In most cases, results would still need to extract from the output files for further processing. For instance, for graph plottings, and graphical display illustrations.</p>
+<p class="admonition-title">Note</p>
+<p>In most cases, results would still need to extract from the output files for further processing. For instance, for graph plottings, and graphical display illustrations.</p>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p><a class="reference internal" href="#header-dla-2"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -154,17 +151,15 @@
   <p class="topless"><a href="dla_3.html"
                         title="next chapter">The <em>control</em> file</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -184,12 +179,13 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dla_0.html" >DL_ANALYSER</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dla_0.html" >DL_ANALYSER</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Structures and Operations</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

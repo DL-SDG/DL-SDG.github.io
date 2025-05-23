@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>A Carbon Nanoswitch &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -39,7 +38,8 @@
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="../High.html" accesskey="U">High Difficulty Exercises</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="../High.html" accesskey="U">High Difficulty Exercises</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">A Carbon Nanoswitch</a></li> 
       </ul>
     </div>  
 
@@ -48,16 +48,16 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="a-carbon-nanoswitch">
+  <section id="a-carbon-nanoswitch">
 <h1>A Carbon Nanoswitch<a class="headerlink" href="#a-carbon-nanoswitch" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In recent times the idea of creating machines that work on the nanoscale
 has captured the imagination of many scientists. The simplest machine
 imaginable is a nanoswitch; something that is extremely small and can
 switch an electric current on or off on the timescale of a few
-picoseconds, see refs. <a class="reference internal" href="#zheng2002" id="id1">[Zheng2002]</a>,
-<a class="reference internal" href="#rivera2003" id="id2">[Rivera2003]</a> and <a class="reference internal" href="#rivera2005" id="id3">[Rivera2005]</a>. In
+picoseconds, see refs. <a class="reference internal" href="#zheng2002" id="id1"><span>[Zheng2002]</span></a>,
+<a class="reference internal" href="#rivera2003" id="id2"><span>[Rivera2003]</span></a> and <a class="reference internal" href="#rivera2005" id="id3"><span>[Rivera2005]</span></a>. In
 this exercise we will consider such a device, which will be made from
 carbon nanotubes.</p>
 <p>The idea is simple. We shall create a model switch from two nanotubes of
@@ -69,13 +69,15 @@ also attempt to describe the system with a simple mathematical model and
 see how well this stands up to a full atomistic molecular dynamics
 simulation.</p>
 <p>Let us start with the mathematical model.</p>
-</div>
-<div class="section" id="theory">
+</section>
+<section id="theory">
 <h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
-<div class="figure" id="fig-telescopic">
+<figure class="align-default" id="fig-telescopic">
 <span id="telescopic"></span><a class="reference internal image-reference" href="../../../_images/ex8-01.png"><img alt="Two telescopic nanotubes" src="../../../_images/ex8-01.png" style="width: 75.0%;" /></a>
-<p class="caption"><span class="caption-text">Two telescopic nanotubes</span></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Two telescopic nanotubes</span><a class="headerlink" href="#fig-telescopic" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Consider two smooth tubes <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span>, of length L and
 diameters <span class="math notranslate nohighlight">\(D_1\)</span> and <span class="math notranslate nohighlight">\(D_2\)</span> as shown in Fig <a class="reference internal" href="#telescopic"><span class="std std-ref">Two telescopic nanotubes</span></a> , with <span class="math notranslate nohighlight">\(D_1 &gt;
 D_2\)</span>. The diameters are such that <span class="math notranslate nohighlight">\(T_2\)</span> can slide into <span class="math notranslate nohighlight">\(T_1\)</span>
@@ -110,8 +112,8 @@ pulling in the negative direction, and when it is displaced in the
 negative direction it experiences a constant +F force pulling it in the
 positive direction. The opposite is true for the outer tube <span class="math notranslate nohighlight">\(T_1\)</span>.
 This pattern of forces implies an oscillatory system.</p>
-</div>
-<div class="section" id="mathematical-exercise">
+</section>
+<section id="mathematical-exercise">
 <h2>Mathematical Exercise<a class="headerlink" href="#mathematical-exercise" title="Permalink to this headline">¶</a></h2>
 <p>Assuming the system starts from a <em>stationary</em> condition where
 <span class="math notranslate nohighlight">\(Δx=X_0\)</span>, and Newton’s Laws of Motion, derive formulae expressing
@@ -121,35 +123,35 @@ friction. You may assume that the tubes have masses <span class="math notranslat
 this corresponds to the system centre of mass). Then use the model to
 answer the following queries:</p>
 <ol class="arabic simple">
-<li>Derive a formula for the period of oscillation of the system in terms
-of the parameters of the model.</li>
-<li>The forces do not represent simple harmonic motion in this case, in
-what ways is it different?</li>
-<li>How can we use the formula derived for the period of oscillation to
-determine the important parameter F?</li>
+<li><p>Derive a formula for the period of oscillation of the system in terms
+of the parameters of the model.</p></li>
+<li><p>The forces do not represent simple harmonic motion in this case, in
+what ways is it different?</p></li>
+<li><p>How can we use the formula derived for the period of oscillation to
+determine the important parameter F?</p></li>
 </ol>
 <p>Try to work these out before seeing the solution, see subsection
 <a class="reference external" href="#sec:solution">[sec:solution]</a>. When you have answered these
 queries, you will be ready to tackle the molecular dynamics simulation.</p>
-</div>
-<div class="section" id="task">
+</section>
+<section id="task">
 <h2>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Copy or download the following files:  <a class="reference download internal" download="" href="../../../_downloads/1327c3b85976334bcb66fed72bb058bd/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/069c753c24badee4060ec7c6757f7e6c/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/80b78a22e1b078ed3c23a82a6f1efe0e/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a> and run the simulation.</li>
-<li>Visualise the initial and final configurations using the <em>CONFIG</em> and <em>REVCON</em> files
+<li><p>Copy or download the following files:  <a class="reference download internal" download="" href="../../../_downloads/b1e6fd6b0415727f3eb3d7a0b7c389ee/CONFIG"><code class="xref download docutils literal notranslate"><span class="pre">CONFIG</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/92c9da7edc95af37e21b86e85465f383/FIELD"><code class="xref download docutils literal notranslate"><span class="pre">FIELD</span></code></a> <a class="reference download internal" download="" href="../../../_downloads/c67ec1084c849cea297eb22fb219a025/CONTROL"><code class="xref download docutils literal notranslate"><span class="pre">CONTROL</span></code></a> and run the simulation.</p></li>
+<li><p>Visualise the initial and final configurations using the <em>CONFIG</em> and <em>REVCON</em> files
 to see if it has evolved to a sensible structure. Use a program such as VMD to view an
-overview of the whole simulation from the <em>HISTORY</em> file.</li>
-<li>Write a script to plot the system energies and temperature over time from the <em>STATIS</em> file.
-Of particular interest is the configuration energy (does this make sense in terms of out model?).</li>
-<li>See the following sections for a more in-depth numerical analysis of the simulation results.</li>
+overview of the whole simulation from the <em>HISTORY</em> file.</p></li>
+<li><p>Write a script to plot the system energies and temperature over time from the <em>STATIS</em> file.
+Of particular interest is the configuration energy (does this make sense in terms of out model?).</p></li>
+<li><p>See the following sections for a more in-depth numerical analysis of the simulation results.</p></li>
 </ol>
-</div>
-<div class="section" id="analysing-the-results">
+</section>
+<section id="analysing-the-results">
 <h2>Analysing the Results<a class="headerlink" href="#analysing-the-results" title="Permalink to this headline">¶</a></h2>
 <p>Having amused yourself looking at movies, it’s time to get quantitative.
 We need to determine the period of oscillation of the system so we can
 determine the force F in our model. It is hard to do this from the
-movie! To get a quantitative answer, copy or download the <a class="reference download internal" download="" href="../../../_downloads/a748eb21a056ded7f098fc0a97a7bb9c/comhis.F90"><code class="xref download docutils literal notranslate"><span class="pre">comhis.F90</span></code></a> program
+movie! To get a quantitative answer, copy or download the <a class="reference download internal" download="" href="../../../_downloads/b4f9867ef6646175b467efe9ce878359/comhis.F90"><code class="xref download docutils literal notranslate"><span class="pre">comhis.F90</span></code></a> program
 and compile using an available Fortran compiler. Use this to calculate the
 position of the centre of mass of the inner tube <span class="math notranslate nohighlight">\(T_2\)</span>, using data
 in the <em>HISTORY</em> file and plot it as a function of time. The output
@@ -167,7 +169,7 @@ way to determine the period of oscillation is to Fourier transform the
 plot of the centre of mass motion. This will project out of the data the
 true frequency of oscillation, which is the reciprocal of the period.
 Unfortunately, this is not as trivial as it sounds, so we have provided
-the program <a class="reference download internal" download="" href="../../../_downloads/8ab88445f4a67b712b453b34c9145632/fft.f"><code class="xref download docutils literal notranslate"><span class="pre">fft.f</span></code></a>.</p>
+the program <a class="reference download internal" download="" href="../../../_downloads/f28e46322b5d2a5b5ceff36794d00878/fft.f"><code class="xref download docutils literal notranslate"><span class="pre">fft.f</span></code></a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gfortran -O3 -o fft fft.f
 </pre></div>
 </div>
@@ -184,11 +186,11 @@ this works. Don’t worry about the FFT subroutine itself; this is
 normally a ‘black box’ routine from a numerical library. Look instead
 at:</p>
 <ul class="simple">
-<li>The subtraction of the mean value of the input function before the
-Fourier transform is done;</li>
-<li>The way the <em>Dirichlet</em> boundary conditions are applied to the first
-and last points of the input data; and</li>
-<li>The use made of a window function – in this case a Gaussian.</li>
+<li><p>The subtraction of the mean value of the input function before the
+Fourier transform is done;</p></li>
+<li><p>The way the <em>Dirichlet</em> boundary conditions are applied to the first
+and last points of the input data; and</p></li>
+<li><p>The use made of a window function – in this case a Gaussian.</p></li>
 </ul>
 <p>These <em>tricks</em> are often neglected in naive applications of FFTs, and
 the result is a confusing, noisy function. Note also that <em>fft.f</em>
@@ -198,8 +200,8 @@ interested only in the amplitude, and not the phase of the oscillation.</p>
 of the force constant F in our mathematical model? If you have time, try
 to do at least one more simulation, using a different diameter for the
 outer tube <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
-</div>
-<div class="section" id="further-investigations">
+</section>
+<section id="further-investigations">
 <h2>Further Investigations<a class="headerlink" href="#further-investigations" title="Permalink to this headline">¶</a></h2>
 <p>You should already have seen how the system configuration energy
 compares with the mathematical model, but what about the force? The
@@ -214,7 +216,7 @@ verify these? We can use the Verlet algorithm!</p>
 \[F_n = M(x_{n+1} - 2x_n + x_{n-1}) / Δt^2\]</div>
 <p>So we see that we may perform a numerical differentiation of the
 position of the tube with respect to time to obtain the force.</p>
-<p>We have provided the program <a class="reference download internal" download="" href="../../../_downloads/873a12e69cad25522d03c3413c90f96b/acceln.f"><code class="xref download docutils literal notranslate"><span class="pre">acceln.f</span></code></a>, which uses this approach to
+<p>We have provided the program <a class="reference download internal" download="" href="../../../_downloads/e3bc5aa8411deb5e4648071892b2233d/acceln.f"><code class="xref download docutils literal notranslate"><span class="pre">acceln.f</span></code></a>, which uses this approach to
 calculate the acceleration of a tube, using the data in the file COM.XY.
 Compile the program and run it using the commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gfortran -O3 -o acceln acceln.f
@@ -232,82 +234,84 @@ should think about how the experiment can be improved. Did anything
 unexpected happen? Would this affect the validity of our simple model?
 How would you amend the model to make it more consistent with the
 simulation?</p>
-</div>
-<div class="section" id="some-example-results">
+</section>
+<section id="some-example-results">
 <h2>Some example results<a class="headerlink" href="#some-example-results" title="Permalink to this headline">¶</a></h2>
 <p>A sample of results are presented in</p>
-<table border="1" class="docutils" id="id4">
+<table class="docutils align-default" id="id4">
 <caption><span class="caption-text">Sample results</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
-<col width="12%" />
-<col width="28%" />
-<col width="12%" />
-<col width="16%" />
-<col width="6%" />
-<col width="26%" />
+<col style="width: 12%" />
+<col style="width: 28%" />
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 6%" />
+<col style="width: 26%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head"><span class="math notranslate nohighlight">\(T_2\)</span></th>
-<th class="head">Frequency [<span class="math notranslate nohighlight">\(ps^{-1}\)</span>]</th>
-<th class="head">Period [ps]</th>
-<th class="head"><span class="math notranslate nohighlight">\(X_0\)</span> [Å]</th>
-<th class="head">m [D]</th>
-<th class="head">Force [<span class="math notranslate nohighlight">\(DAps^{-2}\)</span>]</th>
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(T_2\)</span></p></th>
+<th class="head"><p>Frequency [<span class="math notranslate nohighlight">\(ps^{-1}\)</span>]</p></th>
+<th class="head"><p>Period [ps]</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(X_0\)</span> [Å]</p></th>
+<th class="head"><p>m [D]</p></th>
+<th class="head"><p>Force [<span class="math notranslate nohighlight">\(DAps^{-2}\)</span>]</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>16</td>
-<td>0.0915</td>
-<td>10.93</td>
-<td>8.085</td>
-<td>138.67</td>
-<td>300.3</td>
+<tbody>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>0.0915</p></td>
+<td><p>10.93</p></td>
+<td><p>8.085</p></td>
+<td><p>138.67</p></td>
+<td><p>300.3</p></td>
 </tr>
-<tr class="row-odd"><td>17</td>
-<td>0.0831</td>
-<td>12.04</td>
-<td>9.390</td>
-<td>141.44</td>
-<td>293.2</td>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>0.0831</p></td>
+<td><p>12.04</p></td>
+<td><p>9.390</p></td>
+<td><p>141.44</p></td>
+<td><p>293.2</p></td>
 </tr>
-<tr class="row-even"><td>18</td>
-<td>0.0864</td>
-<td>11.57</td>
-<td>9.935</td>
-<td>144.00</td>
-<td>342.0</td>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>0.0864</p></td>
+<td><p>11.57</p></td>
+<td><p>9.935</p></td>
+<td><p>144.00</p></td>
+<td><p>342.0</p></td>
 </tr>
-<tr class="row-odd"><td>19</td>
-<td>0.0729</td>
-<td>13.72</td>
-<td>9.300</td>
-<td>146.37</td>
-<td>231.4</td>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>0.0729</p></td>
+<td><p>13.72</p></td>
+<td><p>9.300</p></td>
+<td><p>146.37</p></td>
+<td><p>231.4</p></td>
 </tr>
-<tr class="row-even"><td>20</td>
-<td>0.0661</td>
-<td>15.13</td>
-<td>8.900</td>
-<td>148.57</td>
-<td>184.8</td>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>0.0661</p></td>
+<td><p>15.13</p></td>
+<td><p>8.900</p></td>
+<td><p>148.57</p></td>
+<td><p>184.8</p></td>
 </tr>
-<tr class="row-odd"><td>21</td>
-<td>0.0746</td>
-<td>13.41</td>
-<td>9.505</td>
-<td>150.62</td>
-<td>254.8</td>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>0.0746</p></td>
+<td><p>13.41</p></td>
+<td><p>9.505</p></td>
+<td><p>150.62</p></td>
+<td><p>254.8</p></td>
 </tr>
 </tbody>
 </table>
-<div class="figure" id="fig-sample">
+<figure class="align-default" id="fig-sample">
 <span id="mass"></span><a class="reference internal image-reference" href="../../../_images/ex8-02.png"><img alt="Centre of mass movement" src="../../../_images/ex8-02.png" style="width: 80.0%;" /></a>
-<p class="caption"><span class="caption-text">Centre of mass movement</span></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Centre of mass movement</span><a class="headerlink" href="#fig-sample" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>Sample graph of center of mass movement in fig <a class="reference internal" href="#mass"><span class="std std-ref">Centre of mass movement</span></a> and a sample video can be
 seen on youtube at <a class="reference external" href="https://youtu.be/S6q2dr-p5DU">https://youtu.be/S6q2dr-p5DU</a>.</p>
-</div>
-<div class="section" id="solution">
+</section>
+<section id="solution">
 <span id="sec-solution"></span><h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
 <p>The potential energy is:</p>
 <div class="math notranslate nohighlight">
@@ -383,43 +387,34 @@ the above formula and obtain</p>
 <p>We can obtain <span class="math notranslate nohighlight">\(X_0\)</span> conveniently by noting that the sweep of the
 oscillation (i.e. the distance travelled from one stationary point to
 another – from one peak of the plot to the next trough) is <span class="math notranslate nohighlight">\(2X_0\)</span>.</p>
-<table class="docutils citation" frame="void" id="zheng2002" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[Zheng2002]</a></td><td><ol class="first last upperalpha simple" start="17">
-<li>Zheng, J. Z. Liu, and Q. Jiang, Excess van der Waals interaction energy of a multiwalled carbon nanotube with an extruded core and the induced core oscillation, Phys. Rev. B, 65, p. 245409, May 2002, doi: 10.1103/PhysRevB.65.245409</li>
+<dl class="citation">
+<dt class="label" id="zheng2002"><span class="brackets"><a class="fn-backref" href="#id1">Zheng2002</a></span></dt>
+<dd><ol class="upperalpha simple" start="17">
+<li><p>Zheng, J. Z. Liu, and Q. Jiang, Excess van der Waals interaction energy of a multiwalled carbon nanotube with an extruded core and the induced core oscillation, Phys. Rev. B, 65, p. 245409, May 2002, doi: 10.1103/PhysRevB.65.245409</p></li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="rivera2003" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[Rivera2003]</a></td><td><ol class="first last upperalpha simple" start="10">
-<li><ol class="first upperalpha" start="12">
-<li>Rivera, C. McCabe, and P. T. Cummings, Oscillatory behavior of double-walled nanotubes under extension: a simple nanoscale damped spring, Nano Letters, 3(8), p. 1001, 2003, doi: 10.1021/nl034171o</li>
+</dd>
+<dt class="label" id="rivera2003"><span class="brackets"><a class="fn-backref" href="#id2">Rivera2003</a></span></dt>
+<dd><ol class="upperalpha simple" start="10">
+<li><ol class="upperalpha simple" start="12">
+<li><p>Rivera, C. McCabe, and P. T. Cummings, Oscillatory behavior of double-walled nanotubes under extension: a simple nanoscale damped spring, Nano Letters, 3(8), p. 1001, 2003, doi: 10.1021/nl034171o</p></li>
 </ol>
 </li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="rivera2005" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[Rivera2005]</a></td><td><ol class="first last upperalpha simple" start="10">
-<li><ol class="first upperalpha" start="12">
-<li>Rivera, C. McCabe, and P. T. Cummings, The oscillatory damped behaviour of incommensurate double-walled carbon nanotubes, Nanotechnology, 16(2), p. 186, 2005, doi: 10.1088/0957-4484/16/2/003</li>
+</dd>
+<dt class="label" id="rivera2005"><span class="brackets"><a class="fn-backref" href="#id3">Rivera2005</a></span></dt>
+<dd><ol class="upperalpha simple" start="10">
+<li><ol class="upperalpha simple" start="12">
+<li><p>Rivera, C. McCabe, and P. T. Cummings, The oscillatory damped behaviour of incommensurate double-walled carbon nanotubes, Nanotechnology, 16(2), p. 186, 2005, doi: 10.1088/0957-4484/16/2/003</p></li>
 </ol>
 </li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+</dd>
+</dl>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -437,6 +432,7 @@ another – from one peak of the plot to the next trough) is <span class="math n
 <li class="toctree-l3"><a class="reference internal" href="../exercises_dlfield.html">DL_FIELD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../exercises_data.html">D_ATA</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../exercises_dlmeso.html">DL_MESO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../DEMOCRITUS/Democritus.html">Democritus</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../video_links.html">Video Material</a></li>
@@ -457,17 +453,15 @@ another – from one peak of the plot to the next trough) is <span class="math n
   <p class="topless"><a href="../exercises_dlfield.html"
                         title="next chapter">DL_FIELD</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -488,12 +482,13 @@ another – from one peak of the plot to the next trough) is <span class="math n
           <li class="nav-item nav-item-1"><a href="../../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="../Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="../exercises_dlpoly.html" >DL_POLY</a> &#187;</li>
-          <li class="nav-item nav-item-4"><a href="../High.html" >High Difficulty Exercises</a> &#187;</li> 
+          <li class="nav-item nav-item-4"><a href="../High.html" >High Difficulty Exercises</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">A Carbon Nanoswitch</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

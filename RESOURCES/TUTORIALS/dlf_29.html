@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Setup FF from Amber’s Antechamber &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -38,7 +36,8 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Setup FF from Amber’s Antechamber</a></li> 
       </ul>
     </div>  
 
@@ -47,13 +46,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="setup-ff-from-amber-s-antechamber">
-<span id="header-dlf-29"></span><h1>Setup FF from Amber’s Antechamber<a class="headerlink" href="#setup-ff-from-amber-s-antechamber" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="header-dlf-29"></span><section id="setup-ff-from-amber-s-antechamber">
+<h1>Setup FF from Amber’s Antechamber<a class="headerlink" href="#setup-ff-from-amber-s-antechamber" title="Permalink to this headline">¶</a></h1>
 <p>This page shows an example of how to setup a FF model via Amber’s Antechamber program and it is assumed you have an Amber program
 pre-installed in your system.</p>
 <p>The General Amber FF (GAFF) is a FF scheme specially designed for organic molecules including small drug molecules.
 The FF is implemented in DL_FIELD as <em>amber16_gaff</em>. However, what is missing is the partial charge values whcih can be obtained from Amber’s <em>Antechamber</em> program.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Example procedure</strong></p>
 <p>Let’s suppose you want to setup a GAFF model for ascorbic acid (Vitamin C) in water and the initial input file for the structure is in a PDB format. This file is located in the <em>Examples/</em> folder in the DL_FIELD package (<em>ascorbic_acid.pdb</em>).</p>
 <p><strong>Step 1</strong></p>
@@ -149,12 +148,12 @@ Atom state specification:  type  Molecular_Group   filter   [value]
 </div>
 <p>The highlighted options instructs DL_FIELD to produce FF files for Amber GAFF force field by duplicating 80 ascorbic acid molecules in a cubic system of size 80 Å, and each molecule is separated by at least 12 Å from one another. After that, the system is solvated with the SPC water model. All H-containing bonds are also constrained.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The Molecular Group is called ‘not_define’ because it is not clearly defined in the <em>.mol2</em> file and DL_FIELD will automatically label the system with a default Molecular Group name as ‘not_define’.</p>
+<p class="admonition-title">Note</p>
+<p>The Molecular Group is called ‘not_define’ because it is not clearly defined in the <em>.mol2</em> file and DL_FIELD will automatically label the system with a default Molecular Group name as ‘not_define’.</p>
 </div>
 <p><strong>Step 3</strong></p>
 <p>Run DL_FIELD to produce a <em>dl_poly.FIELD</em> file. The top portion of the file is shown as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generated</span> <span class="n">by</span> <span class="n">DL_FIELD</span> <span class="n">v4</span><span class="o">.</span><span class="mi">11</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generated</span> <span class="n">by</span> <span class="n">DL_FIELD</span> <span class="n">v4</span><span class="mf">.11</span>
 <span class="n">Units</span> <span class="n">kcal</span><span class="o">/</span><span class="n">mol</span>
 <span class="n">Molecular</span> <span class="n">types</span> <span class="mi">2</span>
 <span class="n">Molecule</span> <span class="n">name</span> <span class="n">not_define</span>
@@ -181,7 +180,7 @@ Atom state specification:  type  Molecular_Group   filter   [value]
 </div>
 <p>Notice the ATOM_KEYs and charge values are extracted, as is, from the input <em>mol2</em> file.</p>
 <p>If a force field scheme other than <em>amber16_gaff</em> is used, then the ATOM_KEYs and charge values from the <em>mol2</em> file will be ignored and a new FF data will be produced. For example, consider CVFF FF scheme is used, then the <em>dl_poly.FIELD</em> produced is shown below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generated</span> <span class="n">by</span> <span class="n">DL_FIELD</span> <span class="n">v4</span><span class="o">.</span><span class="mi">11</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generated</span> <span class="n">by</span> <span class="n">DL_FIELD</span> <span class="n">v4</span><span class="mf">.11</span>
 <span class="n">Units</span> <span class="n">kcal</span><span class="o">/</span><span class="n">mol</span>
 <span class="n">Molecular</span> <span class="n">types</span> <span class="mi">2</span>
 <span class="n">Molecule</span> <span class="n">name</span> <span class="n">not_define</span>
@@ -209,9 +208,10 @@ Atom state specification:  type  Molecular_Group   filter   [value]
 </div>
 <p>Can you see the difference?</p>
 <p><a class="reference internal" href="#header-dlf-29"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -250,17 +250,15 @@ Atom state specification:  type  Molecular_Group   filter   [value]
   <p class="topless"><a href="dlf_30.html"
                         title="next chapter">Setup FF from CHARMM’s rtf and prm</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -280,12 +278,13 @@ Atom state specification:  type  Molecular_Group   filter   [value]
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Setup FF from Amber’s Antechamber</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

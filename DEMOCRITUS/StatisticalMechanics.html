@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Statistical Mechanics &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,9 +34,11 @@
           <a href="MolecularDynamics.html" title="Molecular Dynamics"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../RESOURCES/knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Democritus.html" >Democritus</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="MolecularDynamics.html" accesskey="U">Molecular Dynamics</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../RESOURCES/Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../RESOURCES/EXERCISES/Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="Democritus.html" >Democritus</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="MolecularDynamics.html" accesskey="U">Molecular Dynamics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Statistical Mechanics</a></li> 
       </ul>
     </div>  
 
@@ -47,21 +47,21 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="statistical-mechanics">
+  <section id="statistical-mechanics">
 <h1>Statistical Mechanics<a class="headerlink" href="#statistical-mechanics" title="Permalink to this headline">¶</a></h1>
 <p>Modern science has revealed that matter is comprised of atoms, and the number of atoms present in even a tiny piece of matter is huge. A small beaker with only 18 c.c. of water will contain approximately 1.8 million, billion, billion atoms. It follows that any attempt to describe the physical properties of a material in terms of the motion of its individual atoms is doomed to failure. However, such astronomical numbers are perfect for a statistical treatment, by means of which the bulk properties (as opposed to individual atomic properties) may be determined with great accuracy. This is where the term statistical mechanics comes from: it is a fusion of mechanics with statistics. Fortunately, since it is the properties of bulk materials that are usually of interest, this treatment is exactly what is required.</p>
 <p>Without statistical mechanics, little meaningful information could be obtained from molecular dynamics simulations. It provides a many powerful mathematical tools for drawing out useful properties from a mass of data. The most important tools are:</p>
-<dl class="docutils">
-<dt><a class="reference internal" href="#ensavg"><span class="std std-ref">Ensemble Averaging:</span></a></dt>
-<dd>This is important if we want to calculate the bulk properties of a system. Bulk properties are inevitably average properties, describing the average effect of all the atoms acting together. Ensemble averaging provides the prescription for calculating the averages properly.</dd>
-<dt><a class="reference internal" href="#corfunc"><span class="std std-ref">Correlation Functions:</span></a></dt>
-<dd>These are particularly valuable for drawing out relationships between the observable properties of a bulk system. Spatial correlations reveal how the system structure is organised, while time correlations reveal the dynamical processes that occur.</dd>
-<dt><a class="reference internal" href="#fluc"><span class="std std-ref">Fluctuations:</span></a></dt>
-<dd>These describe how much a system with fixed average properties (i.e a system in equilibrium) can vary from the average at any instant. This variation is subtly linked to the physical processes that operate in the system.</dd>
-<dt><a class="reference internal" href="#disfunc"><span class="std std-ref">Distribution Functions:</span></a></dt>
-<dd>These describe how the properties of the bulk system are shared out among the component atoms. Equivalently they describe the probability of finding the bulk system in a given state.</dd>
+<dl class="simple">
+<dt><a class="reference internal" href="#ensavg"><span class="std std-ref">Ensemble Averaging:</span></a></dt><dd><p>This is important if we want to calculate the bulk properties of a system. Bulk properties are inevitably average properties, describing the average effect of all the atoms acting together. Ensemble averaging provides the prescription for calculating the averages properly.</p>
+</dd>
+<dt><a class="reference internal" href="#corfunc"><span class="std std-ref">Correlation Functions:</span></a></dt><dd><p>These are particularly valuable for drawing out relationships between the observable properties of a bulk system. Spatial correlations reveal how the system structure is organised, while time correlations reveal the dynamical processes that occur.</p>
+</dd>
+<dt><a class="reference internal" href="#fluc"><span class="std std-ref">Fluctuations:</span></a></dt><dd><p>These describe how much a system with fixed average properties (i.e a system in equilibrium) can vary from the average at any instant. This variation is subtly linked to the physical processes that operate in the system.</p>
+</dd>
+<dt><a class="reference internal" href="#disfunc"><span class="std std-ref">Distribution Functions:</span></a></dt><dd><p>These describe how the properties of the bulk system are shared out among the component atoms. Equivalently they describe the probability of finding the bulk system in a given state.</p>
+</dd>
 </dl>
-<div class="section" id="ensemble-averages">
+<section id="ensemble-averages">
 <h2>Ensemble averages<a class="headerlink" href="#ensemble-averages" title="Permalink to this headline">¶</a></h2>
 <p>The ensemble is a central concept in statistical mechanics. Imagine that a given molecular system is replicated many times over, so that we have an enormous number of copies, each possessing the same physical characteristics of temperature, density, number of atoms and so on. Since we are interested in the bulk properties of the system, it is not necessary for these replicas to have exactly the same atomic positions and velocities. In other words the replicas are allowed to differ microscopically, while retaining the same general properties. Such a collection of replicated systems is called an ensemble.</p>
 <p>Because of the way the ensemble is constructed, if a snapshot of all the replicas is taken at the same instant, we will find that they differ in the instantaneous values of their bulk properties. This phenomenon is called fluctuation. Thus the true value of any particular bulk property must be calculated as an average over all the replicas. This is what is meant by an ensemble average, and the instantaneous values are said to fluctuate about the mean value.</p>
@@ -76,8 +76,8 @@ Structural correlations;
 Time correlations;
 Elastic properties;
 In fact, almost everything of interest that can be obtained through a molecular dynamics simulation, requires the calculation of some kind of ensemble average!</p>
-</div>
-<div class="section" id="correllating-functions">
+</section>
+<section id="correllating-functions">
 <h2>Correllating Functions<a class="headerlink" href="#correllating-functions" title="Permalink to this headline">¶</a></h2>
 <p>Correlation functions are a powerful means of analysing time dependent data. In molecular dynamics they are the primary means by which the average time dependent properties of a system of atoms are determined. (Though it is important to note that the usefulness of correlation functions is not exclusive to time dependent phenomena, and correlations in space are equally important. In fact, in the following description, the time dependence of the functions may be replaced by a distance dependence, without violating the principles.)</p>
 <p>Suppose there are two time dependent properties of a system, which can be written as A(t) and B(t) to show they are functions of time. Suppose also that a connection between these two functions is suspected - the value of one of them at a particular time influences the value of the other at some time later. In other words there is a cause-and-effect relationship operating between them. How can this be proved? Calculating the correlation function is a way of doing it.</p>
@@ -101,15 +101,15 @@ In fact, almost everything of interest that can be obtained through a molecular 
 <p>The result of all this arithmetic, (which of course requires a computer!) is a time-ordered array C(i), which represents the correlation function. What can such a function mean?</p>
 <p>Clearly the first element C(1) is just the average of the products of A(i) and B(i) taken at the same time. If these two properties have no connection whatsoever and suppose that they may take both positive and negative values (which can always be arranged by subtracting the mean value of A from the instantaneous value A(i), and likewise for B(i)), then the average will result from a sum of random numbers with positive and negative values, which will sum to zero. If, on the other hand, A(i) and B(i) are completely related, then a given value of A(i) would imply a related value of B(i), meaning the product would always have the same sign and the sum would be a large positive or negative number. So a nonzero value of C(1) indicates that there is some relationship between functions A and B. The two functions are then said to be correlated.</p>
 <p>What if A and B are related, but there is a time lag between the value of A and the corresponding value of B? In this case the stronest correlation will occur when A(i) is compared with B(i+j), where j represents the time lag. In other words, the correlation shows up strongest in C(j), and not C(1). It follows that if the whole correlation function is constructed (i.e. with all possible values of j considered), it will be seen at a glance whether there is any correlation at all between two functions A and B, and precisely what the time lag of the correlation is. Any correlation of this nature, revealed by the correlation function, is strong evidence for the lagging function being somehow dependent on the leading function.</p>
-</div>
-<div class="section" id="fluctuations">
+</section>
+<section id="fluctuations">
 <h2>Fluctuations<a class="headerlink" href="#fluctuations" title="Permalink to this headline">¶</a></h2>
 <p>Most of the properties that we calculate for a molecular system are averages. Well known properties like temperature, pressure and density are calculated as ensemble averages, and in the real world they are treated as fixed, measurable quantities, which they generally appear to be. However all averages are obtained by summing over many numbers, and it would be very unusual (even pointless) if all the individual numbers summed had exactly the same value. Thus in practice we expect the average to show some dispersion - individual contributions are scatteerd about the mean value. In statistical thermodynamics this dispersion about the average value is known as fluctuation and it is both a subtle and important property of all physical systems.</p>
 <p>When calculating an ensemble average (of say, pressure at fixed temperature and density), we take an instantaneous snapshot of a very large set of replicas of the system concerned and compute the average from the sum of the individual values taken from each replica. Even though each replica represents the same system at the same pressure, their individual, instantaneous values differ slightly, because the molecules that bombard the vessel surfaces to create the pressure are not in synchronisation between each replica and cannot possibly give rise to precisely the same surface forces at the same instant. Thus, with pressure, we expect some fluctuation about the mean value and indeed, similar arguments can be made for all the bulk properties of the system.</p>
 <p>Fluctuations are of fundamental importance in statistical mechanics because they provide the means by which many physical properties of a molecular system can happen. For instance, the density of a liquid at equilibrium is a fixed, uniform quantity and we feel justified in considering the system to be isotropic - the same at all points within its bulk. Yet we know that the molecules in the system are undergoing diffusion and can easily travel throughout the bulk of the liquid. It is diffcult to imagine how this diffusion can take place if the environment each molecule is in is completely isotropic. If however we consider the density to be fluctuating minutely from the mean value at different points in the bulk, we can readily see that such fluctuations would provide a means by which the diffusion may take place. It is a surprising fact, but most of the physical properties of a bulk system are driven by fluctations, and indeed can be calculated directly from them. For this reason it is possible to view fluctations as even more fundamental than the average value.</p>
 <p>A good example of the importance of fluctuation is provided by the Fluctuation-Dissipation theorem, which is a theorem of great power in statistical mechanics. This theorem proposes that the mechanism underpinning the response of a system to an external perturbation, is precisely the same mechanism by which equilibrium fluctuations are held close to the average bulk vaue. Thus for example, a molecule vibrationally excited by an infrared photon, will lose (i.e. dissipate) that energy to the rest of the system by the same mechanism by which normal vibrational energies are exchanged (i.e. fluctuate) between molecules at equilibrium. This insight is the basis of a theoretical description of solution spectroscopy.</p>
-</div>
-<div class="section" id="the-distribution-function">
+</section>
+<section id="the-distribution-function">
 <span id="disfunc"></span><h2>The Distribution Function<a class="headerlink" href="#the-distribution-function" title="Permalink to this headline">¶</a></h2>
 <p>The concept of a distribution function is at the heart of statistical mechanics. The energy distribution function, for example, describes how the atoms in a system share out the energy between them. In mathematical terms it defines the probability of finding an atom with a given amount of energy. (Strictly speaking the distribution function defines the probability density - the probability of a molecule possessing an energy in a very narrow energy range.)</p>
 <p>Imagine a system composed of many identical atoms, under normal circumstances it will be found that different individual atoms will possess different amounts of energy. This is inevitable because atoms are constantly colliding and exchanging energy with each other, and just as money ends up unevenly distributed among a population of people, energy ends up unevenly shared between molecules: most will have very little, some will have a lot. The distribution function expresses this mathematically.</p>
@@ -117,21 +117,38 @@ In fact, almost everything of interest that can be obtained through a molecular 
 <p><em>add equation and image</em></p>
 <p>This function shows immediately that molecules with very large velocities are not very common, (see how the function approaches zero at large positive and negative velocities) but molecules with small velocities are common. Also the symmetry of this function shows that positive and negative velocities are equally probable. It follows that the average velocity of the molecules in a gas is zero. (Thus must be so, otherwise the air molecules in a room might suddenly all leap to one side, creating a vacuum at one end!) Incidentally, the average speed of a molecule (as opposed to its velocity) is not zero - why do you think this is?</p>
 <p>The distribution function is central to statistical mechanics because once it has been determined, all the important properties of the system in bulk can be calculated, without worrying about what individual molecules may be doing.</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h3><a href="../index.html">Table of Contents</a></h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RESOURCES/Resources.html">Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../RESOURCES/SIMULATIONS/Simulations.html">Simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../RESOURCES/knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../RESOURCES/knowledge.html">Knowledge Center</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../RESOURCES/knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="Democritus.html">Democritus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MONTE_CARLO_POLYMER/mc_polymer.html">Monte Carlo Polymer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../RESOURCES/knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
 </ul>
 
@@ -142,17 +159,15 @@ In fact, almost everything of interest that can be obtained through a molecular 
   <p class="topless"><a href="HowMD.html"
                         title="next chapter">How is Molecular Dynamics Done?</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -170,14 +185,16 @@ In fact, almost everything of interest that can be obtained through a molecular 
           <a href="MolecularDynamics.html" title="Molecular Dynamics"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../RESOURCES/knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="Democritus.html" >Democritus</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="MolecularDynamics.html" >Molecular Dynamics</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../RESOURCES/Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../RESOURCES/EXERCISES/Exercises.html" >DL_Software Tutorial Exercises</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="Democritus.html" >Democritus</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="MolecularDynamics.html" >Molecular Dynamics</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Statistical Mechanics</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

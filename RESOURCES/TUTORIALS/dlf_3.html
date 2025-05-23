@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Force field data files: Structure Files &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -38,7 +36,8 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Force field data files: Structure Files</a></li> 
       </ul>
     </div>  
 
@@ -47,8 +46,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="force-field-data-files-structure-files">
-<span id="header-dlf-3"></span><h1>Force field data files: Structure Files<a class="headerlink" href="#force-field-data-files-structure-files" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="header-dlf-3"></span><section id="force-field-data-files-structure-files">
+<h1>Force field data files: Structure Files<a class="headerlink" href="#force-field-data-files-structure-files" title="Permalink to this headline">¶</a></h1>
 <p><strong>The structure data file (sf file)</strong></p>
 <p>These files have filenames in the form of <em>XX.sf</em>. For example, <em>CHARMM36_lipid.sf</em> for CHARMM36 lipid data file. This file contains the <a href="dlf_3_MOLECULE.html" onclick="window.open('dlf_3_MOLECULE.html',
    'newwindow', 'width=700,height=400'); return false;">MOLECULE</a> templates, which define the molecular states, ATOM_TYPEs, atomic connectivity information and associated partial charges of <a href="dlf_3_ATOM.html" onclick="window.open('dlf_3_ATOM.html',
@@ -65,13 +64,14 @@
 <p>The ATOM_KEYs are DL_FIELD-specific jargon, which is the corresponding key codes for the ATOM_TYPEs. These are the actual labels that will be used in the <em>dl_poly.CONFIG</em> and <em>dl_poly.FIELD</em> files. In addition, they are also used to map the corresponding potential parameters in <em>par</em> files.</p>
 <p>The MOLECULE_KEYs are DL_FIELD-specific jargon, which is the corresponding codes for the MOLECULE_TYPEs. These are the actual labels that are used in the PDB files. For example, the amino acid residue labels in PDB protein files are actually the MOLECULE_KEYs in DL_FIELD term. DL_FIELD will read these labels and then look for the corresponding MOLECULE templates to set up the FF models.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">All MOLECULE_TYPEs have the corresponding unique MOLECULE_KEYs. All ATOM_TYPEs are unique but different ATOM_TYPEs can share the same ATOM_KEYs.</p>
+<p class="admonition-title">Note</p>
+<p>All MOLECULE_TYPEs have the corresponding unique MOLECULE_KEYs. All ATOM_TYPEs are unique but different ATOM_TYPEs can share the same ATOM_KEYs.</p>
 </div>
 <p><a class="reference internal" href="#header-dlf-3"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -110,17 +110,15 @@
   <p class="topless"><a href="dlf_4.html"
                         title="next chapter">Force field data files: Parameter Files</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -140,12 +138,13 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Force field data files: Structure Files</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

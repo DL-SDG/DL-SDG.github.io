@@ -1,22 +1,21 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Distance cutoffs and Ewald sums &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -37,7 +36,8 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" accesskey="U">Classical force fields</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Distance cutoffs and Ewald sums</a></li> 
       </ul>
     </div>  
 
@@ -46,37 +46,35 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="distance-cutoffs-and-ewald-sums">
-<span id="header-ff11"></span><h1>Distance cutoffs and Ewald sums<a class="headerlink" href="#distance-cutoffs-and-ewald-sums" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="header-ff11"></span><section id="distance-cutoffs-and-ewald-sums">
+<h1>Distance cutoffs and Ewald sums<a class="headerlink" href="#distance-cutoffs-and-ewald-sums" title="Permalink to this headline">¶</a></h1>
 <p>Recall that non-bonded interactions are determined by summing up all possible pairs of atoms in the system. Quite often this is not feasible, and indeed, calculation of pairwise interactions is one of the major bottlenecks in molecular simulations.</p>
 <p>In practice, only the atoms that are within a certain distance, called the cutoff distance, <span class="math notranslate nohighlight">\(r_{cut}\)</span>, are considered in the calculations. All pairs more than <span class="math notranslate nohighlight">\(r_{cut}\)</span> apart will be ignored.</p>
 <a class="reference internal image-reference" href="../../_images/dlp_2_1.png"><img alt="../../_images/dlp_2_1.png" class="align-center" src="../../_images/dlp_2_1.png" style="width: 279.5px; height: 263.90000000000003px;" /></a>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Cutoffs in vdW interactions</strong></p>
 <p>The LJ potentials decay (in <span class="math notranslate nohighlight">\(\sim r^{-6}\)</span>) asymptotically to zero at large distances. Simply ignoring the potentials beyond the <span class="math notranslate nohighlight">\(r_{cut}\)</span> will introduce a discontinuity in the force calculations and may introduce strange behaviour in the dynamics.</p>
 <p>However, this behaviour may be negligible if <span class="math notranslate nohighlight">\(r_{cut}\)</span> is sufficiently large. In practice, <span class="math notranslate nohighlight">\(r_{cut}\)</span> is set to 10-15 angstroms. There are different ways to minimise the discontinuity:</p>
 <ol class="arabic">
-<li><p class="first">Use of some sort of long-range correction, assuming a uniform density in the system.</p>
-</li>
-<li><p class="first">Shift the whole function to zero at <span class="math notranslate nohighlight">\(r_{cut}\)</span>. This is simple and convenient but it might alter the chemistry, considering that the well depth has also been shifted correspondingly.</p>
-</li>
-<li><p class="first">Use of a smoothing function. This function would normally activate around <span class="math notranslate nohighlight">\(r_{cut}\)</span> and naturally smooth the function to zero at <span class="math notranslate nohighlight">\(r_{max}\)</span>. For example, the use of a sine smoothing function with the following conditions:</p>
+<li><p>Use of some sort of long-range correction, assuming a uniform density in the system.</p></li>
+<li><p>Shift the whole function to zero at <span class="math notranslate nohighlight">\(r_{cut}\)</span>. This is simple and convenient but it might alter the chemistry, considering that the well depth has also been shifted correspondingly.</p></li>
+<li><p>Use of a smoothing function. This function would normally activate around <span class="math notranslate nohighlight">\(r_{cut}\)</span> and naturally smooth the function to zero at <span class="math notranslate nohighlight">\(r_{max}\)</span>. For example, the use of a sine smoothing function with the following conditions:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}f_c (r) = \begin{cases}1 &amp; r \leq R-D \\ \frac{1}{2}-\frac{1}{2} \sin \left\{ \frac{\pi}{2} \left(r-R\right)/D \right\} &amp; R-D &lt; r \leq R+D \\ 0 &amp; r \geq R+D\end{cases}\end{split}\]</div>
 <a class="reference internal image-reference" href="../../_images/ff11_2.png"><img alt="../../_images/ff11_2.png" class="align-center" src="../../_images/ff11_2.png" style="width: 554.45px; height: 314.6px;" /></a>
 </li>
 </ol>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">For molecular systems with periodic boundary conditions, the value of <span class="math notranslate nohighlight">\(r_{cut}\)</span> set must not be larger than half of the length of the smallest box dimension. Otherwise, the minimum image convention cannot be applied to determine the distances between pairs of atoms for potential and force calculations.</p>
+<p class="admonition-title">Note</p>
+<p>For molecular systems with periodic boundary conditions, the value of <span class="math notranslate nohighlight">\(r_{cut}\)</span> set must not be larger than half of the length of the smallest box dimension. Otherwise, the minimum image convention cannot be applied to determine the distances between pairs of atoms for potential and force calculations.</p>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<img alt="../../_images/Orange_bar2.png" src="../../_images/Orange_bar2.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Cutoffs in electrostatic calculations</strong></p>
 <p>Unlike LJ functions, the Coulombic function decays as <span class="math notranslate nohighlight">\(r^{-1}\)</span> so the discontinuity when truncating at <span class="math notranslate nohighlight">\(r_{cut}\)</span> would be more pronounced even at large distances. In addition, the decay is also conditionally convergent, and the results will depend on the order of summation. This means the usual cutoff tricks for vdW interactions cannot be applied and, in periodic systems, all charges would need to include periodic images.</p>
 <a class="reference internal image-reference" href="../../_images/ff11_3.png"><img alt="../../_images/ff11_3.png" class="align-left" src="../../_images/ff11_3.png" style="width: 258.3px; height: 319.9px;" /></a>
@@ -86,23 +84,20 @@
 <p>The added screening functions can then be subtracted in reciprocal space due to periodic boundary conditions by using Fourier transforms.</p>
 <p>Finally, the completed Ewald sum requires an additional correction, known as the self-energy correction, which is a constant that arises from a Gaussian acting on its own site.</p>
 <p>In summary, Ewald’s method replaces a potentially infinite sum in real space by two finite sums - one in real space, one in reciprocal space - and the self-energy correction. The precision of the Ewald sum is controlled by three parameters: <span class="math notranslate nohighlight">\(r_{cut}\)</span>, a convergence parameter <span class="math notranslate nohighlight">\(\alpha\)</span> (related to the size of the Gaussian charge cloud) and the largest reciprocal space vector, <span class="math notranslate nohighlight">\(k_{max}\)</span>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">TIP:</th><td class="field-body"><p class="first">In DL_POLY, the three Ewald parameters can be automatically determined by using the following directive in the <em>CONTROL</em> file:</p>
+<dl class="field-list">
+<dt class="field-odd">TIP</dt>
+<dd class="field-odd"><p>In DL_POLY, the three Ewald parameters can be automatically determined by using the following directive in the <em>CONTROL</em> file:</p>
 <p><code class="docutils literal notranslate"><span class="pre">ewald</span> <span class="pre">precision</span> <span class="pre">1.0e-6</span></code></p>
 <p>or the equivalent for DL_POLY_5:</p>
 <p><code class="docutils literal notranslate"><span class="pre">ewald_precision</span> <span class="pre">1.0e-6</span></code></p>
-<p class="last">The quickest check on the accuracy of the Ewald sum is to compare the Coulombic energy (<span class="math notranslate nohighlight">\(U\)</span>) and its virial (<span class="math notranslate nohighlight">\(v\)</span>), which are shown in the <em>OUTPUT</em> or <em>STATIS</em> files. If the Ewald sum is sufficiently accurate, <span class="math notranslate nohighlight">\(U = -v\)</span>.</p>
-</td>
-</tr>
-</tbody>
-</table>
+<p>The quickest check on the accuracy of the Ewald sum is to compare the Coulombic energy (<span class="math notranslate nohighlight">\(U\)</span>) and its virial (<span class="math notranslate nohighlight">\(v\)</span>), which are shown in the <em>OUTPUT</em> or <em>STATIS</em> files. If the Ewald sum is sufficiently accurate, <span class="math notranslate nohighlight">\(U = -v\)</span>.</p>
+</dd>
+</dl>
 <p><a class="reference internal" href="#header-ff11"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -123,6 +118,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../DEMOCRITUS/Democritus.html">Democritus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../MONTE_CARLO_POLYMER/mc_polymer.html">Monte Carlo Polymer</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
@@ -138,17 +135,15 @@
   <p class="topless"><a href="ff15.html"
                         title="next chapter">1-4 interaction scaling Factors</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -167,12 +162,13 @@
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../knowledge.html" >Knowledge Center</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="ff0.html" >Classical force fields</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Distance cutoffs and Ewald sums</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>

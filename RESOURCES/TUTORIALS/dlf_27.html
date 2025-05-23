@@ -1,22 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Gromacs setting and restrictions &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
-    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -38,7 +36,8 @@
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Gromacs setting and restrictions</a></li> 
       </ul>
     </div>  
 
@@ -47,38 +46,39 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="gromacs-setting-and-restrictions">
-<span id="header-dlf-27"></span><h1>Gromacs setting and restrictions<a class="headerlink" href="#gromacs-setting-and-restrictions" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="header-dlf-27"></span><section id="gromacs-setting-and-restrictions">
+<h1>Gromacs setting and restrictions<a class="headerlink" href="#gromacs-setting-and-restrictions" title="Permalink to this headline">¶</a></h1>
 <p>Gromacs contains numerous directives and different ways to achieve same FF definitions.
 In addition, not all the features implemented in DL_FIELD is applicable to Gromacs.</p>
 <p>This page describes some default rules and restrictions when setting up FF files for Gromacs.</p>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Default settings</strong></p>
 <p>DL_FIELD adopts the following default rules:</p>
 <ol class="arabic simple">
-<li>The <em>nrexcl</em> parameter is always set to 3. This means non-bonded interactions (vdw and Coulombic) on the 1-2, 1-3 and 1-4 atom pairs will be excluded by default.</li>
-<li>The <em>gen-pair</em> parameter is always set to <em>no</em>. This instructs Gromacs <strong>not to</strong> automatically generate 1-4 atom pairs for non-bonded interactions.</li>
-<li>The fudge QQ (1-4 Coulombic scaling factor) and fudge LJ (1-4 vdw scaling factor) defined in the [ defaults ] Gromacs directive will be set to the chosen FF scheme. These scaling factors are only shown as a reference. For a multiple-potential setting, they are set to a default value of 1.0. In both cases, they are most probably not going to be used because the correct scaling factors are defined in the [ pair ] directive (see below).</li>
-<li>All 1-4 interactions, their scalings or specific potential parameters, will be explicitly defined under the [ pair ] Gromacs directive. If require, this is where any additional non-bonded interactions that has been excluded due to the <em>nrexcl</em> value will be defined.</li>
-<li>All other non-bonded interactions (1-5 and beyond) will be mixed according to the combination rule set in the [ default ] directive. The vdw parameters and charges for these calculations will be extracted from the [ atomtypes ] and [ atoms ] Gromacs directives, respectively.</li>
+<li><p>The <em>nrexcl</em> parameter is always set to 3. This means non-bonded interactions (vdw and Coulombic) on the 1-2, 1-3 and 1-4 atom pairs will be excluded by default.</p></li>
+<li><p>The <em>gen-pair</em> parameter is always set to <em>no</em>. This instructs Gromacs <strong>not to</strong> automatically generate 1-4 atom pairs for non-bonded interactions.</p></li>
+<li><p>The fudge QQ (1-4 Coulombic scaling factor) and fudge LJ (1-4 vdw scaling factor) defined in the [ defaults ] Gromacs directive will be set to the chosen FF scheme. These scaling factors are only shown as a reference. For a multiple-potential setting, they are set to a default value of 1.0. In both cases, they are most probably not going to be used because the correct scaling factors are defined in the [ pair ] directive (see below).</p></li>
+<li><p>All 1-4 interactions, their scalings or specific potential parameters, will be explicitly defined under the [ pair ] Gromacs directive. If require, this is where any additional non-bonded interactions that has been excluded due to the <em>nrexcl</em> value will be defined.</p></li>
+<li><p>All other non-bonded interactions (1-5 and beyond) will be mixed according to the combination rule set in the [ default ] directive. The vdw parameters and charges for these calculations will be extracted from the [ atomtypes ] and [ atoms ] Gromacs directives, respectively.</p></li>
 </ol>
-<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<img alt="../../_images/Orange_bar.png" src="../../_images/Orange_bar.png" />
 <p><strong>Restrictions</strong></p>
 <ol class="arabic simple">
-<li>At the moment, conversion to Gromacs files only works for input configurations expressed in PDB and <em>xyz</em> formats only.</li>
-<li>Irrespective of what energy unit is specified in DL_FIELD <em>control</em> file, all energy unit will be converted to kJ/mol and nm for the unit distance in the Gromacs files.</li>
-<li>FF conversions only work for FF schemes that use LJ 12-6 and Buckingham potentials. For example, PCFF that uses LJ 9-6 form would not work. In addition, Buckingham potentials only work for older version Gromacs (before 2019 versions).</li>
-<li>Gromacs imposes a fix-format on the <em>gromacs.gro</em> coordinate files. For instance, the atom labels can only display up to five-character in length and the coordinates are specified to three decimals. An error can occur when running Gromacs if the data format is violated.However, DL_FIELD will not check for this.</li>
-<li>Because of point (4), comparison of single-point energies between DL_POLY and Gromacs are likely to be different due to differing scaling precisions and distance units being used.</li>
-<li>DL_FIELD does not include CMAP energy correction for the φ/ψ backbone dihedral angles. Therefore, it is not recommended to use DL_FIELD to setup protein force fields such as CHARMM that use CMAP for molecular simulations.</li>
-<li>For multiple-potential models, only systems based on Lennard-Jones 12-6 functions can be successfully setup. Gromacs does not support mixed-function setting. For example, a model consists of both Lennard-Jones and Buckingham potentials for the vdw interactions. DL_FIELD can still produce Gromacs files for such systems, although grompp will generate an error when trying to produce a <em>tpr</em> file.</li>
-<li>The rigid body or the [RIGID] directive in DL_FIELD, is not supported for Gromacs. The exception would be for the water models. In this case, the Gromacs directive command [ settles ] will be used.</li>
+<li><p>At the moment, conversion to Gromacs files only works for input configurations expressed in PDB and <em>xyz</em> formats only.</p></li>
+<li><p>Irrespective of what energy unit is specified in DL_FIELD <em>control</em> file, all energy unit will be converted to kJ/mol and nm for the unit distance in the Gromacs files.</p></li>
+<li><p>FF conversions only work for FF schemes that use LJ 12-6 and Buckingham potentials. For example, PCFF that uses LJ 9-6 form would not work. In addition, Buckingham potentials only work for older version Gromacs (before 2019 versions).</p></li>
+<li><p>Gromacs imposes a fix-format on the <em>gromacs.gro</em> coordinate files. For instance, the atom labels can only display up to five-character in length and the coordinates are specified to three decimals. An error can occur when running Gromacs if the data format is violated.However, DL_FIELD will not check for this.</p></li>
+<li><p>Because of point (4), comparison of single-point energies between DL_POLY and Gromacs are likely to be different due to differing scaling precisions and distance units being used.</p></li>
+<li><p>DL_FIELD does not include CMAP energy correction for the φ/ψ backbone dihedral angles. Therefore, it is not recommended to use DL_FIELD to setup protein force fields such as CHARMM that use CMAP for molecular simulations.</p></li>
+<li><p>For multiple-potential models, only systems based on Lennard-Jones 12-6 functions can be successfully setup. Gromacs does not support mixed-function setting. For example, a model consists of both Lennard-Jones and Buckingham potentials for the vdw interactions. DL_FIELD can still produce Gromacs files for such systems, although grompp will generate an error when trying to produce a <em>tpr</em> file.</p></li>
+<li><p>The rigid body or the [RIGID] directive in DL_FIELD, is not supported for Gromacs. The exception would be for the water models. In this case, the Gromacs directive command [ settles ] will be used.</p></li>
 </ol>
 <p>For more details about the restrictions, please consult Chapter 14.3 of DL_FIELD manual.</p>
 <p><a class="reference internal" href="#header-dlf-27"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -117,17 +117,15 @@ In addition, not all the features implemented in DL_FIELD is applicable to Groma
   <p class="topless"><a href="dlf_28.html"
                         title="next chapter">Gromacs example output</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -147,12 +145,13 @@ In addition, not all the features implemented in DL_FIELD is applicable to Groma
         <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="tutorials.html" >DL_Software Reference Guides</a> &#187;</li>
-          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Gromacs setting and restrictions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2025, DL_SDG.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>
