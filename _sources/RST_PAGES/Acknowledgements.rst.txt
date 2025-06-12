@@ -21,6 +21,12 @@ If you have any comments, suggestions, or anything to contribute, please email m
 
 * `Andrey Brukhno <https://www.scd.stfc.ac.uk/Pages/Andrey-Brukhno.aspx>`_ Main contributor of advice on how to get a parallel version of DL_POLY up-and-running on HPC    
 
+* Ashraf Hussain - Lead programmer for Cu Impact Visualiser.
+
+* Zakaria Loizou - Converts Democritus from Java to Python and collates materials information.
+  
+* George Roe - Converts Democritus from Python to Javascripts and deploy in DL_SDG. 
+
 * `Linux Cheat Sheet <https://www.linuxtrainingacademy.com/linux-commands-cheat-sheet/#1_8211_SYSTEM_INFORMATION>`_ provided most of the Linux commands listed on the cheat sheet  
 
 Provision of fundings to make DL_SDG possible are greatly appreciated, in particular the Ada Lovelace Centre, a digital asset development centre in support of `UK national large-scale facilities <https://stfc.ukri.org/research/our-science-facilities/>`_.

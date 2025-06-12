@@ -22,4 +22,10 @@ The Visualiser can only run in 64 bit Window 10 or Window 11. To access it, clic
 
 :download:`Cu Impact Visualiser <./Stable-1.0-win64.exe>`
 
+Once installed, go to the directory Stable-1.0-win64\bin and click on the *Stable* Application icon.
 
+.. figure:: ../image/sputtering_visualiser.png
+    :scale: 50% 
+    :align: center
+
+    Cu Impact Visualiser  
