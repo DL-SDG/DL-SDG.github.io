@@ -38,6 +38,7 @@ Interactive learning. Democritus, is a simple interactive molecular dynamics sim
    :maxdepth: 1
    
    ../DEMOCRITUS/Democritus
+   ../MD_SPUTTERING/sputtering
    ../MONTE_CARLO_POLYMER/mc_polymer
    
 

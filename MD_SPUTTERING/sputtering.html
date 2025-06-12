@@ -1,0 +1,136 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MD Simulation of Copper Sputtering &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Monte Carlo Polymer" href="../MONTE_CARLO_POLYMER/mc_polymer.html" />
+    <link rel="prev" title="Additional details on LBE" href="../RESOURCES/DOCUMENTS/LBETheory.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../MONTE_CARLO_POLYMER/mc_polymer.html" title="Monte Carlo Polymer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../RESOURCES/DOCUMENTS/LBETheory.html" title="Additional details on LBE"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../RESOURCES/knowledge.html" accesskey="U">Knowledge Center</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="md-simulation-of-copper-sputtering">
+<h1>MD Simulation of Copper Sputtering<a class="headerlink" href="#md-simulation-of-copper-sputtering" title="Permalink to this headline">¶</a></h1>
+<p><strong>Introduction</strong></p>
+<p>Bombardment of targets by energetic particles is an important technique for characterisation and modification of solids and surfaces. The process is a highly transient event and molecular dynamics are best suited technique to track the motion of atoms and access materials displacement as a result of sudden impart of huge amount of energies into the system.</p>
+<img alt="../_images/Orange_bar9.png" src="../_images/Orange_bar9.png" />
+<p><strong>Copper Impact Visualiser</strong></p>
+<p>This demo follows a single Cu atom collides with a free-standing Cu slab. The slab is built from 12 × 12 × 8 conventional FCC unit cells (lattice constant = 3.615 Å), giving overall dimensions of roughly 4.3 nm × 4.3 nm × 2.9 nm. The full system contains 4 608 atoms and a single Cu atom directing towards the slab with a kinetic energy of 10 eV.</p>
+<p>Initially, the velocities of Cu atoms in the slab are all set to zero, meaning the only significant portion of energy that are fed into the slab is due to the incoming Cu atom.</p>
+<p>The atoms are colour-codes so that blue, and more transparent the atoms are colder (with lower velocities), whereas, red and more solid the colour are hotter (with higher velocities).</p>
+<p>The Visualiser can only run in 64 bit Window 10 or Window 11. To access it, click on the installer below. Once downloaded, click on the Installer and follow the instruction.</p>
+<p><a class="reference download internal" download="" href="../_downloads/c652d7b9c8fe046e707e3a2d53fd4319/Stable-1.0-win64.exe"><code class="xref download docutils literal notranslate"><span class="pre">Cu</span> <span class="pre">Impact</span> <span class="pre">Visualiser</span></code></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES/Resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RESOURCES/SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../RESOURCES/knowledge.html">Knowledge Center</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../RESOURCES/knowledge.html#modelling-methods">Modelling methods</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/MOLECULAR_DYNAMICS/md0.html">Molecular Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/FORCE_FIELD/ff0.html">Classical force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/coarse_graining.html">Coarse-graining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/thermostat_barostat.html">Thermostats and barostats (system regulators)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/DPDIntro.html">Dissipative Particle Dynamics (DPD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/DPDTheory.html">Additional details on DPD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/LBEIntro.html">Lattice Boltzmann Equation (LBE)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../RESOURCES/DOCUMENTS/LBETheory.html">Additional details on LBE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../DEMOCRITUS/Democritus.html">Democritus</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MD Simulation of Copper Sputtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../MONTE_CARLO_POLYMER/mc_polymer.html">Monte Carlo Polymer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../RESOURCES/knowledge.html#miscellaneous-articles">Miscellaneous Articles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../RESOURCES/DOCUMENTS/LBETheory.html"
+                        title="previous chapter">Additional details on LBE</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../MONTE_CARLO_POLYMER/mc_polymer.html"
+                        title="next chapter">Monte Carlo Polymer</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../MONTE_CARLO_POLYMER/mc_polymer.html" title="Monte Carlo Polymer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../RESOURCES/DOCUMENTS/LBETheory.html" title="Additional details on LBE"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../RESOURCES/knowledge.html" >Knowledge Center</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

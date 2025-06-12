@@ -1,0 +1,25 @@
+.. main portal to Cu Sputtering.
+
+**********************************
+MD Simulation of Copper Sputtering
+**********************************
+
+**Introduction**
+
+Bombardment of targets by energetic particles is an important technique for characterisation and modification of solids and surfaces. The process is a highly transient event and molecular dynamics are best suited technique to track the motion of atoms and access materials displacement as a result of sudden impart of huge amount of energies into the system.
+
+.. image:: ../RESOURCES/SIMULATIONS/IMAGES/Orange_bar.png
+
+**Copper Impact Visualiser**
+
+This demo follows a single Cu atom collides with a free-standing Cu slab. The slab is built from 12 × 12 × 8 conventional FCC unit cells (lattice constant = 3.615 Å), giving overall dimensions of roughly 4.3 nm × 4.3 nm × 2.9 nm. The full system contains 4 608 atoms and a single Cu atom directing towards the slab with a kinetic energy of 10 eV.
+
+Initially, the velocities of Cu atoms in the slab are all set to zero, meaning the only significant portion of energy that are fed into the slab is due to the incoming Cu atom.
+
+The atoms are colour-codes so that blue, and more transparent the atoms are colder (with lower velocities), whereas, red and more solid the colour are hotter (with higher velocities). 
+
+The Visualiser can only run in 64 bit Window 10 or Window 11. To access it, click on the installer below. Once downloaded, click on the Installer and follow the instruction.
+
+:download:`Cu Impact Visualiser <./Stable-1.0-win64.exe>`
+
+
