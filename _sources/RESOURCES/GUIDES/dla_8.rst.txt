@@ -1,0 +1,91 @@
+.. Atomic interaction analysis using DL_ANALYSER 
+.. _Header_dla_8:
+
+.. |br| raw:: html
+
+   <br />
+
+***************************
+Atomic Interaction Analysis
+***************************
+
+This section describes the unique feature of DL_ANALYSER to carry out atomic interaction analysis. Options to carry out these analysis are located under the Atomic Interaction Analysis Section in the *control* file.
+
+.. Note::
+   To use the Analysis Section, the system trajectory files must express atoms in DL_F Notation and it only works for atom-based analysis criteria. However, this is no longer the case if you use the dedicated software called :doc:`../d_ata_intro`.
+
+DL_ANALYSER can carry out precise identification and quantification of atomic interactions in a molecular system. Moreover, these interactions can be annotated by using the DL_ANALYSER Notation for Aomic Interactions (DANAI).  
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**DANAI - a universal notation to describe atomic interactions**
+
+By following the flavours of the standard DL_F Notation 
+for atom typing in molecular simulations, the DANAI expression 
+provides a universal scheme that can be easily interpreted by modeller, experimentalist 
+as well as computational means. It contains the actual chemical information and precisely 
+annotate a given atomic interaction configuration that can be accessed by means of data 
+analytics.
+
+.. Note::
+   DL_F Notation is a standard notation for atom typing implemented within DL_FIELD. For more information, please refer to :ref:`DL_F Notation <Header_dlf_9>` 
+
+In the DANAI notation, the full description of any given interactions must always be
+expressed in terms of the macro-interactions and the corresponding micro-interactions (or interaction modes).
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Macro-interaction**
+
+It describes the non-bonded interactions between two Chemical Groups (*CG*). The general format is shown as:
+
+*A_CGI1_CGI2*
+
+Where *CGI1* and *CGI2* are the Chemical Group Indices (*CGI*) of the interacting *CGs*. Macro-interactions can be classified into different types, *A*. Examples below show a few common ones:
+
+*DD* - dipole-dipole interactions. |br|
+*HB* - hydrogen bond (special case of *DD*). |br|
+*ID* - induced dipole |br|
+*HP* - hydrophobic interactions between alkyl groups (a special case of *ID*) |br|
+*CD* - charge-dipole interactions (between ions and polar atoms) |br|
+*PS* - parallel :math:`\pi`-:math:`\pi` stacking interactions between aromatic rings.
+
+Example below shows two different macro-interactions.
+
+.. image:: ../../image/dl_a_8_1.png
+   :scale: 60%
+   :align: center
+
+The one on the left describes hydrophobic interactions between two alkanes, with *CGI* = 1. The one on the left describes charge-dipole interactions between a sodium cation with a carboxylic acid. Here *CGI* = 20 refers to the *carboxylic CG*, while *CGI* = 962 refers to the *cation CG*.
+
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Micro-interactions**
+
+A set of interaction modes between two *CGs*. In other words, every macro-interaction contains a set of micro-interactions, that describe a variety of ways how the two *CGs* interact with each other. The general format is as follows:
+
+*[Sa]interaction_notation*
+
+where *S* is the topological structure of interactions, *a* is the number of *CGs* involve in the micro-interaction that form such structure. Some examples of *S* as as follows:
+
+*J* - a junction or network interaction |br|
+*R* - a ring structure |br|
+*L* - a linear structure |br|
+*C* - complex structure contains some of the above mentioned structures. |br|
+
+For example *[L3]* means a micro-interaction involves three *CGs* in a linear fashion.
+
+
+*[R2]* means a micro-interaction involves two *CGs*.
+
+
+*interaction_notation* consists of a line of text that annotates the atomic species involved in the interaction. These atomic species are expressed in the DL_F Notation.
+
+.. Note::
+   DL_ANALYSER detects these interactions according to a set of criteria defined in the *control* file. For example, to detect a hydrophobic contact, the distance between a pair of central alkyl carbon atoms must be less than a critical distance (say 4.5 Angstrom).
+
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dla_8>`

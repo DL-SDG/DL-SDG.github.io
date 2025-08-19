@@ -5,7 +5,7 @@
 D_ATA
 *****
 
-This section provides only a summary of D_ATA (Atom Typer and Analyser) features and capabilities. For more detailed descriptions of solftware usage, please refer to :doc:`TUTORIALS/data_0`.
+This section provides only a summary of D_ATA (Atom Typer and Analyser) features and capabilities. For more detailed descriptions of solftware usage, please refer to :doc:`GUIDES/data_0`.
 
 .. image:: ../image/6_22.jpg
    :scale: 25%

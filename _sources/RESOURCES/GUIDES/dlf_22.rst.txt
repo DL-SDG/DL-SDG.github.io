@@ -1,0 +1,104 @@
+.. DL_FIELD tutorial. Use of VDW_FIX 
+.. _Header_dlf_22:
+
+.. |nbsp| unicode:: 0xA0
+   :trim:
+
+.. |br| raw:: html
+
+   <br />
+
+**********************************************
+Customise VDW interactions (VDW_FIX directive) 
+**********************************************
+
+This page illustrates the use of *VDW_FIX* directive to customise the vdw interactions between atoms *i* and *j*. 
+
+In organic FF schemes, these parameter sets are automatically derived in DL_FIELD by using some form of mixing rules involving the parameters of the pure components for *i* and *j*, respectively (see :doc:`../FORCE_FIELD/ff10`).
+
+For inorganic FF schemes, the vdw parameters for different pairs of atoms are explicitly defined in the library.
+
+These vdw parameters can be altered. One way to do this is to override the standard vdw parameters derived from the library by using a *udff* file. This can potentially change all vdw interactions involving the override atom. Another way is to use *VDW_FIX* directive which is useful if only a specific combination of atom pairs are needed to adjust.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Without using VDW_FIX**
+
+Suppose we have a molecular system contains ethanol molecules and we want to set up a force field model by using CHARMM CGenFF.
+
+Below illustrates how DL_FIELD determined Lennard-Jones (LJ) vdw parameters for two atoms between the ethanol molecules. The labels HGP1 and OG311 are the ATOM_KEYs expressed in the standard CHARMM CGenFF force field scheme. They are referred to the hydroxyl hydrogen and hydroxyl oxygen, respectively.
+
+.. image:: ../../image/dl_f_22_1.png
+   :scale: 40%
+   :align: center
+
+In the library file, the vdw parameters for HGP1 and OG311 are independantly listed as shown above. To determined the LJ parameters for the HGP1---OG311 atom pairs, the arithmatic and geometric mixing rules are applied (mixing rules for CHARMM FF) for the :math:`R_{min}` and :math:`\epsilon`, respectively. 
+
+.. Note::
+   In DL_POLY FIELD file, the LJ parameter :math:`\sigma` (steric) is used, rather than the :math:`R_{min}`. DL_FIELD will do the conversion internally.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**VDW_FIX Syntax**
+
+The syntax for using the directive is as follows:
+
+VDW_FIX   *potential_label*  |br|
+atom1 |nbsp| |nbsp| atom2    func    p1 p2 p3 |br|
+atom3 |nbsp| |nbsp| atom4    func    p1 p2 p3 |br|
+... |br|
+... |br|
+END VDW_FIX
+
+Where atom1, atom2 and atom3, atom4 are two sets of atom pairs of which the vdw parameters will be redefined.
+
+The value 'func' is the vdw functional form, which can be either the 12-6 Lennard-Jones (lj), morse, or Buckingham. The values p1, p2 and p3 are the parameter values of the functional forms.
+
+The *potential_label* is the name of a potential scheme. Usually, this would be the same where the *VDW_FIX* directive is located in the *.par* file.
+
+For exmaple, the CHARMM36 CGenFF contains several *VDW_FIX* statements in the *.par* file as shown below:
+
+.. literalinclude:: vdw_fix.txt 
+   :emphasize-lines: 1,11 
+
+The *potential_label* is the name of a potential scheme. Normally, this would be the same as that where the *VDW_FIX* directive is located. In this case, it is shown with a wildcard '*' (charmm*), which means 'any CHARMM FF components'. This means the VDW_FIX will be applied to pairs of matching non-bonded atoms that belong to any CHARMM FFs. At least one of the atom must belong to CGenFF, whereas, the other atom can belong to any CHARMM FF components (protein, DNA, carbohydrates, etc).
+
+.. Warning::
+   Atom equivalence does not apply to the atoms listed in *VDW_FIX*. In other words, DL_FIELD only matches exactly the atoms as shown within the *VDW_FIX* directive.
+   
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Using VDW_FIX**
+
+Suppose the system also contain sodium (SOD) and chloride (CLA) ions. Since there is a matching (SOD and CLA) pair defined in the VDW_FIX block (see above), no mixing rule will be applied and the parameters are directly extracted from the list. Diagram below illustrates the differences in prameters with and without VDW_FIX.
+
+.. image:: ../../image/dl_f_22_2.png
+   :scale: 40%
+   :align: center
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Using VDW_FIX in bio-inorganic systems**
+
+The *VDW_FIX* directive is especially useful for models using multiple-potential models such as bio-inorganic systems. For example, suppose a system consists of a binary oxide inorganic material and an organic compound. The inorganic material is applied with the *inorganic_binary_oxide* FF scheme, whereas, the organic component is applied with, say, *CHARMM22_prot* FF scheme.
+
+By default, the vdw parameters between an inorganic and organic component are not defined. DL_FIELD will display these atom pairs but not the parameters: It is up to you to insert these values manually. 
+
+However, you can use *VDW_FIX* directive to instruct DL_FIELD to insert vdw parameters for these mixed component atom pairs. For example, consider the following *VDW_FIX* directive, perhaps included in a *udff* file for the *inorganic_binary_oxide* FF scheme:
+
+.. image:: ../../image/dl_f_22_3.png
+   :scale: 45%
+   :align: center
+
+The directive *VDW_FIX charmm22_prot* means, for each atom pair that is listed within the directive, one atom must belong to the *inorganic_binary_oxide* and the other atom must belong to the *charmm22_prot* scheme.
+
+.. Note::
+   Only two and only two FF schemes are allowed within a *VDW_FIX* directive block and only one block is allowed in each file: one FF scheme is implicit to which the *VDW_FIX* is located, and the other FF scheme is the *potential_label* defined along the *VDW_FIX* heading. 
+
+.. Note::
+   For more information about VDW_FIX, please consult DL_FIELD manual, Section 3.11 and Section 10.6.
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_22>`
+

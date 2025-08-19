@@ -1,0 +1,249 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Gromacs example output &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Setup FF from Amber’s Antechamber" href="dlf_29.html" />
+    <link rel="prev" title="Gromacs setting and restrictions" href="dlf_27.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlf_29.html" title="Setup FF from Amber’s Antechamber"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_27.html" title="Gromacs setting and restrictions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="gromacs-example-output">
+<span id="header-dlf-28"></span><h1>Gromacs example output<a class="headerlink" href="#gromacs-example-output" title="Permalink to this headline">¶</a></h1>
+<p>This page provide an example of FF conversion for Gromacs.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Conversion of organic molecules</strong></p>
+<p>Consider a molecular system consists of phenylalanine enclosed in a <span class="math notranslate nohighlight">\(\beta\)</span>-cyclodextrin (structure shown below) and solvates the whole system with ethanol in a cubic box of size 80 Å. All H-containing bonds are also constrained.</p>
+<a class="reference internal image-reference" href="../../_images/dl_f_28_1.jpg"><img alt="../../_images/dl_f_28_1.jpg" class="align-center" src="../../_images/dl_f_28_1.jpg" style="width: 329.6px; height: 266.0px;" /></a>
+<p>The corresponding confirguration file (in <em>xyz</em> format) is shown below. The molecular system is separated into two Molecular Groups: CYC refers the cyclodextrin cage and PHE for the organic molecule enclosed within the cage.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>170
+Cyclodextrin with PHE.
+<span class="hll"># MOLECULAR_GROUP CYC
+</span>C  -6.049000  0.945000  0.569000
+C  -6.341000  2.134000  -0.313000
+C  -5.113000  3.000000  -0.453000
+C  -4.574000  3.388000  0.915000
+C  -4.429000  2.153000  1.811000
+C  -4.114000  2.550000  3.250000
+C  -4.381000  -3.897000  -0.680000
+C  -5.277000  -3.152000  -1.645000
+C  -5.119000  -1.651000  -1.519000
+C  -5.285000  -1.237000  -0.064000
+…
+…
+H  -2.830000  6.347000  -2.095000
+H  0.359000  5.982000  -1.647000
+H  0.509000  6.438000  4.356000
+<span class="hll"># MOLECULAR_GROUP PHE
+</span>C  -0.830000  0.683000  2.322000
+C  -0.114000  -0.185000  3.052000
+C  0.873000  -0.882000  2.472000
+…
+…
+</pre></div>
+</div>
+<p>To carry out this conversion, below highlights the relevant options in a DL_FIELD <em>control</em> file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DL_FIELD control file for cyclodextrin-phe.
+1        * Construct DL_POLY output files
+<span class="hll">gromacs        * Seconday output files (gromacs, chemshell or none).
+</span><span class="hll">opls2005  * Type of force field require (see list below for choices).
+</span>kcal/mol  * Energy unit: kcal/mol, kJ/mol, eV, or K.
+normal  * Conversion criteria (strict, normal, loose)
+1        * Bond type (0=default, 1=harmonic , 2=Morse)
+1        * Angle type (0=default, 1=harmonic, 2=harmonic cos)
+none   * Include user-defined information. Put &#39;none&#39; or a .udff filename
+1       * Verbosity mode: 1 = on, 0 = off
+<span class="hll">cyclodextrin_phe.xyz   * Configuration file.
+</span>none   * Output file in PDB. Put &#39;none&#39; if not needed.
+0 40 molecules  9.0 * Solution Maker: on/off, density, unit, cutoff)
+…
+…
+<span class="hll">1         * Constrain bonds? 1 = Yes (see below) 0 = No
+</span>…
+…
+<span class="hll">1        * Periodic condition ? 0=no, other number = type of box (see below)
+</span><span class="hll">80.0   0.0   0.0 * Cell vector a (x, y, z)
+</span><span class="hll">0.0   80.0  0.0  * Cell vector b (x, y, z)
+</span><span class="hll">0.0   0.0  80.0 * Cell vector c (x, y, z)
+</span>default   * 1-4 scaling for coulombic (put default or x for scaling=x)
+default   * 1-4 scaling for vdw (put default or x for scaling=x)
+0  300.0  * Include velocity? 1=yes, 0=no and scaling temperature.
+1         * Position solute at origin? 1 = yes, 0=no
+<span class="hll">etoh  2.0 default * Solvate model? none or specify solvent (see below) and distance criteria.
+</span>…
+…
+########################################################
+Atom state specification:  type  Molecular_Group   filter   [value]
+
+<span class="hll">CONSTRAIN  PHE    h-bond
+</span><span class="hll">CONSTRAIN  CYC    h-bond
+</span>
+#########################################################
+
+</pre></div>
+</div>
+<p>After conversion, DL_FIELD will produce three <em>itp</em> files, one for each Molecular Group: one for CYC, one for PHE and the other for ethanol solvent (ETOH). They are all included in the <em>gromacs.top</em> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span>
+<span class="p">;</span> <span class="n">Gromacs</span> <span class="n">system</span> <span class="n">topology</span> <span class="p">(</span><span class="n">top</span><span class="p">)</span> <span class="n">file</span><span class="o">.</span>
+<span class="p">;</span> <span class="n">Produced</span> <span class="kn">from</span> <span class="nn">DL_FIELD</span> <span class="n">v4</span><span class="o">.</span><span class="mi">11</span>
+<span class="p">;</span>
+
+<span class="p">[</span> <span class="n">defaults</span> <span class="p">]</span>
+<span class="p">;</span> <span class="n">nbfunc</span>   <span class="n">comb</span><span class="o">-</span><span class="n">rule</span>   <span class="n">gen</span><span class="o">-</span><span class="n">pairs</span>   <span class="n">fudgeLJ</span> <span class="n">fudgeQQ</span>
+<span class="mi">1</span>       <span class="mi">1</span>           <span class="n">no</span>          <span class="mf">0.500000</span>      <span class="mf">0.500000</span>
+
+<span class="p">[</span> <span class="n">atomtypes</span> <span class="p">]</span>
+<span class="p">;</span> <span class="n">atom_type</span>  <span class="n">at</span><span class="o">.</span><span class="n">num</span>   <span class="n">mass</span>   <span class="n">charge</span>   <span class="n">ptype</span>   <span class="n">c6</span>   <span class="n">c12</span>
+<span class="n">CAO</span>          <span class="mi">6</span>  <span class="mf">12.01150</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">2.030504e-03</span>  <span class="mf">3.732606e-06</span>
+<span class="n">CT</span>           <span class="mi">6</span>  <span class="mf">12.01150</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">2.030504e-03</span>  <span class="mf">3.732606e-06</span>
+<span class="n">OAL</span>          <span class="mi">8</span>  <span class="mf">15.99940</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">2.624389e-03</span>  <span class="mf">2.420782e-06</span>
+<span class="n">OAS</span>          <span class="mi">8</span>  <span class="mf">15.99940</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">1.393695e-03</span>  <span class="mf">8.290022e-07</span>
+<span class="n">OS</span>           <span class="mi">8</span>  <span class="mf">15.99940</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">1.393695e-03</span>  <span class="mf">8.290022e-07</span>
+<span class="n">HC</span>           <span class="mi">1</span>   <span class="mf">1.00797</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">1.225781e-04</span>  <span class="mf">2.992630e-08</span>
+<span class="n">HO</span>           <span class="mi">1</span>   <span class="mf">1.00797</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">7.845000e-09</span>  <span class="mf">1.225781e-16</span>
+<span class="n">CA</span>           <span class="mi">6</span>  <span class="mf">12.01150</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">2.344876e-03</span>  <span class="mf">4.693426e-06</span>
+<span class="n">HA</span>           <span class="mi">1</span>   <span class="mf">1.00797</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">1.008475e-04</span>  <span class="mf">2.025617e-08</span>
+<span class="n">CT1</span>          <span class="mi">6</span>  <span class="mf">12.01150</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">2.030504e-03</span>  <span class="mf">3.732606e-06</span>
+<span class="n">C</span>            <span class="mi">6</span>  <span class="mf">12.01150</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">4.886845e-03</span>  <span class="mf">1.358990e-05</span>
+<span class="n">NT</span>           <span class="mi">7</span>  <span class="mf">14.00670</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">3.674381e-03</span>  <span class="mf">4.745346e-06</span>
+<span class="n">O</span>            <span class="mi">8</span>  <span class="mf">15.99940</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">2.363857e-03</span>  <span class="mf">1.589906e-06</span>
+<span class="n">OH</span>           <span class="mi">8</span>  <span class="mf">15.99940</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">2.074092e-03</span>  <span class="mf">1.512013e-06</span>
+<span class="n">H</span>            <span class="mi">1</span>   <span class="mf">1.00797</span>     <span class="mf">0.000</span>   <span class="n">A</span>  <span class="mf">7.845000e-09</span>  <span class="mf">1.225781e-16</span>
+
+<span class="c1">#include &quot;gromacs1.itp&quot;</span>
+<span class="c1">#include &quot;gromacs2.itp&quot;</span>
+<span class="c1">#include &quot;gromacs3.itp&quot;</span>
+
+<span class="p">[</span> <span class="n">system</span> <span class="p">]</span>
+<span class="p">;</span> <span class="n">Title</span>
+<span class="n">Control</span> <span class="n">file</span><span class="p">,</span> <span class="k">for</span> <span class="n">version</span> <span class="mf">4.11</span>
+
+<span class="p">;</span> <span class="n">System</span> <span class="n">composition</span>
+<span class="p">[</span> <span class="n">molecules</span> <span class="p">]</span>
+<span class="p">;</span> <span class="n">Molecular_group</span>   <span class="n">species</span> <span class="c1">#</span>
+<span class="n">CYC</span>      <span class="mi">1</span>
+<span class="n">PHE</span>      <span class="mi">1</span>
+<span class="n">ETOH</span>      <span class="mi">5212</span>
+</pre></div>
+</div>
+<p>The file shows an additional 5212 ethanol molecules have been added as solvent in the system.</p>
+<p><a class="reference internal" href="#header-dlf-28"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guides.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_27.html"
+                        title="previous chapter">Gromacs setting and restrictions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlf_29.html"
+                        title="next chapter">Setup FF from Amber’s Antechamber</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlf_29.html" title="Setup FF from Amber’s Antechamber"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_27.html" title="Gromacs setting and restrictions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+.. DL_FIELD tutorial.
+.. _Header_dlf_7:
+
+.. |pop1| raw:: html
+
+   <a href="dlf_5_Molecular_Group.html" onclick="window.open('dlf_5_Molecular_Group.html',
+         'newwindow', 'width=600,height=300'); return false;">Molecular Group</a>
+
+.. |sp| raw:: html
+
+   &nbsp; 
+
+***************
+Adding solvents
+***************
+
+The DL_FIELD *control* file also contain a feature where you can solvate your system. This is done once the FF model for the input structure has been setup. If the Solution Maker feature is activated, then the system will only be solvated after molecules have been duplicated. 
+
+Prior to solvation, the whole molecular system is considered to be the solute unit. This also includes solvent molecules that have been included in the user input configuration file. 
+
+The necessary input parameters are as follows:
+
+*solvent_key* |sp| |sp| *cutoff*  |sp| |sp| *FF_scheme*
+
+where *solvent_key* is the name of the molecule that will fill the system. The *cutoff* value is the minimum permitted distance between a solvent molecule and a solute molecule. The solvent molecule will be rejected if the distance is smaller than the *cutoff* value. 
+
+The *FF_scheme* indicates the type of FF scheme for the solvent. DL_FIELD will use this information to look for the solvent MOLECULE according to the FF scheme. 
+
+For example:
+
+*meoh* |sp| |sp| *2.0* |sp| |sp| *cvff*
+
+Means solvate the system with methanol with a cutoff distance of 2.0 Angstrom. The FF model for the solvent would be the CVFF. 
+
+DL_FIELD also recognise the command *default* for the *FF_scheme*. It means the FF scheme for the solvent would be the same as what's been specified in the *control* file.
+
+.. Note::
+   Solvation feature only works if simulation box size is specified and must be either cubic or orthrhombic shapes. In addition, DL_FIELD can only solvate systems of sizes that are at least 20 Angstrom at all x, y, and z directions.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Solvent templates**
+
+DL_FIELD uses solvent templates to solvate the system. These templates are located in the *solvent/* directory. Each template consists of a box of pre-equilibrated solvent molecules at the standard density at 300 K. The template size is 20 x 20 x 20 Angstrom :sup:`3`.
+
+To find out what solvent templates are available, look into the file called *solvent_list* in the *solvent/* directory. Under the Solvent list tile, the following information is displayed:
+
+*solvent_key* - description - *filename*
+
+Below shows a portion of the solvent list:
+
+.. literalinclude:: solvent_list.txt 
+
+The most relevant information to the users are *solvent_keys*. For example, to use original TIP3P water model, insert the key TIP3P_O in the *control* file. To use methanol as solvent, insert the key MeOH in the *control* file. Note that the *solvent_keys* are case insensitive.
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_7>`

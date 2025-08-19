@@ -1,0 +1,246 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Auto VDW determination &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Selective interactions" href="dlf_18.html" />
+    <link rel="prev" title="Customise VDW interactions (VDW_FIX directive)" href="dlf_22.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlf_18.html" title="Selective interactions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_22.html" title="Customise VDW interactions (VDW_FIX directive)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="auto-vdw-determination">
+<span id="header-dlf-23"></span><h1>Auto VDW determination<a class="headerlink" href="#auto-vdw-determination" title="Permalink to this headline">¶</a></h1>
+<p>This pages explains how DL_FIELD can use Slater-Kirkwood (SK) approximation to automatically determine the vdw parameters for any pair of atoms, in situations where there is no defined vdw mixing rules, nor standard parameters available in the literatures.</p>
+<p>For this reason, this method only applies to systems that contain more than one FF scheme (multiple potential) such as the bio-inorganic models, where one atom is from one FF scheme and the other atom is from the other FF scheme.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>SK approximation</strong></p>
+<p>Van der Waals (vdw) forces are combination of several non-covalent intermolecular forces that arise due to change in electron clouds, resulting in dipole moments. The strongest component being those of permanent dipoles, while the London dispersion force is the weakest component. The latter is predominantly present in nonpolar atoms such as noble gases. It arises due to instantaneous electron cloud fluctuations that form temporary dipoles. Therefore, London force is also called the induced dipole-induced dipole attraction.</p>
+<p>For this reason, vdw forces are closely related to atomic polarisability (<span class="math notranslate nohighlight">\(\alpha\)</span>), or the ability to deform the electron clouds, especially those of electron valence.</p>
+<p>Recall that a typical vdw LJ12-6 function consists of a repulsive parameter, <em>A</em>, and a dispersive parameter, <em>B</em>.</p>
+<div class="math notranslate nohighlight">
+\[V \left(r \right) = \frac{A}{r^{12}} - \frac{B}{r^{6}}\]</div>
+<p>Consider two atoms, of type <em>i</em> and <em>j</em>, DL_FIELD can determine the dispersive parameter by using the Slater-Kirkwood approximation.</p>
+<div class="math notranslate nohighlight">
+\[B_{ij} = \frac{3}{2}\frac{ \alpha_{i} \alpha_{j}}{\sqrt{\frac{\alpha_{i}}{N_{i}}} + \sqrt{\frac{\alpha_{j}}{N_{j}}}}\]</div>
+<p>where <em>N</em> is the number of electron in an atom. In the case of the repulsive parameter, this can be obtained from the sum of atomic radii, <em>w</em>.</p>
+<div class="math notranslate nohighlight">
+\[A_{ij} = \frac{1}{2}B_{ij}(w_{i} + w_{j})^{6}\]</div>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>The dl_field.atom_data file</strong></p>
+<p>The equations show that <span class="math notranslate nohighlight">\(\alpha\)</span> and <em>w</em> are the only adjustable parameters and they are listed in the file called <em>dl_field.atom_data</em> in the <em>/lib</em> folder. A portion of this data, with illustrations, is shown below:</p>
+<a class="reference internal image-reference" href="../../_images/dl_f_23_1.png"><img alt="../../_images/dl_f_23_1.png" class="align-center" src="../../_images/dl_f_23_1.png" style="width: 764.5500000000001px; height: 225.0px;" /></a>
+<p>To determine the vdw parameters, DL_FIELD will look for exact match of ATOM_KEYs expressed in DL_F Notation between the input system and the data list, to obtain the corresponding <span class="math notranslate nohighlight">\(\alpha\)</span> and <em>w</em>. If there is no match, DL_FIELD will obtain values from generic entries, with a symbol ‘*’. For example, the generic entry for fluorine is F*.</p>
+<p>For more details about data sources, please look into the content of the file.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The information listed in <em>dl_field.atom_data</em> cannot be overriden by the <em>udff</em> file. You would need to change values or add new entries directly in the file.</p>
+</div>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Using SK approximation</strong></p>
+<p>Consider a model consistis of an octane molecule trapped within silicalite (SiO2) framework, which is a zeolite.</p>
+<a class="reference internal image-reference" href="../../_images/dl_f_23_2.jpg"><img alt="../../_images/dl_f_23_2.jpg" class="align-center" src="../../_images/dl_f_23_2.jpg" style="width: 369.6px; height: 292.8px;" /></a>
+<p>Below shows a portion of the configuration input file (in <em>xyz</em> format), showing the relevant directives.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="mi">2330</span>
+<span class="n">CRYST1</span>   <span class="mf">40.180</span>   <span class="mf">39.476</span>   <span class="mf">26.284</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>  <span class="mf">90.00</span>        <span class="kc">None</span>   <span class="mi">1</span>
+<span class="c1"># POTENTIAL opls2005  MOLECULAR_GROUP A1</span>
+<span class="n">C</span>  <span class="mf">20.211000</span>  <span class="mf">16.483000</span>  <span class="mf">6.365000</span>
+<span class="n">C</span>  <span class="mf">19.789000</span>  <span class="mf">15.207000</span>  <span class="mf">5.635000</span>
+<span class="n">H</span>  <span class="mf">19.897000</span>  <span class="mf">17.379000</span>  <span class="mf">5.822000</span>
+<span class="n">H</span>  <span class="mf">19.770000</span>  <span class="mf">16.534000</span>  <span class="mf">7.366000</span>
+<span class="n">H</span>  <span class="mf">21.298000</span>  <span class="mf">16.534000</span>  <span class="mf">6.483000</span>
+<span class="n">C</span>  <span class="mf">20.209000</span>  <span class="mf">13.924000</span>  <span class="mf">6.361000</span>
+<span class="n">H</span>  <span class="mf">18.700000</span>  <span class="mf">15.207000</span>  <span class="mf">5.500000</span>
+<span class="n">H</span>  <span class="mf">20.216000</span>  <span class="mf">15.207000</span>  <span class="mf">4.624000</span>
+<span class="o">...</span>
+<span class="o">...</span>
+<span class="c1"># POTENTIAL inorganic_zeolite  MOLECULE_KEY Z4s     MOLECULAR_GROUP A2</span>
+<span class="n">Si</span>  <span class="mf">28.853000</span>  <span class="mf">21.319000</span>  <span class="mf">23.108000</span>
+<span class="n">Si</span>  <span class="mf">26.862000</span>  <span class="mf">20.447000</span>  <span class="mf">25.183000</span>
+<span class="n">Si</span>  <span class="mf">25.482000</span>  <span class="mf">20.758000</span>  <span class="mf">14.855000</span>
+<span class="n">Si</span>  <span class="mf">22.341000</span>  <span class="mf">20.661000</span>  <span class="mf">14.791000</span>
+<span class="n">Si</span>  <span class="mf">21.865000</span>  <span class="mf">20.552000</span>  <span class="mf">24.931000</span>
+<span class="n">Si</span>  <span class="mf">24.413000</span>  <span class="mf">21.421000</span>  <span class="mf">23.522000</span>
+<span class="n">Si</span>  <span class="mf">28.824000</span>  <span class="mf">36.228000</span>  <span class="mf">22.852000</span>
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>It shows OPLS2005 FF is applied to the octane molecule, while an inorganic_zeolite FF is applied to silicalite. Potential parameters are available for both the octane molecule and the silicalite structure. However, there is no vdw parameter available between atoms of both components. We will use the SK approximation to determine these missing parameters.</p>
+<p>Below show a portion of DL_FIELD <em>control</em>, showing the relevant input options, as highlighted.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Control file title - octane in silicalite
+1        * Construct DL_POLY output files
+none        * Secodary output files (Gromacs, Chemshell or none). 
+<span class="hll">multiple  * Type of force field require (see list below for choices).
+</span>kj/mol  * Energy unit: kcal/mol, kJ/mol, eV, or K.
+normal  * Conversion criteria (strict, normal, loose)
+1        * Bond type (0=default, 1=harmonic , 2=Morse)
+1        * Angle type (0=default, 1=harmonic, 2=harmonic cos)
+none   * Include user-defined information. Put &#39;none&#39; or a .udff filename
+1       * Verbosity mode: 1 = on, 0 = off
+<span class="hll">octane_zeolite.xyz   * Configuration file.
+</span>none   * Output file in PDB. Put &#39;none&#39; if not needed.
+0 5 molecules  10.0 * Solution Maker: on/off, density, unit, cutoff)
+1        * Optimise FIELD output size, if possible? 1=yes  0=no
+<span class="hll">1         * Atom display: 1 = DL_FIELD format. 2 = Standard format
+</span>1         * Vdw display format: 1 = 12-6 format   2 = LJ format
+default * Epsilon mixing rule (organic FF only) : default, or 1 = geometric, 2 = arithmatic
+default   * Sigma mixing rule (organic FF only) : default, or 1 = geometric, 2 = arithmatic
+1        * Epsilon mixing rule (inorganic FF only) : 1 = geometric   2 = arithmatic
+1        * Sigma mixing rule (inorganic FF only) : 1 = geometric   2 = arithmatic
+<span class="hll">6    * Epsilon mixing rule (BETWEEN different FF) : 1 = geometric   2 = arithmatic
+</span><span class="hll">6     * Sigma mixing rule (BETWEEN different FF): 1 = geometric 2 = arithmatic
+</span>0         * Display additional info. for protein 1=Yes  0=No
+0         * Freeze atoms? 1 = Yes (see below)  0 = No
+0         * Tether atoms? 1 = Yes (see below)  0 = No
+...
+...
+</pre></div>
+</div>
+<p>The <em>control</em> file shows this is a multiple potential model and DL_FIELD will extract the require FF schemes from the input file, <em>octane_zeolite.xyz</em>. The options (6) are selected for the LJ12-6 mixing rules to obtain the LJ <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> parameters by meanis of SK approximation. Note that atom display mode must be that of DL_FIELD format (or DL_F Notation), to carry out correct matching against the data in the <em>dl_field.atom_data</em>.</p>
+<p>When DL_FIELD is run, the following information will be reported in the <em>dl_field.output</em> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">...</span>
+<span class="n">Use</span> <span class="n">SK</span> <span class="n">combination</span> <span class="n">rule</span> <span class="n">to</span> <span class="n">determine</span> <span class="n">vdw</span> <span class="n">parameters</span> <span class="n">between</span> <span class="n">pairs</span>
+<span class="n">of</span> <span class="n">atoms</span> <span class="kn">from</span> <span class="nn">different</span> <span class="n">FF</span> <span class="n">schemes</span><span class="o">.</span> <span class="n">Reading</span> <span class="n">data</span> <span class="kn">from</span> <span class="nn">dl_field.atom_data.</span>
+
+<span class="n">Selected</span> <span class="n">atomic</span> <span class="n">polarisabilities</span> <span class="ow">and</span> <span class="n">vdw</span> <span class="n">radii</span> <span class="n">are</span> <span class="n">shown</span> <span class="ow">in</span> <span class="n">brackets</span><span class="p">)</span><span class="o">.</span>
+<span class="n">C1p_A</span><span class="p">(</span><span class="n">pol</span><span class="o">=</span><span class="mf">0.960</span> <span class="n">rvdw</span><span class="o">=</span><span class="mf">1.800</span><span class="p">)</span> <span class="o">-</span> <span class="n">Si</span><span class="c1">#101_B(pol=0.000 rvdw=2.100)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mf">0.0000e+00</span>   <span class="n">B</span> <span class="o">=</span> <span class="mf">0.0000e+00</span>
+<span class="n">Eps</span> <span class="o">=</span> <span class="mf">0.000</span>   <span class="n">Sigma</span> <span class="o">=</span> <span class="mf">0.000</span>
+<span class="o">================</span>
+<span class="n">C1p_A</span><span class="p">(</span><span class="n">pol</span><span class="o">=</span><span class="mf">0.960</span> <span class="n">rvdw</span><span class="o">=</span><span class="mf">1.800</span><span class="p">)</span> <span class="o">-</span> <span class="n">O</span><span class="c1">#c101_B(pol=0.000 rvdw=0.000)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mf">0.0000e+00</span>   <span class="n">B</span> <span class="o">=</span> <span class="mf">0.0000e+00</span>
+<span class="n">Eps</span> <span class="o">=</span> <span class="mf">0.000</span>   <span class="n">Sigma</span> <span class="o">=</span> <span class="mf">0.000</span>
+<span class="o">================</span>
+<span class="n">C1p_A</span><span class="p">(</span><span class="n">pol</span><span class="o">=</span><span class="mf">0.960</span> <span class="n">rvdw</span><span class="o">=</span><span class="mf">1.800</span><span class="p">)</span> <span class="o">-</span> <span class="n">O</span><span class="c1">#s101_B(pol=0.850 rvdw=1.520)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mf">1.1410e+06</span>   <span class="n">B</span> <span class="o">=</span> <span class="mf">1.7041e+03</span>
+<span class="n">Eps</span> <span class="o">=</span> <span class="mf">0.636</span>   <span class="n">Sigma</span> <span class="o">=</span> <span class="mf">2.958</span>
+<span class="o">================</span>
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For more information about SK approximation, please consult DL_FIELD manual, Section 3.10.2</p>
+</div>
+<p><a class="reference internal" href="#header-dlf-23"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guides.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_22.html"
+                        title="previous chapter">Customise VDW interactions (VDW_FIX directive)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlf_18.html"
+                        title="next chapter">Selective interactions</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlf_18.html" title="Selective interactions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_22.html" title="Customise VDW interactions (VDW_FIX directive)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

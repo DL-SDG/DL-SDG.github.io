@@ -1,0 +1,304 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Foce field schemes &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Force field data files: Structure Files" href="dlf_3.html" />
+    <link rel="prev" title="The dl_f_path file" href="dlf_24.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlf_3.html" title="Force field data files: Structure Files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_24.html" title="The dl_f_path file"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="foce-field-schemes">
+<span id="header-dlf-25"></span><h1>Foce field schemes<a class="headerlink" href="#foce-field-schemes" title="Permalink to this headline">¶</a></h1>
+<p>In molecular simulations, FF parameters are usually derived by some empirical rules, either derived from some experimental observations or quantum mechanical calculations. Different research groups use different rules to obtain these parameters. Collectively, a set of rules that model a class of molecules is called a force field (FF) scheme.</p>
+<p>DL_FIELD implements a wide range of FF schemes as shown below:</p>
+<ul class="simple">
+<li>CHARMM - For biomolecules including small drug molecules.</li>
+<li>AMBER - For biomolecules including small drug molecules..</li>
+<li>OPLS2005 - For biomolecules, general organic molecules and drug molecules.</li>
+<li>OPLS-DES - Deep eutectic solvents.</li>
+<li>OPLS CL&amp;P - Organic cationic and anionic species for ionic liquids.</li>
+<li>OPLS AA/M - Protein molecules.</li>
+<li>PCFF - General organic molecules, organic polymers, Si-based structures.</li>
+<li>CVFF - General organic molecules.</li>
+<li>TraPPE-EH - Small organic molecules, for phase equilibria simulations.</li>
+<li>Dreiding - General FF for covalent molecules.</li>
+<li>Inorgnic - force fields for inorganic materials.</li>
+<li>CHARMM19 - United atom protein model.</li>
+<li>G54A7 - united atom Gromos FF.</li>
+<li>MISC FF - general purpose definable FF.</li>
+</ul>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>FF Scheme Structures</strong></p>
+<p>Each FF scheme (XX) consists of the following file components:</p>
+<ul class="simple">
+<li>Structure file (<em>.sf</em>), <em>XX.sf</em>.</li>
+<li>Parameter file (<em>.par</em>), <em>XX.par</em>.</li>
+<li>Miscellaneous supporting files for some FF schemes.</li>
+</ul>
+<p>These files are located in the <em>lib/</em> directory and they are all expressed in the same format for all FF schemes.</p>
+<p>Some FF schemes are sub-divided for different types or classes of molecules. For instance, CHARMM force fields consist of schemes for amino acids (proteins), nuclei acids (DNA, RNA), carbohydrates and general organic molecules. In DL_FIELD, these sub divisions are considered to be independant FF schemes, although collectively they are compatible to one another.</p>
+<p>An FF scheme must always be scpecified in the <em>control</em> file when running DL_FIELD. The program also allows multiple potential scenerios by specifying more than one different FF schemes. For more details, please see <a class="reference internal" href="dlf_13.html"><span class="doc">Multiple Potential Features</span></a>.</p>
+<p><br /></p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p>Table below lists the available FF schemes with the corresponding scheme labels.</p>
+<table border="1" class="colwidths-given docutils align-center">
+<colgroup>
+<col width="31%" />
+<col width="22%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">FF schemes</th>
+<th class="head">Labels</th>
+<th class="head">Example structures</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>CHARMM22 for proteins</td>
+<td>CHARMM22_prot</td>
+<td>amino acid residues, fitted molecules</td>
+</tr>
+<tr class="row-odd"><td>CHARMM36 for proteins</td>
+<td>CHARMM36_prot</td>
+<td>amino acid residues, fitted molecules</td>
+</tr>
+<tr class="row-even"><td>CHARMM36 for nuclei acids</td>
+<td>CHARMM36_nucl</td>
+<td>DNA, RNA</td>
+</tr>
+<tr class="row-odd"><td>CHARMM36 for lipids</td>
+<td>CHARMM36_lipid</td>
+<td>lipid molecules</td>
+</tr>
+<tr class="row-even"><td>CHARMM36 for carbohydrates</td>
+<td>CHARMM36_carb</td>
+<td>sugar molecules</td>
+</tr>
+<tr class="row-odd"><td>CHARMM36 gneral force field</td>
+<td>CHARMM36_cgenff</td>
+<td>organic molecules, biomolecules</td>
+</tr>
+<tr class="row-even"><td>Amber including Glycam FF</td>
+<td>AMBER</td>
+<td>Amino acids, carbohydrates.</td>
+</tr>
+<tr class="row-odd"><td>Amber general force field</td>
+<td>AMBER16_gaff</td>
+<td>Organic molecules.</td>
+</tr>
+<tr class="row-even"><td>OPLS_2005</td>
+<td>OPLS2005</td>
+<td>General organic molecules.</td>
+</tr>
+<tr class="row-odd"><td>OPLS AA/M for proteins</td>
+<td>OPLS_AAM</td>
+<td>amino acid residues</td>
+</tr>
+<tr class="row-even"><td>OPLS CL&amp;P</td>
+<td>OPLS_CL_P</td>
+<td>ionic liquids</td>
+</tr>
+<tr class="row-odd"><td>OPLS for deep eutetic solvents</td>
+<td>OPLS_DES</td>
+<td>organic solvent molecules</td>
+</tr>
+<tr class="row-even"><td>DREIDING</td>
+<td>DREIDING</td>
+<td>General organic molecules</td>
+</tr>
+<tr class="row-odd"><td>Polymer consistent force field</td>
+<td>PCFF</td>
+<td>General molecules, organosilica</td>
+</tr>
+<tr class="row-even"><td>Consistent valence force field</td>
+<td>CVFF</td>
+<td>General organic molecules</td>
+</tr>
+<tr class="row-odd"><td>COMPASS</td>
+<td>COMPASS</td>
+<td>General organic molecules</td>
+</tr>
+<tr class="row-even"><td>Transferable potentials for phase equilibria</td>
+<td>TRAPPE_EH</td>
+<td>General organic molecules, small aromatics</td>
+</tr>
+<tr class="row-odd"><td>Inorganic FF for binary oxides</td>
+<td>INORGANIC_binary_oxide</td>
+<td>Mineral oxides, MO2, MO</td>
+</tr>
+<tr class="row-even"><td>Inorganic FF for ternary oxides</td>
+<td>INORGANIC_ternary_oxide</td>
+<td>Minerals, MXO</td>
+</tr>
+<tr class="row-odd"><td>Inorganic FF for binary halides</td>
+<td>INORGANIC_binary_halide</td>
+<td>MX, X=F, Cl, Br, I</td>
+</tr>
+<tr class="row-even"><td>Inorganic FF for glass</td>
+<td>INORGANIC_glass</td>
+<td>alumino-silicate, phosphate glass, etc</td>
+</tr>
+<tr class="row-odd"><td>Inorganic FF for clay</td>
+<td>INORGANIC_clay</td>
+<td>Clay minerals, CLAYFF.</td>
+</tr>
+<tr class="row-even"><td>Inorganic FF zeolites</td>
+<td>INORGANIC_zeolite</td>
+<td>Silicalites, faujasites, etc</td>
+</tr>
+<tr class="row-odd"><td>Zeolite Hill-Sauer</td>
+<td>INORGANIC_zeolite_HS</td>
+<td>silica, aluminasilicic acid, aluminosilicates</td>
+</tr>
+<tr class="row-even"><td>CHARMM19 - United atom model</td>
+<td>CHARMM19</td>
+<td>amino acids.</td>
+</tr>
+<tr class="row-odd"><td>Gromos united atom G54A7</td>
+<td>G54A7</td>
+<td>Amino acids, lipids.</td>
+</tr>
+<tr class="row-even"><td>Non-specific, miscellaneous FF</td>
+<td>MISC_FF</td>
+<td>Anything: user define.</td>
+</tr>
+<tr class="row-odd"><td>Multiple potential</td>
+<td>multiple</td>
+<td>Mixed components, bioinorganics.</td>
+</tr>
+</tbody>
+</table>
+<p>Example below shows a top portion of an example <em>control</em> file, showing the CHARMM22 protein FF is used.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Control</span> <span class="n">file</span> <span class="n">title</span><span class="o">.</span> <span class="n">For</span> <span class="n">DL_FIELD</span> <span class="mf">4.10</span><span class="o">.</span>
+<span class="mi">1</span>        <span class="o">*</span> <span class="n">Construct</span> <span class="n">DL_POLY</span> <span class="n">output</span> <span class="n">files</span>
+<span class="mi">0</span>        <span class="o">*</span> <span class="n">Secodary</span> <span class="n">output</span> <span class="n">files</span> <span class="p">(</span><span class="n">Gromacs</span><span class="p">,</span> <span class="n">Chemshell</span> <span class="ow">or</span> <span class="n">none</span><span class="p">)</span><span class="o">.</span>
+<span class="hll"><span class="n">charmm22_prot</span>  <span class="o">*</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">force</span> <span class="n">field</span> <span class="n">require</span> <span class="p">(</span><span class="n">see</span> <span class="nb">list</span> <span class="n">below</span> <span class="k">for</span> <span class="n">choices</span><span class="p">)</span><span class="o">.</span>
+</span><span class="n">kcal</span><span class="o">/</span><span class="n">mol</span>  <span class="o">*</span> <span class="n">Energy</span> <span class="n">unit</span><span class="p">:</span> <span class="n">kcal</span><span class="o">/</span><span class="n">mol</span><span class="p">,</span> <span class="n">kJ</span><span class="o">/</span><span class="n">mol</span><span class="p">,</span> <span class="n">eV</span><span class="p">,</span> <span class="ow">or</span> <span class="n">K</span><span class="o">.</span>
+<span class="n">normal</span>  <span class="o">*</span> <span class="n">Conversion</span> <span class="n">criteria</span> <span class="p">(</span><span class="n">strict</span><span class="p">,</span> <span class="n">normal</span><span class="p">,</span> <span class="n">loose</span><span class="p">)</span>
+<span class="mi">1</span>        <span class="o">*</span> <span class="n">Bond</span> <span class="nb">type</span> <span class="p">(</span><span class="mi">0</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="mi">1</span><span class="o">=</span><span class="n">harmonic</span> <span class="p">,</span> <span class="mi">2</span><span class="o">=</span><span class="n">Morse</span><span class="p">)</span>
+<span class="mi">1</span>        <span class="o">*</span> <span class="n">Angle</span> <span class="nb">type</span> <span class="p">(</span><span class="mi">0</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="mi">1</span><span class="o">=</span><span class="n">harmonic</span><span class="p">,</span> <span class="mi">2</span><span class="o">=</span><span class="n">harmonic</span> <span class="n">cos</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#header-dlf-25"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guides.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_24.html"
+                        title="previous chapter">The <em>dl_f_path</em> file</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlf_3.html"
+                        title="next chapter">Force field data files: Structure Files</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlf_3.html" title="Force field data files: Structure Files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_24.html" title="The dl_f_path file"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

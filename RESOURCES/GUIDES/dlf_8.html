@@ -1,0 +1,177 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Atom Typing &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The DL_F Notation 1" href="dlf_9.html" />
+    <link rel="prev" title="The udff file: 2. Examples" href="dlf_20.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlf_9.html" title="The DL_F Notation 1"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_20.html" title="The udff file: 2. Examples"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="atom-typing">
+<span id="header-dlf-8"></span><h1>Atom Typing<a class="headerlink" href="#atom-typing" title="Permalink to this headline">¶</a></h1>
+<p>The <a href="dlf_2_atom_typing.html" onclick="window.open('dlf_2_atom_typing.html',
+      'newwindow', 'width=600,height=300'); return false;">atom typing</a> is a procedure to decide the ATOM_TYPEs of every atoms in the system. Eact ATOM_TYPE is referenced to a specific ATOM_KEY, and from such, to assign the appropriate FF parameters.</p>
+<p>Different FF schemes use different rules to determine the ATOM_TYPEs. For this reason, converting one FF model to the other FF models is often a non-trivial task.</p>
+<p>DL_FIELD uses the following approaches to obtain ATOM_TYPEs:</p>
+<ol class="arabic simple">
+<li>Template matching (for PDB files).</li>
+<li>Molecular topology analysis using the DL_F Notation (for xyz, mol2 files).</li>
+<li>Combination of both (for xyz).</li>
+</ol>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Template Matching</strong></p>
+<p>This atom typing procedure involves matching of molecular system against pre-defined MOLECULE templates in the <em>sf</em> files or the <em>udff</em> file if available. DL_FIELD will give an error if no suitable template is found.</p>
+<p>Once a MOLECULE is identified, ATOM_TYPEs are assigned according to the connectivity information and the atoms are rearranged according to the template assignment.</p>
+<p>In summary, template matching has the following characteristics:</p>
+<ul class="simple">
+<li>A MOLECULE template must be explicitly pre-defined, indicating the ATOMs and the corresponding ATOM_TYPEs and charges.</li>
+<li>Possible to use auto-CONNECT feature to simplify the template definition. Useful for complex MOLECULEs.</li>
+<li>Can fine tune model behaviour - introduce constrains, rigid body, core-shell and pseudo-points.</li>
+<li>Useful for specific classes of molecules - proteins (amino acid residues), DNA and carbohydrates.</li>
+<li>Suitable for user’s structures in PDB, with a correct <a href="dlf_8_MOLECULE_KEY.html" onclick="window.open('dlf_8_MOLECULE_KEY.html',
+      'newwindow', 'width=600,height=300'); return false;">MOLECULE_KEY</a>.</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/dl_f_8_1.png"><img alt="../../_images/dl_f_8_1.png" class="align-center" src="../../_images/dl_f_8_1.png" style="width: 592.8000000000001px; height: 276.0px;" /></a>
+<p>The disadvantage of using template matching procedure is that the MOLECULE template construction can be tedious and the ATOM_TYPEs must be pre-assigned by the users.</p>
+<p>Diagram above illustrates the FF conversion of ethyl acetate (ethyl ethanoate) for Amber GAFF force field. In the PDB file, the MOLECULE_KEY ETAC must be inserted in the PDB file. DL_FIELD will base on this information to look for the corresponding MOLECULE template to produce the DL_POLY FF files.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Molecular topology analysis</strong></p>
+<p>Carry out detailed molecular topology analysis. From such, DL_FIELD can determine the chemical nature of every atom in the system that naturally expresses by the ATOM_TYPEs, by making use of the DL_F Notation (see next page).</p>
+<p>In summary, the topology analysis approach has the following characteristics:</p>
+<ul class="simple">
+<li>Do not need to create MOLECULE template.</li>
+<li>Do not need to decide ATOM_TYPEs. This is done automatically by DL_FIELD (auto atom typing).</li>
+<li>Limited fine-tuning options. For example, only allow constrains on H-containing bonds.</li>
+<li>Applicable to OPLS2005, PCFF and CVFF only.</li>
+</ul>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Combination of both procedures</strong></p>
+<p>Some FF schemes require the use of templates to setup FF models. CHARMM and AMBER are two of such examples and they are called the template-based FF. Normally, PDB files would be needed. However, DL_FIELD allows the use of xyz file, provided the MOLECULE templates are available, either in the <em>.sf</em> file or the udff file.</p>
+<p>In the case, DL_FIELD will automatically identify the molecules in the system and search for a suitable template to match with the molecules. Once a template is found, it will carry out the template matching procedure as mentioned above.</p>
+<p>In summary, combined procedure has the following characteristics:</p>
+<ul class="simple">
+<li>Applicable to CHARMM, AMBER and some OPLS-type FF such as CL&amp;P and DES.</li>
+<li>Need pre-defined MOLECULE templates, that consists of individual small molecules.</li>
+<li>Does not apply to complex structures such as proteins, DNA, polysachharides, etc.</li>
+</ul>
+<p><a class="reference internal" href="#header-dlf-8"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guides.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_20.html"
+                        title="previous chapter">The udff file: 2. Examples</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlf_9.html"
+                        title="next chapter">The DL_F Notation 1</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlf_9.html" title="The DL_F Notation 1"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_20.html" title="The udff file: 2. Examples"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

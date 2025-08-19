@@ -1,0 +1,17 @@
+.. D_ATA tutorial.
+
+.. |br| raw:: html
+
+   <br />
+
+*****************************
+DL_F Notation and DANAI
+*****************************
+
+Central to the unique capability of D_ATA to study atomic interactions are the implementation of DL_F Notation and DANAI. These features are implemented in DL_FIELD and DL_ANALYSER, respectively.
+
+|br|
+
+For information about DL_F Notation, see :doc:`dlf_10` in DL_FIELD Resource Guide section.
+|br| |br|
+For more information about DANAI, see :doc:`dla_8` and :doc:`dla_9` in DL_ANALYSER Resource Guide section.

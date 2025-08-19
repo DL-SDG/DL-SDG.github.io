@@ -1,0 +1,79 @@
+.. DL_FIELD tutorial.
+.. _Header_dlf_14:
+
+.. |br| raw:: html
+
+   <br /> 
+
+****************
+Core-shell model
+****************
+
+Force field models normally assigned fixed partial charges centered at atoms, called the rigid ion model. This method cannot fully account for the polarisation effect, which arises due to local electric effect and will induce a dipole moment, :math:`\mu`.
+
+One way to introduce polarisation effect is to use core-shell model. The model splits an atom into two particle components: positively charged core and negatively charged shell and they are connected by a harmonic spring with the force constant relates to the atomic polarisability, :math:`\alpha`. 
+
+.. image:: ../../image/dlf_14_1.png
+   :scale: 50%
+   :align: center
+
+Charges are then redistributed to both components, while the vdw interactions apply only to the shell component of the atom. There is no electrostatic interaction between the components within the same atom. 
+
+DL_FIELD can define two types of core-shell model: (1) the dynamical (adiabatic) shell model, where a small fraction of mass is assigned to the shell, or (2) the relaxed (massless) shell model where shell components have no mass. Please consult DL_POLY manual for more details about the characteristics of these different models.
+
+|br|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Core-shell model for organic systems**
+
+Core-shell models are usually implemented for inorganic models, for instance, on the oxygen atom of a mineral oxide. However, DL_FIELD uses a standard set of protocol on all FF schemes. All core-shell models must be implemented by using MOLECULE templates.
+
+Example below shows a modified ethanol MOLECULE with core-shell model applied on the hydroxyl oxygen. This MOLECULE can be found in the *ethanol.udff* file in the *Examples/* folder. 
+
+.. image:: ../../image/dlf_14_2.png
+   :scale: 50%
+   :align: center
+
+The label 'OZ' is the shell part of the oxygen atom. Notice the *CONNECT* statement for the ATOM 'O' is only connected to 'C2' and 'H' but not 'OZ' since the *CONNECT* directive only applies to covalent bonds and 'OZ' is in fact part of 'O'. However, a *self-CONNECT* statement is issued for 'OZ', while the *SHELL* statement indicates 'O' and 'OZ' form the core-shell entity.
+
+The shell 'particle' must be defined as a new species as follows:
+
+.. literalinclude:: udff.core_shell
+   :emphasize-lines: 2,3,8 
+
+Below shows the potential parameters for the core-shell species.
+
+.. literalinclude:: udff.core_shell2
+
+The *SHELL* directive specifies the spring constant, while the vdw parameters were assigned to the shell component only.
+
+Below shows part of the input file, extracted from *Examples/ethanol_shall.pdb*, which highlights the core and shell of the oxygen atom. 
+
+.. literalinclude:: pdb.core_shell
+   :emphasize-lines: 5,12 
+
+.. Note::
+   Atoms can have arbitrary labels, or just element symbols. However, the shell part of an atom must always be described as the ATOM_KEY, which in this case, is the *OZ*. 
+
+|br|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Core-shell model for inorganic systems**
+
+Unlike the organic systems, DL_FIELD has the capability to automatically insert the shell part of an atom if this is available, depending on the MOLECULE template used.
+
+For example, consider a simple *xyz* file consists of magnesium oxide (MgO), a binary oxide species:
+
+.. literalinclude:: xyz.mgo 
+   :emphasize-lines: 3 
+
+From the input file, a rigid-ion model is being used (MOLECULE_KEY MO3). It is available from the library file, *DLPOLY_INORGANIC_binary_oxide.sf*.  
+
+If the MOLECULE_KEY is changed to 'MO2', which is a core-shall version for MgO, DL_FIELD will automatically insert the missing shells (or cores) if they are not available from the input file. 
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dlf_14>`
+

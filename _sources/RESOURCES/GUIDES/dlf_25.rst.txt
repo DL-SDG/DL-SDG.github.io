@@ -1,0 +1,182 @@
+.. DL_FIELD tutorial. Available force fields
+.. _Header_dlf_25:
+
+.. |pop1| raw:: html
+
+   <a href="dlf_3_MOLECULE.html" onclick="window.open('dlf_3_MOLECULE.html',
+      'newwindow', 'width=700,height=400'); return false;">MOLECULE</a>
+
+.. |pop2| raw:: html
+
+   <a href="dlf_2_ATOM_TYPE.html" onclick="window.open('dlf_2_ATOM_TYPE.html',
+      'newwindow', 'width=500,height=300'); return false;">ATOM_TYPE</a>
+
+.. |pop3| raw:: html
+
+   <a href="dlf_3_ATOM.html" onclick="window.open('dlf_3_ATOM.html',
+         'newwindow', 'width=500,height=300'); return false;">ATOMs</a>
+
+.. |br| raw:: html
+
+   <br />
+
+******************
+Foce field schemes
+******************
+
+In molecular simulations, FF parameters are usually derived by some empirical rules, either derived from some experimental observations or quantum mechanical calculations. Different research groups use different rules to obtain these parameters. Collectively, a set of rules that model a class of molecules is called a force field (FF) scheme.
+
+DL_FIELD implements a wide range of FF schemes as shown below:
+
+* CHARMM - For biomolecules including small drug molecules. 
+ 
+* AMBER - For biomolecules including small drug molecules..
+
+* OPLS2005 - For biomolecules, general organic molecules and drug molecules.
+
+* OPLS-DES - Deep eutectic solvents.
+
+* OPLS CL&P - Organic cationic and anionic species for ionic liquids.
+
+* OPLS AA/M - Protein molecules.
+
+* PCFF - General organic molecules, organic polymers, Si-based structures.
+
+* CVFF - General organic molecules.
+
+* TraPPE-EH - Small organic molecules, for phase equilibria simulations.
+
+* Dreiding - General FF for covalent molecules.
+
+* Inorgnic - force fields for inorganic materials. 
+
+* CHARMM19 - United atom protein model.
+
+* G54A7 - united atom Gromos FF.
+
+* MISC FF - general purpose definable FF.
+
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**FF Scheme Structures**
+
+Each FF scheme (XX) consists of the following file components:
+
+* Structure file (*.sf*), *XX.sf*.
+
+* Parameter file (*.par*), *XX.par*.
+
+* Miscellaneous supporting files for some FF schemes.
+
+These files are located in the *lib/* directory and they are all expressed in the same format for all FF schemes.
+
+Some FF schemes are sub-divided for different types or classes of molecules. For instance, CHARMM force fields consist of schemes for amino acids (proteins), nuclei acids (DNA, RNA), carbohydrates and general organic molecules. In DL_FIELD, these sub divisions are considered to be independant FF schemes, although collectively they are compatible to one another.
+
+An FF scheme must always be scpecified in the *control* file when running DL_FIELD. The program also allows multiple potential scenerios by specifying more than one different FF schemes. For more details, please see :doc:`dlf_13`. 
+
+|br| 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+Table below lists the available FF schemes with the corresponding scheme labels.
+
+.. list-table::
+   :widths: 100 70 150
+   :header-rows: 1
+   :align: center
+
+   * - FF schemes
+     - Labels
+     - Example structures
+   * - CHARMM22 for proteins
+     - CHARMM22_prot
+     - amino acid residues, fitted molecules
+   * - CHARMM36 for proteins
+     - CHARMM36_prot
+     - amino acid residues, fitted molecules
+   * - CHARMM36 for nuclei acids
+     - CHARMM36_nucl
+     - DNA, RNA
+   * - CHARMM36 for lipids
+     - CHARMM36_lipid
+     - lipid molecules
+   * - CHARMM36 for carbohydrates
+     - CHARMM36_carb
+     - sugar molecules
+   * - CHARMM36 gneral force field
+     - CHARMM36_cgenff
+     - organic molecules, biomolecules
+   * - Amber including Glycam FF
+     - AMBER 
+     - Amino acids, carbohydrates. 
+   * - Amber general force field
+     - AMBER16_gaff
+     - Organic molecules.
+   * - OPLS_2005
+     - OPLS2005
+     - General organic molecules.
+   * - OPLS AA/M for proteins
+     - OPLS_AAM
+     - amino acid residues
+   * - OPLS CL&P
+     - OPLS_CL_P
+     - ionic liquids
+   * - OPLS for deep eutetic solvents
+     - OPLS_DES
+     - organic solvent molecules
+   * - DREIDING
+     - DREIDING
+     - General organic molecules
+   * - Polymer consistent force field
+     - PCFF
+     - General molecules, organosilica
+   * - Consistent valence force field
+     - CVFF
+     - General organic molecules 
+   * - COMPASS
+     - COMPASS
+     - General organic molecules
+   * - Transferable potentials for phase equilibria
+     - TRAPPE_EH
+     - General organic molecules, small aromatics
+   * - Inorganic FF for binary oxides
+     - INORGANIC_binary_oxide
+     - Mineral oxides, MO2, MO
+   * - Inorganic FF for ternary oxides
+     - INORGANIC_ternary_oxide
+     - Minerals, MXO
+   * - Inorganic FF for binary halides
+     - INORGANIC_binary_halide
+     - MX, X=F, Cl, Br, I
+   * - Inorganic FF for glass
+     - INORGANIC_glass
+     - alumino-silicate, phosphate glass, etc
+   * - Inorganic FF for clay
+     - INORGANIC_clay
+     - Clay minerals, CLAYFF.
+   * - Inorganic FF zeolites
+     - INORGANIC_zeolite
+     - Silicalites, faujasites, etc 
+   * - Zeolite Hill-Sauer
+     - INORGANIC_zeolite_HS
+     - silica, aluminasilicic acid, aluminosilicates
+   * - CHARMM19 - United atom model
+     - CHARMM19
+     - amino acids.
+   * - Gromos united atom G54A7
+     - G54A7
+     - Amino acids, lipids. 
+   * - Non-specific, miscellaneous FF
+     - MISC_FF
+     - Anything: user define.
+   * - Multiple potential
+     - multiple
+     - Mixed components, bioinorganics.
+
+Example below shows a top portion of an example *control* file, showing the CHARMM22 protein FF is used.
+
+.. literalinclude:: dl_field.control2
+   :emphasize-lines: 4
+
+:ref:`^ GO TO TOP ^<Header_dlf_25>`

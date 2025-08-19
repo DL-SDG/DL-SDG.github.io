@@ -1,0 +1,29 @@
+.. D_ATA tutorial Chemical Structure File (csf).
+.. _Header_data_5:
+
+.. |br| raw:: html
+
+   <br />
+
+*****************************
+Chemical Structure File (csf)
+*****************************
+
+The csf is a file that defines the chemical identity in DL_F Notation for every atom identified in the system. Each time when D_ATA is run, a csf will be generated, called *d_ata.csf*. 
+
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+Below shows a section of csf generated for a drug molecule called firocoxib, an anti-inflammatory drug for animals.
+
+.. image:: ../../image/data_5_1.png
+   :scale: 90%
+   :align: center
+
+The csf file contains the full information about the chemical and topological states of molecular systems. However,
+at the moment, D_ATA does not use csf file apart from just showing the chemical information for every atom in the system.
+
+.. Note::
+   If the Program Mode option is set to 2, then only one csf file will be generated (*d_ata.csf*). If Program Mode is set to 1, then a number of csf files (*d_ata_X.csf*) will be generated, one for each input configuration file defined in the INPUT_FILE.
+
+:ref:`^ GO TO TOP ^<Header_data_5>`

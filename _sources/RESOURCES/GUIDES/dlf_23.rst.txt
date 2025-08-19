@@ -1,0 +1,95 @@
+.. DL_FIELD tutorial. Slater-Kirkwood  
+.. _Header_dlf_23:
+
+.. |nbsp| unicode:: 0xA0
+   :trim:
+
+.. |br| raw:: html
+
+   <br />
+
+**********************
+Auto VDW determination 
+**********************
+
+This pages explains how DL_FIELD can use Slater-Kirkwood (SK) approximation to automatically determine the vdw parameters for any pair of atoms, in situations where there is no defined vdw mixing rules, nor standard parameters available in the literatures. 
+
+For this reason, this method only applies to systems that contain more than one FF scheme (multiple potential) such as the bio-inorganic models, where one atom is from one FF scheme and the other atom is from the other FF scheme.
+
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**SK approximation**
+
+Van der Waals (vdw) forces are combination of several non-covalent intermolecular forces that arise due to change in electron clouds, resulting in dipole moments. The strongest component being those of permanent dipoles, while the London dispersion force is the weakest component. The latter is predominantly present in nonpolar atoms such as noble gases. It arises due to instantaneous electron cloud fluctuations that form temporary dipoles. Therefore, London force is also called the induced dipole-induced dipole attraction.
+
+For this reason, vdw forces are closely related to atomic polarisability (:math:`\alpha`), or the ability to deform the electron clouds, especially those of electron valence.
+
+Recall that a typical vdw LJ12-6 function consists of a repulsive parameter, *A*, and a dispersive parameter, *B*.
+
+.. math::
+
+      V \left(r \right) = \frac{A}{r^{12}} - \frac{B}{r^{6}}
+
+Consider two atoms, of type *i* and *j*, DL_FIELD can determine the dispersive parameter by using the Slater-Kirkwood approximation.
+
+.. math::
+      
+      B_{ij} = \frac{3}{2}\frac{ \alpha_{i} \alpha_{j}}{\sqrt{\frac{\alpha_{i}}{N_{i}}} + \sqrt{\frac{\alpha_{j}}{N_{j}}}}
+
+where *N* is the number of electron in an atom. In the case of the repulsive parameter, this can be obtained from the sum of atomic radii, *w*.
+
+.. math::
+      
+      A_{ij} = \frac{1}{2}B_{ij}(w_{i} + w_{j})^{6}
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**The dl_field.atom_data file**
+
+The equations show that :math:`\alpha` and *w* are the only adjustable parameters and they are listed in the file called *dl_field.atom_data* in the */lib* folder. A portion of this data, with illustrations, is shown below:
+
+.. image:: ../../image/dl_f_23_1.png
+   :scale: 45%
+   :align: center
+
+To determine the vdw parameters, DL_FIELD will look for exact match of ATOM_KEYs expressed in DL_F Notation between the input system and the data list, to obtain the corresponding :math:`\alpha` and *w*. If there is no match, DL_FIELD will obtain values from generic entries, with a symbol '*'. For example, the generic entry for fluorine is F*.
+
+For more details about data sources, please look into the content of the file.
+
+.. Note::
+   The information listed in *dl_field.atom_data* cannot be overriden by the *udff* file. You would need to change values or add new entries directly in the file.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Using SK approximation**
+
+Consider a model consistis of an octane molecule trapped within silicalite (SiO2) framework, which is a zeolite. 
+
+.. image:: ../../image/dl_f_23_2.jpg
+   :scale: 40%
+   :align: center
+
+Below shows a portion of the configuration input file (in *xyz* format), showing the relevant directives. 
+
+.. literalinclude:: octane_zeolite.txt 
+
+It shows OPLS2005 FF is applied to the octane molecule, while an inorganic_zeolite FF is applied to silicalite. Potential parameters are available for both the octane molecule and the silicalite structure. However, there is no vdw parameter available between atoms of both components. We will use the SK approximation to determine these missing parameters.
+
+Below show a portion of DL_FIELD *control*, showing the relevant input options, as highlighted.
+
+.. literalinclude:: control_dlf_23.txt
+   :emphasize-lines: 4,11,15,21-22
+
+The *control* file shows this is a multiple potential model and DL_FIELD will extract the require FF schemes from the input file, *octane_zeolite.xyz*. The options (6) are selected for the LJ12-6 mixing rules to obtain the LJ :math:`\epsilon` and :math:`\sigma` parameters by meanis of SK approximation. Note that atom display mode must be that of DL_FIELD format (or DL_F Notation), to carry out correct matching against the data in the *dl_field.atom_data*.
+
+When DL_FIELD is run, the following information will be reported in the *dl_field.output* file:
+
+.. literalinclude:: sk_output.txt
+
+.. Note::
+   For more information about SK approximation, please consult DL_FIELD manual, Section 3.10.2
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_23>`
+

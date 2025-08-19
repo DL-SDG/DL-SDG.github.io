@@ -1,0 +1,38 @@
+.. Main portal to D_ATA tutorial. 
+
+
+
+*********************
+D_ATA 
+*********************
+
+Welcome to the D_ATA Reference Guide main portal. More illustrations and less wording than a user manual. This is where you can learn unique features that are implemented in D_ATA: DL_F Notation and DANAI. In addition, examples will be given how to run and intepret results. 
+
+.. image:: ../../image/data_0_1.png
+   :scale: 15%
+   :align: right
+
+|
+
+.. image:: ../../image/data_0_2.png
+   :scale: 60%
+   :align: right
+
+Table of contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   ./data_1
+   ./data_2
+   ./data_3
+   ./data_4
+   ./data_5
+   ./data_6
+
+.. toctree::
+   :maxdepth: 2
+
+   ./data_7
+   ./data_8
+   ./data_9

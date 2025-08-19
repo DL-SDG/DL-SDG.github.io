@@ -1,0 +1,34 @@
+.. Main portal for DL_POLY Reference Guide 
+
+
+
+***********************
+DL_POLY  
+***********************
+
+Welcome to the DL_POLY Reference Guide main portal. If you are new to DL_POLY or you wish to refresh your memory, you have come to the right place. The contents have been extracted from DL_POLY lecture slides given in DL_Software training workshops, but modified for an online self-learning experience. 
+
+Table of contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlp_1
+   ./dlp_3
+
+   ./dlp_5
+   ./dlp_4
+
+   ./dlp_6
+
+|
+
+.. image:: ../SIMULATIONS/IMAGES/iddy-reading.jpg
+   :scale: 15 %
+   :align: left
+
+|
+
+|
+
+W. Smith, C.W. Yong and P.M. Rodger, 'DL_POLY: Application to molecular simulation', *Mol. Sim.* **28**, 385-471 (2002)

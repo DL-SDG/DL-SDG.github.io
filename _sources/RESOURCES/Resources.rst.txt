@@ -13,7 +13,7 @@ Simulation resources main portal: DL_Software features, useful software tools, f
 
    ./manual	      
    ./tools
-   ./TUTORIALS/tutorials
+   ./GUIDES/guides
    ./EXERCISES/Exercises
    ./video_links   
    ./visualisation   

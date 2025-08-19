@@ -6,7 +6,9 @@ DL_Software General Information
 
 This is the main portal to assess all things about DL_Software: how to obtain, compilation, running programs, general software features, general guidance, etc.
 
-If you want to know how to use the software in more details, go to :doc:`TUTORIALS/tutorials`
+If you want to know how to use a software in more details, go to :doc:`GUIDES/guides`
+
+If you want to learn how to use a software, go to :doc:`EXERCISES/Exercises`
 
 .. toctree::
    :maxdepth: 2

@@ -1,0 +1,87 @@
+.. Cluster analysis  - cluster determination 
+.. _Header_dla_12:
+
+.. |br| raw:: html
+
+   <br />
+
+*********************************************
+Cluster determination - Size and distribution 
+*********************************************
+
+This page describes how you can use DL_ANALYSER to carry out cluster analyis. It is applicable to both atom-based and molecule-based analysis. Members that made up a cluster can be either atoms or molecules. 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Cluster analysis**
+
+This option determines average cluster sizes and their distributions over all configurations. DL_ANALYSER identifies a cluster based on the distance criteria set between the particle members. 
+
+For example, consider a system contained salicyclic acid molecules and atom-based analysis is used to detect the presence of any clusters in the system. An example of control file is shown below with highlights showing the relevant input parameters.
+
+
+.. literalinclude:: dla_cluster1.txt 
+   :emphasize-lines: 2,4,19,29 
+
+The atom index range 1 to 3997 includes all salicyclic molecules. Solvent molecules, from index number 3998 onwards are ignored.
+
+This is an atom-based analysis, and the only analysis criteria 'only atoms between molecules' (3) must be selected.  
+
+Next, the cluster analysis option must be switched on and the cutoff is set to 3.5 angstrom. Two molecules are considered as a group if any of each respective atom members from each molecule has a distance that is smaller or equal to the cutoff value set. 
+
+Diagram on the left below shows a cluster consists of three salicyclic acid molecules, showing the inter-molecular hydrogen bond interactions. They are considered as a three-molecule cluster and they are predominantly interacting via HB interactions which are typically much shorter, around 2.5 angstrom or less. However, a larger cutoff (3.5 angstrom) is defined, to detect molecules that are interacted over longer range such as hydrophobic and :math:`{\pi}` interactions. 
+
+.. image:: ../../image/dla_11_1.png
+   :scale: 35%
+   :align: center
+
+If molecule-based analysis is selected, then Molecule A1 would need to be explicitly defined but DL_ANALYSER will determine cluster members based on the distances between the centres of gravity of the molecules (diagram on the right).
+
+.. Warning::
+   Remember to change the cutoff value when switching from atom-based to molecule-based analysis. A larger cutoff is usually used for the latter since molecules are now reduced to a point. However, the cutoff cannot be too large. Otherwise, two molecules can be mis-identified as a cluster, with a third different molecule straddle between the molecules. 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Example: mefenamic acid solution**
+
+Mefenamic acid is a nonsteroidal anti-inflammatory drug to treat pain. The drug is soluble in ethanol and insoluble in water. 
+
+Two independant sets of MD simulations have been carried out using DL_POLY, each of which consists of 40 mefenamic acid molecules solvated in the respective solvent molecules. The simulation box size is about 60 x 60 x 60 angstroms.
+
+There is a total of 19,176 atoms with ethanol solvent, and a total of 21,765 atoms with water solvent. In both models, atom indices 1 to 1320 are the mefenamic acid molecules and the rest (1321 onwards) being the solvents. The models were setup by using DL_FIELD.
+
+The DL_POLY HISTORY files were analysed by using the control options as shown.
+
+.. literalinclude:: dla_cluster3.txt
+
+Graph below shows the average cluster size variation with respect to MD simulation time. 
+
+.. image:: ../../image/dla_12_1.png
+   :scale: 60%
+   :align: center
+
+For mefenamic acid in ethanol, the clusters were loosely aggregated, and constantly forming and breaking apart. This is due to the comparable favour interactions with both solvents and solutes.
+
+For mefenamic acid in water, the solutes prefer to interact with one another and less favourable to interact with the water solvent. Hence, the organic clusters grow in general with respect to time. Flat lines indicate that once clusters are formed, they do not easily break apart.
+
+Graph below indicates distribution of cluster sizes identified throughout the whole simulations.
+
+.. image:: ../../image/dla_12_2.png
+   :scale: 60%
+   :align: center
+
+Here, mefenamic acids in ethanol form dimeric structures most of the time and there is a spread of cluster sizes that loosely interact with one another. In the case of mefenamic acid in water, clusters are stable and can fuse with one another to form bigger sizes.
+
+Finally, below shows atomic configurations of the simulation models (solvent molecules excluded for clarity purposes).
+
+.. image:: ../../image/dla_12_3.png
+   :scale: 70%
+   :align: center
+
+Diagrams on the left and middle indicate the mefenamic acid configurations in water at the beginning (0 ns) and at MD time = 4.5 ns. Note the molecules aggregated to form two large clusters.
+
+Diagram on right indicates mefenamic acids in ethanol only form small aggregates.
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dla_12>`

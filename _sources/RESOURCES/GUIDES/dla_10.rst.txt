@@ -1,0 +1,82 @@
+.. Cross correlation analysis of atomic interactions 
+.. _Header_dla_10:
+
+.. |br| raw:: html
+
+   <br />
+
+********************************************
+Atomic Interaction Analysis - Results Output
+********************************************
+
+This page describes the type of results DL_ANALYSER will produce when carry out atomic interactions. 
+
+At the *Atomic Interaction Analysis Section* in the *control* file, users would need to select which macro-interactions to look for in the simulation model. Base on the input options, DL_ANALYSER will identify relevant atoms involve in the interactions.
+
+Then, set the criteria in the *control* file for DL_ANALYSER to decide whether an interaction is considered a valid count. For instance, for the hydrogen bond (HB) interaction, set both the distance (between H and the acceptor) and the angle about the H atom. 
+
+If the structural arrangement of these atoms fulfils the criteria and matches a given micro-interaction (described in DANAI), then it will be counted for that interaction.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Average counts and deviations**
+
+DL_ANALYSER will read through the trajectories and determine the average counts and the deviations for a range of DANAI interactions that were pre-programmed in DL_ANALYSER.
+
+Example below shows the results output for pure butanoic acid liquid for HB_20_20 (carboxylic-carboxylic) macro-interactions. 
+
+.. literalinclude:: dla_danai.txt 
+
+The results are shown as the absolute count values and their corresponding standard deviation, obtained over 250 samples. For comparison across different models, you can divide the count values by the total number of carboxylic groups present in the system model.
+
+The higher the counts the higher the occurence of such interactions. In this case, interactions centered around OE:H being the most common, that is the HB between carbonyl oxygen and the H atom of the hydroxyl group.
+
+You can set the way how DL_ANALYSER select the atoms for analysis. The example analysis shown above do not take into account the intra-interaction, that is, within the same molecule. See the relevant portion of the *control* file below. In this case, the HB interaction between the oxygen and the hydrogen *within* the same carboxylic group is ignored. 
+
+.. literalinclude:: dla_atom_range3.txt 
+   :emphasize-lines: 4,5 
+
+.. image:: ../../image/dla_10_1.png
+   :scale: 60%
+   :align: center
+
+|br|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Correlation coefficients**
+
+Next, DL_ANALYSER will determine the correlation coefficient, R, for each combination pairs of interactions, to find out the relationships among each other. Below show a truncated portion of the correlation coefficient, in the form of a table and the numbers match with the micro-interactions shown above. 
+
+.. literalinclude:: dla_danai_correlation.txt
+
+To use the table, you can find any interaction relationships for a given interaction with respect to all other interactions, by reading across the rows or columns for that interaction. 
+
+To determine a particular set of relationship, say interaction 4 and interaction 5, the intersection is the corresponding correlation coefficient, which is +0.869. 
+
+.. Note::
+   It does not matter which interaction numbers refer to which position, either row or column, it will always get a consistent value.
+
+In general: 
+
+A positive value gives a positive correlation, that is, the formation of one interaction also corresponds to the formation of the second interaction and *vice versa*.
+
+A negative value gives a negative correlation, that is, the formation of one interaction is at the expense of the reduction of the other interaction and *vice versa*.
+
+The magnitude of the value indicates the strength of such correlation, which can be any value between 1 and 0, inclusive.
+
+A low value of R indicates a negligible correlation. It means the behaviour of one interaction is not influenced by the other interaction and *vice versa*.
+
+For example, for interactions 2 and 3, they are highly correlated, with R = +0.793. This is not surprising because interaction 3 is in fact a 'superset' that will also include interaction 2. This is also the reason interaction 3 will almost always greater (in unusual circumstances, at least equal) than interaction 2!
+
+On the other hand, interactions 3 and 6 has a negative correlation with R = -0.552. This means one will form at the expense of the other. Diagram below show one such possible scenerio:
+
+.. image:: ../../image/dla_10_2.png
+   :scale: 70%
+   :align: center
+
+Diagram on the left shows a sketch of two interacting carboxylic groups to give interaction 3. However, there is a propensity for the interacting H atom to move slightly (curved arrow) towards the OE (carbonyl oxygen) atom to form interaction 6.
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dla_10>`

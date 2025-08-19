@@ -1,0 +1,35 @@
+.. D_ATA tutorial.
+.. _Header_data_7:
+
+.. |br| raw:: html
+
+   <br />
+
+**********************************
+Pentanoic acid liquid (input) 
+**********************************
+
+This section illustrates the use of D_ATA to determine interactions that occur in a molecular system consists of pentanoic acid liquid.
+The model trajectories were obtained from a standard NPT molecular simulation at 300 K and 1 atm. pressure.
+
+**Step 1 - Obtain atomic trajectories**
+
+Simulation was carried out using DL_POLY and atomic trajectories were converted from HISTORY file to *xyz* by using DL_ANALYSER (or any other utility script to do the same job). This *xyz* file would be used as the input coinfiguration for D_ATAS program (see below). 
+
+.. image:: ../../image/data_7_1.png
+   :scale: 90%
+   :align: center
+
+**Step 2 - Insert the xyz filename into INPUT_FILE (d_ata.input)**
+
+**Step 3 - CONTROL_FILE (d_ata.control)**
+
+Below shows options that are selected for this analysis.
+
+.. image:: ../../image/data_7_2.png
+   :scale: 90%
+   :align: center
+
+**Step 4 - Run D_ATA**
+
+:ref:`^ GO TO TOP ^<Header_data_7>`

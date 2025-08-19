@@ -1,0 +1,44 @@
+.. Main portal to DL_MESO Reference Guide. 
+
+
+
+***********************
+DL_MESO  
+***********************
+
+Welcome to the DL_MESO Reference Guide main portal. If you are new to DL_MESO or you wish to refresh your memory, you have come to the right place. The contents have been extracted from DL_MESO lecture slides given in DL_Software training workshops, but modified for an online self-learning experience. 
+
+The tutorial is split into two parts: Lattice Boltzmann Equation (LBE) and Dissipative Particle Dynamics (DPD).
+
+Table of contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlm_1
+   ./dlm_5
+   ./dlm_2
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlm_9
+   ./dlm_3
+   ./dlm_6
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlm_8
+   ./dlm_4
+   ./dlm_7
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlm_10
+
+.. toctree::
+   :maxdepth: 2
+
+   ./dlm_11

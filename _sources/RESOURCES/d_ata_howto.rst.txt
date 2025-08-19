@@ -13,7 +13,7 @@ This page tells you how to set D_ATA up and running.
 
 * D_ATA User Manual (:download:`PDF<./DOCUMENTS/MAN_D_ATA_1.1.pdf>`) - Version 1.1, April 2025.
 
-* :doc:`TUTORIALS/data_0` - Online Resource Guide, useful for quick references.
+* :doc:`GUIDES/data_0` - Online Resource Guide, useful for quick references.
 
 * :doc:`EXERCISES/exercises_data` - online tutorial exercises. Download example structures and try your own!
 

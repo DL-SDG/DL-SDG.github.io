@@ -1,0 +1,54 @@
+.. DL_FIELD tutorial. Produce Gromacs force field files
+.. _Header_dlf_26:
+
+.. |br| raw:: html
+
+   <br />
+
+*****************************
+Force field files for Gromacs
+*****************************
+
+This feature is only available for version 4.11 onwards.
+
+This page describes how to use DL_FIELD to produce FF files for Gromacs simulation package. It does not describe Gromacs file structure
+and directives in details. For more information, please consult Gromacs manual. 
+
+For more information about Gromacs output in DL_FIELD, consult the manual, Chapter 14.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Option to produce Gromacs files**
+
+By default, DL_FIELD will always produce FF files for DL_POLY. To produce FF files for Gromacs as well,
+the keyword *gromacs* must be used in the DL_FIELD *control* file as follows:
+
+.. literalinclude:: dl_field.control.gromacs
+   :emphasize-lines: 3,19,22  
+
+If the option to run Gromacs program is also switched on, then after FF files are produced, DL_FIELD will setup a binary *tpr*
+file and run a single-point calculation on Gromacs (provided the program is also available in the same machine where DL_FIELD 
+is executed).
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Output files**
+
+Upon successful FF conversions, DL_FIELD will produce the following files:
+
+(1) The system topology file, *gromacs.top*.
+
+(2) One or more include topology files, *gromacsX.itp*, wwhere *X* = 1, 2, 3, ...
+
+(3) A coordinate file, *gromacs.gro*.
+
+(4) A generic MD parameter file, *gromacs.mdp*.
+
+DL_FIELD can produce several *itp* files, which correspond to the number of Molecular Groups defined in the 
+configuration file. 
+
+Each *itp* file contains force field information for each Molecular Group. These *itp* files 
+are included in the top file, which defines the ATOM_TYPEs and provides a summary of system composition.
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_26>`

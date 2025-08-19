@@ -1,0 +1,204 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>What is DL_MESO &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="What is mesoscale modelling" href="dlm_5.html" />
+    <link rel="prev" title="DL_MESO" href="dlm_0.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlm_5.html" title="What is mesoscale modelling"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlm_0.html" title="DL_MESO"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-is-dl-meso">
+<span id="header-dlm-1"></span><h1>What is DL_MESO<a class="headerlink" href="#what-is-dl-meso" title="Permalink to this headline">¶</a></h1>
+<p><strong>DL_MESO package</strong></p>
+<p>DL_MESO started in 2003 as a CCP5 flagship project to provide general-purpose software designed to carry out mesoscale modelling. DL_MESO was first released in 2004 (version 1.0). At the time of writing (July 2021), version 2.7 was released in December 2018 with more than 350 registered users.</p>
+<p>DL_MESO consists of computer programs that can carry out simulations using various mesoscale modelling methods: a code written in C++ for Lattice Boltzmann Equation (LBE) simulations and a code written in Fortran for Dissipative Particle Dynamics (DPD). Both methods and codes enable modelling of materials at larger length and time scales than those available using molecular dynamics (MD). Other codes, including a graphical user interface, are supplied to prepare simulations and visualise or process their results.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Lattice Boltzmann Equation (LBE)</strong></p>
+<p>The Lattice Boltzmann Equation (LBE) method uses a statistical mechanics approach for particle motion, looking at the evolution of <em>distribution functions</em> that indicate probabilities of finding particles with particular momenta at a given position and time. The number of possible momenta is limited so particles can only exist and move on a regular grid or lattice: even with this limitation in place, the particles still exhibit correct fluid behaviour.</p>
+<p>The LBE algorithm consists of two main steps:</p>
+<ul class="simple">
+<li>Collision of particles at lattice sites</li>
+<li>Propagation (free-streaming) of particles along lattice links to neighbour sites</li>
+</ul>
+<p>The collision step can include applications of forces on fluids, such as those arising from intra-fluid and inter-fluid interactions that can be calculated before this step. Boundary conditions can be applied at arbitrary lattice sites to provide no-slip, free-slip or constant fluid velocities or densities.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>DL_MESO_LBE Capabilities</strong></p>
+<ul class="simple">
+<li>Two- and three-dimensional lattice grids (D2Q9, D3Q15, D3Q19, D3Q27).</li>
+<li>Can model multiple compressible or incompressible fluids with diffusion of solutes and/or heat transfer.</li>
+<li>Collision schemes:<ul>
+<li>BGK single relaxation time</li>
+<li>Two Relaxation Time (TRT)</li>
+<li>Multiple Relaxation Time (MRT)</li>
+<li>Cascaded LBE (CLBE)</li>
+</ul>
+</li>
+<li>Mesoscopic interactions:<ul>
+<li>Shan-Chen pseudopotentials</li>
+<li>Lishchuk continuum-based models</li>
+<li>Swift free-energy models for one/two fluids</li>
+</ul>
+</li>
+<li>Boundary conditions:<ul>
+<li>No-slip bounce-back at arbitrary grid points</li>
+<li>Fixed velocity/fluid density/solute concentration/temperature at grid extents</li>
+<li>Surface wetting available if using Shan-Chen or Swift interactions</li>
+</ul>
+</li>
+<li>Non-Newtonian (non-constant viscosity) rheological models</li>
+<li>Domain decomposition parallelisation available with MPI</li>
+<li>OpenMP multithreading available</li>
+</ul>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Dissipative Particle Dynamics (DPD)</strong></p>
+<p>Dissipative Particle Dynamics (DPD) is broadly similar to molecular dynamics (MD), with particles (or ‘beads’) interacting predominately via pairwise potentials and forces: the net forces on all particles are calculated and integrated over a small time step to determine their motion. The main difference to MD is the inclusion of two additional pairwise forces - dissipative and random forces - that act in tandem as a momentum-conserving thermostat to control temperature while ensuring correct hydrodynamic behaviour.</p>
+<p>The DPD algorithm consists of three main steps, starting with particle positions, velocities and forces at the beginning of a timestep:</p>
+<ul class="simple">
+<li>Integrating forces to find new particle positions (Velocity Verlet stage 1)</li>
+<li>Calculating particle forces (interactions and pairwise thermostat)</li>
+<li>Updating particle velocities (Velocity Verlet stage 2)</li>
+</ul>
+<p>Boundary conditions and barostats to control pressure can be applied during the Velocity Verlet force integration stages.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>DL_MESO_DPD Capabilities</strong></p>
+<ul class="simple">
+<li>‘Standard’ (Groot-Warren) DPD, many-body (density-dependent) DPD, Lennard-Jones and Weeks-Chandler-Andersen interactions between particles.</li>
+<li>Pairwise thermostats:<ul>
+<li>DPD with standard Velocity Verlet (VV) force integration, DPD-VV and Shardlow splitting</li>
+<li>Lowe-Andersen</li>
+<li>Peters</li>
+<li>Stoyanov-Groot</li>
+</ul>
+</li>
+<li>Bond interactions between particles in molecules: stretching, angles, dihedrals</li>
+<li>Electrostatic interactions with Ewald sum or Smooth Particle Mesh Ewald (SPME) and smeared charges</li>
+<li>Boundary conditions:<ul>
+<li>Periodic</li>
+<li>Hard reflecting (specular or bounce-back) surfaces with DPD/WCA wall potentials</li>
+<li>Frozen particle walls</li>
+</ul>
+</li>
+<li>Domain decomposition parallelisation available with MPI</li>
+<li>OpenMP multithreading available</li>
+</ul>
+<p><a class="reference internal" href="#header-dlm-1"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guides.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlm_0.html"
+                        title="previous chapter">DL_MESO</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlm_5.html"
+                        title="next chapter">What is mesoscale modelling</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlm_5.html" title="What is mesoscale modelling"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlm_0.html" title="DL_MESO"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

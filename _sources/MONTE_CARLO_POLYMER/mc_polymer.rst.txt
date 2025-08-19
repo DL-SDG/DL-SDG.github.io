@@ -4,4 +4,886 @@
 Monte Carlo Polymer
 *******************
 
-Under construction.
+.. raw:: html
+  <div>
+    <h1>Polymer Chain Growth Simulation</h1>
+
+    <div>
+      <div style="display: grid; grid-template-columns: auto auto;">
+        <canvas width="500" height="500" id="simulationCanvas" style="border: 1px solid black;"></canvas>
+        <div>
+          <div>
+            <div id="simStatus">Press Start to run sim.</div>
+            <div id="stepNoOut">Step Number: 0</div>
+            <div id="s2Out">s²: 0.0</div>
+          </div>
+
+          <table id="dataTable">
+            <thead>
+              <tr>
+                <th>&lt;s²&gt;</th>
+                <th>Deviation</th>
+                <th>Acceptance Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="avgGyrationOut">0.0</td>
+                <td id="deviationOut">0.0</td>
+                <td id="acceptanceRateOut">0.0 %</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <div>
+        <h2>Controls</h2>
+
+        <div>
+          <button id="startStopButton">Start</button>
+          <button id="stepButton">Step</button>
+          <button id="resetButton">Reset</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: auto auto;">
+          <label for="lengthInput">Length</label>
+          <input type="number" id="lengthInput">
+
+          <label for="regrowthInput">Regrowth</label>
+          <input type="number" id="regrowthInput">
+
+          <label for="choiceInput">Choice</label>
+          <input type="number" id="choiceInput">
+
+          <label for="tempInput">Temp</label>
+          <input type="number" id="tempInput" step="0.1">
+
+          <label for="relaxInput">Relax Steps</label>
+          <input type="number" id="relaxInput">
+
+          <label for="sampleInput">Sample Steps</label>
+          <input type="number" id="sampleInput">
+
+          <label for="displayInput">Display Interval</label>
+          <input type="number" id="displayInput">
+        </div>
+
+        <div id="errorOut"></div>
+        <div>
+
+
+          <div>
+            <label>Visibility:</label>
+            <div>
+              <label>
+                <input type="checkbox" id="beadsCheckbox"
+                  checked>
+                <span>Beads</span>
+              </label>
+              <label>
+                <input type="checkbox" id="linksCheckbox"
+                  checked>
+                <span>Links</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    /**
+     * A utility class for handling random number generation.
+     */
+    class Random {
+      constructor(seed = null) { /* Seed is unused in JS Math.random */ }
+      random() { return Math.random(); }
+    }
+
+    /**
+     * Class for handling all global variables and simulation constants.
+     */
+    class G {
+      constructor() {
+        this.maxLength = 500;
+        this.maxChoice = 50;
+        this.maxStep = 1000000;
+        this.beadSize = 0.8;
+        this.beadSizeSqr = this.beadSize * this.beadSize;
+        this.cutOff = 2.5 * this.beadSize;
+        this.cutOffSqr = this.cutOff * this.cutOff;
+        this.trial = Array(this.maxLength + 1).fill(0).map(() => Array(this.maxChoice).fill(0).map(() => [0.0, 0.0]));
+        this.xCoord = Array(this.maxLength + 1).fill(null);
+        this.yCoord = Array(this.maxLength + 1).fill(null);
+        this.weight = Array(this.maxLength + 1).fill(0.0);
+        this.wellDepth = null;
+        this.wellDepth4 = null;
+        this.temp = null;
+        this.length = null;
+        this.choice = null;
+        this.regrowth = null;
+        this.relaxSteps = null;
+        this.samplingSteps = null;
+        this.sampleCollected = null;
+        this.samplingInterval = null;
+        this.stepNumber = null;
+        this.fragment = null;
+        this.isSampling = false;
+        this.sumGyration = null;
+        this.sumSqrGyration = null;
+        this.acceptance = null;
+        this.currGyration = null;
+        this.avgGyration = null;
+        this.deviation = null;
+        this.acceptanceRate = null;
+        this.centerX = null;
+        this.centerY = null;
+        this.testing = true;
+      }
+    }
+
+    /**
+     * Manages the polymer chain's creation, properties, and data updates.
+     */
+    class Polymer {
+      constructor(g, randSeed = null) {
+        this.g = g;
+        this.rand = new Random(randSeed);
+        this.piX2 = Math.PI * 2;
+        this.gyration = null;
+        this.initialSuccess = false;
+        this.completed = false;
+        this.g.wellDepth = 1.0 / this.g.temp;
+        this.g.wellDepth4 = this.g.wellDepth * 4.0;
+        this.g.sumGyration = 0.0;
+        this.g.sumSqrGyration = 0.0;
+        this.g.acceptance = 0.0;
+        this.g.isSampling = false;
+      }
+
+      createPolymer() {
+        let currX, currY, sum, randNum, interval, tryX, tryY, interaction, dx, dy, sqrDist, u, sqr3, sqr6, randAngle;
+        const trialWeight = Array(this.g.choice).fill(0.0);
+        this.g.xCoord[0] = 0.0; this.g.yCoord[0] = 0.0;
+        this.g.xCoord[1] = 1.0; this.g.yCoord[1] = 0.0;
+        currX = this.g.xCoord[1]; currY = this.g.yCoord[1];
+
+        for (let bead = 2; bead <= this.g.length; bead++) {
+          sum = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            randAngle = (this.rand.random() - 0.5) * this.piX2;
+            this.g.trial[bead][i][0] = Math.cos(randAngle);
+            this.g.trial[bead][i][1] = Math.sin(randAngle);
+          }
+          for (let i = 0; i < this.g.choice; i++) {
+            tryX = currX + this.g.trial[bead][i][0];
+            tryY = currY + this.g.trial[bead][i][1];
+            interaction = 0.0;
+            for (let j = 0; j < bead - 1; j++) {
+              dx = tryX - this.g.xCoord[j]; dy = tryY - this.g.yCoord[j];
+              sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                u = this.g.beadSizeSqr / sqrDist;
+                sqr3 = u * u * u; sqr6 = sqr3 * sqr3;
+                interaction += sqr6 - sqr3;
+              }
+            }
+            interaction *= this.g.wellDepth4;
+            trialWeight[i] = Math.exp(-interaction);
+            sum += trialWeight[i];
+          }
+          if (sum === 0.0) return false;
+          randNum = this.rand.random();
+          interval = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            if (trialWeight[i] !== 0.0) {
+              interval += trialWeight[i] / sum;
+              if (interval >= randNum) {
+                this.g.xCoord[bead] = this.g.trial[bead][i][0] + currX;
+                this.g.yCoord[bead] = this.g.trial[bead][i][1] + currY;
+                currX = this.g.xCoord[bead]; currY = this.g.yCoord[bead];
+                break;
+              }
+            }
+          }
+        }
+        return true;
+      }
+
+      calculate(flag) {
+        const mass = this.g.length + 1.0;
+        let centerX = 0.0; let centerY = 0.0;
+        for (let bead = 0; bead <= this.g.length; bead++) {
+          centerX += this.g.xCoord[bead];
+          centerY += this.g.yCoord[bead];
+        }
+        centerX /= mass; centerY /= mass;
+        this.g.centerX = centerX; this.g.centerY = centerY;
+        let gyrSum = 0.0;
+        for (let bead = 0; bead <= this.g.length; bead++) {
+          const xGyr = this.g.xCoord[bead] - centerX;
+          const yGyr = this.g.yCoord[bead] - centerY;
+          gyrSum += (xGyr * xGyr) + (yGyr * yGyr);
+        }
+        this.gyration = gyrSum / mass;
+        if (flag) {
+          this.g.sumGyration += this.gyration;
+          this.g.sumSqrGyration += this.gyration * this.gyration;
+          this.g.sampleCollected += 1;
+          this.g.currGyration = this.gyration;
+          this.updateData();
+        }
+      }
+
+      newChain() {
+        this.g.trial = Array(this.g.maxLength + 1).fill(0).map(() => Array(this.g.maxChoice).fill(0).map(() => [0.0, 0.0]));
+        this.g.xCoord = Array(this.g.maxLength + 1).fill(null);
+        this.g.yCoord = Array(this.g.maxLength + 1).fill(null);
+        this.g.weight = Array(this.g.maxLength + 1).fill(0.0);
+        let i = 1;
+        while (true) {
+          if (this.createPolymer()) {
+            this.calculate(false);
+            this.g.sumGyration = 0.0; this.g.sumSqrGyration = 0.0;
+            this.g.acceptance = 0.0; this.g.sampleCollected = 0.0;
+            this.g.stepNumber = 0; this.g.avgGyration = 0;
+            this.g.deviation = 0; this.g.acceptanceRate = 0;
+            this.g.isSampling = false; this.initialSuccess = true;
+            this.completed = false;
+            return;
+          }
+          i++;
+          if (i > 150) {
+            this.initialSuccess = false;
+            return;
+          }
+        }
+      }
+
+      updateData() {
+        if (this.g.sampleCollected > 0 && this.g.stepNumber > 0) {
+          this.g.avgGyration = this.g.sumGyration / this.g.sampleCollected;
+          const avgSqrGyr = this.g.sumSqrGyration / this.g.sampleCollected;
+          const variance = avgSqrGyr - this.g.avgGyration * this.g.avgGyration;
+          this.g.deviation = variance > 0 ? Math.sqrt(variance) : 0;
+          this.g.acceptanceRate = (this.g.acceptance / this.g.stepNumber) * 100.0;
+        }
+      }
+    }
+
+    /**
+     * Handles the Monte Carlo simulation steps for regrowing the polymer chain.
+     */
+    class MonteCarlo {
+      constructor(g, randSeed = null) {
+        this.g = g;
+        this.rand = new Random(randSeed);
+        this.piX2 = 2 * Math.PI;
+        this.newX = Array(this.g.maxLength + 1).fill(0.0);
+        this.newY = Array(this.g.maxLength + 1).fill(0.0);
+        this.trialWeight = Array(this.g.maxChoice).fill(0.0);
+      }
+
+      traceToHead() {
+        const start = this.g.fragment;
+        this.g.weight[start] = 1.0;
+        for (let bead = start - 1; bead >= 0; bead--) {
+          const currX = this.g.xCoord[bead + 1], currY = this.g.yCoord[bead + 1];
+          let sum = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            const isActualBead = (i === this.g.choice - 1);
+            const traceX = isActualBead ? this.g.xCoord[bead] : currX + this.g.trial[bead][i][0];
+            const traceY = isActualBead ? this.g.yCoord[bead] : currY + this.g.trial[bead][i][1];
+            let interaction = 0.0;
+            for (let j = this.g.length; j > bead + 1; j--) {
+              const dx = traceX - this.g.xCoord[j], dy = traceY - this.g.yCoord[j], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                let u = this.g.beadSizeSqr / (sqrDist + (this.g.testing ? 1e-8 : 0));
+                const s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            interaction *= this.g.wellDepth4;
+            this.trialWeight[i] = Math.exp(-interaction);
+            sum += this.trialWeight[i];
+          }
+          this.g.weight[bead] = this.g.weight[bead + 1] * sum / this.g.choice;
+        }
+        return this.g.weight[0];
+      }
+
+      traceToTail() {
+        const start = this.g.fragment;
+        this.g.weight[start] = 1.0;
+        for (let bead = start + 1; bead <= this.g.length; bead++) {
+          const currX = this.g.xCoord[bead - 1], currY = this.g.yCoord[bead - 1];
+          let sum = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            const isActualBead = (i === this.g.choice - 1);
+            const traceX = isActualBead ? this.g.xCoord[bead] : currX + this.g.trial[bead][i][0];
+            const traceY = isActualBead ? this.g.yCoord[bead] : currY + this.g.trial[bead][i][1];
+            let interaction = 0.0;
+            for (let j = 0; j < bead - 1; j++) {
+              const dx = traceX - this.g.xCoord[j], dy = traceY - this.g.yCoord[j], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                let u = this.g.beadSizeSqr / (sqrDist + (this.g.testing ? 1e-8 : 0));
+                const s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            interaction *= this.g.wellDepth4;
+            this.trialWeight[i] = Math.exp(-interaction);
+            sum += this.trialWeight[i];
+          }
+          this.g.weight[bead] = this.g.weight[bead - 1] * sum / this.g.choice;
+        }
+        return this.g.weight[this.g.length];
+      }
+
+      regrowHead() {
+        const start = this.g.fragment, first = start - 1;
+        let currX = this.g.xCoord[start], currY = this.g.yCoord[start];
+        this.g.weight[start] = 1.0;
+        for (let bead = first; bead >= 0; bead--) {
+          let sumWeights = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            const angle = (this.rand.random() - 0.5) * this.piX2;
+            this.g.trial[bead][i][0] = Math.cos(angle); this.g.trial[bead][i][1] = Math.sin(angle);
+          }
+          for (let i = 0; i < this.g.choice; i++) {
+            const tryX = currX + this.g.trial[bead][i][0], tryY = currY + this.g.trial[bead][i][1];
+            let interaction = 0.0;
+            for (let j = start + 1; j <= this.g.length; j++) {
+              const dx = tryX - this.g.xCoord[j], dy = tryY - this.g.yCoord[j], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                const u = this.g.beadSizeSqr / sqrDist, s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            for (let k = first; k > bead; k--) {
+              const dx = tryX - this.newX[k], dy = tryY - this.newY[k], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                const u = this.g.beadSizeSqr / sqrDist, s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            interaction *= this.g.wellDepth4;
+            this.trialWeight[i] = Math.exp(-interaction);
+            sumWeights += this.trialWeight[i];
+          }
+          if (sumWeights === 0.0) return;
+          this.g.weight[bead] = this.g.weight[bead + 1] * (sumWeights / this.g.choice);
+          const randNum = this.rand.random();
+          let interval = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            if (this.trialWeight[i] !== 0.0) {
+              interval += this.trialWeight[i] / sumWeights;
+              if (interval >= randNum) {
+                this.newX[bead] = currX + this.g.trial[bead][i][0];
+                this.newY[bead] = currY + this.g.trial[bead][i][1];
+                currX = this.newX[bead]; currY = this.newY[bead];
+                break;
+              }
+            }
+          }
+        }
+        const newWeight = this.g.weight[0], oldWeight = this.traceToHead();
+        if (oldWeight === 0 || newWeight / oldWeight >= this.rand.random()) {
+          this.g.acceptance += 1;
+          for (let n = first; n >= 0; n--) {
+            this.g.xCoord[n] = this.newX[n]; this.g.yCoord[n] = this.newY[n];
+          }
+        }
+      }
+
+      regrowTail() {
+        const start = this.g.fragment, first = start + 1;
+        let currX = this.g.xCoord[start], currY = this.g.yCoord[start];
+        this.g.weight[start] = 1.0;
+        for (let bead = first; bead <= this.g.length; bead++) {
+          let sumWeights = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            const angle = (this.rand.random() - 0.5) * this.piX2;
+            this.g.trial[bead][i][0] = Math.cos(angle); this.g.trial[bead][i][1] = Math.sin(angle);
+          }
+          for (let i = 0; i < this.g.choice; i++) {
+            const tryX = currX + this.g.trial[bead][i][0], tryY = currY + this.g.trial[bead][i][1];
+            let interaction = 0.0;
+            for (let j = 0; j < start; j++) {
+              const dx = tryX - this.g.xCoord[j], dy = tryY - this.g.yCoord[j], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                const u = this.g.beadSizeSqr / sqrDist, s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            for (let k = first; k < bead; k++) {
+              const dx = tryX - this.newX[k], dy = tryY - this.newY[k], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                const u = this.g.beadSizeSqr / sqrDist, s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            interaction *= this.g.wellDepth4;
+            this.trialWeight[i] = Math.exp(-interaction);
+            sumWeights += this.trialWeight[i];
+          }
+          if (sumWeights === 0.0) return;
+          this.g.weight[bead] = this.g.weight[bead - 1] * (sumWeights / this.g.choice);
+          const randNum = this.rand.random();
+          let interval = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            if (this.trialWeight[i] !== 0.0) {
+              interval += this.trialWeight[i] / sumWeights;
+              if (interval >= randNum) {
+                this.newX[bead] = currX + this.g.trial[bead][i][0];
+                this.newY[bead] = currY + this.g.trial[bead][i][1];
+                currX = this.newX[bead]; currY = this.newY[bead];
+                break;
+              }
+            }
+          }
+        }
+        const newWeight = this.g.weight[this.g.length], oldWeight = this.traceToTail();
+        if (oldWeight === 0 || newWeight / oldWeight >= this.rand.random()) {
+          this.g.acceptance += 1;
+          for (let i = first; i <= this.g.length; i++) {
+            this.g.xCoord[i] = this.newX[i]; this.g.yCoord[i] = this.newY[i];
+          }
+        }
+      }
+
+      cutHeadRegrowTail() {
+        const start = this.g.fragment, first = start - 1;
+        let back = this.g.length;
+        let currX = this.g.xCoord[this.g.length], currY = this.g.yCoord[this.g.length];
+        this.g.weight[back] = 1.0;
+        for (let bead = first; bead >= 0; bead--) {
+          let sum = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            const randAngle = (this.rand.random() - 0.5) * this.piX2;
+            this.g.trial[bead][i][0] = Math.cos(randAngle); this.g.trial[bead][i][1] = Math.sin(randAngle);
+          }
+          for (let i = 0; i < this.g.choice; i++) {
+            const tryX = currX + this.g.trial[bead][i][0], tryY = currY + this.g.trial[bead][i][1];
+            let interaction = 0.0;
+            for (let j = start; j < this.g.length; j++) {
+              const dx = tryX - this.g.xCoord[j], dy = tryY - this.g.yCoord[j], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                const u = this.g.beadSizeSqr / sqrDist, s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            for (let k = first; k > bead; k--) {
+              const dx = tryX - this.newX[k], dy = tryY - this.newY[k], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                const u = this.g.beadSizeSqr / sqrDist, s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            interaction *= this.g.wellDepth4;
+            this.trialWeight[i] = Math.exp(-interaction);
+            sum += this.trialWeight[i];
+          }
+          if (sum === 0.0) return;
+          this.g.weight[bead] = this.g.weight[back] * sum / this.g.choice;
+          const randNum = this.rand.random();
+          let interval = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            if (this.trialWeight[i] !== 0.0) {
+              interval += this.trialWeight[i] / sum;
+              if (interval >= randNum) {
+                this.newX[bead] = currX + this.g.trial[bead][i][0];
+                this.newY[bead] = currY + this.g.trial[bead][i][1];
+                currX = this.newX[bead]; currY = this.newY[bead];
+                break;
+              }
+            }
+          }
+          back = bead;
+        }
+        const newWeight = this.g.weight[0], oldWeight = this.traceToHead();
+        if (oldWeight === 0 || newWeight / oldWeight >= this.rand.random()) {
+          this.g.acceptance += 1;
+          let tempX = [...this.g.xCoord], tempY = [...this.g.yCoord];
+          back = -1;
+          for (let i = start; i <= this.g.length; i++) {
+            back++; this.g.xCoord[back] = tempX[i]; this.g.yCoord[back] = tempY[i];
+          }
+          for (let i = first; i >= 0; i--) {
+            back++; this.g.xCoord[back] = this.newX[i]; this.g.yCoord[back] = this.newY[i];
+          }
+        }
+      }
+
+      cutTailGrowHead() {
+        const start = this.g.fragment, first = start + 1;
+        let back = 0;
+        let currX = this.g.xCoord[0], currY = this.g.yCoord[0];
+        this.g.weight[back] = 1.0;
+        for (let bead = first; bead <= this.g.length; bead++) {
+          let sum = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            const randAngle = (this.rand.random() - 0.5) * this.piX2;
+            this.g.trial[bead][i][0] = Math.cos(randAngle); this.g.trial[bead][i][1] = Math.sin(randAngle);
+          }
+          for (let i = 0; i < this.g.choice; i++) {
+            const tryX = currX + this.g.trial[bead][i][0], tryY = currY + this.g.trial[bead][i][1];
+            let interaction = 0.0;
+            for (let j = 1; j <= start; j++) {
+              const dx = tryX - this.g.xCoord[j], dy = tryY - this.g.yCoord[j], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                const u = this.g.beadSizeSqr / sqrDist, s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            for (let k = first; k < bead; k++) {
+              const dx = tryX - this.newX[k], dy = tryY - this.newY[k], sqrDist = dx * dx + dy * dy;
+              if (sqrDist < this.g.cutOffSqr) {
+                const u = this.g.beadSizeSqr / sqrDist, s3 = u * u * u, s6 = s3 * s3;
+                interaction += s6 - s3;
+              }
+            }
+            interaction *= this.g.wellDepth4;
+            this.trialWeight[i] = Math.exp(-interaction);
+            sum += this.trialWeight[i];
+          }
+          if (sum === 0.0) return;
+          this.g.weight[bead] = this.g.weight[back] * sum / this.g.choice;
+          const randNum = this.rand.random();
+          let interval = 0.0;
+          for (let i = 0; i < this.g.choice; i++) {
+            if (this.trialWeight[i] !== 0.0) {
+              interval += this.trialWeight[i] / sum;
+              if (interval >= randNum) {
+                this.newX[bead] = currX + this.g.trial[bead][i][0];
+                this.newY[bead] = currY + this.g.trial[bead][i][1];
+                currX = this.newX[bead]; currY = this.newY[bead];
+                break;
+              }
+            }
+          }
+          back = bead;
+        }
+        const newWeight = this.g.weight[this.g.length], oldWeight = this.traceToTail();
+        if (oldWeight === 0 || newWeight / oldWeight >= this.rand.random()) {
+          this.g.acceptance += 1;
+          let tempX = [...this.g.xCoord], tempY = [...this.g.yCoord];
+          back = this.g.length + 1;
+          for (let i = start; i >= 0; i--) {
+            back--; this.g.xCoord[back] = tempX[i]; this.g.yCoord[back] = tempY[i];
+          }
+          for (let i = first; i <= this.g.length; i++) {
+            back--; this.g.xCoord[back] = this.newX[i]; this.g.yCoord[back] = this.newY[i];
+          }
+        }
+      }
+    }
+
+    /**
+     * Main class for running the simulation.
+     */
+    class Simulation {
+      constructor(length, regrowth, choice, temp, relax, sample, display, randSeed = null) {
+        this.g = new G();
+        this.g.length = length;
+        this.g.regrowth = regrowth;
+        this.g.choice = choice;
+        this.g.temp = temp;
+        this.g.relaxSteps = relax;
+        this.g.samplingSteps = sample;
+        this.g.samplingInterval = display;
+
+        this.polymer = new Polymer(this.g, randSeed);
+        this.monte = new MonteCarlo(this.g, randSeed);
+        this.rand = new Random(randSeed);
+
+        this.runStatus = true;
+        this.polymer.newChain();
+      }
+
+      runSimStep() {
+        if (!this.runStatus || this.polymer.completed) return;
+        this.g.stepNumber += 1;
+
+        if (this.g.isSampling && this.g.stepNumber > this.g.samplingSteps) {
+          this.polymer.completed = true;
+          this.runStatus = false;
+          return;
+        }
+
+        const j = this.rand.random() * this.g.regrowth;
+        this.g.fragment = Math.floor(j) + 1;
+        const growFromHead = this.rand.random() > 0.5;
+
+        if (growFromHead) {
+          if (this.rand.random() > 0.5) this.monte.regrowHead();
+          else this.monte.cutHeadRegrowTail();
+        } else {
+          this.g.fragment = this.g.length - this.g.fragment;
+          if (this.rand.random() > 0.5) this.monte.regrowTail();
+          else this.monte.cutTailGrowHead();
+        }
+
+        if ((this.g.stepNumber % this.g.samplingInterval) === 0) {
+          this.polymer.calculate(true);
+        }
+
+        if (!this.g.isSampling && this.g.stepNumber >= this.g.relaxSteps) {
+          this.g.isSampling = true;
+          this.g.sumGyration = 0.0; this.g.sumSqrGyration = 0.0;
+          this.g.stepNumber = 0; this.g.sampleCollected = 0.0;
+          this.g.acceptance = 0.0;
+        }
+      }
+    }
+
+    class WebApp {
+      constructor() {
+        // --- Default Values ---
+        this.defaultLength = 40;
+        this.defaultRegrowth = 10;
+        this.defaultChoice = 5;
+        this.defaultTemp = 5.0;
+        this.defaultRelax = 500;
+        this.defaultSample = 3000;
+        this.defaultDisplaySteps = 5;
+
+        this.simulation = null;
+        this.simRunning = false;
+        this.callbackID = null;
+        this.stepNo = 0;
+        this.scale = 20.0; // Visual scale factor
+
+        // --- DOM Elements ---
+        this.canvas = document.getElementById('simulationCanvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.dom = {
+          lengthInput: document.getElementById('lengthInput'),
+          regrowthInput: document.getElementById('regrowthInput'),
+          choiceInput: document.getElementById('choiceInput'),
+          tempInput: document.getElementById('tempInput'),
+          relaxInput: document.getElementById('relaxInput'),
+          sampleInput: document.getElementById('sampleInput'),
+          displayInput: document.getElementById('displayInput'),
+          errorOut: document.getElementById('errorOut'),
+          startStopButton: document.getElementById('startStopButton'),
+          stepButton: document.getElementById('stepButton'),
+          resetButton: document.getElementById('resetButton'),
+          simStatus: document.getElementById('simStatus'),
+          stepNoOut: document.getElementById('stepNoOut'),
+          s2Out: document.getElementById('s2Out'),
+          avgGyrationOut: document.getElementById('avgGyrationOut'),
+          deviationOut: document.getElementById('deviationOut'),
+          acceptanceRateOut: document.getElementById('acceptanceRateOut'),
+          beadsCheckbox: document.getElementById('beadsCheckbox'),
+          linksCheckbox: document.getElementById('linksCheckbox'),
+        };
+
+        this.setupCanvas();
+        this.bindEvents();
+        this.setDefaultInputs();
+        this.initSim();
+      }
+
+      setupCanvas() {
+        // Set canvas resolution to match its display size to avoid blurriness
+        const size = this.canvas.clientWidth;
+        this.canvas.width = size;
+        this.canvas.height = size;
+        this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
+      }
+
+      bindEvents() {
+        this.dom.startStopButton.onclick = () => this.startStopSim();
+        this.dom.stepButton.onclick = () => this.updateSim(true);
+        this.dom.resetButton.onclick = () => this.resetSim();
+        this.dom.beadsCheckbox.onchange = () => this.drawFigure();
+        this.dom.linksCheckbox.onchange = () => this.drawFigure();
+        window.onresize = () => this.setupCanvas();
+      }
+
+      setDefaultInputs() {
+        this.dom.lengthInput.value = this.defaultLength;
+        this.dom.regrowthInput.value = this.defaultRegrowth;
+        this.dom.choiceInput.value = this.defaultChoice;
+        this.dom.tempInput.value = this.defaultTemp;
+        this.dom.relaxInput.value = this.defaultRelax;
+        this.dom.sampleInput.value = this.defaultSample;
+        this.dom.displayInput.value = this.defaultDisplaySteps;
+      }
+
+      validateInputs() {
+        this.dom.errorOut.textContent = "";
+        let validity = true;
+        const inputs = {
+          length: parseInt(this.dom.lengthInput.value),
+          regrowth: parseInt(this.dom.regrowthInput.value),
+          choice: parseInt(this.dom.choiceInput.value),
+          temp: parseFloat(this.dom.tempInput.value),
+          relax: parseInt(this.dom.relaxInput.value),
+          sample: parseInt(this.dom.sampleInput.value),
+          display: parseInt(this.dom.displayInput.value),
+        };
+
+        const check = (val, name) => isNaN(val) && (validity = false, this.dom.errorOut.textContent = `${name} must be a number.`);
+        Object.keys(inputs).forEach(key => check(inputs[key], key));
+        if (!validity) return false;
+
+        if (!(inputs.length > 0 && inputs.length <= 500)) { validity = false; this.dom.errorOut.textContent = "Length must be 1 to 500."; }
+        else if (!(inputs.regrowth > 0 && inputs.regrowth <= inputs.length / 2)) { validity = false; this.dom.errorOut.textContent = "Regrowth must be 1 to Length/2."; }
+        else if (!(inputs.choice > 0 && inputs.choice <= 50)) { validity = false; this.dom.errorOut.textContent = "Choice must be 1 to 50."; }
+        else if (inputs.temp <= 0) { validity = false; this.dom.errorOut.textContent = "Temp must be > 0."; }
+        else if (!(inputs.relax > 0 && inputs.relax <= 1000000)) { validity = false; this.dom.errorOut.textContent = "Relax steps must be 1 to 1,000,000."; }
+        else if (!(inputs.sample > 0 && inputs.sample <= 1000000)) { validity = false; this.dom.errorOut.textContent = "Sample steps must be 1 to 1,000,000."; }
+        else if (!(inputs.display > 0 && inputs.display <= inputs.sample)) { validity = false; this.dom.errorOut.textContent = "Display interval must be 1 to Sample steps."; }
+
+        return validity;
+      }
+
+      initSim() {
+        if (this.validateInputs()) {
+          this.stepNo = 0;
+          const p = {
+            length: parseInt(this.dom.lengthInput.value),
+            regrowth: parseInt(this.dom.regrowthInput.value),
+            choice: parseInt(this.dom.choiceInput.value),
+            temp: parseFloat(this.dom.tempInput.value),
+            relax: parseInt(this.dom.relaxInput.value),
+            sample: parseInt(this.dom.sampleInput.value),
+            display: parseInt(this.dom.displayInput.value),
+          };
+          this.simulation = new Simulation(p.length, p.regrowth, p.choice, p.temp, p.relax, p.sample, p.display);
+          if (this.simulation.polymer.initialSuccess) {
+            this.drawFigure();
+            this.updateStats();
+          } else {
+            this.dom.errorOut.textContent = "Chain generation failed. Try resetting or adjusting parameters.";
+          }
+        }
+      }
+
+      startStopSim() {
+        if (this.simRunning) {
+          // Stop the simulation
+          this.simRunning = false;
+          clearInterval(this.callbackID);
+          this.dom.startStopButton.textContent = "Start";
+          this.dom.startStopButton.classList.remove('btn-danger');
+          this.dom.startStopButton.classList.add('btn-success');
+          this.dom.stepButton.disabled = false;
+          this.dom.simStatus.textContent = "Sim Paused.";
+        } else {
+          // Start the simulation
+          if (this.simulation.polymer.completed) {
+            this.dom.simStatus.textContent = "Simulation finished. Please Reset.";
+            return;
+          }
+          this.simRunning = true;
+          this.dom.simStatus.textContent = "Sim Running...";
+          this.callbackID = setInterval(() => this.updateSim(false), 50); // ~20 FPS
+          this.dom.startStopButton.textContent = "Stop";
+          this.dom.startStopButton.classList.remove('btn-success');
+          this.dom.startStopButton.classList.add('btn-danger');
+          this.dom.stepButton.disabled = true;
+        }
+      }
+
+      resetSim() {
+        if (this.simRunning) this.startStopSim(); // Stop if running
+        this.dom.simStatus.textContent = "Resetting Sim...";
+        this.initSim();
+      }
+
+      updateSim(isStepButton) {
+        if (this.simulation.polymer.completed) {
+          if (this.simRunning) this.startStopSim();
+          this.dom.simStatus.textContent = "Simulation finished.";
+          return;
+        }
+
+        this.stepNo++;
+        this.simulation.runSimStep();
+
+        if (isStepButton || (this.stepNo % this.simulation.g.samplingInterval === 0)) {
+          this.drawFigure();
+          this.updateStats();
+        }
+      }
+
+      updateStats() {
+        if (!this.simulation) return;
+
+        const g = this.simulation.g;
+        this.dom.stepNoOut.textContent = `Step Number: ${g.stepNumber} (${g.isSampling ? 'Sampling' : 'Relaxing'})`;
+        this.dom.s2Out.textContent = `s²: ${g.currGyration ? g.currGyration.toFixed(4) : 'N/A'}`;
+
+        if (g.isSampling) {
+          this.dom.avgGyrationOut.textContent = g.avgGyration.toFixed(4);
+          this.dom.deviationOut.textContent = g.deviation.toFixed(4);
+          this.dom.acceptanceRateOut.textContent = `${g.acceptanceRate.toFixed(2)} %`;
+        } else {
+          this.dom.avgGyrationOut.textContent = "0.0";
+          this.dom.deviationOut.textContent = "0.0";
+          this.dom.acceptanceRateOut.textContent = "0.0 %";
+        }
+      }
+
+      drawFigure() {
+        if (!this.simulation || !this.simulation.polymer.initialSuccess) return;
+
+        const g = this.simulation.g;
+        const xRaw = g.xCoord.slice(0, g.length + 1);
+        const yRaw = g.yCoord.slice(0, g.length + 1);
+
+        if (xRaw.length === 0) return;
+
+        this.ctx.clearRect(-this.canvas.width / 2, -this.canvas.height / 2, this.canvas.width, this.canvas.height);
+
+        // Calculate center of mass to center the polymer
+        const centerX = xRaw.reduce((a, b) => a + b, 0) / xRaw.length;
+        const centerY = yRaw.reduce((a, b) => a + b, 0) / yRaw.length;
+
+        const coords = xRaw.map((_, i) => ({
+          x: (xRaw[i] - centerX) * this.scale,
+          y: (yRaw[i] - centerY) * this.scale
+        }));
+
+        // Draw Beads
+        if (this.dom.beadsCheckbox.checked) {
+          const beadRadius = (g.beadSize * this.scale) / 2;
+          coords.forEach((c, i) => {
+            this.ctx.beginPath();
+            this.ctx.arc(c.x, c.y, beadRadius, 0, 2 * Math.PI, false);
+
+            if (i === 0 || i === coords.length - 1) {
+              this.ctx.fillStyle = '#ef4444'; // red-500
+            } else {
+              this.ctx.fillStyle = '#facc15'; // yellow-400
+            }
+            this.ctx.fill();
+          });
+        }
+
+        // Draw Links
+        if (this.dom.linksCheckbox.checked) {
+          this.ctx.beginPath();
+          this.ctx.strokeStyle = '#f472b6'; // pink-400
+          this.ctx.lineWidth = 2;
+          for (let i = 0; i < coords.length - 1; i++) {
+            this.ctx.moveTo(coords[i].x, coords[i].y);
+            this.ctx.lineTo(coords[i + 1].x, coords[i + 1].y);
+          }
+          this.ctx.stroke();
+        }
+      }
+    }
+
+    // --- Initialise the Application ---
+    window.onload = () => {
+      new WebApp();
+    };
+
+  </script>

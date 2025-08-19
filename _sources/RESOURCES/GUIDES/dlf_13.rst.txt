@@ -1,0 +1,101 @@
+.. DL_FIELD tutorial.
+.. _Header_dlf_13:
+
+.. |br| raw:: html
+
+   <br /> 
+
+***************************
+Multiple Potential Features
+***************************
+
+One of the unique aspect of DL_FIELD is that it enables users to use more than one potential schemes in the force field model. This is particularly useful if one were to setup a bio-inorganic system, or any inorganic/organic mixed component systems.
+
+Each FF scheme has its own protocol to setup the FF model. The trickiest part is how to account for the vdw interactions between atoms that are assigned with different FF schemes. Normally, FF schemes such as CHARMM and AMBER follow certain sets of predefined rules to obtain vdw parameters for atoms of different types. However, this is not well defined for vdw parameters across different FF schemes. 
+
+In most cases, the Lj 12-6 forms are used for the vdw interactions and there are various mixing schemes can be used for this type of interaction forms. If atom pairs contain different functional forms, then one of the following approaches will be used:
+
+(1) Automatically determine the mixed vdw parameters based on a chosen mixing scheme.
+
+(2) Automatic refit vdw functions to LJ 12-6 forms and then carry out vdw mixing scheme as per the options specify in the *control* file. This only applies if the vdw functions are of LJ 9-6 or Morse forms.
+
+(3) Use of :doc:`dlf_22`
+
+(4) :doc:`dlf_23`. Additional data such as atomic polarisabilities and vdw radii would be needed.
+
+(5) Identify all possible vdw atom pairs but leave it blank for user to manually insert suitable parameters. This would be the last resort if the above mention procedures fail or not applicable.
+
+.. Warning::
+   While DL_FIELD allows different ways to mix the vdw interactions, it is up to the user to check the validity of parameters otained in this manner.
+
+|br|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Control options**
+
+To setup a multiple-potential system, you would need to define the potential schemes in the input configuration file. This is done by using the *POTENTIAL* directive in the input file. Also, you would need to specify the keyword 'multiple' in the DL_FIELD *control* file:
+
+.. literalinclude:: dl_field.control.multiple 
+   :emphasize-lines: 4 
+
+Otherwise, DL_FIELD will ignore the *POTENTIAL* directive in the input file. 
+
+After that, you would need to decide what type of vdw mixing rules you would want to apply to your model between two different FF schemes. The appropriate control options are shown below: 
+
+.. literalinclude:: dl_field.control.multiple2
+   :emphasize-lines: 9,10 
+
+In this example, option 3 mixing rules (Fender-Halsey) were selected for epsilon and sigma parameters for the Lennard-Jone vdw interactions. For other types of mixing rules, please consult Section 3.10.1 of the DL_FIELD manual.
+
+|br|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**PDB file with multiple potential**
+
+Diagram below shows a PDB file (multiple_potential_1.pdb from the *Examples/* folder) consists of purely methanol molecules. It has the MOLECULE_KEY *MEOH* and the molecules were grouped into four Molecular Groups: one molecule belongs to *GRP1*, two molecules belong to *GRP2*, one molecule belongs to *GRP3* and one molecule belongs to *GRP4*.
+
+.. image:: ../../image/dlf_13_1.png
+   :scale: 40%
+   :align: center
+
+The locations of *POTENTIAL* directives indicate the extent of the FF schemes applications: AMBER FF will be applied to the first methanol molecule; OPLS to the following three molecules and CHARMM22 to the last molecule. 
+
+When DL_FIELD is run, the following information will be reported in *dl_field.output* file:
+
+.. literalinclude:: output.multiple
+   :emphasize-lines: 6-8 
+
+The suffixes _A, _B and _C are the unique labels assigned to distinguish from one atom to the other, according to the FF schemes to which they belong. After that, the vdw Lennard-Jones parameters from different FF schemes were obtained based on the mixing rules specified by the users. Example below shows part of the vdw parameters from the *dl_poly.FIELD* file:
+
+.. literalinclude:: field.multiple
+
+|br|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**xyz file with multiple potential**
+
+Example below shows part of *xyz* input file contained an organic and an inorganic components, which were assigned to CVFF scheme and inorganic FF for clay, respectively. The descriptions illustrate how to use the multiple potential feature and is largely self-explanatory. 
+
+.. image:: ../../image/dlf_13_2.png
+   :scale: 50%
+   :align: center
+
+Sometimes, the vdw parameters between two different FF schemes cannot be determined. This is especially true for the most of inorganic FF. For example, below shows the *xyz* file consists of a ethanol molecule with magnesium oxide. 
+
+.. image:: ../../image/dlf_13_3.png
+   :scale: 52%
+   :align: center
+
+DL_FIELD will report the missing vdw parameters between the metal oxide and the organic molecule. The corresponding FIELD file is shown below:    
+
+.. literalinclude:: field.multiple2
+
+In this case, you would need to insert manually the values for these parameters. Alternatively, you can use *VDW_FIX* directive. See :doc:`dlf_22`.
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dlf_13>`
+

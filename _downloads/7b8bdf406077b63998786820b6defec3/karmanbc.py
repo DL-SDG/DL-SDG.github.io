@@ -328,7 +328,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #    self.widget.canvas.ax.axvline(x, lw=0.25, color='k', zorder=5)
         #for y in range(51):
         #    self.widget.canvas.ax.axvline(y, lw=0.25, color='k', zorder=5)
-        self.widget.canvas.ax.imshow(self.bcdata, interpolation='none', cmap=my_cmap, extent=[0, 250, 0, 50], zorder=0)
+        self.widget.canvas.ax.imshow(self.bcdata, interpolation='none', cmap=my_cmap, extent=[0, 250, 0, 50], origin='lower', zorder=0)
         #self.widget.canvas.ax.axis('off')
         self.widget.canvas.ax.xaxis.set_ticks(np.arange(0, 251, 25))
         self.widget.canvas.ax.yaxis.set_ticks(np.arange(0, 51, 10))

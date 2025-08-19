@@ -1,0 +1,190 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DL_MESO_DPD basics and algorithms &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="DL_MESO_DPD files" href="dlm_4.html" />
+    <link rel="prev" title="DL_MESO_LBE utilities" href="dlm_6.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlm_4.html" title="DL_MESO_DPD files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlm_6.html" title="DL_MESO_LBE utilities"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" accesskey="U">DL_MESO</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dl-meso-dpd-basics-and-algorithms">
+<span id="header-dlm-8"></span><h1>DL_MESO_DPD basics and algorithms<a class="headerlink" href="#dl-meso-dpd-basics-and-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>Dissipative particle dynamics (DPD) resembles classical molecular dynamics (MD): the method models condensed phase systems of particles (often described as ‘beads’) that interact predominately with pair potentials and forces. The net forces on each particle are integrated over a small timestep <span class="math notranslate nohighlight">\(\Delta t\)</span> to determine their motion, most often using Velocity Verlet (VV) integration.</p>
+<p>What distinguishes DPD from MD is its use of additional <em>pairwise</em> dissipative and random forces to couple the particle system to a heat bath. These forces provide a momentum-conserving thermostat that gives Galilean invariance and produces correct hydrodynamic behaviour, even for small numbers of particles. The definition of beads for DPD simulations can be very flexible, as they can either be coarse-grains - representing fixed groups of atoms, molecules or segments of larger molecules - or ‘carriers of momentum’ representing a continuum fluid at the mesoscale.</p>
+<div class="section" id="basic-dpd-algorithm">
+<h2>Basic DPD algorithm<a class="headerlink" href="#basic-dpd-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>Dissipative particle dynamics technically refers to the pairwise thermostat, which consists of a dissipative force:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{F}_{ij}^{D} = -\gamma_{ij} w^{D} \left( r_{ij} \right) \left( {\widehat{\mathbf{r}}}_{ij} \cdot \mathbf{v}_{ij} \right){\widehat{\mathbf{r}}}_{ij}\]</div>
+<p>and a random force:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{F}_{ij}^{R} = \sigma_{ij} w^{R} \left( r_{ij} \right) \frac{\xi_{ij}}{\sqrt{\Delta t}} {\widehat{\mathbf{r}}}_{ij}\]</div>
+<p>connected together by their screening functions and force parameters (as described more fully <a class="reference internal" href="../DOCUMENTS/DPDIntro.html#dpd-intro"><span class="std std-ref">here</span></a>).</p>
+<p>The conservative interaction forces between particles can take any form, although the most commonly-used form is that by Groot and Warren:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{F}_{ij}^{C} = \left\{ \begin{matrix} A_{ij}\left( 1 - \frac{r_{ij}}{r_{c}} \right){\widehat{\mathbf{r}}}_{ij} &amp; (r_{ij} &lt; r_{c}) \\ 0 &amp; (r_{ij} \geq r_{c}) \\ \end{matrix} \right.\ ,\end{split}\]</div>
+<p>a soft repulsive interaction that gives a quadratic potential and a quadratic equation of state.</p>
+</div>
+<div class="section" id="capabilities-of-dpd">
+<h2>Capabilities of DPD<a class="headerlink" href="#capabilities-of-dpd" title="Permalink to this headline">¶</a></h2>
+<p>The Groot-Warren interaction forces can make use of different values of of <span class="math notranslate nohighlight">\(A_{ij}\)</span> between pairs of bead species to give required compressibilities, hydrophobicities etc. These can be combined with bond interactions (stretching, angles, dihedrals) between beads that interact differently with other species to form mesoscopic representations of molecules, e.g. amphiphilic molecules with hydrophilic head groups and hydrophobic tails.</p>
+<p>Interactions that can be applied to particles in DPD simulations other than the Groot-Warren form include:</p>
+<ul class="simple">
+<li>Hard-core interactions, e.g. Lennard-Jones, Weeks-Chandler-Andersen</li>
+<li>Many-body (density-dependent) DPD</li>
+<li>Long-range electrostatic interactions, often with short-range charge smearing</li>
+<li>Wall interactions with planar surfaces</li>
+</ul>
+<p>While the majority of DPD simulations typically use periodic boundary conditions, Lees-Edwards periodic shearing boundaries can readily be used, often to find rheological properties of a fluid (e.g. viscosity). Beads can be frozen in place while still interacting with others, often applied with a reflection scheme (e.g. bounce back) to provide no-slip boundaries.</p>
+<p>DPD is the best-known example of a pairwise momentum-conserving thermostat, although its limitations include issues in maintaining temperature control with larger timestep sizes and a limited viscosity range. Alternative pairwise thermostats include Lowe-Andersen, Peters and Stoyanov-Groot, which all apply changes to particle pairs after force integration and are capable of overcoming DPD’s limitations. As with MD simulations, it is possible to couple these thermostats to barostats to control system pressure.</p>
+</div>
+<div class="section" id="dl-meso-dpd-functionalities">
+<h2>DL_MESO_DPD functionalities<a class="headerlink" href="#dl-meso-dpd-functionalities" title="Permalink to this headline">¶</a></h2>
+<p>DL_MESO_DPD can model particle systems with any of the following basic interaction types:</p>
+<ul class="simple">
+<li>‘Standard DPD’ Groot-Warren interactions</li>
+<li>Many-body DPD</li>
+<li>Lennard-Jones (12-6)</li>
+<li>Weeks-Chandler-Andersen (WCA)</li>
+</ul>
+<p>along with any of the following pairwise thermostats (and integration schemes):</p>
+<ul class="simple">
+<li>DPD (standard VV, ‘DPD Velocity Verlet’, 1st and 2nd order Shardlow splitting)</li>
+<li>Lowe-Andersen</li>
+<li>Peters</li>
+<li>Stoyanov-Groot (Lowe-Andersen and pairwise Nosé-Hoover thermostatting forces)</li>
+</ul>
+<p>Each thermostat can additionally be coupled to either a Langevin or Berendsen barostat to provide NPT (constant pressure and temperature), NP<span class="math notranslate nohighlight">\(_{n}\)</span>AT (constant normal pressure, surface area and temperature) and NP<span class="math notranslate nohighlight">\(_{n}\)</span><span class="math notranslate nohighlight">\(\gamma\)</span>T (constant normal pressure, surface tension and temperature) ensembles.</p>
+<p>Bond interactions - stretching (e.g. harmonic springs), angles and dihedrals - can be included between selected beads to define molecules. Electrostatic interactions between charged beads can also be applied using Ewald summation or Smooth Particle Mesh Ewald (SPME) with charge-smearing schemes to prevent ion collapse of soft charged particles.</p>
+<p>Available boundary conditions include periodic, hard reflecting (bounce back or specular) planar surfaces with Groot-Warren or WCA wall potentials, Lees-Edwards linear shear and frozen bead walls. External fields can also be applied to the beads: these include gravity fields with constant mass-dependent forces and electric fields acting on charged particles.</p>
+<p>The <a class="reference internal" href="dlm_4.html#header-dlm-4"><span class="std std-ref">input files for DL_MESO_DPD</span></a> use similar formats to <a class="reference internal" href="dlp_4.html#header-dlp-4"><span class="std std-ref">DL_POLY input files</span></a>, which provides a high degree of mutual intelligibility and enables migration of simulations between the two codes.</p>
+</div>
+<div class="section" id="parallelisation-of-dl-meso-dpd">
+<h2>Parallelisation of DL_MESO_DPD<a class="headerlink" href="#parallelisation-of-dl-meso-dpd" title="Permalink to this headline">¶</a></h2>
+<p>DL_MESO_DPD is designed for homogeneously-distributed parallel machines. Each processor core can communicate with all of the others during a calculation, but it has its own separate allocation of memory. Its parallelisation strategy is <em>domain decomposition</em>, which involves dividing the system volume and particles among processor cores and each core calculating interaction forces for its own particles. To correctly calculate these forces, a boundary halo for each core’s subdomain is defined to copy in particle data from neighbouring cores using MPI core-to-core communications. The system is usually divided equally by volume, which provides good load-balancing when the particles are distributed evenly. Provided each processor core gets plenty of computational work compared to core-to-core communication, this approach can scale well with increasing numbers of cores, even for larger numbers of particles.</p>
+<p>Pairs of particles within the cutoff distance are found using <em>linked cell lists</em>. By dividing the subdomain into cells with sides of at least the interaction cutoff distance in size and constructing lists of particles in each cell, this reduces the number of possible particle pairs to search since all pairs relative to a given particle will exist either in its own cell or nearest neighbouring cells <em>but no further</em>. This approach works well for domain decomposition since the boundary halo size can be set to at least the same size as the link cells. Three sets of link cells are used in DL_MESO_DPD: one for conservative interactions (often alongside dissipative and random forces for the DPD thermostat), one for electrostatic interactions (the real-space part of an Ewald sum) with a larger cutoff distance, and one for calculating localised densities used in many-body DPD (which often uses a smaller cutoff).</p>
+<p>Bonded interactions require explicit definitions of particles involved, which are kept track in book-keeping arrays. DL_MESO_DPD normally divides up the bonds according to which processor cores hold the particles involved, which are moved between processor cores and their associated subdomains as the particle move. A <em>replicated data</em> approach is also available to aid equilibration: this requires all processor cores to hold all bond data and to collect together particle positions in order to find the resulting forces, which are only assigned to particles held by each processor core.</p>
+<p>The searches through link cells for pairwise force calculations and bond book-keeping tables for each processor core’s subdomain can be additionally divided among available threads using OpenMP. Assignment of forces to particles without conflicting reads/writes from/to memory (race conditions) can be achieved either by using additional memory per thread or by forcing only one thread at a time to assign calculated forces to particles.</p>
+<p>Writing of particle data to output files for <a class="reference internal" href="dlm_4.html#historydpd"><span class="std std-ref">trajectories</span></a> and <a class="reference internal" href="dlm_4.html#exportrestart"><span class="std std-ref">simulation restart</span></a> uses a process of gathering data among groups of processor cores, followed by one core in each group writing concurrently to the file with MPI-IO. While this is not quite as efficient as each core writing data to its own file (the strategy used in previous versions of DL_MESO_DPD), writing a single file for the entire system reduces the strain on the computer’s filesystem and makes post-simulation processing and analysis a lot simpler and quicker.</p>
+<p><a class="reference internal" href="#header-dlm-8"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guides.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlm_6.html"
+                        title="previous chapter">DL_MESO_LBE utilities</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlm_4.html"
+                        title="next chapter">DL_MESO_DPD files</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlm_4.html" title="DL_MESO_DPD files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlm_6.html" title="DL_MESO_LBE utilities"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlm_0.html" >DL_MESO</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

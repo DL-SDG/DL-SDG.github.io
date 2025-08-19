@@ -1,0 +1,123 @@
+.. DL_FIELD tutorial.
+.. _Header_dlf_12:
+
+.. |br| raw:: html
+
+   <br /> 
+
+******************
+Define Atom States
+******************
+
+This page describes how you can redefine the ways atoms would behave in a molecular system. 
+
+In molecular dynamics, the velocities and virials of atoms are updated according to the forces exert on them, often rescaled with some sort of pressure and temperature regulators called the barostat and thermostat, respectively. From such, the positions of the atoms are updated accordingly. These are called *free atoms* since their motions are not constrained.
+
+By default, all atoms are considered *free* in DL_POLY. However, you can redefine the states of atoms to *constrain*, *tether*, *rigid*, or *freeze*. To find out more details about these atom states, please consult DL_POLY User Manual. Here, you will be shown how to define these states in DL_FIELD. 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Bond Constraints**
+
+The chemical bonds between two atoms are usually represented by some functional forms such as harmonic, to mimic the bond vibrations. Classically, this would be the fastest mode of motion and small MD timestep would be needed to account for this, especially the bonds that contained the H atoms.
+
+However, the timestep can be increased if the bond length is fixed. This is achieved by applying an additional force to restrict the position of atoms relative to the other.  
+
+.. Note::
+   Typically, systems with unconstrain bonds would need a timestep in the order of 0.5 fs. If bond constrains are applied to bonds contained hydrogen atoms, the MD timestep can be increased to around 2 fs.
+
+To apply bond constrains in DL_FIELD, firstly, the feature must be switched on in the DL_FIELD *control* file as highlighted below: 
+
+.. literalinclude:: dl_field.control.constrain
+   :emphasize-lines: 10 
+
+Secondly, the *CONSTRAIN* directive would be needed to instruct DL_FIELD which group of atoms to apply the bond constrains. This is shown further down the *control* file as shown below: 
+
+.. literalinclude:: dl_field.control.constrain2
+   :emphasize-lines: 14
+
+In this example, SOD1 is the Molecular Group defined in the user's input file and the filter-key, *h-bond*, means the bond constrains are only applied to atoms that are connected to H atoms and belong to the Molecular Group *SOD1*. There are other filter keys as shown below. For their usages, please consult DL_FIELD User Manual. 
+
+.. image:: ../../image/dlf_12_1.png
+   :scale: 40%
+   :align: center
+
+.. Note::
+   If the constrain switch is turned off (0), then the *CONSTRAIN* directive will be ignored. Also, only one *CONSTRAIN* directive is allowed for each Molecular Group. 
+
+|br|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Freeze atom**
+
+Atoms can be assigned in a frozen state, which means the atom remain static in space as if there is no forces apply on them. However, the positions of these atoms will be rescaled if the simulation box sizes change, as in the NPT ensembles.
+
+Similar to the *CONSTRAIN* state, the freeze option must be switched on (1) for DL_FIELD to read the *FREEZE* directive in the *control* file:
+
+.. literalinclude:: dl_field.control.freeze
+   :emphasize-lines: 5,17-18 
+
+Here, DL_FIELD will freeze atoms with the label 'cp' from Molecular Group *ORG1* and will also freeze the atoms with the label 'CT' from the Molecular Group *ORG2*. 
+
+In this example, the atom labels are the filter-keys. There are other filter-keys such as *all_backbone*, *c-alpha* and *all*. For more information how to use them, please consult DL_FIELD User Manual.
+
+.. Note::
+   If the freeze switch is turned off (0), then the *FREEZE* directive will be ignored. Also, only one *FREEZE* directive is allowed for each Molecular Group.
+
+|br|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Tether atom**
+
+Unlike freeze atoms, restricted movements are allowed for tether atoms. A tethered atom is pegged to its initial position but is allowed to move about the initial position a if it is tethered to a spring.
+
+Once again, as before, to assign tether atoms, the tether option must be switched on (1) for DL_FIELD to read the *TETHER* directive in the *control* file:
+
+.. literalinclude:: dl_field.control.tether
+   :emphasize-lines: 6,22 
+
+Here, DL_FIELD will apply tethers to atoms with the label 'st' from Molecular Group *CLY*, with a spring constant of 100 energy unit per Angstrom square. The energy unit will be the same as that defined in the *FIELD* file.
+
+The same set of filter-keys as the *FREEZE* directive ca be used for the tether atoms, as shown below:
+
+.. image:: ../../image/dlf_12_2.png
+   :scale: 40%
+   :align: center
+
+.. Note::
+   If the tether switch is turned off (0), then the *TETHER* directive will be ignored. Also, only one *TETHER* directive is allowed for each Molecular Group.
+
+|br|
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Rigid atom** 
+
+So far, all atom states can be assigned individually to atoms. However, a number of atoms can be defined collectively and form a single rigid body where the positions of each rigid atom are fixed relative to one another. This effectively reduces the degrees of freedom and only the body translational and rotational motions are considered.
+
+For this reason, more than one atoms must be defined to form a rigid body. Once again, similar to other atom states mentioned above, the rigid option must be switched on for DL_FIELD to read the accompanied *RIGID* directive in the *control* file:
+
+.. literalinclude:: dl_field.control.rigid
+   :emphasize-lines: 8,20
+
+The *RIGID* directive only takes a single parameter. In this case, the rigid body only applies to atoms belong to the Molecular Group *A*.
+
+To define a rigid body, you would need to do this in a relevant MOLECULE template. Let's assume the Molecular Group *A* contained benzene molecules. To define a rigid body,  you would need to add a *RIGID* statement in the MOLECULE template: 
+
+.. literalinclude:: MOLECULE_benzene 
+   :emphasize-lines: 26 
+
+Here, the *RIGID* statement defines a rigid benzene ring. Of note is that the H atoms are still flexible relative to the ring.
+
+.. Note::
+   The *RIGID* directive in the DL_FIELD *control* file specifies the Molecular Group to which the rigid body would be setup. However, a *RIGID* statement in the MOLECULE template defines which atoms would form a rigid body. 
+
+.. Warning::
+   While DL_FIELD allows you to set up a range of different states, no check will be made for any clashes. For instance, imposing *FREEZE* and *TETHER* to same atoms.
+
+|br|
+
+:ref:`^ GO TO TOP ^<Header_dlf_12>`
+

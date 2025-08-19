@@ -6,7 +6,8 @@
 DL_Software Tutorial Exercises
 ******************************
 
-This is the main portal for the DL_Software tutorial exercises.
+This is the main portal for the DL_Software tutorial exercises. A number of visualisers are also available below, to illustrate 
+molecular dynamics and Monte Carlo simulations.
 
 
 .. toctree::
@@ -18,10 +19,10 @@ This is the main portal for the DL_Software tutorial exercises.
    ./exercises_data
    ./exercises_dlmeso
 
-Simple interactive learning of molecular modellings.
+DL_FIELD exercises, based on `polymeric systems <https://lois181.github.io/dl_field_tutorials/>`_
 
-.. toctree::
-   :maxdepth: 1
+Simple interactive learning of molecular modellings - :doc:`../../DEMOCRITUS/Democritus`
 
-   ../../DEMOCRITUS/Democritus
- 
+Illustration of molecular dynamics simulation of copper sputterings - :doc:`../../MD_SPUTTERING/sputtering`
+
+Monte Carlo simulation of polymer - :doc:`../../MD_SPUTTERING/sputtering`

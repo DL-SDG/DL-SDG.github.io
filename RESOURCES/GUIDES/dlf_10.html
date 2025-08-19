@@ -1,0 +1,178 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The DL_F Notation 2 &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Solution Maker Feature" href="dlf_6.html" />
+    <link rel="prev" title="The DL_F Notation 1" href="dlf_9.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlf_6.html" title="Solution Maker Feature"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_9.html" title="The DL_F Notation 1"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-dl-f-notation-2">
+<span id="header-dlf-10"></span><h1>The DL_F Notation 2<a class="headerlink" href="#the-dl-f-notation-2" title="Permalink to this headline">¶</a></h1>
+<p>This page briefly describes DL_F Notation features, the notation syntax and shows some examples. For more details please consult the manual and the reference.</p>
+<p>C.W. Yong, <em>J. Chem. Inf. Model.</em> <strong>56</strong>, 1405-1409 (2016)</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Features</strong></p>
+<p>The DL_F Notation general formats are as follows:</p>
+<a class="reference internal image-reference" href="../../_images/dlf_10_1.png"><img alt="../../_images/dlf_10_1.png" class="align-center" src="../../_images/dlf_10_1.png" style="width: 250.25000000000003px; height: 123.75000000000001px;" /></a>
+<p>The ATOM_TYPEs are determined via molecular topology analysis. The ATOM_TYPEs are listed in a file called the <em>dlf_notation.output</em> in the <em>output/</em> directory.</p>
+<p>There is no need to keep track of the ATOM_KEYs in the library files. The ATOM_KEYs can be generated <em>in-situ</em> in DL_FIELD, based on the ATOM_TYPEs.</p>
+<p>The optional tokens are some alphabets and symbols that indicate the types and positions of atoms within a <em>CG</em>. For instance, the ethanol molecule in the previous page contained the tokens <em>p</em> and <em>s</em>, which refers to <em>primary</em> and <em>secondary</em> carbon atoms, respectively.</p>
+<p>Other more common tokens are <em>E</em> and <em>L</em>, which refer to <em>end</em> and <em>linked</em> position, respectively.</p>
+<p>The latest DL_FIELD version (4.10) can detect about four hundred <em>CGs</em>. More will be added when new versions are released.</p>
+<p>In summary, DL_F Notation has the following features:</p>
+<ul class="simple">
+<li>Expression of standard atom types with a consistent format for a range of FF schemes.</li>
+<li>Use of the universal atom typing procedures within DL_FIELD.</li>
+<li>Produce DL_POLY files with consistent ATOM_KEYs for more precise and ease of results analysis.</li>
+<li>Easy to identify, with sensible format of naming atoms that indicates precisely its chemical nature.</li>
+<li>Use of xyz input configuration file format with full automatic determination of ATOM_TYPEs.</li>
+</ul>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Example structures</strong></p>
+<ol class="arabic simple">
+<li>A pyridine molecule. The tokens <em>-1</em>, <em>-2</em>, etc, are the numering sequence that is usually used in aromatic ring systems.</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/dlf_10_2.png"><img alt="../../_images/dlf_10_2.png" class="align-center" src="../../_images/dlf_10_2.png" style="width: 386.0px; height: 253.0px;" /></a>
+<p><br /> <br /></p>
+<ol class="arabic simple" start="2">
+<li>Assignments of ATOM_TYPEs in DL_F Notation and PCFF force field for favipiravir molecule, an antivirial medication.</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/dlf_10_5.png"><img alt="../../_images/dlf_10_5.png" class="align-center" src="../../_images/dlf_10_5.png" style="width: 456.5px; height: 264.0px;" /></a>
+<p><br /> <br /></p>
+<ol class="arabic simple" start="3">
+<li>Illustration of using xyz as the input structure in DL_FIELD, to produce the ATOM_TYPEs. Then, the corresponding <em>FIELD</em> file was produced, with the atom labels showed in the standard OPLS FF notation.</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/dlf_10_3.png"><img alt="../../_images/dlf_10_3.png" class="align-center" src="../../_images/dlf_10_3.png" style="width: 478.2px; height: 381.59999999999997px;" /></a>
+<p><br /> <br /></p>
+<ol class="arabic simple" start="4">
+<li>Another similar example to the one above but the <em>FIELD</em> file shows the atom labels expressed in the standard notation for PCFF force field.</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/dlf_10_4.png"><img alt="../../_images/dlf_10_4.png" class="align-center" src="../../_images/dlf_10_4.png" style="width: 505.2px; height: 325.2px;" /></a>
+<p><br /> <br /></p>
+<ol class="arabic simple" start="5">
+<li>Finally, example below shows ATOM_TYPEs for dynemicin A, a drug molecule. The corresponding ATOM_KEYs are shown in blue. These ATOM_KEYs are similar irrespective of which FF schemes are used: OPLS2005, CVFF or PCFF but the potential parameters are different.</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/dlf_10_6.png"><img alt="../../_images/dlf_10_6.png" class="align-center" src="../../_images/dlf_10_6.png" style="width: 888.3px; height: 247.79999999999998px;" /></a>
+<p>Can you tell which atoms are located in which parts of the molecule?</p>
+<p><a class="reference internal" href="#header-dlf-10"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guides.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_9.html"
+                        title="previous chapter">The DL_F Notation 1</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlf_6.html"
+                        title="next chapter">Solution Maker Feature</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlf_6.html" title="Solution Maker Feature"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_9.html" title="The DL_F Notation 1"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

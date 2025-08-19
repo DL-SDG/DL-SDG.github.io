@@ -1,0 +1,49 @@
+.. DL_FIELD tutorial. The udff file. Example uses.
+.. _Header_dlf_20:
+
+.. |br| raw:: html
+
+   <br /> 
+
+**************************
+The udff file: 2. Examples 
+**************************
+
+In this page, we will be looking at a couple of simple examples how to use a *udff* file.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Create or modify MOLECULE tempelate**
+
+We intend to override a MOLECULE tempelate in a library file. Suppose you want to change the partial charges for methanol in CHARMM22_prot FF. This can be achieved as follows:
+
+.. image:: ../../image/dl_f_4_3.png
+   :scale: 70%
+   :align: center
+
+On the left, it shows a portion of the MOLECULE tempelate where the methanol MOLECULE is defined in the library file. On the right, is the same MOLECULE now being redefined in a *udff* file, with changes to the partial charges to the hydroxyl group.
+
+If the similar MOLECULE_TYPE (the name of the MOLECULE) is located in the library, then DL_FIELD will give the following notification in the *dl_field.output* file.
+
+.. literalinclude:: dlf_udff3.txt
+
+and ignore the FF information from the library file.
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+**Create or modify potential parameter**
+
+Suppose you want to use a more 'up-to-date' set of parameters instead of the those supplied in the library, then the redefinition 
+
+
+.. image:: ../../image/dl_f_4_2.png
+   :scale: 80%
+   :align: center
+
+will produce the following notification in the *dl_field.output* file.
+
+.. literalinclude:: dlf_udff3.txt
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_20>`
+

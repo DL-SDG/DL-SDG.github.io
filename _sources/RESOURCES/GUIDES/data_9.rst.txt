@@ -1,0 +1,42 @@
+.. D_ATA tutorial.
+.. _Header_data_9:
+
+.. |br| raw:: html
+
+   <br />
+
+**********************************
+Pentanoic acid liquid (results)
+**********************************
+
+The analysis results will be shown in *d_ata.results* located in the OUTPUT_PATH folder.
+
+This file reports, firstly, types and modes of interactions identified for each analysed time frame and, secondly, the overall averages, including correlations and structural order parameters, if applicable.
+
+Example below illustrates a section of the results output for the pentanoic acid system.
+
+
+.. image:: ../../image/data_9_1.png
+   :scale: 95%
+   :align: center
+
+If all-inclusive interaction mode (Option **3**) is switched on, then D_ATA will lump all similar interactions involving similar chemical species into one DANAI statement and atoms are expressed in capital letters only. Below shows analysis outcome for the same configuration as above. 
+
+.. image:: ../../image/data_9_2.png
+   :scale: 95%
+   :align: center
+
+.. Note::
+   All-inclusive interaction mode reduces the number of DANAI statements and simplify results output. This can be useful if detailed interaction modes are not important.
+
+Once all simulation frames have been processed, D_ATA carries out time averaging over all analysed configurations as follows.
+
+.. image:: ../../image/data_9_3.png
+   :scale: 95%
+   :align: center
+
+For HB interactions, the results show that the predominant interactions being the [L2]O20E:H20O and this follows by [L2]H20O:O20L. The element symbols are all shown in capital letters, meaning these are isolated interactions, forming single HB interactions between two participating atoms. 
+
+
+
+:ref:`^ GO TO TOP ^<Header_data_9>`

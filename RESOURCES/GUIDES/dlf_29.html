@@ -1,0 +1,291 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Setup FF from Amber’s Antechamber &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Setup FF from CHARMM’s rtf and prm" href="dlf_30.html" />
+    <link rel="prev" title="Gromacs example output" href="dlf_28.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlf_30.html" title="Setup FF from CHARMM’s rtf and prm"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlf_28.html" title="Gromacs example output"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" accesskey="U">DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="setup-ff-from-amber-s-antechamber">
+<span id="header-dlf-29"></span><h1>Setup FF from Amber’s Antechamber<a class="headerlink" href="#setup-ff-from-amber-s-antechamber" title="Permalink to this headline">¶</a></h1>
+<p>This page shows an example of how to setup a FF model via Amber’s Antechamber program and it is assumed you have an Amber program
+pre-installed in your system.</p>
+<p>The General Amber FF (GAFF) is a FF scheme specially designed for organic molecules including small drug molecules.
+The FF is implemented in DL_FIELD as <em>amber16_gaff</em>. However, what is missing is the partial charge values whcih can be obtained from Amber’s <em>Antechamber</em> program.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Example procedure</strong></p>
+<p>Let’s suppose you want to setup a GAFF model for ascorbic acid (Vitamin C) in water and the initial input file for the structure is in a PDB format. This file is located in the <em>Examples/</em> folder in the DL_FIELD package (<em>ascorbic_acid.pdb</em>).</p>
+<p><strong>Step 1</strong></p>
+<p>The following command can be issued by calling <em>antechamber</em> as follows:</p>
+<p><em>antechamber -if pdb -i ascorbic.pdb -fo mol2 -o ascorbic_acid.mol2 -c bcc</em></p>
+<p>Which instructs the program to read in the pdb file and produce a <em>mol2</em> output file. The <em>bcc</em> is the charge model being used, which is the abbreviation for AM1-BCC. The charge model was parameterised to reproduce HF/6-31G* RESP charges. These partial charge values are shown at the last column for each atom in the mol2 file (see below)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">@&lt;</span><span class="n">TRIPOS</span><span class="o">&gt;</span><span class="n">MOLECULE</span>
+<span class="o">****</span>
+   <span class="mi">20</span>    <span class="mi">20</span>     <span class="mi">1</span>     <span class="mi">0</span>     <span class="mi">0</span>
+<span class="n">SMALL</span>
+<span class="n">bcc</span>
+
+
+<span class="o">@&lt;</span><span class="n">TRIPOS</span><span class="o">&gt;</span><span class="n">ATOM</span>
+      <span class="mi">1</span> <span class="n">C</span>            <span class="mf">0.5320</span>     <span class="mf">0.6960</span>     <span class="mf">0.5130</span> <span class="n">c3</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.140400</span>
+      <span class="mi">2</span> <span class="n">C1</span>           <span class="mf">1.1130</span>    <span class="o">-</span><span class="mf">0.7070</span>     <span class="mf">0.4630</span> <span class="n">c3</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.102100</span>
+      <span class="mi">3</span> <span class="n">H</span>            <span class="mf">1.1810</span>     <span class="mf">1.3910</span>     <span class="mf">1.0910</span> <span class="n">h1</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.065200</span>
+      <span class="mi">4</span> <span class="n">O</span>           <span class="o">-</span><span class="mf">0.7190</span>     <span class="mf">0.6670</span>     <span class="mf">1.1730</span> <span class="n">oh</span>         <span class="mi">1</span> <span class="o">***</span>      <span class="o">-</span><span class="mf">0.591800</span>
+      <span class="mi">5</span> <span class="n">H1</span>           <span class="mf">0.3760</span>     <span class="mf">1.1160</span>    <span class="o">-</span><span class="mf">0.5050</span> <span class="n">h1</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.065200</span>
+      <span class="mi">6</span> <span class="n">H2</span>           <span class="mf">0.9650</span>    <span class="o">-</span><span class="mf">1.2210</span>     <span class="mf">1.4420</span> <span class="n">h1</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.064700</span>
+      <span class="mi">7</span> <span class="n">O1</span>           <span class="mf">0.4260</span>    <span class="o">-</span><span class="mf">1.4590</span>    <span class="o">-</span><span class="mf">0.5120</span> <span class="n">oh</span>         <span class="mi">1</span> <span class="o">***</span>      <span class="o">-</span><span class="mf">0.599800</span>
+      <span class="mi">8</span> <span class="n">C2</span>           <span class="mf">2.5880</span>    <span class="o">-</span><span class="mf">0.7270</span>     <span class="mf">0.0980</span> <span class="n">c3</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.148300</span>
+      <span class="mi">9</span> <span class="n">O2</span>           <span class="mf">3.3640</span>    <span class="o">-</span><span class="mf">0.0400</span>     <span class="mf">1.0670</span> <span class="n">os</span>         <span class="mi">1</span> <span class="o">***</span>      <span class="o">-</span><span class="mf">0.398900</span>
+     <span class="mi">10</span> <span class="n">H3</span>           <span class="mf">2.7690</span>    <span class="o">-</span><span class="mf">0.2680</span>    <span class="o">-</span><span class="mf">0.9010</span> <span class="n">h1</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.112700</span>
+     <span class="mi">11</span> <span class="n">C3</span>           <span class="mf">3.1190</span>    <span class="o">-</span><span class="mf">2.1380</span>     <span class="mf">0.1410</span> <span class="n">c2</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.041900</span>
+     <span class="mi">12</span> <span class="n">C4</span>           <span class="mf">4.2130</span>    <span class="o">-</span><span class="mf">0.9780</span>     <span class="mf">1.5850</span> <span class="n">c</span>          <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.713800</span>
+     <span class="mi">13</span> <span class="n">O3</span>           <span class="mf">5.0310</span>    <span class="o">-</span><span class="mf">0.7710</span>     <span class="mf">2.4570</span> <span class="n">o</span>          <span class="mi">1</span> <span class="o">***</span>      <span class="o">-</span><span class="mf">0.549500</span>
+     <span class="mi">14</span> <span class="n">H4</span>          <span class="o">-</span><span class="mf">1.1250</span>     <span class="mf">1.5360</span>     <span class="mf">1.1300</span> <span class="n">ho</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.414000</span>
+     <span class="mi">15</span> <span class="n">H5</span>           <span class="mf">0.8040</span>    <span class="o">-</span><span class="mf">2.3420</span>    <span class="o">-</span><span class="mf">0.5630</span> <span class="n">ho</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.423000</span>
+     <span class="mi">16</span> <span class="n">O4</span>           <span class="mf">4.8120</span>    <span class="o">-</span><span class="mf">3.2890</span>     <span class="mf">1.4290</span> <span class="n">oh</span>         <span class="mi">1</span> <span class="o">***</span>      <span class="o">-</span><span class="mf">0.472100</span>
+     <span class="mi">17</span> <span class="n">C5</span>           <span class="mf">4.0860</span>    <span class="o">-</span><span class="mf">2.2150</span>     <span class="mf">1.0540</span> <span class="n">ce</span>         <span class="mi">1</span> <span class="o">***</span>      <span class="o">-</span><span class="mf">0.111100</span>
+     <span class="mi">18</span> <span class="n">O5</span>           <span class="mf">2.6680</span>    <span class="o">-</span><span class="mf">3.1720</span>    <span class="o">-</span><span class="mf">0.6010</span> <span class="n">oh</span>         <span class="mi">1</span> <span class="o">***</span>      <span class="o">-</span><span class="mf">0.467100</span>
+     <span class="mi">19</span> <span class="n">H6</span>           <span class="mf">3.1950</span>    <span class="o">-</span><span class="mf">3.9540</span>    <span class="o">-</span><span class="mf">0.3620</span> <span class="n">ho</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.452000</span>
+     <span class="mi">20</span> <span class="n">H7</span>           <span class="mf">5.3850</span>    <span class="o">-</span><span class="mf">3.0020</span>     <span class="mf">2.1610</span> <span class="n">ho</span>         <span class="mi">1</span> <span class="o">***</span>       <span class="mf">0.447000</span>
+<span class="o">@&lt;</span><span class="n">TRIPOS</span><span class="o">&gt;</span><span class="n">BOND</span>
+     <span class="mi">1</span>     <span class="mi">1</span>     <span class="mi">2</span> <span class="mi">1</span>   
+     <span class="mi">2</span>     <span class="mi">1</span>     <span class="mi">3</span> <span class="mi">1</span>   
+     <span class="mi">3</span>     <span class="mi">1</span>     <span class="mi">4</span> <span class="mi">1</span>   
+     <span class="mi">4</span>     <span class="mi">1</span>     <span class="mi">5</span> <span class="mi">1</span>   
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p><strong>Step 2</strong></p>
+<p>Insert the mol2 as the input configuration and run the DL_FIELD <em>control</em> file with the following input options as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Control file, for version 4.11
+1        * Construct DL_POLY output files
+none       * Seconday output files (gromacs, chemshell, or none). 
+<span class="hll">amber16_gaff   * Type of force field require (see list below for choices).
+</span>kcal/mol    * Energy unit: kcal/mol, kJ/mol, eV, or K.
+normal  * Conversion criteria (strict, normal, loose)
+1        * Bond type (0=default, 1=harmonic , 2=Morse)
+1        * Angle type (0=default, 1=harmonic, 2=harmonic cos)
+none  * Include user-defined information. Put &#39;none&#39; or a .udff filename
+1       * Verbosity mode: 1 = on, 0 = off     
+<span class="hll">ascorbic_acid.mol2  * Configuration file.
+</span>none   * Output file in PDB. Put &#39;none&#39; if not needed.
+<span class="hll">1  80 molecules  12.0  * Solution Maker: on/off, density, unit, cutoff)
+</span>0        * Optimise FIELD output size, if possible? 1=yes  0=no
+2         * Atom display: 1 = DL_FIELD format. 2 = Standard format
+2         * Vdw display format: 1 = 12-6 format   2 = LJ format
+default * Epsilon mixing rule (organic FF only) : default, or 1 = geometric, 2 = arithmatic 
+...
+...
+0         * Tether atoms? 1 = Yes (see below)  0 = No
+<span class="hll">1         * Constrain bonds? 1 = Yes (see below) 0 = No
+</span>0         * Apply rigid body? 1 = Yes (see below) 0 = No
+<span class="hll">1        * Periodic condition ? 0=no, other number = type of box (see below)
+</span><span class="hll">80.0   0.0   0.0 * Cell vector a (x, y, z)
+</span><span class="hll">0.0   80.0  0.0  * Cell vector b (x, y, z)
+</span><span class="hll">0.0   0.0  80.0 * Cell vector c (x, y, z)
+</span>default   * 1-4 scaling for coulombic (put default or x for scaling=x)
+default   * 1-4 scaling for vdw (put default or x for scaling=x)
+0  300.0  * Include velocity? 1=yes, 0=no and scaling temperature.
+1         * Position solute at origin? 1 = yes, 0=no 
+<span class="hll">spc  2.0 default * Solvate model? none or specify solvent (see below) and distance criteria.
+</span>0  5.0   * Add counter ions? 1=yes, 0=no,  minimum distance from solute  
+
+...
+...
+...
+
+######################################################## 
+Atom state specification:  type  Molecular_Group   filter   [value]
+
+
+<span class="hll">CONSTRAIN not_define h-bond
+</span>
+#########################################################
+...
+...
+</pre></div>
+</div>
+<p>The highlighted options instructs DL_FIELD to produce FF files for Amber GAFF force field by duplicating 80 ascorbic acid molecules in a cubic system of size 80 Å, and each molecule is separated by at least 12 Å from one another. After that, the system is solvated with the SPC water model. All H-containing bonds are also constrained.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Molecular Group is called ‘not_define’ because it is not clearly defined in the <em>.mol2</em> file and DL_FIELD will automatically label the system with a default Molecular Group name as ‘not_define’.</p>
+</div>
+<p><strong>Step 3</strong></p>
+<p>Run DL_FIELD to produce a <em>dl_poly.FIELD</em> file. The top portion of the file is shown as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generated</span> <span class="n">by</span> <span class="n">DL_FIELD</span> <span class="n">v4</span><span class="o">.</span><span class="mi">11</span>
+<span class="n">Units</span> <span class="n">kcal</span><span class="o">/</span><span class="n">mol</span>
+<span class="n">Molecular</span> <span class="n">types</span> <span class="mi">2</span>
+<span class="n">Molecule</span> <span class="n">name</span> <span class="n">not_define</span>
+<span class="n">nummols</span> <span class="mi">80</span>
+<span class="n">atoms</span> <span class="mi">20</span>
+<span class="n">c3</span>          <span class="mf">12.01150</span>     <span class="mf">0.14040</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">c3</span>          <span class="mf">12.01150</span>     <span class="mf">0.10210</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">h1</span>           <span class="mf">1.00797</span>     <span class="mf">0.06520</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">oh</span>          <span class="mf">15.99940</span>    <span class="o">-</span><span class="mf">0.59180</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">h1</span>           <span class="mf">1.00797</span>     <span class="mf">0.06520</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">h1</span>           <span class="mf">1.00797</span>     <span class="mf">0.06470</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">oh</span>          <span class="mf">15.99940</span>    <span class="o">-</span><span class="mf">0.59980</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">c3</span>          <span class="mf">12.01150</span>     <span class="mf">0.14830</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">os</span>          <span class="mf">15.99940</span>    <span class="o">-</span><span class="mf">0.39890</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">h1</span>           <span class="mf">1.00797</span>     <span class="mf">0.11270</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">c2</span>          <span class="mf">12.01150</span>     <span class="mf">0.04190</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">c</span>           <span class="mf">12.01150</span>     <span class="mf">0.71380</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">o</span>           <span class="mf">15.99940</span>    <span class="o">-</span><span class="mf">0.54950</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">ho</span>           <span class="mf">1.00797</span>     <span class="mf">0.41400</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">ho</span>           <span class="mf">1.00797</span>     <span class="mf">0.42300</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Notice the ATOM_KEYs and charge values are extracted, as is, from the input <em>mol2</em> file.</p>
+<p>If a force field scheme other than <em>amber16_gaff</em> is used, then the ATOM_KEYs and charge values from the <em>mol2</em> file will be ignored and a new FF data will be produced. For example, consider CVFF FF scheme is used, then the <em>dl_poly.FIELD</em> produced is shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Generated</span> <span class="n">by</span> <span class="n">DL_FIELD</span> <span class="n">v4</span><span class="o">.</span><span class="mi">11</span>
+<span class="n">Units</span> <span class="n">kcal</span><span class="o">/</span><span class="n">mol</span>
+<span class="n">Molecular</span> <span class="n">types</span> <span class="mi">2</span>
+<span class="n">Molecule</span> <span class="n">name</span> <span class="n">not_define</span>
+<span class="n">nummols</span> <span class="mi">80</span>
+<span class="n">atoms</span> <span class="mi">20</span>
+<span class="n">c2</span>          <span class="mf">12.01150</span>    <span class="o">-</span><span class="mf">0.17000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">c1</span>          <span class="mf">12.01150</span>    <span class="o">-</span><span class="mf">0.07000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">h</span>            <span class="mf">1.00797</span>     <span class="mf">0.10000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">oh</span>          <span class="mf">15.99940</span>    <span class="o">-</span><span class="mf">0.38000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">h</span>            <span class="mf">1.00797</span>     <span class="mf">0.10000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">h</span>            <span class="mf">1.00797</span>     <span class="mf">0.10000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">oh</span>          <span class="mf">15.99940</span>    <span class="o">-</span><span class="mf">0.38000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">c1</span>          <span class="mf">12.01150</span>     <span class="mf">0.15000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">o</span>           <span class="mf">15.99940</span>    <span class="o">-</span><span class="mf">0.18000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">h</span>            <span class="mf">1.00797</span>     <span class="mf">0.10000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">c</span><span class="o">=</span>          <span class="mf">12.01150</span>    <span class="o">-</span><span class="mf">0.07030</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">c</span><span class="s1">&#39;          12.01150     0.41000   1   0</span>
+<span class="n">o</span><span class="s1">&#39;          15.99940    -0.38000   1   0</span>
+<span class="n">ho</span>           <span class="mf">1.00797</span>     <span class="mf">0.35000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">ho</span>           <span class="mf">1.00797</span>     <span class="mf">0.35000</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="n">oh</span>          <span class="mf">15.99940</span>    <span class="o">-</span><span class="mf">0.37970</span>   <span class="mi">1</span>   <span class="mi">0</span>
+<span class="o">...</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Can you see the difference?</p>
+<p><a class="reference internal" href="#header-dlf-29"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guides.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlf_28.html"
+                        title="previous chapter">Gromacs example output</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlf_30.html"
+                        title="next chapter">Setup FF from CHARMM’s rtf and prm</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlf_30.html" title="Setup FF from CHARMM’s rtf and prm"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlf_28.html" title="Gromacs example output"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlf_0.html" >DL_FIELD</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

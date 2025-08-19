@@ -1,0 +1,169 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>What is DL_POLY &#8212; DL_Software Digital Guide (DL_SDG) 2.4 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_CY.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Structures and operations" href="dlp_3.html" />
+    <link rel="prev" title="DL_POLY" href="dlp_0.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dlp_3.html" title="Structures and operations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dlp_0.html" title="DL_POLY"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlp_0.html" accesskey="U">DL_POLY</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-is-dl-poly">
+<span id="header-dlp-1"></span><h1>What is DL_POLY<a class="headerlink" href="#what-is-dl-poly" title="Permalink to this headline">¶</a></h1>
+<p><strong>DL_POLY program</strong></p>
+<p>The DL_POLY project was initiated by Bill Smith at Daresbury Laboratory in 1992 to address the needs of <a class="reference external" href="http://www.ccp5.ac.uk/">CCP5</a> (an academic collaboration community) for computer simulation of condensed phases. Bringing together previous developments by CCP5, DL_POLY was created as a general-purpose software package for (classical) molecular dynamics (MD) simulations designed to run on parallel computing platforms.</p>
+<p>The first version of DL_POLY (DL_POLY_1) was completed in 1994 by Bill Smith and Tim Forester and given a limited release to close collaborators for testing and early exploitation, before the more widely available DL_POLY_2 was released in 1996. This version of DL_POLY was moved to a BSD open source licence in 2010 and renamed as <a class="reference external" href="https://www.ccp5.ac.uk/DL_POLY_CLASSIC">DL_POLY Classic</a>. These versions make use of Replicated Data as their parallelisation strategy, which enables simulations of up to 30 000 atoms with good parallelisation on up to around 100 processor cores.</p>
+<p>A new version of DL_POLY, DL_POLY_3, was completed and released by Ilian Todorov and Bill Smith in 2003. This version uses Domain Decomposition as its parallelisation strategy, which enables simulations of up to around 2 billion atoms on many thousands of processor cores. After features for large-scale radiation damage simulations were added and improvements were made to file reading and writing, DL_POLY_5 was released in 2010. This version was further developed to add new features (e.g. multipolar electrostatics, the Two-Temperature Model for irradiated systems) before the code was completely refactored and re-released with a LGPL 3.0 open source licence in 2021 as <a class="reference external" href="https://gitlab.com/ccp5/dl-poly/-/releases/5.0.0">DL_POLY_5</a>.</p>
+<p>Both major versions of DL_POLY are written in modularised Fortran90 with MPI-2 and are fully contained, not requiring any external libraries (beyond MPI) to compile and use. While some specialist features differ between the two, they share most of the same fundamental MD functionalities and the file formats for both versions are nearly identical and mutually understandable.</p>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Functions</strong></p>
+<ul class="simple">
+<li>General ‘simulation engine’ for classical MD</li>
+<li>Can represent molecules as point atoms, ions and coarse-grained beads with bonded (bond and angle vibrations, torsion potentials) and non-bonded (van der Waals, electrostatic) interactions</li>
+<li>Force field agnostic: can use many different force fields (FFs) or potentials</li>
+<li>Designed to run on parallel computing architectures to speed up calculations and/or expand system sizes</li>
+</ul>
+<p>DL_POLY is a flexible classical MD program that can be used to simulate a wide range of systems, mostly at atomistic scales (length scales from <span class="math notranslate nohighlight">\(10^{-10}\)</span> m upwards, time scales from <span class="math notranslate nohighlight">\(10^{-11}\)</span> to <span class="math notranslate nohighlight">\(10^{-3}\)</span> s) but also at larger coarse-grained MD and mesoscopic scales. It is not limited to specific force fields (FFs) to represent interactions between particles: many widely-used FF schemes can be accessed using <a class="reference internal" href="../dl_field_intro.html#dl-field-intro"><span class="std std-ref">DL_FIELD</span></a>, and custom FFs can also be supplied as tabulated potentials.</p>
+<p>Both versions of DL_POLY are designed to run on high performance computing (HPC) platforms with multiple CPUs to speed up MD calculations. The Domain Decomposed version (currently DL_POLY_5) is also able to run very large simulations with up to around 2 billion (<span class="math notranslate nohighlight">\(\sim 2.1 \times 10^{9}\)</span>) atoms.</p>
+<p>As well as core functionalities for MD simulations (shown below), both versions of DL_POLY include more advanced features. DL_POLY Classic includes features for:</p>
+<ul class="simple">
+<li>Hyperdynamics</li>
+<li>Metadynamics</li>
+<li>Calculations of solvation properties</li>
+</ul>
+<p>and DL_POLY_5 includes features for:</p>
+<ul class="simple">
+<li>Radiation damage (e.g. cascades, Two-Temperature Model)</li>
+<li>Multipolar electrostatics</li>
+<li>Potential mean force (PMF) calculations of intramolecular interactions</li>
+</ul>
+<img alt="../../_images/Orange_bar6.png" src="../../_images/Orange_bar6.png" />
+<p><strong>Base Capabilities</strong></p>
+<ul class="simple">
+<li>Molecular dynamics (MD) of polyatomic systems with options to save the micro-evolution trajectory at regular intervals.</li>
+<li>Representations of ions, atoms, polarisable ions (core and shell), molecules with flexible bonds and fixed-length constraints, rigid molecules (with or without links between them).</li>
+<li>Optimisation using the conjugate gradients method or zero Kelvin annealing.</li>
+<li>Provide statistics of common thermodynamic properties (temperature, pressure, energy, enthalpy, volume) with options to specify collection intervals and stack size for production of rolling and final average values.</li>
+<li>Calculations of radial distribution functions (RDFs) and Z-density profiles.</li>
+<li>Temperature scaling, velocity re-Gaussing and force capping during equilibration.</li>
+</ul>
+<p><a class="reference internal" href="#header-dlp-1"><span class="std std-ref">^ GO TO TOP ^</span></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Resources.html">Resources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manual.html">DL_Software Manuals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">DL_Software General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guides.html">DL_Software Reference Guides</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="dlp_0.html">DL_POLY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlf_0.html">DL_FIELD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_0.html">D_ATA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dla_0.html">DL_ANALYSER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dlm_0.html">DL_MESO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../EXERCISES/Exercises.html">DL_Software Tutorial Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../video_links.html">Video Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualisation.html">Model Building and Visualization Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../text_editors.html">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux_cheat_sheet.html">Linux Cheat Sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../SIMULATIONS/Simulations.html">Simulations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge.html">Knowledge Center</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RST_PAGES/Acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dlp_0.html"
+                        title="previous chapter">DL_POLY</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dlp_3.html"
+                        title="next chapter">Structures and operations</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dlp_3.html" title="Structures and operations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dlp_0.html" title="DL_POLY"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">DL_Software Digital Guide (DL_SDG) 2.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../Resources.html" >Resources</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="guides.html" >DL_Software Reference Guides</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="dlp_0.html" >DL_POLY</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, DL_SDG.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+.. DL_FIELD tutorial.
+.. _Header_dlf_15:
+
+.. |br| raw:: html
+
+   <br /> 
+
+*************
+Pseudo points
+*************
+
+In DL_FIELD, a pseudo point is an imaginary particle, either charged or uncharged, and can take any mass value or even the vdw interactions. Its position must be fixed relative to other atom or group of atoms within a MOLECULE. In other words, the *RIGID* statement must be used within the *MOLECULE* template.
+
+Pseudo points are distinguished from normal atoms by using a two-character format in the form of QX, where X = 0 to 9 and A to V (case-sensitive). For example, Q1, Q2, QD are pseudo points.
+
+.. Note:: 
+   The symbols QW, QX, QY and QZ are pre-defined for DL_FIELD internal use only.
+
+Pseudo point can be used in a number of scenerio. For example: change the polar behaviour of atoms and bonds, or presence of lone pairs. 
+
+Please take note of the following when using pseudo points:
+
+* The pseudo ATOM_TYPEs is unique within a MOLECULE. This means if there are more than one pseudo points in a MOLECULE, each pseudo point must be assigned to a different ATOM_TYPE and ATOM_KEY. However, similar pseudo points can be used across different MOLECULEs.
+
+* A *RIGID* statement must be used for pseudo points that contained at least one normal ATOM.
+
+* Pseudo points must not be connected to any other ATOMs within the MOLECULE. A self-CONNECT directive must be used for a pseudo point. 
+
+|br| 
+
+.. image:: ../SIMULATIONS/IMAGES/Orange_bar.png
+
+For example, a pseudo point is used in the TIP4P model to improve dipole moment of the water molecule, by shifting the charge slightly away from the oxygen atom (an off-center point charge model):
+
+.. image:: ../../image/dlf_15_1.png
+   :scale: 50%
+   :align: center
+
+Below shows how to insert pseudo points into the model, extracted from a *sf* and  *par* files in the library:
+
+.. image:: ../../image/dlf_15_2.png
+   :scale: 50%
+   :align: center
+
+Note also pseudo point ATOM_KEY must be used (as would be for any self-CONNECT species) in the input file as shown below.
+
+.. literalinclude:: pdb.pseudo 
+
+
+|br|
+
+
+:ref:`^ GO TO TOP ^<Header_dlf_15>`
+
