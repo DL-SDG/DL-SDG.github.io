@@ -15,6 +15,10 @@ You do the right thing to reach here.
 
 |
 
+* :download:`The DL_FIELD User Manual <./DOCUMENTS/MAN_DL_FIELD_4.13.pdf>` (Version 4.13 - June 2026)
+
+|
+
 * :download:`The D_ATA User Manual <./DOCUMENTS/MAN_D_ATA_1.0.pdf>` (Version 1.0 - November 2024)
   
 |

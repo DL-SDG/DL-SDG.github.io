@@ -11,7 +11,7 @@ This page tells you how to set DL_FIELD up and running.
 
 * `DL_FIELD web site <https://www.ccp5.ac.uk/DL_FIELD>`_ – force field (FF) model set up.
 
-* DL_FIELD User Manual (:download:`PDF<./DOCUMENTS/MAN_DL_FIELD_4.12.pdf>`) - Version 4.12, May 2025.
+* DL_FIELD User Manual (:download:`PDF<./DOCUMENTS/MAN_DL_FIELD_4.13.pdf>`) - Version 4.13, June 2026.
 
 * :doc:`GUIDES/dlf_0` - Online Resource Guide, useful for new users.
  
@@ -78,12 +78,12 @@ Every successful conversion will always produce files such as *dl_poly.CONFIG*, 
 
 By default, the *dl_f_path* is pointed to the *dl_field.control* file that will instruct DL_FIELD to read the *sod1.pdb* structure located in the *Examples/* directory. The sod1 is an example protein structure called superoxide dismutase.
 
-The *Examples/* directory contains several sample structures. You can setup FF models for these structures by specifying the filename and the choice of FF scheme in the control file. All example structures are described in details in Chapter 13 of the DL_FIELD manual.
+The *Examples/* directory contains several sample structures. You can setup FF models for these structures by specifying the filename and the choice of FF scheme in the control file. All example structures are described in details in Chapter 16 of the DL_FIELD manual.
 
 .. Warning::
    Not all FF can work with every structure. An error will occur if certain information about a structure is not available for a chosen FF scheme.
 
-Alternately (or rather more conveniently), you can run a set of predefined control files located in the *control_files/* directory. These control files were named according to the example numbers as mentioned in Chapter 13 of the Manual. To use these control files edit the dl_f_path, comment out the default **control** path and uncomment the other **control** path as follows:
+Alternately (or rather more conveniently), you can run a set of predefined control files located in the *control_files/* directory. These control files were named according to the example numbers as mentioned in Chapter 16 of the Manual. To use these control files edit the dl_f_path, comment out the default **control** path and uncomment the other **control** path as follows:
 
 .. literalinclude:: ./MISC/dl_field_path.txt
    :emphasize-lines: 10-11

@@ -4,7 +4,7 @@
 Main features
 *************
 
-**Last update: July 2024 (DL_FIELD version 4.11)**
+**Last update: June 2026 (DL_FIELD version 4.13)**
 
 Below shows the some of the main DL_FIELD capabilities.
 
@@ -14,6 +14,8 @@ Below shows the some of the main DL_FIELD capabilities.
 
 * Force field customisation in a user-define force field (*udff*) file: define or override potential parameters and FF models
 
+* Produce (*udff*) user model file (*dl_field.udff*), that contain force field information of a user model.
+
 * Solvation with auto-insertion of counter ions.
 
 * Auto setup solution and liquid systems (Solution Maker feature).
@@ -22,7 +24,7 @@ Below shows the some of the main DL_FIELD capabilities.
 
 * Definition of more than one FF scheme within a molecular model (multiple potential capability).
 
-* Run DL_POLY and Gromacs programs after conversion (in a same device).
+* Run DL_POLY, LAMMPS and Gromacs programs after conversion (in a same device).
 
 |
 

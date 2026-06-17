@@ -53,7 +53,7 @@
 <p><strong>How to obtain DL_FIELD</strong></p>
 <ul class="simple">
 <li><a class="reference external" href="https://www.ccp5.ac.uk/DL_FIELD">DL_FIELD web site</a> – force field (FF) model set up.</li>
-<li>DL_FIELD User Manual (<a class="reference download internal" download="" href="../_downloads/ec80bafee888682bbf56443d1df9b161/MAN_DL_FIELD_4.12.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 4.12, May 2025.</li>
+<li>DL_FIELD User Manual (<a class="reference download internal" download="" href="../_downloads/3307bc6324195f0f81aec09013ea870e/MAN_DL_FIELD_4.13.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a>) - Version 4.13, June 2026.</li>
 <li><a class="reference internal" href="GUIDES/dlf_0.html"><span class="doc">DL_FIELD</span></a> - Online Resource Guide, useful for new users.</li>
 <li><a class="reference internal" href="EXERCISES/exercises_dlfield.html"><span class="doc">DL_FIELD</span></a> - Tutorial exercises for DL_FIELD.</li>
 </ul>
@@ -115,12 +115,12 @@ Every successful conversion will always produce files such as <em>dl_poly.CONFIG
 <img alt="../_images/Orange_bar7.png" src="../_images/Orange_bar7.png" />
 <p><strong>Example structures</strong></p>
 <p>By default, the <em>dl_f_path</em> is pointed to the <em>dl_field.control</em> file that will instruct DL_FIELD to read the <em>sod1.pdb</em> structure located in the <em>Examples/</em> directory. The sod1 is an example protein structure called superoxide dismutase.</p>
-<p>The <em>Examples/</em> directory contains several sample structures. You can setup FF models for these structures by specifying the filename and the choice of FF scheme in the control file. All example structures are described in details in Chapter 13 of the DL_FIELD manual.</p>
+<p>The <em>Examples/</em> directory contains several sample structures. You can setup FF models for these structures by specifying the filename and the choice of FF scheme in the control file. All example structures are described in details in Chapter 16 of the DL_FIELD manual.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Not all FF can work with every structure. An error will occur if certain information about a structure is not available for a chosen FF scheme.</p>
 </div>
-<p>Alternately (or rather more conveniently), you can run a set of predefined control files located in the <em>control_files/</em> directory. These control files were named according to the example numbers as mentioned in Chapter 13 of the Manual. To use these control files edit the dl_f_path, comment out the default <strong>control</strong> path and uncomment the other <strong>control</strong> path as follows:</p>
+<p>Alternately (or rather more conveniently), you can run a set of predefined control files located in the <em>control_files/</em> directory. These control files were named according to the example numbers as mentioned in Chapter 16 of the Manual. To use these control files edit the dl_f_path, comment out the default <strong>control</strong> path and uncomment the other <strong>control</strong> path as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">library</span> <span class="o">=</span> <span class="n">lib</span><span class="o">/</span>
 <span class="n">solvent</span> <span class="o">=</span> <span class="n">solvent</span><span class="o">/</span> 
 <span class="n">output</span>  <span class="o">=</span> <span class="n">output</span><span class="o">/</span>
