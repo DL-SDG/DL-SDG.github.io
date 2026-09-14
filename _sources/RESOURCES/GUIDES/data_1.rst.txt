@@ -54,7 +54,7 @@ From such, D_ATA
 
 * :doc:`../d_ata_jargon`
 
-* :download:`The D_ATA User Manual <../DOCUMENTS/MAN_D_ATA_1.0.pdf>` (Version 1.0 - November 2024)
+* :download:`The D_ATA User Manual <../DOCUMENTS/MAN_D_ATA_2.0.pdf>` (Version 2.0 - August 2026)
 
 
 :ref:`^ GO TO TOP ^<Header_data_1>`
